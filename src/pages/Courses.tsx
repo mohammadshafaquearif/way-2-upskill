@@ -102,7 +102,7 @@ const Courses = () => {
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 max-w-4xl mx-auto">
               <div className="text-center">
-                <div className="text-4xl font-bold text-primary mb-2">500+</div>
+                <div className="text-4xl font-bold text-primary mb-2">2000+</div>
                 <div className="text-gray-600 font-medium">Students Enrolled</div>
               </div>
               <div className="text-center">

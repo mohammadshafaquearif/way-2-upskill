@@ -60,7 +60,7 @@ const Hero = () => {
               <div className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center border-4 border-white text-sm font-bold text-white shadow-lg">AP</div>
               <div className="w-12 h-12 rounded-full bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center border-4 border-white text-sm font-bold text-white shadow-lg">+5</div>
             </div>
-            <p className="text-gray-600">Joined by <span className="text-gray-900 font-bold">500+ students</span> this year</p>
+            <p className="text-gray-600">Joined by <span className="text-gray-900 font-bold">2000+ students</span> this year</p>
           </div>
         </div>
         
