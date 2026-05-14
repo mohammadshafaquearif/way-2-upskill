@@ -47,7 +47,7 @@ const Features = () => {
     <section className="py-16 md:py-24 bg-gray-50">
       <div className="container px-4 md:px-6">
         <div className="text-center mb-16">
-          <h2 className="section-title">Why Choose WAY2UPSKILL?</h2>
+          <h2 className="section-title">Why Choose Zyvotrix?</h2>
           <p className="section-subtitle">
             Our comprehensive programs equip you with industry-demanded skills across all major tech domains through personalized mentorship and hands-on projects
           </p>

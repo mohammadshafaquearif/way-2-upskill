@@ -11,7 +11,7 @@ const CTASection = () => {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Transform Your Tech Career?</h2>
           <p className="text-xl md:text-2xl mb-10 max-w-3xl mx-auto leading-relaxed">
-            Join Way2Upskill's comprehensive tech programs and master the skills needed for 
+            Join Zyvotrix's comprehensive tech programs and master the skills needed for 
             your dream tech career. Choose from 5+ specialized domains with one-to-one mentoring.
           </p>
           

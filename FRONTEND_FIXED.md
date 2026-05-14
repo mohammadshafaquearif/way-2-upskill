@@ -124,12 +124,12 @@ Frontend (React + Vite)     Backend (Express.js)     Database (PostgreSQL)
      ↓                              ↓                        ↓
 http://localhost:8082    →    http://localhost:3001    →    localhost:5432
      ↓                              ↓                        ↓
-   Browser                 API Endpoints                way2upskill_db
+   Browser                 API Endpoints                Zyvotrix_db
 ```
 
 ## 🎉 Success!
 
-Your Way2Upskill application is now a fully functional full-stack application with:
+Your Zyvotrix application is now a fully functional full-stack application with:
 - ✅ **Working Frontend** with no blank pages
 - ✅ **Robust Backend API** with PostgreSQL
 - ✅ **Complete Database** with all necessary tables

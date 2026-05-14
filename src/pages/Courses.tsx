@@ -80,7 +80,7 @@ const Courses = () => {
             </div>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8">
               <span className="bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">
-                Way2Upskill
+                Zyvotrix
               </span><br />
               <span className="text-gray-900">Tech Programs</span>
             </h1>
@@ -181,7 +181,7 @@ const Courses = () => {
               <span className="text-white">Tech Journey?</span>
             </h2>
             <p className="text-xl md:text-2xl mb-12 max-w-4xl mx-auto leading-relaxed text-gray-300">
-              Choose your specialization and transform your career with Way2Upskill's intensive, 
+              Choose your specialization and transform your career with Zyvotrix's intensive, 
               industry-oriented programs. Limited spots available - secure your place today.
             </p>
             

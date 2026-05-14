@@ -88,13 +88,13 @@ const Contact = () => {
 
   const handleDirectContact = (type: 'whatsapp' | 'email') => {
     if (type === 'whatsapp') {
-      window.open(`https://wa.me/919611513741`, '_blank');
+      window.open(`https://wa.me/918887720741`, '_blank');
       toast({
         title: "Connecting to WhatsApp",
         description: "Opening WhatsApp to connect with us directly.",
       });
     } else if (type === 'email') {
-      window.location.href = 'mailto:letsupskill57@gmail.com';
+      window.location.href = 'mailto:support@zyvotrix.com';
       toast({
         title: "Opening Email Client",
         description: "Your default email app is opening to send us a message.",
@@ -139,7 +139,7 @@ const Contact = () => {
                         onClick={() => handleDirectContact('email')}
                         className="text-primary hover:underline font-medium text-lg"
                       >
-                        letsupskill57@gmail.com
+                        support@zyvotrix.com
                       </button>
                     </div>
                   </CardContent>
@@ -156,7 +156,7 @@ const Contact = () => {
                         onClick={() => handleDirectContact('whatsapp')}
                         className="text-green-600 hover:underline font-medium text-lg"
                       >
-                        +91 9611513741
+                        +91 8887720741
                       </button>
                     </div>
                   </CardContent>
@@ -190,7 +190,7 @@ const Contact = () => {
               <div className="mt-8">
                 <h3 className="text-xl font-bold mb-4">Connect With Us</h3>
                 <div className="flex space-x-4">
-                  <a href="https://www.linkedin.com/in/shafaquearif26/" target="_blank" rel="noopener noreferrer" className="p-2 bg-accent rounded-full hover:bg-accent/80 transition-colors">
+                  <a href="https://www.linkedin.com/company/zyvotrix/" target="_blank" rel="noopener noreferrer" className="p-2 bg-accent rounded-full hover:bg-accent/80 transition-colors">
                     <Linkedin size={20} />
                   </a>
                   <button 
@@ -247,7 +247,7 @@ const Contact = () => {
                       <label htmlFor="phone" className="text-sm font-medium">Phone (Optional)</label>
                       <Input 
                         id="phone" 
-                        placeholder="+91 9611513741"
+                        placeholder="+91 8887720741"
                         value={formData.phone}
                         onChange={handleChange}
                       />

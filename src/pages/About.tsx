@@ -15,7 +15,7 @@ const About = () => {
         <div className="container px-4 md:px-6">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">About Us</h1>
           <p className="text-xl text-muted-foreground max-w-3xl">
-            Learn about Way2Upskill's mission, methodology, and the expert instructors who will guide you through your tech career journey.
+            Learn about Zyvotrix's mission, methodology, and the expert instructors who will guide you through your tech career journey.
           </p>
         </div>
       </div>
@@ -147,11 +147,11 @@ const About = () => {
                     <div className="space-y-3">
                       <div className="flex items-center p-3 bg-gray-50 rounded-lg">
                         <Mail className="h-5 w-5 text-primary mr-3" />
-                        <a href="mailto:letsupskill57@gmail.com" className="text-primary hover:text-primary/80 font-medium">letsupskill57@gmail.com</a>
+                        <a href="mailto:support@zyvotrix.com" className="text-primary hover:text-primary/80 font-medium">support@zyvotrix.com</a>
                       </div>
                       <div className="flex items-center p-3 bg-gray-50 rounded-lg">
                         <Phone className="h-5 w-5 text-primary mr-3" />
-                        <span className="font-medium">+91 9611513741</span>
+                        <span className="font-medium">+91 8887720741</span>
                       </div>
                       <div className="flex items-center p-3 bg-gray-50 rounded-lg">
                         <MapPin className="h-5 w-5 text-primary mr-3" />
@@ -159,7 +159,7 @@ const About = () => {
                       </div>
                       <div className="flex items-center p-3 bg-gray-50 rounded-lg">
                         <Linkedin className="h-5 w-5 text-primary mr-3" />
-                        <a href="https://www.linkedin.com/in/shafaquearif26/" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 font-medium">Connect on LinkedIn</a>
+                        <a href="https://www.linkedin.com/company/zyvotrix/" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 font-medium">Connect on LinkedIn</a>
                       </div>
                     </div>
                   </div>

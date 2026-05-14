@@ -4,7 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 
 const testimonials = [
   {
-    text: "WAY2UPSKILL's AI/ML program completely transformed my career. I went from knowing basic Python to landing a job as an ML Engineer at a top tech company. The one-on-one mentorship made all the difference.",
+    text: "Zyvotrix's AI/ML program completely transformed my career. I went from knowing basic Python to landing a job as an ML Engineer at a top tech company. The one-on-one mentorship made all the difference.",
     author: "Sarah Johnson",
     position: "ML Engineer at Google"
   },
@@ -14,7 +14,7 @@ const testimonials = [
     position: "Full Stack Developer at Microsoft"
   },
   {
-    text: "I tried many online courses before, but WAY2UPSKILL's DevOps program with one-to-one mentoring was exactly what I needed. The personalized feedback helped me overcome challenges that I struggled with for months.",
+    text: "I tried many online courses before, but Zyvotrix's DevOps program with one-to-one mentoring was exactly what I needed. The personalized feedback helped me overcome challenges that I struggled with for months.",
     author: "Li Wei",
     position: "DevOps Engineer at Amazon"
   }

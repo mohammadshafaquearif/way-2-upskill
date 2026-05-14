@@ -1,4 +1,4 @@
-# 🚀 Deployment Guide - Way2Upskill
+# 🚀 Deployment Guide - Zyvotrix
 
 ## 📋 **Deployment Options**
 
@@ -87,7 +87,7 @@ DATABASE_URL=mysql://username:password@host/database
 
 ### **Development (.env.local)**
 ```
-DATABASE_URL=postgresql://localhost:5432/way2upskill_db
+DATABASE_URL=postgresql://localhost:5432/Zyvotrix_db
 NODE_ENV=development
 PORT=3001
 FRONTEND_URL=http://localhost:5173

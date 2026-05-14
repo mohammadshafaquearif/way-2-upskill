@@ -23,7 +23,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // Check for stored user on mount
   useEffect(() => {
-    const storedUser = localStorage.getItem('way2upskill_user');
+    const storedUser = localStorage.getItem('Zyvotrix_user');
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
@@ -31,12 +31,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const login = (userData: User) => {
     setUser(userData);
-    localStorage.setItem('way2upskill_user', JSON.stringify(userData));
+    localStorage.setItem('Zyvotrix_user', JSON.stringify(userData));
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('way2upskill_user');
+    localStorage.removeItem('Zyvotrix_user');
   };
 
   const isAuthenticated = !!user;

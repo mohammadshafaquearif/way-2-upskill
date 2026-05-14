@@ -151,7 +151,7 @@ const LoginSignupModal: React.FC<LoginSignupModalProps> = ({ isOpen, onClose }) 
         
         toast({
           title: "Login Successful!",
-          description: "Welcome back to Way2Upskill!",
+          description: "Welcome back to Zyvotrix!",
         });
         
         // Auto-login the user
@@ -201,7 +201,7 @@ const LoginSignupModal: React.FC<LoginSignupModalProps> = ({ isOpen, onClose }) 
 
       toast({
         title: "Account Created!",
-        description: "Welcome to Way2Upskill! Your account has been created successfully.",
+        description: "Welcome to Zyvotrix! Your account has been created successfully.",
       });
       
       // Auto-login the user
@@ -271,7 +271,7 @@ const LoginSignupModal: React.FC<LoginSignupModalProps> = ({ isOpen, onClose }) 
       <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[500px] p-0">
         <DialogHeader className="px-6 pt-6 pb-4">
-          <DialogTitle className="text-2xl font-bold text-center">Welcome to Way2Upskill</DialogTitle>
+          <DialogTitle className="text-2xl font-bold text-center">Welcome to Zyvotrix</DialogTitle>
         </DialogHeader>
         
         <div className="px-6 pb-6">

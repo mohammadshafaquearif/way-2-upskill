@@ -81,7 +81,7 @@ const Navbar = () => {
     }`}>
       <div className="container flex justify-between items-center">
         <Link to="/" className="flex items-center">
-          <span className="text-2xl font-bold gradient-text">WAY2UPSKILL</span>
+          <span className="text-2xl font-bold gradient-text">Zyvotrix</span>
         </Link>
 
         {/* Desktop Menu */}

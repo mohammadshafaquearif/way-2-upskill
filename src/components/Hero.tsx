@@ -31,7 +31,7 @@ const Hero = () => {
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 max-w-[700px] leading-relaxed">
-              Transform your career with Way2Upskill's comprehensive edtech programs. Master 
+              Transform your career with Zyvotrix's comprehensive edtech programs. Master 
               <span className="font-semibold text-primary">Full Stack Development</span>, 
               <span className="font-semibold text-secondary">AI/ML</span>, 
               <span className="font-semibold text-primary">DevOps</span>, 
