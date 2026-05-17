@@ -210,9 +210,11 @@ const LoginSignupModal: React.FC<LoginSignupModalProps> = ({ isOpen, onClose }) 
       onClose();
     } catch (error) {
       console.error("Signup error:", error);
+      const description =
+        error instanceof Error ? error.message : 'There was an error creating your account. Please try again.';
       toast({
         title: "Signup Failed",
-        description: "There was an error creating your account. Please try again.",
+        description,
         variant: "destructive"
       });
     } finally {

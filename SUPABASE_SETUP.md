@@ -18,12 +18,15 @@ The app now uses **Supabase** directly from the browser. No Railway/Express need
 
 This creates tables, sample courses, RLS policies, and the auth trigger for user profiles.
 
-## Step 3: Auth settings
+## Step 3: Auth settings (required — turn OFF email confirmation)
 
-1. **Authentication → Providers → Email** — keep enabled
-2. For easier testing, disable **Confirm email**:
-   - **Authentication → Providers → Email → Confirm email** = OFF
-3. **Authentication → URL Configuration**:
+1. **Authentication → Sign In / Providers → Email**
+2. **Confirm email** → **OFF** (disable)
+3. Save
+
+Without this, signup will not auto-login and users must verify inbox first.
+
+4. **Authentication → URL Configuration**:
    - Site URL: `https://way-2-upskill-careers.vercel.app` (your Vercel URL)
    - Redirect URLs: add your Vercel URL and `http://localhost:8080`
 

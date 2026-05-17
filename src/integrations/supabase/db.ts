@@ -71,20 +71,34 @@ export const db = {
     if (error) throw new Error(error.message);
     if (!data.user) throw new Error('Signup failed');
 
+    // No session = email confirmation is ON in Supabase — sign in right after signup when it's OFF
     if (!data.session) {
-      throw new Error(
-        'Account created. Please confirm your email (check inbox), then log in. Or disable "Confirm email" in Supabase Auth settings.'
-      );
+      const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({
+        email: params.email,
+        password: params.password,
+      });
+
+      if (signInError) {
+        if (signInError.message.toLowerCase().includes('email not confirmed')) {
+          throw new Error(
+            'Email confirmation is enabled in Supabase. Turn it off: Authentication → Sign In / Providers → Email → disable "Confirm email", then sign up again.'
+          );
+        }
+        throw new Error(signInError.message);
+      }
+      if (!signInData.user) throw new Error('Signup succeeded but login failed. Please try logging in.');
     }
+
+    const userId = (await supabase.auth.getUser()).data.user?.id ?? data.user.id;
 
     let profile: UserProfile;
     try {
-      profile = await waitForProfile(data.user.id);
+      profile = await waitForProfile(userId);
     } catch {
       const { data: inserted, error: insertError } = await supabase
         .from('users')
         .insert({
-          id: data.user.id,
+          id: userId,
           first_name: params.firstName,
           last_name: params.lastName,
           email: params.email,
