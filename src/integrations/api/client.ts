@@ -31,7 +31,7 @@ class ApiClient {
   }
 
   async createEnrollment(enrollmentData: {
-    userId: string;
+    userId?: string;
     courseId: string;
     firstName: string;
     lastName: string;

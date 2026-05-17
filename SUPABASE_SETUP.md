@@ -10,13 +10,13 @@ The app now uses **Supabase** directly from the browser. No Railway/Express need
    - **Project URL** → `VITE_SUPABASE_URL`
    - **anon public** key → `VITE_SUPABASE_ANON_KEY`
 
-## Step 2: Run database schema
+## Step 2: Run database SQL (all 3 files, in order)
 
-1. In Supabase: **SQL Editor → New query**
-2. Paste full contents of `supabase/schema.sql`
-3. Click **Run**
+1. `supabase/schema.sql`
+2. `supabase/fix-rls-signup.sql`
+3. `supabase/fix-forms-rls.sql`
 
-This creates tables, sample courses, RLS policies, and the auth trigger for user profiles.
+Supabase → **SQL Editor** → paste each file → **Run**
 
 ## Step 3: Auth settings (required — turn OFF email confirmation)
 

@@ -1,6 +1,7 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '@/contexts/AuthContext';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -89,9 +90,19 @@ interface FormData {
 
 const Enroll = () => {
   const { toast } = useToast();
+  const { user } = useAuth();
+  const [defaultCourseId, setDefaultCourseId] = useState<string | null>(null);
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedPlan, setSelectedPlan] = useState(paymentPlans[0].id);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    apiClient.getAllCourses().then((courses) => {
+      if (courses?.length > 0) {
+        setDefaultCourseId(courses[0].id);
+      }
+    }).catch(() => {});
+  }, []);
   
   const [formData, setFormData] = useState<FormData>({
     step: 1,
@@ -170,13 +181,13 @@ const Enroll = () => {
     setIsSubmitting(true);
     
     try {
-      // For now, we'll use a placeholder course ID
-      // In a real application, you'd get this from the course selection
-      const courseId = '00000000-0000-0000-0000-000000000001'; // Default to first course
-      
+      if (!defaultCourseId) {
+        throw new Error('Courses not loaded. Run supabase/schema.sql in Supabase first.');
+      }
+
       const enrollment = await apiClient.createEnrollment({
-        userId: '00000000-0000-0000-0000-000000000000', // Placeholder user ID
-        courseId: courseId,
+        userId: user?.id,
+        courseId: defaultCourseId,
         firstName: formData.personal.firstName,
         lastName: formData.personal.lastName,
         email: formData.personal.email,
@@ -198,7 +209,7 @@ const Enroll = () => {
         totalAmount: selectedPlan === 'seat' ? 25 : 300
       });
       
-      console.log('Enrollment submitted successfully:', data);
+      console.log('Enrollment submitted successfully:', enrollment);
       
       toast({
         title: "Application Submitted!",
@@ -215,9 +226,11 @@ const Enroll = () => {
       
     } catch (error) {
       console.error("Submission error:", error);
+      const description =
+        error instanceof Error ? error.message : 'There was a problem submitting your application. Please try again.';
       toast({
         title: "Error",
-        description: "There was a problem submitting your application. Please try again.",
+        description,
         variant: "destructive"
       });
     } finally {

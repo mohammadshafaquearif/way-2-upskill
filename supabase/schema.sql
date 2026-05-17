@@ -200,11 +200,14 @@ DROP POLICY IF EXISTS "instructors_public_read" ON public.instructors;
 CREATE POLICY "instructors_public_read" ON public.instructors
     FOR SELECT USING (is_active = true);
 
--- Enrollments
+-- Enrollments (logged-in or guest)
+ALTER TABLE public.enrollments ALTER COLUMN user_id DROP NOT NULL;
+
 DROP POLICY IF EXISTS "enrollments_insert_own" ON public.enrollments;
-CREATE POLICY "enrollments_insert_own" ON public.enrollments
-    FOR INSERT TO authenticated
-    WITH CHECK (auth.uid() = user_id);
+DROP POLICY IF EXISTS "enrollments_insert_guest" ON public.enrollments;
+CREATE POLICY "enrollments_insert_guest" ON public.enrollments
+    FOR INSERT TO anon, authenticated
+    WITH CHECK (user_id IS NULL OR auth.uid() = user_id);
 
 DROP POLICY IF EXISTS "enrollments_select_own" ON public.enrollments;
 CREATE POLICY "enrollments_select_own" ON public.enrollments
@@ -223,8 +226,10 @@ CREATE POLICY "enrollments_admin_select" ON public.enrollments
 
 -- Contacts: anyone can submit
 DROP POLICY IF EXISTS "contacts_anon_insert" ON public.contacts;
-CREATE POLICY "contacts_anon_insert" ON public.contacts
-    FOR INSERT WITH CHECK (true);
+DROP POLICY IF EXISTS "contacts_public_insert" ON public.contacts;
+CREATE POLICY "contacts_public_insert" ON public.contacts
+    FOR INSERT TO anon, authenticated
+    WITH CHECK (true);
 
 DROP POLICY IF EXISTS "contacts_admin_read" ON public.contacts;
 CREATE POLICY "contacts_admin_read" ON public.contacts

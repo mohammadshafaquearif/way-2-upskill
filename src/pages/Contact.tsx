@@ -76,9 +76,11 @@ const Contact = () => {
       });
     } catch (error) {
       console.error("Submission error:", error);
+      const description =
+        error instanceof Error ? error.message : 'There was a problem sending your message. Please try again.';
       toast({
         title: "Error",
-        description: "There was a problem sending your message. Please try again.",
+        description,
         variant: "destructive"
       });
     } finally {

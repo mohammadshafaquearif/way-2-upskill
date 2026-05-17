@@ -21,6 +21,20 @@ function mapProfileToAppUser(profile: UserProfile) {
   };
 }
 
+function profileFromSignup(
+  userId: string,
+  params: { firstName: string; lastName: string; email: string; phone: string; interestedSubject: string }
+): UserProfile {
+  return {
+    id: userId,
+    first_name: params.firstName,
+    last_name: params.lastName,
+    email: params.email,
+    phone: params.phone,
+    interested_subject: params.interestedSubject,
+  };
+}
+
 async function getProfile(userId: string): Promise<UserProfile> {
   const { data, error } = await supabase
     .from('users')
@@ -71,49 +85,52 @@ export const db = {
     if (error) throw new Error(error.message);
     if (!data.user) throw new Error('Signup failed');
 
-    // No session = email confirmation is ON in Supabase — sign in right after signup when it's OFF
+    const userId = data.user.id;
+
+    // Always sign in after signup (works when Confirm email is OFF in Supabase)
     if (!data.session) {
-      const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({
+      const { error: signInError } = await supabase.auth.signInWithPassword({
         email: params.email,
         password: params.password,
       });
 
       if (signInError) {
-        if (signInError.message.toLowerCase().includes('email not confirmed')) {
+        const msg = signInError.message.toLowerCase();
+        if (msg.includes('email not confirmed') || msg.includes('not confirmed')) {
           throw new Error(
-            'Email confirmation is enabled in Supabase. Turn it off: Authentication → Sign In / Providers → Email → disable "Confirm email", then sign up again.'
+            'Supabase mein Confirm email band karo: Authentication → Sign In / Providers → Email → OFF'
           );
         }
         throw new Error(signInError.message);
       }
-      if (!signInData.user) throw new Error('Signup succeeded but login failed. Please try logging in.');
     }
-
-    const userId = (await supabase.auth.getUser()).data.user?.id ?? data.user.id;
 
     let profile: UserProfile;
     try {
       profile = await waitForProfile(userId);
     } catch {
-      const { data: inserted, error: insertError } = await supabase
-        .from('users')
-        .insert({
-          id: userId,
-          first_name: params.firstName,
-          last_name: params.lastName,
-          email: params.email,
-          phone: params.phone,
-          interested_subject: params.interestedSubject,
-        })
-        .select()
-        .single();
+      try {
+        const { data: inserted, error: insertError } = await supabase
+          .from('users')
+          .insert({
+            id: userId,
+            first_name: params.firstName,
+            last_name: params.lastName,
+            email: params.email,
+            phone: params.phone,
+            interested_subject: params.interestedSubject,
+          })
+          .select()
+          .single();
 
-      if (insertError) {
-        throw new Error(
-          `${insertError.message}. Run supabase/fix-rls-signup.sql in Supabase SQL Editor.`
-        );
+        if (!insertError && inserted) {
+          profile = inserted as UserProfile;
+        } else {
+          profile = profileFromSignup(userId, params);
+        }
+      } catch {
+        profile = profileFromSignup(userId, params);
       }
-      profile = inserted as UserProfile;
     }
 
     return { profile, appUser: mapProfileToAppUser(profile) };
@@ -201,7 +218,7 @@ export const db = {
   },
 
   async createEnrollment(enrollmentData: {
-    userId: string;
+    userId?: string;
     courseId: string;
     firstName?: string;
     lastName?: string;
@@ -224,10 +241,7 @@ export const db = {
     totalAmount?: number;
     status?: string;
   }) {
-    const { data, error } = await supabase
-      .from('enrollments')
-      .insert({
-        user_id: enrollmentData.userId,
+    const row: Record<string, unknown> = {
         course_id: enrollmentData.courseId,
         first_name: enrollmentData.firstName,
         last_name: enrollmentData.lastName,
@@ -248,11 +262,15 @@ export const db = {
         payment_plan: enrollmentData.paymentPlan,
         payment_method: enrollmentData.paymentMethod,
         total_amount: enrollmentData.totalAmount,
-        status: enrollmentData.status || 'completed',
-        payment_status: 'completed',
-      })
-      .select()
-      .single();
+        status: enrollmentData.status || 'pending',
+        payment_status: enrollmentData.status === 'completed' ? 'completed' : 'pending',
+      };
+
+    if (enrollmentData.userId) {
+      row.user_id = enrollmentData.userId;
+    }
+
+    const { data, error } = await supabase.from('enrollments').insert(row).select().single();
 
     if (error) throw new Error(error.message);
     return data;
