@@ -26,12 +26,24 @@ async function getProfile(userId: string): Promise<UserProfile> {
     .from('users')
     .select('*')
     .eq('id', userId)
-    .single();
+    .maybeSingle();
 
-  if (error || !data) {
-    throw new Error('Profile not found. Please complete signup or contact support.');
+  if (error) throw new Error(error.message);
+  if (!data) {
+    throw new Error('Profile not found');
   }
   return data as UserProfile;
+}
+
+async function waitForProfile(userId: string, attempts = 6): Promise<UserProfile> {
+  for (let i = 0; i < attempts; i++) {
+    try {
+      return await getProfile(userId);
+    } catch {
+      await new Promise((r) => setTimeout(r, 400));
+    }
+  }
+  throw new Error('Profile not found');
 }
 
 export const db = {
@@ -59,21 +71,34 @@ export const db = {
     if (error) throw new Error(error.message);
     if (!data.user) throw new Error('Signup failed');
 
-    // Trigger creates profile; fetch after short delay if needed
+    if (!data.session) {
+      throw new Error(
+        'Account created. Please confirm your email (check inbox), then log in. Or disable "Confirm email" in Supabase Auth settings.'
+      );
+    }
+
     let profile: UserProfile;
     try {
-      profile = await getProfile(data.user.id);
+      profile = await waitForProfile(data.user.id);
     } catch {
-      const { data: inserted, error: insertError } = await supabase.from('users').upsert({
-        id: data.user.id,
-        first_name: params.firstName,
-        last_name: params.lastName,
-        email: params.email,
-        phone: params.phone,
-        interested_subject: params.interestedSubject,
-      }).select().single();
+      const { data: inserted, error: insertError } = await supabase
+        .from('users')
+        .insert({
+          id: data.user.id,
+          first_name: params.firstName,
+          last_name: params.lastName,
+          email: params.email,
+          phone: params.phone,
+          interested_subject: params.interestedSubject,
+        })
+        .select()
+        .single();
 
-      if (insertError) throw new Error(insertError.message);
+      if (insertError) {
+        throw new Error(
+          `${insertError.message}. Run supabase/fix-rls-signup.sql in Supabase SQL Editor.`
+        );
+      }
       profile = inserted as UserProfile;
     }
 

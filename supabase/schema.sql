@@ -163,7 +163,12 @@ ALTER TABLE public.instructors ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.enrollments ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.contacts ENABLE ROW LEVEL SECURITY;
 
--- Users: read/update own profile
+-- Users: insert/read/update own profile
+DROP POLICY IF EXISTS "users_insert_own" ON public.users;
+CREATE POLICY "users_insert_own" ON public.users
+    FOR INSERT TO authenticated
+    WITH CHECK (auth.uid() = id);
+
 DROP POLICY IF EXISTS "users_select_own" ON public.users;
 CREATE POLICY "users_select_own" ON public.users
     FOR SELECT TO authenticated
@@ -172,7 +177,8 @@ CREATE POLICY "users_select_own" ON public.users
 DROP POLICY IF EXISTS "users_update_own" ON public.users;
 CREATE POLICY "users_update_own" ON public.users
     FOR UPDATE TO authenticated
-    USING (auth.uid() = id);
+    USING (auth.uid() = id)
+    WITH CHECK (auth.uid() = id);
 
 -- Admin can read all users (set your admin email in Supabase or use service role for dashboard)
 DROP POLICY IF EXISTS "users_admin_select" ON public.users;
