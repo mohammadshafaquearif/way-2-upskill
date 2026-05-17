@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import os from 'os';
 import pg from 'pg';
 
 // Load environment variables
@@ -19,7 +20,7 @@ const pool = new Pool({
   host: process.env.DB_HOST || 'localhost',
   port: process.env.DB_PORT || 5432,
   database: process.env.DB_NAME || 'way2upskill_db',
-  user: process.env.DB_USER || 'praptiwamre',
+  user: process.env.DB_USER || os.userInfo().username,
   password: process.env.DB_PASSWORD || '',
 });
 

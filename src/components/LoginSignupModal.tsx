@@ -139,39 +139,27 @@ const LoginSignupModal: React.FC<LoginSignupModalProps> = ({ isOpen, onClose }) 
     setIsLoading(true);
 
     try {
-      // Check if user exists with this username
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
-      const response = await fetch(`${apiUrl}/api/users/email/${loginData.username}`);
-      
-      if (response.ok) {
-        const userData = await response.json();
-        
-        // In a real app, you would verify the password hash here
-        // For now, we'll just check if the user exists
-        
-        toast({
-          title: "Login Successful!",
-          description: "Welcome back to Zyvotrix!",
-        });
-        
-        // Auto-login the user
-        login({
-          id: userData.id,
-          firstName: userData.first_name,
-          lastName: userData.last_name,
-          email: userData.email,
-          phone: userData.phone,
-          interestedSubject: userData.interested_subject
-        });
-        
-        onClose();
-      } else {
-        throw new Error('User not found');
+      const email = loginData.username.trim();
+      if (!validateEmail(email)) {
+        throw new Error('Please enter a valid email address');
       }
-    } catch (error) {
+
+      const { appUser } = await apiClient.signIn(email, loginData.password);
+
       toast({
-        title: "Account Not Found",
-        description: "No account found with this username. Please sign up first.",
+        title: "Login Successful!",
+        description: "Welcome back to Zyvotrix!",
+      });
+
+      login(appUser);
+      onClose();
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Login failed';
+      toast({
+        title: "Login Failed",
+        description: message.includes('Invalid login') || message.includes('not found')
+          ? "Invalid email or password. Please sign up first."
+          : message,
         variant: "destructive"
       });
     } finally {
@@ -190,29 +178,21 @@ const LoginSignupModal: React.FC<LoginSignupModalProps> = ({ isOpen, onClose }) 
 
     try {
       const fullPhone = `${signupData.countryCode}${signupData.phone}`;
-      const user = await apiClient.createUser({
+      const { appUser } = await apiClient.signUp({
         firstName: signupData.firstName,
         lastName: signupData.lastName,
         phone: fullPhone,
         email: signupData.email,
-        passwordHash: signupData.password, // In real app, hash this
-        interestedSubject: signupData.interestedSubject
+        password: signupData.password,
+        interestedSubject: signupData.interestedSubject,
       });
 
       toast({
         title: "Account Created!",
         description: "Welcome to Zyvotrix! Your account has been created successfully.",
       });
-      
-      // Auto-login the user
-      login({
-        id: user.id,
-        firstName: user.first_name,
-        lastName: user.last_name,
-        email: user.email,
-        phone: user.phone,
-        interestedSubject: user.interested_subject
-      });
+
+      login(appUser);
 
       // Reset form
       setSignupData({
@@ -245,9 +225,8 @@ const LoginSignupModal: React.FC<LoginSignupModalProps> = ({ isOpen, onClose }) 
     setIsLoading(true);
 
     try {
-      // Simulate password reset process
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      await apiClient.resetPassword(forgotPasswordEmail);
+
       toast({
         title: "Password Reset Email Sent!",
         description: `We've sent a password reset link to ${forgotPasswordEmail}. Please check your email.`,
@@ -284,12 +263,12 @@ const LoginSignupModal: React.FC<LoginSignupModalProps> = ({ isOpen, onClose }) 
             <TabsContent value="login" className="space-y-4">
               <form onSubmit={handleLogin} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="username" className="text-sm font-semibold">Username <span className="text-red-500">*</span></Label>
+                  <Label htmlFor="username" className="text-sm font-semibold">Email <span className="text-red-500">*</span></Label>
                   <Input
                     id="username"
                     name="username"
-                    type="text"
-                    placeholder="Enter your username"
+                    type="email"
+                    placeholder="Enter your email"
                     value={loginData.username}
                     onChange={handleLoginChange}
                     required

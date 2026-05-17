@@ -1,13 +1,17 @@
 import pg from 'pg';
+import os from 'os';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 const { Pool } = pg;
 
-// Database configuration
 const pool = new Pool({
-  host: 'localhost',
-  port: 5432,
-  database: 'way2upskill_db',
-  user: 'praptiwamre',
-  password: '',
+  host: process.env.DB_HOST || 'localhost',
+  port: process.env.DB_PORT || 5432,
+  database: process.env.DB_NAME || 'way2upskill_db',
+  user: process.env.DB_USER || os.userInfo().username,
+  password: process.env.DB_PASSWORD || '',
 });
 
 async function testDatabase() {

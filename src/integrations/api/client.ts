@@ -1,38 +1,11 @@
-// API Client for Zyvotrix Backend
-const API_BASE_URL = import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api` : 'http://localhost:3001/api';
+// API client — uses Supabase (works on Vercel + local without Express)
+import { db } from '@/integrations/supabase/db';
 
 class ApiClient {
-  private async request(endpoint: string, options: RequestInit = {}) {
-    const url = `${API_BASE_URL}${endpoint}`;
-    const config: RequestInit = {
-      headers: {
-        'Content-Type': 'application/json',
-        ...options.headers,
-      },
-      ...options,
-    };
-
-    try {
-      const response = await fetch(url, config);
-      
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
-        throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
-      }
-
-      return await response.json();
-    } catch (error) {
-      console.error(`API request failed for ${endpoint}:`, error);
-      throw error;
-    }
-  }
-
-  // Health check
   async healthCheck() {
-    return this.request('/health');
+    return { status: 'OK', message: 'Supabase connected' };
   }
 
-  // User operations
   async createUser(userData: {
     firstName: string;
     lastName: string;
@@ -42,27 +15,21 @@ class ApiClient {
     passwordHash?: string;
     interestedSubject?: string;
   }) {
-    return this.request('/users', {
-      method: 'POST',
-      body: JSON.stringify(userData),
-    });
+    return db.createUser(userData);
   }
 
   async getUserByEmail(email: string) {
-    return this.request(`/users/email/${encodeURIComponent(email)}`);
+    return db.getUserByEmail(email);
   }
 
-  // Course operations
   async getAllCourses() {
-    return this.request('/courses');
+    return db.getAllCourses();
   }
 
-  // Instructor operations
   async getAllInstructors() {
-    return this.request('/instructors');
+    return db.getAllInstructors();
   }
 
-  // Enrollment operations
   async createEnrollment(enrollmentData: {
     userId: string;
     courseId: string;
@@ -85,14 +52,11 @@ class ApiClient {
     paymentPlan?: string;
     paymentMethod?: string;
     totalAmount?: number;
+    status?: string;
   }) {
-    return this.request('/enrollments', {
-      method: 'POST',
-      body: JSON.stringify(enrollmentData),
-    });
+    return db.createEnrollment(enrollmentData);
   }
 
-  // Contact operations
   async createContact(contactData: {
     firstName: string;
     lastName: string;
@@ -101,10 +65,42 @@ class ApiClient {
     subject?: string;
     message: string;
   }) {
-    return this.request('/contacts', {
-      method: 'POST',
-      body: JSON.stringify(contactData),
-    });
+    return db.createContact(contactData);
+  }
+
+  async getAdminUsers() {
+    return db.getAdminUsers();
+  }
+
+  async getAdminEnrollments() {
+    return db.getAdminEnrollments();
+  }
+
+  async getUserCourses(userId: string) {
+    return db.getUserCourses(userId);
+  }
+
+  async signIn(email: string, password: string) {
+    return db.signIn(email, password);
+  }
+
+  async signUp(params: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    password: string;
+    interestedSubject: string;
+  }) {
+    return db.signUp(params);
+  }
+
+  async signOut() {
+    return db.signOut();
+  }
+
+  async resetPassword(email: string) {
+    return db.resetPassword(email);
   }
 }
 

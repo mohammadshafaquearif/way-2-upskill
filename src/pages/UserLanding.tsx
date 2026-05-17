@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
+import { apiClient } from '@/integrations/api/client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -62,12 +63,8 @@ const UserLanding = () => {
   const fetchUserData = async () => {
     setIsLoading(true);
     try {
-      // Fetch real data from API
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
-      const response = await fetch(`${apiUrl}/api/users/${user.id}/courses`);
-      
-      if (response.ok) {
-        const courses = await response.json();
+      const courses = await apiClient.getUserCourses(user.id);
+      if (courses) {
         setUserCourses(courses);
 
         // Calculate progress based on real data

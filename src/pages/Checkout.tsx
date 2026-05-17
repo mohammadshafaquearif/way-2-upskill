@@ -11,6 +11,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Check, ArrowLeft, CreditCard, Smartphone } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
+import { apiClient } from '@/integrations/api/client';
 
 const courseData = {
   'ai-ml': {
@@ -97,32 +98,35 @@ const Checkout: React.FC = () => {
       await new Promise(resolve => setTimeout(resolve, 2000));
       
       // Create enrollment record
-      const enrollmentData = {
-        userId: user.id,
-        courseId: course.id,
-        paymentPlan: paymentMethod,
-        amount: calculatePrice(),
-        status: 'completed'
-      };
+      const allCourses = await apiClient.getAllCourses();
+      const dbCourse = allCourses.find(
+        (c: { title: string }) =>
+          c.title.toLowerCase().includes(course.title.split(' ')[0].toLowerCase()) ||
+          course.title.toLowerCase().includes(c.title.toLowerCase().slice(0, 12))
+      );
 
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
-      const response = await fetch(`${apiUrl}/api/enrollments`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(enrollmentData),
+      if (!dbCourse?.id) {
+        throw new Error('Course not found in database. Run supabase/schema.sql first.');
+      }
+
+      await apiClient.createEnrollment({
+        userId: user.id,
+        courseId: dbCourse.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        phone: user.phone,
+        paymentPlan: paymentMethod,
+        paymentMethod: paymentType,
+        totalAmount: calculatePrice(),
+        status: 'completed',
       });
 
-      if (response.ok) {
-        toast({
-          title: "Payment Successful!",
-          description: `You have successfully enrolled in ${course.title}`,
-        });
-        navigate('/dashboard');
-      } else {
-        throw new Error('Enrollment failed');
-      }
+      toast({
+        title: "Payment Successful!",
+        description: `You have successfully enrolled in ${course.title}`,
+      });
+      navigate('/dashboard');
     } catch (error) {
       toast({
         title: "Payment Failed",

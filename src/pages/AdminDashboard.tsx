@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { apiClient } from '@/integrations/api/client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -68,16 +69,10 @@ const AdminDashboard = () => {
   const fetchDashboardData = async () => {
     setIsLoading(true);
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
-      
-      // Fetch users
-      const usersResponse = await fetch(`${apiUrl}/api/admin/users`);
-      const usersData = await usersResponse.json();
+      const usersData = await apiClient.getAdminUsers();
       setUsers(usersData);
 
-      // Fetch enrollments
-      const enrollmentsResponse = await fetch(`${apiUrl}/api/admin/enrollments`);
-      const enrollmentsData = await enrollmentsResponse.json();
+      const enrollmentsData = await apiClient.getAdminEnrollments();
       setEnrollments(enrollmentsData);
 
       // Fetch activities (mock data for now)
