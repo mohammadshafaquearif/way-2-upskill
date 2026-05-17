@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { apiClient } from '@/integrations/api/client';
+import { trackEvent } from '@/lib/analytics';
 
 interface FormData {
   firstName: string;
@@ -59,7 +60,8 @@ const Contact = () => {
       });
       
       console.log('Form data submitted successfully:', contact);
-      
+      trackEvent('contact_form_submit', { page: 'contact' });
+
       toast({
         title: "Message Sent!",
         description: "We'll get back to you within a few hours. Thank you for reaching out!",

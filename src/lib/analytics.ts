@@ -1,30 +1,41 @@
 const GA_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-6CZMFJ109Y';
 
-/** Load Google Analytics (not blocked by app code — ad blockers may still block third-party scripts) */
+/**
+ * Google Analytics — script often loads, but POST to google-analytics.com/g/collect
+ * shows ERR_BLOCKED_BY_CLIENT with ad blockers (uBlock, Brave, Edge tracking prevention).
+ * The site does not block GA. Use Vercel Analytics (in App.tsx) for first-party stats.
+ */
 export function initAnalytics() {
   if (typeof window === 'undefined' || !GA_ID) return;
 
-  const script = document.createElement('script');
-  script.async = true;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
-  script.onerror = () => {
-    console.info('Google Analytics script could not load (often caused by browser ad blockers).');
-  };
-  document.head.appendChild(script);
+  try {
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+    document.head.appendChild(script);
 
-  window.dataLayer = window.dataLayer || [];
-  window.gtag =
-    window.gtag ||
-    function gtag(...args: unknown[]) {
-      window.dataLayer?.push(args);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function gtag(...args: unknown[]) {
+      try {
+        window.dataLayer?.push(args);
+      } catch {
+        /* ad blocker */
+      }
     };
-  window.gtag('js', new Date());
-  window.gtag('config', GA_ID, { send_page_view: true });
+    window.gtag('js', new Date());
+    window.gtag('config', GA_ID, { send_page_view: true });
+  } catch {
+    /* ad blocker */
+  }
 }
 
 export function trackEvent(name: string, params?: Record<string, string>) {
-  if (typeof window.gtag === 'function') {
-    window.gtag('event', name, params);
+  try {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', name, params);
+    }
+  } catch {
+    /* ad blocker */
   }
 }
 
