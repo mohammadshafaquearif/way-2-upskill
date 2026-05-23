@@ -158,15 +158,15 @@ const UserLanding = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="w-full bg-gray-50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-primary to-secondary text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold mb-4">
+      <div className="bg-gradient-to-r from-primary to-secondary text-white pt-20 sm:pt-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+          <div className="text-center px-2">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 break-words">
               Welcome back, {user.firstName}! 👋
             </h1>
-            <p className="text-xl opacity-90">
+            <p className="text-base sm:text-lg md:text-xl opacity-90">
               Continue your learning journey and achieve your goals
             </p>
           </div>
@@ -329,7 +329,7 @@ const UserLanding = () => {
                   </Button>
                   <div className="text-center">
                     <Button asChild variant="outline" size="lg">
-                      <Link to="/enroll">Enroll Now</Link>
+                      <Link to="/enroll">Start Learning</Link>
                     </Button>
                   </div>
                 </div>

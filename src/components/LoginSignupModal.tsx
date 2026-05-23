@@ -250,7 +250,7 @@ const LoginSignupModal: React.FC<LoginSignupModalProps> = ({ isOpen, onClose }) 
   return (
     <>
       <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[500px] p-0">
+      <DialogContent className="w-[calc(100%-2rem)] max-w-[500px] max-h-[min(90dvh,720px)] overflow-y-auto p-0 sm:w-full">
         <DialogHeader className="px-6 pt-6 pb-4">
           <DialogTitle className="text-2xl font-bold text-center">Welcome to Zyvotrix</DialogTitle>
         </DialogHeader>
@@ -294,7 +294,7 @@ const LoginSignupModal: React.FC<LoginSignupModalProps> = ({ isOpen, onClose }) 
                 
                 <Button 
                   type="submit" 
-                  className="w-full h-12 font-bold text-base bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90"
+                  className="w-full h-12 font-bold text-base brand-gradient hover:opacity-90 border-0 text-white"
                   disabled={isLoading}
                 >
                   {isLoading ? 'Logging in...' : 'Login'}
@@ -325,7 +325,7 @@ const LoginSignupModal: React.FC<LoginSignupModalProps> = ({ isOpen, onClose }) 
             
             <TabsContent value="signup" className="space-y-4">
               <form onSubmit={handleSignup} className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="firstName" className="text-sm font-semibold">First Name <span className="text-red-500">*</span></Label>
                     <Input
@@ -449,7 +449,7 @@ const LoginSignupModal: React.FC<LoginSignupModalProps> = ({ isOpen, onClose }) 
                 
                 <Button 
                   type="submit" 
-                  className="w-full h-12 font-bold text-base bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full h-12 font-bold text-base brand-gradient hover:opacity-90 border-0 text-white disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled={isLoading || !isSignupFormValid()}
                 >
                   {isLoading ? 'Creating Account...' : 'Sign Up'}
@@ -520,7 +520,7 @@ const LoginSignupModal: React.FC<LoginSignupModalProps> = ({ isOpen, onClose }) 
                 </Button>
                 <Button 
                   type="submit" 
-                  className="flex-1 h-12 font-bold bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90"
+                  className="flex-1 h-12 font-bold brand-gradient hover:opacity-90 border-0 text-white"
                   disabled={isLoading}
                 >
                   {isLoading ? 'Sending...' : 'Send Reset Link'}

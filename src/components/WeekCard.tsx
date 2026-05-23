@@ -26,7 +26,7 @@ const WeekCard: React.FC<WeekCardProps> = ({
     <Card className="hover-card border-t-4 border-t-primary">
       <CardHeader className="pb-3">
         <div className="pill-tag mb-2">WEEK {week}</div>
-        <CardTitle>{title}</CardTitle>
+        <CardTitle className="text-lg sm:text-xl break-words leading-snug">{title}</CardTitle>
         <CardDescription className="text-base">{objective}</CardDescription>
       </CardHeader>
       <CardContent>

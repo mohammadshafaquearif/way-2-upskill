@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
+import PageLayout from "@/components/PageLayout";
 import Index from "./pages/Index";
 import Courses from "./pages/Courses";
 import AiMlSyllabus from "./pages/syllabus/AiMlSyllabus";
@@ -22,6 +23,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import UserLanding from "./pages/UserLanding";
 import Checkout from "./pages/Checkout";
 import NotFound from "./pages/NotFound";
+import Resources from "./pages/Resources";
 
 const queryClient = new QueryClient();
 
@@ -33,23 +35,26 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/syllabus" element={<Navigate to="/courses" replace />} />
-          <Route path="/courses" element={<Courses />} />
-          <Route path="/courses/ai-ml" element={<AiMlSyllabus />} />
-          <Route path="/courses/web-development" element={<WebDevSyllabus />} />
-          <Route path="/courses/devops" element={<DevOpsSyllabus />} />
-          <Route path="/courses/cybersecurity" element={<CybersecuritySyllabus />} />
-          <Route path="/courses/cloud-computing" element={<CloudComputingSyllabus />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/enroll" element={<Enroll />} />
-          <Route path="/bonus" element={<Bonus />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/dashboard" element={<UserLanding />} />
-          <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/checkout/:courseId" element={<Checkout />} />
-          <Route path="*" element={<NotFound />} />
+          <Route element={<PageLayout />}>
+            <Route path="/" element={<Index />} />
+            <Route path="/syllabus" element={<Navigate to="/courses" replace />} />
+            <Route path="/courses" element={<Courses />} />
+            <Route path="/courses/ai-ml" element={<AiMlSyllabus />} />
+            <Route path="/courses/web-development" element={<WebDevSyllabus />} />
+            <Route path="/courses/devops" element={<DevOpsSyllabus />} />
+            <Route path="/courses/cybersecurity" element={<CybersecuritySyllabus />} />
+            <Route path="/courses/cloud-computing" element={<CloudComputingSyllabus />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/enroll" element={<Enroll />} />
+            <Route path="/bonus" element={<Bonus />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/dashboard" element={<UserLanding />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/checkout/:courseId" element={<Checkout />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
         </Routes>
         </BrowserRouter>
         <Analytics />

@@ -1,25 +1,45 @@
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { Link, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import { Button } from '@/components/ui/button';
+import { IMAGES } from '@/lib/images';
 
 const NotFound = () => {
   const location = useLocation();
 
   useEffect(() => {
-    console.error(
-      "404 Error: User attempted to access non-existent route:",
-      location.pathname
-    );
+    console.error('404:', location.pathname);
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">404</h1>
-        <p className="text-xl text-gray-600 mb-4">Oops! Page not found</p>
-        <a href="/" className="text-blue-500 hover:text-blue-700 underline">
-          Return to Home
-        </a>
-      </div>
+    <div className="min-h-screen w-full overflow-x-hidden flex flex-col">
+      <Navbar />
+      <main className="flex-1 flex items-center brand-surface py-16">
+        <div className="container px-4 sm:px-6">
+          <div className="grid lg:grid-cols-2 gap-10 items-center max-w-4xl mx-auto">
+            <div className="text-center lg:text-left">
+              <p className="text-6xl font-bold gradient-text mb-2">404</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-brand-950 mb-4">Page not found</h1>
+              <p className="text-muted-foreground mb-8">
+                The page you&apos;re looking for doesn&apos;t exist or may have moved.
+              </p>
+              <Button asChild className="brand-gradient text-white border-0">
+                <Link to="/">Back to Home</Link>
+              </Button>
+            </div>
+            <div className="rounded-2xl overflow-hidden border border-border shadow-lg aspect-video max-w-md mx-auto w-full">
+              <img
+                src={IMAGES.learning}
+                alt=""
+                className="h-full w-full object-cover opacity-80"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </main>
+      <Footer />
     </div>
   );
 };

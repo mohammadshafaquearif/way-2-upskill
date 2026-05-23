@@ -1,11 +1,11 @@
 
 import React from 'react';
-import { 
-  BookOpen, 
-  Users, 
-  Code, 
-  Award, 
-  Lightbulb, 
+import {
+  BookOpen,
+  Users,
+  Code,
+  Award,
+  Lightbulb,
   Briefcase
 } from 'lucide-react';
 
@@ -17,7 +17,7 @@ const featuresData = [
   },
   {
     icon: <Users />,
-    title: "One-to-One Mentorship",
+    title: "Expert-Led Training",
     description: "Personalized guidance from industry experts tailored to your learning pace and career goals across all tech domains."
   },
   {
@@ -44,7 +44,7 @@ const featuresData = [
 
 const Features = () => {
   return (
-    <section className="py-16 md:py-24 bg-gray-50">
+    <section className="py-16 md:py-24 bg-brand-100/50">
       <div className="container px-4 md:px-6">
         <div className="text-center mb-16">
           <h2 className="section-title">Why Choose Zyvotrix?</h2>
@@ -52,17 +52,17 @@ const Features = () => {
             Our comprehensive programs equip you with industry-demanded skills across all major tech domains through personalized mentorship and hands-on projects
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {featuresData.map((feature, index) => (
-            <div 
-              key={index} 
-              className="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover-card"
+            <div
+              key={index}
+              className="bg-card p-6 rounded-xl shadow-md border border-border hover-card"
             >
               <div className="feature-icon mb-4">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
+              <h3 className="text-xl font-bold mb-2 text-foreground">{feature.title}</h3>
               <p className="text-muted-foreground">{feature.description}</p>
             </div>
           ))}

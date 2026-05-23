@@ -173,13 +173,13 @@ const Syllabus = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="w-full">
       <Navbar />
       
-      <div className="pt-24 md:pt-28 pb-16 bg-accent">
-        <div className="container px-4 md:px-6">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Course Syllabus</h1>
-          <p className="text-xl text-muted-foreground max-w-3xl">
+      <div className="page-hero bg-accent">
+        <div className="container px-4 sm:px-6">
+          <h1 className="page-hero-title mb-4">Course Syllabus</h1>
+          <p className="page-hero-subtitle max-w-3xl">
             Our comprehensive 8-week journey from AI/ML fundamentals to advanced GenAI systems, 
             with hands-on projects at every step.
           </p>
@@ -368,7 +368,7 @@ const Syllabus = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Master AI/ML?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Join our upcoming cohort and transform your career in just 8 weeks.
-            Limited spots available - apply now to secure your place.
+            Talk to our team to find the right program for you.
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center gap-4">

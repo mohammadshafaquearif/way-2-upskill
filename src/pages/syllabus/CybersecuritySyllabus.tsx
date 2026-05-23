@@ -5,6 +5,8 @@ import Footer from '@/components/Footer';
 import WeekCard from '@/components/WeekCard';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import SyllabusHero from '@/components/SyllabusHero';
+import { IMAGES } from '@/lib/images';
 
 const syllabusData = [
   {
@@ -62,26 +64,15 @@ const CybersecuritySyllabus = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="w-full">
       <Navbar />
       
-      <div className="pt-24 md:pt-28 pb-16 bg-accent">
-        <div className="container px-4 md:px-6">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Cybersecurity</h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mb-8">
-            Our comprehensive 12-week journey from cybersecurity fundamentals to advanced threat detection, 
-            with hands-on labs and real-world security scenarios.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button asChild size="lg" className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-lg hover:shadow-xl transition-all duration-300">
-              <Link to="/checkout/cybersecurity">Enroll Now</Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300">
-              <Link to="/courses">View All Courses</Link>
-            </Button>
-          </div>
-        </div>
-      </div>
+      <SyllabusHero
+        title="Cybersecurity"
+        subtitle="A 12-week path through security fundamentals, network defense, and hands-on threat scenarios."
+        image={IMAGES.programs.security}
+        checkoutPath="/checkout/cybersecurity"
+      />
       
       <section className="py-16 md:py-24">
         <div className="container px-4 md:px-6">
@@ -116,7 +107,7 @@ const CybersecuritySyllabus = () => {
           
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button asChild size="lg" className="bg-white text-primary hover:bg-gray-100">
-              <Link to="/checkout/cybersecurity">Enroll Now</Link>
+              <Link to="/checkout/cybersecurity">Start Learning</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-2 border-white bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-gray-900">
               <Link to="/courses">View All Courses</Link>

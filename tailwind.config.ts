@@ -13,10 +13,18 @@ export default {
 	theme: {
 		container: {
 			center: true,
-			padding: '2rem',
+			padding: {
+				DEFAULT: '1rem',
+				sm: '1.5rem',
+				lg: '2rem',
+			},
 			screens: {
-				'2xl': '1400px'
-			}
+				sm: '640px',
+				md: '768px',
+				lg: '1024px',
+				xl: '1280px',
+				'2xl': '1400px',
+			},
 		},
     fontFamily: {
       sans: ['Inter', 'sans-serif'],
@@ -24,6 +32,14 @@ export default {
     },
     extend: {
 			colors: {
+				brand: {
+					950: '#0F172A',
+					700: '#1E40AF',
+					500: '#2563EB',
+					300: '#94A3B8',
+					100: '#F1F5F9',
+					accent: '#0F766E',
+				},
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',

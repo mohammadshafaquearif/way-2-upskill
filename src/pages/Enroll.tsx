@@ -15,47 +15,44 @@ import { Label } from '@/components/ui/label';
 import { CheckCircle, CreditCard, Calendar, ArrowRight } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { apiClient } from '@/integrations/api/client';
+import PageHero from '@/components/PageHero';
+import { IMAGES } from '@/lib/images';
 
 const paymentPlans = [
   {
     id: "full",
-    name: "Full Payment",
-    price: "$300",
-    description: "One-time payment for the complete program",
+    name: "Full Program Access",
+    description: "Complete structured learning path with projects and support",
     features: [
-      "Full access to 8-week program",
+      "Full access to the program curriculum",
       "All course materials and resources",
-      "One-to-one mentorship",
+      "Expert-led training & instructor support",
       "Lifetime access to course updates",
       "Capstone project guidance",
-      "Career support"
+      "Career-focused learning support"
     ]
   },
   {
     id: "installment",
-    name: "Installment Plan",
-    price: "$300",
-    description: "One-time payment for the complete program",
+    name: "Flexible Enrollment",
+    description: "Discuss payment options with our team after application review",
     features: [
-      "Full access to 8-week program",
-      "All course materials and resources",
-      "One-to-one mentorship",
-      "Lifetime access to course updates",
-      "Capstone project guidance",
-      "Career support"
+      "Same program access and materials",
+      "Expert-led training & guided learning",
+      "Project-based learning path",
+      "Community-based learning",
+      "Career preparation resources"
     ]
   },
   {
     id: "seat",
-    name: "Reserve Your Seat",
-    price: "$25",
-    description: "Secure your spot with a small deposit",
+    name: "Express Interest",
+    description: "Share your goals — we will guide you to the right cohort",
     features: [
-      "Reserve your place in the next cohort",
-      "Fully credited towards your tuition",
-      "Risk-free cancellation policy",
-      "Priority enrollment when full payment is made",
-      "Course materials preview access"
+      "Priority review of your application",
+      "Program fit consultation",
+      "Learning roadmap guidance",
+      "Early access to orientation resources"
     ]
   }
 ];
@@ -239,34 +236,34 @@ const Enroll = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="w-full">
       <Navbar />
       
-      <div className="pt-24 md:pt-28 pb-20 bg-gradient-to-br from-gray-50 to-gray-100">
-        <div className="container px-4 md:px-6">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Enroll Now</h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              Start your journey to becoming a tech expert. Complete the application process to secure your spot in our upcoming cohort.
-            </p>
-          </div>
-        </div>
-      </div>
+      <PageHero
+        title="Apply to a Program"
+        subtitle="Tell us about your goals — our team will guide you to the right learning path and next steps."
+        image={IMAGES.hero.enroll}
+        imageAlt="Apply for Zyvotrix programs"
+        centered
+      />
       
       <section className="py-16 md:py-24">
         <div className="container px-4 md:px-6">
           <div className="max-w-4xl mx-auto">
             <div className="mb-12">
-              <div className="flex items-center justify-between mb-8">
+              <div className="flex items-start justify-between gap-1 sm:gap-4 mb-8 px-1">
                 {[1, 2, 3].map((step) => (
-                  <div key={step} className="flex flex-col items-center">
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center mb-2 ${
+                  <div key={step} className="flex flex-1 flex-col items-center min-w-0 max-w-[33%]">
+                    <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center mb-2 shrink-0 text-sm sm:text-base ${
                       step < currentStep ? 'bg-primary text-white' : step === currentStep ? 'bg-primary/80 text-white' : 'bg-muted text-muted-foreground'
                     }`}>
-                      {step < currentStep ? <CheckCircle size={20} /> : step}
+                      {step < currentStep ? <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5" /> : step}
                     </div>
-                    <div className="text-sm font-medium">
-                      {step === 1 ? 'Personal Info' : step === 2 ? 'Background & Goals' : 'Payment'}
+                    <div className="text-[10px] sm:text-sm font-medium text-center leading-tight px-0.5">
+                      {step === 1 ? 'Personal' : step === 2 ? 'Background' : 'Preferences'}
+                      <span className="hidden sm:inline">
+                        {step === 1 ? ' Info' : step === 2 ? ' & Goals' : ''}
+                      </span>
                     </div>
                   </div>
                 ))}
@@ -527,7 +524,7 @@ const Enroll = () => {
                       />
                     </div>
                     
-                    <div className="pt-4 flex justify-between">
+                    <div className="pt-4 flex flex-col-reverse sm:flex-row gap-3 sm:justify-between">
                       <Button variant="outline" onClick={prevStep}>
                         Back
                       </Button>
@@ -543,13 +540,13 @@ const Enroll = () => {
             {currentStep === 3 && (
               <Card>
                 <CardContent className="p-6">
-                  <h2 className="text-2xl font-bold mb-6">Select Payment Plan</h2>
+                  <h2 className="text-2xl font-bold mb-6">Choose Your Enrollment Option</h2>
                   
                   <div className="space-y-8">
                     <Tabs defaultValue="plans" className="w-full">
-                      <TabsList className="grid w-full grid-cols-2">
-                        <TabsTrigger value="plans">Payment Plans</TabsTrigger>
-                        <TabsTrigger value="methods">Payment Methods</TabsTrigger>
+                      <TabsList className="grid w-full grid-cols-1 sm:grid-cols-2 h-auto gap-1">
+                        <TabsTrigger value="plans" className="text-xs sm:text-sm py-2">Enrollment Options</TabsTrigger>
+                        <TabsTrigger value="methods" className="text-xs sm:text-sm py-2">Contact Preferences</TabsTrigger>
                       </TabsList>
                       <TabsContent value="plans" className="pt-4">
                         <div className="space-y-4">
@@ -561,12 +558,9 @@ const Enroll = () => {
                               }`}
                               onClick={() => setSelectedPlan(plan.id)}
                             >
-                              <div className="flex justify-between items-start">
-                                <div>
-                                  <h3 className="text-lg font-bold">{plan.name}</h3>
-                                  <p className="text-muted-foreground">{plan.description}</p>
-                                </div>
-                                <div className="text-xl font-bold">{plan.price}</div>
+                              <div>
+                                <h3 className="text-lg font-bold">{plan.name}</h3>
+                                <p className="text-muted-foreground">{plan.description}</p>
                               </div>
                               
                               <ul className="mt-4 space-y-2">
@@ -606,26 +600,16 @@ const Enroll = () => {
                       </TabsContent>
                     </Tabs>
                     
-                    <div className="border-t pt-6">
-                      <div className="space-y-4">
-                        <div className="flex justify-between">
-                          <span>Subtotal</span>
-                          <span>{selectedPlan === 'full' ? '$300.00' : 
-                                selectedPlan === 'installment' ? '$300.00' : '$25.00'}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span>Taxes</span>
-                          <span>$0.00</span>
-                        </div>
-                        <div className="flex justify-between text-lg font-bold">
-                          <span>Total</span>
-                          <span>{selectedPlan === 'full' ? '$300.00' : 
-                                selectedPlan === 'installment' ? '$300.00' : '$25.00'}</span>
-                        </div>
-                      </div>
+                    <div className="border-t pt-6 rounded-lg bg-brand-100/50 p-4 text-sm text-muted-foreground">
+                      Program details and enrollment options are shared after your application is reviewed.
+                      Contact us at{' '}
+                      <a href="mailto:support@zyvotrix.com" className="text-primary font-semibold hover:underline">
+                        support@zyvotrix.com
+                      </a>{' '}
+                      for questions.
                     </div>
                     
-                    <div className="pt-4 flex justify-between">
+                    <div className="pt-4 flex flex-col-reverse sm:flex-row gap-3 sm:justify-between">
                       <Button variant="outline" onClick={prevStep}>
                         Back
                       </Button>
@@ -641,7 +625,7 @@ const Enroll = () => {
         </div>
       </section>
       
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-brand-100/50">
         <div className="container px-4 md:px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Why Enroll With Us?</h2>
@@ -656,7 +640,7 @@ const Enroll = () => {
                 <div className="mx-auto w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                   <Calendar className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">One-to-one Learning</h3>
+                <h3 className="text-xl font-bold mb-2">Guided Learning</h3>
                 <p className="text-muted-foreground">
                   Personalized sessions scheduled at your convenience, with additional self-paced learning materials.
                 </p>

@@ -12,40 +12,37 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Check, ArrowLeft, CreditCard, Smartphone } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import { apiClient } from '@/integrations/api/client';
+import PageHero from '@/components/PageHero';
+import { IMAGES } from '@/lib/images';
 
 const courseData = {
   'ai-ml': {
     id: 'ai-ml',
     title: 'Professional AI/ML & Generative AI Career Accelerator',
-    price: 300,
     duration: '8 Weeks',
     projects: '15+'
   },
   'web-dev': {
     id: 'web-dev',
     title: 'Full Stack Web Development',
-    price: 300,
     duration: '10 Weeks',
     projects: '12+'
   },
   'devops': {
     id: 'devops',
     title: 'DevOps Engineering',
-    price: 350,
     duration: '8 Weeks',
     projects: '10+'
   },
   'cloud': {
     id: 'cloud',
     title: 'Cloud Computing & AWS',
-    price: 350,
     duration: '10 Weeks',
     projects: '12+'
   },
   'cybersecurity': {
     id: 'cybersecurity',
     title: 'Cybersecurity',
-    price: 300,
     duration: '12 Weeks',
     projects: '8+'
   }
@@ -80,14 +77,6 @@ const Checkout: React.FC = () => {
 
   if (!course) return null;
 
-  const calculatePrice = () => {
-    if (paymentMethod === 'full') {
-      return course.price;
-    } else {
-      return Math.round(course.price / 3);
-    }
-  };
-
   const handlePayment = async () => {
     if (!user) return;
     
@@ -118,7 +107,7 @@ const Checkout: React.FC = () => {
         phone: user.phone,
         paymentPlan: paymentMethod,
         paymentMethod: paymentType,
-        totalAmount: calculatePrice(),
+        totalAmount: 0,
         status: 'completed',
       });
 
@@ -139,23 +128,27 @@ const Checkout: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="w-full min-h-screen overflow-x-hidden bg-background">
       <Navbar />
-      
-      <div className="pt-24 pb-16">
-        <div className="container px-4 md:px-6 max-w-6xl mx-auto">
-          <div className="mb-8">
-            <Button 
-              variant="outline" 
-              onClick={() => navigate('/courses')}
-              className="mb-4"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Courses
-            </Button>
-            <h1 className="text-4xl font-bold text-gray-900">Checkout</h1>
-            <p className="text-gray-600 mt-2">Complete your enrollment in {course.title}</p>
-          </div>
+
+      <PageHero
+        title="Start Learning"
+        subtitle={`Confirm your interest in ${course.title} — our team will share next steps.`}
+        image={IMAGES.hero.enroll}
+        imageAlt={course.title}
+        centered
+      />
+
+      <div className="pb-16">
+        <div className="container px-4 sm:px-6 max-w-6xl mx-auto">
+          <Button
+            variant="outline"
+            onClick={() => navigate('/courses')}
+            className="mb-8 border-primary text-primary"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Programs
+          </Button>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Course Summary */}
@@ -179,22 +172,14 @@ const Checkout: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className="border-t pt-4">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="font-medium">Payment Plan:</span>
-                    <span className="font-semibold">
-                      {paymentMethod === 'full' ? 'Full Payment' : '3-Month Installment'}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center text-lg font-bold">
-                    <span>Total Amount:</span>
-                    <span className="text-primary">${calculatePrice()}</span>
-                  </div>
-                  {paymentMethod === 'installment' && (
-                    <div className="text-sm text-gray-600 mt-1">
-                      Pay ${Math.round(course.price / 3)} per month for 3 months
-                    </div>
-                  )}
+                <div className="border-t pt-4 text-sm text-gray-600">
+                  <p>
+                    Program fees and enrollment options are shared after your application is reviewed.
+                    Questions? Email{' '}
+                    <a href="mailto:support@zyvotrix.com" className="text-primary font-semibold hover:underline">
+                      support@zyvotrix.com
+                    </a>
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -202,26 +187,26 @@ const Checkout: React.FC = () => {
             {/* Payment Form */}
             <Card>
               <CardHeader>
-                <CardTitle>Payment Details</CardTitle>
-                <CardDescription>Choose your payment plan and method</CardDescription>
+                <CardTitle>Enrollment Preferences</CardTitle>
+                <CardDescription>Tell us how you would like to proceed — we will follow up with details</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 {/* Payment Plan */}
                 <div className="space-y-3">
-                  <Label className="text-base font-semibold">Payment Plan</Label>
+                  <Label className="text-base font-semibold">How would you like to enroll?</Label>
                   <RadioGroup value={paymentMethod} onValueChange={setPaymentMethod}>
                     <div className="flex items-center space-x-2 p-3 border rounded-lg">
                       <RadioGroupItem value="full" id="full" />
                       <Label htmlFor="full" className="flex-1 cursor-pointer">
-                        <div className="font-medium">Full Payment</div>
-                        <div className="text-sm text-gray-600">Pay ${course.price} now</div>
+                        <div className="font-medium">Start with full program access</div>
+                        <div className="text-sm text-gray-600">Complete structured path with projects & support</div>
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-3 border rounded-lg">
                       <RadioGroupItem value="installment" id="installment" />
                       <Label htmlFor="installment" className="flex-1 cursor-pointer">
-                        <div className="font-medium">3-Month Installment</div>
-                        <div className="text-sm text-gray-600">Pay ${Math.round(course.price / 3)} per month</div>
+                        <div className="font-medium">Discuss flexible options</div>
+                        <div className="text-sm text-gray-600">Our team will reach out with enrollment details</div>
                       </Label>
                     </div>
                   </RadioGroup>
@@ -251,7 +236,7 @@ const Checkout: React.FC = () => {
                 {/* Payment Details */}
                 {paymentType === 'card' && (
                   <div className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <Label htmlFor="cardNumber">Card Number</Label>
                         <Input id="cardNumber" placeholder="1234 5678 9012 3456" />
@@ -261,7 +246,7 @@ const Checkout: React.FC = () => {
                         <Input id="expiry" placeholder="MM/YY" />
                       </div>
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <Label htmlFor="cvv">CVV</Label>
                         <Input id="cvv" placeholder="123" />
@@ -287,18 +272,17 @@ const Checkout: React.FC = () => {
                   </div>
                 )}
 
-                {/* Complete Payment Button */}
                 <Button 
                   onClick={handlePayment}
                   disabled={loading}
                   className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white py-4 text-lg font-semibold"
                 >
-                  {loading ? 'Processing Payment...' : `Pay $${calculatePrice()} Now`}
+                  {loading ? 'Submitting...' : 'Submit Application'}
                 </Button>
 
                 <p className="text-xs text-gray-500 text-center">
-                  By completing this payment, you agree to our Terms of Service and Privacy Policy.
-                  Your enrollment will be confirmed immediately upon successful payment.
+                  By submitting, you agree to our Terms of Service and Privacy Policy.
+                  Our team will contact you with program and enrollment details.
                 </p>
               </CardContent>
             </Card>

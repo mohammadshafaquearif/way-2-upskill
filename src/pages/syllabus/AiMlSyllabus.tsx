@@ -5,6 +5,8 @@ import Footer from '@/components/Footer';
 import WeekCard from '@/components/WeekCard';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import SyllabusHero from '@/components/SyllabusHero';
+import { IMAGES } from '@/lib/images';
 
 const syllabusData = [
   {
@@ -177,26 +179,15 @@ const AiMlSyllabus = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="w-full">
       <Navbar />
       
-      <div className="pt-24 md:pt-28 pb-16 bg-accent">
-        <div className="container px-4 md:px-6">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Professional AI/ML & Generative AI Career Accelerator</h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mb-8">
-            Our comprehensive 8-week journey from Python foundations to advanced GenAI systems, 
-            with hands-on projects and industry mentorship.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button asChild size="lg" className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-lg hover:shadow-xl transition-all duration-300">
-              <Link to="/checkout/ai-ml">Enroll Now</Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300">
-              <Link to="/courses">View All Courses</Link>
-            </Button>
-          </div>
-        </div>
-      </div>
+      <SyllabusHero
+        title="AI/ML & Generative AI"
+        subtitle="An 8-week journey from Python foundations to GenAI systems — with practical projects and guided implementation."
+        image={IMAGES.programs.ai}
+        checkoutPath="/checkout/ai-ml"
+      />
       
       <section className="py-16 md:py-24">
         <div className="container px-4 md:px-6">
@@ -273,7 +264,7 @@ const AiMlSyllabus = () => {
           
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button asChild size="lg" className="bg-white text-primary hover:bg-gray-100">
-              <Link to="/checkout/ai-ml">Enroll Now</Link>
+              <Link to="/checkout/ai-ml">Start Learning</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-2 border-white bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-gray-900">
               <Link to="/courses">View All Courses</Link>

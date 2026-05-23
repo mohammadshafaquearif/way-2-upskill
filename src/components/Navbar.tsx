@@ -76,12 +76,21 @@ const Navbar = () => {
   }, [location]);
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-background/90 backdrop-blur-md shadow-md py-3' : 'bg-transparent py-5'
+    <nav className={`fixed w-full max-w-[100vw] z-50 transition-all duration-300 ${
+      isScrolled ? 'bg-background/90 backdrop-blur-md shadow-md py-2 sm:py-3' : 'bg-transparent py-3 sm:py-5'
     }`}>
-      <div className="container flex justify-between items-center">
-        <Link to="/" className="flex items-center">
-          <span className="text-2xl font-bold gradient-text">Zyvotrix</span>
+      <div className="container flex max-w-full items-center justify-between gap-2 px-4 sm:px-6">
+        <Link to="/" className="flex items-center gap-2 sm:gap-2.5 md:gap-3 shrink min-w-0 max-w-[calc(100%-3rem)]">
+          <img
+            src="/zyvotrix-logo.png"
+            alt="Zyvotrix logo"
+            className="h-9 w-9 sm:h-12 sm:w-12 md:h-14 md:w-14 object-contain drop-shadow-sm shrink-0"
+            width={56}
+            height={56}
+          />
+          <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-brand-950 truncate">
+            Zyvotrix
+          </span>
         </Link>
 
         {/* Desktop Menu */}
@@ -109,14 +118,15 @@ const Navbar = () => {
                 );
               })}
               <DropdownMenuItem asChild>
-                <Link to="/courses" className="flex items-center space-x-3 p-3 border-t border-gray-200">
+                <Link to="/courses" className="flex items-center space-x-3 p-3 border-t border-border">
                   <span className="text-sm font-medium text-primary">View All Courses</span>
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
           
-          <Link to="/bonus" className={`transition-colors ${location.pathname === '/bonus' ? 'text-primary font-medium' : 'text-foreground hover:text-primary'}`}>Free Bonuses</Link>
+          <Link to="/resources" className={`transition-colors ${location.pathname === '/resources' ? 'text-primary font-medium' : 'text-foreground hover:text-primary'}`}>Resources</Link>
+          <Link to="/#community" className="transition-colors text-foreground hover:text-primary">Community</Link>
           <Link to="/about" className={`transition-colors ${location.pathname === '/about' ? 'text-primary font-medium' : 'text-foreground hover:text-primary'}`}>About</Link>
           <Link to="/contact" className={`transition-colors ${location.pathname === '/contact' ? 'text-primary font-medium' : 'text-foreground hover:text-primary'}`}>Contact</Link>
           
@@ -159,8 +169,8 @@ const Navbar = () => {
                 Login/Signup
               </Button>
             )}
-            <Button asChild size="sm">
-              <Link to="/enroll">Enroll Now</Link>
+            <Button asChild size="sm" className="brand-gradient text-white border-0">
+              <Link to="/courses">Explore Programs</Link>
             </Button>
           </div>
         </div>
@@ -175,8 +185,8 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur-md absolute top-full left-0 w-full shadow-md py-4 slide-in">
-          <div className="container flex flex-col space-y-4">
+        <div className="md:hidden bg-background/95 backdrop-blur-md absolute top-full left-0 right-0 w-full max-h-[min(85vh,calc(100dvh-4rem))] overflow-y-auto shadow-md py-4 slide-in overscroll-contain">
+          <div className="container flex flex-col space-y-4 pb-6">
             <Link to="/" className={`transition-colors px-4 py-2 ${location.pathname === '/' ? 'text-primary font-medium' : 'text-foreground hover:text-primary'}`}>Home</Link>
             
             {/* Mobile Courses Section */}
@@ -199,7 +209,7 @@ const Navbar = () => {
                 })}
                 <Link 
                   to="/courses" 
-                  className={`flex items-center space-x-3 py-2 transition-colors border-t border-gray-200 mt-2 pt-3 ${location.pathname === '/courses' ? 'text-primary font-medium' : 'text-foreground hover:text-primary'}`}
+                  className={`flex items-center space-x-3 py-2 transition-colors border-t border-border mt-2 pt-3 ${location.pathname === '/courses' ? 'text-primary font-medium' : 'text-foreground hover:text-primary'}`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <span className="text-sm font-medium">View All Courses</span>
@@ -207,7 +217,8 @@ const Navbar = () => {
               </div>
             </div>
             
-            <Link to="/bonus" className={`transition-colors px-4 py-2 ${location.pathname === '/bonus' ? 'text-primary font-medium' : 'text-foreground hover:text-primary'}`}>Free Bonuses</Link>
+            <Link to="/resources" className={`transition-colors px-4 py-2 ${location.pathname === '/resources' ? 'text-primary font-medium' : 'text-foreground hover:text-primary'}`} onClick={() => setIsMobileMenuOpen(false)}>Resources</Link>
+            <Link to="/#community" className="transition-colors px-4 py-2 text-foreground hover:text-primary" onClick={() => setIsMobileMenuOpen(false)}>Community</Link>
             <Link to="/about" className={`transition-colors px-4 py-2 ${location.pathname === '/about' ? 'text-primary font-medium' : 'text-foreground hover:text-primary'}`}>About</Link>
             <Link to="/contact" className={`transition-colors px-4 py-2 ${location.pathname === '/contact' ? 'text-primary font-medium' : 'text-foreground hover:text-primary'}`}>Contact</Link>
             
@@ -252,8 +263,8 @@ const Navbar = () => {
                   Login/Signup
                 </Button>
               )}
-              <Button asChild className="w-full">
-                <Link to="/enroll">Enroll Now</Link>
+              <Button asChild className="w-full brand-gradient text-white border-0">
+                <Link to="/courses">Explore Programs</Link>
               </Button>
             </div>
           </div>

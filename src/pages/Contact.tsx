@@ -12,12 +12,15 @@ import {
   Phone, 
   MapPin, 
   Calendar, 
-  MessageSquare, 
-  Linkedin
+  MessageSquare,
 } from 'lucide-react';
+import SocialLinks from '@/components/SocialLinks';
+import { SOCIAL_LINKS } from '@/lib/socialLinks';
 import { useToast } from '@/hooks/use-toast';
 import { apiClient } from '@/integrations/api/client';
 import { trackEvent } from '@/lib/analytics';
+import PageHero from '@/components/PageHero';
+import { IMAGES } from '@/lib/images';
 
 interface FormData {
   firstName: string;
@@ -92,7 +95,7 @@ const Contact = () => {
 
   const handleDirectContact = (type: 'whatsapp' | 'email') => {
     if (type === 'whatsapp') {
-      window.open(`https://wa.me/918887720741`, '_blank');
+      window.open(SOCIAL_LINKS.whatsapp, '_blank');
       toast({
         title: "Connecting to WhatsApp",
         description: "Opening WhatsApp to connect with us directly.",
@@ -107,23 +110,19 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="w-full">
       <Navbar />
       
-      <div className="pt-24 md:pt-28 pb-20 bg-gradient-to-br from-gray-50 to-gray-100">
-        <div className="container px-4 md:px-6">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Contact Us</h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              Have questions about our tech programs? Reach out to our team and get the support you need.
-            </p>
-          </div>
-        </div>
-      </div>
+      <PageHero
+        title="Contact Us"
+        subtitle="Questions about programs, enrollment, or partnerships? We're here to help."
+        image={IMAGES.hero.contact}
+        imageAlt="Get in touch with Zyvotrix"
+      />
       
       <section className="py-16 md:py-24">
         <div className="container px-4 md:px-6">
-          <div className="grid lg:grid-cols-2 gap-16">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
             <div>
               <h2 className="text-3xl font-bold mb-6">Get in Touch</h2>
               <p className="text-lg mb-8">
@@ -133,15 +132,15 @@ const Contact = () => {
               
               <div className="space-y-6">
                 <Card className="hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
-                  <CardContent className="flex items-center p-6">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4">
+                  <CardContent className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 sm:p-6">
+                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
                       <Mail className="text-primary h-6 w-6" />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <h3 className="font-semibold text-lg mb-1">Email Us</h3>
                       <button 
                         onClick={() => handleDirectContact('email')}
-                        className="text-primary hover:underline font-medium text-lg"
+                        className="text-primary hover:underline font-medium text-base sm:text-lg break-all text-left"
                       >
                         support@zyvotrix.com
                       </button>
@@ -150,8 +149,8 @@ const Contact = () => {
                 </Card>
                 
                 <Card className="hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
-                  <CardContent className="flex items-center p-6">
-                    <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                  <CardContent className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 sm:p-6">
+                    <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center shrink-0">
                       <Phone className="text-green-600 h-6 w-6" />
                     </div>
                     <div>
@@ -167,8 +166,8 @@ const Contact = () => {
                 </Card>
                 
                 <Card className="hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
-                  <CardContent className="flex items-center p-6">
-                    <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                  <CardContent className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 sm:p-6">
+                    <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center shrink-0">
                       <MapPin className="text-blue-600 h-6 w-6" />
                     </div>
                     <div>
@@ -179,8 +178,8 @@ const Contact = () => {
                 </Card>
                 
                 <Card className="hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
-                  <CardContent className="flex items-center p-6">
-                    <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
+                  <CardContent className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 sm:p-6">
+                    <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center shrink-0">
                       <Calendar className="text-purple-600 h-6 w-6" />
                     </div>
                     <div>
@@ -193,13 +192,13 @@ const Contact = () => {
               
               <div className="mt-8">
                 <h3 className="text-xl font-bold mb-4">Connect With Us</h3>
-                <div className="flex space-x-4">
-                  <a href="https://www.linkedin.com/company/zyvotrix/" target="_blank" rel="noopener noreferrer" className="p-2 bg-accent rounded-full hover:bg-accent/80 transition-colors">
-                    <Linkedin size={20} />
-                  </a>
-                  <button 
+                <div className="flex flex-wrap items-center gap-3">
+                  <SocialLinks variant="contact" />
+                  <button
+                    type="button"
                     onClick={() => handleDirectContact('email')}
                     className="p-2 bg-accent rounded-full hover:bg-accent/80 transition-colors"
+                    aria-label="Email us"
                   >
                     <Mail size={20} />
                   </button>
@@ -209,8 +208,8 @@ const Contact = () => {
             
             <div>
               <Card className="border-2 border-primary/10 shadow-xl">
-                <CardContent className="p-8">
-                  <h3 className="text-3xl font-bold mb-6">Send Us a Message</h3>
+                <CardContent className="p-4 sm:p-6 md:p-8">
+                  <h3 className="text-2xl sm:text-3xl font-bold mb-6">Send Us a Message</h3>
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="space-y-2">
@@ -314,7 +313,7 @@ const Contact = () => {
             Check out our FAQ section or reach out to us directly. 
             We're here to help you make an informed decision about your tech career journey.
           </p>
-          <Button asChild variant="outline" className="border-2 border-white bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-gray-900">
+          <Button asChild variant="outline" className="border-2 border-white bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-brand-950">
             <Link to="/bonus">View Free Bonuses</Link>
           </Button>
         </div>

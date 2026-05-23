@@ -4,6 +4,8 @@ import Footer from '@/components/Footer';
 import WeekCard from '@/components/WeekCard';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import SyllabusHero from '@/components/SyllabusHero';
+import { IMAGES } from '@/lib/images';
 
 const syllabusData = [
   {
@@ -212,26 +214,15 @@ const WebDevSyllabus = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="w-full">
       <Navbar />
       
-      <div className="pt-24 md:pt-28 pb-16 bg-accent">
-        <div className="container px-4 md:px-6">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Full Stack Web Development</h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mb-8">
-            Our comprehensive 10-week journey from frontend fundamentals to full-stack mastery, 
-            with hands-on projects and modern development practices.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button asChild size="lg" className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-lg hover:shadow-xl transition-all duration-300">
-              <Link to="/checkout/web-dev">Enroll Now</Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300">
-              <Link to="/courses">View All Courses</Link>
-            </Button>
-          </div>
-        </div>
-      </div>
+      <SyllabusHero
+        title="Full Stack Web Development"
+        subtitle="A 10-week journey from frontend fundamentals to full-stack mastery — with hands-on projects and modern development practices."
+        image={IMAGES.programs.webDev}
+        checkoutPath="/checkout/web-dev"
+      />
       
       <section className="py-16 md:py-24">
         <div className="container px-4 md:px-6">
@@ -308,7 +299,7 @@ const WebDevSyllabus = () => {
           
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button asChild size="lg" className="bg-white text-primary hover:bg-gray-100">
-              <Link to="/checkout/web-dev">Enroll Now</Link>
+              <Link to="/checkout/web-dev">Start Learning</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-2 border-white bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-gray-900">
               <Link to="/courses">View All Courses</Link>

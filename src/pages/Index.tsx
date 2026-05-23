@@ -1,22 +1,26 @@
 
 import React from 'react';
 import Hero from '@/components/Hero';
-import Features from '@/components/Features';
-import StatsSection from '@/components/StatsSection';
-import Testimonials from '@/components/Testimonials';
-import CTASection from '@/components/CTASection';
+import WhatIsZyvotrix from '@/components/home/WhatIsZyvotrix';
+import ProgramsPreview from '@/components/home/ProgramsPreview';
+import LearningApproach from '@/components/home/LearningApproach';
+import CommunitySection from '@/components/home/CommunitySection';
+import FAQSection from '@/components/home/FAQSection';
+import NewsletterSection from '@/components/home/NewsletterSection';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="w-full min-h-screen overflow-x-hidden">
       <Navbar />
       <Hero />
-      <StatsSection />
-      <Features />
-      <Testimonials />
-      <CTASection />
+      <WhatIsZyvotrix />
+      <ProgramsPreview />
+      <LearningApproach />
+      <CommunitySection />
+      <FAQSection />
+      <NewsletterSection />
       <Footer />
     </div>
   );

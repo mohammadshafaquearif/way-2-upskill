@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -39,7 +40,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="w-full bg-gray-50">
       <Navbar />
       
       <div className="pt-24 md:pt-28 pb-16 bg-gradient-to-br from-primary/10 to-secondary/10">
@@ -48,10 +49,10 @@ const Profile = () => {
             <div className="w-24 h-24 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-6">
               <User className="w-12 h-12 text-white" />
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 break-words px-2">
               Welcome, {user.firstName}!
             </h1>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground px-2">
               Manage your account, view your courses, and track your progress
             </p>
           </div>
@@ -62,18 +63,18 @@ const Profile = () => {
         <div className="container px-4 md:px-6">
           <div className="max-w-6xl mx-auto">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-3 mb-8">
-                <TabsTrigger value="details" className="flex items-center space-x-2">
-                  <User className="w-4 h-4" />
-                  <span>Personal Details</span>
+              <TabsList className="grid w-full grid-cols-3 mb-8 h-auto gap-1 p-1">
+                <TabsTrigger value="details" className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 py-2.5 px-1 sm:px-3 text-xs sm:text-sm">
+                  <User className="w-4 h-4 shrink-0" />
+                  <span className="text-center leading-tight">Details</span>
                 </TabsTrigger>
-                <TabsTrigger value="services" className="flex items-center space-x-2">
-                  <BookOpen className="w-4 h-4" />
-                  <span>My Services</span>
+                <TabsTrigger value="services" className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 py-2.5 px-1 sm:px-3 text-xs sm:text-sm">
+                  <BookOpen className="w-4 h-4 shrink-0" />
+                  <span className="text-center leading-tight">Services</span>
                 </TabsTrigger>
-                <TabsTrigger value="payments" className="flex items-center space-x-2">
-                  <CreditCard className="w-4 h-4" />
-                  <span>Payments</span>
+                <TabsTrigger value="payments" className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 py-2.5 px-1 sm:px-3 text-xs sm:text-sm">
+                  <CreditCard className="w-4 h-4 shrink-0" />
+                  <span className="text-center leading-tight">Payments</span>
                 </TabsTrigger>
               </TabsList>
 
@@ -162,20 +163,18 @@ const Profile = () => {
                         <p className="text-sm text-muted-foreground mb-3">
                           Master modern web development with React, Node.js, and cloud deployment.
                         </p>
-                        <div className="flex justify-between items-center">
-                          <span className="text-lg font-bold text-primary">$300</span>
-                          <Button size="sm">Enroll Now</Button>
-                        </div>
+                        <Button size="sm" asChild className="w-full mt-2">
+                          <Link to="/courses/web-development">View Program</Link>
+                        </Button>
                       </div>
                       <div className="p-4 border rounded-lg hover:shadow-md transition-shadow">
                         <h4 className="font-semibold mb-2">AI/ML & Generative AI</h4>
                         <p className="text-sm text-muted-foreground mb-3">
                           Transform your career with intensive AI/ML program and GenAI systems.
                         </p>
-                        <div className="flex justify-between items-center">
-                          <span className="text-lg font-bold text-primary">$300</span>
-                          <Button size="sm">Enroll Now</Button>
-                        </div>
+                        <Button size="sm" asChild className="w-full mt-2">
+                          <Link to="/courses/ai-ml">View Program</Link>
+                        </Button>
                       </div>
                     </div>
                   </CardContent>
