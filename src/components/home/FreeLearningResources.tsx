@@ -57,7 +57,7 @@ const FreeLearningResources = () => (
           <Link
             key={item.title}
             to={item.href}
-            className="group rounded-xl border border-border bg-card p-6 hover-card block"
+            className="group surface-card-interactive p-6 block"
           >
             <item.icon className="h-8 w-8 text-primary mb-4" />
             <h3 className="font-bold text-brand-950 mb-2 group-hover:text-primary transition-colors">

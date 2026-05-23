@@ -13,6 +13,7 @@ import { Check, ArrowLeft, CreditCard, Smartphone } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import { apiClient } from '@/integrations/api/client';
 import PageHero from '@/components/PageHero';
+import PageShell from '@/components/layout/PageShell';
 import { IMAGES } from '@/lib/images';
 
 const courseData = {
@@ -128,7 +129,7 @@ const Checkout: React.FC = () => {
   };
 
   return (
-    <div className="w-full min-h-screen overflow-x-hidden bg-background">
+    <PageShell>
       <Navbar />
 
       <PageHero
@@ -139,7 +140,7 @@ const Checkout: React.FC = () => {
         centered
       />
 
-      <div className="pb-16">
+      <section className="section-padding section-alt pb-16">
         <div className="container px-4 sm:px-6 max-w-6xl mx-auto">
           <Button
             variant="outline"
@@ -162,7 +163,7 @@ const Checkout: React.FC = () => {
               <CardContent className="space-y-4">
                 <div className="border rounded-lg p-4">
                   <h3 className="font-semibold text-lg mb-2">{course.title}</h3>
-                  <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
+                  <div className="grid grid-cols-2 gap-4 text-sm text-muted-foreground">
                     <div>
                       <span className="font-medium">Duration:</span> {course.duration}
                     </div>
@@ -172,7 +173,7 @@ const Checkout: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className="border-t pt-4 text-sm text-gray-600">
+                <div className="border-t pt-4 text-sm text-muted-foreground">
                   <p>
                     Program fees and enrollment options are shared after your application is reviewed.
                     Questions? Email{' '}
@@ -199,14 +200,14 @@ const Checkout: React.FC = () => {
                       <RadioGroupItem value="full" id="full" />
                       <Label htmlFor="full" className="flex-1 cursor-pointer">
                         <div className="font-medium">Start with full program access</div>
-                        <div className="text-sm text-gray-600">Complete structured path with projects & support</div>
+                        <div className="text-sm text-muted-foreground">Complete structured path with projects & support</div>
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-3 border rounded-lg">
                       <RadioGroupItem value="installment" id="installment" />
                       <Label htmlFor="installment" className="flex-1 cursor-pointer">
                         <div className="font-medium">Discuss flexible options</div>
-                        <div className="text-sm text-gray-600">Our team will reach out with enrollment details</div>
+                        <div className="text-sm text-muted-foreground">Our team will reach out with enrollment details</div>
                       </Label>
                     </div>
                   </RadioGroup>
@@ -275,12 +276,12 @@ const Checkout: React.FC = () => {
                 <Button 
                   onClick={handlePayment}
                   disabled={loading}
-                  className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white py-4 text-lg font-semibold"
+                  className="w-full btn-brand py-4 text-lg"
                 >
                   {loading ? 'Submitting...' : 'Submit Application'}
                 </Button>
 
-                <p className="text-xs text-gray-500 text-center">
+                <p className="text-xs text-muted-foreground text-center">
                   By submitting, you agree to our Terms of Service and Privacy Policy.
                   Our team will contact you with program and enrollment details.
                 </p>
@@ -288,10 +289,10 @@ const Checkout: React.FC = () => {
             </Card>
           </div>
         </div>
-      </div>
+      </section>
 
       <Footer />
-    </div>
+    </PageShell>
   );
 };
 

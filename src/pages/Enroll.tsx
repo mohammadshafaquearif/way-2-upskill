@@ -16,6 +16,7 @@ import { CheckCircle, CreditCard, Calendar, ArrowRight } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { apiClient } from '@/integrations/api/client';
 import PageHero from '@/components/PageHero';
+import PageShell from '@/components/layout/PageShell';
 import { IMAGES } from '@/lib/images';
 
 const paymentPlans = [
@@ -236,7 +237,7 @@ const Enroll = () => {
   };
 
   return (
-    <div className="w-full">
+    <PageShell>
       <Navbar />
       
       <PageHero
@@ -247,9 +248,9 @@ const Enroll = () => {
         centered
       />
       
-      <section className="py-16 md:py-24">
+      <section className="section-padding section-alt">
         <div className="container px-4 md:px-6">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto form-panel">
             <div className="mb-12">
               <div className="flex items-start justify-between gap-1 sm:gap-4 mb-8 px-1">
                 {[1, 2, 3].map((step) => (
@@ -681,7 +682,7 @@ const Enroll = () => {
       </section>
       
       <Footer />
-    </div>
+    </PageShell>
   );
 };
 

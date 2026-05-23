@@ -1,5 +1,6 @@
 
 import React from 'react';
+import PageShell from '@/components/layout/PageShell';
 import Hero from '@/components/Hero';
 import WhatIsZyvotrix from '@/components/home/WhatIsZyvotrix';
 import ProgramsPreview from '@/components/home/ProgramsPreview';
@@ -10,10 +11,10 @@ import NewsletterSection from '@/components/home/NewsletterSection';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
-const Index = () => {
-  return (
-    <div className="w-full min-h-screen overflow-x-hidden">
-      <Navbar />
+const Index = () => (
+  <PageShell>
+    <Navbar />
+    <main className="page-main">
       <Hero />
       <WhatIsZyvotrix />
       <ProgramsPreview />
@@ -21,9 +22,9 @@ const Index = () => {
       <CommunitySection />
       <FAQSection />
       <NewsletterSection />
-      <Footer />
-    </div>
-  );
-};
+    </main>
+    <Footer />
+  </PageShell>
+);
 
 export default Index;

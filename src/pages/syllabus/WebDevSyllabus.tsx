@@ -5,6 +5,8 @@ import WeekCard from '@/components/WeekCard';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import SyllabusHero from '@/components/SyllabusHero';
+import SyllabusPageCta from '@/components/SyllabusPageCta';
+import PageShell from '@/components/layout/PageShell';
 import { IMAGES } from '@/lib/images';
 
 const syllabusData = [
@@ -214,7 +216,7 @@ const WebDevSyllabus = () => {
   };
 
   return (
-    <div className="w-full">
+    <PageShell>
       <Navbar />
       
       <SyllabusHero
@@ -224,11 +226,11 @@ const WebDevSyllabus = () => {
         checkoutPath="/checkout/web-dev"
       />
       
-      <section className="py-16 md:py-24">
+      <section className="section-padding section-alt">
         <div className="container px-4 md:px-6">
           <div className="mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Your Learning Journey</h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mb-8">
+            <h2 className="section-title">Your Learning Journey</h2>
+            <p className="section-subtitle max-w-3xl mb-8 mx-0 text-left">
               From frontend basics to deploying full-stack applications, master the complete web development stack used by leading tech companies.
             </p>
           </div>
@@ -248,7 +250,7 @@ const WebDevSyllabus = () => {
                   {week.week}
                 </div>
                 <div className={`w-1/2 p-2 ${index % 2 === 0 ? 'pr-12' : 'pl-12'}`}>
-                  <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+                  <div className="timeline-card">
                     <h3 className="text-xl font-bold mb-2">{week.title}</h3>
                     <p className="mb-4 text-muted-foreground">{week.objective}</p>
                     <div className="flex justify-between items-center">
@@ -290,26 +292,13 @@ const WebDevSyllabus = () => {
         </div>
       </section>
       
-      <section className="py-16 md:py-24 animated-gradient-bg text-white">
-        <div className="container px-4 md:px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Become a Full Stack Developer?</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Join our comprehensive web development program and build the skills needed for modern web development.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button asChild size="lg" className="bg-white text-primary hover:bg-gray-100">
-              <Link to="/checkout/web-dev">Start Learning</Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="border-2 border-white bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-gray-900">
-              <Link to="/courses">View All Courses</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-      
+      <SyllabusPageCta
+        title="Ready to become a Full Stack Developer?"
+        checkoutPath="/checkout/web-dev"
+      />
+
       <Footer />
-    </div>
+    </PageShell>
   );
 };
 

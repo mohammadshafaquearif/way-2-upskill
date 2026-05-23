@@ -40,7 +40,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="w-full bg-gray-50">
+    <div className="page-shell">
       <Navbar />
       
       <div className="pt-24 md:pt-28 pb-16 bg-gradient-to-br from-primary/10 to-secondary/10">
@@ -90,29 +90,29 @@ const Profile = () => {
                     <div className="grid md:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <label className="text-sm font-medium text-muted-foreground">First Name</label>
-                        <div className="p-3 bg-gray-50 rounded-lg font-medium">{user.firstName}</div>
+                        <div className="p-3 bg-muted rounded-lg font-medium">{user.firstName}</div>
                       </div>
                       <div className="space-y-2">
                         <label className="text-sm font-medium text-muted-foreground">Last Name</label>
-                        <div className="p-3 bg-gray-50 rounded-lg font-medium">{user.lastName}</div>
+                        <div className="p-3 bg-muted rounded-lg font-medium">{user.lastName}</div>
                       </div>
                       <div className="space-y-2">
                         <label className="text-sm font-medium text-muted-foreground">Email</label>
-                        <div className="p-3 bg-gray-50 rounded-lg font-medium flex items-center space-x-2">
+                        <div className="p-3 bg-muted rounded-lg font-medium flex items-center space-x-2">
                           <Mail className="w-4 h-4 text-muted-foreground" />
                           <span>{user.email}</span>
                         </div>
                       </div>
                       <div className="space-y-2">
                         <label className="text-sm font-medium text-muted-foreground">Phone Number</label>
-                        <div className="p-3 bg-gray-50 rounded-lg font-medium flex items-center space-x-2">
+                        <div className="p-3 bg-muted rounded-lg font-medium flex items-center space-x-2">
                           <Phone className="w-4 h-4 text-muted-foreground" />
                           <span>{user.phone}</span>
                         </div>
                       </div>
                       <div className="space-y-2 md:col-span-2">
                         <label className="text-sm font-medium text-muted-foreground">Area of Interest</label>
-                        <div className="p-3 bg-gray-50 rounded-lg">
+                        <div className="p-3 bg-muted rounded-lg">
                           <Badge variant="secondary" className="text-sm">
                             {user.interestedSubject?.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase()) || 'Not specified'}
                           </Badge>

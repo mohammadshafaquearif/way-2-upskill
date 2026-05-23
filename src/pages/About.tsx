@@ -2,6 +2,7 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import PageShell from '@/components/layout/PageShell';
 import PageHero from '@/components/PageHero';
 import PageCta from '@/components/PageCta';
 import { Button } from '@/components/ui/button';
@@ -29,7 +30,7 @@ const methodology = [
 
 const About = () => {
   return (
-    <div className="w-full min-h-screen overflow-x-hidden">
+    <PageShell>
       <Navbar />
 
       <PageHero
@@ -39,7 +40,7 @@ const About = () => {
         imageAlt="Team learning and collaboration"
       />
 
-      <section className="section-padding bg-background">
+      <section className="section-padding section-white">
         <div className="container px-4 sm:px-6 max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-10 items-center mb-16">
             <div>
@@ -53,7 +54,7 @@ const About = () => {
                 used in real companies.
               </p>
             </div>
-            <div className="relative rounded-2xl overflow-hidden border border-border shadow-lg aspect-[4/3]">
+            <div className="hero-image-frame aspect-[4/3]">
               <img
                 src={IMAGES.team}
                 alt="Collaborative learning environment"
@@ -77,53 +78,42 @@ const About = () => {
         </div>
       </section>
 
-      <section className="section-padding bg-brand-100/40">
+      <section className="section-padding section-alt">
         <div className="container px-4 sm:px-6 max-w-5xl mx-auto">
           <h2 className="section-title text-center mb-12">Lead Instructor</h2>
-          <div className="grid md:grid-cols-5 gap-8 items-start rounded-2xl border border-border bg-card overflow-hidden shadow-sm">
-            <div className="md:col-span-2 relative min-h-[280px] md:min-h-full">
-              <img
-                src={IMAGES.instructor}
-                alt="Mohammad Shafaque Arif"
-                className="absolute inset-0 h-full w-full object-cover"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-950/60 to-transparent md:bg-gradient-to-r" />
-            </div>
-            <div className="md:col-span-3 p-8 md:p-10">
-              <span className="pill-tag mb-3">Expert-Led Training</span>
-              <h3 className="text-2xl md:text-3xl font-bold text-brand-950 mb-3">Mohammad Shafaque Arif</h3>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                Experienced across Full Stack Development, DevOps, Cloud, AI/ML, and modern data workflows —
-                focused on helping learners build confidence through practical implementation.
-              </p>
-              <ul className="space-y-2 text-sm text-muted-foreground mb-6">
-                <li>• Full Stack & modern web architecture</li>
-                <li>• DevOps, CI/CD & cloud deployments</li>
-                <li>• AI/ML & data-driven applications</li>
-              </ul>
-              <div className="flex flex-wrap gap-3 text-sm">
-                <a
-                  href="mailto:support@zyvotrix.com"
-                  className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
-                >
-                  <Mail className="h-4 w-4" /> Email
-                </a>
-                <a
-                  href="https://www.linkedin.com/company/zyvotrix"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
-                >
-                  <Linkedin className="h-4 w-4" /> LinkedIn
-                </a>
-              </div>
+          <div className="surface-card-lg max-w-3xl mx-auto p-8 md:p-10 text-center md:text-left">
+            <span className="pill-tag mb-3">Expert-Led Training</span>
+            <h3 className="text-2xl md:text-3xl font-bold text-brand-950 mb-3">Mohammad Shafaque Arif</h3>
+            <p className="text-muted-foreground leading-relaxed mb-6">
+              Experienced across Full Stack Development, DevOps, Cloud, AI/ML, and modern data workflows —
+              focused on helping learners build confidence through practical implementation.
+            </p>
+            <ul className="space-y-2 text-sm text-muted-foreground mb-6">
+              <li>• Full Stack & modern web architecture</li>
+              <li>• DevOps, CI/CD & cloud deployments</li>
+              <li>• AI/ML & data-driven applications</li>
+            </ul>
+            <div className="flex flex-wrap justify-center md:justify-start gap-3 text-sm">
+              <a
+                href="mailto:support@zyvotrix.com"
+                className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
+              >
+                <Mail className="h-4 w-4" /> Email
+              </a>
+              <a
+                href="https://www.linkedin.com/company/zyvotrix"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
+              >
+                <Linkedin className="h-4 w-4" /> LinkedIn
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-12 bg-background border-t border-border">
+      <section className="section-padding section-white border-t border-border">
         <div className="container px-4 sm:px-6">
           <div className="flex flex-wrap justify-center gap-8 text-sm text-muted-foreground">
             <span className="inline-flex items-center gap-2">
@@ -134,7 +124,7 @@ const About = () => {
             </span>
           </div>
           <div className="text-center mt-8">
-            <Button asChild size="lg" className="brand-gradient text-white border-0">
+            <Button asChild size="lg" className="btn-brand">
               <Link to="/contact">Talk to Our Team</Link>
             </Button>
           </div>
@@ -151,8 +141,9 @@ const About = () => {
       />
 
       <Footer />
-    </div>
+    </PageShell>
   );
 };
+
 
 export default About;

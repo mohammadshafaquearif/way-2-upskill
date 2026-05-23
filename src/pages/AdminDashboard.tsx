@@ -186,13 +186,13 @@ const AdminDashboard = () => {
   }
 
   return (
-    <div className="w-full bg-gray-50">
+    <div className="page-shell">
       <div className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 py-6">
             <div className="min-w-0">
-              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Admin Dashboard</h1>
-              <p className="text-sm sm:text-base text-gray-600">Monitor user activity and platform performance</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-foreground">Admin Dashboard</h1>
+              <p className="text-sm sm:text-base text-muted-foreground">Monitor user activity and platform performance</p>
             </div>
             <Button onClick={fetchDashboardData} variant="outline">
               <RefreshCw className="w-4 h-4 mr-2" />
@@ -212,8 +212,8 @@ const AdminDashboard = () => {
                   <Users className="w-6 h-6 text-blue-600" />
                 </div>
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Total Users</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.totalUsers}</p>
+                  <p className="text-sm font-medium text-muted-foreground">Total Users</p>
+                  <p className="text-2xl font-bold text-foreground">{stats.totalUsers}</p>
                 </div>
               </div>
             </CardContent>
@@ -226,8 +226,8 @@ const AdminDashboard = () => {
                   <BookOpen className="w-6 h-6 text-green-600" />
                 </div>
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Total Enrollments</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.totalEnrollments}</p>
+                  <p className="text-sm font-medium text-muted-foreground">Total Enrollments</p>
+                  <p className="text-2xl font-bold text-foreground">{stats.totalEnrollments}</p>
                 </div>
               </div>
             </CardContent>
@@ -240,8 +240,8 @@ const AdminDashboard = () => {
                   <DollarSign className="w-6 h-6 text-yellow-600" />
                 </div>
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Total Revenue</p>
-                  <p className="text-2xl font-bold text-gray-900">${stats.totalRevenue}</p>
+                  <p className="text-sm font-medium text-muted-foreground">Total Revenue</p>
+                  <p className="text-2xl font-bold text-foreground">${stats.totalRevenue}</p>
                 </div>
               </div>
             </CardContent>
@@ -254,8 +254,8 @@ const AdminDashboard = () => {
                   <TrendingUp className="w-6 h-6 text-purple-600" />
                 </div>
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Active Users</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.activeUsers}</p>
+                  <p className="text-sm font-medium text-muted-foreground">Active Users</p>
+                  <p className="text-2xl font-bold text-foreground">{stats.activeUsers}</p>
                 </div>
               </div>
             </CardContent>
@@ -296,16 +296,16 @@ const AdminDashboard = () => {
                     </thead>
                     <tbody>
                       {users.map((user) => (
-                        <tr key={user.id} className="border-b hover:bg-gray-50">
+                        <tr key={user.id} className="border-b hover:bg-muted">
                           <td className="py-3 px-4 font-medium">{user.first_name} {user.last_name}</td>
-                          <td className="py-3 px-4 text-gray-600">{user.email}</td>
-                          <td className="py-3 px-4 text-gray-600">{user.phone}</td>
+                          <td className="py-3 px-4 text-muted-foreground">{user.email}</td>
+                          <td className="py-3 px-4 text-muted-foreground">{user.phone}</td>
                           <td className="py-3 px-4">
                             <Badge variant="secondary">
                               {user.interested_subject?.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase()) || 'Not specified'}
                             </Badge>
                           </td>
-                          <td className="py-3 px-4 text-gray-600">
+                          <td className="py-3 px-4 text-muted-foreground">
                             {new Date(user.created_at).toLocaleDateString()}
                           </td>
                           <td className="py-3 px-4">
@@ -348,11 +348,11 @@ const AdminDashboard = () => {
                     </thead>
                     <tbody>
                       {enrollments.map((enrollment) => (
-                        <tr key={enrollment.id} className="border-b hover:bg-gray-50">
+                        <tr key={enrollment.id} className="border-b hover:bg-muted">
                           <td className="py-3 px-4">
                             <div>
                               <div className="font-medium">{enrollment.user_name}</div>
-                              <div className="text-sm text-gray-600">{enrollment.user_email}</div>
+                              <div className="text-sm text-muted-foreground">{enrollment.user_email}</div>
                             </div>
                           </td>
                           <td className="py-3 px-4 font-medium">{enrollment.course_name}</td>
@@ -365,7 +365,7 @@ const AdminDashboard = () => {
                               {enrollment.status}
                             </Badge>
                           </td>
-                          <td className="py-3 px-4 text-gray-600">
+                          <td className="py-3 px-4 text-muted-foreground">
                             {new Date(enrollment.created_at).toLocaleDateString()}
                           </td>
                         </tr>
@@ -391,7 +391,7 @@ const AdminDashboard = () => {
               <CardContent>
                 <div className="space-y-4">
                   {activities.map((activity) => (
-                    <div key={activity.id} className="flex items-center space-x-4 p-4 border rounded-lg hover:bg-gray-50">
+                    <div key={activity.id} className="flex items-center space-x-4 p-4 border rounded-lg hover:bg-muted">
                       <div className="p-2 bg-blue-100 rounded-full">
                         <Eye className="w-4 h-4 text-blue-600" />
                       </div>
@@ -400,8 +400,8 @@ const AdminDashboard = () => {
                           <span className="font-medium">{activity.user_name}</span>
                           <Badge variant="outline">{activity.action}</Badge>
                         </div>
-                        <p className="text-sm text-gray-600">{activity.details}</p>
-                        <p className="text-xs text-gray-500">
+                        <p className="text-sm text-muted-foreground">{activity.details}</p>
+                        <p className="text-xs text-muted-foreground">
                           {new Date(activity.timestamp).toLocaleString()}
                         </p>
                       </div>

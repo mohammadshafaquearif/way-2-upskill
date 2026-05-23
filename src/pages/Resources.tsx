@@ -1,12 +1,13 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import PageShell from '@/components/layout/PageShell';
 import PageHero from '@/components/PageHero';
 import FreeLearningResources from '@/components/home/FreeLearningResources';
 import { IMAGES } from '@/lib/images';
 
 const Resources = () => (
-  <div className="min-h-screen w-full overflow-x-hidden">
+  <PageShell>
     <Navbar />
     <PageHero
       title="Free Learning Resources"
@@ -16,7 +17,7 @@ const Resources = () => (
     />
     <FreeLearningResources />
     <Footer />
-  </div>
+  </PageShell>
 );
 
 export default Resources;

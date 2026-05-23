@@ -20,6 +20,8 @@ import { useToast } from '@/hooks/use-toast';
 import { apiClient } from '@/integrations/api/client';
 import { trackEvent } from '@/lib/analytics';
 import PageHero from '@/components/PageHero';
+import PageCta from '@/components/PageCta';
+import PageShell from '@/components/layout/PageShell';
 import { IMAGES } from '@/lib/images';
 
 interface FormData {
@@ -110,7 +112,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="w-full">
+    <PageShell>
       <Navbar />
       
       <PageHero
@@ -120,21 +122,21 @@ const Contact = () => {
         imageAlt="Get in touch with Zyvotrix"
       />
       
-      <section className="py-16 md:py-24">
+      <section className="section-padding section-white">
         <div className="container px-4 md:px-6">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
             <div>
-              <h2 className="text-3xl font-bold mb-6">Get in Touch</h2>
-              <p className="text-lg mb-8">
+              <h2 className="section-title text-left mx-0">Get in Touch</h2>
+              <p className="text-muted-foreground text-lg mb-8">
                 Fill out the form and our team will get back to you within a few hours.
                 We're happy to answer any questions you may have about our tech programs.
               </p>
               
               <div className="space-y-6">
-                <Card className="hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
-                  <CardContent className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 sm:p-6">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
-                      <Mail className="text-primary h-6 w-6" />
+                <Card className="info-tile border-0 shadow-none">
+                  <CardContent className="flex flex-col sm:flex-row sm:items-center gap-4 p-0">
+                    <div className="feature-icon shrink-0">
+                      <Mail className="h-5 w-5" />
                     </div>
                     <div className="min-w-0">
                       <h3 className="font-semibold text-lg mb-1">Email Us</h3>
@@ -148,16 +150,16 @@ const Contact = () => {
                   </CardContent>
                 </Card>
                 
-                <Card className="hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
-                  <CardContent className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 sm:p-6">
-                    <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center shrink-0">
-                      <Phone className="text-green-600 h-6 w-6" />
+                <Card className="info-tile border-0 shadow-none">
+                  <CardContent className="flex flex-col sm:flex-row sm:items-center gap-4 p-0">
+                    <div className="feature-icon shrink-0 bg-secondary/10 text-secondary">
+                      <Phone className="h-5 w-5" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-lg mb-1">Connect on WhatsApp</h3>
                       <button 
                         onClick={() => handleDirectContact('whatsapp')}
-                        className="text-green-600 hover:underline font-medium text-lg"
+                        className="text-secondary hover:underline font-medium text-lg"
                       >
                         +91 8887720741
                       </button>
@@ -165,10 +167,10 @@ const Contact = () => {
                   </CardContent>
                 </Card>
                 
-                <Card className="hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
-                  <CardContent className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 sm:p-6">
-                    <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center shrink-0">
-                      <MapPin className="text-blue-600 h-6 w-6" />
+                <Card className="info-tile border-0 shadow-none">
+                  <CardContent className="flex flex-col sm:flex-row sm:items-center gap-4 p-0">
+                    <div className="feature-icon shrink-0">
+                      <MapPin className="h-5 w-5" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-lg mb-1">Visit Us</h3>
@@ -177,10 +179,10 @@ const Contact = () => {
                   </CardContent>
                 </Card>
                 
-                <Card className="hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
-                  <CardContent className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 sm:p-6">
-                    <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center shrink-0">
-                      <Calendar className="text-purple-600 h-6 w-6" />
+                <Card className="info-tile border-0 shadow-none">
+                  <CardContent className="flex flex-col sm:flex-row sm:items-center gap-4 p-0">
+                    <div className="feature-icon shrink-0">
+                      <Calendar className="h-5 w-5" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-lg mb-1">Office Hours</h3>
@@ -207,8 +209,8 @@ const Contact = () => {
             </div>
             
             <div>
-              <Card className="border-2 border-primary/10 shadow-xl">
-                <CardContent className="p-4 sm:p-6 md:p-8">
+              <Card className="form-panel border-0 shadow-none">
+                <CardContent className="p-0">
                   <h3 className="text-2xl sm:text-3xl font-bold mb-6">Send Us a Message</h3>
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="grid md:grid-cols-2 gap-4">
@@ -279,7 +281,7 @@ const Contact = () => {
                       />
                     </div>
                     
-                    <Button type="submit" className="w-full py-3 text-lg font-semibold" disabled={isSubmitting}>
+                    <Button type="submit" className="w-full py-3 text-lg font-semibold btn-brand" disabled={isSubmitting}>
                       <MessageSquare className="mr-2 h-5 w-5" /> 
                       {isSubmitting ? 'Sending...' : 'Send Message'}
                     </Button>
@@ -287,14 +289,14 @@ const Contact = () => {
                 </CardContent>
               </Card>
               
-              <div className="mt-8 p-4 bg-accent rounded-lg">
+              <div className="mt-8 surface-card p-5">
                 <h4 className="font-medium mb-2">Prefer a quick chat?</h4>
                 <p className="text-sm text-muted-foreground mb-4">
                   Connect directly on WhatsApp for a quick response or schedule a 15-minute call with our admissions team.
                 </p>
                 <Button 
                   variant="outline" 
-                  className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-white"
+                  className="w-full btn-outline-brand bg-card"
                   onClick={() => handleDirectContact('whatsapp')}
                 >
                   <Phone className="mr-2 h-4 w-4" />
@@ -306,21 +308,17 @@ const Contact = () => {
         </div>
       </section>
       
-      <section className="py-16 bg-gray-900 text-white">
-        <div className="container px-4 md:px-6 text-center">
-          <h2 className="text-3xl font-bold mb-4">Have Questions?</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Check out our FAQ section or reach out to us directly. 
-            We're here to help you make an informed decision about your tech career journey.
-          </p>
-          <Button asChild variant="outline" className="border-2 border-white bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-brand-950">
-            <Link to="/bonus">View Free Bonuses</Link>
-          </Button>
-        </div>
-      </section>
-      
+      <PageCta
+        title="Have questions?"
+        description="Browse our FAQ or explore programs — we're here to help you choose the right path."
+        primaryLabel="View FAQ"
+        primaryHref="/#faq"
+        secondaryLabel="Explore Programs"
+        secondaryHref="/courses"
+      />
+
       <Footer />
-    </div>
+    </PageShell>
   );
 };
 

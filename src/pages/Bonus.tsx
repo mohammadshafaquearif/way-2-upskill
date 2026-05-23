@@ -2,6 +2,7 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import PageShell from '@/components/layout/PageShell';
 import PageHero from '@/components/PageHero';
 import PageCta from '@/components/PageCta';
 import { Button } from '@/components/ui/button';
@@ -27,7 +28,7 @@ const extras = [
 
 const Bonus = () => {
   return (
-    <div className="w-full min-h-screen overflow-x-hidden">
+    <PageShell>
       <Navbar />
 
       <PageHero
@@ -37,12 +38,12 @@ const Bonus = () => {
         imageAlt="AI and machine learning learning"
       />
 
-      <section className="section-padding bg-background">
+      <section className="section-padding section-white">
         <div className="container px-4 md:px-6">
           <h2 className="section-title text-center mb-10">Certification Pathways</h2>
           <div className="grid md:grid-cols-3 gap-8 mb-16 max-w-5xl mx-auto">
             {certifications.map((cert) => (
-              <Card key={cert.title} className="overflow-hidden hover-card border-border p-0">
+              <Card key={cert.title} className="overflow-hidden surface-card-interactive border-border p-0">
                 <div className="aspect-[16/10] overflow-hidden">
                   <img src={cert.image} alt={cert.title} className="h-full w-full object-cover" loading="lazy" />
                 </div>
@@ -83,7 +84,7 @@ const Bonus = () => {
       />
 
       <Footer />
-    </div>
+    </PageShell>
   );
 };
 

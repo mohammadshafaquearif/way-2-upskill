@@ -2,6 +2,7 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import PageShell from '@/components/layout/PageShell';
 import PageHero from '@/components/PageHero';
 import PageCta from '@/components/PageCta';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -74,7 +75,7 @@ const courses = [
 
 const Courses = () => {
   return (
-    <div className="w-full min-h-screen overflow-x-hidden">
+    <PageShell>
       <Navbar />
 
       <PageHero
@@ -88,12 +89,12 @@ const Courses = () => {
         imageAlt="Developer working on code"
       />
 
-      <section className="section-padding bg-background" id="programs">
+      <section className="section-padding section-white" id="programs">
         <div className="container px-4 sm:px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {courses.map((course) => (
               <Link key={course.id} to={course.route} className="group block h-full">
-                <Card className="h-full overflow-hidden border-border hover-card flex flex-col p-0">
+                <Card className="h-full overflow-hidden border-border surface-card-interactive flex flex-col p-0">
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <img
                       src={course.image}
@@ -140,7 +141,7 @@ const Courses = () => {
       />
 
       <Footer />
-    </div>
+    </PageShell>
   );
 };
 

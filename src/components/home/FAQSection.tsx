@@ -30,18 +30,20 @@ const faqs = [
 ];
 
 const FAQSection = () => (
-  <section className="section-padding bg-brand-100/30" id="faq">
+  <section className="section-padding section-white" id="faq">
     <div className="container px-4 sm:px-6 max-w-3xl mx-auto">
-      <div className="text-center mb-10">
-        <h2 className="section-title">Frequently Asked Questions</h2>
-      </div>
-      <Accordion type="single" collapsible className="w-full">
+      <h2 className="section-title text-center mb-10">Frequently Asked Questions</h2>
+      <Accordion type="single" collapsible className="w-full space-y-2">
         {faqs.map((faq, i) => (
-          <AccordionItem key={faq.q} value={`item-${i}`}>
-            <AccordionTrigger className="text-left font-semibold text-brand-950">
+          <AccordionItem
+            key={faq.q}
+            value={`item-${i}`}
+            className="surface-card px-4 border-none"
+          >
+            <AccordionTrigger className="text-left font-semibold hover:no-underline py-4">
               {faq.q}
             </AccordionTrigger>
-            <AccordionContent className="text-muted-foreground">{faq.a}</AccordionContent>
+            <AccordionContent className="text-muted-foreground pb-4">{faq.a}</AccordionContent>
           </AccordionItem>
         ))}
       </Accordion>

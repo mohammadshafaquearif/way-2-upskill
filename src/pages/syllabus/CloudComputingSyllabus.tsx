@@ -6,6 +6,8 @@ import WeekCard from '@/components/WeekCard';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import SyllabusHero from '@/components/SyllabusHero';
+import SyllabusPageCta from '@/components/SyllabusPageCta';
+import PageShell from '@/components/layout/PageShell';
 import { IMAGES } from '@/lib/images';
 
 const syllabusData = [
@@ -64,9 +66,9 @@ const CloudComputingSyllabus = () => {
   };
 
   return (
-    <div className="w-full">
+    <PageShell>
       <Navbar />
-      
+
       <SyllabusHero
         title="Cloud Computing & AWS"
         subtitle="A 10-week path through cloud fundamentals, AWS services, deployments, and scalable architecture."
@@ -74,7 +76,7 @@ const CloudComputingSyllabus = () => {
         checkoutPath="/checkout/cloud"
       />
       
-      <section className="py-16 md:py-24">
+      <section className="section-padding section-alt">
         <div className="container px-4 md:px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {syllabusData.map((week, index) => (
@@ -98,26 +100,10 @@ const CloudComputingSyllabus = () => {
         </div>
       </section>
       
-      <section className="py-16 md:py-24 animated-gradient-bg text-white">
-        <div className="container px-4 md:px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Master Cloud Computing?</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Join our comprehensive cloud computing program and learn to build scalable cloud solutions.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button asChild size="lg" className="bg-white text-primary hover:bg-gray-100">
-              <Link to="/checkout/cloud">Start Learning</Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="border-2 border-white bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-gray-900">
-              <Link to="/courses">View All Courses</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-      
+      <SyllabusPageCta title="Ready to master cloud computing?" checkoutPath="/checkout/cloud" />
+
       <Footer />
-    </div>
+    </PageShell>
   );
 };
 

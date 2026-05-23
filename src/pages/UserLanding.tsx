@@ -153,12 +153,12 @@ const UserLanding = () => {
       case 'active': return 'bg-green-100 text-green-800';
       case 'completed': return 'bg-blue-100 text-blue-800';
       case 'paused': return 'bg-yellow-100 text-yellow-800';
-      default: return 'bg-gray-100 text-gray-800';
+      default: return 'bg-muted text-foreground';
     }
   };
 
   return (
-    <div className="w-full bg-gray-50">
+    <div className="page-shell">
       {/* Header */}
       <div className="bg-gradient-to-r from-primary to-secondary text-white pt-20 sm:pt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
@@ -184,8 +184,8 @@ const UserLanding = () => {
                     <BookOpen className="w-6 h-6 text-blue-600" />
                   </div>
                   <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-600">Courses Enrolled</p>
-                    <p className="text-2xl font-bold text-gray-900">{userProgress.total_courses}</p>
+                    <p className="text-sm font-medium text-muted-foreground">Courses Enrolled</p>
+                    <p className="text-2xl font-bold text-foreground">{userProgress.total_courses}</p>
                   </div>
                 </div>
               </CardContent>
@@ -198,8 +198,8 @@ const UserLanding = () => {
                     <CheckCircle className="w-6 h-6 text-green-600" />
                   </div>
                   <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-600">Lessons Completed</p>
-                    <p className="text-2xl font-bold text-gray-900">
+                    <p className="text-sm font-medium text-muted-foreground">Lessons Completed</p>
+                    <p className="text-2xl font-bold text-foreground">
                       {userProgress.total_lessons > 0 ? `${userProgress.completed_lessons}/${userProgress.total_lessons}` : '0/0'}
                     </p>
                   </div>
@@ -214,8 +214,8 @@ const UserLanding = () => {
                     <Clock className="w-6 h-6 text-purple-600" />
                   </div>
                   <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-600">Hours Completed</p>
-                    <p className="text-2xl font-bold text-gray-900">
+                    <p className="text-sm font-medium text-muted-foreground">Hours Completed</p>
+                    <p className="text-2xl font-bold text-foreground">
                       {userProgress.total_hours > 0 ? `${userProgress.completed_hours}/${userProgress.total_hours}` : '0/0'}
                     </p>
                   </div>
@@ -230,8 +230,8 @@ const UserLanding = () => {
                     <Award className="w-6 h-6 text-yellow-600" />
                   </div>
                   <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-600">Achievements</p>
-                    <p className="text-2xl font-bold text-gray-900">{userProgress.achievements.length}</p>
+                    <p className="text-sm font-medium text-muted-foreground">Achievements</p>
+                    <p className="text-2xl font-bold text-foreground">{userProgress.achievements.length}</p>
                   </div>
                 </div>
               </CardContent>
@@ -242,7 +242,7 @@ const UserLanding = () => {
         {/* My Courses */}
         <div className="mb-8">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-3xl font-bold text-gray-900">My Courses</h2>
+            <h2 className="text-3xl font-bold text-foreground">My Courses</h2>
             <Button asChild>
               <Link to="/courses">
                 Browse More Courses
@@ -258,7 +258,7 @@ const UserLanding = () => {
                   <div className="flex justify-between items-start">
                     <div>
                       <CardTitle className="text-xl">{course.course_name}</CardTitle>
-                      <p className="text-gray-600 mt-1">by {course.instructor}</p>
+                      <p className="text-muted-foreground mt-1">by {course.instructor}</p>
                     </div>
                     <Badge className={getStatusColor(course.status)}>
                       {course.status}
@@ -270,8 +270,8 @@ const UserLanding = () => {
                     {/* Progress Bar */}
                     <div>
                       <div className="flex justify-between items-center mb-2">
-                        <span className="text-sm font-medium text-gray-700">Progress</span>
-                        <span className="text-sm text-gray-600">{course.progress}%</span>
+                        <span className="text-sm font-medium text-muted-foreground">Progress</span>
+                        <span className="text-sm text-muted-foreground">{course.progress}%</span>
                       </div>
                       <Progress value={course.progress} className="h-2" />
                     </div>
@@ -279,19 +279,19 @@ const UserLanding = () => {
                     {/* Course Stats */}
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       <div className="flex items-center space-x-2">
-                        <BookOpen className="w-4 h-4 text-gray-500" />
+                        <BookOpen className="w-4 h-4 text-muted-foreground" />
                         <span>{course.completed_lessons}/{course.total_lessons} lessons</span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <Clock className="w-4 h-4 text-gray-500" />
+                        <Clock className="w-4 h-4 text-muted-foreground" />
                         <span>{course.duration}</span>
                       </div>
                     </div>
 
                     {/* Next Lesson */}
-                    <div className="bg-gray-50 p-3 rounded-lg">
-                      <p className="text-sm font-medium text-gray-700 mb-1">Next Lesson:</p>
-                      <p className="text-sm text-gray-600">{course.next_lesson}</p>
+                    <div className="bg-muted p-3 rounded-lg">
+                      <p className="text-sm font-medium text-muted-foreground mb-1">Next Lesson:</p>
+                      <p className="text-sm text-muted-foreground">{course.next_lesson}</p>
                     </div>
 
                     {/* Action Buttons */}
@@ -313,14 +313,14 @@ const UserLanding = () => {
           {userCourses.length === 0 && (
             <Card>
               <CardContent className="text-center py-16">
-                <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <BookOpen className="w-12 h-12 text-gray-400" />
+                <div className="w-24 h-24 bg-muted rounded-full flex items-center justify-center mx-auto mb-6">
+                  <BookOpen className="w-12 h-12 text-muted-foreground" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">No Data Found</h3>
-                <p className="text-gray-600 mb-2 max-w-md mx-auto">
+                <h3 className="text-2xl font-bold text-foreground mb-3">No Data Found</h3>
+                <p className="text-muted-foreground mb-2 max-w-md mx-auto">
                   You haven't enrolled in any paid courses yet. Start your learning journey by enrolling in one of our comprehensive programs.
                 </p>
-                <p className="text-sm text-gray-500 mb-8">
+                <p className="text-sm text-muted-foreground mb-8">
                   Once you enroll in a course, your progress and learning materials will appear here.
                 </p>
                 <div className="space-y-4">
@@ -341,7 +341,7 @@ const UserLanding = () => {
         {/* Achievements */}
         {userProgress && userProgress.achievements.length > 0 && (
           <div className="mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Achievements</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-6">Achievements</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {userProgress.achievements.map((achievement, index) => (
                 <Card key={index} className="text-center">
@@ -349,7 +349,7 @@ const UserLanding = () => {
                     <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3">
                       <Award className="w-6 h-6 text-yellow-600" />
                     </div>
-                    <h3 className="font-semibold text-gray-900">{achievement}</h3>
+                    <h3 className="font-semibold text-foreground">{achievement}</h3>
                   </CardContent>
                 </Card>
               ))}
