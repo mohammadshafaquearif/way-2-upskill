@@ -14,6 +14,11 @@ const LearningApproach = () => (
   <section className="section-padding section-white" id="how-we-teach">
     <div className="container px-4 sm:px-6">
       <h2 className="section-title text-center">How We Teach</h2>
+      <p className="mx-auto mt-4 max-w-3xl text-center text-muted-foreground leading-relaxed">
+        Zyvotrix follows a guided, implementation-first approach. We focus on clear foundations,
+        steady progress, practical exercises, and portfolio-minded work so learners can understand
+        not only what a tool does, but how it fits into real development and delivery environments.
+      </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto mt-10">
         {steps.map((step, i) => (
           <div key={step.title} className="surface-card p-6 relative">

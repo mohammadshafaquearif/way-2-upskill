@@ -46,6 +46,12 @@ const ProgramsPreview = () => (
   <section className="section-padding section-alt" id="programs">
     <div className="container px-4 sm:px-6">
       <h2 className="section-title text-center">Programs</h2>
+      <p className="mx-auto mt-4 max-w-3xl text-center text-muted-foreground leading-relaxed">
+        Our programs are designed to help learners move from basics to practical confidence. Whether
+        you want to become a full stack developer, understand cloud and DevOps workflows, explore AI
+        applications, or build data skills, each path is structured around modern tools, guided
+        practice, and project-based learning.
+      </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
         {programs.map((program) => (
           <Link key={program.title} to={program.route} className="group block h-full">
