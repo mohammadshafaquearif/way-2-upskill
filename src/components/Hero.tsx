@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, PlayCircle, Sparkles } from 'lucide-react';
+import { ArrowRight, PlayCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Hero3DVisual from '@/components/motion/Hero3DVisual';
-import FloatingShapes3D from '@/components/motion/FloatingShapes3D';
+import AmbientDepth from '@/components/motion/AmbientDepth';
 
 const SKILLS = ['Full Stack', 'DevOps', 'Cloud', 'AI & ML', 'Data Analytics', 'Cybersecurity'];
 
@@ -23,30 +23,23 @@ const Hero = () => {
       setTimeout(() => {
         setSkillIndex((i) => (i + 1) % SKILLS.length);
         setVisible(true);
-      }, 300);
-    }, 2800);
+      }, 280);
+    }, 3200);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className="hero-creative relative min-h-[90vh] overflow-x-hidden overflow-y-visible">
-      {/* Ambient orbs */}
-      <div className="hero-orb hero-orb-1" aria-hidden />
-      <div className="hero-orb hero-orb-2" aria-hidden />
-      <div className="hero-orb hero-orb-3" aria-hidden />
-      <div className="hero-grid-overlay" aria-hidden />
-      <FloatingShapes3D />
+    <section className="hero-creative relative min-h-[90vh] overflow-x-hidden">
+      <div className="hero-orb hero-orb-1 opacity-40" aria-hidden />
+      <div className="hero-orb hero-orb-2 opacity-30" aria-hidden />
+      <div className="hero-grid-overlay opacity-50" aria-hidden />
+      <AmbientDepth />
 
       <div className="container relative z-10 mx-auto px-4 pb-20 pt-20 sm:px-6 sm:pb-24 sm:pt-28 lg:pt-32">
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-12 xl:gap-20">
-          {/* Copy */}
           <div className="text-center lg:text-left">
-            <div className="hero-fade-up mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/60 px-4 py-2 text-sm font-medium text-primary shadow-sm backdrop-blur-sm">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary/60 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
-              </span>
-              <Sparkles className="h-4 w-4" />
+            <div className="hero-fade-up mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-white/80 px-4 py-2 text-sm font-medium text-foreground shadow-sm">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
               Learn. Build. Get Ahead in Tech
             </div>
 
@@ -56,8 +49,8 @@ const Hero = () => {
             >
               Master{' '}
               <span
-                className={`gradient-text-animated inline-block transition-all duration-300 ${
-                  visible ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'
+                className={`gradient-text inline-block transition-all duration-300 ${
+                  visible ? 'translate-y-0 opacity-100' : 'translate-y-1 opacity-0'
                 }`}
               >
                 {SKILLS[skillIndex]}
@@ -78,31 +71,27 @@ const Hero = () => {
               className="hero-fade-up mb-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start"
               style={{ animationDelay: '0.3s' }}
             >
-              <Button
-                asChild
-                size="lg"
-                className="btn-brand btn-shimmer group h-12 w-full px-8 text-base shadow-lg shadow-primary/25 sm:w-auto"
-              >
+              <Button asChild size="lg" className="btn-brand group h-12 w-full px-8 text-base sm:w-auto">
                 <Link to="/courses" className="inline-flex items-center">
                   Explore Programs
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-0.5" />
                 </Link>
               </Button>
               <Button
                 asChild
                 size="lg"
                 variant="outline"
-                className="h-12 w-full border-2 border-primary/20 bg-white/70 px-8 text-base font-semibold text-primary backdrop-blur-sm hover:bg-primary/5 sm:w-auto"
+                className="h-12 w-full border-border bg-white px-8 text-base font-semibold text-foreground hover:bg-muted sm:w-auto"
               >
                 <Link to="/resources" className="inline-flex items-center">
-                  <PlayCircle className="mr-2 h-5 w-5" />
+                  <PlayCircle className="mr-2 h-5 w-5 text-primary" />
                   Free Resources
                 </Link>
               </Button>
             </div>
 
             <div
-              className="hero-fade-up flex flex-wrap items-center justify-center gap-8 border-t border-border/60 pt-8 lg:justify-start"
+              className="hero-fade-up flex flex-wrap items-center justify-center gap-8 border-t border-border pt-8 lg:justify-start"
               style={{ animationDelay: '0.4s' }}
             >
               {heroStats.map((stat) => (

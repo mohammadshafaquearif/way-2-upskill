@@ -8,7 +8,7 @@ interface PageHeroImageProps {
 }
 
 const PageHeroImage = ({ src, alt, caption }: PageHeroImageProps) => {
-  const { ref, style, onMouseMove, onMouseLeave } = use3DTilt({ maxTilt: 12, scale: 1.03 });
+  const { ref, style, onMouseMove, onMouseLeave } = use3DTilt({ maxTilt: 7, scale: 1.02 });
 
   return (
     <div

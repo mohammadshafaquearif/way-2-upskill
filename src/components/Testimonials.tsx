@@ -2,6 +2,7 @@ import React from 'react';
 import { Quote, Star } from 'lucide-react';
 import { IMAGES } from '@/lib/images';
 import TiltCard from '@/components/motion/TiltCard';
+import { RevealStagger } from '@/components/motion/Reveal3D';
 
 const testimonials = [
   {
@@ -10,7 +11,7 @@ const testimonials = [
     role: 'Career Switcher · Full Stack',
     highlight: 'Built 3 portfolio projects',
     rating: 5,
-    accent: 'from-blue-500/20 to-violet-500/20',
+    accent: 'from-primary/8 to-primary/4',
     avatar: 'PS',
     photo: IMAGES.programs.webDev,
   },
@@ -20,7 +21,7 @@ const testimonials = [
     role: 'Working Professional · DevOps',
     highlight: 'Completed DevOps capstone',
     rating: 5,
-    accent: 'from-teal-500/20 to-emerald-500/20',
+    accent: 'from-primary/8 to-secondary/8',
     avatar: 'RM',
     photo: IMAGES.programs.devops,
   },
@@ -30,7 +31,7 @@ const testimonials = [
     role: 'College Student · AI & Analytics',
     highlight: 'AI dashboard project',
     rating: 5,
-    accent: 'from-amber-500/20 to-orange-500/20',
+    accent: 'from-primary/6 to-primary/3',
     avatar: 'AK',
     photo: IMAGES.programs.analytics,
   },
@@ -52,13 +53,10 @@ const Testimonials = () => (
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-        {testimonials.map((t, i) => (
+      <RevealStagger className="grid grid-cols-1 gap-6 md:grid-cols-3" staggerMs={90}>
+        {testimonials.map((t) => (
           <TiltCard key={t.author} maxTilt={6}>
-          <article
-            className="testimonial-card group relative rounded-3xl border border-border/80 bg-card p-6 sm:p-8"
-            style={{ animationDelay: `${i * 0.1}s` }}
-          >
+          <article className="testimonial-card group relative rounded-3xl border border-border/80 bg-card p-6 sm:p-8">
             <div
               className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${t.accent} opacity-0 transition-opacity duration-500 group-hover:opacity-100`}
               aria-hidden
@@ -89,7 +87,7 @@ const Testimonials = () => (
           </article>
           </TiltCard>
         ))}
-      </div>
+      </RevealStagger>
     </div>
   </section>
 );

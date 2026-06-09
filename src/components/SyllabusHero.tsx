@@ -20,7 +20,7 @@ const SyllabusHero = ({
   badge = 'Program Syllabus',
 }: SyllabusHeroProps) => (
   <PageHero badge={badge} title={title} subtitle={subtitle} image={image} imageAlt={title}>
-    <Button asChild size="lg" className="btn-brand btn-shimmer h-12 px-6">
+    <Button asChild size="lg" className="btn-brand h-12 px-6">
       <Link to={checkoutPath}>
         Start Learning
         <ArrowRight className="ml-2 h-4 w-4" />

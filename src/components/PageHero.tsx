@@ -1,6 +1,6 @@
 import React from 'react';
 import PageHeroImage from '@/components/motion/PageHeroImage';
-import FloatingShapes3D from '@/components/motion/FloatingShapes3D';
+import AmbientDepth from '@/components/motion/AmbientDepth';
 
 interface PageHeroProps {
   title: React.ReactNode;
@@ -24,10 +24,9 @@ const PageHero = ({
   centered = false,
 }: PageHeroProps) => (
   <section className="page-hero-creative relative overflow-hidden">
-    <div className="hero-orb hero-orb-1 opacity-60" aria-hidden />
-    <div className="hero-orb hero-orb-2 opacity-50" aria-hidden />
-    <div className="hero-grid-overlay opacity-70" aria-hidden />
-    <FloatingShapes3D />
+    <div className="hero-orb hero-orb-1 opacity-35" aria-hidden />
+    <div className="hero-grid-overlay opacity-40" aria-hidden />
+    <AmbientDepth />
 
     <div className="container relative z-10 px-4 pb-14 pt-20 sm:px-6 sm:pb-16 sm:pt-24 md:pt-28">
       <div

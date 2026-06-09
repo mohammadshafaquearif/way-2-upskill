@@ -38,7 +38,7 @@ const PageCta = ({
         <Button
           asChild
           size="lg"
-          className="btn-shimmer h-12 border-0 bg-white font-semibold text-brand-950 shadow-lg hover:bg-brand-100"
+          className="h-12 border-0 bg-white font-semibold text-brand-950 shadow-lg hover:bg-brand-100"
         >
           <Link to={primaryHref}>
             {primaryLabel}

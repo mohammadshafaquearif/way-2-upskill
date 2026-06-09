@@ -4,6 +4,7 @@ import { Code, Cloud, BarChart3, Bot, Wrench, Shield, Clock, ArrowRight } from '
 import { Button } from '@/components/ui/button';
 import { IMAGES } from '@/lib/images';
 import TiltCard from '@/components/motion/TiltCard';
+import { RevealStagger } from '@/components/motion/Reveal3D';
 
 type Category = 'all' | 'ai' | 'cloud' | 'development';
 
@@ -131,7 +132,7 @@ const ProgramsPreview = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <RevealStagger className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" staggerMs={70}>
           {filtered.map((program) => (
             <TiltCard key={program.title} className="h-full" maxTilt={8}>
             <Link to={program.route} className="group block h-full">
@@ -178,7 +179,7 @@ const ProgramsPreview = () => {
             </Link>
             </TiltCard>
           ))}
-        </div>
+        </RevealStagger>
 
         <div className="mt-12 text-center">
           <Button asChild size="lg" className="btn-brand h-12 px-8">

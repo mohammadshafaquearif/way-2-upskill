@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1080, height=1920" />
+  <title>Zyvotrix — Shorts / Reels</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0b1120;
+      --blue: #2563eb;
+      --deep: #1e3a8a;
+      --teal: #14b8a6;
+      --hot: #f43f5e;
+      --yellow: #fbbf24;
+      --white: #f8fafc;
+      --muted: #94a3b8;
+      --dur: 18s;
+    }
+
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      background: #000;
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+
+    /* 9:16 — Reels / Shorts */
+    .stage {
+      position: relative;
+      width: 1080px;
+      height: 1920px;
+      overflow: hidden;
+      background: var(--navy);
+      transform-origin: top left;
+    }
+
+    /* Film grain — feels shot, not generated */
+    .grain {
+      position: absolute;
+      inset: -50%;
+      z-index: 200;
+      pointer-events: none;
+      opacity: 0.045;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      animation: grain-shift 0.5s steps(2) infinite;
+    }
+    @keyframes grain-shift {
+      0% { transform: translate(0,0); }
+      100% { transform: translate(-3%, -2%); }
+    }
+
+    .vignette {
+      position: absolute;
+      inset: 0;
+      z-index: 150;
+      pointer-events: none;
+      background: radial-gradient(ellipse 75% 70% at 50% 45%, transparent 40%, rgba(0,0,0,0.55) 100%);
+    }
+
+    .bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 90% 50% at 50% 0%, rgba(37,99,235,0.18), transparent),
+        radial-gradient(ellipse 60% 40% at 90% 60%, rgba(20,184,166,0.12), transparent),
+        linear-gradient(180deg, #070d18 0%, var(--navy) 35%, #0a1628 100%);
+    }
+
+    .scanlines {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(0,0,0,0.03) 3px,
+        rgba(0,0,0,0.03) 4px
+      );
+      opacity: 0.4;
+    }
+
+    /* Story progress — top */
+    .story-bar {
+      position: absolute;
+      top: 48px; left: 32px; right: 32px;
+      height: 4px;
+      display: flex;
+      gap: 6px;
+      z-index: 120;
+    }
+    .story-seg {
+      flex: 1;
+      height: 100%;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.15);
+      overflow: hidden;
+    }
+    .story-seg .fill {
+      height: 100%;
+      width: 0%;
+      background: var(--white);
+      border-radius: 2px;
+    }
+    .story-seg:nth-child(1) .fill { animation: seg1 var(--dur) linear infinite; }
+    .story-seg:nth-child(2) .fill { animation: seg2 var(--dur) linear infinite; }
+    .story-seg:nth-child(3) .fill { animation: seg3 var(--dur) linear infinite; }
+    .story-seg:nth-child(4) .fill { animation: seg4 var(--dur) linear infinite; }
+    .story-seg:nth-child(5) .fill { animation: seg5 var(--dur) linear infinite; }
+
+    @keyframes seg1 { 0%,0.1% { width:0 } 16%,100% { width:100% } }
+    @keyframes seg2 { 0%,16% { width:0 } 17%,32% { width:100% } 33%,100% { width:100% } }
+    @keyframes seg3 { 0%,32% { width:0 } 33%,50% { width:100% } 51%,100% { width:100% } }
+    @keyframes seg4 { 0%,50% { width:0 } 51%,72% { width:100% } 73%,100% { width:100% } }
+    @keyframes seg5 { 0%,72% { width:0 } 73%,94% { width:100% } 95%,100% { width:100% } }
+
+    /* Flash cuts between scenes */
+    .flash {
+      position: absolute;
+      inset: 0;
+      z-index: 140;
+      background: white;
+      opacity: 0;
+      pointer-events: none;
+      animation: flash-cuts var(--dur) linear infinite;
+    }
+    @keyframes flash-cuts {
+      0%,15.8% { opacity:0 }
+      16%,16.3% { opacity:0.7 }
+      16.4%,31.8% { opacity:0 }
+      32%,32.3% { opacity:0.6 }
+      32.4%,49.8% { opacity:0 }
+      50%,50.3% { opacity:0.65 }
+      50.4%,71.8% { opacity:0 }
+      72%,72.3% { opacity:0.55 }
+      72.4%,100% { opacity:0 }
+    }
+
+    /* ── Scene wrapper ── */
+    .clip {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 56px 140px;
+      z-index: 20;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Scene 1 — HOOK (0–16%) */
+    .clip-hook {
+      animation: show-hook var(--dur) linear infinite;
+    }
+    @keyframes show-hook {
+      0%,1% { opacity:0; transform:scale(1.08) }
+      2%,15% { opacity:1; transform:scale(1) }
+      17%,100% { opacity:0; transform:scale(0.96) }
+    }
+
+    .pov-tag {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 6px;
+      background: var(--hot);
+      color: white;
+      font-size: 1.55rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transform: rotate(-2deg);
+      margin-bottom: 36px;
+      animation: sticker-pop 0.35s cubic-bezier(0.34,1.56,0.64,1) 0.1s both;
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.4);
+    }
+
+    @keyframes sticker-pop {
+      from { opacity:0; transform:rotate(-2deg) scale(0.3) }
+      to { opacity:1; transform:rotate(-2deg) scale(1) }
+    }
+
+    .hook-line {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 8.75rem;
+      line-height: 0.92;
+      color: var(--white);
+      text-align: center;
+      letter-spacing: 0.01em;
+    }
+
+    .hook-line .num {
+      color: var(--yellow);
+      display: inline-block;
+      animation: num-punch 0.4s cubic-bezier(0.34,1.56,0.64,1) 0.25s both;
+    }
+
+    @keyframes num-punch {
+      from { transform:scale(2); opacity:0 }
+      to { transform:scale(1); opacity:1 }
+    }
+
+    .hook-line .word {
+      display: inline-block;
+      opacity: 0;
+      animation: word-slam 0.3s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    .hook-line .word:nth-child(1) { animation-delay: 0.35s }
+    .hook-line .word:nth-child(2) { animation-delay: 0.5s }
+    .hook-line .word:nth-child(3) { animation-delay: 0.65s }
+
+    @keyframes word-slam {
+      0% { opacity:0; transform:translateY(60px) scale(0.8) }
+      70% { opacity:1; transform:translateY(-8px) scale(1.04) }
+      100% { opacity:1; transform:translateY(0) scale(1) }
+    }
+
+    .hook-sub {
+      margin-top: 32px;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.35;
+      animation: fade-up 0.5s ease-out 0.85s both;
+    }
+    .hook-sub em {
+      font-style: normal;
+      color: var(--white);
+      border-bottom: 3px solid var(--teal);
+    }
+
+    @keyframes fade-up {
+      from { opacity:0; transform:translateY(20px) }
+      to { opacity:1; transform:translateY(0) }
+    }
+
+    /* Floating code snippets — depth */
+    .code-float {
+      position: absolute;
+      font-family: 'Courier New', monospace;
+      font-size: 1rem;
+      color: rgba(37,99,235,0.35);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .code-float.a { top: 22%; left: 8%; animation: drift-a 4s ease-in-out infinite }
+    .code-float.b { top: 68%; right: 6%; animation: drift-b 5s ease-in-out infinite }
+    .code-float.c { bottom: 28%; left: 12%; animation: drift-a 6s ease-in-out infinite -2s }
+
+    @keyframes drift-a {
+      0%,100% { transform:translate(0,0) rotate(-3deg) }
+      50% { transform:translate(12px,-15px) rotate(2deg) }
+    }
+    @keyframes drift-b {
+      0%,100% { transform:translate(0,0) rotate(4deg) }
+      50% { transform:translate(-10px,12px) rotate(-2deg) }
+    }
+
+    /* Scene 2 — PAIN (16–32%) */
+    .clip-pain {
+      animation: show-pain var(--dur) linear infinite;
+    }
+    @keyframes show-pain {
+      0%,16% { opacity:0; transform:translateX(-60px) }
+      18%,31% { opacity:1; transform:translateX(0) }
+      33%,100% { opacity:0; transform:translateX(60px) }
+    }
+
+    .pain-list {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .pain-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 28px 32px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      transform: translateX(-80px);
+      opacity: 0;
+      animation: pain-slide 0.45s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    .pain-item:nth-child(1) { animation-delay: 0.05s }
+    .pain-item:nth-child(2) { animation-delay: 0.2s }
+    .pain-item:nth-child(3) { animation-delay: 0.35s }
+
+    @keyframes pain-slide {
+      to { opacity:1; transform:translateX(0) }
+    }
+
+    .pain-x {
+      flex-shrink: 0;
+      width: 52px; height: 52px;
+      border-radius: 12px;
+      background: rgba(244,63,94,0.2);
+      border: 2px solid var(--hot);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--hot);
+    }
+
+    .pain-text {
+      font-size: 1.95rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.25;
+    }
+    .pain-text s {
+      color: var(--muted);
+      text-decoration-color: var(--hot);
+      text-decoration-thickness: 3px;
+    }
+
+    .pain-punch {
+      margin-top: 48px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 5.25rem;
+      color: var(--hot);
+      text-align: center;
+      letter-spacing: 0.02em;
+      animation: shake 0.5s ease-in-out 0.5s both;
+    }
+
+    @keyframes shake {
+      0%,100% { transform:translateX(0) }
+      20% { transform:translateX(-12px) }
+      40% { transform:translateX(12px) }
+      60% { transform:translateX(-8px) }
+      80% { transform:translateX(8px) }
+    }
+
+    /* Scene 3 — REVEAL + 3D (32–50%) */
+    .clip-reveal {
+      animation: show-reveal var(--dur) linear infinite;
+      perspective: 1400px;
+    }
+    @keyframes show-reveal {
+      0%,32% { opacity:0 }
+      34%,49% { opacity:1 }
+      51%,100% { opacity:0 }
+    }
+
+    .reveal-label {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 20px;
+      animation: fade-up 0.4s ease-out both;
+    }
+
+    .brand-3d {
+      transform-style: preserve-3d;
+      animation: brand-flip 1s cubic-bezier(0.23,1,0.32,1) 0.1s both;
+    }
+
+    @keyframes brand-flip {
+      0% {
+        opacity: 0;
+        transform: rotateY(-90deg) rotateX(15deg) scale(0.7);
+      }
+      60% {
+        opacity: 1;
+        transform: rotateY(8deg) rotateX(-5deg) scale(1.05);
+      }
+      100% {
+        opacity: 1;
+        transform: rotateY(0) rotateX(0) scale(1);
+      }
+    }
+
+    .brand-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 10.5rem;
+      line-height: 0.9;
+      letter-spacing: 0.04em;
+      background: linear-gradient(160deg, #fff 30%, #93c5fd 70%, #5eead4);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-align: center;
+      filter: drop-shadow(0 8px 32px rgba(37,99,235,0.35));
+    }
+
+    .brand-hook {
+      margin-top: 16px;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--white);
+      text-align: center;
+      animation: fade-up 0.5s ease-out 0.6s both;
+    }
+
+    /* 3D card stack */
+    .card-stack {
+      position: relative;
+      width: 520px;
+      height: 340px;
+      margin-top: 56px;
+      transform-style: preserve-3d;
+      animation: stack-tilt 5s ease-in-out infinite;
+    }
+
+    @keyframes stack-tilt {
+      0%,100% { transform: rotateY(-12deg) rotateX(8deg) }
+      50% { transform: rotateY(12deg) rotateX(-5deg) }
+    }
+
+    .stack-card {
+      position: absolute;
+      width: 100%;
+      height: 280px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.2);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+      transform-style: preserve-3d;
+    }
+
+    .stack-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    .stack-card .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(11,17,32,0.9) 0%, transparent 55%);
+    }
+
+    .stack-card .card-tag {
+      position: absolute;
+      bottom: 20px; left: 20px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.6rem;
+      color: white;
+      letter-spacing: 0.05em;
+    }
+
+    .stack-card.back {
+      transform: translateZ(-60px) translateY(20px) scale(0.92);
+      opacity: 0.5;
+      filter: blur(1px);
+    }
+    .stack-card.mid {
+      transform: translateZ(-30px) translateY(10px) scale(0.96);
+      opacity: 0.75;
+    }
+    .stack-card.front {
+      transform: translateZ(30px);
+      animation: card-front-pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes card-front-pulse {
+      0%,100% { transform: translateZ(30px) }
+      50% { transform: translateZ(50px) translateY(-6px) }
+    }
+
+    .stack-glow {
+      position: absolute;
+      inset: -30px;
+      background: radial-gradient(ellipse, rgba(37,99,235,0.35), transparent 70%);
+      filter: blur(30px);
+      z-index: -1;
+    }
+
+    /* Scene 4 — SKILLS SNAP (50–72%) */
+    .clip-skills {
+      animation: show-skills var(--dur) linear infinite;
+    }
+    @keyframes show-skills {
+      0%,50% { opacity:0; transform:scale(1.05) }
+      52%,71% { opacity:1; transform:scale(1) }
+      73%,100% { opacity:0; transform:scale(0.95) }
+    }
+
+    .skills-head {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4.75rem;
+      color: var(--white);
+      text-align: center;
+      margin-bottom: 12px;
+      letter-spacing: 0.03em;
+    }
+    .skills-head span { color: var(--teal) }
+
+    .skill-carousel {
+      position: relative;
+      width: 100%;
+      height: 520px;
+      perspective: 1200px;
+      margin: 40px 0;
+    }
+
+    .skill-slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform-style: preserve-3d;
+    }
+
+    .skill-slide:nth-child(1) { animation: skill-1 var(--dur) linear infinite }
+    .skill-slide:nth-child(2) { animation: skill-2 var(--dur) linear infinite }
+    .skill-slide:nth-child(3) { animation: skill-3 var(--dur) linear infinite }
+    .skill-slide:nth-child(4) { animation: skill-4 var(--dur) linear infinite }
+    .skill-slide:nth-child(5) { animation: skill-5 var(--dur) linear infinite }
+    .skill-slide:nth-child(6) { animation: skill-6 var(--dur) linear infinite }
+
+
+    @keyframes skill-1 {
+      0%,52% { opacity:0; transform:rotateY(70deg) translateZ(-100px) scale(0.8) }
+      53%,55.5% { opacity:1; transform:rotateY(0) translateZ(40px) scale(1) }
+      56%,100% { opacity:0; transform:rotateY(-70deg) translateZ(-100px) scale(0.8) }
+    }
+    @keyframes skill-2 {
+      0%,55.5% { opacity:0; transform:rotateY(70deg) translateZ(-100px) }
+      56.5%,59% { opacity:1; transform:rotateY(0) translateZ(40px) }
+      59.5%,100% { opacity:0; transform:rotateY(-70deg) translateZ(-100px) }
+    }
+    @keyframes skill-3 {
+      0%,59% { opacity:0; transform:rotateY(70deg) translateZ(-100px) }
+      60%,62.5% { opacity:1; transform:rotateY(0) translateZ(40px) }
+      63%,100% { opacity:0; transform:rotateY(-70deg) translateZ(-100px) }
+    }
+    @keyframes skill-4 {
+      0%,64% { opacity:0; transform:rotateY(70deg) translateZ(-100px) }
+      65%,67.5% { opacity:1; transform:rotateY(0) translateZ(40px) }
+      68%,100% { opacity:0; transform:rotateY(-70deg) translateZ(-100px) }
+    }
+    @keyframes skill-5 {
+      0%,67.5% { opacity:0; transform:rotateY(70deg) translateZ(-100px) }
+      68.5%,71% { opacity:1; transform:rotateY(0) translateZ(40px) }
+      71.5%,100% { opacity:0; transform:rotateY(-70deg) translateZ(-100px) }
+    }
+    @keyframes skill-6 {
+      0%,71% { opacity:0; transform:rotateY(70deg) translateZ(-100px) }
+      72%,74% { opacity:1; transform:rotateY(0) translateZ(40px) }
+      74.5%,100% { opacity:0; transform:rotateY(-70deg) translateZ(-100px) }
+    }
+
+    .skill-icon {
+      width: 200px; height: 200px;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 3px solid rgba(255,255,255,0.25);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+      margin-bottom: 28px;
+    }
+    .skill-icon img { width:100%; height:100%; object-fit:cover }
+
+    .skill-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 6.5rem;
+      color: var(--white);
+      letter-spacing: 0.04em;
+      text-shadow: 0 4px 24px rgba(37,99,235,0.4);
+    }
+
+    .skill-tools {
+      margin-top: 8px;
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .proof-row {
+      display: flex;
+      gap: 16px;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .proof-chip {
+      flex: 1;
+      text-align: center;
+      padding: 20px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .proof-chip strong {
+      display: block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      color: var(--yellow);
+      line-height: 1;
+    }
+    .proof-chip span {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* Scene 5 — CTA (72–94%) */
+    .clip-cta {
+      animation: show-cta var(--dur) linear infinite;
+    }
+    @keyframes show-cta {
+      0%,72% { opacity:0; transform:scale(0.88) }
+      74%,93% { opacity:1; transform:scale(1) }
+      95%,100% { opacity:0 }
+    }
+
+    .cta-orbit {
+      position: absolute;
+      width: 500px; height: 500px;
+      border: 1px solid rgba(37,99,235,0.2);
+      border-radius: 50%;
+      animation: orbit-spin 8s linear infinite;
+    }
+    .cta-orbit::before {
+      content: '';
+      position: absolute;
+      top: -6px; left: 50%;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 20px var(--teal);
+    }
+
+    @keyframes orbit-spin {
+      to { transform: rotate(360deg) }
+    }
+
+    .cta-big {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 7.5rem;
+      color: var(--white);
+      text-align: center;
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      animation: cta-bounce 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.1s both;
+    }
+
+    @keyframes cta-bounce {
+      from { transform:scale(0.5); opacity:0 }
+      to { transform:scale(1); opacity:1 }
+    }
+
+    .cta-big .accent { color: var(--teal) }
+
+    .cta-url-box {
+      margin: 36px 0 28px;
+      padding: 22px 48px;
+      border-radius: 14px;
+      background: var(--white);
+      color: var(--navy);
+      font-size: 2.85rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      animation: url-pop 0.4s cubic-bezier(0.34,1.56,0.64,1) 0.35s both;
+      box-shadow: 0 8px 0 var(--deep), 0 16px 40px rgba(0,0,0,0.3);
+    }
+
+    @keyframes url-pop {
+      from { transform:translateY(40px) scale(0.8); opacity:0 }
+      to { transform:translateY(0) scale(1); opacity:1 }
+    }
+
+    .cta-action {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      animation: fade-up 0.5s ease-out 0.55s both;
+    }
+
+    .cta-comment {
+      padding: 18px 36px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--deep), var(--blue));
+      color: white;
+      font-size: 1.75rem;
+      font-weight: 700;
+      box-shadow: 0 6px 24px rgba(37,99,235,0.4);
+    }
+    .cta-comment strong {
+      background: rgba(255,255,255,0.2);
+      padding: 4px 14px;
+      border-radius: 8px;
+      margin: 0 6px;
+    }
+
+    .cta-follow {
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .cta-follow b { color: var(--white) }
+
+    /* 3D floating elements — always on */
+    .ambient-3d {
+      position: absolute;
+      inset: 0;
+      perspective: 1000px;
+      pointer-events: none;
+      z-index: 8;
+    }
+
+    .float-obj {
+      position: absolute;
+      transform-style: preserve-3d;
+      opacity: 0.14;
+    }
+
+    .float-cube {
+      top: 14%; right: 10%;
+      width: 44px; height: 44px;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      border-radius: 8px;
+      animation: cube-spin 10s linear infinite, drift-a 6s ease-in-out infinite;
+    }
+
+    .float-ring {
+      bottom: 22%; left: 8%;
+      width: 60px; height: 60px;
+      border: 2px solid var(--blue);
+      border-radius: 50%;
+      transform: rotateX(70deg);
+      animation: drift-b 7s ease-in-out infinite;
+    }
+
+    @keyframes cube-spin {
+      to { transform: rotateX(45deg) rotateZ(360deg) }
+    }
+
+    /* Safe zone guide (hidden on record) */
+    .safe-zone {
+      position: absolute;
+      inset: 120px 40px 200px;
+      border: 1px dashed rgba(255,255,255,0.08);
+      border-radius: 8px;
+      z-index: 300;
+      pointer-events: none;
+    }
+    body.recording .safe-zone { display: none }
+
+    .controls {
+      position: fixed;
+      bottom: 16px; right: 16px;
+      z-index: 9999;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      max-width: 320px;
+      justify-content: flex-end;
+    }
+    .controls button {
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(11,17,32,0.9);
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .controls button:hover { background: rgba(37,99,235,0.5) }
+    body.recording .controls { display: none }
+
+    .format-badge {
+      position: fixed;
+      top: 16px; left: 16px;
+      z-index: 9999;
+      padding: 6px 12px;
+      border-radius: 6px;
+      background: rgba(20,184,166,0.2);
+      border: 1px solid var(--teal);
+      color: var(--teal);
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    body.recording .format-badge { display: none }
+  </style>
+</head>
+<body>
+  <div class="format-badge">9:16 · Reels / Shorts · 18s</div>
+
+  <div class="stage" id="stage">
+    <div class="bg"></div>
+    <div class="scanlines"></div>
+
+    <div class="ambient-3d">
+      <div class="float-obj float-cube"></div>
+      <div class="float-obj float-ring"></div>
+    </div>
+
+    <!-- Story progress -->
+    <div class="story-bar">
+      <div class="story-seg"><div class="fill"></div></div>
+      <div class="story-seg"><div class="fill"></div></div>
+      <div class="story-seg"><div class="fill"></div></div>
+      <div class="story-seg"><div class="fill"></div></div>
+      <div class="story-seg"><div class="fill"></div></div>
+    </div>
+
+    <div class="flash"></div>
+    <div class="grain"></div>
+    <div class="vignette"></div>
+    <div class="safe-zone"></div>
+
+    <!-- SCENE 1: Hook — stops the scroll -->
+    <div class="clip clip-hook">
+      <span class="code-float a">npm install confusion</span>
+      <span class="code-float b">tutorial hell.cpp</span>
+      <span class="code-float c">// still not job ready</span>
+
+      <div class="pov-tag">POV</div>
+      <h1 class="hook-line">
+        <span class="num">47</span><br />
+        <span class="word">YouTube</span>
+        <span class="word">tabs</span>
+        <span class="word">open</span>
+      </h1>
+      <p class="hook-sub">and still not feeling <em>job-ready</em>?</p>
+    </div>
+
+    <!-- SCENE 2: Pain points -->
+    <div class="clip clip-pain">
+      <div class="pain-list">
+        <div class="pain-item">
+          <div class="pain-x">✕</div>
+          <p class="pain-text"><s>Random tutorials</s> — zero structure</p>
+        </div>
+        <div class="pain-item">
+          <div class="pain-x">✕</div>
+          <p class="pain-text"><s>Theory only</s> — zero projects</p>
+        </div>
+        <div class="pain-item">
+          <div class="pain-x">✕</div>
+          <p class="pain-text"><s>Certificate collect</s> — portfolio empty</p>
+        </div>
+      </div>
+      <p class="pain-punch">Break the cycle →</p>
+    </div>
+
+    <!-- SCENE 3: Brand reveal + 3D card -->
+    <div class="clip clip-reveal">
+      <p class="reveal-label">There's a better way</p>
+      <div class="brand-3d">
+        <div class="brand-name">ZYVOTRIX</div>
+        <p class="brand-hook">Build. Deploy. Ship your portfolio.</p>
+      </div>
+
+      <div class="card-stack">
+        <div class="stack-glow"></div>
+        <div class="stack-card back">
+          <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80" alt="" />
+          <div class="card-overlay"></div>
+          <span class="card-tag">DEVOPS</span>
+        </div>
+        <div class="stack-card mid">
+          <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80" alt="" />
+          <div class="card-overlay"></div>
+          <span class="card-tag">AI / ML</span>
+        </div>
+        <div class="stack-card front">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" alt="" />
+          <div class="card-overlay"></div>
+          <span class="card-tag">FULL STACK</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCENE 4: Skills snap carousel -->
+    <div class="clip clip-skills">
+      <h2 class="skills-head">6 skills · <span>1 roadmap</span></h2>
+
+      <div class="skill-carousel">
+        <div class="skill-slide">
+          <div class="skill-icon"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=80" alt="" /></div>
+          <div class="skill-name">FULL STACK</div>
+          <div class="skill-tools">React · Node · APIs</div>
+        </div>
+        <div class="skill-slide">
+          <div class="skill-icon"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=400&q=80" alt="" /></div>
+          <div class="skill-name">DEVOPS</div>
+          <div class="skill-tools">Docker · K8s · CI/CD</div>
+        </div>
+        <div class="skill-slide">
+          <div class="skill-icon"><img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=400&q=80" alt="" /></div>
+          <div class="skill-name">CLOUD</div>
+          <div class="skill-tools">AWS · Infra · Deploy</div>
+        </div>
+        <div class="skill-slide">
+          <div class="skill-icon"><img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=400&q=80" alt="" /></div>
+          <div class="skill-name">AI & ML</div>
+          <div class="skill-tools">Gen AI · LLMs · Models</div>
+        </div>
+        <div class="skill-slide">
+          <div class="skill-icon"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=80" alt="" /></div>
+          <div class="skill-name">DATA</div>
+          <div class="skill-tools">SQL · Dashboards · AI</div>
+        </div>
+        <div class="skill-slide">
+          <div class="skill-icon"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=400&q=80" alt="" /></div>
+          <div class="skill-name">SECURITY</div>
+          <div class="skill-tools">Ethical Hacking · Defense</div>
+        </div>
+      </div>
+
+      <div class="proof-row">
+        <div class="proof-chip"><strong>50+</strong><span>Real projects</span></div>
+        <div class="proof-chip"><strong>100%</strong><span>Hands-on</span></div>
+        <div class="proof-chip"><strong>0</strong><span>Confusion</span></div>
+      </div>
+    </div>
+
+    <!-- SCENE 5: CTA — optimized for saves & comments -->
+    <div class="clip clip-cta">
+      <div class="cta-orbit"></div>
+      <h2 class="cta-big">FREE ROADMAP<br /><span class="accent">LINK IN BIO</span></h2>
+      <div class="cta-url-box">zyvotrix.com</div>
+      <div class="cta-action">
+        <div class="cta-comment">Comment <strong>ROADMAP</strong> below 👇</div>
+        <p class="cta-follow">Follow <b>@zyvotrix</b> for daily tech tips</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button onclick="document.body.classList.add('recording')">Record Mode</button>
+    <button onclick="restartAnim()">Restart</button>
+    <button onclick="toggleFullscreen()">Fullscreen</button>
+  </div>
+
+  <script>
+    function fitStage() {
+      const stage = document.getElementById('stage');
+      const scale = Math.min(window.innerWidth / 1080, window.innerHeight / 1920);
+      stage.style.transform = `scale(${scale})`;
+      document.body.style.width = 1080 * scale + 'px';
+      document.body.style.height = 1920 * scale + 'px';
+    }
+
+    function restartAnim() {
+      const stage = document.getElementById('stage');
+      const parent = stage.parentNode;
+      const clone = stage.cloneNode(true);
+      parent.replaceChild(clone, stage);
+      fitStage();
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    window.addEventListener('resize', fitStage);
+    fitStage();
+  </script>
+</body>
+</html>

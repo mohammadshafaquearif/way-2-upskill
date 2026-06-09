@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import TiltCard from '@/components/motion/TiltCard';
-import FloatingShapes3D from '@/components/motion/FloatingShapes3D';
+import { Reveal3D } from '@/components/motion/Reveal3D';
 import { IMAGES } from '@/lib/images';
 
 const domains = [
@@ -57,8 +57,6 @@ const DomainGallery3D = () => {
   return (
     <section className="section-padding relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-brand-100/40 via-background to-background" aria-hidden />
-      <FloatingShapes3D />
-
       <div className="container relative z-10 px-4 sm:px-6">
         <div className="mx-auto mb-12 max-w-2xl text-center">
           <span className="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary">
@@ -73,9 +71,9 @@ const DomainGallery3D = () => {
           </p>
         </div>
 
-        <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2">
+        <Reveal3D className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2">
           {/* 3D featured image */}
-          <TiltCard maxTilt={16} className="order-2 lg:order-1">
+          <TiltCard maxTilt={9} className="order-2 lg:order-1">
             <div className="gallery-3d-feature relative overflow-hidden rounded-3xl border border-border shadow-2xl">
               <img
                 key={current.title}
@@ -122,7 +120,7 @@ const DomainGallery3D = () => {
               </button>
             ))}
           </div>
-        </div>
+        </Reveal3D>
       </div>
     </section>
   );

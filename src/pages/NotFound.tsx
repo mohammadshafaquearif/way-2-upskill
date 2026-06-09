@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import PageShell from '@/components/layout/PageShell';
 import { Button } from '@/components/ui/button';
 import TiltCard from '@/components/motion/TiltCard';
-import FloatingShapes3D from '@/components/motion/FloatingShapes3D';
+import AmbientDepth from '@/components/motion/AmbientDepth';
 import { ArrowRight, Home, Search } from 'lucide-react';
 import { IMAGES } from '@/lib/images';
 
@@ -27,9 +27,8 @@ const NotFound = () => {
     <PageShell>
       <Navbar />
       <main className="page-main relative flex min-h-[70vh] items-center overflow-hidden">
-        <div className="hero-orb hero-orb-1 opacity-30" aria-hidden />
-        <div className="hero-orb hero-orb-2 opacity-20" aria-hidden />
-        <FloatingShapes3D />
+        <div className="hero-orb hero-orb-1 opacity-25" aria-hidden />
+        <AmbientDepth />
 
         <div className="container relative z-10 px-4 py-20 sm:px-6">
           <div className="mx-auto grid max-w-4xl items-center gap-12 lg:grid-cols-2">
@@ -76,7 +75,7 @@ const NotFound = () => {
               </div>
             </div>
 
-            <TiltCard maxTilt={14}>
+            <TiltCard maxTilt={8}>
               <div className="relative overflow-hidden rounded-3xl border border-border shadow-2xl">
                 <img
                   src={IMAGES.notFound}
