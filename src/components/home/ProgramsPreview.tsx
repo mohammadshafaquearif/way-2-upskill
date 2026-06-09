@@ -96,10 +96,17 @@ const ProgramsPreview = () => {
       : programs.filter((p) => p.category === activeCategory);
 
   return (
-    <section className="section-padding section-white" id="programs">
-      <div className="container px-4 sm:px-6">
+    <section className="section-padding relative overflow-hidden section-white" id="programs">
+      <div className="pointer-events-none absolute -left-32 top-20 h-64 w-64 rounded-full bg-primary/5 blur-3xl" aria-hidden />
+      <div className="container relative z-10 px-4 sm:px-6">
         <div className="mx-auto mb-10 max-w-3xl text-center">
-          <h2 className="section-title">Explore Our Top Programs</h2>
+          <span className="mb-4 inline-block rounded-full bg-secondary/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-secondary">
+            Top Programs
+          </span>
+          <h2 className="section-title">
+            Pick Your Path.{' '}
+            <span className="gradient-text">Build Your Future.</span>
+          </h2>
           <p className="mt-4 text-muted-foreground leading-relaxed">
             Industry-oriented bootcamps designed to take you from fundamentals to job-ready skills.
             Each program includes structured modules, hands-on labs, and capstone projects.
@@ -126,7 +133,7 @@ const ProgramsPreview = () => {
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((program) => (
             <Link key={program.title} to={program.route} className="group block h-full">
-              <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/25 hover:shadow-xl hover:shadow-primary/5">
+              <article className="program-card flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <img
                     src={program.image}
