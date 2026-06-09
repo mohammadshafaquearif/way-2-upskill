@@ -4,7 +4,14 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PageShell from '@/components/layout/PageShell';
 import { Button } from '@/components/ui/button';
-import { IMAGES } from '@/lib/images';
+import { ArrowRight, Home, Search } from 'lucide-react';
+
+const quickLinks = [
+  { label: 'Programs', href: '/courses' },
+  { label: 'Resources', href: '/resources' },
+  { label: 'FAQ', href: '/faq' },
+  { label: 'Contact', href: '/contact' },
+];
 
 const NotFound = () => {
   const location = useLocation();
@@ -16,26 +23,53 @@ const NotFound = () => {
   return (
     <PageShell>
       <Navbar />
-      <main className="page-main flex items-center section-padding brand-surface-dots">
-        <div className="container px-4 sm:px-6">
-          <div className="grid lg:grid-cols-2 gap-10 items-center max-w-4xl mx-auto">
-            <div className="text-center lg:text-left">
-              <p className="text-6xl font-bold gradient-text mb-2">404</p>
-              <h1 className="text-2xl sm:text-3xl font-bold mb-4">Page not found</h1>
-              <p className="text-muted-foreground mb-8 leading-relaxed">
-                The page you&apos;re looking for doesn&apos;t exist or may have moved.
-              </p>
-              <Button asChild className="btn-brand">
-                <Link to="/">Back to Home</Link>
+      <main className="page-main relative flex min-h-[70vh] items-center overflow-hidden">
+        <div className="hero-orb hero-orb-1 opacity-40" aria-hidden />
+        <div className="hero-orb hero-orb-2 opacity-30" aria-hidden />
+        <div className="hero-grid-overlay" aria-hidden />
+
+        <div className="container relative z-10 px-4 py-20 sm:px-6">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="mb-2 font-mono text-8xl font-black text-primary/10 sm:text-9xl">404</p>
+            <h1 className="mb-4 -mt-12 text-3xl font-bold sm:text-4xl">
+              Oops! Page <span className="gradient-text">not found</span>
+            </h1>
+            <p className="mb-8 leading-relaxed text-muted-foreground">
+              The page you&apos;re looking for doesn&apos;t exist or may have moved. Let&apos;s get
+              you back on track.
+            </p>
+
+            <div className="mb-10 flex flex-col justify-center gap-3 sm:flex-row">
+              <Button asChild size="lg" className="btn-brand">
+                <Link to="/">
+                  <Home className="mr-2 h-5 w-5" />
+                  Back to Home
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="border-primary/30 text-primary">
+                <Link to="/courses">
+                  Explore Programs
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
               </Button>
             </div>
-            <div className="hero-image-frame max-w-md mx-auto w-full aspect-video">
-              <img
-                src={IMAGES.learning}
-                alt=""
-                className="h-full w-full object-cover opacity-90"
-                loading="lazy"
-              />
+
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+              <p className="mb-4 flex items-center justify-center gap-2 text-sm font-semibold text-muted-foreground">
+                <Search className="h-4 w-4" />
+                Popular pages
+              </p>
+              <div className="flex flex-wrap justify-center gap-3">
+                {quickLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    to={link.href}
+                    className="rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-primary/30 hover:text-primary"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </div>

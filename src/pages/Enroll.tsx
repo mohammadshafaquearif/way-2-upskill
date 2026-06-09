@@ -18,6 +18,7 @@ import { apiClient } from '@/integrations/api/client';
 import PageHero from '@/components/PageHero';
 import PageShell from '@/components/layout/PageShell';
 import { IMAGES } from '@/lib/images';
+import { usePageMeta } from '@/hooks/usePageMeta';
 
 const paymentPlans = [
   {
@@ -89,6 +90,13 @@ interface FormData {
 const Enroll = () => {
   const { toast } = useToast();
   const { user } = useAuth();
+
+  usePageMeta({
+    title: 'Apply & Enroll',
+    description:
+      'Apply to Zyvotrix programs in Full Stack, DevOps, Cloud, AI/ML, and Cybersecurity. Share your goals and start your learning journey.',
+    canonical: '/enroll',
+  });
   const [defaultCourseId, setDefaultCourseId] = useState<string | null>(null);
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedPlan, setSelectedPlan] = useState(paymentPlans[0].id);
@@ -241,16 +249,20 @@ const Enroll = () => {
       <Navbar />
       
       <PageHero
-        title="Apply to a Program"
+        badge="Enrollment Open"
+        title={
+          <>
+            Apply to a <span className="gradient-text">Program</span>
+          </>
+        }
         subtitle="Tell us about your goals — our team will guide you to the right learning path and next steps."
         image={IMAGES.hero.enroll}
         imageAlt="Apply for Zyvotrix programs"
-        centered
       />
       
       <section className="section-padding section-alt">
         <div className="container px-4 md:px-6">
-          <div className="max-w-4xl mx-auto form-panel">
+          <div className="mx-auto max-w-4xl rounded-3xl border border-border/80 bg-card form-panel shadow-xl">
             <div className="mb-12">
               <div className="flex items-start justify-between gap-1 sm:gap-4 mb-8 px-1">
                 {[1, 2, 3].map((step) => (

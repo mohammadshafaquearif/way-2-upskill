@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import PageShell from '@/components/layout/PageShell';
 import PageHero from '@/components/PageHero';
 import { usePageMeta } from '@/hooks/usePageMeta';
+import { Shield } from 'lucide-react';
 
 const sections = [
   {
@@ -53,23 +54,38 @@ const Privacy = () => {
     <PageShell>
       <Navbar />
       <PageHero
+        badge="Legal"
         title="Privacy Policy"
         subtitle="How Zyvotrix collects, uses, and protects your information."
+        centered
       />
       <section className="section-padding section-white">
         <div className="container mx-auto max-w-3xl px-4 sm:px-6">
-          <p className="mb-8 text-sm text-muted-foreground">
-            Effective date: June 2026 · Last updated: June 2026
-          </p>
-          <div className="space-y-8">
-            {sections.map((section) => (
-              <article key={section.title}>
-                <h2 className="mb-3 text-xl font-bold text-foreground">{section.title}</h2>
+          <div className="mb-10 flex items-center gap-4 rounded-2xl border border-primary/15 bg-primary/5 p-5">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground">
+              <Shield className="h-6 w-6" />
+            </div>
+            <p className="text-sm text-muted-foreground">
+              Effective date: June 2026 · Last updated: June 2026
+            </p>
+          </div>
+          <div className="space-y-4">
+            {sections.map((section, i) => (
+              <article
+                key={section.title}
+                className="rounded-2xl border border-border/80 bg-card p-6 transition-all hover:border-primary/20 hover:shadow-sm"
+              >
+                <div className="mb-2 flex items-center gap-3">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10 text-xs font-bold text-primary">
+                    {i + 1}
+                  </span>
+                  <h2 className="text-lg font-bold text-foreground">{section.title}</h2>
+                </div>
                 <p className="leading-relaxed text-muted-foreground">{section.body}</p>
               </article>
             ))}
           </div>
-          <p className="mt-10 border-t border-border pt-8 text-muted-foreground">
+          <p className="mt-10 rounded-2xl border border-border bg-brand-100/40 p-6 text-muted-foreground">
             Questions? Contact{' '}
             <a href="mailto:support@zyvotrix.com" className="font-medium text-primary hover:underline">
               support@zyvotrix.com

@@ -42,9 +42,14 @@ const resources = [
   },
 ];
 
-const FreeLearningResources = () => (
+interface FreeLearningResourcesProps {
+  showBanner?: boolean;
+}
+
+const FreeLearningResources = ({ showBanner = true }: FreeLearningResourcesProps) => (
   <section className="section-padding section-white" id="free-resources">
     <div className="container px-4 sm:px-6">
+      {showBanner && (
       <div className="mb-12 rounded-3xl border border-primary/15 bg-gradient-to-br from-primary/5 via-card to-secondary/5 p-8 text-center sm:p-12">
         <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-lg shadow-primary/25">
           <Gift className="h-7 w-7" />
@@ -63,6 +68,16 @@ const FreeLearningResources = () => (
           </Link>
         </Button>
       </div>
+      )}
+
+      {!showBanner && (
+        <div className="mb-10 text-center">
+          <h2 className="section-title">Browse Resources</h2>
+          <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
+            Curated guides and roadmaps to accelerate your learning.
+          </p>
+        </div>
+      )}
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {resources.map((item) => (

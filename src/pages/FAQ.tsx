@@ -4,42 +4,72 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PageShell from '@/components/layout/PageShell';
 import PageHero from '@/components/PageHero';
+import PageCta from '@/components/PageCta';
 import FAQList from '@/components/FAQList';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { FAQS, FAQ_CATEGORIES, type FaqCategory } from '@/lib/faqs';
 import { Button } from '@/components/ui/button';
-import { MessageCircle } from 'lucide-react';
+import { MessageCircle, Search } from 'lucide-react';
+import { Input } from '@/components/ui/input';
 
 const FAQ = () => {
   const [activeCategory, setActiveCategory] = useState<FaqCategory | 'all'>('all');
+  const [search, setSearch] = useState('');
 
   usePageMeta({
     title: 'Frequently Asked Questions',
     description:
-      'Answers about Zyvotrix programs, enrollment, pricing, learning format, certificates, career support, and technical requirements for Full Stack, DevOps, Cloud, AI, and Data Analytics.',
+      'Answers about Zyvotrix programs, enrollment, pricing, learning format, certificates, career support, and technical requirements.',
     canonical: '/faq',
   });
 
-  const filtered =
+  const categoryFiltered =
     activeCategory === 'all' ? FAQS : FAQS.filter((f) => f.category === activeCategory);
+
+  const filtered = search.trim()
+    ? categoryFiltered.filter(
+        (f) =>
+          f.question.toLowerCase().includes(search.toLowerCase()) ||
+          f.answer.toLowerCase().includes(search.toLowerCase()),
+      )
+    : categoryFiltered;
 
   return (
     <PageShell>
       <Navbar />
       <PageHero
-        title="Frequently Asked Questions"
-        subtitle="Clear answers about Zyvotrix programs, enrollment, learning, and career growth — for students, professionals, and career switchers."
+        badge={`${FAQS.length} Questions Answered`}
+        title={
+          <>
+            Frequently Asked <span className="gradient-text">Questions</span>
+          </>
+        }
+        subtitle="Clear answers about Zyvotrix programs, enrollment, learning, and career growth."
+        centered
       />
 
       <section className="section-padding section-white">
         <div className="container px-4 sm:px-6">
+          <div className="mx-auto mb-8 max-w-md">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                type="search"
+                placeholder="Search questions..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="h-12 pl-10"
+              />
+            </div>
+          </div>
+
           <div className="mx-auto mb-10 flex max-w-4xl flex-wrap justify-center gap-2">
             <button
               type="button"
               onClick={() => setActiveCategory('all')}
               className={`rounded-full px-4 py-2 text-sm font-semibold transition-all ${
                 activeCategory === 'all'
-                  ? 'bg-primary text-primary-foreground'
+                  ? 'bg-primary text-primary-foreground shadow-md shadow-primary/25'
                   : 'border border-border bg-card text-muted-foreground hover:text-primary'
               }`}
             >
@@ -52,7 +82,7 @@ const FAQ = () => {
                 onClick={() => setActiveCategory(cat.id)}
                 className={`rounded-full px-4 py-2 text-sm font-semibold transition-all ${
                   activeCategory === cat.id
-                    ? 'bg-primary text-primary-foreground'
+                    ? 'bg-primary text-primary-foreground shadow-md shadow-primary/25'
                     : 'border border-border bg-card text-muted-foreground hover:text-primary'
                 }`}
               >
@@ -62,15 +92,24 @@ const FAQ = () => {
           </div>
 
           <div className="mx-auto max-w-3xl">
-            <FAQList faqs={filtered} includeSchema />
+            {filtered.length > 0 ? (
+              <FAQList faqs={filtered} includeSchema />
+            ) : (
+              <p className="py-12 text-center text-muted-foreground">
+                No questions match your search.{' '}
+                <Link to="/contact" className="font-medium text-primary hover:underline">
+                  Contact us
+                </Link>{' '}
+                for help.
+              </p>
+            )}
           </div>
 
-          <div className="mx-auto mt-14 max-w-2xl rounded-2xl border border-primary/15 bg-primary/5 p-8 text-center">
+          <div className="mx-auto mt-14 max-w-2xl overflow-hidden rounded-3xl border border-primary/15 bg-gradient-to-br from-primary/5 via-card to-secondary/5 p-8 text-center shadow-lg">
             <MessageCircle className="mx-auto mb-4 h-10 w-10 text-primary" />
             <h2 className="mb-2 text-xl font-bold">Still have questions?</h2>
             <p className="mb-6 text-muted-foreground">
-              Our team is happy to help you choose the right program or answer anything not covered
-              here.
+              Our team is happy to help you choose the right program.
             </p>
             <div className="flex flex-col justify-center gap-3 sm:flex-row">
               <Button asChild className="btn-brand">
@@ -83,6 +122,16 @@ const FAQ = () => {
           </div>
         </div>
       </section>
+
+      <PageCta
+        badge="Ready to learn?"
+        title="Find your perfect program"
+        description="Explore structured paths in Full Stack, DevOps, Cloud, AI, and more."
+        primaryLabel="View Programs"
+        primaryHref="/courses"
+        secondaryLabel="Enroll Now"
+        secondaryHref="/enroll"
+      />
 
       <Footer />
     </PageShell>

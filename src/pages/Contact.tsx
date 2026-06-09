@@ -1,6 +1,5 @@
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -23,6 +22,7 @@ import PageHero from '@/components/PageHero';
 import PageCta from '@/components/PageCta';
 import PageShell from '@/components/layout/PageShell';
 import { IMAGES } from '@/lib/images';
+import { usePageMeta } from '@/hooks/usePageMeta';
 
 interface FormData {
   firstName: string;
@@ -33,8 +33,21 @@ interface FormData {
   message: string;
 }
 
+const contactMethods = [
+  { icon: Mail, title: 'Email Us', value: 'support@zyvotrix.com', action: 'email' as const, color: 'bg-primary/10 text-primary' },
+  { icon: Phone, title: 'WhatsApp', value: '+91 8887720741', action: 'whatsapp' as const, color: 'bg-secondary/10 text-secondary' },
+  { icon: MapPin, title: 'Visit Us', value: 'Bengaluru, Karnataka, 560102', action: null, color: 'bg-primary/10 text-primary' },
+  { icon: Calendar, title: 'Office Hours', value: 'Mon–Fri: 9 AM – 5 PM', action: null, color: 'bg-primary/10 text-primary' },
+];
+
 const Contact = () => {
   const { toast } = useToast();
+
+  usePageMeta({
+    title: 'Contact Us',
+    description: 'Contact Zyvotrix for program inquiries, enrollment support, partnerships, and career guidance.',
+    canonical: '/contact',
+  });
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
@@ -116,7 +129,12 @@ const Contact = () => {
       <Navbar />
       
       <PageHero
-        title="Contact Us"
+        badge="We're here to help"
+        title={
+          <>
+            Get in <span className="gradient-text">Touch</span>
+          </>
+        }
         subtitle="Questions about programs, enrollment, or partnerships? We're here to help."
         image={IMAGES.hero.contact}
         imageAlt="Get in touch with Zyvotrix"
@@ -124,92 +142,49 @@ const Contact = () => {
       
       <section className="section-padding section-white">
         <div className="container px-4 md:px-6">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
+          <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
             <div>
-              <h2 className="section-title text-left mx-0">Get in Touch</h2>
-              <p className="text-muted-foreground text-lg mb-8">
+              <span className="mb-3 inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-primary">
+                Contact Info
+              </span>
+              <h2 className="section-title mx-0 text-left">Get in Touch</h2>
+              <p className="mb-8 text-lg text-muted-foreground">
                 Fill out the form and our team will get back to you within a few hours.
-                We're happy to answer any questions you may have about our tech programs.
               </p>
               
-              <div className="space-y-6">
-                <Card className="info-tile border-0 shadow-none">
-                  <CardContent className="flex flex-col sm:flex-row sm:items-center gap-4 p-0">
-                    <div className="feature-icon shrink-0">
-                      <Mail className="h-5 w-5" />
+              <div className="grid gap-4 sm:grid-cols-2">
+                {contactMethods.map((method) => (
+                  <div
+                    key={method.title}
+                    className="rounded-2xl border border-border/80 bg-card p-5 transition-all hover:-translate-y-0.5 hover:shadow-md"
+                  >
+                    <div className={`mb-3 flex h-10 w-10 items-center justify-center rounded-xl ${method.color}`}>
+                      <method.icon className="h-5 w-5" />
                     </div>
-                    <div className="min-w-0">
-                      <h3 className="font-semibold text-lg mb-1">Email Us</h3>
-                      <button 
-                        onClick={() => handleDirectContact('email')}
-                        className="text-primary hover:underline font-medium text-base sm:text-lg break-all text-left"
+                    <h3 className="mb-1 font-semibold">{method.title}</h3>
+                    {method.action ? (
+                      <button
+                        type="button"
+                        onClick={() => handleDirectContact(method.action!)}
+                        className="text-left text-sm font-medium text-primary hover:underline"
                       >
-                        support@zyvotrix.com
+                        {method.value}
                       </button>
-                    </div>
-                  </CardContent>
-                </Card>
-                
-                <Card className="info-tile border-0 shadow-none">
-                  <CardContent className="flex flex-col sm:flex-row sm:items-center gap-4 p-0">
-                    <div className="feature-icon shrink-0 bg-secondary/10 text-secondary">
-                      <Phone className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-lg mb-1">Connect on WhatsApp</h3>
-                      <button 
-                        onClick={() => handleDirectContact('whatsapp')}
-                        className="text-secondary hover:underline font-medium text-lg"
-                      >
-                        +91 8887720741
-                      </button>
-                    </div>
-                  </CardContent>
-                </Card>
-                
-                <Card className="info-tile border-0 shadow-none">
-                  <CardContent className="flex flex-col sm:flex-row sm:items-center gap-4 p-0">
-                    <div className="feature-icon shrink-0">
-                      <MapPin className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-lg mb-1">Visit Us</h3>
-                      <p className="text-muted-foreground font-medium">Bengaluru, Karnataka, 560102</p>
-                    </div>
-                  </CardContent>
-                </Card>
-                
-                <Card className="info-tile border-0 shadow-none">
-                  <CardContent className="flex flex-col sm:flex-row sm:items-center gap-4 p-0">
-                    <div className="feature-icon shrink-0">
-                      <Calendar className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-lg mb-1">Office Hours</h3>
-                      <p className="text-muted-foreground font-medium">Monday - Friday: 9:00 AM - 5:00 PM</p>
-                    </div>
-                  </CardContent>
-                </Card>
+                    ) : (
+                      <p className="text-sm text-muted-foreground">{method.value}</p>
+                    )}
+                  </div>
+                ))}
               </div>
               
-              <div className="mt-8">
-                <h3 className="text-xl font-bold mb-4">Connect With Us</h3>
-                <div className="flex flex-wrap items-center gap-3">
-                  <SocialLinks variant="contact" />
-                  <button
-                    type="button"
-                    onClick={() => handleDirectContact('email')}
-                    className="p-2 bg-accent rounded-full hover:bg-accent/80 transition-colors"
-                    aria-label="Email us"
-                  >
-                    <Mail size={20} />
-                  </button>
-                </div>
+              <div className="mt-8 rounded-2xl border border-border bg-brand-100/40 p-6">
+                <h3 className="mb-4 font-bold">Connect With Us</h3>
+                <SocialLinks variant="contact" />
               </div>
             </div>
             
             <div>
-              <Card className="form-panel border-0 shadow-none">
+              <Card className="form-panel border border-border/80 shadow-xl">
                 <CardContent className="p-0">
                   <h3 className="text-2xl sm:text-3xl font-bold mb-6">Send Us a Message</h3>
                   <form onSubmit={handleSubmit} className="space-y-4">
@@ -309,6 +284,7 @@ const Contact = () => {
       </section>
       
       <PageCta
+        badge="Quick answers"
         title="Have questions?"
         description="Browse our FAQ or explore programs — we're here to help you choose the right path."
         primaryLabel="View FAQ"

@@ -130,6 +130,10 @@
     @apply relative overflow-hidden pt-20 pb-12 sm:pt-24 sm:pb-14 md:pt-28 md:pb-16 brand-surface-dots;
   }
 
+  .page-hero-creative {
+    @apply relative overflow-hidden bg-gradient-to-b from-slate-50/90 via-background to-background;
+  }
+
   .hero-premium {
     @apply relative overflow-hidden bg-gradient-to-b from-brand-100/80 via-background to-background;
   }
