@@ -7,6 +7,7 @@ import PageCta from '@/components/PageCta';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Code, Cloud, Wrench, BarChart3, Bot, Shield, Clock, Users } from 'lucide-react';
 import { IMAGES } from '@/lib/images';
+import TiltCard from '@/components/motion/TiltCard';
 import { usePageMeta } from '@/hooks/usePageMeta';
 
 type Category = 'all' | 'development' | 'cloud' | 'ai' | 'security';
@@ -128,7 +129,8 @@ const Courses = () => {
         }
         subtitle="Structured paths with hands-on projects — pick a domain and view the full curriculum."
         image={IMAGES.hero.courses}
-        imageAlt="Developer working on code"
+        imageAlt="Developer working on code at Zyvotrix"
+        imageCaption={IMAGES.heroCaptions.courses}
       />
 
       <section className="relative -mt-6 z-10 px-4 sm:px-6">
@@ -165,7 +167,8 @@ const Courses = () => {
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((course) => (
-              <Link key={course.id} to={course.route} className="group block h-full">
+              <TiltCard key={course.id} className="h-full" maxTilt={8}>
+              <Link to={course.route} className="group block h-full">
                 <article className="program-card flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <img
@@ -203,6 +206,7 @@ const Courses = () => {
                   </div>
                 </article>
               </Link>
+              </TiltCard>
             ))}
           </div>
         </div>

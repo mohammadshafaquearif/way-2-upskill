@@ -4,6 +4,7 @@ import Hero from '@/components/Hero';
 import TrustStatsBar from '@/components/home/TrustStatsBar';
 import PartnerStrip from '@/components/home/PartnerStrip';
 import LearningJourney from '@/components/home/LearningJourney';
+import DomainGallery3D from '@/components/home/DomainGallery3D';
 import ProgramsPreview from '@/components/home/ProgramsPreview';
 import WhyStandOut from '@/components/home/WhyStandOut';
 import StatsSection from '@/components/StatsSection';
@@ -23,6 +24,7 @@ const Index = () => (
       <TrustStatsBar />
       <PartnerStrip />
       <LearningJourney />
+      <DomainGallery3D />
       <ProgramsPreview />
       <WhyStandOut />
       <StatsSection />

@@ -258,6 +258,7 @@ const Enroll = () => {
         subtitle="Tell us about your goals — our team will guide you to the right learning path and next steps."
         image={IMAGES.hero.enroll}
         imageAlt="Apply for Zyvotrix programs"
+        imageCaption={IMAGES.heroCaptions.enroll}
       />
       
       <section className="section-padding section-alt">

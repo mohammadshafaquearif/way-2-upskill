@@ -1,5 +1,7 @@
 import React from 'react';
 import { Quote, Star } from 'lucide-react';
+import { IMAGES } from '@/lib/images';
+import TiltCard from '@/components/motion/TiltCard';
 
 const testimonials = [
   {
@@ -10,6 +12,7 @@ const testimonials = [
     rating: 5,
     accent: 'from-blue-500/20 to-violet-500/20',
     avatar: 'PS',
+    photo: IMAGES.programs.webDev,
   },
   {
     text: 'What stood out was the structured roadmaps and instructor support. I wasn\'t just watching videos — I was building CI/CD pipelines and cloud deployments step by step.',
@@ -19,6 +22,7 @@ const testimonials = [
     rating: 5,
     accent: 'from-teal-500/20 to-emerald-500/20',
     avatar: 'RM',
+    photo: IMAGES.programs.devops,
   },
   {
     text: 'Zyvotrix felt more like a learning ecosystem than a course dump. The focus on modern tools and practical workflows matched what I see in job descriptions today.',
@@ -28,6 +32,7 @@ const testimonials = [
     rating: 5,
     accent: 'from-amber-500/20 to-orange-500/20',
     avatar: 'AK',
+    photo: IMAGES.programs.analytics,
   },
 ];
 
@@ -49,8 +54,8 @@ const Testimonials = () => (
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         {testimonials.map((t, i) => (
+          <TiltCard key={t.author} maxTilt={6}>
           <article
-            key={t.author}
             className="testimonial-card group relative rounded-3xl border border-border/80 bg-card p-6 sm:p-8"
             style={{ animationDelay: `${i * 0.1}s` }}
           >
@@ -60,8 +65,8 @@ const Testimonials = () => (
             />
             <div className="relative z-10">
               <div className="mb-5 flex items-center justify-between">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-secondary text-sm font-bold text-white shadow-md">
-                  {t.avatar}
+                <div className="h-12 w-12 overflow-hidden rounded-2xl border-2 border-primary/20 shadow-md">
+                  <img src={t.photo} alt={t.author} className="h-full w-full object-cover" loading="lazy" />
                 </div>
                 <div className="flex gap-0.5">
                   {Array.from({ length: t.rating }).map((_, j) => (
@@ -82,6 +87,7 @@ const Testimonials = () => (
               </div>
             </div>
           </article>
+          </TiltCard>
         ))}
       </div>
     </div>

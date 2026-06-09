@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Code, Cloud, BarChart3, Bot, Wrench, Shield, Clock, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { IMAGES } from '@/lib/images';
+import TiltCard from '@/components/motion/TiltCard';
 
 type Category = 'all' | 'ai' | 'cloud' | 'development';
 
@@ -132,7 +133,8 @@ const ProgramsPreview = () => {
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((program) => (
-            <Link key={program.title} to={program.route} className="group block h-full">
+            <TiltCard key={program.title} className="h-full" maxTilt={8}>
+            <Link to={program.route} className="group block h-full">
               <article className="program-card flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <img
@@ -174,6 +176,7 @@ const ProgramsPreview = () => {
                 </div>
               </article>
             </Link>
+            </TiltCard>
           ))}
         </div>
 

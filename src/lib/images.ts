@@ -12,6 +12,14 @@ export const IMAGES = {
     enroll: u('photo-1434030216411-0b793f4b4173', 1400),
     bonus: u('photo-1504639725590-34d0984388bd', 1400),
   },
+  heroCaptions: {
+    courses: 'Structured programs with real-world projects',
+    about: 'Collaborative, industry-oriented learning',
+    contact: 'Our team is ready to guide your journey',
+    resources: 'Free roadmaps, guides & curated content',
+    enroll: 'Start your application in minutes',
+    bonus: 'Certifications & career extras included',
+  },
   programs: {
     webDev: u('photo-1498050108023-c5249f4df085', 800),
     devops: u('photo-1558494949-ef010cbdcc31', 800),
@@ -22,6 +30,10 @@ export const IMAGES = {
     security: u('photo-1550751827-4bd374c3f58b', 800),
   },
   team: u('photo-1522071820081-009f0129c71c', 800),
+  instructor: u('photo-1507003211169-0a1dd7228f2d', 800),
+  classroom: u('photo-1523240795612-9a054b0db644', 800),
+  workshop: u('photo-1531482615713-2afd69097998', 800),
   certification: u('photo-1434030216411-0b793f4b4173', 600),
   learning: u('photo-1516321497487-e288fb19713f', 800),
+  notFound: u('photo-1451187580459-43490279c0fa', 1000),
 } as const;

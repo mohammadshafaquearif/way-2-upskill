@@ -1,4 +1,6 @@
 import React from 'react';
+import PageHeroImage from '@/components/motion/PageHeroImage';
+import FloatingShapes3D from '@/components/motion/FloatingShapes3D';
 
 interface PageHeroProps {
   title: React.ReactNode;
@@ -6,6 +8,7 @@ interface PageHeroProps {
   badge?: string;
   image?: string;
   imageAlt?: string;
+  imageCaption?: string;
   children?: React.ReactNode;
   centered?: boolean;
 }
@@ -16,6 +19,7 @@ const PageHero = ({
   badge,
   image,
   imageAlt = '',
+  imageCaption,
   children,
   centered = false,
 }: PageHeroProps) => (
@@ -23,6 +27,7 @@ const PageHero = ({
     <div className="hero-orb hero-orb-1 opacity-60" aria-hidden />
     <div className="hero-orb hero-orb-2 opacity-50" aria-hidden />
     <div className="hero-grid-overlay opacity-70" aria-hidden />
+    <FloatingShapes3D />
 
     <div className="container relative z-10 px-4 pb-14 pt-20 sm:px-6 sm:pb-16 sm:pt-24 md:pt-28">
       <div
@@ -57,22 +62,14 @@ const PageHero = ({
 
         {image && (
           <div
-            className={`hero-fade-up relative ${centered ? 'mx-auto mt-10 w-full max-w-2xl' : ''}`}
+            className={`hero-fade-up ${centered ? 'mx-auto mt-10 w-full max-w-2xl' : ''}`}
             style={{ animationDelay: '0.15s' }}
           >
-            <div className="hero-image-glow" aria-hidden />
-            <div className="relative overflow-hidden rounded-3xl border border-white/20 shadow-2xl shadow-primary/10">
-              <div className="aspect-[4/3] sm:aspect-[16/11]">
-                <img
-                  src={image}
-                  alt={imageAlt || (typeof title === 'string' ? title : 'Zyvotrix')}
-                  className="h-full w-full object-cover"
-                  loading="eager"
-                  decoding="async"
-                />
-              </div>
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-brand-950/60 via-brand-950/10 to-transparent" />
-            </div>
+            <PageHeroImage
+              src={image}
+              alt={imageAlt || (typeof title === 'string' ? title : 'Zyvotrix')}
+              caption={imageCaption}
+            />
           </div>
         )}
       </div>

@@ -61,7 +61,8 @@ const Bonus = () => {
         }
         subtitle="Career-focused extras bundled with select programs — certifications, tools, and portfolio support."
         image={IMAGES.hero.bonus}
-        imageAlt="AI and machine learning learning"
+        imageAlt="AI and machine learning program bonuses"
+        imageCaption={IMAGES.heroCaptions.bonus}
       />
 
       <section className="section-padding section-white">

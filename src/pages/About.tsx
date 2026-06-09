@@ -58,7 +58,8 @@ const About = () => {
         }
         subtitle="Practical, industry-oriented tech education — built to help learners become job-ready through real skills."
         image={IMAGES.hero.about}
-        imageAlt="Team learning and collaboration"
+        imageAlt="Team learning and collaboration at Zyvotrix"
+        imageCaption={IMAGES.heroCaptions.about}
       />
 
       <section className="section-padding section-white">
@@ -82,8 +83,8 @@ const About = () => {
               <div className="hero-image-glow" aria-hidden />
               <div className="relative overflow-hidden rounded-3xl border border-border shadow-xl">
                 <img
-                  src={IMAGES.team}
-                  alt="Collaborative learning environment"
+                  src={IMAGES.classroom}
+                  alt="Collaborative classroom learning environment"
                   className="aspect-[4/3] w-full object-cover"
                   loading="lazy"
                 />
@@ -138,9 +139,9 @@ const About = () => {
             <div className="grid md:grid-cols-5">
               <div className="relative md:col-span-2">
                 <img
-                  src={IMAGES.team}
-                  alt="Mohammad Shafaque Arif"
-                  className="h-full min-h-[240px] w-full object-cover"
+                  src={IMAGES.instructor}
+                  alt="Mohammad Shafaque Arif — Lead Instructor at Zyvotrix"
+                  className="h-full min-h-[240px] w-full object-cover object-top"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-950/40 to-transparent md:bg-gradient-to-r" />

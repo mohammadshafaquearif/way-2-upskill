@@ -54,7 +54,8 @@ const Resources = () => {
         }
         subtitle="Roadmaps, guides, and curated content to support your tech journey — at your own pace."
         image={IMAGES.hero.resources}
-        imageAlt="Study and learning resources"
+        imageAlt="Study and learning resources at Zyvotrix"
+        imageCaption={IMAGES.heroCaptions.resources}
       />
 
       <section className="relative -mt-6 z-10 px-4 sm:px-6">

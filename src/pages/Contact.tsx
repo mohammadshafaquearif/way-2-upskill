@@ -137,7 +137,8 @@ const Contact = () => {
         }
         subtitle="Questions about programs, enrollment, or partnerships? We're here to help."
         image={IMAGES.hero.contact}
-        imageAlt="Get in touch with Zyvotrix"
+        imageAlt="Get in touch with Zyvotrix team"
+        imageCaption={IMAGES.heroCaptions.contact}
       />
       
       <section className="section-padding section-white">
