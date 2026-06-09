@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Mail } from 'lucide-react';
+import { Mail, ArrowRight } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const NewsletterSection = () => {
@@ -26,25 +26,42 @@ const NewsletterSection = () => {
   };
 
   return (
-    <section className="section-padding section-alt border-t border-border" id="newsletter">
-      <div className="container px-4 sm:px-6">
-        <div className="surface-card-lg max-w-2xl mx-auto text-center p-8 md:p-12">
-          <div className="feature-icon mx-auto mb-4 h-12 w-12">
-            <Mail className="h-6 w-6" />
+    <section className="section-padding cta-premium dark-surface relative overflow-hidden" id="newsletter">
+      <div className="cta-grid absolute inset-0" aria-hidden />
+      <div className="container relative z-10 px-4 sm:px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-sm">
+            <Mail className="h-7 w-7 text-white" />
           </div>
-          <h2 className="text-2xl md:text-3xl font-bold mb-3">Stay Updated with Modern Tech Learning</h2>
-          <p className="text-muted-foreground mb-8">Roadmaps, tips, and updates — straight to your inbox.</p>
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+          <h2 className="mb-3 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
+            Stay Ahead in Tech
+          </h2>
+          <p className="mb-8 text-white/75 leading-relaxed">
+            Get roadmaps, career tips, and program updates delivered to your inbox — free.
+          </p>
+          <form
+            onSubmit={handleSubmit}
+            className="mx-auto flex max-w-md flex-col gap-3 sm:flex-row"
+          >
             <Input
               type="email"
-              placeholder="you@email.com"
+              placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 bg-background"
+              className="h-12 flex-1 border-white/20 bg-white/10 text-white placeholder:text-white/50 focus-visible:ring-white/30"
               required
             />
-            <Button type="submit" disabled={loading} className="btn-brand shrink-0">
-              {loading ? 'Subscribing...' : 'Subscribe'}
+            <Button
+              type="submit"
+              disabled={loading}
+              className="h-12 shrink-0 bg-white px-6 font-semibold text-primary hover:bg-white/90"
+            >
+              {loading ? 'Subscribing...' : (
+                <>
+                  Subscribe
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </>
+              )}
             </Button>
           </form>
         </div>

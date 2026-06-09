@@ -1,28 +1,39 @@
-
 import React from 'react';
 
 const stats = [
-  { value: '5+', label: 'Tech Domains' },
-  { value: '50+', label: 'Hands-on Projects' },
-  { value: '100%', label: 'Practical Focus' },
-  { value: '24/7', label: 'Learning Resources' },
+  { value: '80%', label: 'Program completion rate' },
+  { value: '4.8 / 5', label: 'Rated by learners' },
+  { value: '40%+', label: 'Average skill growth' },
 ];
 
-const StatsSection = () => {
-  return (
-    <section className="py-12 brand-gradient text-white">
-      <div className="container px-4 md:px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 text-center px-2">
-          {stats.map((stat) => (
-            <div key={stat.label} className="space-y-2">
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold">{stat.value}</div>
-              <div className="text-xs sm:text-sm md:text-base font-medium text-brand-100/90 leading-snug">{stat.label}</div>
-            </div>
-          ))}
-        </div>
+const StatsSection = () => (
+  <section className="relative overflow-hidden py-16 md:py-20">
+    <div className="brand-gradient-deep absolute inset-0" aria-hidden />
+    <div className="cta-grid absolute inset-0 opacity-60" aria-hidden />
+
+    <div className="container relative z-10 px-4 sm:px-6">
+      <div className="mx-auto mb-12 max-w-2xl text-center">
+        <h2 className="text-2xl font-bold text-white sm:text-3xl md:text-4xl">
+          Join Thousands of Learners Who Trust Zyvotrix
+        </h2>
+        <p className="mt-4 text-sm text-white/75 sm:text-base">
+          Real Stories. Incredible Journeys. Measurable Growth.
+        </p>
       </div>
-    </section>
-  );
-};
+
+      <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-3">
+        {stats.map((stat) => (
+          <div
+            key={stat.label}
+            className="rounded-2xl border border-white/10 bg-white/5 px-6 py-8 text-center backdrop-blur-sm"
+          >
+            <p className="text-3xl font-bold text-white sm:text-4xl md:text-5xl">{stat.value}</p>
+            <p className="mt-2 text-sm font-medium text-white/80">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
 
 export default StatsSection;

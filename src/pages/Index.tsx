@@ -1,10 +1,13 @@
-
 import React from 'react';
 import PageShell from '@/components/layout/PageShell';
 import Hero from '@/components/Hero';
-import WhatIsZyvotrix from '@/components/home/WhatIsZyvotrix';
+import TrustStatsBar from '@/components/home/TrustStatsBar';
+import PartnerStrip from '@/components/home/PartnerStrip';
 import ProgramsPreview from '@/components/home/ProgramsPreview';
-import LearningApproach from '@/components/home/LearningApproach';
+import WhyStandOut from '@/components/home/WhyStandOut';
+import StatsSection from '@/components/StatsSection';
+import Testimonials from '@/components/Testimonials';
+import FreeLearningResources from '@/components/home/FreeLearningResources';
 import CommunitySection from '@/components/home/CommunitySection';
 import FAQSection from '@/components/home/FAQSection';
 import NewsletterSection from '@/components/home/NewsletterSection';
@@ -16,9 +19,13 @@ const Index = () => (
     <Navbar />
     <main className="page-main">
       <Hero />
-      <WhatIsZyvotrix />
+      <TrustStatsBar />
+      <PartnerStrip />
       <ProgramsPreview />
-      <LearningApproach />
+      <WhyStandOut />
+      <StatsSection />
+      <Testimonials />
+      <FreeLearningResources />
       <CommunitySection />
       <FAQSection />
       <NewsletterSection />

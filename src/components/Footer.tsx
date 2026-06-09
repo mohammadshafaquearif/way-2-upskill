@@ -8,7 +8,9 @@ const programLinks = [
   { label: 'All Programs', to: '/courses' },
   { label: 'Full Stack', to: '/courses/web-development' },
   { label: 'DevOps', to: '/courses/devops' },
-  { label: 'AI & Analytics', to: '/courses/ai-ml' },
+  { label: 'Cloud Computing', to: '/courses/cloud-computing' },
+  { label: 'AI & ML', to: '/courses/ai-ml' },
+  { label: 'Cybersecurity', to: '/courses/cybersecurity' },
 ];
 
 const resourceLinks = [
@@ -20,7 +22,7 @@ const resourceLinks = [
 ];
 
 const supportLinks = [
-  { label: 'FAQs', to: '/#faq' },
+  { label: 'FAQs', to: '/faq' },
   { label: 'Programs', to: '/courses' },
   { label: 'Privacy Policy', to: '/privacy' },
   { label: 'Terms of Service', to: '/terms' },

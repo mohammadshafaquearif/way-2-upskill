@@ -312,7 +312,7 @@ const Contact = () => {
         title="Have questions?"
         description="Browse our FAQ or explore programs — we're here to help you choose the right path."
         primaryLabel="View FAQ"
-        primaryHref="/#faq"
+        primaryHref="/faq"
         secondaryLabel="Explore Programs"
         secondaryHref="/courses"
       />

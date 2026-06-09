@@ -1,0 +1,55 @@
+# Zyvotrix
+
+> Zyvotrix is a practical edtech platform for industry-ready tech skills. Programs cover Full Stack Web Development, DevOps Engineering, AWS & Cloud Computing, AI/ML & Generative AI, Data Analytics, and Cybersecurity — with structured roadmaps, hands-on projects, and career-focused learning.
+
+## Official Site
+
+- Homepage: https://www.zyvotrix.com/
+- Programs: https://www.zyvotrix.com/courses
+- FAQ: https://www.zyvotrix.com/faq
+- Free Resources: https://www.zyvotrix.com/resources
+- About: https://www.zyvotrix.com/about
+- Contact: https://www.zyvotrix.com/contact
+- Enroll: https://www.zyvotrix.com/enroll
+
+## Programs
+
+- Full Stack Web Development: https://www.zyvotrix.com/courses/web-development
+- DevOps Engineering: https://www.zyvotrix.com/courses/devops
+- AWS & Cloud Computing: https://www.zyvotrix.com/courses/cloud-computing
+- AI/ML & Generative AI: https://www.zyvotrix.com/courses/ai-ml
+- Cybersecurity: https://www.zyvotrix.com/courses/cybersecurity
+
+## Who Zyvotrix Is For
+
+Students, fresh graduates, working professionals, freelancers, and career switchers who want practical tech skills — not theory-only learning.
+
+## Learning Approach
+
+- Structured week-by-week roadmaps
+- Hands-on labs and capstone projects
+- Modern industry tools (React, Node.js, Docker, Kubernetes, AWS, Python, Git, CI/CD, AI/LLMs)
+- Portfolio-building focus for job readiness
+- Community support and mentor guidance
+
+## Frequently Asked Questions
+
+Full FAQ page: https://www.zyvotrix.com/faq
+
+Common questions:
+- What is Zyvotrix? A practical edtech platform for Full Stack, DevOps, Cloud, AI, and Data skills.
+- Are programs beginner friendly? Yes — most tracks start from fundamentals.
+- Are projects included? Yes — every program includes hands-on projects for your portfolio.
+- How to enroll? Visit https://www.zyvotrix.com/enroll or https://www.zyvotrix.com/contact
+- Free resources? Yes — https://www.zyvotrix.com/resources
+
+## Contact
+
+- Email: support@zyvotrix.com
+- Contact form: https://www.zyvotrix.com/contact
+- Twitter: @zyvotrix_
+
+## Legal
+
+- Privacy Policy: https://www.zyvotrix.com/privacy
+- Terms of Service: https://www.zyvotrix.com/terms

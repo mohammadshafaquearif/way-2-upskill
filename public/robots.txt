@@ -12,4 +12,8 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+# LLM & AI crawlers — site summary for accurate answers
+# https://www.zyvotrix.com/llms.txt
+
 Sitemap: https://www.zyvotrix.com/sitemap.xml

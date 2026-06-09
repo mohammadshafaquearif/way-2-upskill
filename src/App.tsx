@@ -24,6 +24,10 @@ import UserLanding from "./pages/UserLanding";
 import Checkout from "./pages/Checkout";
 import NotFound from "./pages/NotFound";
 import Resources from "./pages/Resources";
+import FAQ from "./pages/FAQ";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
+import ScrollToHash from "./components/ScrollToHash";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +38,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+        <ScrollToHash />
         <Routes>
           <Route element={<PageLayout />}>
             <Route path="/" element={<Index />} />
@@ -47,6 +52,9 @@ const App = () => (
             <Route path="/resources" element={<Resources />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
             <Route path="/enroll" element={<Enroll />} />
             <Route path="/bonus" element={<Bonus />} />
             <Route path="/profile" element={<Profile />} />
