@@ -31,6 +31,7 @@ import DevOpsHeroVisual from '@/components/motion/DevOpsHeroVisual';
 import { Reveal3D, RevealStagger } from '@/components/motion/Reveal3D';
 import { Button } from '@/components/ui/button';
 import { COURSE_BY_ID } from '@/lib/courses';
+import { DEVOPS_TOOLS } from '@/lib/devopsTools';
 import { usePageMeta } from '@/hooks/usePageMeta';
 
 const course = COURSE_BY_ID.dop;
@@ -122,25 +123,6 @@ const handsOnProjects = [
   },
 ];
 
-const techStack = [
-  'Linux',
-  'Docker',
-  'Kubernetes',
-  'AWS',
-  'GCP',
-  'Terraform',
-  'Ansible',
-  'GitHub Actions',
-  'Jenkins',
-  'Prometheus',
-  'Grafana',
-  'AI Agents',
-  'Vault',
-  'Trivy',
-  'Helm',
-  'ArgoCD',
-];
-
 const programHighlights = [
   {
     icon: Target,
@@ -225,12 +207,13 @@ const walkAway = [
   },
 ];
 
-const TechMarquee = ({ tools, reverse }: { tools: string[]; reverse?: boolean }) => (
+const TechMarquee = ({ tools, reverse }: { tools: typeof DEVOPS_TOOLS; reverse?: boolean }) => (
   <div className="devops-tech-marquee-wrap">
     <div className={`devops-tech-marquee${reverse ? ' devops-tech-marquee--reverse' : ''}`}>
       {[...tools, ...tools].map((tool, i) => (
-        <span key={`${tool}-${i}`} className="devops-tech-pill">
-          {tool}
+        <span key={`${tool.name}-${i}`} className="devops-tech-pill">
+          <img src={tool.icon} alt="" width={22} height={22} loading="lazy" decoding="async" />
+          {tool.name}
         </span>
       ))}
     </div>
@@ -245,8 +228,8 @@ const DevOpsEngineerProgram = () => {
     canonical: '/courses/devops-engineer-program',
   });
 
-  const techRowA = techStack.slice(0, 8);
-  const techRowB = techStack.slice(8);
+  const techRowA = DEVOPS_TOOLS.slice(0, 8);
+  const techRowB = DEVOPS_TOOLS.slice(8);
 
   return (
     <PageShell className="devops-program-page">
@@ -473,6 +456,24 @@ const DevOpsEngineerProgram = () => {
               Industry-standard tools that appear in every top DevOps job description today.
             </p>
           </Reveal3D>
+
+          <RevealStagger className="devops-tools-grid" staggerMs={50}>
+            {DEVOPS_TOOLS.map((tool) => (
+              <div key={tool.name} className="devops-tool-card">
+                <div className="devops-tool-card-icon">
+                  <img
+                    src={tool.icon}
+                    alt={tool.name}
+                    width={44}
+                    height={44}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <span className="devops-tool-card-name">{tool.name}</span>
+              </div>
+            ))}
+          </RevealStagger>
 
           <Reveal3D delay={80}>
             <TechMarquee tools={techRowA} />
