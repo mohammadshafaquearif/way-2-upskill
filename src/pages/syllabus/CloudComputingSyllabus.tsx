@@ -70,10 +70,10 @@ const CloudComputingSyllabus = () => {
       <Navbar />
 
       <SyllabusHero
-        title="Cloud Computing & AWS"
-        subtitle="A 10-week path through cloud fundamentals, AWS services, deployments, and scalable architecture."
-        image={IMAGES.programs.cloud}
-        checkoutPath="/checkout/cloud"
+        title="AWS Solutions Architect Program (AWS)"
+        subtitle="A 3-month certification covering AWS architecture, core services, security, and scalable cloud design."
+        image={IMAGES.programs.aws}
+        checkoutPath="/checkout/aws"
       />
       
       <section className="section-padding section-alt">
@@ -100,7 +100,7 @@ const CloudComputingSyllabus = () => {
         </div>
       </section>
       
-      <SyllabusPageCta title="Ready to master cloud computing?" checkoutPath="/checkout/cloud" />
+      <SyllabusPageCta title="Ready to start the AWS program?" checkoutPath="/checkout/aws" />
 
       <Footer />
     </PageShell>

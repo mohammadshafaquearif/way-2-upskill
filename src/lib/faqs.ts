@@ -31,7 +31,7 @@ export const FAQS: FaqItem[] = [
     category: 'general',
     question: 'What is Zyvotrix?',
     answer:
-      'Zyvotrix is a practical edtech platform focused on industry-ready tech skills. We offer structured programs in Full Stack Web Development, DevOps Engineering, Cloud Computing (AWS), AI/ML & Generative AI, Data Analytics, and Cybersecurity — built around hands-on projects, modern tools, and career-oriented learning paths.',
+      'Zyvotrix is a practical edtech platform focused on industry-ready tech skills. We offer certification programs in AI-Powered DevOps Engineer (DOP), Agentic AI Certification Training (AAC), AWS Solutions Architect Program (AWS), and Data Science with Python — built around hands-on projects, modern tools, and career-oriented learning paths.',
   },
   {
     id: 'who-is-zyvotrix-for',
@@ -61,14 +61,14 @@ export const FAQS: FaqItem[] = [
     category: 'programs',
     question: 'What programs does Zyvotrix offer?',
     answer:
-      'Zyvotrix offers programs in: Full Stack Web Development (React, Node.js, databases, APIs), DevOps Engineering (Docker, Kubernetes, CI/CD), AWS & Cloud Computing, AI/ML & Generative AI, Data Analytics with AI, and Cybersecurity Fundamentals. View all programs at zyvotrix.com/courses.',
+      'Zyvotrix offers four certification programs: AI-Powered DevOps Engineer Program (DOP, 4 months), Agentic AI Certification Training (AAC, 3 months), AWS Solutions Architect Program (AWS, 3 months), and Data Science with Python Certification Program (2 months). View all programs at zyvotrix.com/courses.',
   },
   {
     id: 'beginner-friendly',
     category: 'programs',
     question: 'Are Zyvotrix programs beginner friendly?',
     answer:
-      'Yes. Most programs start with fundamentals and gradually move to advanced topics. Full Stack and Cloud programs welcome beginners; DevOps and AI tracks are best suited for learners with basic programming familiarity. Each program page lists prerequisites clearly.',
+      'Yes. Data Science with Python and AWS Solutions Architect welcome beginners with guided fundamentals. DOP and AAC are best suited for learners with basic programming familiarity. Each program page lists prerequisites clearly.',
   },
   {
     id: 'projects-included',
@@ -89,7 +89,7 @@ export const FAQS: FaqItem[] = [
     category: 'programs',
     question: 'How long are Zyvotrix programs?',
     answer:
-      'Program duration varies by track: typically 8 to 16 weeks depending on depth and domain. Full Stack and AI programs run longer; Cybersecurity and DevOps programs are more compact. Check each program page at zyvotrix.com/courses for exact duration and module breakdown.',
+      'Program duration varies by certification: DOP runs 4 months, AAC and AWS run 3 months each, and Data Science with Python runs 2 months. Check each program page at zyvotrix.com/courses for the full syllabus and module breakdown.',
   },
   {
     id: 'syllabus-access',
@@ -186,7 +186,7 @@ export const FAQS: FaqItem[] = [
     category: 'career',
     question: 'Will Zyvotrix programs make me job-ready?',
     answer:
-      'Zyvotrix is designed to build job-relevant skills: portfolio projects, modern tool experience, and interview-ready confidence. While we do not guarantee employment, our practical approach aligns with skills listed in Full Stack, DevOps, Cloud, AI, and Data roles.',
+      'Zyvotrix is designed to build job-relevant skills: portfolio projects, modern tool experience, and interview-ready confidence. While we do not guarantee employment, our practical approach aligns with skills listed in DevOps, Agentic AI, AWS, and Data Science roles.',
   },
   {
     id: 'portfolio-building',
@@ -200,7 +200,7 @@ export const FAQS: FaqItem[] = [
     category: 'career',
     question: 'Can career switchers from non-tech backgrounds join?',
     answer:
-      'Yes. Many Zyvotrix learners come from non-CS backgrounds. Full Stack and Data Analytics tracks are popular entry points. We recommend starting with our free resources and speaking with our team to pick the right roadmap.',
+      'Yes. Many Zyvotrix learners come from non-CS backgrounds. Data Science with Python and AWS are popular entry points. We recommend starting with our free resources and speaking with our team to pick the right roadmap.',
   },
   {
     id: 'interview-prep',
@@ -223,7 +223,7 @@ export const FAQS: FaqItem[] = [
     category: 'technical',
     question: 'Do I need prior coding experience?',
     answer:
-      'Not for all programs. Full Stack and Data Analytics welcome beginners. DevOps, Cloud, and AI programs benefit from basic programming knowledge. Each syllabus page lists recommended prerequisites.',
+      'Not for all programs. Data Science with Python and AWS welcome beginners. DOP and AAC benefit from basic programming knowledge. Each syllabus page lists recommended prerequisites.',
   },
   {
     id: 'software-tools',
@@ -260,7 +260,7 @@ export const FAQS: FaqItem[] = [
     category: 'community',
     question: 'Does Zyvotrix offer corporate or team training?',
     answer:
-      'Yes. We support teams and organizations looking to upskill in Full Stack, DevOps, Cloud, AI, and Data. Contact us at zyvotrix.com/contact with your team size and goals for a custom learning plan.',
+      'Yes. We support teams and organizations looking to upskill in DevOps, Agentic AI, AWS, and Data Science. Contact us at zyvotrix.com/contact with your team size and goals for a custom learning plan.',
   },
 ];
 

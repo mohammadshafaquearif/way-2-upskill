@@ -2,15 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, ArrowUpRight } from 'lucide-react';
 import SocialLinks from '@/components/SocialLinks';
-import { SOCIAL_LINKS } from '@/lib/socialLinks';
+import { COURSES } from '@/lib/courses';
 
 const programLinks = [
   { label: 'All Programs', to: '/courses' },
-  { label: 'Full Stack', to: '/courses/web-development' },
-  { label: 'DevOps', to: '/courses/devops' },
-  { label: 'Cloud Computing', to: '/courses/cloud-computing' },
-  { label: 'AI & ML', to: '/courses/ai-ml' },
-  { label: 'Cybersecurity', to: '/courses/cybersecurity' },
+  ...COURSES.map((course) => ({
+    label: course.shortTitle,
+    to: course.route,
+  })),
 ];
 
 const resourceLinks = [
@@ -38,102 +37,108 @@ const Footer = () => {
       <div className="container relative z-10 px-4 py-14 sm:px-6 md:py-16">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
           {/* Brand */}
-          <div className="lg:col-span-5">
-            <div className="mb-5 flex items-center gap-4">
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-2 shadow-lg shadow-black/20">
-                <img
-                  src="/zyvotrix-logo.png"
-                  alt="Zyvotrix"
-                  className="h-12 w-12 object-contain sm:h-14 sm:w-14"
-                  width={56}
-                  height={56}
-                />
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold tracking-tight">Zyvotrix</h3>
-                <p className="bg-gradient-to-r from-teal-300 to-sky-300 bg-clip-text text-sm font-semibold text-transparent">
-                  Learn. Build. Thrive.
-                </p>
-              </div>
-            </div>
-            <p className="mb-6 max-w-md text-sm leading-relaxed text-slate-400">
-              A modern edtech platform focused on practical, industry-oriented learning across Full
-              Stack Development, DevOps, Cloud Computing, AI, and Data Analytics.
+          <div className="lg:col-span-4">
+            <Link to="/" className="mb-4 inline-flex items-center gap-2">
+              <span className="text-2xl font-bold tracking-tight text-white">Zyvotrix</span>
+            </Link>
+            <p className="mb-6 max-w-sm text-sm leading-relaxed text-slate-400">
+              Practical, industry-oriented certification programs in DevOps, Agentic AI, AWS, and
+              Data Science — built for career growth.
             </p>
-            <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
-              <a
-                href={SOCIAL_LINKS.email}
-                className="inline-flex w-fit items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-slate-200 transition-colors hover:border-teal-400/40 hover:bg-teal-500/10 hover:text-white"
-              >
-                <Mail className="h-4 w-4 shrink-0 text-teal-300" />
-                support@zyvotrix.com
-              </a>
+            <a
+              href="mailto:hello@zyvotrix.com"
+              className="link-glow inline-flex items-center gap-2 text-sm text-slate-400"
+            >
+              <Mail className="h-4 w-4" />
+              hello@zyvotrix.com
+            </a>
+            <div className="mt-6">
               <SocialLinks variant="footer" />
             </div>
           </div>
 
-          {/* Links */}
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-7">
-            <div>
-              <h4 className="mb-5 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-300">
-                <span className="h-4 w-0.5 rounded-full bg-teal-400" />
-                Programs
-              </h4>
-              <ul className="space-y-3">
-                {programLinks.map((link) => (
-                  <li key={link.to}>
-                    <Link to={link.to} className="link-glow group flex items-center gap-1 text-sm text-slate-400">
-                      {link.label}
-                      <ArrowUpRight className="h-3.5 w-3.5 opacity-0 transition-opacity group-hover:opacity-100" />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Programs */}
+          <div className="lg:col-span-2">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
+              Programs
+            </h3>
+            <ul className="space-y-3">
+              {programLinks.map((link) => (
+                <li key={link.to}>
+                  <Link
+                    to={link.to}
+                    className="link-glow inline-flex items-center gap-1 text-sm text-slate-400 hover:text-white"
+                  >
+                    {link.label}
+                    <ArrowUpRight className="h-3 w-3 opacity-0 transition-opacity group-hover:opacity-100" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            <div>
-              <h4 className="mb-5 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-300">
-                <span className="h-4 w-0.5 rounded-full bg-sky-400" />
-                Resources
-              </h4>
-              <ul className="space-y-3">
-                {resourceLinks.map((link) => (
-                  <li key={link.to}>
-                    <Link to={link.to} className="link-glow group flex items-center gap-1 text-sm text-slate-400">
-                      {link.label}
-                      <ArrowUpRight className="h-3.5 w-3.5 opacity-0 transition-opacity group-hover:opacity-100" />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Resources */}
+          <div className="lg:col-span-2">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
+              Resources
+            </h3>
+            <ul className="space-y-3">
+              {resourceLinks.map((link) => (
+                <li key={link.to}>
+                  <Link to={link.to} className="link-glow text-sm text-slate-400 hover:text-white">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            <div className="col-span-2 sm:col-span-1">
-              <h4 className="mb-5 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-300">
-                <span className="h-4 w-0.5 rounded-full bg-blue-400" />
-                Support
-              </h4>
-              <ul className="space-y-3">
-                {supportLinks.map((link) => (
-                  <li key={link.to}>
-                    <Link to={link.to} className="link-glow group flex items-center gap-1 text-sm text-slate-400">
-                      {link.label}
-                      <ArrowUpRight className="h-3.5 w-3.5 opacity-0 transition-opacity group-hover:opacity-100" />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Support */}
+          <div className="lg:col-span-2">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
+              Support
+            </h3>
+            <ul className="space-y-3">
+              {supportLinks.map((link) => (
+                <li key={link.to}>
+                  <Link to={link.to} className="link-glow text-sm text-slate-400 hover:text-white">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Newsletter hint */}
+          <div className="lg:col-span-2">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
+              Stay Updated
+            </h3>
+            <p className="mb-4 text-sm leading-relaxed text-slate-400">
+              Get program updates, cohort dates, and free learning resources.
+            </p>
+            <Link
+              to="/#newsletter"
+              className="inline-flex items-center gap-1 text-sm font-semibold text-teal-400 hover:text-teal-300"
+            >
+              Subscribe
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 md:flex-row">
-          <p className="text-sm text-slate-500">
-            © {new Date().getFullYear()} Zyvotrix. All rights reserved.
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
+          <p className="text-xs text-slate-500">
+            &copy; {new Date().getFullYear()} Zyvotrix. All rights reserved.
           </p>
-          <p className="text-center text-sm italic text-slate-500 md:text-right">
-            Industry-oriented learning — growing with our community.
-          </p>
+          <div className="flex gap-6 text-xs text-slate-500">
+            <Link to="/privacy" className="hover:text-slate-300">
+              Privacy
+            </Link>
+            <Link to="/terms" className="hover:text-slate-300">
+              Terms
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

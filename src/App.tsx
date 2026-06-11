@@ -10,10 +10,9 @@ import PageLayout from "@/components/PageLayout";
 import Index from "./pages/Index";
 import Courses from "./pages/Courses";
 import AiMlSyllabus from "./pages/syllabus/AiMlSyllabus";
-import WebDevSyllabus from "./pages/syllabus/WebDevSyllabus";
 import DevOpsSyllabus from "./pages/syllabus/DevOpsSyllabus";
-import CybersecuritySyllabus from "./pages/syllabus/CybersecuritySyllabus";
 import CloudComputingSyllabus from "./pages/syllabus/CloudComputingSyllabus";
+import DataScienceSyllabus from "./pages/syllabus/DataScienceSyllabus";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Enroll from "./pages/Enroll";
@@ -44,11 +43,15 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/syllabus" element={<Navigate to="/courses" replace />} />
             <Route path="/courses" element={<Courses />} />
-            <Route path="/courses/ai-ml" element={<AiMlSyllabus />} />
-            <Route path="/courses/web-development" element={<WebDevSyllabus />} />
-            <Route path="/courses/devops" element={<DevOpsSyllabus />} />
-            <Route path="/courses/cybersecurity" element={<CybersecuritySyllabus />} />
-            <Route path="/courses/cloud-computing" element={<CloudComputingSyllabus />} />
+            <Route path="/courses/dop" element={<DevOpsSyllabus />} />
+            <Route path="/courses/aac" element={<AiMlSyllabus />} />
+            <Route path="/courses/aws" element={<CloudComputingSyllabus />} />
+            <Route path="/courses/data-science" element={<DataScienceSyllabus />} />
+            <Route path="/courses/ai-ml" element={<Navigate to="/courses/aac" replace />} />
+            <Route path="/courses/devops" element={<Navigate to="/courses/dop" replace />} />
+            <Route path="/courses/cloud-computing" element={<Navigate to="/courses/aws" replace />} />
+            <Route path="/courses/web-development" element={<Navigate to="/courses/data-science" replace />} />
+            <Route path="/courses/cybersecurity" element={<Navigate to="/courses" replace />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />

@@ -94,7 +94,7 @@ const Enroll = () => {
   usePageMeta({
     title: 'Apply & Enroll',
     description:
-      'Apply to Zyvotrix programs in Full Stack, DevOps, Cloud, AI/ML, and Cybersecurity. Share your goals and start your learning journey.',
+      'Apply to Zyvotrix certification programs: DOP, AAC, AWS Solutions Architect, and Data Science with Python. Share your goals and start your learning journey.',
     canonical: '/enroll',
   });
   const [defaultCourseId, setDefaultCourseId] = useState<string | null>(null);

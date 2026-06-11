@@ -7,7 +7,7 @@ const resources = [
   {
     icon: Map,
     title: 'Learning Roadmaps',
-    description: 'Step-by-step paths for Full Stack, DevOps, AWS, and more.',
+    description: 'Step-by-step paths for DOP, AAC, AWS, and Data Science.',
     href: '/courses#programs',
   },
   {
@@ -26,7 +26,7 @@ const resources = [
     icon: Wrench,
     title: 'DevOps Content',
     description: 'Docker, Kubernetes, CI/CD, and cloud fundamentals.',
-    href: '/courses/devops',
+    href: '/courses/dop',
   },
   {
     icon: FileText,
@@ -63,7 +63,7 @@ const FreeLearningResources = ({ showBanner = true }: FreeLearningResourcesProps
         </p>
         <Button asChild size="lg" className="btn-brand h-12 px-8">
           <Link to="/resources">
-            Explore 50+ Free Resources
+            Explore Free Resources
             <ArrowRight className="ml-2 h-5 w-5" />
           </Link>
         </Button>

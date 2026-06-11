@@ -182,10 +182,10 @@ const DevOpsSyllabus = () => {
       <Navbar />
 
       <SyllabusHero
-        title="DevOps Engineering"
-        subtitle="An 8-week path from DevOps fundamentals to automation, CI/CD, and cloud-native deployments."
-        image={IMAGES.programs.devops}
-        checkoutPath="/checkout/devops"
+        title="AI-Powered DevOps Engineer Program (DOP)"
+        subtitle="A 4-month certification covering DevOps fundamentals, AI-assisted automation, CI/CD, and cloud-native deployments."
+        image={IMAGES.programs.dop}
+        checkoutPath="/checkout/dop"
       />
       
       <section className="section-padding section-alt">
@@ -255,7 +255,7 @@ const DevOpsSyllabus = () => {
         </div>
       </section>
       
-      <SyllabusPageCta title="Ready to master DevOps?" checkoutPath="/checkout/devops" />
+      <SyllabusPageCta title="Ready to start the DOP program?" checkoutPath="/checkout/dop" />
 
       <Footer />
     </PageShell>

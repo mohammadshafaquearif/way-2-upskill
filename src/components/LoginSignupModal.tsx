@@ -436,12 +436,11 @@ const LoginSignupModal: React.FC<LoginSignupModalProps> = ({ isOpen, onClose }) 
                       <SelectValue placeholder="Select your area of interest" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="full-stack">Full Stack Web Development</SelectItem>
-                      <SelectItem value="ai-ml">AI/ML & Generative AI</SelectItem>
-                      <SelectItem value="devops">DevOps Engineering</SelectItem>
-                      <SelectItem value="cloud">Cloud Computing</SelectItem>
-                      <SelectItem value="cybersecurity">Cybersecurity</SelectItem>
-                      <SelectItem value="all">All Subjects</SelectItem>
+                      <SelectItem value="dop">AI-Powered DevOps (DOP)</SelectItem>
+                      <SelectItem value="aac">Agentic AI (AAC)</SelectItem>
+                      <SelectItem value="aws">AWS Solutions Architect</SelectItem>
+                      <SelectItem value="data-science">Data Science with Python</SelectItem>
+                      <SelectItem value="all">All Programs</SelectItem>
                     </SelectContent>
                   </Select>
                   {signupErrors.interestedSubject && <p className="text-red-500 text-sm">{signupErrors.interestedSubject}</p>}

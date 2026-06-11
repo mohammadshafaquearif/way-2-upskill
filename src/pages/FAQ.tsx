@@ -126,7 +126,7 @@ const FAQ = () => {
       <PageCta
         badge="Ready to learn?"
         title="Find your perfect program"
-        description="Explore structured paths in Full Stack, DevOps, Cloud, AI, and more."
+        description="Explore DOP, AAC, AWS Solutions Architect, and Data Science with Python programs."
         primaryLabel="View Programs"
         primaryHref="/courses"
         secondaryLabel="Enroll Now"

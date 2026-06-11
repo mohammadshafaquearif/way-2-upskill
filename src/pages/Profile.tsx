@@ -158,24 +158,18 @@ const Profile = () => {
                   </CardHeader>
                   <CardContent>
                     <div className="grid md:grid-cols-2 gap-4">
-                      <div className="p-4 border rounded-lg hover:shadow-md transition-shadow">
-                        <h4 className="font-semibold mb-2">Full Stack Web Development</h4>
-                        <p className="text-sm text-muted-foreground mb-3">
-                          Master modern web development with React, Node.js, and cloud deployment.
-                        </p>
-                        <Button size="sm" asChild className="w-full mt-2">
-                          <Link to="/courses/web-development">View Program</Link>
-                        </Button>
-                      </div>
-                      <div className="p-4 border rounded-lg hover:shadow-md transition-shadow">
-                        <h4 className="font-semibold mb-2">AI/ML & Generative AI</h4>
-                        <p className="text-sm text-muted-foreground mb-3">
-                          Transform your career with intensive AI/ML program and GenAI systems.
-                        </p>
-                        <Button size="sm" asChild className="w-full mt-2">
-                          <Link to="/courses/ai-ml">View Program</Link>
-                        </Button>
-                      </div>
+                      {[
+                        { title: 'Agentic AI Certification Training (AAC)', route: '/courses/aac', desc: 'Build intelligent agents and LLM-powered workflows.' },
+                        { title: 'AWS Solutions Architect Program (AWS)', route: '/courses/aws', desc: 'Design scalable cloud architectures on AWS.' },
+                      ].map((program) => (
+                        <div key={program.route} className="p-4 border rounded-lg hover:shadow-md transition-shadow">
+                          <h4 className="font-semibold mb-2">{program.title}</h4>
+                          <p className="text-sm text-muted-foreground mb-3">{program.desc}</p>
+                          <Button size="sm" asChild className="w-full mt-2">
+                            <Link to={program.route}>View Program</Link>
+                          </Button>
+                        </div>
+                      ))}
                     </div>
                   </CardContent>
                 </Card>

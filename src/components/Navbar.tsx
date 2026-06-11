@@ -8,13 +8,11 @@ import {
   LogOut,
   BookOpen,
   ChevronDown,
-  Brain,
-  Code,
-  Shield,
   Cloud,
   Wrench,
   Sparkles,
 } from 'lucide-react';
+import { COURSES } from '@/lib/courses';
 import LoginSignupModal from './LoginSignupModal';
 import { useAuth } from '@/contexts/AuthContext';
 import {
@@ -24,13 +22,12 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-const courses = [
-  { id: 'ai-ml', title: 'AI/ML & Generative AI', route: '/courses/ai-ml', icon: Brain },
-  { id: 'web-dev', title: 'Full Stack Web Development', route: '/courses/web-development', icon: Code },
-  { id: 'devops', title: 'DevOps Engineering', route: '/courses/devops', icon: Wrench },
-  { id: 'cybersecurity', title: 'Cybersecurity', route: '/courses/cybersecurity', icon: Shield },
-  { id: 'cloud', title: 'Cloud Computing', route: '/courses/cloud-computing', icon: Cloud },
-];
+const courses = COURSES.map((course) => ({
+  id: course.id,
+  title: course.shortTitle,
+  route: course.route,
+  icon: course.icon,
+}));
 
 const Navbar = () => {
   const location = useLocation();
@@ -61,7 +58,7 @@ const Navbar = () => {
         <div className="container flex items-center justify-center gap-2 px-4 py-2 text-center text-xs font-medium sm:text-sm">
           <Sparkles className="h-3.5 w-3.5 shrink-0" />
           <span>
-            New cohorts open — explore industry-ready programs in AI, Cloud &amp; Full Stack
+            New cohorts open — DOP, AAC, AWS &amp; Data Science programs enrolling now
           </span>
           <Link to="/courses" className="ml-1 underline underline-offset-2 hover:opacity-90">
             View Programs →

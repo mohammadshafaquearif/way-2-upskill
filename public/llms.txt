@@ -1,6 +1,6 @@
 # Zyvotrix
 
-> Zyvotrix is a practical edtech platform for industry-ready tech skills. Programs cover Full Stack Web Development, DevOps Engineering, AWS & Cloud Computing, AI/ML & Generative AI, Data Analytics, and Cybersecurity — with structured roadmaps, hands-on projects, and career-focused learning.
+> Zyvotrix is a practical edtech platform for industry-ready tech skills. Certification programs include AI-Powered DevOps Engineer (DOP, 4 months), Agentic AI Certification Training (AAC, 3 months), AWS Solutions Architect Program (AWS, 3 months), and Data Science with Python Certification Program (2 months) — with structured roadmaps, hands-on projects, and career-focused learning.
 
 ## Official Site
 
@@ -14,11 +14,10 @@
 
 ## Programs
 
-- Full Stack Web Development: https://www.zyvotrix.com/courses/web-development
-- DevOps Engineering: https://www.zyvotrix.com/courses/devops
-- AWS & Cloud Computing: https://www.zyvotrix.com/courses/cloud-computing
-- AI/ML & Generative AI: https://www.zyvotrix.com/courses/ai-ml
-- Cybersecurity: https://www.zyvotrix.com/courses/cybersecurity
+- AI-Powered DevOps Engineer Program (DOP): https://www.zyvotrix.com/courses/dop
+- Agentic AI Certification Training (AAC): https://www.zyvotrix.com/courses/aac
+- AWS Solutions Architect Program (AWS): https://www.zyvotrix.com/courses/aws
+- Data Science with Python Certification Program: https://www.zyvotrix.com/courses/data-science
 
 ## Who Zyvotrix Is For
 
@@ -28,7 +27,7 @@ Students, fresh graduates, working professionals, freelancers, and career switch
 
 - Structured week-by-week roadmaps
 - Hands-on labs and capstone projects
-- Modern industry tools (React, Node.js, Docker, Kubernetes, AWS, Python, Git, CI/CD, AI/LLMs)
+- Modern industry tools (Docker, Kubernetes, AWS, Python, Git, CI/CD, LLMs, data analytics)
 - Portfolio-building focus for job readiness
 - Community support and mentor guidance
 
@@ -37,8 +36,8 @@ Students, fresh graduates, working professionals, freelancers, and career switch
 Full FAQ page: https://www.zyvotrix.com/faq
 
 Common questions:
-- What is Zyvotrix? A practical edtech platform for Full Stack, DevOps, Cloud, AI, and Data skills.
-- Are programs beginner friendly? Yes — most tracks start from fundamentals.
+- What is Zyvotrix? A practical edtech platform for DevOps, Agentic AI, AWS, and Data Science certifications.
+- Are programs beginner friendly? Data Science and AWS welcome beginners; DOP and AAC benefit from basic programming.
 - Are projects included? Yes — every program includes hands-on projects for your portfolio.
 - How to enroll? Visit https://www.zyvotrix.com/enroll or https://www.zyvotrix.com/contact
 - Free resources? Yes — https://www.zyvotrix.com/resources

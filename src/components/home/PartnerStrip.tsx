@@ -16,7 +16,7 @@ const partners = [
 ];
 
 const PartnerStrip = () => (
-  <section className="relative overflow-hidden border-y border-border/60 bg-brand-950 py-8">
+  <section className="relative overflow-hidden border-y border-border/60 bg-brand-950 py-10 pb-14 sm:py-12 sm:pb-16">
     <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-brand-950 via-brand-950/95 to-brand-950" aria-hidden />
     <p className="relative z-10 mb-6 text-center text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
       Built with industry-standard tools

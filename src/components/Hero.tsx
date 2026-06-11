@@ -1,112 +1,206 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, PlayCircle } from 'lucide-react';
+import {
+  ArrowRight,
+  Bot,
+  Check,
+  Cloud,
+  GitBranch,
+  Layers,
+  Server,
+  Sparkles,
+  BarChart3,
+  Wrench,
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
-import Hero3DVisual from '@/components/motion/Hero3DVisual';
-import AmbientDepth from '@/components/motion/AmbientDepth';
+import HeroSlideVisual, { type HeroAccent } from '@/components/home/HeroSlideVisual';
+import { IMAGES } from '@/lib/images';
+import { COURSES } from '@/lib/courses';
+import { cn } from '@/lib/utils';
 
-const SKILLS = ['Full Stack', 'DevOps', 'Cloud', 'AI & ML', 'Data Analytics', 'Cybersecurity'];
+const SLIDE_INTERVAL_MS = 6000;
 
-const heroStats = [
-  { value: '5+', label: 'Career paths' },
-  { value: '50+', label: 'Live projects' },
-  { value: '100%', label: 'Practical focus' },
+interface HeroSlide {
+  id: string;
+  headline: React.ReactNode;
+  ctaLabel: string;
+  ctaHref: string;
+  image: string;
+  imageAlt: string;
+  accents: HeroAccent[];
+  bullets?: string[];
+}
+
+const slides: HeroSlide[] = [
+  {
+    id: 'aac',
+    headline: (
+      <>
+        Master Agentic AI
+        <br />
+        With Industry-Ready Certification
+      </>
+    ),
+    ctaLabel: 'Explore Programs',
+    ctaHref: COURSES[1].route,
+    image: IMAGES.hero.slideAi,
+    imageAlt: 'Learner exploring Agentic AI certification at Zyvotrix',
+    accents: [
+      { icon: Bot, className: 'hero-accent-1' },
+      { icon: Sparkles, className: 'hero-accent-2' },
+      { icon: Layers, className: 'hero-accent-3' },
+    ],
+    bullets: [
+      'LLMs, agents & intelligent workflows',
+      'Hands-on labs with real use cases',
+      'Portfolio-ready AI capstone',
+    ],
+  },
+  {
+    id: 'dop',
+    headline: (
+      <>
+        Become an AI-Powered
+        <br />
+        DevOps Engineer
+      </>
+    ),
+    ctaLabel: 'Explore Programs',
+    ctaHref: COURSES[0].route,
+    image: IMAGES.hero.slideDev,
+    imageAlt: 'Professional upskilling in AI-powered DevOps at Zyvotrix',
+    accents: [
+      { icon: Wrench, className: 'hero-accent-1' },
+      { icon: Server, className: 'hero-accent-2' },
+      { icon: GitBranch, className: 'hero-accent-3' },
+    ],
+  },
+  {
+    id: 'aws',
+    headline: (
+      <>
+        AWS Solutions Architect
+        <br />
+        Certification Program
+      </>
+    ),
+    ctaLabel: 'Explore Programs',
+    ctaHref: COURSES[2].route,
+    image: IMAGES.hero.slideCloud,
+    imageAlt: 'Team training for AWS Solutions Architect certification',
+    accents: [
+      { icon: Cloud, className: 'hero-accent-1' },
+      { icon: Server, className: 'hero-accent-2' },
+      { icon: Layers, className: 'hero-accent-3' },
+    ],
+  },
+  {
+    id: 'data-science',
+    headline: (
+      <>
+        Data Science with Python
+        <br />
+        Certification Program
+      </>
+    ),
+    ctaLabel: 'Explore Programs',
+    ctaHref: COURSES[3].route,
+    image: IMAGES.hero.slideAi,
+    imageAlt: 'Learner in Data Science with Python certification program',
+    accents: [
+      { icon: BarChart3, className: 'hero-accent-1' },
+      { icon: Layers, className: 'hero-accent-2' },
+      { icon: Sparkles, className: 'hero-accent-3' },
+    ],
+  },
 ];
 
 const Hero = () => {
-  const [skillIndex, setSkillIndex] = useState(0);
-  const [visible, setVisible] = useState(true);
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setVisible(false);
-      setTimeout(() => {
-        setSkillIndex((i) => (i + 1) % SKILLS.length);
-        setVisible(true);
-      }, 280);
-    }, 3200);
-    return () => clearInterval(interval);
+  const goTo = useCallback((index: number) => {
+    setActive(index);
   }, []);
 
+  const next = useCallback(() => {
+    setActive((i) => (i + 1) % slides.length);
+  }, []);
+
+  useEffect(() => {
+    if (paused) return;
+    const timer = setInterval(next, SLIDE_INTERVAL_MS);
+    return () => clearInterval(timer);
+  }, [paused, next]);
+
   return (
-    <section className="hero-creative relative min-h-[90vh] overflow-x-hidden">
-      <div className="hero-orb hero-orb-1 opacity-40" aria-hidden />
-      <div className="hero-orb hero-orb-2 opacity-30" aria-hidden />
-      <div className="hero-grid-overlay opacity-50" aria-hidden />
-      <AmbientDepth />
-
-      <div className="container relative z-10 mx-auto px-4 pb-20 pt-20 sm:px-6 sm:pb-24 sm:pt-28 lg:pt-32">
-        <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-12 xl:gap-20">
-          <div className="text-center lg:text-left">
-            <div className="hero-fade-up mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-white/80 px-4 py-2 text-sm font-medium text-foreground shadow-sm">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-              Learn. Build. Get Ahead in Tech
-            </div>
-
-            <h1
-              className="hero-fade-up mb-6 text-4xl font-bold leading-[1.08] tracking-tight text-brand-950 sm:text-5xl md:text-[3.25rem] lg:text-[3.5rem]"
-              style={{ animationDelay: '0.1s' }}
-            >
-              Master{' '}
-              <span
-                className={`gradient-text inline-block transition-all duration-300 ${
-                  visible ? 'translate-y-0 opacity-100' : 'translate-y-1 opacity-0'
-                }`}
-              >
-                {SKILLS[skillIndex]}
-              </span>
-              <br />
-              <span className="text-brand-950">Skills That Get You Hired</span>
-            </h1>
-
-            <p
-              className="hero-fade-up mx-auto mb-8 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg lg:mx-0"
-              style={{ animationDelay: '0.2s' }}
-            >
-              Structured programs, real-world projects, and expert guidance — built for students,
-              professionals, and career switchers ready to level up.
-            </p>
-
+    <section
+      className="hero-slider relative overflow-hidden"
+      aria-roledescription="carousel"
+      aria-label="Featured programs"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={() => setPaused(false)}
+    >
+      <div className="hero-slider-track">
+        {slides.map((slide, index) => {
+          const isActive = index === active;
+          return (
             <div
-              className="hero-fade-up mb-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start"
-              style={{ animationDelay: '0.3s' }}
+              key={slide.id}
+              role="group"
+              aria-roledescription="slide"
+              aria-label={`Slide ${index + 1} of ${slides.length}`}
+              aria-hidden={!isActive}
+              className={cn('hero-slider-slide', isActive && 'hero-slider-slide--active')}
             >
-              <Button asChild size="lg" className="btn-brand group h-12 w-full px-8 text-base sm:w-auto">
-                <Link to="/courses" className="inline-flex items-center">
-                  Explore Programs
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-0.5" />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="h-12 w-full border-border bg-white px-8 text-base font-semibold text-foreground hover:bg-muted sm:w-auto"
-              >
-                <Link to="/resources" className="inline-flex items-center">
-                  <PlayCircle className="mr-2 h-5 w-5 text-primary" />
-                  Free Resources
-                </Link>
-              </Button>
-            </div>
-
-            <div
-              className="hero-fade-up flex flex-wrap items-center justify-center gap-8 border-t border-border pt-8 lg:justify-start"
-              style={{ animationDelay: '0.4s' }}
-            >
-              {heroStats.map((stat) => (
-                <div key={stat.label} className="text-center lg:text-left">
-                  <p className="text-2xl font-bold text-primary sm:text-3xl">{stat.value}</p>
-                  <p className="text-xs font-medium text-muted-foreground sm:text-sm">{stat.label}</p>
+              <div className="container relative z-10 mx-auto px-4 sm:px-6">
+                <div className="hero-slider-layout">
+                  <div className="hero-slider-copy">
+                    <h1 className="hero-slider-headline">{slide.headline}</h1>
+                    {slide.bullets && slide.bullets.length > 0 && (
+                      <ul className="hero-slider-bullets">
+                        {slide.bullets.map((point) => (
+                          <li key={point} className="hero-slider-bullet">
+                            <Check className="hero-slider-bullet-icon" aria-hidden />
+                            <span>{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    <Button asChild size="lg" className="btn-brand hero-slider-cta group mt-8 h-12 px-8 text-base">
+                      <Link to={slide.ctaHref}>
+                        {slide.ctaLabel}
+                        <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-0.5" />
+                      </Link>
+                    </Button>
+                  </div>
+                  <HeroSlideVisual
+                    image={slide.image}
+                    imageAlt={slide.imageAlt}
+                    accents={slide.accents}
+                    wide={slide.id === 'aws'}
+                  />
                 </div>
-              ))}
+              </div>
             </div>
-          </div>
+          );
+        })}
+      </div>
 
-          <div className="hero-fade-up" style={{ animationDelay: '0.2s' }}>
-            <Hero3DVisual />
-          </div>
-        </div>
+      <div className="hero-slider-dots" role="tablist" aria-label="Choose slide">
+        {slides.map((slide, index) => (
+          <button
+            key={slide.id}
+            type="button"
+            role="tab"
+            aria-selected={index === active}
+            aria-label={`Go to slide ${index + 1}`}
+            className={cn('hero-slider-dot', index === active && 'hero-slider-dot--active')}
+            onClick={() => goTo(index)}
+          />
+        ))}
       </div>
     </section>
   );

@@ -35,7 +35,7 @@ const LearningJourney = () => (
 
     <div className="container relative z-10 px-4 sm:px-6">
       <div className="mx-auto mb-14 max-w-2xl text-center">
-        <span className="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary">
+        <span className="mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
           Your Path
         </span>
         <h2 className="section-title mb-4">From Zero to Job-Ready</h2>

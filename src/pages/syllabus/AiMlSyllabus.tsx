@@ -185,10 +185,10 @@ const AiMlSyllabus = () => {
       <Navbar />
 
       <SyllabusHero
-        title="AI/ML & Generative AI"
-        subtitle="An 8-week journey from Python foundations to GenAI systems — with practical projects and guided implementation."
-        image={IMAGES.programs.ai}
-        checkoutPath="/checkout/ai-ml"
+        title="Agentic AI Certification Training (AAC)"
+        subtitle="A 3-month certification on intelligent agents, LLM workflows, and production-ready AI automation systems."
+        image={IMAGES.programs.aac}
+        checkoutPath="/checkout/aac"
       />
       
       <section className="section-padding section-alt">
@@ -257,7 +257,7 @@ const AiMlSyllabus = () => {
         </div>
       </section>
       
-      <SyllabusPageCta title="Ready to master AI/ML?" checkoutPath="/checkout/ai-ml" />
+      <SyllabusPageCta title="Ready to start the AAC program?" checkoutPath="/checkout/aac" />
 
       <Footer />
     </PageShell>

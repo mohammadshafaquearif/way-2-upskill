@@ -41,7 +41,7 @@ const About = () => {
   usePageMeta({
     title: 'About Us',
     description:
-      'Learn about Zyvotrix — practical, industry-oriented tech education in Full Stack, DevOps, Cloud, AI, and Data Analytics.',
+      'Learn about Zyvotrix — practical certification programs in AI-Powered DevOps, Agentic AI, AWS Solutions Architect, and Data Science with Python.',
     canonical: '/about',
   });
 

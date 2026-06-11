@@ -15,39 +15,19 @@ import { apiClient } from '@/integrations/api/client';
 import PageHero from '@/components/PageHero';
 import PageShell from '@/components/layout/PageShell';
 import { IMAGES } from '@/lib/images';
+import { COURSE_BY_ID } from '@/lib/courses';
 
-const courseData = {
-  'ai-ml': {
-    id: 'ai-ml',
-    title: 'Professional AI/ML & Generative AI Career Accelerator',
-    duration: '8 Weeks',
-    projects: '15+'
-  },
-  'web-dev': {
-    id: 'web-dev',
-    title: 'Full Stack Web Development',
-    duration: '10 Weeks',
-    projects: '12+'
-  },
-  'devops': {
-    id: 'devops',
-    title: 'DevOps Engineering',
-    duration: '8 Weeks',
-    projects: '10+'
-  },
-  'cloud': {
-    id: 'cloud',
-    title: 'Cloud Computing & AWS',
-    duration: '10 Weeks',
-    projects: '12+'
-  },
-  'cybersecurity': {
-    id: 'cybersecurity',
-    title: 'Cybersecurity',
-    duration: '12 Weeks',
-    projects: '8+'
-  }
-};
+const courseData = Object.fromEntries(
+  Object.values(COURSE_BY_ID).map((course) => [
+    course.id,
+    {
+      id: course.id,
+      title: course.title,
+      duration: course.duration,
+      projects: course.projects,
+    },
+  ]),
+);
 
 const Checkout: React.FC = () => {
   const { courseId } = useParams<{ courseId: string }>();
