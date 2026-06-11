@@ -14,7 +14,7 @@
 
 ## Programs
 
-- AI-Powered DevOps Engineer Program (DOP): https://www.zyvotrix.com/courses/dop
+- AI-Powered DevOps Engineer Program (DOP): https://www.zyvotrix.com/courses/devops-engineer-program
 - Agentic AI Certification Training (AAC): https://www.zyvotrix.com/courses/aac
 - AWS Solutions Architect Program (AWS): https://www.zyvotrix.com/courses/aws
 - Data Science with Python Certification Program: https://www.zyvotrix.com/courses/data-science

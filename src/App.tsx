@@ -10,7 +10,7 @@ import PageLayout from "@/components/PageLayout";
 import Index from "./pages/Index";
 import Courses from "./pages/Courses";
 import AiMlSyllabus from "./pages/syllabus/AiMlSyllabus";
-import DevOpsSyllabus from "./pages/syllabus/DevOpsSyllabus";
+import DevOpsEngineerProgram from "./pages/courses/DevOpsEngineerProgram";
 import CloudComputingSyllabus from "./pages/syllabus/CloudComputingSyllabus";
 import DataScienceSyllabus from "./pages/syllabus/DataScienceSyllabus";
 import About from "./pages/About";
@@ -43,12 +43,13 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/syllabus" element={<Navigate to="/courses" replace />} />
             <Route path="/courses" element={<Courses />} />
-            <Route path="/courses/dop" element={<DevOpsSyllabus />} />
+            <Route path="/courses/devops-engineer-program" element={<DevOpsEngineerProgram />} />
+            <Route path="/courses/dop" element={<Navigate to="/courses/devops-engineer-program" replace />} />
             <Route path="/courses/aac" element={<AiMlSyllabus />} />
             <Route path="/courses/aws" element={<CloudComputingSyllabus />} />
             <Route path="/courses/data-science" element={<DataScienceSyllabus />} />
             <Route path="/courses/ai-ml" element={<Navigate to="/courses/aac" replace />} />
-            <Route path="/courses/devops" element={<Navigate to="/courses/dop" replace />} />
+            <Route path="/courses/devops" element={<Navigate to="/courses/devops-engineer-program" replace />} />
             <Route path="/courses/cloud-computing" element={<Navigate to="/courses/aws" replace />} />
             <Route path="/courses/web-development" element={<Navigate to="/courses/data-science" replace />} />
             <Route path="/courses/cybersecurity" element={<Navigate to="/courses" replace />} />
@@ -63,6 +64,7 @@ const App = () => (
             <Route path="/profile" element={<Profile />} />
             <Route path="/dashboard" element={<UserLanding />} />
             <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/checkout/dop" element={<Navigate to="/checkout/devops-engineer-program" replace />} />
             <Route path="/checkout/:courseId" element={<Checkout />} />
             <Route path="*" element={<NotFound />} />
           </Route>

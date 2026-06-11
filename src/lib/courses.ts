@@ -13,7 +13,6 @@ export interface Course {
   checkoutPath: string;
   image: string;
   icon: LucideIcon;
-  cohortStarts: string;
   level: string;
   projects: string;
 }
@@ -27,11 +26,10 @@ export const COURSES: Course[] = [
     description:
       'DevOps fundamentals with AI-assisted automation, CI/CD, containers, and production-ready cloud deployments.',
     duration: '4 Months',
-    route: '/courses/dop',
-    checkoutPath: '/checkout/dop',
+    route: '/courses/devops-engineer-program',
+    checkoutPath: '/checkout/devops-engineer-program',
     image: IMAGES.programs.dop,
     icon: Wrench,
-    cohortStarts: 'Jul 7',
     level: 'Intermediate',
     projects: '12+',
   },
@@ -47,7 +45,6 @@ export const COURSES: Course[] = [
     checkoutPath: '/checkout/aac',
     image: IMAGES.programs.aac,
     icon: Bot,
-    cohortStarts: 'Jul 14',
     level: 'Intermediate',
     projects: '10+',
   },
@@ -63,7 +60,6 @@ export const COURSES: Course[] = [
     checkoutPath: '/checkout/aws',
     image: IMAGES.programs.aws,
     icon: Cloud,
-    cohortStarts: 'Jun 23',
     level: 'Beginner to Intermediate',
     projects: '10+',
   },
@@ -79,7 +75,6 @@ export const COURSES: Course[] = [
     checkoutPath: '/checkout/data-science',
     image: IMAGES.programs.dataScience,
     icon: BarChart3,
-    cohortStarts: 'Jun 30',
     level: 'Beginner',
     projects: '8+',
   },
@@ -89,3 +84,9 @@ export const COURSE_BY_ID = Object.fromEntries(COURSES.map((c) => [c.id, c])) as
   string,
   Course
 >;
+
+export function getCourseByCheckoutId(checkoutId: string): Course | undefined {
+  return COURSES.find(
+    (c) => c.id === checkoutId || c.checkoutPath === `/checkout/${checkoutId}`,
+  );
+}

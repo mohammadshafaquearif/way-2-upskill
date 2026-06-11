@@ -6,7 +6,6 @@ export interface Program {
   route: string;
   image: string;
   duration: string;
-  cohortStarts: string;
   partner: string;
   code: string;
 }
@@ -17,7 +16,6 @@ export const PROGRAMS: Program[] = COURSES.map((course) => ({
   route: course.route,
   image: course.image,
   duration: course.duration,
-  cohortStarts: course.cohortStarts,
   partner: 'Zyvotrix',
   code: course.code,
 }));

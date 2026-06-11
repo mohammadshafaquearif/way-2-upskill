@@ -58,7 +58,7 @@ const Navbar = () => {
         <div className="container flex items-center justify-center gap-2 px-4 py-2 text-center text-xs font-medium sm:text-sm">
           <Sparkles className="h-3.5 w-3.5 shrink-0" />
           <span>
-            New cohorts open — DOP, AAC, AWS &amp; Data Science programs enrolling now
+            DOP, AAC, AWS &amp; Data Science programs — enrollments open now
           </span>
           <Link to="/courses" className="ml-1 underline underline-offset-2 hover:opacity-90">
             View Programs →

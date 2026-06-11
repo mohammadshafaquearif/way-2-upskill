@@ -26,7 +26,7 @@ const resources = [
     icon: Wrench,
     title: 'DevOps Content',
     description: 'Docker, Kubernetes, CI/CD, and cloud fundamentals.',
-    href: '/courses/dop',
+    href: '/courses/devops-engineer-program',
   },
   {
     icon: FileText,

@@ -15,19 +15,7 @@ import { apiClient } from '@/integrations/api/client';
 import PageHero from '@/components/PageHero';
 import PageShell from '@/components/layout/PageShell';
 import { IMAGES } from '@/lib/images';
-import { COURSE_BY_ID } from '@/lib/courses';
-
-const courseData = Object.fromEntries(
-  Object.values(COURSE_BY_ID).map((course) => [
-    course.id,
-    {
-      id: course.id,
-      title: course.title,
-      duration: course.duration,
-      projects: course.projects,
-    },
-  ]),
-);
+import { getCourseByCheckoutId } from '@/lib/courses';
 
 const Checkout: React.FC = () => {
   const { courseId } = useParams<{ courseId: string }>();
@@ -37,7 +25,15 @@ const Checkout: React.FC = () => {
   const [paymentMethod, setPaymentMethod] = useState('full');
   const [paymentType, setPaymentType] = useState('card');
 
-  const course = courseData[courseId as keyof typeof courseData];
+  const courseMeta = courseId ? getCourseByCheckoutId(courseId) : undefined;
+  const course = courseMeta
+    ? {
+        id: courseMeta.id,
+        title: courseMeta.title,
+        duration: courseMeta.duration,
+        projects: courseMeta.projects,
+      }
+    : undefined;
 
   useEffect(() => {
     if (!course) {

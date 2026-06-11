@@ -81,9 +81,6 @@ const Courses = () => {
                   <p className="top-program-card-meta">
                     <span>Duration: {course.duration}</span>
                   </p>
-                  <p className="top-program-card-meta">
-                    <span>Cohort Starts: {course.cohortStarts}</span>
-                  </p>
                   <Button asChild variant="outline" className="top-program-card-btn">
                     <Link to={course.route}>View Program</Link>
                   </Button>

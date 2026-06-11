@@ -40,9 +40,6 @@ const TopPrograms = () => (
               <p className="top-program-card-meta">
                 <span>Duration: {program.duration}</span>
               </p>
-              <p className="top-program-card-meta">
-                <span>Cohort Starts: {program.cohortStarts}</span>
-              </p>
               <Button
                 asChild
                 variant="outline"

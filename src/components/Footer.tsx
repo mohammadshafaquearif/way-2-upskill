@@ -115,7 +115,7 @@ const Footer = () => {
               Stay Updated
             </h3>
             <p className="mb-4 text-sm leading-relaxed text-slate-400">
-              Get program updates, cohort dates, and free learning resources.
+              Get program updates and free learning resources.
             </p>
             <Link
               to="/#newsletter"
