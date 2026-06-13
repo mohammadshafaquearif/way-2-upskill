@@ -284,17 +284,20 @@ export const db = {
     subject?: string;
     message: string;
   }) {
-    const { data, error } = await supabase.from('contacts').insert({
+    const row = {
       first_name: contactData.firstName,
       last_name: contactData.lastName,
       email: contactData.email,
       phone: contactData.phone,
       subject: contactData.subject,
       message: contactData.message,
-    }).select().single();
+    };
+
+    // No .select() — anon users have INSERT but not SELECT on contacts (admin-only read)
+    const { error } = await supabase.from('contacts').insert(row);
 
     if (error) throw new Error(error.message);
-    return data;
+    return row;
   },
 
   async getAdminUsers() {
