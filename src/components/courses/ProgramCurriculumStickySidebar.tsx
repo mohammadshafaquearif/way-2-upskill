@@ -19,9 +19,11 @@ const ProgramCurriculumStickySidebar = ({ children }: ProgramCurriculumStickySid
 
   useEffect(() => {
     const section = document.getElementById('curriculum');
+    const layout = section?.querySelector('.program-curriculum-layout');
+    const anchor = layout ?? section;
     const col = colRef.current;
     const aside = asideRef.current;
-    if (!section || !col || !aside) return;
+    if (!section || !anchor || !col || !aside) return;
 
     const mq = window.matchMedia('(min-width: 1024px)');
 
@@ -38,6 +40,7 @@ const ProgramCurriculumStickySidebar = ({ children }: ProgramCurriculumStickySid
       }
 
       const sectionRect = section.getBoundingClientRect();
+      const anchorRect = anchor.getBoundingClientRect();
       const colRect = colEl.getBoundingClientRect();
       const asideH = asideEl.offsetHeight;
 
@@ -51,7 +54,7 @@ const ProgramCurriculumStickySidebar = ({ children }: ProgramCurriculumStickySid
         return;
       }
 
-      if (sectionRect.top >= HEADER_OFFSET) {
+      if (anchorRect.top >= HEADER_OFFSET) {
         setMode('static');
         return;
       }
@@ -67,6 +70,9 @@ const ProgramCurriculumStickySidebar = ({ children }: ProgramCurriculumStickySid
     const ro = new ResizeObserver(update);
     ro.observe(aside);
     ro.observe(section);
+    if (layout instanceof Element) {
+      ro.observe(layout);
+    }
 
     update();
     window.addEventListener('scroll', update, { passive: true });

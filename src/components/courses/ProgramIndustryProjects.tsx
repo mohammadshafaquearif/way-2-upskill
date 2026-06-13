@@ -175,6 +175,7 @@ interface ProgramIndustryProjectsProps {
   description?: string;
   portfolioOutcomeTitle?: string;
   portfolioOutcomeDescription?: string;
+  portfolioOutcomeItems?: string[];
 }
 
 const ProgramIndustryProjects = ({
@@ -184,6 +185,7 @@ const ProgramIndustryProjects = ({
   description = 'Seven progressive industry projects, a production capstone, and a bonus cloud deployment build — every project is designed for your GitHub portfolio and AI engineer interviews.',
   portfolioOutcomeTitle = 'Portfolio Outcome',
   portfolioOutcomeDescription = 'By the end of the program, learners will have built:',
+  portfolioOutcomeItems,
 }: ProgramIndustryProjectsProps) => {
   const [api, setApi] = useState<CarouselApi>();
   const [activeIndex, setActiveIndex] = useState(0);
@@ -310,14 +312,16 @@ const ProgramIndustryProjects = ({
         <Reveal3D delay={140} className="program-page-content mt-12">
           <div className="program-portfolio-outcome rounded-2xl border border-border bg-[#F8FAFC] p-6 sm:p-8">
             <h3 className="mb-5 text-lg font-bold text-foreground sm:text-xl">{portfolioOutcomeTitle}</h3>
-            <p className="mb-5 text-sm text-muted-foreground">
-              {portfolioOutcomeDescription}
-            </p>
+            {portfolioOutcomeDescription && (
+              <p className="mb-5 text-sm text-muted-foreground">
+                {portfolioOutcomeDescription}
+              </p>
+            )}
             <ul className="grid gap-3 sm:grid-cols-2">
-              {projects.map((project) => (
-                <li key={project.id} className="flex items-start gap-2.5 text-sm text-foreground">
+              {(portfolioOutcomeItems ?? projects.map((p) => p.title)).map((item) => (
+                <li key={item} className="flex items-start gap-2.5 text-sm text-foreground">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-secondary" strokeWidth={2.5} />
-                  <span>{project.title}</span>
+                  <span>{item}</span>
                 </li>
               ))}
             </ul>

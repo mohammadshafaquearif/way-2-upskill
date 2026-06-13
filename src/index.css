@@ -625,6 +625,10 @@
     padding-top: 0;
   }
 
+  .program-page-polish .program-hero-visual-col .aws-hero-visual {
+    padding-top: 0;
+  }
+
   @media (min-width: 1024px) {
     .program-page-polish .program-hero-visual-col {
       transform: translateY(-0.5rem);

@@ -61,7 +61,7 @@ export const FAQS: FaqItem[] = [
     category: 'programs',
     question: 'What programs does Zyvotrix offer?',
     answer:
-      'Zyvotrix offers four certification programs: AI-Powered DevOps Engineer Program (DOP, 4 months), Agentic AI Certification Training (AAC, 3 months), AWS Solutions Architect Program (AWS, 3 months), and Data Science with Python Certification Program (2 months). View all programs at zyvotrix.com/courses.',
+      'Zyvotrix offers four certification programs: AI-Powered DevOps Engineer Program (DOP, 4 months), Agentic AI Certification Training (AAC, 3 months), AWS Solutions Architect Program (AWS, 3 months), and Data Science & Machine Learning with Python Certification Program (3 months). View all programs at zyvotrix.com/courses.',
   },
   {
     id: 'beginner-friendly',
@@ -89,7 +89,7 @@ export const FAQS: FaqItem[] = [
     category: 'programs',
     question: 'How long are Zyvotrix programs?',
     answer:
-      'Program duration varies by certification: DOP runs 4 months, AAC and AWS run 3 months each, and Data Science with Python runs 2 months. Check each program page at zyvotrix.com/courses for the full syllabus and module breakdown.',
+      'Program duration varies by certification: DOP runs 4 months, AAC, AWS, and Data Science & Machine Learning with Python each run 3 months. Check each program page at zyvotrix.com/courses for the full syllabus and module breakdown.',
   },
   {
     id: 'syllabus-access',
