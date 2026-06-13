@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import ProgramCardBrand from '@/components/home/ProgramCardBrand';
 import { Button } from '@/components/ui/button';
 import { PROGRAMS } from '@/lib/programs';
 
@@ -27,12 +28,7 @@ const TopPrograms = () => (
                 className="top-program-card-image"
                 loading="lazy"
               />
-              <div className="top-program-partner">
-                <span className="top-program-partner-logo" aria-hidden>
-                  Z
-                </span>
-                <span className="top-program-partner-name">{program.partner}</span>
-              </div>
+              <ProgramCardBrand />
             </div>
 
             <div className="top-program-card-body">

@@ -5,6 +5,7 @@ import PageShell from '@/components/layout/PageShell';
 import PageHero from '@/components/PageHero';
 import PageCta from '@/components/PageCta';
 import { Link } from 'react-router-dom';
+import ProgramCardBrand from '@/components/home/ProgramCardBrand';
 import { Button } from '@/components/ui/button';
 import { Users, FolderKanban, Clock } from 'lucide-react';
 import { IMAGES } from '@/lib/images';
@@ -67,12 +68,7 @@ const Courses = () => {
                     className="top-program-card-image"
                     loading="lazy"
                   />
-                  <div className="top-program-partner">
-                    <span className="top-program-partner-logo" aria-hidden>
-                      {course.code.charAt(0)}
-                    </span>
-                    <span className="top-program-partner-name">{course.code}</span>
-                  </div>
+                  <ProgramCardBrand />
                 </div>
 
                 <div className="top-program-card-body">

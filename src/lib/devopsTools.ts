@@ -1,13 +1,4 @@
-/** DevOps program tech stack with official brand icons */
-const simpleIcon = (slug: string, color?: string) =>
-  color
-    ? `https://cdn.simpleicons.org/${slug}/${color.replace('#', '')}`
-    : `https://cdn.simpleicons.org/${slug}`;
-
-const devicon = (name: string, variant = 'original') =>
-  `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-${variant}.svg`;
-
-const localTool = (file: string) => `/images/tools/${file}`;
+import { toolIcon } from '@/lib/toolIcons';
 
 export interface DevOpsTool {
   name: string;
@@ -15,19 +6,19 @@ export interface DevOpsTool {
 }
 
 export const DEVOPS_TOOLS: DevOpsTool[] = [
-  { name: 'Linux', icon: devicon('linux') },
-  { name: 'Docker', icon: simpleIcon('docker', '2496ED') },
-  { name: 'Kubernetes', icon: simpleIcon('kubernetes', '326CE5') },
-  { name: 'AWS', icon: localTool('aws.png') },
-  { name: 'GCP', icon: simpleIcon('googlecloud', '4285F4') },
-  { name: 'Terraform', icon: simpleIcon('terraform', '844FBA') },
-  { name: 'Ansible', icon: simpleIcon('ansible', 'EE0000') },
-  { name: 'GitHub Actions', icon: simpleIcon('githubactions', '2088FF') },
-  { name: 'Jenkins', icon: simpleIcon('jenkins', 'D24939') },
-  { name: 'Prometheus', icon: simpleIcon('prometheus', 'E6522C') },
-  { name: 'Grafana', icon: simpleIcon('grafana', 'F46800') },
-  { name: 'Vault', icon: devicon('vault') },
-  { name: 'Trivy', icon: localTool('trivy.png') },
-  { name: 'Helm', icon: simpleIcon('helm', '0F1689') },
-  { name: 'ArgoCD', icon: simpleIcon('argo', 'EF7B4D') },
+  { name: 'Linux', icon: toolIcon('linux.svg') },
+  { name: 'Docker', icon: toolIcon('docker.svg') },
+  { name: 'Kubernetes', icon: toolIcon('kubernetes.svg') },
+  { name: 'AWS', icon: toolIcon('aws.png') },
+  { name: 'GCP', icon: toolIcon('gcp.svg') },
+  { name: 'Terraform', icon: toolIcon('terraform.svg') },
+  { name: 'Ansible', icon: toolIcon('ansible.svg') },
+  { name: 'GitHub Actions', icon: toolIcon('github-actions.svg') },
+  { name: 'Jenkins', icon: toolIcon('jenkins.svg') },
+  { name: 'Prometheus', icon: toolIcon('prometheus.svg') },
+  { name: 'Grafana', icon: toolIcon('grafana.svg') },
+  { name: 'Vault', icon: toolIcon('vault.svg') },
+  { name: 'Trivy', icon: toolIcon('trivy.png') },
+  { name: 'Helm', icon: toolIcon('helm.svg') },
+  { name: 'ArgoCD', icon: toolIcon('argocd.svg') },
 ];

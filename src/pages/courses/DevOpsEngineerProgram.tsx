@@ -30,11 +30,16 @@ import DepthCard from '@/components/motion/DepthCard';
 import DevOpsHeroVisual from '@/components/motion/DevOpsHeroVisual';
 import { Reveal3D, RevealStagger } from '@/components/motion/Reveal3D';
 import { Button } from '@/components/ui/button';
+import ProgramSectionAside from '@/components/courses/ProgramSectionAside';
+import ProgramVisualMosaic from '@/components/courses/ProgramVisualMosaic';
+import ProgramVisualSplit from '@/components/courses/ProgramVisualSplit';
 import { COURSE_BY_ID } from '@/lib/courses';
 import { DEVOPS_TOOLS } from '@/lib/devopsTools';
+import { IMAGES } from '@/lib/images';
 import { usePageMeta } from '@/hooks/usePageMeta';
 
 const course = COURSE_BY_ID.dop;
+const visuals = IMAGES.programVisuals.dop;
 
 const curriculum = [
   {
@@ -312,6 +317,61 @@ const DevOpsEngineerProgram = () => {
         </div>
       </section>
 
+      {/* Human + tech imagery */}
+      <section className="program-visual-section">
+        <div className="container px-4 sm:px-6">
+          <ProgramVisualSplit
+            image={visuals.learner}
+            imageAlt="DevOps learner working on cloud infrastructure at Zyvotrix"
+            badge="Learning Experience"
+            title="Learn by Building Production Pipelines"
+            description="Weekend live sessions with real labs — you provision cloud infra, containerize apps, and automate CI/CD every phase."
+            bullets={[
+              'Live mentor-led sessions every weekend',
+              'Hands-on labs on Docker, K8s, Terraform & AWS',
+              'Portfolio projects deployed on real cloud environments',
+            ]}
+          />
+          <ProgramVisualSplit
+            image={visuals.mentor}
+            imageAlt="DevOps practitioner mentoring a Zyvotrix learner"
+            badge="Expert Guidance"
+            title="Mentorship from Working DevOps Engineers"
+            description="Get pipeline reviews, infra feedback, and career guidance from practitioners who ship to production daily."
+            bullets={[
+              'Code and pipeline reviews on your projects',
+              'Architecture feedback before your capstone demo',
+              'Resume and interview coaching included',
+            ]}
+            reverse
+          />
+          <ProgramVisualMosaic
+            images={[
+              {
+                src: visuals.learner,
+                alt: 'DevOps learner at Zyvotrix',
+                label: 'Cloud & DevOps Labs',
+              },
+              {
+                src: visuals.classroom,
+                alt: 'Collaborative learning environment',
+                label: 'Live Sessions',
+              },
+              {
+                src: visuals.projects,
+                alt: 'Hands-on infrastructure project',
+                label: 'Build Projects',
+              },
+              {
+                src: course.image,
+                alt: 'DevOps tools and technologies',
+                label: 'Industry Tool Stack',
+              },
+            ]}
+          />
+        </div>
+      </section>
+
       {/* Curriculum */}
       <section className="section-padding section-alt devops-section-glow" id="curriculum">
         <div className="container px-4 sm:px-6">
@@ -496,21 +556,28 @@ const DevOpsEngineerProgram = () => {
             </p>
           </Reveal3D>
 
-          <RevealStagger className="mx-auto mb-12 grid max-w-5xl gap-5 sm:grid-cols-2" staggerMs={90}>
-            {audience.map(({ icon: Icon, title, desc }) => (
-              <DepthCard key={title} className="h-full" maxTilt={6}>
-                <article className="program-audience-card flex h-full gap-4 rounded-2xl border border-border bg-card p-6">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h3 className="mb-2 font-bold text-foreground">{title}</h3>
-                    <p className="text-sm leading-relaxed text-muted-foreground">{desc}</p>
-                  </div>
-                </article>
-              </DepthCard>
-            ))}
-          </RevealStagger>
+          <ProgramSectionAside
+            image={visuals.classroom}
+            imageAlt="Learners in a Zyvotrix DevOps training session"
+            caption="For developers, sysadmins, and IT professionals"
+            className="mx-auto max-w-5xl"
+          >
+            <RevealStagger className="grid gap-5 sm:grid-cols-2" staggerMs={90}>
+              {audience.map(({ icon: Icon, title, desc }) => (
+                <DepthCard key={title} className="h-full" maxTilt={6}>
+                  <article className="program-audience-card flex h-full gap-4 rounded-2xl border border-border bg-card p-6">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3 className="mb-2 font-bold text-foreground">{title}</h3>
+                      <p className="text-sm leading-relaxed text-muted-foreground">{desc}</p>
+                    </div>
+                  </article>
+                </DepthCard>
+              ))}
+            </RevealStagger>
+          </ProgramSectionAside>
 
           <Reveal3D delay={100}>
             <div className="devops-glow-card mx-auto max-w-md">
@@ -548,19 +615,27 @@ const DevOpsEngineerProgram = () => {
             </p>
           </Reveal3D>
 
-          <RevealStagger className="mx-auto grid max-w-5xl gap-5 sm:grid-cols-2 lg:grid-cols-3" staggerMs={75}>
-            {walkAway.map(({ icon: Icon, title, desc }) => (
-              <DepthCard key={title} className="h-full" maxTilt={5}>
-                <article className="program-walkaway-card h-full rounded-2xl border border-border bg-card p-6">
-                  <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="mb-2 font-bold text-foreground">{title}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{desc}</p>
-                </article>
-              </DepthCard>
-            ))}
-          </RevealStagger>
+          <ProgramSectionAside
+            image={visuals.career}
+            imageAlt="Zyvotrix graduate prepared for DevOps engineering roles"
+            caption="Portfolio projects, certificate, and career support"
+            reverse
+            className="mx-auto max-w-5xl"
+          >
+            <RevealStagger className="grid gap-5 sm:grid-cols-2 lg:grid-cols-2" staggerMs={75}>
+              {walkAway.map(({ icon: Icon, title, desc }) => (
+                <DepthCard key={title} className="h-full" maxTilt={5}>
+                  <article className="program-walkaway-card h-full rounded-2xl border border-border bg-card p-6">
+                    <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="mb-2 font-bold text-foreground">{title}</h3>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{desc}</p>
+                  </article>
+                </DepthCard>
+              ))}
+            </RevealStagger>
+          </ProgramSectionAside>
         </div>
       </section>
 

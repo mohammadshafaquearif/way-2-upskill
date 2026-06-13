@@ -11,6 +11,7 @@ interface PageCtaProps {
   secondaryLabel?: string;
   secondaryHref?: string;
   badge?: string;
+  className?: string;
 }
 
 const PageCta = ({
@@ -21,8 +22,9 @@ const PageCta = ({
   secondaryLabel = 'Contact Us',
   secondaryHref = '/contact',
   badge = 'Take the next step',
+  className,
 }: PageCtaProps) => (
-  <section className="dark-surface cta-premium relative overflow-hidden py-16 md:py-24 text-white">
+  <section className={`dark-surface cta-premium relative overflow-hidden py-16 md:py-24 text-white${className ? ` ${className}` : ''}`}>
     <div className="cta-grid pointer-events-none absolute inset-0" aria-hidden />
     <div className="pointer-events-none absolute -left-20 top-0 h-64 w-64 rounded-full bg-blue-500/20 blur-3xl" aria-hidden />
     <div className="pointer-events-none absolute -right-20 bottom-0 h-48 w-48 rounded-full bg-teal-500/20 blur-3xl" aria-hidden />

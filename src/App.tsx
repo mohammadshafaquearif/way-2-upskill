@@ -11,7 +11,7 @@ import Index from "./pages/Index";
 import Courses from "./pages/Courses";
 import AgenticAiProgram from "./pages/courses/AgenticAiProgram";
 import DevOpsEngineerProgram from "./pages/courses/DevOpsEngineerProgram";
-import CloudComputingSyllabus from "./pages/syllabus/CloudComputingSyllabus";
+import AwsSolutionsArchitectProgram from "./pages/courses/AwsSolutionsArchitectProgram";
 import DataScienceSyllabus from "./pages/syllabus/DataScienceSyllabus";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -46,7 +46,7 @@ const App = () => (
             <Route path="/courses/devops-engineer-program" element={<DevOpsEngineerProgram />} />
             <Route path="/courses/dop" element={<Navigate to="/courses/devops-engineer-program" replace />} />
             <Route path="/courses/aac" element={<AgenticAiProgram />} />
-            <Route path="/courses/aws" element={<CloudComputingSyllabus />} />
+            <Route path="/courses/aws" element={<AwsSolutionsArchitectProgram />} />
             <Route path="/courses/data-science" element={<DataScienceSyllabus />} />
             <Route path="/courses/ai-ml" element={<Navigate to="/courses/aac" replace />} />
             <Route path="/courses/devops" element={<Navigate to="/courses/devops-engineer-program" replace />} />

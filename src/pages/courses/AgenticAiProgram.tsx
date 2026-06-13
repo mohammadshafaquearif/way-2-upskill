@@ -4,21 +4,21 @@ import {
   ArrowRight,
   Award,
   Bot,
-  Brain,
   Briefcase,
   Calendar,
   Check,
   Clock,
+  Cloud,
   Code2,
+  Compass,
+  Database,
   GraduationCap,
   Hammer,
-  Layers,
+  Radio,
+  Search,
   Sparkles,
-  Star,
-  Target,
-  UserCheck,
   Users,
-  Video,
+  Wrench,
   Zap,
 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
@@ -30,109 +30,227 @@ import AgenticHeroVisual from '@/components/motion/AgenticHeroVisual';
 import DepthCard from '@/components/motion/DepthCard';
 import { Reveal3D, RevealStagger } from '@/components/motion/Reveal3D';
 import { Button } from '@/components/ui/button';
+import ProgramAdvantageSection from '@/components/courses/ProgramAdvantageSection';
+import ProgramCurriculumAccordion from '@/components/courses/ProgramCurriculumAccordion';
+import ProgramCurriculumStickySidebar from '@/components/courses/ProgramCurriculumStickySidebar';
+import ProgramInquirySidebar from '@/components/courses/ProgramInquirySidebar';
+import ProgramIndustryProjects from '@/components/courses/ProgramIndustryProjects';
+import ProgramLearningExperience, {
+  type LearningFeatureBlock,
+} from '@/components/courses/ProgramLearningExperience';
+import ProgramSectionAside from '@/components/courses/ProgramSectionAside';
 import { AGENTIC_TOOLS } from '@/lib/agenticTools';
 import { COURSE_BY_ID } from '@/lib/courses';
+import { IMAGES } from '@/lib/images';
+import { cn } from '@/lib/utils';
 import { usePageMeta } from '@/hooks/usePageMeta';
 
 const course = COURSE_BY_ID.aac;
+const visuals = IMAGES.programVisuals.aac;
 
 const curriculum = [
   {
     phase: 'Phase 1',
     label: 'LLM Foundations',
-    subtitle: 'Python, Prompt Engineering & LLM APIs',
-    topics: [
-      'Python for AI development & API fundamentals',
-      'LLM basics — tokens, context windows, model selection',
-      'Prompt engineering & chain-of-thought techniques',
-      'OpenAI & Anthropic APIs with function calling',
-      'Building your first LLM-powered application',
-      'Output evaluation, safety & guardrails',
-      'Git workflows for AI projects',
+    meta: 'Modules 1–3',
+    modules: [
+      {
+        id: 1,
+        title: 'How LLMs Work',
+        topics: [
+          'Tokens & embeddings',
+          'Transformers & context windows',
+          'Temperature, Top-P & Top-K sampling',
+        ],
+        project: {
+          title: 'Build a Prompt Playground',
+          description: 'Experiment with model parameters and see how outputs change in real time.',
+        },
+      },
+      {
+        id: 2,
+        title: 'Prompt Engineering',
+        topics: [
+          'Zero-shot & few-shot prompting',
+          'Chain-of-thought reasoning',
+          'System prompts & reusable templates',
+        ],
+        project: {
+          title: 'AI Content Assistant',
+          description: 'Build a template-driven assistant that generates structured content on demand.',
+        },
+      },
+      {
+        id: 3,
+        title: 'Function Calling & Open Source LLMs',
+        topics: [
+          'Function calling & structured outputs',
+          'Pydantic schemas for LLM responses',
+          'Ollama, Llama 3 & Mistral locally',
+        ],
+        project: {
+          title: 'Local AI Assistant',
+          description: 'Run an open-source LLM locally with tool use and validated JSON outputs.',
+        },
+      },
     ],
-    project: 'Mini Project 1',
+    industryProject: {
+      title: 'Industry Project 1 — Personal AI Assistant',
+      description:
+        'Combine prompting, function calling, and local LLMs into a portfolio-ready personal assistant you can demo in interviews.',
+    },
   },
   {
     phase: 'Phase 2',
-    label: 'RAG & Agents',
-    subtitle: 'Retrieval, LangChain & Tool-Using Agents',
-    topics: [
-      'Embeddings, chunking & vector search strategies',
-      'RAG pipelines — LangChain + FAISS / Pinecone',
-      'LangChain chains, tools, memory & callbacks',
-      'ReAct agents & tool-use design patterns',
-      'Hugging Face Transformers & model hub',
-      'Document ingestion — PDF, web & API sources',
-      'Gradio & Streamlit for AI app prototyping',
+    label: 'Agent Engineering',
+    meta: 'Modules 4–8',
+    modules: [
+      {
+        id: 4,
+        title: 'LangChain Core',
+        topics: ['LCEL pipelines', 'Chains & output parsers', 'Runnable sequences & composition'],
+        project: {
+          title: 'Coding Assistant',
+          description: 'Build a LangChain-powered assistant that helps write and explain code.',
+        },
+      },
+      {
+        id: 5,
+        title: 'AI Agents',
+        topics: ['ReAct agent loop', 'Planning & reflection patterns', 'Tool use & web search'],
+        project: {
+          title: 'Web Research Agent',
+          description: 'Create an agent that searches the web, synthesizes findings, and cites sources.',
+        },
+      },
+      {
+        id: 6,
+        title: 'RAG Systems',
+        topics: [
+          'ChromaDB & Pinecone vector stores',
+          'Chunking & embedding strategies',
+          'Hybrid search for better retrieval',
+        ],
+        project: {
+          title: 'Document Chatbot',
+          description: 'Ground an LLM on your own PDFs and documents with a production RAG pipeline.',
+        },
+      },
+      {
+        id: 7,
+        title: 'Memory Systems',
+        topics: ['Buffer memory for short context', 'Vector memory for long-term recall', 'Persistent session storage'],
+        project: {
+          title: 'Personal Memory Agent',
+          description: 'Build an agent that remembers past conversations and user preferences over time.',
+        },
+      },
+      {
+        id: 8,
+        title: 'LangGraph',
+        topics: [
+          'State machines & cyclic workflows',
+          'Human-in-the-loop checkpoints',
+          'State persistence & recovery',
+        ],
+        project: {
+          title: 'Workflow Intelligence Agent',
+          description:
+            'Orchestrate a multi-step research and analysis workflow with LangGraph — human-in-the-loop checkpoints, state persistence, and autonomous reasoning.',
+        },
+      },
     ],
-    project: 'Mini Project 2',
+    industryProject: {
+      title: 'Industry Project 3 — Enterprise Knowledge Assistant',
+      description:
+        'Deliver a RAG-powered knowledge assistant with memory and workflow orchestration — ready for internal document and knowledge-base use cases.',
+    },
   },
   {
     phase: 'Phase 3',
-    label: 'Multi-Agent & Capstone',
-    subtitle: 'Orchestration, Deployment & Portfolio',
-    topics: [
-      'LangGraph & multi-agent orchestration',
-      'CrewAI & autonomous workflow automation',
-      'Fine-tuning basics — LoRA & PEFT overview',
-      'Production deployment — FastAPI, Docker & AWS',
-      'Agent monitoring, logging & reliability patterns',
-      'Capstone project planning & execution',
-      'Final demo day, code review & portfolio presentation',
+    label: 'Multi-Agent & Production',
+    modules: [
+      {
+        id: 9,
+        title: 'Multi-Agent Systems',
+        topics: ['CrewAI role-based teams', 'AutoGen agent collaboration', 'Supervisor delegation pattern'],
+        project: {
+          title: 'AI Startup Team',
+          description: 'Simulate a startup with specialized agents — researcher, writer, and reviewer.',
+        },
+      },
+      {
+        id: 10,
+        title: 'Observability & Evaluation',
+        topics: ['LangSmith tracing & debugging', 'LangFuse & AgentOps monitoring', 'Agent evaluation metrics'],
+        project: {
+          title: 'AI Operations Dashboard',
+          description: 'Track agent runs, latency, token costs, and quality scores with full observability tooling.',
+        },
+      },
+      {
+        id: 11,
+        title: 'Deployment',
+        topics: ['FastAPI agent endpoints', 'Docker & Docker Compose', 'Streaming responses to clients'],
+        project: {
+          title: 'Deploy AI Agent API',
+          description: 'Containerize and serve your agent as a production-ready REST API with streaming.',
+        },
+      },
+      {
+        id: 12,
+        title: 'Cloud AI',
+        topics: [
+          'AWS Bedrock & Azure OpenAI overview',
+          'Cost optimization strategies',
+          'Security & access control for agents',
+        ],
+        project: {
+          title: 'Cloud AI Agent Deployment',
+          description:
+            'Deploy your agent to AWS Bedrock or Azure OpenAI with security controls, monitoring, and cost optimization.',
+        },
+      },
     ],
-    project: 'Capstone',
   },
 ];
 
-const handsOnProjects = [
-  {
-    num: '01',
-    title: 'RAG Knowledge Assistant',
-    description:
-      'Build a retrieval-augmented assistant with LangChain, vector search, and document ingestion for real Q&A.',
-    tags: ['LangChain', 'RAG', 'Pinecone'],
-  },
-  {
-    num: '02',
-    title: 'Tool-Using AI Agent',
-    description:
-      'Create an agent that calls APIs, uses memory, and completes multi-step tasks autonomously.',
-    tags: ['OpenAI', 'Agents', 'FastAPI'],
-  },
-  {
-    num: '03',
-    title: 'Multi-Agent Workflow',
-    description:
-      'Orchestrate multiple specialized agents to automate a complex business workflow end-to-end.',
-    tags: ['LangGraph', 'CrewAI', 'Python'],
-  },
+const heroTrustStats = [
+  { value: '12', label: 'Modules' },
+  { value: '9+', label: 'Portfolio Builds' },
+  { value: 'Live', label: 'Mentorship' },
 ];
 
-const programHighlights = [
+const whyAgenticAi = [
   {
-    icon: Target,
-    title: 'Agentic-First Curriculum',
-    desc: 'Built around LLMs, RAG, and autonomous agents — not outdated ML theory',
+    icon: Compass,
+    title: 'Autonomous Reasoning',
+    desc: 'Agents that break complex goals into sub-tasks, reason step-by-step, and self-correct without human prompting.',
   },
   {
-    icon: Brain,
-    title: 'Hands-On GenAI',
-    desc: 'Ship real agents and RAG apps every phase, not slide-deck exercises',
+    icon: Wrench,
+    title: 'Tool Use & APIs',
+    desc: 'LLMs that call real APIs, write and execute code, search the web, and interact with databases autonomously.',
   },
   {
-    icon: Layers,
-    title: 'Production Mindset',
-    desc: 'Deploy, monitor, and harden AI systems for real users',
+    icon: Users,
+    title: 'Multi-Agent Collaboration',
+    desc: 'Orchestrating multiple specialized agents that delegate, communicate, and solve problems as a team.',
   },
   {
-    icon: GraduationCap,
-    title: 'Certificate + Portfolio',
-    desc: 'Capstone project you can demo in AI engineer interviews',
+    icon: Database,
+    title: 'Memory & Context',
+    desc: 'Long-term memory using vector databases and episodic memory patterns so agents learn from past interactions.',
   },
   {
-    icon: Briefcase,
-    title: 'Placement Support',
-    desc: 'Resume reviews, mock interviews, and hiring referrals',
+    icon: Search,
+    title: 'RAG Pipelines',
+    desc: 'Retrieval-Augmented Generation to ground agents in real, up-to-date knowledge from your own documents and data.',
+  },
+  {
+    icon: Cloud,
+    title: 'Production Systems',
+    desc: 'Containerizing, monitoring, and deploying agent systems that work reliably at scale in real products.',
   },
 ];
 
@@ -159,36 +277,110 @@ const audience = [
   },
 ];
 
-const walkAway = [
+const graduateCapabilities = [
   {
-    icon: Award,
-    title: 'Industry Certificate',
-    desc: 'Zyvotrix Agentic AI Certification, shareable on LinkedIn.',
-  },
-  {
-    icon: Briefcase,
-    title: 'Job-Ready Portfolio',
-    desc: '3 mini projects + 1 capstone — live demos and GitHub repos.',
-  },
-  {
-    icon: UserCheck,
-    title: 'Placement Assistance',
-    desc: 'Resume review, mock interviews with AI practitioners, and hiring partner referrals.',
-  },
-  {
-    icon: Bot,
-    title: 'Agent Building Skills',
-    desc: 'Design RAG pipelines, tool-using agents, and multi-agent systems from scratch.',
+    icon: Hammer,
+    title: 'Build Production Agents',
+    desc: 'Design, build, and deploy complete agentic AI systems that handle real-world tasks autonomously.',
   },
   {
     icon: Users,
-    title: 'Alumni Network',
-    desc: 'Lifetime access to Zyvotrix Discord, study groups, and peer network.',
+    title: 'Orchestrate Multi-Agent Teams',
+    desc: 'Architect systems where multiple specialized agents collaborate to solve complex, multi-step problems.',
   },
   {
-    icon: Video,
-    title: 'Lifetime Recording Access',
-    desc: 'All session recordings + updated materials, free, forever.',
+    icon: Search,
+    title: 'Build RAG Systems',
+    desc: 'Create knowledge-grounded agents over custom document sets with production-grade retrieval pipelines.',
+  },
+  {
+    icon: Radio,
+    title: 'Deploy & Monitor Agents',
+    desc: 'Serve agent APIs at scale with full observability, tracing, and evaluation pipelines.',
+  },
+  {
+    icon: Briefcase,
+    title: 'Portfolio-Ready Projects',
+    desc: '7 industry projects, a capstone, and a bonus cloud build — all deployed, documented, and GitHub-ready.',
+  },
+  {
+    icon: Award,
+    title: 'Industry Certificate',
+    desc: 'Zyvotrix Certified Agentic AI Engineer — recognized by hiring partners and shareable on LinkedIn.',
+  },
+];
+
+const certificatePerks = [
+  'LinkedIn-ready',
+  'PDF + digital badge',
+  'Recognized by hiring partners',
+];
+
+const learningExperienceFeatures: [
+  LearningFeatureBlock,
+  LearningFeatureBlock,
+] = [
+  {
+    eyebrow: 'Learning Experience',
+    title: 'Learn by Building Real Agent Systems',
+    description:
+      'Weekend live sessions paired with hands-on labs — you write agent code, wire up RAG pipelines, and ship projects every phase.',
+    bullets: [
+      'Live mentor-led sessions every weekend',
+      'Labs on LangChain, vector DBs, and multi-agent tools',
+      'Portfolio projects you can demo in interviews',
+    ],
+    image: visuals.learning,
+    imageAlt: 'Mentor and learner collaborating on hands-on agent projects at Zyvotrix',
+    imageBadge: 'Live Sessions · Every Weekend',
+  },
+  {
+    eyebrow: 'Expert Guidance',
+    title: 'Mentorship from Working AI Practitioners',
+    description:
+      'Get code reviews, architecture feedback, and career guidance from people who build with LLMs and agents in production.',
+    bullets: [
+      'Code reviews on agent and RAG implementations',
+      'Architecture feedback before your capstone demo',
+      'Resume and portfolio coaching included',
+    ],
+    image: visuals.mentor,
+    imageAlt: 'Working AI practitioner providing mentorship and architecture feedback at Zyvotrix',
+    imageBadge: 'Working AI Practitioners',
+    reverse: true,
+  },
+];
+
+const learningExperienceStats = [
+  { number: '12', label: 'Weekend Live', sublabel: 'Sessions' },
+  { number: '10+', label: 'Hands-on Labs', sublabel: '& Projects' },
+  { number: '100%', label: 'Code-First', sublabel: 'Curriculum' },
+];
+
+const learningExperienceGallery = [
+  {
+    src: visuals.labs,
+    alt: 'Hands-on agent coding in Zyvotrix AI labs',
+    label: 'Agentic AI Labs',
+    sublabel: 'Hands-on agent coding',
+  },
+  {
+    src: visuals.liveSessions,
+    alt: 'Live mentor-led weekend session at Zyvotrix',
+    label: 'Live Sessions',
+    sublabel: 'Every weekend, instructor-led',
+  },
+  {
+    src: visuals.buildProjects,
+    alt: 'Building and shipping AI portfolio projects at Zyvotrix',
+    label: 'Build Projects',
+    sublabel: 'Ship real portfolio work',
+  },
+  {
+    src: visuals.aiStack,
+    alt: 'Modern AI stack and agentic technologies at Zyvotrix',
+    label: 'Modern AI Stack',
+    sublabel: 'LangChain · CrewAI · RAG',
   },
 ];
 
@@ -213,8 +405,8 @@ const AgenticAiProgram = () => {
     canonical: '/courses/aac',
   });
 
-  const techRowA = AGENTIC_TOOLS.slice(0, 8);
-  const techRowB = AGENTIC_TOOLS.slice(8);
+  const techRowA = AGENTIC_TOOLS.slice(0, 11);
+  const techRowB = AGENTIC_TOOLS.slice(11);
 
   return (
     <PageShell className="devops-program-page aac-program-page">
@@ -227,17 +419,31 @@ const AgenticAiProgram = () => {
         <div className="hero-orb hero-orb-3 opacity-25" aria-hidden />
         <div className="hero-grid-overlay opacity-40" aria-hidden />
 
-        <div className="container relative z-10 px-4 pb-16 pt-24 sm:px-6 sm:pb-20 sm:pt-28">
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-            <div className="hero-fade-up">
-              <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/25 bg-white/80 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary backdrop-blur-sm">
+        <div className="program-page-container relative z-10 pb-16 pt-24 sm:pb-20 sm:pt-28">
+          <div className="program-page-content aac-hero-grid grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+            <div className="hero-fade-up aac-hero-copy">
+              <span className="aac-hero-badge mb-4 inline-flex items-center gap-2 rounded-full border border-primary/25 bg-white/80 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary backdrop-blur-sm">
                 <Sparkles className="h-3.5 w-3.5" />
                 {course.code} · Certification Program
               </span>
-              <h1 className="mb-5 text-3xl font-bold leading-tight tracking-tight text-brand-950 sm:text-4xl lg:text-[2.75rem]">
-                <span className="gradient-text-animated">Agentic AI</span> Certification Training
+              <h1 className="aac-hero-title mb-4 text-3xl font-bold leading-[1.08] tracking-tight text-brand-950 sm:text-4xl lg:text-[2.85rem]">
+                <span className="gradient-text-animated">Agentic AI</span>
+                <span className="block text-brand-950">Certification Training</span>
               </h1>
-              <p className="mb-8 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+
+              <div className="program-hero-tagline aac-hero-tagline mb-6 max-w-xl rounded-2xl border border-primary/15 bg-gradient-to-br from-primary/5 via-white/90 to-violet-500/5 px-5 py-4 backdrop-blur-sm">
+                <p className="text-sm font-semibold leading-snug text-foreground sm:text-base">
+                  Most AI courses teach you how to <span className="text-muted-foreground">use</span> AI.
+                </p>
+                <p className="mt-1 text-sm font-bold leading-snug text-primary sm:text-base">
+                  Zyvotrix teaches you how to <span className="gradient-text-animated">build</span> AI.
+                </p>
+                <p className="mt-2 text-xs font-bold uppercase tracking-widest text-secondary">
+                  Learn · Build · Grow
+                </p>
+              </div>
+
+              <p className="aac-hero-lead mb-8 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
                 Master intelligent agents, LLM workflows, and production AI automation in{' '}
                 {course.duration.toLowerCase()}. Weekend sessions — 2 hours each day — paced for deep
                 learning without burnout.
@@ -269,178 +475,130 @@ const AgenticAiProgram = () => {
                   <Link to="/contact">Talk to an Advisor</Link>
                 </Button>
               </div>
+
+              <div className="aac-hero-trust mt-8 grid max-w-xl grid-cols-3 gap-3">
+                {heroTrustStats.map((stat) => (
+                  <div key={stat.label} className="aac-hero-trust-item rounded-xl border border-border/70 bg-white/80 px-3 py-3 text-center shadow-sm backdrop-blur-sm">
+                    <p className="font-display text-xl font-extrabold leading-none text-primary sm:text-2xl">{stat.value}</p>
+                    <p className="mt-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground sm:text-xs">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <div className="hero-fade-up" style={{ animationDelay: '0.15s' }}>
+            <div className="hero-fade-up aac-hero-visual-col" style={{ animationDelay: '0.15s' }}>
               <AgenticHeroVisual
-                image={course.image}
-                imageAlt="Agentic AI Certification Training at Zyvotrix"
+                image={visuals.hero}
+                imageAlt="Human and AI collaboration — Agentic AI certification at Zyvotrix"
+                variant="photo"
               />
             </div>
           </div>
         </div>
       </section>
 
-      <section className="border-b border-border bg-white py-12 sm:py-14">
-        <div className="container px-4 sm:px-6">
-          <RevealStagger className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5" staggerMs={70}>
-            {programHighlights.map(({ icon: Icon, title, desc }) => (
-              <DepthCard key={title} className="h-full" maxTilt={7}>
-                <div className="program-highlight-card flex h-full flex-col items-center rounded-2xl border border-border bg-card p-5 text-center sm:p-6">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                    <Icon className="h-6 w-6" />
-                  </div>
-                  <h3 className="mb-2 text-sm font-bold text-foreground">{title}</h3>
-                  <p className="text-xs leading-relaxed text-muted-foreground sm:text-sm">{desc}</p>
-                </div>
-              </DepthCard>
-            ))}
-          </RevealStagger>
-        </div>
-      </section>
-
-      <section className="section-padding section-alt devops-section-glow" id="curriculum">
-        <div className="container px-4 sm:px-6">
-          <Reveal3D className="mx-auto mb-14 max-w-3xl text-center">
-            <span className="mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
-              Curriculum
+      {/* Why Agentic AI — 2nd fold */}
+      <section className="aac-why-section border-b border-border bg-white py-14 sm:py-16" id="why-agentic-ai">
+        <div className="program-page-container">
+          <Reveal3D className="program-page-header aac-section-header">
+            <span className="aac-section-eyebrow mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
+              Why Agentic AI
             </span>
-            <h2 className="section-title mb-4">
-              Zero to <span className="gradient-text-animated">Agentic AI Engineer</span>
+            <h2 className="aac-section-title section-title mb-4">
+              Beyond Chatbots — <span className="gradient-text-animated">Real AI Systems</span>
             </h2>
-            <p className="leading-relaxed text-muted-foreground">
-              A focused {course.duration.toLowerCase()} roadmap — from LLM basics to multi-agent
-              systems and a portfolio capstone. Each phase builds on the last.
+            <p className="aac-section-lead leading-relaxed text-muted-foreground">
+              Agentic AI is the shift from prompting a chatbot to building autonomous systems that
+              plan, use tools, and complete long-horizon tasks. This is where the industry is going.
             </p>
           </Reveal3D>
 
-          <div className="devops-curriculum-timeline mx-auto grid max-w-6xl gap-6 lg:grid-cols-1">
-            {curriculum.map((phase, i) => (
-              <Reveal3D key={phase.phase} delay={i * 90} className="devops-phase-card">
-                <DepthCard className="h-full" maxTilt={5}>
-                  <article className="program-month-card h-full rounded-2xl border border-border bg-card p-6 sm:p-7">
-                    <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
-                      <div>
-                        <span className="mb-1 block text-xs font-bold uppercase tracking-widest text-primary">
-                          {phase.phase} · {phase.label}
-                        </span>
-                        <h3 className="text-lg font-bold text-foreground">{phase.subtitle}</h3>
-                      </div>
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-bold text-primary">
-                        <Hammer className="h-3.5 w-3.5" />
-                        {phase.project}
-                      </span>
-                    </div>
-                    <ul className="space-y-2.5">
-                      {phase.topics.map((topic) => (
-                        <li key={topic} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                          <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" strokeWidth={2.5} />
-                          <span>{topic}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </article>
-                </DepthCard>
-              </Reveal3D>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-padding section-white">
-        <div className="container px-4 sm:px-6">
-          <Reveal3D className="mb-12 max-w-2xl">
-            <span className="mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
-              Portfolio
-            </span>
-            <h2 className="section-title mb-3 text-left">Hands-On Projects</h2>
-            <p className="leading-relaxed text-muted-foreground">
-              Three progressive builds plus a capstone — every project is designed for your GitHub
-              portfolio and AI engineer interviews.
-            </p>
-          </Reveal3D>
-
-          <RevealStagger className="mb-8 grid gap-5 md:grid-cols-3" staggerMs={100}>
-            {handsOnProjects.map((project) => (
-              <DepthCard key={project.num} className="h-full" maxTilt={8}>
-                <article className="h-full rounded-2xl border border-border bg-card p-6 shadow-sm">
-                  <span className="mb-3 block font-mono text-3xl font-black text-primary/15">
-                    {project.num}
+          <RevealStagger className="program-page-content aac-highlight-grid grid gap-4 sm:grid-cols-2 lg:grid-cols-3" staggerMs={70}>
+            {whyAgenticAi.map(({ icon: Icon, title, desc }, index) => (
+              <DepthCard key={title} className={cn('h-full', index === 0 && 'sm:col-span-2 lg:col-span-2')} maxTilt={6}>
+                <article
+                  className={cn(
+                    'aac-highlight-card program-highlight-card relative flex h-full gap-4 overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-6',
+                    `aac-highlight-card--${index}`,
+                    index === 0 && 'aac-highlight-card--featured',
+                  )}
+                >
+                  <span className="aac-highlight-card-number" aria-hidden>
+                    {String(index + 1).padStart(2, '0')}
                   </span>
-                  <h3 className="mb-2 text-lg font-bold text-foreground">{project.title}</h3>
-                  <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-md bg-muted px-2.5 py-1 text-xs font-semibold text-foreground"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                  <div className={cn('aac-highlight-card-icon flex shrink-0 items-center justify-center rounded-xl', `aac-highlight-card-icon--${index}`)}>
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <div className="relative z-[1] text-left">
+                    <h3 className="mb-2 font-display text-sm font-bold text-foreground sm:text-base">{title}</h3>
+                    <p className="text-xs leading-relaxed text-muted-foreground sm:text-sm">{desc}</p>
                   </div>
                 </article>
               </DepthCard>
             ))}
           </RevealStagger>
-
-          <Reveal3D delay={120}>
-            <article className="program-capstone-card relative overflow-hidden rounded-2xl border border-primary/25 bg-gradient-to-br from-violet-500/10 via-card to-primary/5 p-8 sm:p-10">
-              <div className="devops-hero-scan opacity-30" aria-hidden />
-              <div className="relative z-10">
-                <div className="mb-4 flex flex-wrap items-center gap-3">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary-foreground">
-                    <Star className="h-3.5 w-3.5 fill-current" />
-                    Capstone
-                  </span>
-                  <span className="text-xs font-semibold uppercase tracking-widest text-primary">
-                    Portfolio Showpiece
-                  </span>
-                </div>
-                <h3 className="mb-3 text-2xl font-bold text-foreground sm:text-3xl">
-                  Enterprise Agentic AI Platform
-                </h3>
-                <p className="mb-6 max-w-3xl leading-relaxed text-muted-foreground">
-                  Build an end-to-end agentic system: RAG knowledge base, multi-agent orchestration,
-                  tool integrations, and a deployed web interface. Your flagship portfolio project.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {['LangChain', 'RAG', 'Agents', 'FastAPI', 'AWS'].map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-primary/20 bg-white/80 px-3 py-1 text-xs font-bold text-primary"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <Sparkles
-                className="pointer-events-none absolute -right-4 -top-4 h-32 w-32 text-primary/5"
-                aria-hidden
-              />
-            </article>
-          </Reveal3D>
         </div>
       </section>
 
-      <section className="section-padding border-y border-border bg-brand-100/30 devops-section-glow">
-        <div className="container px-4 sm:px-6">
-          <Reveal3D className="mx-auto max-w-3xl text-center">
-            <span className="mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
-              Tech Stack
+      <ProgramAdvantageSection />
+
+      <section
+        className="section-padding section-alt program-curriculum-section"
+        id="curriculum"
+      >
+        <div className="program-page-container">
+          <Reveal3D className="program-page-header aac-section-header">
+            <span className="aac-section-eyebrow mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
+              Curriculum
             </span>
-            <h2 className="section-title mb-3">
-              Tools You&apos;ll <span className="gradient-text-animated">Master</span>
+            <h2 className="aac-section-title section-title mb-4">
+              Zero to <span className="gradient-text-animated">Agentic AI Engineer</span>
             </h2>
-            <p className="mb-10 text-muted-foreground">
-              The frameworks and platforms powering modern agentic AI products.
+            <p className="aac-section-lead leading-relaxed text-muted-foreground">
+              12 modules across 3 phases — from LLM foundations to cloud-deployed multi-agent systems.
             </p>
           </Reveal3D>
 
-          <RevealStagger className="devops-tools-grid" staggerMs={50}>
+          <div className="program-page-content program-curriculum-layout">
+            <div className="program-curriculum-main min-w-0">
+              <Reveal3D>
+                <h3 className="mb-6 text-xl font-bold text-foreground sm:text-2xl">Learning Path</h3>
+                <ProgramCurriculumAccordion phases={curriculum} variant="premium" />
+              </Reveal3D>
+            </div>
+
+            <ProgramCurriculumStickySidebar>
+              <ProgramInquirySidebar programName={course.title} programCode={course.code} />
+            </ProgramCurriculumStickySidebar>
+          </div>
+        </div>
+      </section>
+
+      <ProgramLearningExperience
+        features={learningExperienceFeatures}
+        stats={learningExperienceStats}
+        gallery={learningExperienceGallery}
+        sectionClassName="program-lx-section program-lx-section--aac"
+      />
+
+      <ProgramIndustryProjects />
+
+      <section className="section-padding border-y border-border bg-brand-100/30 devops-section-glow">
+        <div className="program-page-container">
+          <Reveal3D className="program-page-header aac-section-header !mb-10 text-center">
+            <span className="aac-section-eyebrow mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
+              Tech Stack
+            </span>
+            <h2 className="aac-section-title section-title mb-3">
+              Tools You&apos;ll <span className="gradient-text-animated">Learn</span>
+            </h2>
+            <p className="aac-section-lead mb-10 text-muted-foreground">
+              Every tool maps directly to a module — from local LLMs and LangChain to Docker and AWS
+              deployment.
+            </p>
+          </Reveal3D>
+
+          <RevealStagger className="program-page-content devops-tools-grid aac-tools-grid" staggerMs={40}>
             {AGENTIC_TOOLS.map((tool) => (
               <div key={tool.name} className="devops-tool-card">
                 <div className="devops-tool-card-icon">
@@ -458,7 +616,7 @@ const AgenticAiProgram = () => {
             ))}
           </RevealStagger>
 
-          <Reveal3D delay={80}>
+          <Reveal3D delay={80} className="program-page-content">
             <TechMarquee tools={techRowA} />
             <TechMarquee tools={techRowB} reverse />
           </Reveal3D>
@@ -466,82 +624,128 @@ const AgenticAiProgram = () => {
       </section>
 
       <section className="section-padding section-white" id="who-should-join">
-        <div className="container px-4 sm:px-6">
-          <Reveal3D className="mx-auto mb-12 max-w-3xl text-center">
-            <span className="mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
+        <div className="program-page-container">
+          <Reveal3D className="program-page-header aac-section-header">
+            <span className="aac-section-eyebrow mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
               Who Should Join
             </span>
-            <h2 className="section-title mb-4">Is This Program For You?</h2>
-            <p className="leading-relaxed text-muted-foreground">
+            <h2 className="aac-section-title section-title mb-4">Is This Program For You?</h2>
+            <p className="aac-section-lead leading-relaxed text-muted-foreground">
               Designed for anyone who wants to build real agentic AI systems — not just use chatbots.
             </p>
           </Reveal3D>
 
-          <RevealStagger className="mx-auto mb-12 grid max-w-5xl gap-5 sm:grid-cols-2" staggerMs={90}>
-            {audience.map(({ icon: Icon, title, desc }) => (
+          <Reveal3D className="program-page-content">
+            <figure className="aac-audience-banner">
+              <img
+                src={visuals.audience}
+                alt="Developer building agentic AI systems at a professional workstation"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption className="aac-audience-banner-caption">
+                Built for developers, graduates, and AI enthusiasts
+              </figcaption>
+            </figure>
+          </Reveal3D>
+
+          <RevealStagger className="program-page-content mt-6 grid gap-4 sm:grid-cols-2" staggerMs={90}>
+            {audience.map(({ icon: Icon, title, desc }, index) => (
               <DepthCard key={title} className="h-full" maxTilt={6}>
-                <article className="program-audience-card flex h-full gap-4 rounded-2xl border border-border bg-card p-6">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <article className={cn('aac-audience-card program-audience-card flex h-full gap-4 rounded-2xl border border-border bg-card p-6', `aac-audience-card--${index}`)}>
+                  <div className={cn('flex h-11 w-11 shrink-0 items-center justify-center rounded-xl', `aac-audience-card-icon--${index}`)}>
                     <Icon className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="mb-2 font-bold text-foreground">{title}</h3>
+                    <h3 className="mb-2 font-display font-bold text-foreground">{title}</h3>
                     <p className="text-sm leading-relaxed text-muted-foreground">{desc}</p>
                   </div>
                 </article>
               </DepthCard>
             ))}
           </RevealStagger>
+        </div>
+      </section>
+
+      <section className="section-padding section-alt devops-section-glow" id="outcomes">
+        <div className="program-page-container">
+          <Reveal3D className="program-page-header aac-section-header">
+            <span className="aac-section-eyebrow mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
+              After You Graduate
+            </span>
+            <h2 className="aac-section-title section-title mb-4">What You&apos;ll Be Capable Of</h2>
+            <p className="aac-section-lead leading-relaxed text-muted-foreground">
+              Build in-demand AI engineering skills and a portfolio that gets you hired.
+            </p>
+          </Reveal3D>
+
+          <ProgramSectionAside
+            image={visuals.career}
+            imageAlt="Career-ready skills and portfolio projects — production agents, multi-agent systems, RAG, deployment, and cloud"
+            imageFit="contain"
+            reverse
+            className="program-section-aside--career program-page-content mb-14"
+          >
+            <RevealStagger className="grid gap-5 sm:grid-cols-2" staggerMs={75}>
+              {graduateCapabilities.map(({ icon: Icon, title, desc }) => (
+                <DepthCard key={title} className="h-full" maxTilt={5}>
+                  <article className="program-walkaway-card h-full rounded-2xl border border-border bg-card p-6">
+                    <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="mb-2 font-bold text-foreground">{title}</h3>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{desc}</p>
+                  </article>
+                </DepthCard>
+              ))}
+            </RevealStagger>
+          </ProgramSectionAside>
 
           <Reveal3D delay={100}>
-            <div className="devops-glow-card mx-auto max-w-md">
-              <div className="devops-glow-card-inner p-8 text-center shadow-lg">
-                <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-primary">
-                  Enrollment
-                </p>
-                <p className="mb-2 text-2xl font-bold text-foreground">Now Open</p>
-                <p className="mb-2 text-sm text-muted-foreground">
-                  Weekend sessions · 2 hours/day · {course.duration}
-                </p>
-                <p className="mb-6 text-sm text-muted-foreground">
-                  Limited seats · Live mentorship · Demo day included
-                </p>
-                <Button asChild className="btn-brand btn-shimmer h-11 w-full">
-                  <Link to={course.checkoutPath}>Reserve Your Seat</Link>
-                </Button>
+            <div className="devops-glow-card program-page-content">
+              <div className="devops-glow-card-inner p-8 sm:p-10">
+                <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
+                  <div>
+                    <span className="mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
+                      On Completion
+                    </span>
+                    <h3 className="mb-2 text-2xl font-bold text-foreground sm:text-3xl">What You Earn</h3>
+                    <p className="mb-4 text-lg font-semibold text-primary">
+                      Zyvotrix Certified Agentic AI Engineer
+                    </p>
+                    <p className="mb-6 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                      Upon completing all modules, projects, and the capstone, you receive a digital
+                      certificate you can share on LinkedIn and add to your portfolio.
+                    </p>
+                    <p className="mb-4 text-sm font-bold uppercase tracking-widest text-muted-foreground">
+                      Certificate Includes
+                    </p>
+                    <ul className="space-y-2.5">
+                      {certificatePerks.map((perk) => (
+                        <li key={perk} className="flex items-center gap-2.5 text-sm font-medium text-foreground">
+                          <Check className="h-4 w-4 shrink-0 text-primary" strokeWidth={2.5} />
+                          {perk}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <figure className="program-certificate-preview">
+                    <img
+                      src={visuals.certificate}
+                      alt="Zyvotrix Agentic AI Certification Training certificate of completion — sample"
+                      className="program-certificate-preview-image"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </figure>
+                </div>
               </div>
             </div>
           </Reveal3D>
         </div>
       </section>
 
-      <section className="section-padding section-alt devops-section-glow" id="outcomes">
-        <div className="container px-4 sm:px-6">
-          <Reveal3D className="mx-auto mb-12 max-w-3xl text-center">
-            <span className="mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
-              After Completing
-            </span>
-            <h2 className="section-title mb-4">What You&apos;ll Walk Away With</h2>
-            <p className="leading-relaxed text-muted-foreground">
-              More than a certificate — deployable agentic AI skills and a capstone you can demo live.
-            </p>
-          </Reveal3D>
-
-          <RevealStagger className="mx-auto grid max-w-5xl gap-5 sm:grid-cols-2 lg:grid-cols-3" staggerMs={75}>
-            {walkAway.map(({ icon: Icon, title, desc }) => (
-              <DepthCard key={title} className="h-full" maxTilt={5}>
-                <article className="program-walkaway-card h-full rounded-2xl border border-border bg-card p-6">
-                  <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="mb-2 font-bold text-foreground">{title}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{desc}</p>
-                </article>
-              </DepthCard>
-            ))}
-          </RevealStagger>
-        </div>
-      </section>
+      <div className="program-footer-bridge" aria-hidden />
 
       <PageCta
         badge="Start your Agentic AI journey"
@@ -551,6 +755,7 @@ const AgenticAiProgram = () => {
         primaryHref={course.checkoutPath}
         secondaryLabel="View All Programs"
         secondaryHref="/courses"
+        className="program-page-cta"
       />
 
       <Footer />
