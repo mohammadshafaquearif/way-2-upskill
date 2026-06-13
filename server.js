@@ -4,6 +4,9 @@ import dotenv from 'dotenv';
 import os from 'os';
 import pg from 'pg';
 import { handleSendEmailRequest } from './server/sendEmail.mjs';
+import { handleCreateOrderRequest, handleVerifyPaymentRequest, handleRazorpayWebhook } from './server/razorpay.mjs';
+import { handleCompleteEnrollmentRequest } from './server/enrollmentWorkflow.mjs';
+import { getRazorpayMode } from './server/razorpayConfig.mjs';
 
 // Load environment variables
 dotenv.config();
@@ -14,6 +17,17 @@ const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors());
+
+// Razorpay webhook — must use raw body (before express.json())
+app.post('/api/razorpay-webhook', express.raw({ type: 'application/json' }), async (req, res) => {
+  const signature = req.headers['x-razorpay-signature'];
+  const result = await handleRazorpayWebhook({
+    rawBody: req.body?.toString?.() ?? '',
+    signature: typeof signature === 'string' ? signature : undefined,
+  });
+  res.status(result.status).json(result.body);
+});
+
 app.use(express.json());
 
 // Database configuration
@@ -171,6 +185,24 @@ app.post('/api/send-email', async (req, res) => {
   res.status(result.status).json(result.body);
 });
 
+// Razorpay — create order (local dev — production uses /api/create-order on Vercel)
+app.post('/api/create-order', async (req, res) => {
+  const result = await handleCreateOrderRequest(req.body);
+  res.status(result.status).json(result.body);
+});
+
+// Razorpay — verify payment signature
+app.post('/api/verify-payment', async (req, res) => {
+  const result = await handleVerifyPaymentRequest(req.body);
+  res.status(result.status).json(result.body);
+});
+
+// Post-payment enrollment workflow (verify + enroll + email + admin notify)
+app.post('/api/complete-enrollment', async (req, res) => {
+  const result = await handleCompleteEnrollmentRequest(req.body);
+  res.status(result.status).json(result.body);
+});
+
 // Admin endpoints
 // Get all users (for admin dashboard)
 app.get('/api/admin/users', async (req, res) => {
@@ -261,6 +293,8 @@ app.use((err, req, res, next) => {
 
 // Start server
 app.listen(PORT, () => {
+  const razorpayMode = getRazorpayMode();
   console.log(`🚀 Server running on http://localhost:${PORT}`);
   console.log(`📊 API endpoints available at http://localhost:${PORT}/api`);
+  console.log(`💳 Razorpay mode: ${razorpayMode.toUpperCase()} (local dev uses test keys)`);
 });

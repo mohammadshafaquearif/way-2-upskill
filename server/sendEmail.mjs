@@ -71,7 +71,10 @@ export async function sendTransactionalEmail(payload) {
     throw new Error(userResult.error.message);
   }
 
-  if (type === 'contact' || type === 'enrollment' || type === 'inquiry') {
+  if (
+    payload.notifyAdmin !== false &&
+    (type === 'contact' || type === 'enrollment' || type === 'inquiry')
+  ) {
     const adminSubject = `[${type.toUpperCase()}] ${data.subject || subject}`;
     const adminResult = await resend.emails.send({
       from: FROM_EMAIL,

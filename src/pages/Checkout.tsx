@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import Navbar from '@/components/Navbar';
@@ -8,14 +8,26 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Check, ArrowLeft, CreditCard, Smartphone } from 'lucide-react';
+import { Check, ArrowLeft, CreditCard, Smartphone, ShieldCheck } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import { apiClient } from '@/integrations/api/client';
 import PageHero from '@/components/PageHero';
 import PageShell from '@/components/layout/PageShell';
 import { IMAGES } from '@/lib/images';
 import { getCourseByCheckoutId } from '@/lib/courses';
+import { formatInr, rupeesToPaise } from '@/lib/payments';
+import { openRazorpayCheckout } from '@/lib/razorpayCheckout';
+import {
+  completeEnrollment,
+  saveEnrollmentSuccess,
+} from '@/lib/enrollmentWorkflow';
+import { supabase } from '@/integrations/supabase/client';
+
+const DEFAULT_PRICE_INR = 499;
+
+function isValidEmail(email: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+}
 
 const Checkout: React.FC = () => {
   const { courseId } = useParams<{ courseId: string }>();
@@ -23,84 +35,204 @@ const Checkout: React.FC = () => {
   const { user, isAuthenticated } = useAuth();
   const [loading, setLoading] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState('full');
-  const [paymentType, setPaymentType] = useState('card');
+  const [paymentType, setPaymentType] = useState('razorpay');
+  const [coursePriceInr, setCoursePriceInr] = useState(DEFAULT_PRICE_INR);
+  const [guestEmail, setGuestEmail] = useState('');
+  const [guestPhone, setGuestPhone] = useState('');
+  const [dbCourseId, setDbCourseId] = useState<string | null>(null);
+
+  const checkoutEmail = isAuthenticated && user ? user.email : guestEmail.trim();
 
   const courseMeta = courseId ? getCourseByCheckoutId(courseId) : undefined;
-  const course = courseMeta
-    ? {
-        id: courseMeta.id,
-        title: courseMeta.title,
-        duration: courseMeta.duration,
-        projects: courseMeta.projects,
-      }
-    : undefined;
+  const course = useMemo(
+    () =>
+      courseMeta
+        ? {
+            id: courseMeta.id,
+            title: courseMeta.title,
+            duration: courseMeta.duration,
+            projects: courseMeta.projects,
+            code: courseMeta.code,
+          }
+        : undefined,
+    [courseMeta],
+  );
 
   useEffect(() => {
     if (!course) {
       navigate('/courses');
-      return;
     }
-    
-    if (!isAuthenticated) {
-      toast({
-        title: "Login Required",
-        description: "Please login to proceed with checkout",
-        variant: "destructive"
+  }, [course, navigate]);
+
+  useEffect(() => {
+    if (!course) return;
+
+    apiClient
+      .getAllCourses()
+      .then((courses) => {
+        const dbCourse = courses.find(
+          (c: { title: string; price?: number; code?: string }) =>
+            c.code?.toLowerCase() === course.code.toLowerCase() ||
+            c.title.toLowerCase().includes(course.title.split(' ')[0].toLowerCase()) ||
+            course.title.toLowerCase().includes(c.title.toLowerCase().slice(0, 12)),
+        );
+        if (dbCourse?.price) {
+          setCoursePriceInr(Number(dbCourse.price) || DEFAULT_PRICE_INR);
+        }
+        if (dbCourse?.id) {
+          setDbCourseId(dbCourse.id as string);
+        }
+      })
+      .catch(() => {
+        setCoursePriceInr(DEFAULT_PRICE_INR);
       });
-      navigate('/');
-      return;
-    }
-  }, [course, isAuthenticated, navigate]);
+  }, [course]);
 
   if (!course) return null;
 
-  const handlePayment = async () => {
-    if (!user) return;
-    
-    setLoading(true);
-    
-    try {
-      // Simulate payment processing
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Create enrollment record
-      const allCourses = await apiClient.getAllCourses();
-      const dbCourse = allCourses.find(
-        (c: { title: string }) =>
-          c.title.toLowerCase().includes(course.title.split(' ')[0].toLowerCase()) ||
-          course.title.toLowerCase().includes(c.title.toLowerCase().slice(0, 12))
-      );
+  const amountPaise = rupeesToPaise(coursePriceInr);
+  const displayAmount = formatInr(amountPaise);
 
-      if (!dbCourse?.id) {
-        throw new Error('Course not found in database. Run supabase/schema.sql first.');
-      }
+  const checkoutPhone = isAuthenticated && user?.phone ? user.phone : guestPhone.trim();
 
+  const runPostPaymentWorkflow = async (
+    payment: {
+      razorpay_order_id: string;
+      razorpay_payment_id: string;
+      razorpay_signature: string;
+    },
+    email: string,
+  ) => {
+    if (!dbCourseId) {
+      throw new Error('Course not found in database. Run supabase/schema.sql first.');
+    }
+
+    const { data: { session } } = await supabase.auth.getSession();
+    const learnerName = user
+      ? `${user.firstName} ${user.lastName}`.trim()
+      : email.split('@')[0];
+
+    const result = await completeEnrollment({
+      ...payment,
+      email,
+      learnerName,
+      phone: checkoutPhone || undefined,
+      courseId: dbCourseId,
+      programCode: course.code,
+      programSlug: course.id,
+      courseTitle: course.title,
+      duration: course.duration,
+      amount: coursePriceInr,
+      paymentPlan: paymentMethod,
+      userId: session?.user?.id,
+    });
+
+    if (!result.hasServerEnrollment) {
+      const nameFromEmail = email.split('@')[0] || 'Learner';
       await apiClient.createEnrollment({
-        userId: user.id,
-        courseId: dbCourse.id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        phone: user.phone,
+        userId: session?.user?.id,
+        courseId: dbCourseId,
+        firstName: user?.firstName || nameFromEmail,
+        lastName: user?.lastName || '',
+        email,
+        phone: checkoutPhone,
         paymentPlan: paymentMethod,
-        paymentMethod: paymentType,
-        totalAmount: 0,
+        paymentMethod: `razorpay:${payment.razorpay_payment_id}`,
+        totalAmount: coursePriceInr,
         status: 'completed',
       });
+    }
 
+    saveEnrollmentSuccess(result);
+    navigate('/enrollment/success');
+  };
+
+  const handlePayment = async () => {
+    if (!isValidEmail(checkoutEmail)) {
       toast({
-        title: "Payment Successful!",
-        description: `You have successfully enrolled in ${course.title}`,
+        title: 'Email required',
+        description: 'Please enter a valid email address to continue.',
+        variant: 'destructive',
       });
-      navigate('/dashboard');
+      return;
+    }
+
+    if (paymentMethod === 'installment') {
+      try {
+        setLoading(true);
+        await apiClient.createContact({
+          firstName: user?.firstName || checkoutEmail.split('@')[0] || 'Learner',
+          lastName: user?.lastName || '',
+          email: checkoutEmail,
+          phone: user?.phone,
+          subject: `Flexible enrollment — ${course.title}`,
+          message: `Interested in flexible payment options for ${course.title}.`,
+        });
+        toast({
+          title: 'Request received',
+          description: 'Our team will contact you at your email with flexible enrollment options.',
+        });
+      } catch {
+        toast({
+          title: 'Could not submit request',
+          description: 'Please try again or email support@zyvotrix.com',
+          variant: 'destructive',
+        });
+      } finally {
+        setLoading(false);
+      }
+      return;
+    }
+
+    setLoading(true);
+
+    const receiptSuffix = user?.id?.slice(0, 8) ?? checkoutEmail.replace(/[^a-z0-9]/gi, '').slice(0, 8);
+
+    try {
+      await openRazorpayCheckout({
+        amountPaise,
+        receipt: `enroll_${course.id}_${receiptSuffix}`,
+        courseTitle: course.title,
+        userName: user ? `${user.firstName} ${user.lastName}`.trim() : checkoutEmail.split('@')[0],
+        userEmail: checkoutEmail,
+        userPhone: checkoutPhone || undefined,
+        onSuccess: async (payment) => {
+          try {
+            await runPostPaymentWorkflow(payment, checkoutEmail);
+          } catch (error) {
+            toast({
+              title: 'Enrollment failed',
+              description:
+                error instanceof Error ? error.message : 'Payment succeeded but enrollment could not be saved.',
+              variant: 'destructive',
+            });
+          } finally {
+            setLoading(false);
+          }
+        },
+        onDismiss: () => {
+          setLoading(false);
+          toast({
+            title: 'Payment cancelled',
+            description: 'You closed the payment window.',
+          });
+        },
+        onError: (message) => {
+          setLoading(false);
+          toast({
+            title: 'Payment failed',
+            description: message,
+            variant: 'destructive',
+          });
+        },
+      });
     } catch (error) {
-      toast({
-        title: "Payment Failed",
-        description: "There was an error processing your payment. Please try again.",
-        variant: "destructive"
-      });
-    } finally {
       setLoading(false);
+      toast({
+        title: 'Checkout error',
+        description: error instanceof Error ? error.message : 'Could not start Razorpay checkout.',
+        variant: 'destructive',
+      });
     }
   };
 
@@ -109,8 +241,8 @@ const Checkout: React.FC = () => {
       <Navbar />
 
       <PageHero
-        title="Start Learning"
-        subtitle={`Confirm your interest in ${course.title} — our team will share next steps.`}
+        title="Secure Checkout"
+        subtitle={`Complete payment for ${course.title} and unlock your learning simulator.`}
         image={IMAGES.hero.enroll}
         imageAlt={course.title}
         centered
@@ -128,7 +260,6 @@ const Checkout: React.FC = () => {
           </Button>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Course Summary */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -148,118 +279,119 @@ const Checkout: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                
-                <div className="border-t pt-4 text-sm text-muted-foreground">
+
+                <div className="border-t pt-4 flex items-center justify-between">
+                  <span className="font-medium">Program fee</span>
+                  <span className="text-2xl font-bold text-primary">{displayAmount}</span>
+                </div>
+
+                <div className="rounded-lg bg-muted/50 p-4 text-sm text-muted-foreground flex gap-2">
+                  <ShieldCheck className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                   <p>
-                    Program fees and enrollment options are shared after your application is reviewed.
-                    Questions? Email{' '}
-                    <a href="mailto:support@zyvotrix.com" className="text-primary font-semibold hover:underline">
-                      support@zyvotrix.com
-                    </a>
+                    Payments are processed securely via Razorpay. After success, you will be redirected to your
+                    interactive learning simulator dashboard.
                   </p>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Payment Form */}
             <Card>
               <CardHeader>
-                <CardTitle>Enrollment Preferences</CardTitle>
-                <CardDescription>Tell us how you would like to proceed — we will follow up with details</CardDescription>
+                <CardTitle>Payment</CardTitle>
+                <CardDescription>Pay with UPI, cards, netbanking, or wallets via Razorpay</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
-                {/* Payment Plan */}
+                <div className="space-y-2">
+                  <Label htmlFor="checkout-email" className="text-base font-semibold">
+                    Email address
+                  </Label>
+                  {isAuthenticated && user ? (
+                    <Input id="checkout-email" type="email" value={user.email} readOnly className="bg-muted" />
+                  ) : (
+                    <>
+                      <Input
+                        id="checkout-email"
+                        type="email"
+                        placeholder="you@example.com"
+                        value={guestEmail}
+                        onChange={(event) => setGuestEmail(event.target.value)}
+                        autoComplete="email"
+                        required
+                      />
+                      <p className="text-xs text-muted-foreground">
+                        Enrollment confirmation and portal access will be sent to this email.
+                      </p>
+                      <div className="pt-2">
+                        <Label htmlFor="checkout-phone" className="text-sm">
+                          Phone (optional)
+                        </Label>
+                        <Input
+                          id="checkout-phone"
+                          type="tel"
+                          placeholder="+91 9876543210"
+                          value={guestPhone}
+                          onChange={(event) => setGuestPhone(event.target.value)}
+                          className="mt-1"
+                        />
+                      </div>
+                    </>
+                  )}
+                </div>
+
                 <div className="space-y-3">
-                  <Label className="text-base font-semibold">How would you like to enroll?</Label>
+                  <Label className="text-base font-semibold">Enrollment option</Label>
                   <RadioGroup value={paymentMethod} onValueChange={setPaymentMethod}>
                     <div className="flex items-center space-x-2 p-3 border rounded-lg">
                       <RadioGroupItem value="full" id="full" />
                       <Label htmlFor="full" className="flex-1 cursor-pointer">
-                        <div className="font-medium">Start with full program access</div>
-                        <div className="text-sm text-muted-foreground">Complete structured path with projects & support</div>
+                        <div className="font-medium">Pay now — unlock simulator</div>
+                        <div className="text-sm text-muted-foreground">
+                          Instant access to labs, modules, and progress tracking
+                        </div>
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-3 border rounded-lg">
                       <RadioGroupItem value="installment" id="installment" />
                       <Label htmlFor="installment" className="flex-1 cursor-pointer">
                         <div className="font-medium">Discuss flexible options</div>
-                        <div className="text-sm text-muted-foreground">Our team will reach out with enrollment details</div>
+                        <div className="text-sm text-muted-foreground">Our team will reach out with details</div>
                       </Label>
                     </div>
                   </RadioGroup>
                 </div>
 
-                {/* Payment Method */}
-                <div className="space-y-3">
-                  <Label className="text-base font-semibold">Payment Method</Label>
-                  <RadioGroup value={paymentType} onValueChange={setPaymentType}>
-                    <div className="flex items-center space-x-2 p-3 border rounded-lg">
-                      <RadioGroupItem value="card" id="card" />
-                      <Label htmlFor="card" className="flex-1 cursor-pointer flex items-center gap-2">
-                        <CreditCard className="w-4 h-4" />
-                        Credit/Debit Card
-                      </Label>
-                    </div>
-                    <div className="flex items-center space-x-2 p-3 border rounded-lg">
-                      <RadioGroupItem value="upi" id="upi" />
-                      <Label htmlFor="upi" className="flex-1 cursor-pointer flex items-center gap-2">
-                        <Smartphone className="w-4 h-4" />
-                        UPI Payment
-                      </Label>
-                    </div>
-                  </RadioGroup>
-                </div>
-
-                {/* Payment Details */}
-                {paymentType === 'card' && (
-                  <div className="space-y-4">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="cardNumber">Card Number</Label>
-                        <Input id="cardNumber" placeholder="1234 5678 9012 3456" />
+                {paymentMethod === 'full' && (
+                  <div className="space-y-3">
+                    <Label className="text-base font-semibold">Payment method</Label>
+                    <RadioGroup value={paymentType} onValueChange={setPaymentType}>
+                      <div className="flex items-center space-x-2 p-3 border rounded-lg">
+                        <RadioGroupItem value="razorpay" id="razorpay" />
+                        <Label htmlFor="razorpay" className="flex-1 cursor-pointer flex items-center gap-2">
+                          <CreditCard className="w-4 h-4" />
+                          Card / Netbanking / Wallet
+                        </Label>
                       </div>
-                      <div>
-                        <Label htmlFor="expiry">Expiry Date</Label>
-                        <Input id="expiry" placeholder="MM/YY" />
+                      <div className="flex items-center space-x-2 p-3 border rounded-lg opacity-80">
+                        <RadioGroupItem value="upi" id="upi" disabled />
+                        <Label htmlFor="upi" className="flex-1 cursor-pointer flex items-center gap-2">
+                          <Smartphone className="w-4 h-4" />
+                          UPI (via Razorpay modal)
+                        </Label>
                       </div>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="cvv">CVV</Label>
-                        <Input id="cvv" placeholder="123" />
-                      </div>
-                      <div>
-                        <Label htmlFor="name">Cardholder Name</Label>
-                        <Input id="name" placeholder="John Doe" />
-                      </div>
-                    </div>
+                    </RadioGroup>
                   </div>
                 )}
 
-                {paymentType === 'upi' && (
-                  <div className="space-y-4">
-                    <div>
-                      <Label htmlFor="upiId">UPI ID</Label>
-                      <Input id="upiId" placeholder="yourname@upi" />
-                    </div>
-                    <div>
-                      <Label htmlFor="mobile">Mobile Number</Label>
-                      <Input id="mobile" placeholder="+91 9876543210" />
-                    </div>
-                  </div>
-                )}
-
-                <Button 
-                  onClick={handlePayment}
-                  disabled={loading}
-                  className="w-full btn-brand py-4 text-lg"
-                >
-                  {loading ? 'Submitting...' : 'Submit Application'}
+                <Button onClick={handlePayment} disabled={loading} className="w-full btn-brand py-4 text-lg">
+                  {loading
+                    ? 'Processing…'
+                    : paymentMethod === 'installment'
+                      ? 'Submit Request'
+                      : `Pay ${displayAmount}`}
                 </Button>
 
                 <p className="text-xs text-muted-foreground text-center">
-                  By submitting, you agree to our Terms of Service and Privacy Policy.
-                  Our team will contact you with program and enrollment details.
+                  By paying, you agree to our Terms of Service and Privacy Policy.
                 </p>
               </CardContent>
             </Card>

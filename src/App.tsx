@@ -20,8 +20,19 @@ import Enroll from "./pages/Enroll";
 import Bonus from "./pages/Bonus";
 import Profile from "./pages/Profile";
 import AdminRoute from "./components/AdminRoute";
-import UserLanding from "./pages/UserLanding";
+import LMSLayout from "./pages/lms/LMSLayout";
+import LMSDashboard from "./pages/lms/LMSDashboard";
+import LMSCurriculum from "./pages/lms/LMSCurriculum";
+import LMSModuleDetail from "./pages/lms/LMSModuleDetail";
+import LMSLiveSessions from "./pages/lms/LMSLiveSessions";
+import LMSAssignments from "./pages/lms/LMSAssignments";
+import LMSProjects from "./pages/lms/LMSProjects";
+import LMSResources from "./pages/lms/LMSResources";
+import LMSCertificate from "./pages/lms/LMSCertificate";
+import LMSProfile from "./pages/lms/LMSProfile";
 import Checkout from "./pages/Checkout";
+import LearningSimulator from "./pages/LearningSimulator";
+import EnrollmentSuccess from "./pages/EnrollmentSuccess";
 import NotFound from "./pages/NotFound";
 import Resources from "./pages/Resources";
 import ResourceArticle from "./pages/resources/ResourceArticle";
@@ -67,7 +78,19 @@ const App = () => (
             <Route path="/enroll" element={<Enroll />} />
             <Route path="/bonus" element={<Bonus />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/dashboard" element={<UserLanding />} />
+            <Route path="/dashboard" element={<LMSLayout />}>
+              <Route index element={<LMSDashboard />} />
+              <Route path="curriculum" element={<LMSCurriculum />} />
+              <Route path="curriculum/:moduleId" element={<LMSModuleDetail />} />
+              <Route path="sessions" element={<LMSLiveSessions />} />
+              <Route path="assignments" element={<LMSAssignments />} />
+              <Route path="projects" element={<LMSProjects />} />
+              <Route path="resources" element={<LMSResources />} />
+              <Route path="certificate" element={<LMSCertificate />} />
+              <Route path="profile" element={<LMSProfile />} />
+            </Route>
+            <Route path="/learn/:courseId" element={<LearningSimulator />} />
+            <Route path="/enrollment/success" element={<EnrollmentSuccess />} />
             <Route path="/admin" element={<AdminRoute />} />
             <Route path="/verify-certificate" element={<VerifyCertificate />} />
             <Route path="/checkout/dop" element={<Navigate to="/checkout/devops-engineer-program" replace />} />

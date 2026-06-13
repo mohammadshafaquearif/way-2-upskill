@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { apiClient } from '@/integrations/api/client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -51,6 +51,7 @@ interface UserProgress {
 
 const UserLanding = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [userCourses, setUserCourses] = useState<UserCourse[]>([]);
   const [userProgress, setUserProgress] = useState<UserProgress | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -148,6 +149,15 @@ const UserLanding = () => {
       </div>
     );
   }
+
+  const getSimulatorPath = (course: UserCourse) => {
+    const slug = course.course_name.toLowerCase();
+    if (slug.includes('devops') || slug.includes('dop')) return '/learn/dop';
+    if (slug.includes('agentic') || slug.includes('aac')) return '/learn/aac';
+    if (slug.includes('aws') || slug.includes('cloud')) return '/learn/aws';
+    if (slug.includes('data science') || slug.includes('machine learning')) return '/learn/data-science';
+    return '/learn/aac';
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -297,9 +307,9 @@ const UserLanding = () => {
 
                     {/* Action Buttons */}
                     <div className="flex space-x-2">
-                      <Button className="flex-1">
+                      <Button className="flex-1" onClick={() => navigate(getSimulatorPath(course))}>
                         <PlayCircle className="w-4 h-4 mr-2" />
-                        Continue Learning
+                        Open Simulator
                       </Button>
                       <Button variant="outline" size="sm">
                         <Download className="w-4 h-4" />

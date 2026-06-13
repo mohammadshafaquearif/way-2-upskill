@@ -241,37 +241,47 @@ export const db = {
     totalAmount?: number;
     status?: string;
   }) {
-    const row: Record<string, unknown> = {
-        course_id: enrollmentData.courseId,
-        first_name: enrollmentData.firstName,
-        last_name: enrollmentData.lastName,
-        email: enrollmentData.email,
-        phone: enrollmentData.phone,
-        address: enrollmentData.address,
-        city: enrollmentData.city,
-        state: enrollmentData.state,
-        zip: enrollmentData.zip,
-        country: enrollmentData.country,
-        education: enrollmentData.education,
-        field: enrollmentData.field,
-        employment_status: enrollmentData.employmentStatus,
-        programming_experience: enrollmentData.programmingExperience,
-        goals: enrollmentData.goals,
-        linkedin: enrollmentData.linkedin,
-        github: enrollmentData.github,
-        payment_plan: enrollmentData.paymentPlan,
-        payment_method: enrollmentData.paymentMethod,
-        total_amount: enrollmentData.totalAmount,
-        status: enrollmentData.status || 'pending',
-        payment_status: enrollmentData.status === 'completed' ? 'completed' : 'pending',
-      };
+    const { data: { session } } = await supabase.auth.getSession();
+    const authUserId = session?.user?.id;
 
-    if (enrollmentData.userId) {
-      row.user_id = enrollmentData.userId;
+    const row: Record<string, unknown> = {
+      course_id: enrollmentData.courseId,
+      first_name: enrollmentData.firstName,
+      last_name: enrollmentData.lastName,
+      email: enrollmentData.email,
+      phone: enrollmentData.phone,
+      address: enrollmentData.address,
+      city: enrollmentData.city,
+      state: enrollmentData.state,
+      zip: enrollmentData.zip,
+      country: enrollmentData.country,
+      education: enrollmentData.education,
+      field: enrollmentData.field,
+      employment_status: enrollmentData.employmentStatus,
+      programming_experience: enrollmentData.programmingExperience,
+      goals: enrollmentData.goals,
+      linkedin: enrollmentData.linkedin,
+      github: enrollmentData.github,
+      payment_plan: enrollmentData.paymentPlan,
+      payment_method: enrollmentData.paymentMethod,
+      total_amount: enrollmentData.totalAmount,
+      status: enrollmentData.status || 'pending',
+      payment_status: enrollmentData.status === 'completed' ? 'completed' : 'pending',
+    };
+
+    // Only link user_id when Supabase session matches (RLS: auth.uid() = user_id)
+    if (authUserId && enrollmentData.userId === authUserId) {
+      row.user_id = authUserId;
+    }
+
+    // Guest/anon: insert without SELECT — anon has no read policy on enrollments
+    if (!authUserId) {
+      const { error } = await supabase.from('enrollments').insert(row);
+      if (error) throw new Error(error.message);
+      return row;
     }
 
     const { data, error } = await supabase.from('enrollments').insert(row).select().single();
-
     if (error) throw new Error(error.message);
     return data;
   },
