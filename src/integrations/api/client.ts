@@ -1,6 +1,7 @@
 // API client — uses Supabase (works on Vercel + local without Express)
 import { db } from '@/integrations/supabase/db';
 import { adminDb } from '@/integrations/supabase/adminDb';
+import { buildContactEmailPayload, sendEmail, type EmailType } from '@/lib/email';
 import type { ContactLeadStatus, SubmissionStatus } from '@/lib/adminTypes';
 
 class ApiClient {
@@ -59,15 +60,31 @@ class ApiClient {
     return db.createEnrollment(enrollmentData);
   }
 
-  async createContact(contactData: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    phone?: string;
-    subject?: string;
-    message: string;
-  }) {
-    return db.createContact(contactData);
+  async createContact(
+    contactData: {
+      firstName: string;
+      lastName: string;
+      email: string;
+      phone?: string;
+      subject?: string;
+      message: string;
+    },
+    options?: { emailType?: EmailType },
+  ) {
+    const contact = await db.createContact(contactData);
+
+    try {
+      await sendEmail(
+        buildContactEmailPayload({
+          ...contactData,
+          type: options?.emailType || 'contact',
+        }),
+      );
+    } catch (error) {
+      console.warn('Email notification failed:', error);
+    }
+
+    return contact;
   }
 
   async getAdminUsers() {

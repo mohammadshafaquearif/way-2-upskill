@@ -78,22 +78,25 @@ const ProgramInquirySidebar = ({ programName, programCode }: ProgramInquirySideb
 
     setIsSubmitting(true);
     try {
-      await apiClient.createContact({
-        firstName,
-        lastName,
-        email: trimmedEmail,
-        phone,
-        subject: programCode
-          ? `${programCode} — Program Inquiry`
-          : `${programName} — Program Inquiry`,
-        message: [
-          `Program: ${programName}`,
-          programCode ? `Program code: ${programCode}` : null,
-          'Source: Program curriculum page inquiry form',
-        ]
-          .filter(Boolean)
-          .join('\n'),
-      });
+      await apiClient.createContact(
+        {
+          firstName,
+          lastName,
+          email: trimmedEmail,
+          phone,
+          subject: programCode
+            ? `${programCode} — Program Inquiry`
+            : `${programName} — Program Inquiry`,
+          message: [
+            `Program: ${programName}`,
+            programCode ? `Program code: ${programCode}` : null,
+            'Source: Program curriculum page inquiry form',
+          ]
+            .filter(Boolean)
+            .join('\n'),
+        },
+        { emailType: 'inquiry' },
+      );
 
       trackEvent('program_inquiry_submit', {
         program: programName,

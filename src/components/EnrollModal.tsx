@@ -75,16 +75,19 @@ const EnrollModal = ({ open, onOpenChange, programName }: EnrollModalProps) => {
       const firstName = nameParts[0] ?? trimmedName;
       const lastName = nameParts.slice(1).join(' ') || '-';
 
-      await apiClient.createContact({
-        firstName,
-        lastName,
-        email: trimmedEmail,
-        phone: phone,
-        subject: programName ? `Enrollment — ${programName}` : 'Enrollment Inquiry',
-        message: programName
-          ? `Enrollment request for ${programName}.`
-          : 'Enrollment request submitted via website popup.',
-      });
+      await apiClient.createContact(
+        {
+          firstName,
+          lastName,
+          email: trimmedEmail,
+          phone: phone,
+          subject: programName ? `Enrollment — ${programName}` : 'Enrollment Inquiry',
+          message: programName
+            ? `Enrollment request for ${programName}.`
+            : 'Enrollment request submitted via website popup.',
+        },
+        { emailType: 'enrollment' },
+      );
 
       trackEvent('enroll_form_submit', { program: programName ?? 'general' });
 

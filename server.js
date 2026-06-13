@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import os from 'os';
 import pg from 'pg';
+import { handleSendEmailRequest } from './server/sendEmail.mjs';
 
 // Load environment variables
 dotenv.config();
@@ -162,6 +163,12 @@ app.post('/api/contacts', async (req, res) => {
     console.error('Error creating contact:', error);
     res.status(500).json({ error: 'Failed to create contact message' });
   }
+});
+
+// Resend transactional email (local dev — production uses /api/send-email on Vercel)
+app.post('/api/send-email', async (req, res) => {
+  const result = await handleSendEmailRequest(req.body);
+  res.status(result.status).json(result.body);
 });
 
 // Admin endpoints
