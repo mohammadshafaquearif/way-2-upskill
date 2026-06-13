@@ -11,17 +11,25 @@ interface FAQListProps {
   faqs: FaqItem[];
   /** Inject FAQPage JSON-LD for SEO / LLM crawlers */
   includeSchema?: boolean;
+  /** Use a different FAQ set for schema (e.g. when FAQs are split across columns) */
+  schemaFaqs?: FaqItem[];
   className?: string;
 }
 
-const FAQList = ({ faqs, includeSchema = false, className = '' }: FAQListProps) => {
+const FAQList = ({
+  faqs,
+  includeSchema = false,
+  schemaFaqs,
+  className = '',
+}: FAQListProps) => {
+  const schemaSource = schemaFaqs ?? faqs;
   const schema = useMemo(
     () =>
       includeSchema
         ? {
             '@context': 'https://schema.org',
             '@type': 'FAQPage',
-            mainEntity: faqs.map((faq) => ({
+            mainEntity: schemaSource.map((faq) => ({
               '@type': 'Question',
               name: faq.question,
               acceptedAnswer: {
@@ -31,7 +39,7 @@ const FAQList = ({ faqs, includeSchema = false, className = '' }: FAQListProps) 
             })),
           }
         : null,
-    [faqs, includeSchema],
+    [includeSchema, schemaSource],
   );
 
   return (

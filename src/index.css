@@ -577,64 +577,82 @@
     @apply mx-auto mb-12 w-full max-w-3xl text-center;
   }
 
-  /* —— AAC program visual polish —— */
-  .aac-program-page .aac-hero-title {
+  .dop-program-page .program-landing-hero {
+    background:
+      radial-gradient(ellipse 90% 60% at 50% -10%, rgb(37 99 235 / 0.14), transparent 55%),
+      radial-gradient(ellipse 50% 40% at 10% 30%, rgb(15 118 110 / 0.1), transparent 50%),
+      linear-gradient(180deg, #eef2f7 0%, #f8fafc 45%, hsl(var(--background)) 100%);
+  }
+
+  .aws-program-page .program-landing-hero {
+    background:
+      radial-gradient(ellipse 90% 60% at 50% -10%, rgb(14 165 233 / 0.14), transparent 55%),
+      radial-gradient(ellipse 50% 40% at 90% 20%, rgb(37 99 235 / 0.1), transparent 50%),
+      linear-gradient(180deg, #eff6ff 0%, #f8fafc 45%, hsl(var(--background)) 100%);
+  }
+
+  /* —— Shared program page visual polish —— */
+  .program-page-polish .program-hero-title {
     font-family: 'Poppins', sans-serif;
     font-weight: 800;
     letter-spacing: -0.03em;
   }
 
-  .aac-program-page .aac-hero-lead {
+  .program-page-polish .program-hero-lead {
     font-size: 1.0625rem;
     line-height: 1.75;
     color: #64748b;
   }
 
-  .aac-program-page .aac-hero-tagline {
+  .program-page-polish .program-hero-tagline {
     box-shadow: 0 10px 36px rgb(139 92 246 / 0.08);
   }
 
-  .aac-program-page .aac-hero-trust-item {
+  .program-page-polish .program-hero-trust-item {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
-  .aac-program-page .aac-hero-trust-item:hover {
+  .program-page-polish .program-hero-trust-item:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgb(15 23 42 / 0.08);
   }
 
-  .aac-program-page .aac-hero-visual-col .agentic-hero-visual {
+  .program-page-polish .program-hero-visual-col .agentic-hero-visual {
+    padding-top: 0;
+  }
+
+  .program-page-polish .program-hero-visual-col .devops-hero-visual {
     padding-top: 0;
   }
 
   @media (min-width: 1024px) {
-    .aac-program-page .aac-hero-visual-col {
+    .program-page-polish .program-hero-visual-col {
       transform: translateY(-0.5rem);
     }
   }
 
-  .aac-program-page .aac-section-title {
+  .program-page-polish .program-section-title {
     font-family: 'Poppins', sans-serif;
     font-weight: 800;
     letter-spacing: -0.025em;
     line-height: 1.12;
   }
 
-  .aac-program-page .aac-section-lead {
+  .program-page-polish .program-section-lead {
     font-size: 1.0625rem;
     line-height: 1.7;
     color: #64748b;
   }
 
-  .aac-program-page .aac-section-eyebrow {
+  .program-page-polish .program-section-eyebrow {
     letter-spacing: 0.16em;
   }
 
-  .aac-highlight-card {
+  .program-highlight-card-accent {
     transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
   }
 
-  .aac-highlight-card::before {
+  .program-highlight-card-accent::before {
     content: '';
     position: absolute;
     inset: 0 auto 0 0;
@@ -643,20 +661,20 @@
     opacity: 0.9;
   }
 
-  .aac-highlight-card--0::before { background: #7c3aed; }
-  .aac-highlight-card--1::before { background: #2563eb; }
-  .aac-highlight-card--2::before { background: #0d9488; }
-  .aac-highlight-card--3::before { background: #059669; }
-  .aac-highlight-card--4::before { background: #d97706; }
-  .aac-highlight-card--5::before { background: #e11d48; }
+  .program-highlight-card-accent--0::before { background: #7c3aed; }
+  .program-highlight-card-accent--1::before { background: #2563eb; }
+  .program-highlight-card-accent--2::before { background: #0d9488; }
+  .program-highlight-card-accent--3::before { background: #059669; }
+  .program-highlight-card-accent--4::before { background: #d97706; }
+  .program-highlight-card-accent--5::before { background: #e11d48; }
 
-  .aac-highlight-card--featured {
+  .program-highlight-card-accent--featured {
     background: linear-gradient(135deg, #faf5ff 0%, #ffffff 55%, #eff6ff 100%);
     border-color: rgb(139 92 246 / 0.2);
     box-shadow: 0 10px 30px rgb(139 92 246 / 0.08);
   }
 
-  .aac-highlight-card-number {
+  .program-highlight-card-accent-number {
     position: absolute;
     top: 0.75rem;
     right: 0.875rem;
@@ -668,24 +686,24 @@
     pointer-events: none;
   }
 
-  .aac-highlight-card-icon {
+  .program-highlight-card-accent-icon {
     width: 2.75rem;
     height: 2.75rem;
   }
 
-  .aac-highlight-card--featured .aac-highlight-card-icon {
+  .program-highlight-card-accent--featured .program-highlight-card-accent-icon {
     width: 3.25rem;
     height: 3.25rem;
   }
 
-  .aac-highlight-card-icon--0 { background: rgb(139 92 246 / 0.12); color: #6d28d9; }
-  .aac-highlight-card-icon--1 { background: rgb(37 99 235 / 0.12); color: #1d4ed8; }
-  .aac-highlight-card-icon--2 { background: rgb(13 148 136 / 0.12); color: #0f766e; }
-  .aac-highlight-card-icon--3 { background: rgb(5 150 105 / 0.12); color: #047857; }
-  .aac-highlight-card-icon--4 { background: rgb(217 119 6 / 0.12); color: #b45309; }
-  .aac-highlight-card-icon--5 { background: rgb(225 29 72 / 0.12); color: #be123c; }
+  .program-highlight-card-accent-icon--0 { background: rgb(139 92 246 / 0.12); color: #6d28d9; }
+  .program-highlight-card-accent-icon--1 { background: rgb(37 99 235 / 0.12); color: #1d4ed8; }
+  .program-highlight-card-accent-icon--2 { background: rgb(13 148 136 / 0.12); color: #0f766e; }
+  .program-highlight-card-accent-icon--3 { background: rgb(5 150 105 / 0.12); color: #047857; }
+  .program-highlight-card-accent-icon--4 { background: rgb(217 119 6 / 0.12); color: #b45309; }
+  .program-highlight-card-accent-icon--5 { background: rgb(225 29 72 / 0.12); color: #be123c; }
 
-  .aac-highlight-card:hover {
+  .program-highlight-card-accent:hover {
     box-shadow: 0 12px 28px rgb(15 23 42 / 0.08);
     transform: translateY(-2px);
   }
@@ -774,6 +792,15 @@
     padding-left: 0.875rem;
   }
 
+  .program-curriculum-phase--p4 .program-curriculum-phase-badge {
+    background: linear-gradient(90deg, #d97706, #b45309);
+  }
+
+  .program-curriculum-phase--p4 {
+    border-left: 3px solid #d97706;
+    padding-left: 0.875rem;
+  }
+
   .program-curriculum-trigger--premium {
     background: #f8fafc;
     border-color: #e2e8f0;
@@ -784,23 +811,23 @@
     border-color: rgb(37 99 235 / 0.2);
   }
 
-  .aac-program-page .program-lx-section--aac {
+  .program-page-polish .program-lx-section--compact {
     padding: 3.75rem 0 4rem;
   }
 
-  .aac-program-page .program-lx-section--aac .program-lx-header {
+  .program-page-polish .program-lx-section--compact .program-lx-header {
     margin-bottom: 2.5rem;
   }
 
-  .aac-program-page .program-lx-section--aac .program-lx-gallery-label {
+  .program-page-polish .program-lx-section--compact .program-lx-gallery-label {
     margin: 2rem 0 1.125rem;
   }
 
-  .aac-program-page .program-lx-section--aac .program-lx-feat-content {
+  .program-page-polish .program-lx-section--compact .program-lx-feat-content {
     padding: 2.25rem 2rem;
   }
 
-  .aac-audience-banner {
+  .program-audience-banner {
     position: relative;
     overflow: hidden;
     border-radius: 1.25rem;
@@ -810,14 +837,14 @@
     box-shadow: 0 16px 36px rgb(15 23 42 / 0.1);
   }
 
-  .aac-audience-banner img {
+  .program-audience-banner img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center 35%;
   }
 
-  .aac-audience-banner-caption {
+  .program-audience-banner-caption {
     position: absolute;
     inset: auto 0 0 0;
     background: linear-gradient(180deg, transparent, rgb(15 23 42 / 0.82));
@@ -827,18 +854,41 @@
     color: #fff;
   }
 
-  .aac-audience-card {
+  .program-audience-card {
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
 
-  .aac-audience-card:hover {
+  .program-audience-card:hover {
     box-shadow: 0 10px 24px rgb(15 23 42 / 0.07);
   }
 
-  .aac-audience-card-icon--0 { background: rgb(37 99 235 / 0.1); color: #1d4ed8; }
-  .aac-audience-card-icon--1 { background: rgb(139 92 246 / 0.1); color: #6d28d9; }
-  .aac-audience-card-icon--2 { background: rgb(13 148 136 / 0.1); color: #0f766e; }
-  .aac-audience-card-icon--3 { background: rgb(217 119 6 / 0.1); color: #b45309; }
+  .program-audience-card-icon--0 { background: rgb(37 99 235 / 0.1); color: #1d4ed8; }
+  .program-audience-card-icon--1 { background: rgb(139 92 246 / 0.1); color: #6d28d9; }
+  .program-audience-card-icon--2 { background: rgb(13 148 136 / 0.1); color: #0f766e; }
+  .program-audience-card-icon--3 { background: rgb(217 119 6 / 0.1); color: #b45309; }
+  .program-audience-card-icon--4 { background: rgb(225 29 72 / 0.1); color: #be123c; }
+
+  @media (max-width: 639px) {
+    .program-career-table thead {
+      display: none;
+    }
+
+    .program-career-table tr {
+      display: block;
+      padding: 0.75rem 0;
+    }
+
+    .program-career-table td {
+      display: block;
+      padding: 0.25rem 1.25rem;
+      border: none;
+    }
+
+    .program-career-table td:last-child {
+      padding-bottom: 0.75rem;
+      font-size: 1rem;
+    }
+  }
 
   .program-footer-bridge {
     height: 5rem;
@@ -1977,6 +2027,24 @@
     .program-section-aside--career.program-section-aside--reverse {
       grid-template-columns: 1fr minmax(300px, 400px);
     }
+
+    .program-section-aside--audience {
+      grid-template-columns: minmax(280px, 42%) 1fr;
+      align-items: stretch;
+    }
+
+    .program-section-aside--audience .program-section-aside-media-wrap {
+      min-height: 100%;
+    }
+
+    .program-section-aside--audience .program-section-aside-media {
+      min-height: 100%;
+    }
+
+    .program-section-aside--audience .program-section-aside-image {
+      min-height: 100%;
+      object-position: center 25%;
+    }
   }
 
   .program-section-aside-overlay {
@@ -2020,6 +2088,25 @@
       0 0 0 1px rgb(37 99 235 / 0.08);
     aspect-ratio: 16 / 11;
     min-height: 240px;
+  }
+
+  .devops-hero-main-card--photo {
+    aspect-ratio: 16 / 10;
+    min-height: 280px;
+    border-color: rgb(255 255 255 / 0.2);
+    box-shadow:
+      0 28px 56px rgb(15 23 42 / 0.28),
+      0 0 0 1px rgb(37 99 235 / 0.15);
+  }
+
+  .devops-hero-main-card--photo .devops-hero-scan {
+    opacity: 0.12;
+  }
+
+  @media (min-width: 1024px) {
+    .devops-hero-main-card--photo {
+      min-height: 360px;
+    }
   }
 
   .devops-hero-scan {

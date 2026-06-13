@@ -46,6 +46,7 @@ import ProgramSectionAside from '@/components/courses/ProgramSectionAside';
 import { AWS_TOOLS } from '@/lib/awsTools';
 import { COURSE_BY_ID } from '@/lib/courses';
 import { IMAGES } from '@/lib/images';
+import { cn } from '@/lib/utils';
 import { usePageMeta } from '@/hooks/usePageMeta';
 
 const course = COURSE_BY_ID.aws;
@@ -539,6 +540,12 @@ const learningExperienceGallery = [
   },
 ];
 
+const heroTrustStats = [
+  { value: '12', label: 'Modules' },
+  { value: '9+', label: 'Portfolio Builds' },
+  { value: 'Live', label: 'Mentorship' },
+];
+
 const TechMarquee = ({ tools, reverse }: { tools: typeof AWS_TOOLS; reverse?: boolean }) => (
   <div className="devops-tech-marquee-wrap">
     <div className={`devops-tech-marquee${reverse ? ' devops-tech-marquee--reverse' : ''}`}>
@@ -564,7 +571,7 @@ const AwsSolutionsArchitectProgram = () => {
   const techRowB = AWS_TOOLS.slice(11);
 
   return (
-    <PageShell className="devops-program-page aws-program-page">
+    <PageShell className="devops-program-page aws-program-page program-page-polish">
       <Navbar />
 
       <section className="program-landing-hero relative overflow-hidden">
@@ -574,18 +581,19 @@ const AwsSolutionsArchitectProgram = () => {
         <div className="hero-orb hero-orb-3 opacity-25" aria-hidden />
         <div className="hero-grid-overlay opacity-40" aria-hidden />
 
-        <div className="container relative z-10 px-4 pb-16 pt-24 sm:px-6 sm:pb-20 sm:pt-28">
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-            <div className="hero-fade-up">
-              <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/25 bg-white/80 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary backdrop-blur-sm">
+        <div className="program-page-container relative z-10 pb-16 pt-24 sm:pb-20 sm:pt-28">
+          <div className="program-page-content program-hero-grid grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+            <div className="hero-fade-up program-hero-copy">
+              <span className="program-hero-badge mb-4 inline-flex items-center gap-2 rounded-full border border-primary/25 bg-white/80 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary backdrop-blur-sm">
                 <Sparkles className="h-3.5 w-3.5" />
                 {course.code} · Certification Program
               </span>
-              <h1 className="mb-4 text-3xl font-bold leading-tight tracking-tight text-brand-950 sm:text-4xl lg:text-[2.75rem]">
-                <span className="gradient-text-animated">AWS Solutions Architect</span> Program
+              <h1 className="program-hero-title mb-4 text-3xl font-bold leading-[1.08] tracking-tight text-brand-950 sm:text-4xl lg:text-[2.85rem]">
+                <span className="gradient-text-animated">AWS Solutions Architect</span>
+                <span className="block text-brand-950">Program</span>
               </h1>
 
-              <div className="program-hero-tagline mb-6 max-w-xl rounded-2xl border border-primary/15 bg-gradient-to-br from-primary/5 via-white/90 to-violet-500/5 px-5 py-4 backdrop-blur-sm">
+              <div className="program-hero-tagline mb-6 max-w-xl rounded-2xl border border-primary/15 bg-gradient-to-br from-primary/5 via-white/90 to-sky-500/5 px-5 py-4 backdrop-blur-sm">
                 <p className="text-sm font-semibold leading-snug text-foreground sm:text-base">
                   Most cloud courses teach you how to <span className="text-muted-foreground">memorize</span> services.
                 </p>
@@ -597,7 +605,7 @@ const AwsSolutionsArchitectProgram = () => {
                 </p>
               </div>
 
-              <p className="mb-8 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              <p className="program-hero-lead mb-8 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
                 Design scalable, secure cloud architectures on AWS in {course.duration.toLowerCase()}. Weekend
                 sessions — 2 hours each day — paced for deep learning and SAA-C03 exam readiness.
               </p>
@@ -628,9 +636,18 @@ const AwsSolutionsArchitectProgram = () => {
                   <Link to="/contact">Talk to an Advisor</Link>
                 </Button>
               </div>
+
+              <div className="program-hero-trust mt-8 grid max-w-xl grid-cols-3 gap-3">
+                {heroTrustStats.map((stat) => (
+                  <div key={stat.label} className="program-hero-trust-item rounded-xl border border-border/70 bg-white/80 px-3 py-3 text-center shadow-sm backdrop-blur-sm">
+                    <p className="font-display text-xl font-extrabold leading-none text-primary sm:text-2xl">{stat.value}</p>
+                    <p className="mt-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground sm:text-xs">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <div className="hero-fade-up" style={{ animationDelay: '0.15s' }}>
+            <div className="hero-fade-up program-hero-visual-col" style={{ animationDelay: '0.15s' }}>
               <AgenticHeroVisual
                 image={visuals.hero}
                 imageAlt="Team training for AWS Solutions Architect certification at Zyvotrix"
@@ -641,30 +658,39 @@ const AwsSolutionsArchitectProgram = () => {
         </div>
       </section>
 
-      <section className="border-b border-border bg-white py-14 sm:py-16" id="why-aws">
-        <div className="container px-4 sm:px-6">
-          <Reveal3D className="mx-auto mb-12 max-w-3xl text-center">
-            <span className="mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
+      <section className="program-why-section border-b border-border bg-white py-14 sm:py-16" id="why-aws">
+        <div className="program-page-container">
+          <Reveal3D className="program-page-header program-section-header">
+            <span className="program-section-eyebrow mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
               Why AWS
             </span>
-            <h2 className="section-title mb-4">
+            <h2 className="program-section-title section-title mb-4">
               Beyond Console Clicks — <span className="gradient-text-animated">Real Cloud Architecture</span>
             </h2>
-            <p className="leading-relaxed text-muted-foreground">
+            <p className="program-section-lead leading-relaxed text-muted-foreground">
               AWS Solutions Architecture is the skill of designing systems that scale, stay secure, and run
               reliably in production. This is what cloud teams hire for.
             </p>
           </Reveal3D>
 
-          <RevealStagger className="mx-auto grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-3" staggerMs={70}>
-            {whyAws.map(({ icon: Icon, title, desc }) => (
-              <DepthCard key={title} className="h-full" maxTilt={6}>
-                <article className="program-highlight-card flex h-full gap-4 rounded-2xl border border-border bg-card p-5 sm:p-6">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sky-500/10 text-sky-700">
+          <RevealStagger className="program-page-content program-highlight-grid grid gap-4 sm:grid-cols-2 lg:grid-cols-3" staggerMs={70}>
+            {whyAws.map(({ icon: Icon, title, desc }, index) => (
+              <DepthCard key={title} className={cn('h-full', index === 0 && 'sm:col-span-2 lg:col-span-2')} maxTilt={6}>
+                <article
+                  className={cn(
+                    'program-highlight-card-accent program-highlight-card relative flex h-full gap-4 overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-6',
+                    `program-highlight-card-accent--${index}`,
+                    index === 0 && 'program-highlight-card-accent--featured',
+                  )}
+                >
+                  <span className="program-highlight-card-accent-number" aria-hidden>
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <div className={cn('program-highlight-card-accent-icon flex shrink-0 items-center justify-center rounded-xl', `program-highlight-card-accent-icon--${index}`)}>
                     <Icon className="h-5 w-5" />
                   </div>
-                  <div className="text-left">
-                    <h3 className="mb-2 text-sm font-bold text-foreground sm:text-base">{title}</h3>
+                  <div className="relative z-[1] text-left">
+                    <h3 className="mb-2 font-display text-sm font-bold text-foreground sm:text-base">{title}</h3>
                     <p className="text-xs leading-relaxed text-muted-foreground sm:text-sm">{desc}</p>
                   </div>
                 </article>
@@ -677,24 +703,24 @@ const AwsSolutionsArchitectProgram = () => {
       <ProgramAdvantageSection content={awsAdvantageContent} />
 
       <section className="section-padding section-alt program-curriculum-section" id="curriculum">
-        <div className="container px-4 sm:px-6">
-          <Reveal3D className="mx-auto mb-12 max-w-3xl text-center">
-            <span className="mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
+        <div className="program-page-container">
+          <Reveal3D className="program-page-header program-section-header">
+            <span className="program-section-eyebrow mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
               Curriculum
             </span>
-            <h2 className="section-title mb-4">
+            <h2 className="program-section-title section-title mb-4">
               Zero to <span className="gradient-text-animated">AWS Solutions Architect</span>
             </h2>
-            <p className="leading-relaxed text-muted-foreground">
+            <p className="program-section-lead leading-relaxed text-muted-foreground">
               12 modules across 3 phases — from cloud fundamentals to production architecture and SAA-C03 exam prep.
             </p>
           </Reveal3D>
 
-          <div className="program-curriculum-layout mx-auto max-w-6xl">
+          <div className="program-page-content program-curriculum-layout">
             <div className="program-curriculum-main min-w-0">
               <Reveal3D>
                 <h3 className="mb-6 text-xl font-bold text-foreground sm:text-2xl">Learning Path</h3>
-                <ProgramCurriculumAccordion phases={curriculum} />
+                <ProgramCurriculumAccordion phases={curriculum} variant="premium" />
               </Reveal3D>
             </div>
 
@@ -717,6 +743,7 @@ const AwsSolutionsArchitectProgram = () => {
         }
         sub="Every session, lab, and project moves you from AWS service knowledge to production architecture design."
         galleryLabel="Inside the AWS Program Experience"
+        sectionClassName="program-lx-section program-lx-section--compact"
       />
 
       <ProgramIndustryProjects
@@ -727,20 +754,20 @@ const AwsSolutionsArchitectProgram = () => {
       />
 
       <section className="section-padding border-y border-border bg-brand-100/30 devops-section-glow">
-        <div className="container px-4 sm:px-6">
-          <Reveal3D className="mx-auto max-w-3xl text-center">
-            <span className="mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
+        <div className="program-page-container">
+          <Reveal3D className="program-page-header program-section-header !mb-10 text-center">
+            <span className="program-section-eyebrow mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
               Tech Stack
             </span>
-            <h2 className="section-title mb-3">
+            <h2 className="program-section-title section-title mb-3">
               AWS Services You&apos;ll <span className="gradient-text-animated">Master</span>
             </h2>
-            <p className="mb-10 text-muted-foreground">
+            <p className="program-section-lead mb-10 text-muted-foreground">
               Every service maps directly to a module — from EC2 and S3 to CloudWatch, CloudFormation, and Terraform.
             </p>
           </Reveal3D>
 
-          <RevealStagger className="devops-tools-grid aac-tools-grid" staggerMs={40}>
+          <RevealStagger className="program-page-content devops-tools-grid aac-tools-grid" staggerMs={40}>
             {AWS_TOOLS.map((tool) => (
               <div key={tool.name} className="devops-tool-card">
                 <div className="devops-tool-card-icon">
@@ -758,7 +785,7 @@ const AwsSolutionsArchitectProgram = () => {
             ))}
           </RevealStagger>
 
-          <Reveal3D delay={80}>
+          <Reveal3D delay={80} className="program-page-content">
             <TechMarquee tools={techRowA} />
             <TechMarquee tools={techRowB} reverse />
           </Reveal3D>
@@ -766,70 +793,57 @@ const AwsSolutionsArchitectProgram = () => {
       </section>
 
       <section className="section-padding section-white" id="who-should-join">
-        <div className="container px-4 sm:px-6">
-          <Reveal3D className="mx-auto mb-12 max-w-3xl text-center">
-            <span className="mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
+        <div className="program-page-container">
+          <Reveal3D className="program-page-header program-section-header">
+            <span className="program-section-eyebrow mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
               Who Should Join
             </span>
-            <h2 className="section-title mb-4">Is This Program For You?</h2>
-            <p className="leading-relaxed text-muted-foreground">
+            <h2 className="program-section-title section-title mb-4">Is This Program For You?</h2>
+            <p className="program-section-lead leading-relaxed text-muted-foreground">
               Designed for anyone who wants to design real AWS architectures — not just pass a theory exam.
             </p>
           </Reveal3D>
 
-          <ProgramSectionAside
-            image={visuals.audience}
-            imageAlt="Cloud professionals learning AWS architecture at Zyvotrix"
-            caption="Built for beginners, developers, and certification aspirants"
-            className="mx-auto max-w-5xl"
-          >
-            <RevealStagger className="grid gap-5 sm:grid-cols-2" staggerMs={90}>
-              {audience.map(({ icon: Icon, title, desc }) => (
-                <DepthCard key={title} className="h-full" maxTilt={6}>
-                  <article className="program-audience-card flex h-full gap-4 rounded-2xl border border-border bg-card p-6">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <h3 className="mb-2 font-bold text-foreground">{title}</h3>
-                      <p className="text-sm leading-relaxed text-muted-foreground">{desc}</p>
-                    </div>
-                  </article>
-                </DepthCard>
-              ))}
-            </RevealStagger>
-          </ProgramSectionAside>
-
-          <Reveal3D delay={100}>
-            <div className="devops-glow-card mx-auto max-w-md">
-              <div className="devops-glow-card-inner p-8 text-center shadow-lg">
-                <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-primary">
-                  Enrollment
-                </p>
-                <p className="mb-2 text-2xl font-bold text-foreground">Now Open</p>
-                <p className="mb-2 text-sm text-muted-foreground">
-                  Weekend sessions · 2 hours/day · {course.duration}
-                </p>
-                <p className="mb-6 text-sm text-muted-foreground">
-                  Limited seats · Live mentorship · Architecture review day included
-                </p>
-                <Button asChild className="btn-brand btn-shimmer h-11 w-full">
-                  <Link to={course.checkoutPath}>Reserve Your Seat</Link>
-                </Button>
-              </div>
-            </div>
+          <Reveal3D className="program-page-content">
+            <figure className="program-audience-banner">
+              <img
+                src={visuals.audience}
+                alt="Cloud professionals learning AWS architecture at Zyvotrix"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption className="program-audience-banner-caption">
+                Built for beginners, developers, and certification aspirants
+              </figcaption>
+            </figure>
           </Reveal3D>
+
+          <RevealStagger className="program-page-content mt-6 grid gap-4 sm:grid-cols-2" staggerMs={90}>
+            {audience.map(({ icon: Icon, title, desc }, index) => (
+              <DepthCard key={title} className="h-full" maxTilt={6}>
+                <article className={cn('program-audience-card flex h-full gap-4 rounded-2xl border border-border bg-card p-6', `program-audience-card--${index}`)}>
+                  <div className={cn('flex h-11 w-11 shrink-0 items-center justify-center rounded-xl', `program-audience-card-icon--${index}`)}>
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h3 className="mb-2 font-display font-bold text-foreground">{title}</h3>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{desc}</p>
+                  </div>
+                </article>
+              </DepthCard>
+            ))}
+          </RevealStagger>
         </div>
       </section>
 
       <section className="section-padding section-alt devops-section-glow" id="outcomes">
-        <div className="container px-4 sm:px-6">
-          <Reveal3D className="mx-auto mb-12 max-w-3xl text-center">
-            <span className="mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
+        <div className="program-page-container">
+          <Reveal3D className="program-page-header program-section-header">
+            <span className="program-section-eyebrow mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
               After You Graduate
             </span>
-            <h2 className="section-title mb-4">What You&apos;ll Be Capable Of</h2>
-            <p className="leading-relaxed text-muted-foreground">
+            <h2 className="program-section-title section-title mb-4">What You&apos;ll Be Capable Of</h2>
+            <p className="program-section-lead leading-relaxed text-muted-foreground">
               Build in-demand cloud architecture skills and a portfolio that gets you hired.
             </p>
           </Reveal3D>
@@ -838,8 +852,9 @@ const AwsSolutionsArchitectProgram = () => {
             image={visuals.career}
             imageAlt="Career-ready AWS architecture skills and portfolio projects"
             caption="Career-ready cloud skills and portfolio projects"
+            imageFit="contain"
             reverse
-            className="mx-auto mb-14 max-w-5xl"
+            className="program-section-aside--career program-page-content mb-14"
           >
             <RevealStagger className="grid gap-5 sm:grid-cols-2" staggerMs={75}>
               {graduateCapabilities.map(({ icon: Icon, title, desc }) => (
@@ -857,7 +872,7 @@ const AwsSolutionsArchitectProgram = () => {
           </ProgramSectionAside>
 
           <Reveal3D delay={100}>
-            <div className="devops-glow-card mx-auto max-w-3xl">
+            <div className="devops-glow-card program-page-content">
               <div className="devops-glow-card-inner p-8 sm:p-10">
                 <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
                   <div>
@@ -896,6 +911,8 @@ const AwsSolutionsArchitectProgram = () => {
         </div>
       </section>
 
+      <div className="program-footer-bridge" aria-hidden />
+
       <PageCta
         badge="Start your AWS journey"
         title="Ready to design production cloud architectures?"
@@ -904,6 +921,7 @@ const AwsSolutionsArchitectProgram = () => {
         primaryHref={course.checkoutPath}
         secondaryLabel="View All Programs"
         secondaryHref="/courses"
+        className="program-page-cta"
       />
 
       <Footer />

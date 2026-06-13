@@ -39,8 +39,10 @@ import ProgramLearningExperience, {
   type LearningFeatureBlock,
 } from '@/components/courses/ProgramLearningExperience';
 import ProgramSectionAside from '@/components/courses/ProgramSectionAside';
+import FAQList from '@/components/FAQList';
 import { AGENTIC_TOOLS } from '@/lib/agenticTools';
 import { COURSE_BY_ID } from '@/lib/courses';
+import type { FaqItem } from '@/lib/faqs';
 import { IMAGES } from '@/lib/images';
 import { cn } from '@/lib/utils';
 import { usePageMeta } from '@/hooks/usePageMeta';
@@ -316,6 +318,135 @@ const certificatePerks = [
   'Recognized by hiring partners',
 ];
 
+const programFaqs: FaqItem[] = [
+  {
+    id: 'aac-what-is',
+    category: 'programs',
+    question: 'What is Agentic AI?',
+    answer:
+      'Agentic AI refers to AI systems that can reason, plan, use tools, retrieve information, maintain memory, and execute multi-step tasks autonomously. Unlike traditional chatbots, agentic systems can make decisions and coordinate actions to achieve specific goals.',
+  },
+  {
+    id: 'aac-why-learn',
+    category: 'programs',
+    question: 'Why should I learn Agentic AI?',
+    answer:
+      'Agentic AI is rapidly becoming one of the most in-demand areas of AI engineering. Organizations are moving beyond simple chatbots toward intelligent systems capable of research, automation, planning, and decision-making. Learning Agentic AI helps you build practical AI applications that solve real business problems.',
+  },
+  {
+    id: 'aac-genai-vs-agentic',
+    category: 'programs',
+    question: 'Is this a Generative AI course or an Agentic AI course?',
+    answer:
+      'This is primarily an Agentic AI Engineering program. While you\'ll learn LLMs and Generative AI fundamentals, the focus is on AI agents, RAG systems, memory architectures, multi-agent systems, tool use, and production AI deployment.',
+  },
+  {
+    id: 'aac-prior-experience',
+    category: 'programs',
+    question: 'Do I need prior AI or Machine Learning experience?',
+    answer:
+      'No. The program starts with LLM foundations, prompt engineering, and function calling before progressing into advanced agent architectures and production AI systems.',
+  },
+  {
+    id: 'aac-engineer-role',
+    category: 'career',
+    question: 'What role does an Agentic AI Engineer play?',
+    answer:
+      'Agentic AI Engineers design and build intelligent systems capable of using tools, retrieving information, planning actions, collaborating with other agents, automating workflows, and solving complex tasks autonomously. They bridge software engineering and applied AI development.',
+  },
+  {
+    id: 'aac-skills',
+    category: 'programs',
+    question: 'What skills will I acquire during this program?',
+    answer:
+      "You'll gain hands-on experience with prompt engineering, function calling, LangChain, LangGraph, CrewAI, AutoGen, RAG pipelines, vector databases, AI memory systems, multi-agent architectures, FastAPI, Docker, cloud deployment, and AI observability.",
+  },
+  {
+    id: 'aac-projects',
+    category: 'programs',
+    question: 'Will I build real-world projects?',
+    answer:
+      'Yes. You\'ll design and implement projects such as a Personal AI Assistant, AI Research Agent, Enterprise Knowledge Assistant, Memory-Powered AI Companion, Finance Research Agent, Multi-Agent Startup Team, AI Operations Dashboard, and a Production-Grade Multi-Agent Business Platform. All projects are learner-built and portfolio-ready.',
+  },
+  {
+    id: 'aac-rag',
+    category: 'programs',
+    question: 'What is Retrieval-Augmented Generation (RAG)?',
+    answer:
+      'RAG combines Large Language Models with external knowledge sources. Instead of relying only on model training data, RAG systems retrieve relevant information from documents, databases, or knowledge bases before generating responses. This is one of the most widely used enterprise AI patterns today.',
+  },
+  {
+    id: 'aac-multi-agent',
+    category: 'programs',
+    question: 'Will I learn Multi-Agent Systems?',
+    answer:
+      'Yes. Multi-agent systems are a major focus of the program. You\'ll learn how specialized AI agents collaborate to solve complex tasks using frameworks such as CrewAI, AutoGen, and LangGraph.',
+  },
+  {
+    id: 'aac-tools',
+    category: 'technical',
+    question: 'Which AI frameworks and tools are covered?',
+    answer:
+      'The program includes LangChain, LangGraph, CrewAI, AutoGen, Ollama, Llama 3, Pinecone, ChromaDB, FastAPI, Docker, AWS, LangSmith, and AI observability tools.',
+  },
+  {
+    id: 'aac-chatgpt',
+    category: 'programs',
+    question: 'Is ChatGPT an example of Agentic AI?',
+    answer:
+      'Not by itself. ChatGPT is primarily a conversational AI model. However, when combined with tools, memory, planning, workflows, and autonomous decision-making capabilities, it can become part of an agentic AI system.',
+  },
+  {
+    id: 'aac-career-2026',
+    category: 'career',
+    question: 'Is Agentic AI a good career path in 2026 and beyond?',
+    answer:
+      'Yes. Agentic AI is emerging as one of the fastest-growing areas within artificial intelligence, creating demand for professionals who can build intelligent agents, autonomous workflows, and production AI systems.',
+  },
+  {
+    id: 'aac-career-opportunities',
+    category: 'career',
+    question: 'What career opportunities can this program support?',
+    answer:
+      'This program is designed for professionals pursuing roles such as Agentic AI Engineer, AI Engineer, LLM Engineer, Generative AI Engineer, AI Application Developer, AI Automation Engineer, and AI Solutions Engineer.',
+  },
+  {
+    id: 'aac-missed-class',
+    category: 'learning',
+    question: 'What happens if I miss a live class?',
+    answer:
+      'All live sessions are recorded and made available for review, allowing you to catch up at your convenience.',
+  },
+  {
+    id: 'aac-time',
+    category: 'learning',
+    question: 'How much time should I dedicate each week?',
+    answer:
+      'Recommended commitment: 4 hours of live training plus 3–5 hours of hands-on practice — approximately 7–9 hours per week in total.',
+  },
+  {
+    id: 'aac-certificate',
+    category: 'programs',
+    question: 'Do I receive a certificate?',
+    answer:
+      'Yes. Learners who successfully complete all projects and the capstone receive the Zyvotrix Agentic AI Engineer Certificate.',
+  },
+  {
+    id: 'aac-portfolio',
+    category: 'career',
+    question: 'Will I have a portfolio after completing the program?',
+    answer:
+      'Yes. You will graduate with multiple AI engineering projects, GitHub-ready repositories, and a production-grade capstone that demonstrates your ability to build real-world agentic AI systems.',
+  },
+  {
+    id: 'aac-why-zyvotrix',
+    category: 'general',
+    question: 'Why choose Zyvotrix for Agentic AI training?',
+    answer:
+      'Zyvotrix focuses on building AI engineers, not just AI users. The program emphasizes production-ready AI systems, real-world projects, multi-agent architectures, deployment and observability, portfolio development, and career-focused learning — so learners can confidently transition from experimenting with AI tools to engineering intelligent AI applications.',
+  },
+];
+
 const learningExperienceFeatures: [
   LearningFeatureBlock,
   LearningFeatureBlock,
@@ -407,9 +538,12 @@ const AgenticAiProgram = () => {
 
   const techRowA = AGENTIC_TOOLS.slice(0, 11);
   const techRowB = AGENTIC_TOOLS.slice(11);
+  const aacFaqMidpoint = Math.ceil(programFaqs.length / 2);
+  const aacFaqColLeft = programFaqs.slice(0, aacFaqMidpoint);
+  const aacFaqColRight = programFaqs.slice(aacFaqMidpoint);
 
   return (
-    <PageShell className="devops-program-page aac-program-page">
+    <PageShell className="devops-program-page aac-program-page program-page-polish">
       <Navbar />
 
       <section className="program-landing-hero relative overflow-hidden">
@@ -420,18 +554,18 @@ const AgenticAiProgram = () => {
         <div className="hero-grid-overlay opacity-40" aria-hidden />
 
         <div className="program-page-container relative z-10 pb-16 pt-24 sm:pb-20 sm:pt-28">
-          <div className="program-page-content aac-hero-grid grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
-            <div className="hero-fade-up aac-hero-copy">
-              <span className="aac-hero-badge mb-4 inline-flex items-center gap-2 rounded-full border border-primary/25 bg-white/80 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary backdrop-blur-sm">
+          <div className="program-page-content program-hero-grid grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+            <div className="hero-fade-up program-hero-copy">
+              <span className="program-hero-badge mb-4 inline-flex items-center gap-2 rounded-full border border-primary/25 bg-white/80 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary backdrop-blur-sm">
                 <Sparkles className="h-3.5 w-3.5" />
                 {course.code} · Certification Program
               </span>
-              <h1 className="aac-hero-title mb-4 text-3xl font-bold leading-[1.08] tracking-tight text-brand-950 sm:text-4xl lg:text-[2.85rem]">
+              <h1 className="program-hero-title mb-4 text-3xl font-bold leading-[1.08] tracking-tight text-brand-950 sm:text-4xl lg:text-[2.85rem]">
                 <span className="gradient-text-animated">Agentic AI</span>
                 <span className="block text-brand-950">Certification Training</span>
               </h1>
 
-              <div className="program-hero-tagline aac-hero-tagline mb-6 max-w-xl rounded-2xl border border-primary/15 bg-gradient-to-br from-primary/5 via-white/90 to-violet-500/5 px-5 py-4 backdrop-blur-sm">
+              <div className="program-hero-tagline program-hero-tagline mb-6 max-w-xl rounded-2xl border border-primary/15 bg-gradient-to-br from-primary/5 via-white/90 to-violet-500/5 px-5 py-4 backdrop-blur-sm">
                 <p className="text-sm font-semibold leading-snug text-foreground sm:text-base">
                   Most AI courses teach you how to <span className="text-muted-foreground">use</span> AI.
                 </p>
@@ -443,7 +577,7 @@ const AgenticAiProgram = () => {
                 </p>
               </div>
 
-              <p className="aac-hero-lead mb-8 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              <p className="program-hero-lead mb-8 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
                 Master intelligent agents, LLM workflows, and production AI automation in{' '}
                 {course.duration.toLowerCase()}. Weekend sessions — 2 hours each day — paced for deep
                 learning without burnout.
@@ -476,9 +610,9 @@ const AgenticAiProgram = () => {
                 </Button>
               </div>
 
-              <div className="aac-hero-trust mt-8 grid max-w-xl grid-cols-3 gap-3">
+              <div className="program-hero-trust mt-8 grid max-w-xl grid-cols-3 gap-3">
                 {heroTrustStats.map((stat) => (
-                  <div key={stat.label} className="aac-hero-trust-item rounded-xl border border-border/70 bg-white/80 px-3 py-3 text-center shadow-sm backdrop-blur-sm">
+                  <div key={stat.label} className="program-hero-trust-item rounded-xl border border-border/70 bg-white/80 px-3 py-3 text-center shadow-sm backdrop-blur-sm">
                     <p className="font-display text-xl font-extrabold leading-none text-primary sm:text-2xl">{stat.value}</p>
                     <p className="mt-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground sm:text-xs">{stat.label}</p>
                   </div>
@@ -486,7 +620,7 @@ const AgenticAiProgram = () => {
               </div>
             </div>
 
-            <div className="hero-fade-up aac-hero-visual-col" style={{ animationDelay: '0.15s' }}>
+            <div className="hero-fade-up program-hero-visual-col" style={{ animationDelay: '0.15s' }}>
               <AgenticHeroVisual
                 image={visuals.hero}
                 imageAlt="Human and AI collaboration — Agentic AI certification at Zyvotrix"
@@ -498,35 +632,35 @@ const AgenticAiProgram = () => {
       </section>
 
       {/* Why Agentic AI — 2nd fold */}
-      <section className="aac-why-section border-b border-border bg-white py-14 sm:py-16" id="why-agentic-ai">
+      <section className="program-why-section border-b border-border bg-white py-14 sm:py-16" id="why-agentic-ai">
         <div className="program-page-container">
-          <Reveal3D className="program-page-header aac-section-header">
-            <span className="aac-section-eyebrow mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
+          <Reveal3D className="program-page-header program-section-header">
+            <span className="program-section-eyebrow mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
               Why Agentic AI
             </span>
-            <h2 className="aac-section-title section-title mb-4">
+            <h2 className="program-section-title section-title mb-4">
               Beyond Chatbots — <span className="gradient-text-animated">Real AI Systems</span>
             </h2>
-            <p className="aac-section-lead leading-relaxed text-muted-foreground">
+            <p className="program-section-lead leading-relaxed text-muted-foreground">
               Agentic AI is the shift from prompting a chatbot to building autonomous systems that
               plan, use tools, and complete long-horizon tasks. This is where the industry is going.
             </p>
           </Reveal3D>
 
-          <RevealStagger className="program-page-content aac-highlight-grid grid gap-4 sm:grid-cols-2 lg:grid-cols-3" staggerMs={70}>
+          <RevealStagger className="program-page-content program-highlight-grid grid gap-4 sm:grid-cols-2 lg:grid-cols-3" staggerMs={70}>
             {whyAgenticAi.map(({ icon: Icon, title, desc }, index) => (
               <DepthCard key={title} className={cn('h-full', index === 0 && 'sm:col-span-2 lg:col-span-2')} maxTilt={6}>
                 <article
                   className={cn(
-                    'aac-highlight-card program-highlight-card relative flex h-full gap-4 overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-6',
-                    `aac-highlight-card--${index}`,
-                    index === 0 && 'aac-highlight-card--featured',
+                    'program-highlight-card-accent program-highlight-card relative flex h-full gap-4 overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-6',
+                    `program-highlight-card-accent--${index}`,
+                    index === 0 && 'program-highlight-card-accent--featured',
                   )}
                 >
-                  <span className="aac-highlight-card-number" aria-hidden>
+                  <span className="program-highlight-card-accent-number" aria-hidden>
                     {String(index + 1).padStart(2, '0')}
                   </span>
-                  <div className={cn('aac-highlight-card-icon flex shrink-0 items-center justify-center rounded-xl', `aac-highlight-card-icon--${index}`)}>
+                  <div className={cn('program-highlight-card-accent-icon flex shrink-0 items-center justify-center rounded-xl', `program-highlight-card-accent-icon--${index}`)}>
                     <Icon className="h-5 w-5" />
                   </div>
                   <div className="relative z-[1] text-left">
@@ -547,14 +681,14 @@ const AgenticAiProgram = () => {
         id="curriculum"
       >
         <div className="program-page-container">
-          <Reveal3D className="program-page-header aac-section-header">
-            <span className="aac-section-eyebrow mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
+          <Reveal3D className="program-page-header program-section-header">
+            <span className="program-section-eyebrow mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
               Curriculum
             </span>
-            <h2 className="aac-section-title section-title mb-4">
+            <h2 className="program-section-title section-title mb-4">
               Zero to <span className="gradient-text-animated">Agentic AI Engineer</span>
             </h2>
-            <p className="aac-section-lead leading-relaxed text-muted-foreground">
+            <p className="program-section-lead leading-relaxed text-muted-foreground">
               12 modules across 3 phases — from LLM foundations to cloud-deployed multi-agent systems.
             </p>
           </Reveal3D>
@@ -578,21 +712,21 @@ const AgenticAiProgram = () => {
         features={learningExperienceFeatures}
         stats={learningExperienceStats}
         gallery={learningExperienceGallery}
-        sectionClassName="program-lx-section program-lx-section--aac"
+        sectionClassName="program-lx-section program-lx-section--compact"
       />
 
       <ProgramIndustryProjects />
 
       <section className="section-padding border-y border-border bg-brand-100/30 devops-section-glow">
         <div className="program-page-container">
-          <Reveal3D className="program-page-header aac-section-header !mb-10 text-center">
-            <span className="aac-section-eyebrow mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
+          <Reveal3D className="program-page-header program-section-header !mb-10 text-center">
+            <span className="program-section-eyebrow mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
               Tech Stack
             </span>
-            <h2 className="aac-section-title section-title mb-3">
+            <h2 className="program-section-title section-title mb-3">
               Tools You&apos;ll <span className="gradient-text-animated">Learn</span>
             </h2>
-            <p className="aac-section-lead mb-10 text-muted-foreground">
+            <p className="program-section-lead mb-10 text-muted-foreground">
               Every tool maps directly to a module — from local LLMs and LangChain to Docker and AWS
               deployment.
             </p>
@@ -625,25 +759,25 @@ const AgenticAiProgram = () => {
 
       <section className="section-padding section-white" id="who-should-join">
         <div className="program-page-container">
-          <Reveal3D className="program-page-header aac-section-header">
-            <span className="aac-section-eyebrow mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
+          <Reveal3D className="program-page-header program-section-header">
+            <span className="program-section-eyebrow mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
               Who Should Join
             </span>
-            <h2 className="aac-section-title section-title mb-4">Is This Program For You?</h2>
-            <p className="aac-section-lead leading-relaxed text-muted-foreground">
+            <h2 className="program-section-title section-title mb-4">Is This Program For You?</h2>
+            <p className="program-section-lead leading-relaxed text-muted-foreground">
               Designed for anyone who wants to build real agentic AI systems — not just use chatbots.
             </p>
           </Reveal3D>
 
           <Reveal3D className="program-page-content">
-            <figure className="aac-audience-banner">
+            <figure className="program-audience-banner">
               <img
                 src={visuals.audience}
                 alt="Developer building agentic AI systems at a professional workstation"
                 loading="lazy"
                 decoding="async"
               />
-              <figcaption className="aac-audience-banner-caption">
+              <figcaption className="program-audience-banner-caption">
                 Built for developers, graduates, and AI enthusiasts
               </figcaption>
             </figure>
@@ -652,8 +786,8 @@ const AgenticAiProgram = () => {
           <RevealStagger className="program-page-content mt-6 grid gap-4 sm:grid-cols-2" staggerMs={90}>
             {audience.map(({ icon: Icon, title, desc }, index) => (
               <DepthCard key={title} className="h-full" maxTilt={6}>
-                <article className={cn('aac-audience-card program-audience-card flex h-full gap-4 rounded-2xl border border-border bg-card p-6', `aac-audience-card--${index}`)}>
-                  <div className={cn('flex h-11 w-11 shrink-0 items-center justify-center rounded-xl', `aac-audience-card-icon--${index}`)}>
+                <article className={cn('program-audience-card program-audience-card flex h-full gap-4 rounded-2xl border border-border bg-card p-6', `program-audience-card--${index}`)}>
+                  <div className={cn('flex h-11 w-11 shrink-0 items-center justify-center rounded-xl', `program-audience-card-icon--${index}`)}>
                     <Icon className="h-5 w-5" />
                   </div>
                   <div>
@@ -669,12 +803,12 @@ const AgenticAiProgram = () => {
 
       <section className="section-padding section-alt devops-section-glow" id="outcomes">
         <div className="program-page-container">
-          <Reveal3D className="program-page-header aac-section-header">
-            <span className="aac-section-eyebrow mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
+          <Reveal3D className="program-page-header program-section-header">
+            <span className="program-section-eyebrow mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
               After You Graduate
             </span>
-            <h2 className="aac-section-title section-title mb-4">What You&apos;ll Be Capable Of</h2>
-            <p className="aac-section-lead leading-relaxed text-muted-foreground">
+            <h2 className="program-section-title section-title mb-4">What You&apos;ll Be Capable Of</h2>
+            <p className="program-section-lead leading-relaxed text-muted-foreground">
               Build in-demand AI engineering skills and a portfolio that gets you hired.
             </p>
           </Reveal3D>
@@ -741,6 +875,29 @@ const AgenticAiProgram = () => {
                 </div>
               </div>
             </div>
+          </Reveal3D>
+        </div>
+      </section>
+
+      <section className="section-padding section-white border-t border-border" id="faq">
+        <div className="program-page-container">
+          <Reveal3D className="program-page-header program-section-header">
+            <span className="program-section-eyebrow mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-primary">
+              FAQ
+            </span>
+            <h2 className="program-section-title section-title mb-4">Agentic AI Program FAQs</h2>
+            <p className="program-section-lead leading-relaxed text-muted-foreground">
+              Answers for working professionals considering the Agentic AI Certification Program.
+            </p>
+          </Reveal3D>
+
+          <Reveal3D className="program-page-content grid gap-6 lg:grid-cols-2 lg:gap-8">
+            <FAQList faqs={aacFaqColLeft} />
+            <FAQList
+              faqs={aacFaqColRight}
+              includeSchema
+              schemaFaqs={programFaqs}
+            />
           </Reveal3D>
         </div>
       </section>
