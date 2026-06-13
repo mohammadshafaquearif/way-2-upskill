@@ -4,6 +4,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { apiClient } from '@/integrations/api/client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import EnrollButton from '@/components/EnrollButton';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import Footer from '@/components/Footer';
@@ -328,9 +329,9 @@ const UserLanding = () => {
                     <Link to="/courses">Browse Available Courses</Link>
                   </Button>
                   <div className="text-center">
-                    <Button asChild variant="outline" size="lg">
-                      <Link to="/enroll">Start Learning</Link>
-                    </Button>
+                    <EnrollButton variant="outline" size="lg">
+                      Start Learning
+                    </EnrollButton>
                   </div>
                 </div>
               </CardContent>

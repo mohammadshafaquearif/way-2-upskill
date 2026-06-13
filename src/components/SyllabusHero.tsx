@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import PageHero from '@/components/PageHero';
+import EnrollButton from '@/components/EnrollButton';
+import { isEnrollHref } from '@/lib/enroll';
 
 interface SyllabusHeroProps {
   title: string;
@@ -20,12 +22,19 @@ const SyllabusHero = ({
   badge = 'Program Syllabus',
 }: SyllabusHeroProps) => (
   <PageHero badge={badge} title={title} subtitle={subtitle} image={image} imageAlt={title}>
-    <Button asChild size="lg" className="btn-brand h-12 px-6">
-      <Link to={checkoutPath}>
+    {isEnrollHref(checkoutPath) ? (
+      <EnrollButton programName={title} size="lg" className="btn-brand h-12 px-6">
         Start Learning
         <ArrowRight className="ml-2 h-4 w-4" />
-      </Link>
-    </Button>
+      </EnrollButton>
+    ) : (
+      <Button asChild size="lg" className="btn-brand h-12 px-6">
+        <Link to={checkoutPath}>
+          Start Learning
+          <ArrowRight className="ml-2 h-4 w-4" />
+        </Link>
+      </Button>
+    )}
     <Button
       asChild
       size="lg"

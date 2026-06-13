@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { EnrollModalProvider } from "@/contexts/EnrollModalContext";
 import PageLayout from "@/components/PageLayout";
 import Index from "./pages/Index";
 import Courses from "./pages/Courses";
@@ -18,14 +19,16 @@ import Contact from "./pages/Contact";
 import Enroll from "./pages/Enroll";
 import Bonus from "./pages/Bonus";
 import Profile from "./pages/Profile";
-import AdminDashboard from "./pages/AdminDashboard";
+import AdminRoute from "./components/AdminRoute";
 import UserLanding from "./pages/UserLanding";
 import Checkout from "./pages/Checkout";
 import NotFound from "./pages/NotFound";
 import Resources from "./pages/Resources";
+import ResourceArticle from "./pages/resources/ResourceArticle";
 import FAQ from "./pages/FAQ";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
+import VerifyCertificate from "./pages/VerifyCertificate";
 import ScrollToHash from "./components/ScrollToHash";
 
 const queryClient = new QueryClient();
@@ -34,6 +37,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <AuthProvider>
+        <EnrollModalProvider>
         <Toaster />
         <Sonner />
         <BrowserRouter>
@@ -54,6 +58,7 @@ const App = () => (
             <Route path="/courses/web-development" element={<Navigate to="/courses/data-science" replace />} />
             <Route path="/courses/cybersecurity" element={<Navigate to="/courses" replace />} />
             <Route path="/resources" element={<Resources />} />
+            <Route path="/resources/:slug" element={<ResourceArticle />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/faq" element={<FAQ />} />
@@ -63,13 +68,15 @@ const App = () => (
             <Route path="/bonus" element={<Bonus />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/dashboard" element={<UserLanding />} />
-            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin" element={<AdminRoute />} />
+            <Route path="/verify-certificate" element={<VerifyCertificate />} />
             <Route path="/checkout/dop" element={<Navigate to="/checkout/devops-engineer-program" replace />} />
             <Route path="/checkout/:courseId" element={<Checkout />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
         </BrowserRouter>
+        </EnrollModalProvider>
         <Analytics />
       </AuthProvider>
     </TooltipProvider>

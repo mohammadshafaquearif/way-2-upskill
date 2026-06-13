@@ -1,11 +1,13 @@
 
 import React, { useState } from 'react';
+import type { CountryCode } from 'libphonenumber-js';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
+import PhoneInput from '@/components/PhoneInput';
 import { 
   Mail, 
   Phone, 
@@ -23,12 +25,12 @@ import PageCta from '@/components/PageCta';
 import PageShell from '@/components/layout/PageShell';
 import { IMAGES } from '@/lib/images';
 import { usePageMeta } from '@/hooks/usePageMeta';
+import { DEFAULT_COUNTRY, toE164, validatePhone } from '@/lib/phone';
 
 interface FormData {
   firstName: string;
   lastName: string;
   email: string;
-  phone: string;
   subject: string;
   message: string;
 }
@@ -52,10 +54,11 @@ const Contact = () => {
     firstName: '',
     lastName: '',
     email: '',
-    phone: '',
     subject: '',
     message: ''
   });
+  const [phoneCountry, setPhoneCountry] = useState<CountryCode>(DEFAULT_COUNTRY);
+  const [nationalNumber, setNationalNumber] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -65,6 +68,27 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const trimmedPhone = nationalNumber.trim();
+    if (!trimmedPhone) {
+      toast({
+        title: 'Phone number required',
+        description: 'Please enter your phone number so we can reach you.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    if (!validatePhone(trimmedPhone, phoneCountry)) {
+      toast({
+        title: 'Invalid phone number',
+        description: 'Please enter a valid phone number.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    const phone = toE164(trimmedPhone, phoneCountry);
     setIsSubmitting(true);
     
     try {
@@ -72,7 +96,7 @@ const Contact = () => {
         firstName: formData.firstName,
         lastName: formData.lastName,
         email: formData.email,
-        phone: formData.phone,
+        phone,
         subject: formData.subject,
         message: formData.message
       });
@@ -90,10 +114,11 @@ const Contact = () => {
         firstName: '',
         lastName: '',
         email: '',
-        phone: '',
         subject: '',
         message: ''
       });
+      setPhoneCountry(DEFAULT_COUNTRY);
+      setNationalNumber('');
     } catch (error) {
       console.error("Submission error:", error);
       const description =
@@ -137,7 +162,7 @@ const Contact = () => {
         }
         subtitle="Questions about programs, enrollment, or partnerships? We're here to help."
         image={IMAGES.hero.contact}
-        imageAlt="Get in touch with Zyvotrix team"
+        imageAlt="Zyvotrix support team — we're here to help with programs and enrollment"
         imageCaption={IMAGES.heroCaptions.contact}
       />
       
@@ -225,12 +250,14 @@ const Contact = () => {
                     </div>
                     
                     <div className="space-y-2">
-                      <label htmlFor="phone" className="text-sm font-medium">Phone (Optional)</label>
-                      <Input 
-                        id="phone" 
-                        placeholder="+91 8887720741"
-                        value={formData.phone}
-                        onChange={handleChange}
+                      <label htmlFor="phone" className="text-sm font-medium">Phone Number</label>
+                      <PhoneInput
+                        id="phone"
+                        country={phoneCountry}
+                        nationalNumber={nationalNumber}
+                        onCountryChange={setPhoneCountry}
+                        onNationalNumberChange={setNationalNumber}
+                        required
                       />
                     </div>
                     

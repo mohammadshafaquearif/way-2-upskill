@@ -7,91 +7,257 @@ import PageCta from '@/components/PageCta';
 import { Link } from 'react-router-dom';
 import ProgramCardBrand from '@/components/home/ProgramCardBrand';
 import { Button } from '@/components/ui/button';
-import { Users, FolderKanban, Clock } from 'lucide-react';
+import { Check, Clock, FolderKanban } from 'lucide-react';
 import { IMAGES } from '@/lib/images';
 import { COURSES } from '@/lib/courses';
 import { usePageMeta } from '@/hooks/usePageMeta';
 
-const highlights = [
-  { icon: Users, label: 'Expert-led programs' },
-  { icon: Clock, label: '2–4 month certifications' },
-  { icon: FolderKanban, label: 'Hands-on projects' },
+const trustMetrics = [
+  'Live Mentor-Led Training',
+  'Real-World Projects',
+  'Portfolio Development',
+  'Career Guidance',
+  'Lifetime Access to Recordings',
+  'Built for Working Professionals',
+];
+
+const programRecommendations = [
+  {
+    goal: 'Become a DevOps Engineer',
+    code: 'DOP',
+    route: '/courses/devops-engineer-program',
+  },
+  {
+    goal: 'Build AI Agents & Automation',
+    code: 'AAC',
+    route: '/courses/aac',
+  },
+  {
+    goal: 'Master AWS Cloud Architecture',
+    code: 'AWS',
+    route: '/courses/aws',
+  },
+  {
+    goal: 'Become a Data Analyst / Data Scientist',
+    code: 'DSP',
+    route: '/courses/data-science',
+  },
+];
+
+const courseCardDetails: Record<string, { projects: string; focus: string }> = {
+  dop: {
+    projects: '12+ Projects',
+    focus: 'AI + DevOps',
+  },
+  aac: {
+    projects: '10+ Portfolio Projects',
+    focus: 'Multi-Agent Systems',
+  },
+  aws: {
+    projects: '7 Projects + Capstone',
+    focus: 'SAA-C03 Focused',
+  },
+  'data-science': {
+    projects: '6 Projects + Capstone',
+    focus: 'ML + Analytics',
+  },
+};
+
+const graduateOutcomes = [
+  'Professional Certificate',
+  'Portfolio Projects',
+  'GitHub Repositories',
+  'Career Guidance',
+  'Industry-Ready Skills',
 ];
 
 const Courses = () => {
   usePageMeta({
-    title: 'Programs & Courses',
+    title: 'DevOps, Agentic AI, AWS & Data Science Certification Programs',
     description:
-      'Explore Zyvotrix certification programs: AI-Powered DevOps (DOP), Agentic AI (AAC), AWS Solutions Architect, and Data Science with Python.',
+      'Explore Zyvotrix certification programs: DevOps (DOP), Agentic AI (AAC), AWS Solutions Architect, and Data Science & Machine Learning with Python. Live mentor-led training with hands-on projects.',
     canonical: '/courses',
   });
 
   return (
-    <PageShell>
+    <PageShell className="courses-page">
       <Navbar />
 
       <PageHero
         badge="All Programs"
         title={
           <>
-            Certification Programs for <span className="gradient-text">Modern Tech Careers</span>
+            Certification Programs for{' '}
+            <span className="gradient-text">DevOps, Agentic AI, AWS &amp; Data Science</span>
           </>
         }
-        subtitle="Structured certification paths with hands-on projects — view full curriculum for each program."
+        subtitle="Build job-ready skills with industry-focused certification programs. Master DevOps, Agentic AI, AWS cloud architecture, and Data Science through live mentor-led training, hands-on projects, and portfolio-driven learning."
         image={IMAGES.hero.courses}
-        imageAlt="Learner in a Zyvotrix certification program"
+        imageAlt="Zyvotrix learners collaborating on AI, cloud, and data science certification programs"
         imageCaption={IMAGES.heroCaptions.courses}
       />
 
-      <section className="relative -mt-6 z-10 px-4 sm:px-6">
-        <div className="container">
-          <div className="flex flex-wrap items-center justify-center gap-6 rounded-2xl border border-border/60 bg-card px-6 py-4 shadow-lg">
-            {highlights.map((h) => (
-              <span key={h.label} className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-                <h.icon className="h-4 w-4 text-primary" />
-                {h.label}
-              </span>
-            ))}
+      <section className="relative -mt-6 z-10">
+        <div className="courses-page-container">
+          <div className="courses-trust-panel rounded-2xl border border-border/60 bg-card px-6 py-6 shadow-lg sm:px-8 sm:py-7">
+            <p className="mb-4 text-center text-xs font-bold uppercase tracking-widest text-primary">
+              Why Learners Choose Zyvotrix
+            </p>
+            <div className="courses-trust-grid">
+              {trustMetrics.map((label) => (
+                <span
+                  key={label}
+                  className="courses-trust-item flex items-center gap-2 text-sm font-medium text-foreground"
+                >
+                  <Check className="h-4 w-4 shrink-0 text-primary" strokeWidth={2.5} />
+                  {label}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding section-alt" id="which-program">
+        <div className="courses-page-container">
+          <header className="courses-section-header mx-auto mb-8 max-w-2xl text-center">
+            <span className="mb-3 inline-block text-xs font-bold uppercase tracking-widest text-primary">
+              Find Your Path
+            </span>
+            <h2 className="courses-section-title mb-3 text-2xl font-bold text-foreground sm:text-3xl">
+              Which Program Is Right For You?
+            </h2>
+            <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
+              Not sure where to start? Match your career goal to the program built for it.
+            </p>
+          </header>
+
+          <div className="courses-table-wrap mx-auto max-w-3xl overflow-x-auto rounded-2xl border border-border bg-card shadow-sm">
+            <table className="courses-table w-full min-w-[28rem] text-left text-sm">
+              <thead>
+                <tr className="border-b border-border bg-muted/40">
+                  <th className="px-5 py-3.5 font-bold text-foreground">Goal</th>
+                  <th className="px-5 py-3.5 font-bold text-foreground">Recommended Program</th>
+                </tr>
+              </thead>
+              <tbody>
+                {programRecommendations.map(({ goal, code, route }) => (
+                  <tr key={code} className="border-b border-border/70 last:border-0">
+                    <td className="px-5 py-4 text-foreground">{goal}</td>
+                    <td className="px-5 py-4">
+                      <Link
+                        to={route}
+                        className="inline-flex items-center gap-2 font-bold text-primary transition-colors hover:text-primary/80"
+                      >
+                        {code}
+                        <span className="text-xs font-normal text-muted-foreground">View program →</span>
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
 
       <section className="section-padding section-white" id="programs">
-        <div className="container px-4 sm:px-6">
-          <div className="top-programs-grid">
-            {COURSES.map((course) => (
-              <article key={course.id} className="top-program-card">
-                <div className="top-program-card-media">
-                  <img
-                    src={course.image}
-                    alt={course.title}
-                    className="top-program-card-image"
-                    loading="lazy"
-                  />
-                  <ProgramCardBrand />
-                </div>
+        <div className="courses-page-container">
+          <header className="courses-section-header mx-auto mb-10 max-w-2xl text-center">
+            <span className="mb-3 inline-block text-xs font-bold uppercase tracking-widest text-primary">
+              Certification Programs
+            </span>
+            <h2 className="courses-section-title mb-3 text-2xl font-bold text-foreground sm:text-3xl">
+              Explore All Programs
+            </h2>
+            <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
+              DevOps certification, Agentic AI course, AWS certification, and Data Science course —
+              each with live training and portfolio projects.
+            </p>
+          </header>
 
-                <div className="top-program-card-body">
-                  <h3 className="top-program-card-title">{course.title}</h3>
-                  <p className="top-program-card-meta text-muted-foreground">{course.description}</p>
-                  <p className="top-program-card-meta">
-                    <span>Duration: {course.duration}</span>
-                  </p>
-                  <Button asChild variant="outline" className="top-program-card-btn">
-                    <Link to={course.route}>View Program</Link>
-                  </Button>
-                </div>
-              </article>
-            ))}
+          <div className="top-programs-grid">
+            {COURSES.map((course) => {
+              const details = courseCardDetails[course.id];
+
+              return (
+                <article key={course.id} className="top-program-card">
+                  <div className="top-program-card-media">
+                    <img
+                      src={course.image}
+                      alt={course.title}
+                      className="top-program-card-image"
+                      loading="lazy"
+                    />
+                    <ProgramCardBrand />
+                    <span className="top-program-card-code">{course.code}</span>
+                  </div>
+
+                  <div className="top-program-card-body">
+                    <h3 className="top-program-card-title">{course.title}</h3>
+                    <p className="top-program-card-meta text-muted-foreground">{course.description}</p>
+
+                    <div className="top-program-card-stats">
+                      <span className="top-program-card-tag">
+                        <Clock className="h-3.5 w-3.5" />
+                        {course.duration}
+                      </span>
+                      <span className="top-program-card-tag">
+                        <FolderKanban className="h-3.5 w-3.5" />
+                        {details.projects}
+                      </span>
+                      <span className="top-program-card-tag top-program-card-tag--accent">
+                        {details.focus}
+                      </span>
+                    </div>
+
+                    <Button asChild variant="outline" className="top-program-card-btn">
+                      <Link to={course.route}>View Program</Link>
+                    </Button>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding section-alt" id="outcomes">
+        <div className="courses-page-container">
+          <div className="courses-outcomes-panel mx-auto max-w-3xl rounded-2xl border border-primary/15 bg-gradient-to-br from-primary/5 via-white to-sky-500/5 p-8 sm:p-10">
+            <header className="mb-6 text-center">
+              <span className="mb-3 inline-block text-xs font-bold uppercase tracking-widest text-primary">
+                Your Outcomes
+              </span>
+              <h2 className="courses-section-title mb-3 text-2xl font-bold text-foreground sm:text-3xl">
+                What You&apos;ll Graduate With
+              </h2>
+              <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
+                Every program is built to leave you with proof of skills — not just a completion badge.
+              </p>
+            </header>
+
+            <ul className="courses-outcomes-list grid gap-3 sm:grid-cols-2">
+              {graduateOutcomes.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-center gap-3 rounded-xl border border-border/80 bg-white/90 px-4 py-3 text-sm font-semibold text-foreground shadow-sm"
+                >
+                  <Check className="h-4 w-4 shrink-0 text-primary" strokeWidth={2.5} />
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
 
       <PageCta
+        className="courses-page-cta"
         badge="Need guidance?"
-        title="Not sure which program fits you?"
-        description="Tell us your goals — we'll help you choose the right certification path."
-        primaryLabel="Get Guidance"
+        title="Not Sure Where to Start?"
+        description="Whether you're looking to transition into DevOps, AI, Cloud, or Data Science, our team can help you choose the right learning path based on your experience and career goals."
+        primaryLabel="Talk to an Advisor"
         primaryHref="/contact"
         secondaryLabel="Free Resources"
         secondaryHref="/resources"

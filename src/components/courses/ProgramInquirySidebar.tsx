@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
+import type { CountryCode } from 'libphonenumber-js';
 import { Link } from 'react-router-dom';
 import { Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import PhoneInput from '@/components/PhoneInput';
 import { useToast } from '@/hooks/use-toast';
 import { apiClient } from '@/integrations/api/client';
 import { trackEvent } from '@/lib/analytics';
 import { SOCIAL_LINKS } from '@/lib/socialLinks';
+import { DEFAULT_COUNTRY, toE164, validatePhone } from '@/lib/phone';
 
 interface ProgramInquirySidebarProps {
   programName: string;
@@ -30,7 +33,8 @@ const ProgramInquirySidebar = ({ programName, programCode }: ProgramInquirySideb
   const { toast } = useToast();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
+  const [phoneCountry, setPhoneCountry] = useState<CountryCode>(DEFAULT_COUNTRY);
+  const [nationalNumber, setNationalNumber] = useState('');
   const [agreed, setAgreed] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -39,7 +43,7 @@ const ProgramInquirySidebar = ({ programName, programCode }: ProgramInquirySideb
 
     const trimmedName = name.trim();
     const trimmedEmail = email.trim();
-    const trimmedPhone = phone.trim();
+    const trimmedPhone = nationalNumber.trim();
 
     if (!trimmedName || !trimmedEmail || !trimmedPhone) {
       toast({
@@ -49,6 +53,17 @@ const ProgramInquirySidebar = ({ programName, programCode }: ProgramInquirySideb
       });
       return;
     }
+
+    if (!validatePhone(trimmedPhone, phoneCountry)) {
+      toast({
+        title: 'Invalid phone number',
+        description: 'Please enter a valid phone number.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    const phone = toE164(trimmedPhone, phoneCountry);
 
     if (!agreed) {
       toast({
@@ -67,7 +82,7 @@ const ProgramInquirySidebar = ({ programName, programCode }: ProgramInquirySideb
         firstName,
         lastName,
         email: trimmedEmail,
-        phone: trimmedPhone,
+        phone,
         subject: programCode
           ? `${programCode} — Program Inquiry`
           : `${programName} — Program Inquiry`,
@@ -92,7 +107,8 @@ const ProgramInquirySidebar = ({ programName, programCode }: ProgramInquirySideb
 
       setName('');
       setEmail('');
-      setPhone('');
+      setPhoneCountry(DEFAULT_COUNTRY);
+      setNationalNumber('');
       setAgreed(false);
     } catch (error) {
       const description =
@@ -177,16 +193,15 @@ const ProgramInquirySidebar = ({ programName, programCode }: ProgramInquirySideb
             <Label htmlFor="inquiry-phone" className="text-xs font-semibold text-muted-foreground">
               Phone Number<span className="text-destructive">*</span>
             </Label>
-            <Input
+            <PhoneInput
               id="inquiry-phone"
-              name="phone"
-              type="tel"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              autoComplete="tel"
+              country={phoneCountry}
+              nationalNumber={nationalNumber}
+              onCountryChange={setPhoneCountry}
+              onNationalNumberChange={setNationalNumber}
               required
-              placeholder="+91 98765 43210"
-              className="rounded-none border-0 border-b border-border px-0 shadow-none focus-visible:ring-0"
+              inputClassName="flex-1 rounded-none border-0 border-b border-border px-0 shadow-none focus-visible:ring-0"
+              selectTriggerClassName="w-[5.5rem] shrink-0 rounded-none border-0 border-b border-border px-0 shadow-none focus-visible:ring-0"
             />
           </div>
 

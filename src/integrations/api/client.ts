@@ -1,5 +1,7 @@
 // API client — uses Supabase (works on Vercel + local without Express)
 import { db } from '@/integrations/supabase/db';
+import { adminDb } from '@/integrations/supabase/adminDb';
+import type { ContactLeadStatus, SubmissionStatus } from '@/lib/adminTypes';
 
 class ApiClient {
   async healthCheck() {
@@ -102,6 +104,42 @@ class ApiClient {
   async resetPassword(email: string) {
     return db.resetPassword(email);
   }
+
+  // Admin Phase 1
+  getAdminDashboardStats = () => adminDb.getDashboardStats();
+  getAdminLearners = () => adminDb.getLearners();
+  updateAdminLearner = (id: string, updates: Parameters<typeof adminDb.updateLearner>[1]) =>
+    adminDb.updateLearner(id, updates);
+  assignProgramToLearner = (userId: string, courseId: string, status?: string) =>
+    adminDb.assignProgramToLearner(userId, courseId, status);
+  getAdminPrograms = () => adminDb.getPrograms();
+  createAdminProgram = (program: Parameters<typeof adminDb.createProgram>[0]) =>
+    adminDb.createProgram(program);
+  updateAdminProgram = (id: string, updates: Parameters<typeof adminDb.updateProgram>[1]) =>
+    adminDb.updateProgram(id, updates);
+  deleteAdminProgram = (id: string) => adminDb.deleteProgram(id);
+  getAdminSessions = () => adminDb.getSessions();
+  createAdminSession = (session: Parameters<typeof adminDb.createSession>[0]) =>
+    adminDb.createSession(session);
+  updateAdminSession = (id: string, updates: Parameters<typeof adminDb.updateSession>[1]) =>
+    adminDb.updateSession(id, updates);
+  deleteAdminSession = (id: string) => adminDb.deleteSession(id);
+  getAdminAssignments = () => adminDb.getAssignments();
+  createAdminAssignment = (assignment: Parameters<typeof adminDb.createAssignment>[0]) =>
+    adminDb.createAssignment(assignment);
+  updateAdminAssignment = (id: string, updates: Parameters<typeof adminDb.updateAssignment>[1]) =>
+    adminDb.updateAssignment(id, updates);
+  deleteAdminAssignment = (id: string) => adminDb.deleteAssignment(id);
+  getAdminSubmissions = () => adminDb.getSubmissions();
+  updateAdminSubmissionStatus = (id: string, status: SubmissionStatus, notes?: string) =>
+    adminDb.updateSubmissionStatus(id, status, notes);
+  getAdminCertificates = () => adminDb.getCertificates();
+  createAdminCertificate = (cert: Parameters<typeof adminDb.createCertificate>[0]) =>
+    adminDb.createCertificate(cert);
+  verifyAdminCertificate = (certificateId: string) => adminDb.verifyCertificate(certificateId);
+  getAdminContacts = () => adminDb.getContacts();
+  updateAdminContactStatus = (id: string, status: ContactLeadStatus) =>
+    adminDb.updateContactStatus(id, status);
 }
 
 export const apiClient = new ApiClient();

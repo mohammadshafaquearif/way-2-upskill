@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import EnrollButton from '@/components/EnrollButton';
 import {
   ArrowRight,
   Award,
@@ -599,12 +600,10 @@ const AgenticAiProgram = () => {
               </div>
 
               <div className="flex flex-col gap-3 sm:flex-row">
-                <Button asChild size="lg" className="btn-brand btn-shimmer h-12 px-8">
-                  <Link to={course.checkoutPath}>
-                    Enroll Now
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
+                <EnrollButton programName={course.title} size="lg" className="btn-brand btn-shimmer h-12 px-8">
+                  Enroll Now
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </EnrollButton>
                 <Button asChild size="lg" variant="outline" className="h-12 border-primary/20 px-8 backdrop-blur-sm">
                   <Link to="/contact">Talk to an Advisor</Link>
                 </Button>
@@ -910,6 +909,7 @@ const AgenticAiProgram = () => {
         description="From LLM fundamentals to a deployed multi-agent capstone — in 3 months."
         primaryLabel="Enroll Now"
         primaryHref={course.checkoutPath}
+        programName={course.title}
         secondaryLabel="View All Programs"
         secondaryHref="/courses"
         className="program-page-cta"

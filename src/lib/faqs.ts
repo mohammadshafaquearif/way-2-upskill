@@ -255,13 +255,6 @@ export const FAQS: FaqItem[] = [
     answer:
       'Subscribe via the newsletter section on zyvotrix.com or at the bottom of our homepage. You will receive roadmaps, career tips, program announcements, and free resource updates.',
   },
-  {
-    id: 'corporate-training',
-    category: 'community',
-    question: 'Does Zyvotrix offer corporate or team training?',
-    answer:
-      'Yes. We support teams and organizations looking to upskill in DevOps, Agentic AI, AWS, and Data Science. Contact us at zyvotrix.com/contact with your team size and goals for a custom learning plan.',
-  },
 ];
 
 /** Homepage preview — most common questions */

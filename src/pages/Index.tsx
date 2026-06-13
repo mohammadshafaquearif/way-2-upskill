@@ -1,4 +1,5 @@
 import React from 'react';
+import { usePageMeta } from '@/hooks/usePageMeta';
 import PageShell from '@/components/layout/PageShell';
 import Hero from '@/components/Hero';
 import TrustStatsBar from '@/components/home/TrustStatsBar';
@@ -10,28 +11,39 @@ import StatsSection from '@/components/StatsSection';
 import Testimonials from '@/components/Testimonials';
 import FreeLearningResources from '@/components/home/FreeLearningResources';
 import FAQSection from '@/components/home/FAQSection';
+import CommunitySection from '@/components/home/CommunitySection';
 import NewsletterSection from '@/components/home/NewsletterSection';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
-const Index = () => (
-  <PageShell>
-    <Navbar />
-    <main className="page-main">
-      <Hero />
-      <TrustStatsBar />
-      <TopPrograms />
-      <ProgramsStandOut />
-      <PartnerStrip />
-      <LearningJourney />
-      <StatsSection />
-      <Testimonials />
-      <FreeLearningResources />
-      <FAQSection />
-      <NewsletterSection />
-    </main>
-    <Footer />
-  </PageShell>
-);
+const Index = () => {
+  usePageMeta({
+    title: 'Practical Tech Learning for Career Growth',
+    description:
+      'Zyvotrix helps working professionals build career-ready skills in DevOps, Agentic AI, AWS, and Data Science through live mentor-led programs, hands-on projects, and free learning resources.',
+    canonical: '/',
+  });
+
+  return (
+    <PageShell>
+      <Navbar />
+      <main className="page-main">
+        <Hero />
+        <TrustStatsBar />
+        <TopPrograms />
+        <ProgramsStandOut />
+        <PartnerStrip />
+        <LearningJourney />
+        <StatsSection />
+        <Testimonials />
+        <FreeLearningResources />
+        <FAQSection />
+        <CommunitySection />
+        <NewsletterSection />
+      </main>
+      <Footer />
+    </PageShell>
+  );
+};
 
 export default Index;

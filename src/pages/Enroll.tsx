@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import type { CountryCode } from 'libphonenumber-js';
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import Navbar from '@/components/Navbar';
@@ -8,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
+import PhoneInput from '@/components/PhoneInput';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
@@ -19,6 +21,7 @@ import PageHero from '@/components/PageHero';
 import PageShell from '@/components/layout/PageShell';
 import { IMAGES } from '@/lib/images';
 import { usePageMeta } from '@/hooks/usePageMeta';
+import { DEFAULT_COUNTRY, toE164, validatePhone } from '@/lib/phone';
 
 const paymentPlans = [
   {
@@ -101,6 +104,7 @@ const Enroll = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedPlan, setSelectedPlan] = useState(paymentPlans[0].id);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [phoneCountry, setPhoneCountry] = useState<CountryCode>(DEFAULT_COUNTRY);
 
   useEffect(() => {
     apiClient.getAllCourses().then((courses) => {
@@ -171,6 +175,26 @@ const Enroll = () => {
   };
 
   const nextStep = () => {
+    if (currentStep === 1) {
+      const trimmedPhone = formData.personal.phone.trim();
+      if (!trimmedPhone) {
+        toast({
+          title: 'Phone number required',
+          description: 'Please enter your phone number to continue.',
+          variant: 'destructive',
+        });
+        return;
+      }
+      if (!validatePhone(trimmedPhone, phoneCountry)) {
+        toast({
+          title: 'Invalid phone number',
+          description: 'Please enter a valid phone number.',
+          variant: 'destructive',
+        });
+        return;
+      }
+    }
+
     setCurrentStep(currentStep + 1);
     setFormData(prev => ({ ...prev, step: currentStep + 1 }));
     window.scrollTo(0, 0);
@@ -184,6 +208,18 @@ const Enroll = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const trimmedPhone = formData.personal.phone.trim();
+    if (!validatePhone(trimmedPhone, phoneCountry)) {
+      toast({
+        title: 'Invalid phone number',
+        description: 'Please enter a valid phone number.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    const phone = toE164(trimmedPhone, phoneCountry);
     setIsSubmitting(true);
     
     try {
@@ -197,7 +233,7 @@ const Enroll = () => {
         firstName: formData.personal.firstName,
         lastName: formData.personal.lastName,
         email: formData.personal.email,
-        phone: formData.personal.phone,
+        phone,
         address: formData.personal.address,
         city: formData.personal.city,
         state: formData.personal.state,
@@ -333,12 +369,18 @@ const Enroll = () => {
                       </div>
                       <div className="space-y-2">
                         <label htmlFor="phone" className="text-sm font-medium">Phone Number</label>
-                        <Input 
-                          id="phone" 
-                          placeholder="+1 (555) 123-4567" 
-                          required 
-                          value={formData.personal.phone}
-                          onChange={handlePersonalChange}
+                        <PhoneInput
+                          id="phone"
+                          country={phoneCountry}
+                          nationalNumber={formData.personal.phone}
+                          onCountryChange={setPhoneCountry}
+                          onNationalNumberChange={(value) =>
+                            setFormData((prev) => ({
+                              ...prev,
+                              personal: { ...prev.personal, phone: value },
+                            }))
+                          }
+                          required
                         />
                       </div>
                     </div>

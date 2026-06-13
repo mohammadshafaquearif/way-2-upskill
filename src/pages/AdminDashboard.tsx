@@ -1,417 +1,184 @@
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { RefreshCw, AlertCircle } from 'lucide-react';
 import { apiClient } from '@/integrations/api/client';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { 
-  Users, 
-  BookOpen, 
-  TrendingUp, 
-  DollarSign,
-  Calendar,
-  Mail,
-  Phone,
-  Eye,
-  Download,
-  RefreshCw
-} from 'lucide-react';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import AdminSidebar, { AdminMobileToggle } from '@/components/admin/AdminSidebar';
+import AdminOverview from '@/components/admin/AdminOverview';
+import AdminLearners from '@/components/admin/AdminLearners';
+import AdminPrograms from '@/components/admin/AdminPrograms';
+import AdminSessions from '@/components/admin/AdminSessions';
+import AdminAssignments from '@/components/admin/AdminAssignments';
+import AdminCertificates from '@/components/admin/AdminCertificates';
+import AdminContacts from '@/components/admin/AdminContacts';
+import type {
+  AdminAssignment,
+  AdminCertificate,
+  AdminContact,
+  AdminDashboardStats,
+  AdminLearner,
+  AdminProgram,
+  AdminSection,
+  AdminSession,
+  AdminSubmission,
+} from '@/lib/adminTypes';
 
-interface User {
-  id: string;
-  first_name: string;
-  last_name: string;
-  email: string;
-  phone: string;
-  interested_subject: string;
-  created_at: string;
-  last_login?: string;
-}
-
-interface Enrollment {
-  id: string;
-  user_id: string;
-  course_id: string;
-  course_name: string;
-  payment_plan: string;
-  amount: number;
-  status: string;
-  created_at: string;
-  user_name: string;
-  user_email: string;
-}
-
-interface Activity {
-  id: string;
-  user_id: string;
-  user_name: string;
-  action: string;
-  timestamp: string;
-  details: string;
-}
+const emptyStats: AdminDashboardStats = {
+  totalLearners: 0,
+  activeLearners: 0,
+  programsSold: 0,
+  revenue: 0,
+  upcomingSessions: [],
+  recentEnrollments: [],
+};
 
 const AdminDashboard = () => {
-  const [users, setUsers] = useState<User[]>([]);
-  const [enrollments, setEnrollments] = useState<Enrollment[]>([]);
-  const [activities, setActivities] = useState<Activity[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [stats, setStats] = useState({
-    totalUsers: 0,
-    totalEnrollments: 0,
-    totalRevenue: 0,
-    activeUsers: 0
-  });
+  const [section, setSection] = useState<AdminSection>('dashboard');
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetchDashboardData();
+  const [stats, setStats] = useState<AdminDashboardStats>(emptyStats);
+  const [learners, setLearners] = useState<AdminLearner[]>([]);
+  const [programs, setPrograms] = useState<AdminProgram[]>([]);
+  const [sessions, setSessions] = useState<AdminSession[]>([]);
+  const [assignments, setAssignments] = useState<AdminAssignment[]>([]);
+  const [submissions, setSubmissions] = useState<AdminSubmission[]>([]);
+  const [certificates, setCertificates] = useState<AdminCertificate[]>([]);
+  const [contacts, setContacts] = useState<AdminContact[]>([]);
+
+  const loadData = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const [
+        statsData,
+        learnersData,
+        programsData,
+        sessionsData,
+        assignmentsData,
+        submissionsData,
+        certificatesData,
+        contactsData,
+      ] = await Promise.all([
+        apiClient.getAdminDashboardStats(),
+        apiClient.getAdminLearners(),
+        apiClient.getAdminPrograms(),
+        apiClient.getAdminSessions(),
+        apiClient.getAdminAssignments(),
+        apiClient.getAdminSubmissions(),
+        apiClient.getAdminCertificates(),
+        apiClient.getAdminContacts(),
+      ]);
+
+      setStats(statsData);
+      setLearners(learnersData);
+      setPrograms(programsData);
+      setSessions(sessionsData);
+      setAssignments(assignmentsData);
+      setSubmissions(submissionsData);
+      setCertificates(certificatesData);
+      setContacts(contactsData);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Failed to load admin data';
+      setError(message);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
-  const fetchDashboardData = async () => {
-    setIsLoading(true);
-    try {
-      const usersData = await apiClient.getAdminUsers();
-      setUsers(usersData);
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
 
-      const enrollmentsData = await apiClient.getAdminEnrollments();
-      setEnrollments(enrollmentsData);
+  const sectionTitles: Record<AdminSection, string> = {
+    dashboard: 'Dashboard',
+    learners: 'Learners',
+    programs: 'Programs',
+    sessions: 'Sessions',
+    assignments: 'Assignments',
+    certificates: 'Certificates',
+    contacts: 'Contact Leads',
+  };
 
-      // Fetch activities (mock data for now)
-      const mockActivities: Activity[] = [
-        {
-          id: '1',
-          user_id: '1',
-          user_name: 'John Doe',
-          action: 'Login',
-          timestamp: new Date().toISOString(),
-          details: 'User logged in successfully'
-        },
-        {
-          id: '2',
-          user_id: '2',
-          user_name: 'Jane Smith',
-          action: 'Enrollment',
-          timestamp: new Date(Date.now() - 3600000).toISOString(),
-          details: 'Enrolled in Full Stack Web Development'
-        },
-        {
-          id: '3',
-          user_id: '3',
-          user_name: 'Mike Johnson',
-          action: 'Profile Update',
-          timestamp: new Date(Date.now() - 7200000).toISOString(),
-          details: 'Updated phone number'
-        }
-      ];
-      setActivities(mockActivities);
-
-      // Calculate stats
-      const totalUsers = usersData.length;
-      const totalEnrollments = enrollmentsData.length;
-      const totalRevenue = enrollmentsData.reduce((sum: number, enrollment: Enrollment) => sum + enrollment.amount, 0);
-      const activeUsers = usersData.filter((user: User) => user.last_login).length;
-
-      setStats({
-        totalUsers,
-        totalEnrollments,
-        totalRevenue,
-        activeUsers
-      });
-
-    } catch (error) {
-      console.error('Error fetching dashboard data:', error);
-    } finally {
-      setIsLoading(false);
+  const renderSection = () => {
+    switch (section) {
+      case 'dashboard':
+        return <AdminOverview stats={stats} />;
+      case 'learners':
+        return <AdminLearners learners={learners} programs={programs} onRefresh={loadData} />;
+      case 'programs':
+        return <AdminPrograms programs={programs} onRefresh={loadData} />;
+      case 'sessions':
+        return <AdminSessions sessions={sessions} programs={programs} onRefresh={loadData} />;
+      case 'assignments':
+        return (
+          <AdminAssignments
+            assignments={assignments}
+            submissions={submissions}
+            programs={programs}
+            onRefresh={loadData}
+          />
+        );
+      case 'certificates':
+        return (
+          <AdminCertificates
+            certificates={certificates}
+            learners={learners}
+            programs={programs}
+            onRefresh={loadData}
+          />
+        );
+      case 'contacts':
+        return <AdminContacts contacts={contacts} onRefresh={loadData} />;
+      default:
+        return null;
     }
   };
-
-  const exportData = (type: string) => {
-    let data: any[] = [];
-    let filename = '';
-    
-    switch (type) {
-      case 'users':
-        data = users;
-        filename = 'users.csv';
-        break;
-      case 'enrollments':
-        data = enrollments;
-        filename = 'enrollments.csv';
-        break;
-      case 'activities':
-        data = activities;
-        filename = 'activities.csv';
-        break;
-    }
-
-    const csv = convertToCSV(data);
-    downloadCSV(csv, filename);
-  };
-
-  const convertToCSV = (data: any[]) => {
-    if (data.length === 0) return '';
-    
-    const headers = Object.keys(data[0]);
-    const csvRows = [headers.join(',')];
-    
-    data.forEach(row => {
-      const values = headers.map(header => {
-        const value = row[header];
-        return typeof value === 'string' ? `"${value}"` : value;
-      });
-      csvRows.push(values.join(','));
-    });
-    
-    return csvRows.join('\n');
-  };
-
-  const downloadCSV = (csv: string, filename: string) => {
-    const blob = new Blob([csv], { type: 'text/csv' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = filename;
-    a.click();
-    window.URL.revokeObjectURL(url);
-  };
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <RefreshCw className="w-8 h-8 animate-spin mx-auto mb-4" />
-          <p>Loading dashboard...</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
-    <div className="page-shell">
-      <div className="bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 py-6">
-            <div className="min-w-0">
-              <h1 className="text-2xl sm:text-3xl font-bold text-foreground">Admin Dashboard</h1>
-              <p className="text-sm sm:text-base text-muted-foreground">Monitor user activity and platform performance</p>
+    <div className="flex min-h-screen bg-muted/20">
+      <AdminSidebar
+        active={section}
+        onChange={setSection}
+        mobileOpen={mobileOpen}
+        onMobileClose={() => setMobileOpen(false)}
+      />
+
+      <div className="flex min-w-0 flex-1 flex-col">
+        <header className="sticky top-0 z-10 flex items-center justify-between gap-4 border-b bg-background/95 px-4 py-4 backdrop-blur sm:px-6">
+          <div className="flex items-center gap-3">
+            <AdminMobileToggle open={mobileOpen} onToggle={() => setMobileOpen((v) => !v)} />
+            <div>
+              <h1 className="text-xl font-bold sm:text-2xl">{sectionTitles[section]}</h1>
+              <p className="text-xs text-muted-foreground sm:text-sm">Phase 1 — Launch admin panel</p>
             </div>
-            <Button onClick={fetchDashboardData} variant="outline">
-              <RefreshCw className="w-4 h-4 mr-2" />
-              Refresh
-            </Button>
           </div>
-        </div>
-      </div>
+          <Button variant="outline" size="sm" onClick={loadData} disabled={loading}>
+            <RefreshCw className={`mr-2 h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+            Refresh
+          </Button>
+        </header>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center">
-                <div className="p-2 bg-blue-100 rounded-lg">
-                  <Users className="w-6 h-6 text-blue-600" />
-                </div>
-                <div className="ml-4">
-                  <p className="text-sm font-medium text-muted-foreground">Total Users</p>
-                  <p className="text-2xl font-bold text-foreground">{stats.totalUsers}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+        <main className="flex-1 p-4 sm:p-6 lg:p-8">
+          {error && (
+            <Alert variant="destructive" className="mb-6">
+              <AlertCircle className="h-4 w-4" />
+              <AlertTitle>Database setup required</AlertTitle>
+              <AlertDescription>
+                {error}. Run <code className="rounded bg-muted px-1">supabase/admin-phase1.sql</code> in Supabase SQL Editor, then refresh.
+              </AlertDescription>
+            </Alert>
+          )}
 
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center">
-                <div className="p-2 bg-green-100 rounded-lg">
-                  <BookOpen className="w-6 h-6 text-green-600" />
-                </div>
-                <div className="ml-4">
-                  <p className="text-sm font-medium text-muted-foreground">Total Enrollments</p>
-                  <p className="text-2xl font-bold text-foreground">{stats.totalEnrollments}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center">
-                <div className="p-2 bg-yellow-100 rounded-lg">
-                  <DollarSign className="w-6 h-6 text-yellow-600" />
-                </div>
-                <div className="ml-4">
-                  <p className="text-sm font-medium text-muted-foreground">Total Revenue</p>
-                  <p className="text-2xl font-bold text-foreground">${stats.totalRevenue}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center">
-                <div className="p-2 bg-purple-100 rounded-lg">
-                  <TrendingUp className="w-6 h-6 text-purple-600" />
-                </div>
-                <div className="ml-4">
-                  <p className="text-sm font-medium text-muted-foreground">Active Users</p>
-                  <p className="text-2xl font-bold text-foreground">{stats.activeUsers}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Main Content */}
-        <Tabs defaultValue="users" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="users">Users</TabsTrigger>
-            <TabsTrigger value="enrollments">Enrollments</TabsTrigger>
-            <TabsTrigger value="activities">Activities</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="users" className="space-y-6">
-            <Card>
-              <CardHeader>
-                <div className="flex justify-between items-center">
-                  <CardTitle>Registered Users</CardTitle>
-                  <Button onClick={() => exportData('users')} variant="outline" size="sm">
-                    <Download className="w-4 h-4 mr-2" />
-                    Export CSV
-                  </Button>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="overflow-x-auto">
-                  <table className="w-full">
-                    <thead>
-                      <tr className="border-b">
-                        <th className="text-left py-3 px-4">Name</th>
-                        <th className="text-left py-3 px-4">Email</th>
-                        <th className="text-left py-3 px-4">Phone</th>
-                        <th className="text-left py-3 px-4">Interest</th>
-                        <th className="text-left py-3 px-4">Joined</th>
-                        <th className="text-left py-3 px-4">Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {users.map((user) => (
-                        <tr key={user.id} className="border-b hover:bg-muted">
-                          <td className="py-3 px-4 font-medium">{user.first_name} {user.last_name}</td>
-                          <td className="py-3 px-4 text-muted-foreground">{user.email}</td>
-                          <td className="py-3 px-4 text-muted-foreground">{user.phone}</td>
-                          <td className="py-3 px-4">
-                            <Badge variant="secondary">
-                              {user.interested_subject?.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase()) || 'Not specified'}
-                            </Badge>
-                          </td>
-                          <td className="py-3 px-4 text-muted-foreground">
-                            {new Date(user.created_at).toLocaleDateString()}
-                          </td>
-                          <td className="py-3 px-4">
-                            <Badge variant={user.last_login ? "default" : "secondary"}>
-                              {user.last_login ? 'Active' : 'Inactive'}
-                            </Badge>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="enrollments" className="space-y-6">
-            <Card>
-              <CardHeader>
-                <div className="flex justify-between items-center">
-                  <CardTitle>Course Enrollments</CardTitle>
-                  <Button onClick={() => exportData('enrollments')} variant="outline" size="sm">
-                    <Download className="w-4 h-4 mr-2" />
-                    Export CSV
-                  </Button>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="overflow-x-auto">
-                  <table className="w-full">
-                    <thead>
-                      <tr className="border-b">
-                        <th className="text-left py-3 px-4">Student</th>
-                        <th className="text-left py-3 px-4">Course</th>
-                        <th className="text-left py-3 px-4">Payment Plan</th>
-                        <th className="text-left py-3 px-4">Amount</th>
-                        <th className="text-left py-3 px-4">Status</th>
-                        <th className="text-left py-3 px-4">Date</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {enrollments.map((enrollment) => (
-                        <tr key={enrollment.id} className="border-b hover:bg-muted">
-                          <td className="py-3 px-4">
-                            <div>
-                              <div className="font-medium">{enrollment.user_name}</div>
-                              <div className="text-sm text-muted-foreground">{enrollment.user_email}</div>
-                            </div>
-                          </td>
-                          <td className="py-3 px-4 font-medium">{enrollment.course_name}</td>
-                          <td className="py-3 px-4">
-                            <Badge variant="outline">{enrollment.payment_plan}</Badge>
-                          </td>
-                          <td className="py-3 px-4 font-medium">${enrollment.amount}</td>
-                          <td className="py-3 px-4">
-                            <Badge variant={enrollment.status === 'completed' ? 'default' : 'secondary'}>
-                              {enrollment.status}
-                            </Badge>
-                          </td>
-                          <td className="py-3 px-4 text-muted-foreground">
-                            {new Date(enrollment.created_at).toLocaleDateString()}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="activities" className="space-y-6">
-            <Card>
-              <CardHeader>
-                <div className="flex justify-between items-center">
-                  <CardTitle>User Activities</CardTitle>
-                  <Button onClick={() => exportData('activities')} variant="outline" size="sm">
-                    <Download className="w-4 h-4 mr-2" />
-                    Export CSV
-                  </Button>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {activities.map((activity) => (
-                    <div key={activity.id} className="flex items-center space-x-4 p-4 border rounded-lg hover:bg-muted">
-                      <div className="p-2 bg-blue-100 rounded-full">
-                        <Eye className="w-4 h-4 text-blue-600" />
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex items-center space-x-2">
-                          <span className="font-medium">{activity.user_name}</span>
-                          <Badge variant="outline">{activity.action}</Badge>
-                        </div>
-                        <p className="text-sm text-muted-foreground">{activity.details}</p>
-                        <p className="text-xs text-muted-foreground">
-                          {new Date(activity.timestamp).toLocaleString()}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
+          {loading ? (
+            <div className="flex min-h-[40vh] items-center justify-center">
+              <RefreshCw className="h-8 w-8 animate-spin text-primary" />
+            </div>
+          ) : (
+            renderSection()
+          )}
+        </main>
       </div>
     </div>
   );

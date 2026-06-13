@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import WeekCard from '@/components/WeekCard';
 import { Button } from '@/components/ui/button';
+import EnrollButton from '@/components/EnrollButton';
 import { Link } from 'react-router-dom';
 
 const syllabusData = [
@@ -372,9 +373,9 @@ const Syllabus = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button asChild size="lg" className="bg-white text-primary hover:bg-gray-100">
-              <Link to="/enroll">Apply Now</Link>
-            </Button>
+            <EnrollButton size="lg" className="bg-white text-primary hover:bg-gray-100">
+              Apply Now
+            </EnrollButton>
             <Button asChild size="lg" variant="outline" className="border-2 border-white bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-gray-900">
               <Link to="/bonus">View Free Bonuses</Link>
             </Button>

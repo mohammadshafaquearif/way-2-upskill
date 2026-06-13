@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
+import type { CountryCode } from 'libphonenumber-js';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import PhoneInput from '@/components/PhoneInput';
 import { useToast } from '@/hooks/use-toast';
 import { apiClient } from '@/integrations/api/client';
 import { useAuth } from '@/contexts/AuthContext';
+import { DEFAULT_COUNTRY, toE164, validatePhone } from '@/lib/phone';
 
 interface LoginSignupModalProps {
   isOpen: boolean;
@@ -32,13 +35,13 @@ const LoginSignupModal: React.FC<LoginSignupModalProps> = ({ isOpen, onClose }) 
   const [signupData, setSignupData] = useState({
     firstName: '',
     lastName: '',
-    phone: '',
-    countryCode: '+91',
     email: '',
     password: '',
     confirmPassword: '',
     interestedSubject: ''
   });
+  const [phoneCountry, setPhoneCountry] = useState<CountryCode>(DEFAULT_COUNTRY);
+  const [nationalNumber, setNationalNumber] = useState('');
 
   // Form validation state
   const [signupErrors, setSignupErrors] = useState<{[key: string]: string}>({});
@@ -70,11 +73,6 @@ const LoginSignupModal: React.FC<LoginSignupModalProps> = ({ isOpen, onClose }) 
     return emailRegex.test(email);
   };
 
-  const validatePhone = (phone: string) => {
-    const phoneRegex = /^[0-9]{10}$/;
-    return phoneRegex.test(phone);
-  };
-
   const validateSignupForm = () => {
     const errors: {[key: string]: string} = {};
 
@@ -92,10 +90,10 @@ const LoginSignupModal: React.FC<LoginSignupModalProps> = ({ isOpen, onClose }) 
       errors.email = 'Please enter a valid email address';
     }
 
-    if (!signupData.phone.trim()) {
+    if (!nationalNumber.trim()) {
       errors.phone = 'Phone number is required';
-    } else if (!validatePhone(signupData.phone)) {
-      errors.phone = 'Please enter a valid 10-digit phone number';
+    } else if (!validatePhone(nationalNumber, phoneCountry)) {
+      errors.phone = 'Please enter a valid phone number';
     }
 
     if (!signupData.password.trim()) {
@@ -124,8 +122,8 @@ const LoginSignupModal: React.FC<LoginSignupModalProps> = ({ isOpen, onClose }) 
       signupData.lastName.trim() &&
       signupData.email.trim() &&
       validateEmail(signupData.email) &&
-      signupData.phone.trim() &&
-      validatePhone(signupData.phone) &&
+      nationalNumber.trim() &&
+      validatePhone(nationalNumber, phoneCountry) &&
       signupData.password.trim() &&
       signupData.password.length >= 6 &&
       signupData.confirmPassword.trim() &&
@@ -177,7 +175,7 @@ const LoginSignupModal: React.FC<LoginSignupModalProps> = ({ isOpen, onClose }) 
     setIsLoading(true);
 
     try {
-      const fullPhone = `${signupData.countryCode}${signupData.phone}`;
+      const fullPhone = toE164(nationalNumber, phoneCountry);
       const { appUser } = await apiClient.signUp({
         firstName: signupData.firstName,
         lastName: signupData.lastName,
@@ -198,13 +196,13 @@ const LoginSignupModal: React.FC<LoginSignupModalProps> = ({ isOpen, onClose }) 
       setSignupData({
         firstName: '',
         lastName: '',
-        phone: '',
-        countryCode: '+91',
         email: '',
         password: '',
         confirmPassword: '',
         interestedSubject: ''
       });
+      setPhoneCountry(DEFAULT_COUNTRY);
+      setNationalNumber('');
       setSignupErrors({});
 
       onClose();
@@ -372,30 +370,16 @@ const LoginSignupModal: React.FC<LoginSignupModalProps> = ({ isOpen, onClose }) 
                 
                 <div className="space-y-2">
                   <Label htmlFor="phone" className="text-sm font-semibold">Phone Number <span className="text-red-500">*</span></Label>
-                  <div className="flex space-x-2">
-                    <Select value={signupData.countryCode} onValueChange={(value) => setSignupData({...signupData, countryCode: value})}>
-                      <SelectTrigger className="w-20 h-12">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="+91">🇮🇳 +91</SelectItem>
-                        <SelectItem value="+1">🇺🇸 +1</SelectItem>
-                        <SelectItem value="+44">🇬🇧 +44</SelectItem>
-                        <SelectItem value="+61">🇦🇺 +61</SelectItem>
-                        <SelectItem value="+86">🇨🇳 +86</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <Input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      placeholder="9876543210"
-                      value={signupData.phone}
-                      onChange={handleSignupChange}
-                      required
-                      className={`h-12 flex-1 ${signupErrors.phone ? 'border-red-500' : ''}`}
-                    />
-                  </div>
+                  <PhoneInput
+                    id="phone"
+                    country={phoneCountry}
+                    nationalNumber={nationalNumber}
+                    onCountryChange={setPhoneCountry}
+                    onNationalNumberChange={setNationalNumber}
+                    required
+                    inputClassName={`h-12 flex-1 ${signupErrors.phone ? 'border-red-500' : ''}`}
+                    selectTriggerClassName="h-12 w-[6.5rem] shrink-0"
+                  />
                   {signupErrors.phone && <p className="text-red-500 text-sm">{signupErrors.phone}</p>}
                 </div>
                 

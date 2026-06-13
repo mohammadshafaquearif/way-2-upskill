@@ -42,15 +42,16 @@ const Footer = () => {
               <span className="text-2xl font-bold tracking-tight text-white">Zyvotrix</span>
             </Link>
             <p className="mb-6 max-w-sm text-sm leading-relaxed text-slate-400">
-              Practical, industry-oriented certification programs in DevOps, Agentic AI, AWS, and
-              Data Science — built for career growth.
+              Zyvotrix helps working professionals build job-ready skills in DevOps, Agentic AI, AWS
+              Cloud, and Data Science through live training, hands-on projects, and portfolio-focused
+              learning.
             </p>
             <a
-              href="mailto:hello@zyvotrix.com"
+              href="mailto:support@zyvotrix.com"
               className="link-glow inline-flex items-center gap-2 text-sm text-slate-400"
             >
               <Mail className="h-4 w-4" />
-              hello@zyvotrix.com
+              support@zyvotrix.com
             </a>
             <div className="mt-6">
               <SocialLinks variant="footer" />
