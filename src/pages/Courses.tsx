@@ -7,10 +7,11 @@ import PageCta from '@/components/PageCta';
 import { Link } from 'react-router-dom';
 import ProgramCardBrand from '@/components/home/ProgramCardBrand';
 import { Button } from '@/components/ui/button';
-import { Check, Clock, FolderKanban } from 'lucide-react';
+import { ArrowRight, Check, Clock, FolderKanban, Sparkles } from 'lucide-react';
 import { IMAGES } from '@/lib/images';
 import { COURSES } from '@/lib/courses';
 import { usePageMeta } from '@/hooks/usePageMeta';
+import CoursePriceDisplay from '@/components/courses/CoursePriceDisplay';
 
 const trustMetrics = [
   'Live Mentor-Led Training',
@@ -21,28 +22,12 @@ const trustMetrics = [
   'Built for Working Professionals',
 ];
 
-const programRecommendations = [
-  {
-    goal: 'Become a DevOps Engineer',
-    code: 'DOP',
-    route: '/courses/devops-engineer-program',
-  },
-  {
-    goal: 'Build AI Agents & Automation',
-    code: 'AAC',
-    route: '/courses/aac',
-  },
-  {
-    goal: 'Master AWS Cloud Architecture',
-    code: 'AWS',
-    route: '/courses/aws',
-  },
-  {
-    goal: 'Become a Data Analyst / Data Scientist',
-    code: 'DSP',
-    route: '/courses/data-science',
-  },
-];
+const programGoals: Record<string, string> = {
+  dop: 'Become a DevOps Engineer',
+  aac: 'Build AI Agents & Automation',
+  aws: 'Master AWS Cloud Architecture',
+  'data-science': 'Become a Data Analyst / Data Scientist',
+};
 
 const courseCardDetails: Record<string, { projects: string; focus: string }> = {
   dop: {
@@ -132,26 +117,35 @@ const Courses = () => {
             </p>
           </header>
 
-          <div className="courses-table-wrap mx-auto max-w-3xl overflow-x-auto rounded-2xl border border-border bg-card shadow-sm">
-            <table className="courses-table w-full min-w-[28rem] text-left text-sm">
+          <div className="courses-table-wrap mx-auto max-w-4xl overflow-x-auto rounded-2xl border border-border bg-card shadow-sm">
+            <table className="courses-table w-full min-w-[36rem] text-left text-sm">
               <thead>
                 <tr className="border-b border-border bg-muted/40">
                   <th className="px-5 py-3.5 font-bold text-foreground">Goal</th>
-                  <th className="px-5 py-3.5 font-bold text-foreground">Recommended Program</th>
+                  <th className="px-5 py-3.5 font-bold text-foreground">Program</th>
+                  <th className="px-5 py-3.5 font-bold text-foreground">Enroll</th>
                 </tr>
               </thead>
               <tbody>
-                {programRecommendations.map(({ goal, code, route }) => (
-                  <tr key={code} className="border-b border-border/70 last:border-0">
-                    <td className="px-5 py-4 text-foreground">{goal}</td>
+                {COURSES.map((course) => (
+                  <tr key={course.id} className="border-b border-border/70 last:border-0">
+                    <td className="px-5 py-4 text-foreground">{programGoals[course.id]}</td>
                     <td className="px-5 py-4">
                       <Link
-                        to={route}
+                        to={course.route}
                         className="inline-flex items-center gap-2 font-bold text-primary transition-colors hover:text-primary/80"
                       >
-                        {code}
-                        <span className="text-xs font-normal text-muted-foreground">View program →</span>
+                        {course.code}
+                        <span className="text-xs font-normal text-muted-foreground">View details →</span>
                       </Link>
+                    </td>
+                    <td className="px-5 py-4">
+                      <Button asChild size="sm" className="btn-brand h-8 px-4 text-xs font-semibold shadow-sm">
+                        <Link to={course.checkoutPath}>
+                          Enroll Now
+                          <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                        </Link>
+                      </Button>
                     </td>
                   </tr>
                 ))}
@@ -181,7 +175,7 @@ const Courses = () => {
               const details = courseCardDetails[course.id];
 
               return (
-                <article key={course.id} className="top-program-card">
+                <article key={course.id} className="top-program-card top-program-card--enroll">
                   <div className="top-program-card-media">
                     <img
                       src={course.image}
@@ -211,9 +205,21 @@ const Courses = () => {
                       </span>
                     </div>
 
-                    <Button asChild variant="outline" className="top-program-card-btn">
-                      <Link to={course.route}>View Program</Link>
-                    </Button>
+                    <div className="top-program-card-price">
+                      <CoursePriceDisplay courseCode={course.code} />
+                    </div>
+
+                    <div className="top-program-card-actions">
+                      <Button asChild className="btn-brand btn-shimmer top-program-card-btn-enroll">
+                        <Link to={course.checkoutPath}>
+                          Enroll Now
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                      </Button>
+                      <Button asChild variant="outline" className="top-program-card-btn-view">
+                        <Link to={course.route}>View Program</Link>
+                      </Button>
+                    </div>
                   </div>
                 </article>
               );
@@ -222,7 +228,52 @@ const Courses = () => {
         </div>
       </section>
 
-      <section className="section-padding section-alt" id="outcomes">
+      <section className="section-padding section-alt" id="enroll-today">
+        <div className="courses-page-container">
+          <header className="courses-section-header mx-auto mb-8 max-w-2xl text-center">
+            <span className="mb-3 inline-flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-widest text-primary">
+              <Sparkles className="h-3.5 w-3.5" />
+              Secure Your Seat
+            </span>
+            <h2 className="courses-section-title mb-3 text-2xl font-bold text-foreground sm:text-3xl">
+              Enroll Today — Start Learning This Week
+            </h2>
+            <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
+              Pick your program and go straight to checkout. Live mentor-led batches with lifetime
+              access to recordings.
+            </p>
+          </header>
+
+          <div className="courses-enroll-grid">
+            {COURSES.map((course) => (
+              <Link
+                key={course.id}
+                to={course.checkoutPath}
+                className="courses-enroll-card group"
+              >
+                <div className="courses-enroll-card-header">
+                  <span className="courses-enroll-card-code">{course.code}</span>
+                  <ArrowRight className="courses-enroll-card-arrow h-4 w-4 text-primary transition-transform group-hover:translate-x-1" />
+                </div>
+                <h3 className="courses-enroll-card-title">{course.shortTitle}</h3>
+                <p className="courses-enroll-card-duration">
+                  <Clock className="h-3.5 w-3.5" />
+                  {course.duration}
+                </p>
+                <div className="courses-enroll-card-price">
+                  <CoursePriceDisplay courseCode={course.code} />
+                </div>
+                <span className="courses-enroll-card-cta">
+                  Go to Checkout
+                  <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding section-white" id="outcomes">
         <div className="courses-page-container">
           <div className="courses-outcomes-panel mx-auto max-w-3xl rounded-2xl border border-primary/15 bg-gradient-to-br from-primary/5 via-white to-sky-500/5 p-8 sm:p-10">
             <header className="mb-6 text-center">

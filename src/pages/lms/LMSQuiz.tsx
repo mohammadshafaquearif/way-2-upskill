@@ -92,11 +92,15 @@ const LMSQuiz = () => {
   const answersRef = useRef(answers);
   const endsAtRef = useRef(0);
   const startedAtRef = useRef(0);
+  const secondsLeftRef = useRef<number | null>(null);
   answersRef.current = answers;
+  secondsLeftRef.current = secondsLeft;
 
   const isTakingQuiz = phase === 'taking' && summary?.canRetry && !result;
   const { violationCount, setViolationCount, showReturnOverlay, dismissReturnOverlay } =
     useQuizProctoring(isTakingQuiz);
+  const [timerPaused, setTimerPaused] = useState(false);
+  const isTimerRunning = isTakingQuiz && !timerPaused && !showReturnOverlay;
 
   const attemptNumber = summary ? summary.attemptsUsed + 1 : 1;
   const hasResumableSession = resumableSecondsLeft !== null && resumableSecondsLeft > 0;
@@ -133,7 +137,14 @@ const LMSQuiz = () => {
           findResumableDraft(user.id, activeQuizId);
 
         if (isQuizDraftResumable(draft)) {
-          setResumableSecondsLeft(getQuizDraftSecondsLeft(draft!));
+          const remaining = getQuizDraftSecondsLeft(draft!);
+          if (typeof draft!.remainingSeconds !== 'number') {
+            saveQuizDraft({
+              ...draft!,
+              remainingSeconds: remaining,
+            });
+          }
+          setResumableSecondsLeft(remaining);
         } else if (draft) {
           clearQuizDraft(user.id, activeQuizId, attemptSummary.attemptsUsed + 1);
           setResumableSecondsLeft(null);
@@ -156,7 +167,15 @@ const LMSQuiz = () => {
   }, [activeQuizId, user?.id]);
 
   const persistDraft = useCallback(() => {
-    if (!user || !quiz || !summary || phase !== 'taking' || !endsAtRef.current) return;
+    if (!user || !quiz || !summary || phase !== 'taking') return;
+
+    const remaining =
+      secondsLeftRef.current ??
+      (endsAtRef.current
+        ? Math.max(0, Math.floor((endsAtRef.current - Date.now()) / 1000))
+        : 0);
+    if (remaining <= 0 && !Object.keys(answersRef.current).length) return;
+
     saveQuizDraft({
       userId: user.id,
       quizId: quiz.id,
@@ -165,7 +184,8 @@ const LMSQuiz = () => {
       currentIndex,
       answers,
       reviewQuestionIds: [...reviewQuestionIds],
-      endsAt: endsAtRef.current,
+      remainingSeconds: remaining,
+      endsAt: endsAtRef.current || undefined,
       startedAt: startedAtRef.current,
       violationCount,
     });
@@ -175,12 +195,13 @@ const LMSQuiz = () => {
     persistDraft();
   }, [persistDraft]);
 
-  const initTimerFromEndsAt = useCallback((endsAt: number) => {
-    endsAtRef.current = endsAt;
-    const remaining = Math.max(0, Math.floor((endsAt - Date.now()) / 1000));
-    setSecondsLeft(remaining);
-    return remaining;
-  }, []);
+  useEffect(() => {
+    return () => {
+      if (secondsLeftRef.current !== null && phase === 'taking') {
+        persistDraft();
+      }
+    };
+  }, [phase, persistDraft]);
 
   const submitQuiz = useCallback(
     async (options?: { timedOut?: boolean }) => {
@@ -252,7 +273,35 @@ const LMSQuiz = () => {
   );
 
   useEffect(() => {
-    if (secondsLeft === null || phase !== 'taking' || result || submitting) return;
+    if (!isTakingQuiz) {
+      setTimerPaused(false);
+      return;
+    }
+
+    const onVisibilityChange = () => {
+      if (document.hidden) {
+        setTimerPaused(true);
+        persistDraft();
+        return;
+      }
+      setTimerPaused(true);
+    };
+
+    document.addEventListener('visibilitychange', onVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', onVisibilityChange);
+  }, [isTakingQuiz, persistDraft]);
+
+  const handleDismissReturnOverlay = useCallback(() => {
+    dismissReturnOverlay();
+    const remaining = secondsLeftRef.current;
+    if (remaining !== null && remaining > 0) {
+      endsAtRef.current = Date.now() + remaining * 1000;
+    }
+    setTimerPaused(false);
+  }, [dismissReturnOverlay]);
+
+  useEffect(() => {
+    if (secondsLeft === null || !isTimerRunning || result || submitting) return;
 
     if (secondsLeft <= 0) {
       if (!autoSubmittedRef.current) {
@@ -267,13 +316,18 @@ const LMSQuiz = () => {
     }, 1000);
 
     return () => window.clearInterval(timerId);
-  }, [secondsLeft, phase, result, submitting, submitQuiz]);
+  }, [secondsLeft, isTimerRunning, result, submitting, submitQuiz]);
+
+  useEffect(() => {
+    if (!isTimerRunning || secondsLeft === null) return;
+    persistDraft();
+  }, [secondsLeft, isTimerRunning, persistDraft]);
 
   const beginSession = (options: {
     currentIndex: number;
     answers: Record<string, string>;
     reviewQuestionIds: string[];
-    endsAt: number;
+    remainingSeconds: number;
     startedAt: number;
     violationCount: number;
   }) => {
@@ -283,20 +337,11 @@ const LMSQuiz = () => {
     setAnswers(options.answers);
     setReviewQuestionIds(new Set(options.reviewQuestionIds));
     setViolationCount(options.violationCount);
-    initTimerFromEndsAt(options.endsAt);
+    endsAtRef.current = Date.now() + options.remainingSeconds * 1000;
+    setSecondsLeft(options.remainingSeconds);
+    setTimerPaused(false);
     setPhase('taking');
-    setResumableSecondsLeft(getQuizDraftSecondsLeft({
-      userId: user!.id,
-      quizId: quiz!.id,
-      attemptNumber,
-      phase: 'taking',
-      currentIndex: options.currentIndex,
-      answers: options.answers,
-      reviewQuestionIds: options.reviewQuestionIds,
-      endsAt: options.endsAt,
-      startedAt: options.startedAt,
-      violationCount: options.violationCount,
-    }));
+    setResumableSecondsLeft(options.remainingSeconds);
   };
 
   const handleStartQuiz = () => {
@@ -304,12 +349,11 @@ const LMSQuiz = () => {
     clearQuizDraft(user.id, quiz.id, attemptNumber);
     const total = computeQuizTimeLimitSeconds(quiz.questions.length, quiz.time_limit_min);
     const startedAt = Date.now();
-    const endsAt = startedAt + total * 1000;
     beginSession({
       currentIndex: 0,
       answers: {},
       reviewQuestionIds: [],
-      endsAt,
+      remainingSeconds: total,
       startedAt,
       violationCount: 0,
     });
@@ -321,11 +365,12 @@ const LMSQuiz = () => {
       loadQuizDraft(user.id, quiz.id, attemptNumber) ?? findResumableDraft(user.id, quiz.id);
     if (!isQuizDraftResumable(draft)) return;
 
+    const remainingSeconds = getQuizDraftSecondsLeft(draft!);
     beginSession({
       currentIndex: draft!.currentIndex,
       answers: draft!.answers,
       reviewQuestionIds: draft!.reviewQuestionIds,
-      endsAt: draft!.endsAt,
+      remainingSeconds,
       startedAt: draft!.startedAt,
       violationCount: draft!.violationCount,
     });
@@ -472,7 +517,7 @@ const LMSQuiz = () => {
                   Your answers and remaining time are saved. Continue the attempt.
                 </p>
               </div>
-              <Button className="w-full" onClick={dismissReturnOverlay}>
+              <Button className="w-full" onClick={handleDismissReturnOverlay}>
                 Continue test
               </Button>
             </div>
@@ -653,7 +698,7 @@ const LMSQuiz = () => {
                 <ul className="mt-2 space-y-1.5 text-muted-foreground">
                   <li>· One question at a time with a question palette on the left</li>
                   <li>· Mark questions for review before final submission</li>
-                  <li>· Progress and timer are saved if you leave — use Resume to continue</li>
+                  <li>· Timer pauses when you leave — use Resume to continue with the same time left</li>
                   <li>· Do not switch tabs; screenshots and copying are not permitted</li>
                 </ul>
               </div>

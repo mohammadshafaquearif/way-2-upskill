@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLearnerProgram } from '@/hooks/useLearnerProgram';
-import { ACHIEVEMENT_BADGES } from '@/lib/lms/content';
-import { getLearnPath } from '@/lib/lms/utils';
 import { formatLmsSessionDate } from '@/lib/lmsUi';
+import type { LearnerProgramState, LMSAssignment } from '@/lib/lms/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -64,15 +63,42 @@ const EmptyState = ({
   </div>
 );
 
+function getAchievementBadges(
+  learnerState: LearnerProgramState | null,
+  overview: { completedModules?: number; progress?: number } | null,
+  assignments: LMSAssignment[],
+) {
+  if (!learnerState) return [];
+
+  const hasModuleProgress = (overview?.completedModules ?? 0) > 0 || (overview?.progress ?? 0) > 5;
+  const hasSubmission = assignments.some((a) => a.status !== 'pending');
+  const hasReviewed = assignments.some((a) => a.status === 'reviewed' || a.status === 'approved');
+  const certReady = !learnerState.certificateLocked;
+
+  return [
+    { id: 'b1', title: 'Module progress started', unlocked: hasModuleProgress },
+    { id: 'b2', title: 'Phase project submitted', unlocked: hasSubmission },
+    { id: 'b3', title: 'Capstone track ready', unlocked: certReady },
+    { id: 'b4', title: 'Mentor reviewed work', unlocked: hasReviewed },
+  ];
+}
+
 const LMSDashboard = () => {
-  const { user, learnerState, assignments, projects, sessions, programId, enrollments } = useLearnerProgram();
+  const { user, learnerState, assignments, projects, sessions, enrollments, overview } = useLearnerProgram();
 
   if (!learnerState) return null;
 
+  const badges = getAchievementBadges(learnerState, overview, assignments);
+
   const upcomingSession = sessions.find((s) => s.isUpcoming);
   const pendingAssignment = assignments.find((a) => a.status === 'pending');
-  const activeProject = projects.find((p) => p.status === 'in_progress');
-  const learnPath = getLearnPath(programId);
+  const activeProject = projects.find(
+    (p) => p.status === 'in_progress' || (p.status === 'not_started' && pendingAssignment?.id === p.id),
+  ) ?? projects.find((p) => p.status === 'in_progress' || p.status === 'not_started');
+
+  const resumePath = learnerState.currentModule
+    ? `/dashboard/curriculum/${learnerState.currentModule.id}`
+    : '/dashboard/curriculum';
 
   return (
     <div className="mx-auto max-w-6xl space-y-6">
@@ -86,10 +112,12 @@ const LMSDashboard = () => {
               </h2>
               <p className="max-w-lg text-sm text-muted-foreground">{learnerState.programTitle}</p>
               <div className="flex flex-wrap items-center gap-2">
+                {learnerState.streak > 0 ? (
                 <Badge variant="outline" className="gap-1 border-emerald-200 bg-emerald-50 font-medium text-emerald-700">
                   <Flame className="h-3 w-3" aria-hidden />
                   {learnerState.streak} day streak
                 </Badge>
+                ) : null}
                 {learnerState.currentModule ? (
                   <Badge variant="outline" className="font-medium">
                     Module {learnerState.currentModule.id}
@@ -151,7 +179,7 @@ const LMSDashboard = () => {
               </p>
             </div>
             <Button asChild className="w-full cursor-pointer">
-              <Link to={learnPath}>Resume Learning</Link>
+              <Link to={resumePath}>Resume Learning</Link>
             </Button>
           </CardContent>
         </Card>
@@ -255,7 +283,7 @@ const LMSDashboard = () => {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {ACHIEVEMENT_BADGES.map((badge) => (
+            {badges.map((badge) => (
               <div
                 key={badge.id}
                 className={`rounded-lg border p-4 text-center transition-colors duration-200 ${

@@ -115,8 +115,49 @@ export interface QuizAttemptSummary {
 
 export interface DbModuleProgress {
   module_id: string;
+  module_number?: number;
   status: string;
   quiz_passed: boolean;
   assignment_done: boolean;
   topics_done: number;
+}
+
+export interface DbAssignmentRow {
+  id: string;
+  course_id: string;
+  module_id: string | null;
+  title: string;
+  description: string | null;
+  due_date: string;
+  label: string | null;
+  deliverables: string[] | null;
+  skills: string[] | null;
+  is_capstone: boolean | null;
+  sort_order: number | null;
+}
+
+export interface DbAssignmentSubmissionRow {
+  id: string;
+  assignment_id: string;
+  user_id: string;
+  status: string | null;
+  github_url: string | null;
+  demo_url: string | null;
+  file_url: string | null;
+  notes: string | null;
+  submitted_at: string;
+}
+
+export interface LearnerOverview {
+  progress: number;
+  completedModules: number;
+  totalModules: number;
+  currentModuleId: number | null;
+  currentModuleTitle: string;
+  currentModuleDbId: string | null;
+  lastWatchedLesson: string;
+  pendingAssignments: number;
+  submittedProjects: number;
+  certificateLocked: boolean;
+  moduleProgress: DbModuleProgress[];
 }

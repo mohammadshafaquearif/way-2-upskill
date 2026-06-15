@@ -13,18 +13,41 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { Github, Upload } from 'lucide-react';
+import { Github, Loader2, Upload } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 
 const LMSAssignments = () => {
-  const { assignments } = useLearnerProgram();
+  const { assignments, submitAssignment, lmsLoading } = useLearnerProgram();
   const [githubLink, setGithubLink] = useState('');
+  const [submittingId, setSubmittingId] = useState<string | null>(null);
 
-  const handleSubmit = (title: string) => {
-    toast({
-      title: 'Submission received',
-      description: `"${title}" has been submitted for mentor review.`,
-    });
+  const handleSubmit = async (assignmentId: string, title: string) => {
+    if (!githubLink.trim()) {
+      toast({
+        title: 'GitHub link required',
+        description: 'Share a repository link for mentor review.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setSubmittingId(assignmentId);
+    try {
+      await submitAssignment(assignmentId, { githubUrl: githubLink.trim() });
+      setGithubLink('');
+      toast({
+        title: 'Submission received',
+        description: `"${title}" has been submitted for mentor review.`,
+      });
+    } catch (err) {
+      toast({
+        title: 'Submission failed',
+        description: err instanceof Error ? err.message : 'Try again later',
+        variant: 'destructive',
+      });
+    } finally {
+      setSubmittingId(null);
+    }
   };
 
   return (
@@ -35,59 +58,78 @@ const LMSAssignments = () => {
         </p>
       }
     >
-      <div className="space-y-4">
-        {assignments.map((assignment, index) => {
-          const isPending = assignment.status === 'pending';
+      {lmsLoading && assignments.length === 0 ? (
+        <div className="flex items-center gap-2 py-12 text-sm text-muted-foreground">
+          <Loader2 className="h-4 w-4 animate-spin" />
+          Loading assignments…
+        </div>
+      ) : (
+        <div className="space-y-4">
+          {assignments.map((assignment, index) => {
+            const isPending = assignment.status === 'pending';
+            const isSubmitting = submittingId === assignment.id;
 
-          return (
-            <div key={assignment.id} className="space-y-3">
-              <PhaseProjectPanel item={assignment} index={index} />
+            return (
+              <div key={assignment.id} className="space-y-3">
+                <PhaseProjectPanel item={assignment} index={index} />
 
-              {isPending ? (
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button size="sm">
-                      <Upload className="mr-2 h-4 w-4" />
-                      Submit assignment
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent>
-                    <DialogHeader>
-                      <DialogTitle>Submit — {assignment.title}</DialogTitle>
-                      <DialogDescription>
-                        Upload a PDF or ZIP, or share a GitHub repository link for mentor review.
-                      </DialogDescription>
-                    </DialogHeader>
-                    <div className="space-y-4 pt-2">
-                      <div className="space-y-2">
-                        <Label htmlFor="file">Upload file (PDF / ZIP)</Label>
-                        <Input id="file" type="file" accept=".pdf,.zip" />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="github">GitHub link</Label>
-                        <div className="flex gap-2">
-                          <Github className="mt-2.5 h-4 w-4 shrink-0 text-muted-foreground" />
-                          <Input
-                            id="github"
-                            placeholder="https://github.com/username/repo"
-                            value={githubLink}
-                            onChange={(e) => setGithubLink(e.target.value)}
-                          />
-                        </div>
-                      </div>
-                      <Button className="w-full" onClick={() => handleSubmit(assignment.title)}>
-                        Submit for review
+                {isPending ? (
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button size="sm">
+                        <Upload className="mr-2 h-4 w-4" />
+                        Submit assignment
                       </Button>
-                    </div>
-                  </DialogContent>
-                </Dialog>
-              ) : (
-                <SubmittedNote />
-              )}
-            </div>
-          );
-        })}
-      </div>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogHeader>
+                        <DialogTitle>Submit — {assignment.title}</DialogTitle>
+                        <DialogDescription>
+                          Upload a PDF or ZIP, or share a GitHub repository link for mentor review.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="space-y-4 pt-2">
+                        <div className="space-y-2">
+                          <Label htmlFor={`file-${assignment.id}`}>Upload file (PDF / ZIP)</Label>
+                          <Input id={`file-${assignment.id}`} type="file" accept=".pdf,.zip" />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor={`github-${assignment.id}`}>GitHub link</Label>
+                          <div className="flex gap-2">
+                            <Github className="mt-2.5 h-4 w-4 shrink-0 text-muted-foreground" />
+                            <Input
+                              id={`github-${assignment.id}`}
+                              placeholder="https://github.com/username/repo"
+                              value={githubLink}
+                              onChange={(e) => setGithubLink(e.target.value)}
+                            />
+                          </div>
+                        </div>
+                        <Button
+                          className="w-full"
+                          disabled={isSubmitting}
+                          onClick={() => void handleSubmit(assignment.id, assignment.title)}
+                        >
+                          {isSubmitting ? (
+                            <>
+                              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                              Submitting…
+                            </>
+                          ) : (
+                            'Submit for review'
+                          )}
+                        </Button>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                ) : (
+                  <SubmittedNote />
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
     </LmsPageShell>
   );
 };

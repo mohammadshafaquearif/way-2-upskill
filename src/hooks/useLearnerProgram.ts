@@ -1,15 +1,13 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { apiClient } from '@/integrations/api/client';
+import { lmsDb } from '@/integrations/supabase/lmsDb';
 import { getAssignments, getProjects, getSessions } from '@/lib/lms/content';
-import { getAllModules } from '@/lib/lms/curriculum';
-import type { LearnerProgramState, ProgramId } from '@/lib/lms/types';
+import { getAllModules, getModuleById } from '@/lib/lms/curriculum';
+import type { LMSAssignment, LMSProject, LMSSession, LearnerProgramState, ProgramId } from '@/lib/lms/types';
 import {
-  computeSimulatorProgress,
-  countCompletedModules,
   courseNameToProgramId,
   formatCertificateId,
-  getCurrentModule,
   getProgramMeta,
 } from '@/lib/lms/utils';
 
@@ -32,6 +30,11 @@ export function useLearnerProgram() {
   const [enrollments, setEnrollments] = useState<EnrollmentRow[]>([]);
   const [hasCancelledEnrollment, setHasCancelledEnrollment] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [assignments, setAssignments] = useState<LMSAssignment[]>([]);
+  const [projects, setProjects] = useState<LMSProject[]>([]);
+  const [sessions, setSessions] = useState<LMSSession[]>([]);
+  const [overview, setOverview] = useState<Awaited<ReturnType<typeof lmsDb.getLearnerOverview>> | null>(null);
+  const [lmsLoading, setLmsLoading] = useState(false);
 
   useEffect(() => {
     if (!user) {
@@ -73,18 +76,77 @@ export function useLearnerProgram() {
 
   const programMeta = useMemo(() => getProgramMeta(programId), [programId]);
 
+  const fetchLmsData = useCallback(async () => {
+    if (!user || !courseId) {
+      setAssignments(getAssignments(programId));
+      setProjects(getProjects(programId));
+      setSessions(getSessions(programId));
+      setOverview(null);
+      return;
+    }
+
+    setLmsLoading(true);
+    try {
+      const [assignmentRows, projectRows, sessionRows, overviewRow] = await Promise.all([
+        lmsDb.getLearnerAssignments(user.id, courseId),
+        lmsDb.getLearnerProjects(user.id, courseId),
+        lmsDb.getLearnerSessions(courseId),
+        lmsDb.getLearnerOverview(user.id, courseId),
+      ]);
+
+      setAssignments(assignmentRows.length ? assignmentRows : getAssignments(programId));
+      setProjects(projectRows.length ? projectRows : getProjects(programId));
+      setSessions(sessionRows.length ? sessionRows : getSessions(programId));
+      setOverview(overviewRow);
+    } catch {
+      setAssignments(getAssignments(programId));
+      setProjects(getProjects(programId));
+      setSessions(getSessions(programId));
+      setOverview(null);
+    } finally {
+      setLmsLoading(false);
+    }
+  }, [user, courseId, programId]);
+
+  useEffect(() => {
+    void fetchLmsData();
+  }, [fetchLmsData]);
+
+  const submitAssignment = useCallback(
+    async (
+      assignmentId: string,
+      payload: { githubUrl?: string; demoUrl?: string; fileUrl?: string; notes?: string },
+    ) => {
+      if (!user) throw new Error('Sign in required');
+      await lmsDb.submitAssignment(user.id, assignmentId, payload, {
+        name: user.firstName ? `${user.firstName} ${user.lastName ?? ''}`.trim() : undefined,
+        email: user.email,
+      });
+      await fetchLmsData();
+    },
+    [user, fetchLmsData],
+  );
+
   const learnerState: LearnerProgramState | null = useMemo(() => {
     if (!user || !activeEnrollment) return null;
 
-    const { progress, completedCount, lastWatched } = computeSimulatorProgress(user.id, programId);
     const modules = getAllModules(programId);
-    const currentModule = getCurrentModule(programId, completedCount);
-    const completedModules = countCompletedModules(programId, completedCount);
-    const assignments = getAssignments(programId);
-    const projects = getProjects(programId);
-    const pendingAssignments = assignments.filter((a) => a.status === 'pending').length;
-    const submittedProjects = projects.filter((p) => p.status === 'submitted' || p.status === 'reviewed').length;
-    const certificateLocked = progress < 80;
+    const currentModule =
+      overview?.currentModuleId != null
+        ? getModuleById(programId, overview.currentModuleId) ??
+          modules.find((m) => m.id === overview.currentModuleId) ??
+          null
+        : modules[0] ?? null;
+
+    const progress = overview?.progress ?? 0;
+    const completedModules = overview?.completedModules ?? 0;
+    const totalModules = overview?.totalModules ?? modules.length;
+    const pendingAssignments =
+      overview?.pendingAssignments ?? assignments.filter((a) => a.status === 'pending').length;
+    const submittedProjects =
+      overview?.submittedProjects ??
+      projects.filter((p) => p.status === 'submitted' || p.status === 'reviewed').length;
+    const certificateLocked = overview?.certificateLocked ?? progress < 80;
 
     return {
       programId,
@@ -92,17 +154,17 @@ export function useLearnerProgram() {
       programTitle: programMeta.title,
       progress,
       currentModule,
-      currentModuleTitle: currentModule?.title ?? modules[0]?.title ?? 'Getting Started',
-      lastWatchedLesson: lastWatched,
-      totalModules: modules.length,
+      currentModuleTitle: overview?.currentModuleTitle ?? currentModule?.title ?? modules[0]?.title ?? 'Getting Started',
+      lastWatchedLesson: overview?.lastWatchedLesson ?? 'Getting started',
+      totalModules,
       completedModules,
       pendingAssignments,
       submittedProjects,
       certificateLocked,
       certificateId: certificateLocked ? undefined : formatCertificateId(programMeta.code),
-      streak: 7,
+      streak: 0,
     };
-  }, [user, activeEnrollment, programId, programMeta]);
+  }, [user, activeEnrollment, programId, programMeta, overview, assignments, projects]);
 
   return {
     user,
@@ -112,12 +174,16 @@ export function useLearnerProgram() {
     programId,
     programMeta,
     learnerState,
-    assignments: getAssignments(programId),
-    projects: getProjects(programId),
-    sessions: getSessions(programId),
-    isLoading,
+    assignments,
+    projects,
+    sessions,
+    overview,
+    isLoading: isLoading || lmsLoading,
+    lmsLoading,
     hasEnrollment: enrollments.length > 0,
     hasCancelledEnrollment,
     hasCourseAccess: enrollments.length > 0,
+    refetchLmsData: fetchLmsData,
+    submitAssignment,
   };
 }

@@ -44,6 +44,7 @@ export interface LMSAssignment {
   dueDate: string;
   status: AssignmentStatus;
   moduleId?: number;
+  label?: string;
   deliverables?: string[];
   skills?: string[];
   isCapstone?: boolean;

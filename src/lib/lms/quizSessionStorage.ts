@@ -6,7 +6,10 @@ export interface QuizSessionDraft {
   currentIndex: number;
   answers: Record<string, string>;
   reviewQuestionIds: string[];
-  endsAt: number;
+  /** Frozen remaining seconds while paused — timer does not drain until resume. */
+  remainingSeconds: number;
+  /** @deprecated Legacy wall-clock deadline; migrated to remainingSeconds on read. */
+  endsAt?: number;
   startedAt: number;
   violationCount: number;
 }
@@ -50,7 +53,7 @@ export function clearQuizDraft(userId: string, quizId: string, attemptNumber: nu
 
 export function isQuizDraftResumable(draft: QuizSessionDraft | null): boolean {
   if (!draft || draft.phase !== 'taking') return false;
-  return draft.endsAt > Date.now();
+  return getQuizDraftSecondsLeft(draft) > 0;
 }
 
 export function findResumableDraft(userId: string, quizId: string): QuizSessionDraft | null {
@@ -69,5 +72,11 @@ export function findResumableDraft(userId: string, quizId: string): QuizSessionD
 }
 
 export function getQuizDraftSecondsLeft(draft: QuizSessionDraft): number {
-  return Math.max(0, Math.floor((draft.endsAt - Date.now()) / 1000));
+  if (typeof draft.remainingSeconds === 'number') {
+    return Math.max(0, draft.remainingSeconds);
+  }
+  if (draft.endsAt) {
+    return Math.max(0, Math.floor((draft.endsAt - Date.now()) / 1000));
+  }
+  return 0;
 }

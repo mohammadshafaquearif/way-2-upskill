@@ -1,5 +1,7 @@
 import { supabase } from './client';
 import type {
+  DbAssignmentRow,
+  DbAssignmentSubmissionRow,
   DbLearningAsset,
   DbModuleProgress,
   DbModuleTopic,
@@ -7,11 +9,17 @@ import type {
   DbProgramPhase,
   DbQuiz,
   DbQuizQuestion,
+  LearnerOverview,
   QuizAttemptSummary,
   QuizOption,
   QuizSubmitResult,
 } from '@/lib/lms/dbTypes';
-import type { LMSPhase, LMSModule, ProgramId } from '@/lib/lms/types';
+import type { LMSAssignment, LMSPhase, LMSModule, LMSProject, LMSSession, ProgramId } from '@/lib/lms/types';
+import {
+  mapAssignmentToProject,
+  mapDbAssignmentToLms,
+  mapDbSessionToLms,
+} from '@/lib/lms/learnerMappers';
 import { getDopPhaseProject } from '@/lib/lms/dopProjects';
 
 function mapAsset(row: Record<string, unknown>): DbLearningAsset {
@@ -480,5 +488,287 @@ export const lmsDb = {
 
     if (error) return null;
     return data.signedUrl;
+  },
+
+  async getLearnerAssignments(userId: string, courseId: string): Promise<LMSAssignment[]> {
+    const { data: rows, error } = await supabase
+      .from('assignments')
+      .select('*')
+      .eq('course_id', courseId)
+      .order('sort_order', { ascending: true })
+      .order('due_date', { ascending: true });
+
+    if (error) throw new Error(error.message);
+    if (!rows?.length) return [];
+
+    const assignmentIds = rows.map((r) => r.id as string);
+
+    const [{ data: subs }, { data: modules }] = await Promise.all([
+      supabase
+        .from('assignment_submissions')
+        .select('*')
+        .eq('user_id', userId)
+        .in('assignment_id', assignmentIds)
+        .order('submitted_at', { ascending: false }),
+      supabase
+        .from('program_modules')
+        .select('id, module_number')
+        .eq('course_id', courseId),
+    ]);
+
+    const subByAssignment = new Map<string, DbAssignmentSubmissionRow>();
+    for (const row of subs ?? []) {
+      const aid = row.assignment_id as string;
+      if (!subByAssignment.has(aid)) {
+        subByAssignment.set(aid, row as DbAssignmentSubmissionRow);
+      }
+    }
+
+    const moduleNumById = new Map<string, number>();
+    for (const m of modules ?? []) {
+      moduleNumById.set(m.id as string, Number(m.module_number));
+    }
+
+    return rows.map((row) => {
+      const r = row as Record<string, unknown>;
+      const dbRow: DbAssignmentRow = {
+        id: r.id as string,
+        course_id: r.course_id as string,
+        module_id: (r.module_id as string) ?? null,
+        title: r.title as string,
+        description: (r.description as string) ?? null,
+        due_date: r.due_date as string,
+        label: (r.label as string) ?? null,
+        deliverables: (r.deliverables as string[]) ?? [],
+        skills: (r.skills as string[]) ?? [],
+        is_capstone: r.is_capstone === true,
+        sort_order: r.sort_order != null ? Number(r.sort_order) : null,
+      };
+      const moduleNumber = dbRow.module_id
+        ? moduleNumById.get(dbRow.module_id)
+        : undefined;
+      return mapDbAssignmentToLms(dbRow, subByAssignment.get(dbRow.id), moduleNumber);
+    });
+  },
+
+  async getLearnerProjects(userId: string, courseId: string): Promise<LMSProject[]> {
+    const { data: rows, error } = await supabase
+      .from('assignments')
+      .select('*')
+      .eq('course_id', courseId)
+      .order('sort_order', { ascending: true });
+
+    if (error) throw new Error(error.message);
+    if (!rows?.length) return [];
+
+    const assignmentIds = rows.map((r) => r.id as string);
+    const moduleIds = rows.map((r) => r.module_id as string).filter(Boolean);
+
+    const [subsRes, modulesRes, progressRes] = await Promise.all([
+      supabase
+        .from('assignment_submissions')
+        .select('*')
+        .eq('user_id', userId)
+        .in('assignment_id', assignmentIds)
+        .order('submitted_at', { ascending: false }),
+      supabase
+        .from('program_modules')
+        .select('id, module_number')
+        .eq('course_id', courseId),
+      moduleIds.length
+        ? supabase
+            .from('learner_module_progress')
+            .select('*')
+            .eq('user_id', userId)
+            .in('module_id', moduleIds)
+        : Promise.resolve({ data: [], error: null }),
+    ]);
+
+    if (subsRes.error) throw new Error(subsRes.error.message);
+    if (progressRes.error) throw new Error(progressRes.error.message);
+
+    const subByAssignment = new Map<string, DbAssignmentSubmissionRow>();
+    for (const row of subsRes.data ?? []) {
+      const aid = row.assignment_id as string;
+      if (!subByAssignment.has(aid)) {
+        subByAssignment.set(aid, row as DbAssignmentSubmissionRow);
+      }
+    }
+
+    const moduleNumById = new Map<string, number>();
+    for (const m of modulesRes.data ?? []) {
+      moduleNumById.set(m.id as string, Number(m.module_number));
+    }
+
+    const progressByModule = new Map<string, DbModuleProgress>();
+    for (const row of progressRes.data ?? []) {
+      progressByModule.set(row.module_id as string, {
+        module_id: row.module_id as string,
+        status: (row.status as string) ?? 'locked',
+        quiz_passed: row.quiz_passed === true,
+        assignment_done: row.assignment_done === true,
+        topics_done: Number(row.topics_done) || 0,
+      });
+    }
+
+    return rows.map((row) => {
+      const r = row as Record<string, unknown>;
+      const dbRow: DbAssignmentRow = {
+        id: r.id as string,
+        course_id: r.course_id as string,
+        module_id: (r.module_id as string) ?? null,
+        title: r.title as string,
+        description: (r.description as string) ?? null,
+        due_date: r.due_date as string,
+        label: (r.label as string) ?? null,
+        deliverables: (r.deliverables as string[]) ?? [],
+        skills: (r.skills as string[]) ?? [],
+        is_capstone: r.is_capstone === true,
+        sort_order: r.sort_order != null ? Number(r.sort_order) : null,
+      };
+      const moduleNumber = dbRow.module_id
+        ? moduleNumById.get(dbRow.module_id)
+        : undefined;
+      const assignment = mapDbAssignmentToLms(
+        dbRow,
+        subByAssignment.get(dbRow.id),
+        moduleNumber,
+      );
+      const moduleProgress = dbRow.module_id
+        ? progressByModule.get(dbRow.module_id)
+        : undefined;
+      return mapAssignmentToProject(
+        assignment,
+        subByAssignment.get(dbRow.id),
+        moduleProgress,
+      );
+    });
+  },
+
+  async submitAssignment(
+    userId: string,
+    assignmentId: string,
+    payload: { githubUrl?: string; demoUrl?: string; fileUrl?: string; notes?: string },
+    learner?: { name?: string; email?: string },
+  ): Promise<void> {
+    const { data: existing } = await supabase
+      .from('assignment_submissions')
+      .select('id')
+      .eq('user_id', userId)
+      .eq('assignment_id', assignmentId)
+      .maybeSingle();
+
+    const row = {
+      assignment_id: assignmentId,
+      user_id: userId,
+      learner_name: learner?.name ?? null,
+      learner_email: learner?.email ?? null,
+      github_url: payload.githubUrl?.trim() || null,
+      demo_url: payload.demoUrl?.trim() || null,
+      file_url: payload.fileUrl?.trim() || null,
+      notes: payload.notes?.trim() || null,
+      status: 'submitted',
+      submitted_at: new Date().toISOString(),
+    };
+
+    if (existing?.id) {
+      const { error } = await supabase
+        .from('assignment_submissions')
+        .update(row)
+        .eq('id', existing.id as string);
+      if (error) throw new Error(error.message);
+      return;
+    }
+
+    const { error } = await supabase.from('assignment_submissions').insert(row);
+    if (error) throw new Error(error.message);
+  },
+
+  async getLearnerSessions(courseId: string): Promise<LMSSession[]> {
+    const { data, error } = await supabase
+      .from('program_sessions')
+      .select('*')
+      .eq('course_id', courseId)
+      .order('session_date', { ascending: false })
+      .order('session_time', { ascending: false });
+
+    if (error) throw new Error(error.message);
+    return (data ?? []).map((row) => mapDbSessionToLms(row as Record<string, unknown>));
+  },
+
+  async getLearnerOverview(userId: string, courseId: string): Promise<LearnerOverview> {
+    const tree = await this.getCurriculumByCourseId(courseId);
+    const allModules = tree.flatMap((p) => p.modules).sort((a, b) => a.module_number - b.module_number);
+    const progressRows = await this.getModuleProgress(userId, courseId);
+
+    const progressByModuleId = new Map(progressRows.map((p) => [p.module_id, p]));
+    const enrichedProgress: DbModuleProgress[] = allModules.map((mod) => {
+      const p = progressByModuleId.get(mod.id);
+      return {
+        module_id: mod.id,
+        module_number: mod.module_number,
+        status: p?.status ?? (mod.module_number === 1 ? 'in_progress' : 'locked'),
+        quiz_passed: p?.quiz_passed ?? false,
+        assignment_done: p?.assignment_done ?? false,
+        topics_done: p?.topics_done ?? 0,
+      };
+    });
+
+    let completedModules = enrichedProgress.filter((p) => p.status === 'completed').length;
+    const totalModules = allModules.length || 1;
+    let progress = Math.round((completedModules / totalModules) * 100);
+
+    let current = allModules.find((mod) => {
+      const p = progressByModuleId.get(mod.id);
+      return p?.status !== 'completed';
+    }) ?? allModules[0];
+
+    if (!progressByModuleId.size && allModules.length > 0) {
+      current = allModules[0];
+      completedModules = 0;
+      progress = 0;
+    }
+
+    const { data: lastProgress } = await supabase
+      .from('learner_asset_progress')
+      .select('asset_id, updated_at')
+      .eq('user_id', userId)
+      .eq('completed', true)
+      .order('updated_at', { ascending: false })
+      .limit(1)
+      .maybeSingle();
+
+    let lastWatchedLesson = 'Getting started';
+    if (lastProgress?.asset_id) {
+      const { data: asset } = await supabase
+        .from('learning_assets')
+        .select('title')
+        .eq('id', lastProgress.asset_id as string)
+        .maybeSingle();
+      if (asset?.title) lastWatchedLesson = asset.title as string;
+    } else if (current?.topics[0]) {
+      lastWatchedLesson = current.topics[0].title;
+    }
+
+    const assignments = await this.getLearnerAssignments(userId, courseId);
+    const projects = await this.getLearnerProjects(userId, courseId);
+    const pendingAssignments = assignments.filter((a) => a.status === 'pending').length;
+    const submittedProjects = projects.filter(
+      (p) => p.status === 'submitted' || p.status === 'reviewed',
+    ).length;
+
+    return {
+      progress,
+      completedModules,
+      totalModules,
+      currentModuleId: current?.module_number ?? null,
+      currentModuleTitle: current?.title ?? 'Getting Started',
+      currentModuleDbId: current?.id ?? null,
+      lastWatchedLesson: lastWatchedLesson ?? 'Getting started',
+      pendingAssignments,
+      submittedProjects,
+      certificateLocked: progress < 80,
+      moduleProgress: enrichedProgress,
+    };
   },
 };
