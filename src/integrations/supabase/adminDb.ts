@@ -21,6 +21,47 @@ import {
 } from '@/lib/enrollmentAccess';
 import { enrollmentPaidAmountInInr } from '@/lib/coursePricing';
 
+function dedupeProgramsByCode(programs: AdminProgram[]): AdminProgram[] {
+  const byCode = new Map<string, AdminProgram>();
+
+  for (const program of programs) {
+    const code = program.code?.trim().toUpperCase();
+    if (!code) continue;
+
+    const existing = byCode.get(code);
+    if (!existing || (program.is_active && !existing.is_active)) {
+      byCode.set(code, program);
+    }
+  }
+
+  return Array.from(byCode.values()).sort((a, b) => a.code.localeCompare(b.code));
+}
+
+async function syncLearnerProfileAfterEnrollment(
+  userId: string,
+  course: { code?: string | null; title?: string | null } | null,
+  enrollmentStatus: string,
+) {
+  const updates: {
+    assigned_program?: string | null;
+    learner_status?: string;
+  } = {
+    assigned_program: course?.code || course?.title || null,
+  };
+
+  if (isEnrollmentCancelled(enrollmentStatus)) {
+    updates.learner_status = 'inactive';
+  } else if (enrollmentStatus === 'active') {
+    updates.learner_status = 'active';
+  } else if (enrollmentStatus === 'completed') {
+    updates.learner_status = 'completed';
+  } else if (enrollmentStatus === 'pending') {
+    updates.learner_status = 'inactive';
+  }
+
+  await supabase.from('users').update(updates).eq('id', userId);
+}
+
 function mapProgram(row: Record<string, unknown>): AdminProgram {
   return {
     id: row.id as string,
@@ -138,16 +179,17 @@ export const adminDb = {
 
     const { data: enrollments } = await supabase
       .from('enrollments')
-      .select('user_id, status, created_at, courses(code)')
+      .select('user_id, course_id, status, created_at, courses(code)')
       .order('created_at', { ascending: false });
 
-    const enrollmentByUser = new Map<string, { status: string; created_at: string }>();
+    const enrollmentByUser = new Map<string, { status: string; created_at: string; course_id: string }>();
     (enrollments ?? []).forEach((e: Record<string, unknown>) => {
       const uid = e.user_id as string;
       if (uid && !enrollmentByUser.has(uid)) {
         enrollmentByUser.set(uid, {
           status: (e.status as string) || 'pending',
           created_at: e.created_at as string,
+          course_id: e.course_id as string,
         });
       }
     });
@@ -166,6 +208,7 @@ export const adminDb = {
         admin_notes: (row.admin_notes as string) || null,
         created_at: row.created_at as string,
         enrollment_status: en?.status ?? null,
+        enrollment_course_id: en?.course_id ?? null,
         joining_date: en?.created_at ?? (row.created_at as string),
       };
     });
@@ -221,12 +264,13 @@ export const adminDb = {
         .single();
       if (error) throw new Error(error.message);
 
-      if (isEnrollmentCancelled(normalizedStatus)) {
-        await supabase
-          .from('users')
-          .update({ learner_status: 'inactive' })
-          .eq('id', userId);
-      }
+      const { data: course } = await supabase
+        .from('courses')
+        .select('code, title')
+        .eq('id', courseId)
+        .maybeSingle();
+
+      await syncLearnerProfileAfterEnrollment(userId, course, normalizedStatus);
 
       return data;
     }
@@ -252,14 +296,7 @@ export const adminDb = {
       .single();
     if (error) throw new Error(error.message);
 
-    const userUpdates: { assigned_program: string | null | undefined; learner_status?: string } = {
-      assigned_program: course?.code || course?.title,
-    };
-    if (isEnrollmentCancelled(normalizedStatus)) {
-      userUpdates.learner_status = 'inactive';
-    }
-
-    await supabase.from('users').update(userUpdates).eq('id', userId);
+    await syncLearnerProfileAfterEnrollment(userId, course, normalizedStatus);
 
     return data;
   },
@@ -270,7 +307,7 @@ export const adminDb = {
       .select('*')
       .order('code', { ascending: true });
     if (error) throw new Error(error.message);
-    return (data ?? []).map(mapProgram);
+    return dedupeProgramsByCode((data ?? []).map(mapProgram));
   },
 
   async createProgram(program: {

@@ -70,6 +70,9 @@ export function enrollmentGrantsAccess(
   paymentStatus?: string | null,
 ): boolean {
   if (isEnrollmentCancelled(status)) return false;
-  if (normalizeEnrollmentStatus(status) !== 'active') return false;
+
+  const normalizedStatus = normalizeEnrollmentStatus(status);
+  if (normalizedStatus !== 'active' && normalizedStatus !== 'completed') return false;
+
   return isPaymentCompleted(paymentStatus) || isAdminGrantedPayment(paymentStatus);
 }

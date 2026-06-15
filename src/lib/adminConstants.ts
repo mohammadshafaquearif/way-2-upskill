@@ -26,13 +26,13 @@ export const ENROLLMENT_STATUS_OPTIONS: {
   {
     value: 'active',
     label: 'Active',
-    description: 'User enrolled — counts as sold only after Razorpay payment',
+    description: 'Enrolled — LMS access enabled (Razorpay sale only after payment)',
     countsAsSold: false,
   },
   {
     value: 'completed',
     label: 'Completed',
-    description: 'Course finished — counts as sold only if Razorpay payment exists',
+    description: 'Course finished — LMS access retained',
     countsAsSold: false,
   },
   {

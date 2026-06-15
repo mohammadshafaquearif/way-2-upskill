@@ -60,18 +60,22 @@ const AdminLearners = ({ learners, programs, onRefresh }: AdminLearnersProps) =>
   }, [learners, search]);
 
   const openEdit = (learner: AdminLearner) => {
-    const program = programs.find((p) => p.code === learner.assigned_program);
+    const program = programs.find(
+      (p) =>
+        p.id === learner.enrollment_course_id ||
+        p.code === learner.assigned_program,
+    );
     setEditing(learner);
     setForm({
       first_name: learner.first_name,
       last_name: learner.last_name,
       phone: learner.phone,
       country: learner.country || '',
-      assigned_program: learner.assigned_program || '',
+      assigned_program: learner.assigned_program || program?.code || '',
       learner_status: learner.learner_status,
       admin_notes: learner.admin_notes || '',
       enrollment_status: learner.enrollment_status || 'active',
-      course_id: program?.id || '',
+      course_id: learner.enrollment_course_id || program?.id || '',
     });
   };
 
@@ -89,8 +93,12 @@ const AdminLearners = ({ learners, programs, onRefresh }: AdminLearnersProps) =>
         admin_notes: form.admin_notes,
       });
 
-      if (form.course_id) {
-        await apiClient.assignProgramToLearner(editing.id, form.course_id, form.enrollment_status);
+      if (form.course_id || editing.enrollment_course_id) {
+        await apiClient.assignProgramToLearner(
+          editing.id,
+          form.course_id || editing.enrollment_course_id!,
+          form.enrollment_status,
+        );
       }
 
       toast({ title: 'Learner updated' });
@@ -207,8 +215,10 @@ const AdminLearners = ({ learners, programs, onRefresh }: AdminLearnersProps) =>
               >
                 <SelectTrigger><SelectValue placeholder="Select program" /></SelectTrigger>
                 <SelectContent>
-                  {programs.filter((p) => p.is_active).map((p) => (
-                    <SelectItem key={p.id} value={p.id}>{p.code} — {p.title}</SelectItem>
+                  {programs.map((p) => (
+                    <SelectItem key={p.id} value={p.id}>
+                      {p.code} — {p.title}
+                    </SelectItem>
                   ))}
                 </SelectContent>
               </Select>

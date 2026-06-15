@@ -24,6 +24,7 @@ export interface AdminLearner {
   admin_notes: string | null;
   created_at: string;
   enrollment_status?: string | null;
+  enrollment_course_id?: string | null;
   joining_date?: string | null;
 }
 

@@ -54,6 +54,11 @@ export function getClientIp(req) {
   return req.socket?.remoteAddress || 'unknown';
 }
 
+/**
+ * @param {import('http').IncomingMessage} req
+ * @param {{ rateKey?: string; maxRequests?: number }} [options]
+ * @returns {{ status: number; body: { error: string } } | null}
+ */
 export function guardApiRequest(req, { rateKey, maxRequests = 20 } = {}) {
   const originError = checkOrigin(req);
   if (originError) return originError;
