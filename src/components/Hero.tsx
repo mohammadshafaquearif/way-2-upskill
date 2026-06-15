@@ -169,7 +169,7 @@ const Hero = () => {
                         ))}
                       </ul>
                     )}
-                    <Button asChild size="lg" className="btn-brand hero-slider-cta group mt-8 h-12 px-8 text-base">
+                    <Button asChild size="lg" className="btn-brand hero-slider-cta group mt-6 h-12 px-8 text-base md:mt-7 lg:mt-8">
                       <Link to={slide.ctaHref}>
                         {slide.ctaLabel}
                         <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-0.5" />

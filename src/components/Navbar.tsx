@@ -47,7 +47,7 @@ const Navbar = () => {
   }, [location]);
 
   const navLinkClass = (active: boolean) =>
-    `text-sm font-medium transition-colors ${
+    `text-xs font-medium transition-colors lg:text-sm ${
       active ? 'text-primary' : 'text-foreground/80 hover:text-primary'
     }`;
 
@@ -91,7 +91,7 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden items-center gap-7 lg:flex">
+          <div className="hidden min-w-0 items-center gap-3 md:flex lg:gap-5 xl:gap-7">
             <Link to="/" className={navLinkClass(location.pathname === '/')}>
               Home
             </Link>
@@ -136,17 +136,17 @@ const Navbar = () => {
             <Link to="/resources" className={navLinkClass(location.pathname === '/resources')}>
               Resources
             </Link>
-            <Link to="/#community" className={navLinkClass(false)}>
+            <Link to="/#community" className={`hidden lg:inline ${navLinkClass(false)}`}>
               Community
             </Link>
             <Link to="/about" className={navLinkClass(location.pathname === '/about')}>
               About
             </Link>
-            <Link to="/faq" className={navLinkClass(location.pathname === '/faq')}>
+            <Link to="/faq" className={`hidden lg:inline ${navLinkClass(location.pathname === '/faq')}`}>
               FAQ
             </Link>
 
-            <div className="flex items-center gap-2.5">
+            <div className="flex shrink-0 items-center gap-1.5 lg:gap-2.5">
               {isAuthenticated ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
@@ -193,13 +193,13 @@ const Navbar = () => {
                   Log In
                 </Button>
               )}
-              <Button asChild size="sm" className="btn-brand rounded-lg px-5 font-semibold">
+              <Button asChild size="sm" className="btn-brand rounded-lg px-3 font-semibold lg:px-5">
                 <Link to="/courses">Explore Programs</Link>
               </Button>
             </div>
           </div>
 
-          <div className="lg:hidden">
+          <div className="md:hidden">
             <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
               {isMobileMenuOpen ? <X /> : <Menu />}
             </Button>
@@ -207,7 +207,7 @@ const Navbar = () => {
         </div>
 
         {isMobileMenuOpen && (
-          <div className="slide-in absolute left-0 right-0 top-full max-h-[min(85vh,calc(100dvh-4rem))] w-full overflow-y-auto overscroll-contain border-t border-border bg-card py-4 shadow-lg lg:hidden">
+          <div className="slide-in absolute left-0 right-0 top-full max-h-[min(85vh,calc(100dvh-4rem))] w-full overflow-y-auto overscroll-contain border-t border-border bg-card py-4 shadow-lg md:hidden">
             <div className="container flex flex-col space-y-1 pb-6">
               <Link to="/" className={`px-4 py-3 ${navLinkClass(location.pathname === '/')}`}>
                 Home
