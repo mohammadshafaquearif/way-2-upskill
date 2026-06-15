@@ -24,15 +24,26 @@ function getRazorpayConfig() {
   };
 }
 
+const RAZORPAY_CURRENCIES = new Set([
+  'INR', 'USD', 'EUR', 'GBP', 'AED', 'SGD', 'AUD', 'CAD', 'SAR', 'MYR',
+]);
+
 export async function handleCreateOrderRequest(body = {}) {
   const amount = Number(body.amount);
-  const currency = body.currency || 'INR';
+  const currency = String(body.currency || 'INR').toUpperCase();
   const receipt = body.receipt || `rcpt_${Date.now()}`;
 
   if (!Number.isFinite(amount) || amount < 100) {
     return {
       status: 400,
-      body: { error: 'Amount must be at least 100 paise (₹1)' },
+      body: { error: `Amount must be at least 100 minor units (e.g. ₹1 or $1) for ${currency}` },
+    };
+  }
+
+  if (!RAZORPAY_CURRENCIES.has(currency)) {
+    return {
+      status: 400,
+      body: { error: `Currency ${currency} is not supported. Use one of: ${[...RAZORPAY_CURRENCIES].join(', ')}` },
     };
   }
 

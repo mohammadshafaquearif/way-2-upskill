@@ -29,11 +29,15 @@ async function parseJsonResponse<T>(response: Response): Promise<T> {
   return data as T;
 }
 
-export async function createOrder(amount: number, receipt: string): Promise<CreateOrderResponse> {
+export async function createOrder(
+  amountMinor: number,
+  receipt: string,
+  currency = 'INR',
+): Promise<CreateOrderResponse> {
   const response = await fetch('/api/create-order', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ amount, currency: 'INR', receipt }),
+    body: JSON.stringify({ amount: amountMinor, currency, receipt }),
   });
 
   return parseJsonResponse<CreateOrderResponse>(response);

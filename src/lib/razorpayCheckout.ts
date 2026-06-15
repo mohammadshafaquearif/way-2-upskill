@@ -69,7 +69,8 @@ function loadRazorpayScript(): Promise<void> {
 }
 
 export interface OpenCheckoutParams {
-  amountPaise: number;
+  amountMinor: number;
+  currency: string;
   receipt: string;
   courseTitle: string;
   userName: string;
@@ -81,7 +82,8 @@ export interface OpenCheckoutParams {
 }
 
 export async function openRazorpayCheckout({
-  amountPaise,
+  amountMinor,
+  currency,
   receipt,
   courseTitle,
   userName,
@@ -93,7 +95,7 @@ export async function openRazorpayCheckout({
 }: OpenCheckoutParams): Promise<void> {
   await loadRazorpayScript();
 
-  const order = await createOrder(amountPaise, receipt);
+  const order = await createOrder(amountMinor, receipt, currency);
 
   const keyId = order.key_id || getRazorpayKeyId();
   if (!keyId) {

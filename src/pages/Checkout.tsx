@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import type { CountryCode } from 'libphonenumber-js';
 import { useAuth } from '@/contexts/AuthContext';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import PricingCountrySelect from '@/components/courses/PricingCountrySelect';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -15,15 +17,14 @@ import PageHero from '@/components/PageHero';
 import PageShell from '@/components/layout/PageShell';
 import { IMAGES } from '@/lib/images';
 import { getCourseByCheckoutId } from '@/lib/courses';
-import { formatInr, rupeesToPaise } from '@/lib/payments';
+import { GST_RATE } from '@/lib/coursePricing';
+import { useCoursePrice } from '@/hooks/useCoursePrice';
 import { openRazorpayCheckout } from '@/lib/razorpayCheckout';
 import {
   completeEnrollment,
   saveEnrollmentSuccess,
 } from '@/lib/enrollmentWorkflow';
 import { supabase } from '@/integrations/supabase/client';
-
-const DEFAULT_PRICE_INR = 499;
 
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
@@ -36,10 +37,10 @@ const Checkout: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState('full');
   const [paymentType, setPaymentType] = useState('razorpay');
-  const [coursePriceInr, setCoursePriceInr] = useState(DEFAULT_PRICE_INR);
   const [guestEmail, setGuestEmail] = useState('');
   const [guestPhone, setGuestPhone] = useState('');
   const [dbCourseId, setDbCourseId] = useState<string | null>(null);
+  const [pricingCountry, setPricingCountry] = useState<CountryCode>('IN');
 
   const checkoutEmail = isAuthenticated && user ? user.email : guestEmail.trim();
 
@@ -71,29 +72,46 @@ const Checkout: React.FC = () => {
       .getAllCourses()
       .then((courses) => {
         const dbCourse = courses.find(
-          (c: { title: string; price?: number; code?: string }) =>
+          (c: { title: string; price?: number; code?: string; id?: string }) =>
             c.code?.toLowerCase() === course.code.toLowerCase() ||
             c.title.toLowerCase().includes(course.title.split(' ')[0].toLowerCase()) ||
             course.title.toLowerCase().includes(c.title.toLowerCase().slice(0, 12)),
         );
-        if (dbCourse?.price) {
-          setCoursePriceInr(Number(dbCourse.price) || DEFAULT_PRICE_INR);
-        }
         if (dbCourse?.id) {
           setDbCourseId(dbCourse.id as string);
         }
       })
       .catch(() => {
-        setCoursePriceInr(DEFAULT_PRICE_INR);
+        /* keep fallback pricing */
       });
   }, [course]);
 
+  const {
+    price: resolvedPrice,
+    displayPrice,
+    chargeLabel,
+    setCountry: setPricingCountryFromHook,
+    isLoading: priceLoading,
+  } = useCoursePrice({
+    courseCode: course?.code,
+    courseId: dbCourseId,
+    country: pricingCountry,
+  });
+
+  const handleCountryChange = (country: CountryCode) => {
+    setPricingCountry(country);
+    setPricingCountryFromHook(country);
+  };
+
+  const chargeAmount = resolvedPrice.amount;
+  const amountMinor = resolvedPrice.amountMinor;
+  const chargeCurrency = resolvedPrice.currency;
+
   if (!course) return null;
 
-  const amountPaise = rupeesToPaise(coursePriceInr);
-  const displayAmount = formatInr(amountPaise);
-
   const checkoutPhone = isAuthenticated && user?.phone ? user.phone : guestPhone.trim();
+
+  const payButtonLabel = priceLoading ? 'Loading price…' : `Pay ${chargeLabel}`;
 
   const runPostPaymentWorkflow = async (
     payment: {
@@ -122,9 +140,10 @@ const Checkout: React.FC = () => {
       programSlug: course.id,
       courseTitle: course.title,
       duration: course.duration,
-      amount: coursePriceInr,
+      amount: chargeAmount,
       paymentPlan: paymentMethod,
       userId: session?.user?.id,
+      country: new Intl.DisplayNames(['en'], { type: 'region' }).of(pricingCountry) ?? pricingCountry,
     });
 
     if (!result.hasServerEnrollment) {
@@ -138,8 +157,9 @@ const Checkout: React.FC = () => {
         phone: checkoutPhone,
         paymentPlan: paymentMethod,
         paymentMethod: `razorpay:${payment.razorpay_payment_id}`,
-        totalAmount: coursePriceInr,
+        totalAmount: chargeAmount,
         status: 'completed',
+        country: new Intl.DisplayNames(['en'], { type: 'region' }).of(pricingCountry) ?? pricingCountry,
       });
     }
 
@@ -190,7 +210,8 @@ const Checkout: React.FC = () => {
 
     try {
       await openRazorpayCheckout({
-        amountPaise,
+        amountMinor,
+        currency: chargeCurrency,
         receipt: `enroll_${course.id}_${receiptSuffix}`,
         courseTitle: course.title,
         userName: user ? `${user.firstName} ${user.lastName}`.trim() : checkoutEmail.split('@')[0],
@@ -280,9 +301,43 @@ const Checkout: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="border-t pt-4 flex items-center justify-between">
-                  <span className="font-medium">Program fee</span>
-                  <span className="text-2xl font-bold text-primary">{displayAmount}</span>
+                <PricingCountrySelect
+                  value={pricingCountry}
+                  onChange={handleCountryChange}
+                  disabled={priceLoading}
+                />
+
+                <div className="border-t pt-4 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="font-medium">Program fee</span>
+                    <span className="text-lg font-semibold text-primary">
+                      {priceLoading ? '…' : displayPrice}
+                    </span>
+                  </div>
+                  {!priceLoading && resolvedPrice.inrBase != null && resolvedPrice.gstAmount != null && (
+                    <>
+                      <div className="flex items-center justify-between text-sm text-muted-foreground">
+                        <span>GST ({Math.round(GST_RATE * 100)}%)</span>
+                        <span>
+                          {new Intl.NumberFormat('en-IN', {
+                            style: 'currency',
+                            currency: 'INR',
+                            maximumFractionDigits: 0,
+                          }).format(resolvedPrice.gstAmount)}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between border-t pt-2">
+                        <span className="font-semibold">Total payable</span>
+                        <span className="text-2xl font-bold text-primary">{chargeLabel}</span>
+                      </div>
+                    </>
+                  )}
+                  {!priceLoading && resolvedPrice.inrBase == null && (
+                    <div className="flex items-center justify-between border-t pt-2">
+                      <span className="font-semibold">Total payable ({chargeCurrency})</span>
+                      <span className="text-2xl font-bold text-primary">{chargeLabel}</span>
+                    </div>
+                  )}
                 </div>
 
                 <div className="rounded-lg bg-muted/50 p-4 text-sm text-muted-foreground flex gap-2">
@@ -382,12 +437,12 @@ const Checkout: React.FC = () => {
                   </div>
                 )}
 
-                <Button onClick={handlePayment} disabled={loading} className="w-full btn-brand py-4 text-lg">
+                <Button onClick={handlePayment} disabled={loading || priceLoading} className="w-full btn-brand py-4 text-lg">
                   {loading
                     ? 'Processing…'
                     : paymentMethod === 'installment'
                       ? 'Submit Request'
-                      : `Pay ${displayAmount}`}
+                      : payButtonLabel}
                 </Button>
 
                 <p className="text-xs text-muted-foreground text-center">

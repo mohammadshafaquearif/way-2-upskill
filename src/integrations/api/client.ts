@@ -29,6 +29,10 @@ class ApiClient {
     return db.getAllCourses();
   }
 
+  async getCourseRegionalPrices(params: { courseCode?: string; courseId?: string }) {
+    return db.getCourseRegionalPrices(params);
+  }
+
   async getAllInstructors() {
     return db.getAllInstructors();
   }

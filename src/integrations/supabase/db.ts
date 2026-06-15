@@ -207,6 +207,41 @@ export const db = {
     return data ?? [];
   },
 
+  async getCourseRegionalPrices(params: { courseCode?: string; courseId?: string }) {
+    let courseId = params.courseId;
+
+    if (!courseId && params.courseCode) {
+      const { data: course } = await supabase
+        .from('courses')
+        .select('id')
+        .eq('code', params.courseCode.toUpperCase())
+        .maybeSingle();
+      courseId = course?.id;
+    }
+
+    if (!courseId) return [];
+
+    const { data, error } = await supabase
+      .from('course_regional_prices')
+      .select('region_code, amount, currency, amount_inr')
+      .eq('course_id', courseId);
+
+    if (error) {
+      // Table may not exist until migration is run — fail soft
+      if (error.code === '42P01' || error.message.includes('course_regional_prices')) {
+        return [];
+      }
+      throw new Error(error.message);
+    }
+
+    return (data ?? []).map((row) => ({
+      region_code: row.region_code,
+      amount: Number(row.amount),
+      currency: row.currency,
+      amount_inr: row.amount_inr != null ? Number(row.amount_inr) : null,
+    }));
+  },
+
   async getAllInstructors() {
     const { data, error } = await supabase
       .from('instructors')
