@@ -15,6 +15,8 @@ export interface Course {
   icon: LucideIcon;
   level: string;
   projects: string;
+  /** Short bullets shown on checkout */
+  checkoutIncludes: string[];
 }
 
 export const COURSES: Course[] = [
@@ -32,6 +34,13 @@ export const COURSES: Course[] = [
     icon: Wrench,
     level: 'Intermediate',
     projects: '12+',
+    checkoutIncludes: [
+      'Live mentor-led sessions with industry practitioners',
+      'Hands-on CI/CD, Docker, Kubernetes & Terraform labs',
+      '12+ deployment projects for your portfolio',
+      'Full LMS access with recordings & assignments',
+      'Certificate on successful program completion',
+    ],
   },
   {
     id: 'aac',
@@ -47,6 +56,13 @@ export const COURSES: Course[] = [
     icon: Bot,
     level: 'Intermediate',
     projects: '10+',
+    checkoutIncludes: [
+      'Live sessions on LLMs, RAG, agents & LangGraph',
+      'Build production-ready AI agents in guided labs',
+      '10+ portfolio projects recruiters actually review',
+      'Learning OS with curriculum, sessions & mentor support',
+      'Zyvotrix certificate with verifiable credential ID',
+    ],
   },
   {
     id: 'aws',
@@ -62,6 +78,13 @@ export const COURSES: Course[] = [
     icon: Cloud,
     level: 'Beginner to Intermediate',
     projects: '7+',
+    checkoutIncludes: [
+      'SAA-C03 focused syllabus with exam-ready prep',
+      'Hands-on EC2, VPC, S3, IAM & Lambda labs',
+      '7+ cloud architecture projects for your resume',
+      'Live mentor Q&A and session recordings',
+      'Certificate aligned to AWS Solutions Architect track',
+    ],
   },
   {
     id: 'data-science',
@@ -77,6 +100,13 @@ export const COURSES: Course[] = [
     icon: BarChart3,
     level: 'Beginner to Intermediate',
     projects: '6+',
+    checkoutIncludes: [
+      'Python, SQL, statistics & ML — start to deployment',
+      'Real datasets with Pandas, visualization & modelling',
+      '6+ analytics & ML projects for your portfolio',
+      'Live mentor support built for working professionals',
+      'Certificate on completing the full program track',
+    ],
   },
 ];
 

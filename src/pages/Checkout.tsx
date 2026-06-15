@@ -10,12 +10,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Check, ArrowLeft, CreditCard, Smartphone, ShieldCheck } from 'lucide-react';
+import { Check, ArrowLeft, CreditCard, Smartphone, ShieldCheck, Clock, FolderKanban, GraduationCap } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import { apiClient } from '@/integrations/api/client';
-import PageHero from '@/components/PageHero';
 import PageShell from '@/components/layout/PageShell';
-import { IMAGES } from '@/lib/images';
+import { Badge } from '@/components/ui/badge';
 import { getCourseByCheckoutId } from '@/lib/courses';
 import { GST_RATE } from '@/lib/coursePricing';
 import { useCoursePrice } from '@/hooks/useCoursePrice';
@@ -40,6 +39,7 @@ const Checkout: React.FC = () => {
   const [guestEmail, setGuestEmail] = useState('');
   const [guestPhone, setGuestPhone] = useState('');
   const [dbCourseId, setDbCourseId] = useState<string | null>(null);
+  const [dbDescription, setDbDescription] = useState<string | null>(null);
   const [pricingCountry, setPricingCountry] = useState<CountryCode>('IN');
 
   const checkoutEmail = isAuthenticated && user ? user.email : guestEmail.trim();
@@ -51,9 +51,13 @@ const Checkout: React.FC = () => {
         ? {
             id: courseMeta.id,
             title: courseMeta.title,
+            shortTitle: courseMeta.shortTitle,
+            description: courseMeta.description,
             duration: courseMeta.duration,
             projects: courseMeta.projects,
             code: courseMeta.code,
+            level: courseMeta.level,
+            includes: courseMeta.checkoutIncludes,
           }
         : undefined,
     [courseMeta],
@@ -72,13 +76,16 @@ const Checkout: React.FC = () => {
       .getAllCourses()
       .then((courses) => {
         const dbCourse = courses.find(
-          (c: { title: string; price?: number; code?: string; id?: string }) =>
+          (c: { title: string; price?: number; code?: string; id?: string; description?: string }) =>
             c.code?.toLowerCase() === course.code.toLowerCase() ||
             c.title.toLowerCase().includes(course.title.split(' ')[0].toLowerCase()) ||
             course.title.toLowerCase().includes(c.title.toLowerCase().slice(0, 12)),
         );
         if (dbCourse?.id) {
           setDbCourseId(dbCourse.id as string);
+        }
+        if (dbCourse?.description) {
+          setDbDescription(dbCourse.description as string);
         }
       })
       .catch(() => {
@@ -109,6 +116,7 @@ const Checkout: React.FC = () => {
 
   if (!course) return null;
 
+  const courseDescription = dbDescription ?? course.description;
   const checkoutPhone = isAuthenticated && user?.phone ? user.phone : guestPhone.trim();
 
   const payButtonLabel = priceLoading ? 'Loading price…' : `Pay ${chargeLabel}`;
@@ -261,13 +269,13 @@ const Checkout: React.FC = () => {
     <PageShell>
       <Navbar />
 
-      <PageHero
-        title="Secure Checkout"
-        subtitle={`Complete payment for ${course.title} and unlock your learning simulator.`}
-        image={IMAGES.hero.enroll}
-        imageAlt={course.title}
-        centered
-      />
+      <section className="border-b bg-gradient-to-br from-primary/5 via-background to-secondary/5 pt-24 pb-8 sm:pt-28">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6">
+          <p className="text-xs font-bold uppercase tracking-widest text-primary">Secure Checkout</p>
+          <h1 className="mt-2 text-2xl font-bold text-foreground sm:text-3xl">{course.shortTitle}</h1>
+          <p className="mt-2 max-w-2xl text-sm text-muted-foreground sm:text-base">{courseDescription}</p>
+        </div>
+      </section>
 
       <section className="section-padding section-alt pb-16">
         <div className="container px-4 sm:px-6 max-w-6xl mx-auto">
@@ -288,24 +296,50 @@ const Checkout: React.FC = () => {
                   Course Summary
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="border rounded-lg p-4">
-                  <h3 className="font-semibold text-lg mb-2">{course.title}</h3>
-                  <div className="grid grid-cols-2 gap-4 text-sm text-muted-foreground">
-                    <div>
-                      <span className="font-medium">Duration:</span> {course.duration}
-                    </div>
-                    <div>
-                      <span className="font-medium">Projects:</span> {course.projects}
-                    </div>
+              <CardContent className="space-y-5">
+                <div className="space-y-3 rounded-lg border bg-card p-4">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Badge variant="secondary">{course.code}</Badge>
+                    <Badge variant="outline">{course.level}</Badge>
+                  </div>
+                  <h3 className="text-lg font-semibold leading-snug">{course.title}</h3>
+                  <div className="flex flex-wrap gap-x-5 gap-y-1 text-sm text-muted-foreground">
+                    <span className="inline-flex items-center gap-1.5">
+                      <Clock className="h-4 w-4 shrink-0 text-primary" />
+                      {course.duration}
+                    </span>
+                    <span className="inline-flex items-center gap-1.5">
+                      <FolderKanban className="h-4 w-4 shrink-0 text-primary" />
+                      {course.projects} projects
+                    </span>
+                    <span className="inline-flex items-center gap-1.5">
+                      <GraduationCap className="h-4 w-4 shrink-0 text-primary" />
+                      Mentor-led
+                    </span>
                   </div>
                 </div>
 
-                <PricingCountrySelect
-                  value={pricingCountry}
-                  onChange={handleCountryChange}
-                  disabled={priceLoading}
-                />
+                <div>
+                  <p className="mb-2.5 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    What&apos;s included
+                  </p>
+                  <ul className="space-y-2">
+                    {course.includes.map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-sm text-foreground">
+                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-green-600" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="border-t pt-4">
+                  <PricingCountrySelect
+                    value={pricingCountry}
+                    onChange={handleCountryChange}
+                    disabled={priceLoading}
+                  />
+                </div>
 
                 <div className="border-t pt-4 space-y-2">
                   <div className="flex items-center justify-between">
