@@ -9,6 +9,7 @@ import { Label } from '@/components/ui/label';
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -82,6 +83,9 @@ const LMSAssignments = () => {
                     <DialogContent>
                       <DialogHeader>
                         <DialogTitle>Submit — {assignment.title}</DialogTitle>
+                        <DialogDescription>
+                          Upload a PDF/ZIP or share a GitHub link. Your submission will be reviewed by the mentor.
+                        </DialogDescription>
                       </DialogHeader>
                       <div className="space-y-4 pt-2">
                         <div className="space-y-2">

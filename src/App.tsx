@@ -77,7 +77,10 @@ const App = () => (
             <Route path="/terms" element={<Terms />} />
             <Route path="/enroll" element={<Enroll />} />
             <Route path="/bonus" element={<Bonus />} />
+            <Route path="/proifle" element={<Navigate to="/profile" replace />} />
+            <Route path="/profie" element={<Navigate to="/profile" replace />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/dashboarsd" element={<Navigate to="/dashboard" replace />} />
             <Route path="/dashboard" element={<LMSLayout />}>
               <Route index element={<LMSDashboard />} />
               <Route path="curriculum" element={<LMSCurriculum />} />

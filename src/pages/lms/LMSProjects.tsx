@@ -10,6 +10,7 @@ import { Textarea } from '@/components/ui/textarea';
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -106,6 +107,9 @@ const LMSProjects = () => {
                     <DialogContent>
                       <DialogHeader>
                         <DialogTitle>Submit — {project.title}</DialogTitle>
+                        <DialogDescription>
+                          Share GitHub + optional demo link. Add short documentation notes for faster review.
+                        </DialogDescription>
                       </DialogHeader>
                       <div className="space-y-4 pt-2">
                         <div className="space-y-2">
