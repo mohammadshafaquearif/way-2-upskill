@@ -88,13 +88,21 @@ CREATE INDEX IF NOT EXISTS idx_assignments_course ON public.assignments(course_i
 CREATE INDEX IF NOT EXISTS idx_certificates_cert_id ON public.certificates(certificate_id);
 CREATE INDEX IF NOT EXISTS idx_contacts_status ON public.contacts(status);
 
--- Seed core programs (DOP, AAC, AWS, DSP)
-INSERT INTO public.courses (code, title, description, duration, price, category, level, curriculum) VALUES
-('DOP', 'AI-Powered DevOps Engineer Program (DOP)', 'DevOps with AI-assisted automation, CI/CD, containers, and cloud deployments.', '4 Months', 350.00, 'DevOps', 'Intermediate', 'Linux, Git, CI/CD, Docker, Kubernetes, Terraform, AWS, DevSecOps, Capstone'),
-('AAC', 'Agentic AI Certification Training (AAC)', 'Build intelligent agents, LLM workflows, and automation systems.', '3 Months', 300.00, 'AI/ML', 'Intermediate', 'Python, LLMs, RAG, Agents, LangChain, MCP, Production AI'),
-('AWS', 'AWS Solutions Architect Certification Program', 'SAA-C03 focused AWS architecture and hands-on labs.', '3 Months', 350.00, 'Cloud', 'Intermediate', 'IAM, EC2, S3, VPC, RDS, Lambda, Route53, Terraform'),
-('DSP', 'Data Science & Machine Learning with Python', 'Analytics, visualization, statistics, and ML portfolio projects.', '3 Months', 300.00, 'Data Science', 'Intermediate', 'Python, SQL, Pandas, ML, Deep Learning, MLOps basics')
-ON CONFLICT DO NOTHING;
+-- Seed core programs (DOP, AAC, AWS, DSP) — idempotent (safe to re-run)
+INSERT INTO public.courses (code, title, description, duration, price, category, level, curriculum)
+SELECT v.code, v.title, v.description, v.duration, v.price, v.category, v.level, v.curriculum
+FROM (
+  VALUES
+    ('DOP', 'AI-Powered DevOps Engineer Program (DOP)', 'DevOps with AI-assisted automation, CI/CD, containers, and cloud deployments.', '4 Months', 350.00::numeric, 'DevOps', 'Intermediate', 'Linux, Git, CI/CD, Docker, Kubernetes, Terraform, AWS, DevSecOps, Capstone'),
+    ('AAC', 'Agentic AI Certification Training (AAC)', 'Build intelligent agents, LLM workflows, and automation systems.', '3 Months', 300.00::numeric, 'AI/ML', 'Intermediate', 'Python, LLMs, RAG, Agents, LangChain, MCP, Production AI'),
+    ('AWS', 'AWS Solutions Architect Certification Program', 'SAA-C03 focused AWS architecture and hands-on labs.', '3 Months', 350.00::numeric, 'Cloud', 'Intermediate', 'IAM, EC2, S3, VPC, RDS, Lambda, Route53, Terraform'),
+    ('DSP', 'Data Science & Machine Learning with Python', 'Analytics, visualization, statistics, and ML portfolio projects.', '3 Months', 300.00::numeric, 'Data Science', 'Intermediate', 'Python, SQL, Pandas, ML, Deep Learning, MLOps basics')
+) AS v(code, title, description, duration, price, category, level, curriculum)
+WHERE NOT EXISTS (
+  SELECT 1
+  FROM public.courses c
+  WHERE upper(btrim(c.code)) = upper(btrim(v.code))
+);
 
 -- RLS
 ALTER TABLE public.program_sessions ENABLE ROW LEVEL SECURITY;

@@ -1,4 +1,5 @@
 import type { LMSPhase, ProgramId } from './types';
+import { getDopPhaseProject } from './dopProjects';
 
 const AAC_CURRICULUM: LMSPhase[] = [
   {
@@ -41,24 +42,85 @@ const DOP_CURRICULUM: LMSPhase[] = [
   {
     id: 'p1',
     phase: 'Phase 1',
-    label: 'DevOps Foundations',
-    meta: 'Modules 1–3',
+    label: 'DevOps Foundations & Cloud Operations',
+    meta: 'Module 1 · 5 Topics · → Project 1',
+    project: getDopPhaseProject('p1'),
     modules: [
-      { id: 1, title: 'Linux & Git', phaseId: 'p1', topics: ['Shell scripting', 'Git workflows', 'SSH & permissions'], hasQuiz: true, hasAssignment: true, lessonCount: 5 },
-      { id: 2, title: 'Docker Fundamentals', phaseId: 'p1', topics: ['Images & containers', 'Docker Compose', 'Multi-stage builds'], hasQuiz: true, hasAssignment: true, lessonCount: 5 },
-      { id: 3, title: 'CI/CD Pipelines', phaseId: 'p1', topics: ['GitHub Actions', 'Build stages', 'Artifact management'], hasQuiz: true, hasAssignment: true, lessonCount: 4 },
+      {
+        id: 1,
+        title: 'Linux, Git, Cloud & AI-Assisted DevOps',
+        phaseId: 'p1',
+        topics: [
+          'Linux Administration, Files, Permissions & Processes',
+          'Shell Scripting & Automation',
+          'Git & GitHub Workflows, Branching & Pull Requests',
+          'Cloud Fundamentals — AWS IAM, EC2, S3, VPC',
+          'AI Tools — GitHub Copilot, Prompt Engineering for Infra',
+        ],
+        hasQuiz: true,
+        hasAssignment: true,
+        lessonCount: 5,
+      },
     ],
   },
   {
     id: 'p2',
     phase: 'Phase 2',
-    label: 'Cloud & Kubernetes',
-    meta: 'Modules 4–7',
+    label: 'Containerization, Kubernetes & CI/CD',
+    meta: 'Module 2 · 5 Topics · → Project 2',
+    project: getDopPhaseProject('p2'),
     modules: [
-      { id: 4, title: 'Kubernetes Core', phaseId: 'p2', topics: ['Pods & services', 'Deployments', 'Helm charts'], hasQuiz: true, hasAssignment: true, lessonCount: 6 },
-      { id: 5, title: 'Terraform & IaC', phaseId: 'p2', topics: ['HCL basics', 'State management', 'Modules'], hasQuiz: true, hasAssignment: true, lessonCount: 5 },
-      { id: 6, title: 'Monitoring & Observability', phaseId: 'p2', topics: ['Prometheus', 'Grafana', 'Alerting'], hasQuiz: true, hasAssignment: false, lessonCount: 4 },
-      { id: 7, title: 'DevSecOps', phaseId: 'p2', topics: ['SAST/DAST', 'Secrets management', 'Policy as code'], hasQuiz: true, hasAssignment: true, lessonCount: 5 },
+      {
+        id: 2,
+        title: 'Docker, Kubernetes & CI/CD Pipelines',
+        phaseId: 'p2',
+        topics: ['Docker & Containerization', 'Kubernetes — Architecture, Pods, Services, Deployments, ConfigMaps, Secrets, Helm', 'CI/CD — GitHub Actions, Jenkins', 'Blue-Green & Canary Deployments', 'AI-Assisted Pipeline Generation'],
+        hasQuiz: true,
+        hasAssignment: true,
+        lessonCount: 5,
+      },
+    ],
+  },
+  {
+    id: 'p3',
+    phase: 'Phase 3',
+    label: 'Infrastructure Automation & DevSecOps',
+    meta: 'Module 3 · 5 Topics · → Project 3',
+    project: getDopPhaseProject('p3'),
+    modules: [
+      {
+        id: 3,
+        title: 'Terraform, Ansible & DevSecOps',
+        phaseId: 'p3',
+        topics: [
+          'Terraform — Modules, State, Workspaces, IaC',
+          'Ansible — Configuration Management, Provisioning',
+          'DevSecOps — Vulnerability Scanning, Secrets Management',
+          'Vault, AWS Secrets Manager, Security Automation',
+          'AI-Assisted Infrastructure Generation',
+        ],
+        hasQuiz: true,
+        hasAssignment: true,
+        lessonCount: 5,
+      },
+    ],
+  },
+  {
+    id: 'p4',
+    phase: 'Phase 4',
+    label: 'AI Operations, Observability & Reliability Engineering',
+    meta: 'Module 4 · 6 Topics · → Capstone',
+    project: getDopPhaseProject('p4'),
+    modules: [
+      {
+        id: 4,
+        title: 'Monitoring, Observability & SRE',
+        phaseId: 'p4',
+        topics: ['Prometheus, Grafana', 'Metrics, Logs, Traces', 'Incident Response, AIOps', 'AI-Powered Log Analysis', 'SRE — SLIs, SLOs, Error Budgets', 'Cost Optimization, Production Readiness Reviews'],
+        hasQuiz: true,
+        hasAssignment: true,
+        lessonCount: 6,
+      },
     ],
   },
 ];

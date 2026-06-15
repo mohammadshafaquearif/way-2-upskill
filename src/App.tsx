@@ -24,6 +24,7 @@ import LMSLayout from "./pages/lms/LMSLayout";
 import LMSDashboard from "./pages/lms/LMSDashboard";
 import LMSCurriculum from "./pages/lms/LMSCurriculum";
 import LMSModuleDetail from "./pages/lms/LMSModuleDetail";
+import LMSQuiz from "./pages/lms/LMSQuiz";
 import LMSLiveSessions from "./pages/lms/LMSLiveSessions";
 import LMSAssignments from "./pages/lms/LMSAssignments";
 import LMSProjects from "./pages/lms/LMSProjects";
@@ -89,6 +90,8 @@ const App = () => (
               <Route index element={<LMSDashboard />} />
               <Route path="curriculum" element={<LMSCurriculum />} />
               <Route path="curriculum/:moduleId" element={<LMSModuleDetail />} />
+              <Route path="curriculum/:moduleId/quiz/:quizId" element={<LMSQuiz />} />
+              <Route path="curriculum/:moduleId/quiz" element={<LMSQuiz />} />
               <Route path="sessions" element={<LMSLiveSessions />} />
               <Route path="assignments" element={<LMSAssignments />} />
               <Route path="projects" element={<LMSProjects />} />

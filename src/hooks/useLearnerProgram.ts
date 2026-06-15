@@ -64,6 +64,7 @@ export function useLearnerProgram() {
   }, [user]);
 
   const activeEnrollment = enrollments[0] ?? null;
+  const courseId = activeEnrollment?.course_id ?? null;
 
   const programId: ProgramId = useMemo(() => {
     if (!activeEnrollment) return 'aac';
@@ -107,6 +108,7 @@ export function useLearnerProgram() {
     user,
     enrollments,
     activeEnrollment,
+    courseId,
     programId,
     programMeta,
     learnerState,

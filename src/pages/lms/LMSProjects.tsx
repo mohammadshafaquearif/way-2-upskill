@@ -47,7 +47,7 @@ const LMSProjects = () => {
       </div>
 
       <div className="grid gap-5">
-        {projects.map((project, index) => {
+        {projects.map((project) => {
           const style = statusStyles[project.status];
           const canSubmit = project.status === 'in_progress' || project.status === 'not_started';
 
@@ -57,7 +57,8 @@ const LMSProjects = () => {
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-wide text-primary">
-                      Project {index + 1}
+                      {project.label ?? `Project ${project.id.replace('p', '')}`}
+                      {project.isCapstone ? ' · Capstone' : ''}
                     </p>
                     <CardTitle className="text-lg">{project.title}</CardTitle>
                   </div>
@@ -66,6 +67,27 @@ const LMSProjects = () => {
               </CardHeader>
               <CardContent className="space-y-4">
                 <p className="text-sm text-muted-foreground">{project.description}</p>
+
+                {project.deliverables && project.deliverables.length > 0 && (
+                  <ul className="space-y-1.5">
+                    {project.deliverables.map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
+                        <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-primary" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                {project.skills && project.skills.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.skills.map((skill) => (
+                      <Badge key={skill} variant="secondary" className="text-xs">
+                        {skill}
+                      </Badge>
+                    ))}
+                  </div>
+                )}
 
                 {project.githubUrl && (
                   <a

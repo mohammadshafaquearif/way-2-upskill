@@ -5,6 +5,7 @@ import type {
   LMSSession,
   ProgramId,
 } from './types';
+import { getDopProjectsList } from './dopProjects';
 
 export const PROGRAM_RESOURCES: Record<ProgramId, LMSResource[]> = {
   aac: [
@@ -33,6 +34,37 @@ export const PROGRAM_RESOURCES: Record<ProgramId, LMSResource[]> = {
   ],
 };
 
+const DOP_PROJECT_DUE_DATES = ['2026-06-22', '2026-07-15', '2026-08-10', '2026-09-05'];
+const DOP_PROJECT_STATUSES: LMSProject['status'][] = ['in_progress', 'not_started', 'not_started', 'not_started'];
+
+function toDopAssignments(): LMSAssignment[] {
+  return getDopProjectsList().map((project, index) => ({
+    id: `a${index + 1}`,
+    title: project.title,
+    description: project.description,
+    dueDate: DOP_PROJECT_DUE_DATES[index] ?? '2026-09-05',
+    status: index === 0 ? 'submitted' : 'pending',
+    moduleId: project.moduleId,
+    deliverables: project.deliverables,
+    skills: project.skills,
+    isCapstone: project.isCapstone,
+  }));
+}
+
+function toDopProjects(): LMSProject[] {
+  return getDopProjectsList().map((project, index) => ({
+    id: `p${index + 1}`,
+    title: project.title,
+    description: project.description,
+    status: DOP_PROJECT_STATUSES[index] ?? 'not_started',
+    label: project.label,
+    deliverables: project.deliverables,
+    skills: project.skills,
+    moduleId: project.moduleId,
+    isCapstone: project.isCapstone,
+  }));
+}
+
 export function getAssignments(programId: ProgramId): LMSAssignment[] {
   const base: Record<ProgramId, LMSAssignment[]> = {
     aac: [
@@ -40,10 +72,7 @@ export function getAssignments(programId: ProgramId): LMSAssignment[] {
       { id: 'a2', title: 'RAG Pipeline Assignment', description: 'Index documents and answer queries with citations.', dueDate: '2026-07-05', status: 'pending', moduleId: 6 },
       { id: 'a3', title: 'Agent Tool-Use Challenge', description: 'Build a ReAct agent with at least 3 tools.', dueDate: '2026-07-15', status: 'pending', moduleId: 5 },
     ],
-    dop: [
-      { id: 'a1', title: 'Docker Compose Stack', description: 'Containerize a 3-tier app with Docker Compose.', dueDate: '2026-06-22', status: 'submitted', moduleId: 2 },
-      { id: 'a2', title: 'CI/CD Pipeline Build', description: 'Create a GitHub Actions pipeline with staging deploy.', dueDate: '2026-07-01', status: 'pending', moduleId: 3 },
-    ],
+    dop: toDopAssignments(),
     aws: [
       { id: 'a1', title: 'VPC Architecture Design', description: 'Design a multi-AZ VPC with public/private subnets.', dueDate: '2026-06-25', status: 'submitted', moduleId: 2 },
       { id: 'a2', title: 'Serverless API Project', description: 'Build a Lambda + API Gateway REST API.', dueDate: '2026-07-10', status: 'pending', moduleId: 4 },
@@ -73,10 +102,7 @@ export function getProjects(programId: ProgramId): LMSProject[] {
         status: 'not_started',
       },
     ],
-    dop: [
-      { id: 'p1', title: 'CI/CD Pipeline Project', description: 'End-to-end pipeline with automated testing and deploy.', status: 'in_progress' },
-      { id: 'p2', title: 'Kubernetes Microservices', description: 'Deploy a microservices app on K8s with Helm.', status: 'not_started' },
-    ],
+    dop: toDopProjects(),
     aws: [
       { id: 'p1', title: 'Multi-Tier AWS Architecture', description: 'Design and deploy a scalable 3-tier architecture.', status: 'in_progress' },
       { id: 'p2', title: 'Serverless Data Pipeline', description: 'Lambda + S3 + DynamoDB event-driven pipeline.', status: 'not_started' },

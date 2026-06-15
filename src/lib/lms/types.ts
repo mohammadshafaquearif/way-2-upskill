@@ -8,6 +8,8 @@ export type ProjectStatus = 'not_started' | 'in_progress' | 'submitted' | 'revie
 
 export interface LMSModule {
   id: number;
+  dbId?: string;
+  quizId?: string;
   title: string;
   phaseId: string;
   topics: string[];
@@ -16,11 +18,22 @@ export interface LMSModule {
   lessonCount: number;
 }
 
+export interface LMSPhaseProject {
+  label: string;
+  title: string;
+  description: string;
+  deliverables: string[];
+  skills: string[];
+  moduleId: number;
+  isCapstone?: boolean;
+}
+
 export interface LMSPhase {
   id: string;
   phase: string;
   label: string;
   meta?: string;
+  project?: LMSPhaseProject;
   modules: LMSModule[];
 }
 
@@ -31,6 +44,9 @@ export interface LMSAssignment {
   dueDate: string;
   status: AssignmentStatus;
   moduleId?: number;
+  deliverables?: string[];
+  skills?: string[];
+  isCapstone?: boolean;
 }
 
 export interface LMSProject {
@@ -38,6 +54,11 @@ export interface LMSProject {
   title: string;
   description: string;
   status: ProjectStatus;
+  label?: string;
+  deliverables?: string[];
+  skills?: string[];
+  moduleId?: number;
+  isCapstone?: boolean;
   githubUrl?: string;
   demoUrl?: string;
   feedback?: string[];

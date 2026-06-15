@@ -38,9 +38,9 @@ const LMSAssignments = () => {
   return (
     <div className="mx-auto max-w-4xl space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Assignments</h1>
+        <h1 className="text-2xl font-bold">Phase Projects</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          Submit your work as PDF, ZIP, or GitHub link. Mentor feedback appears after review.
+          One portfolio project after each phase — submit as PDF, ZIP, or GitHub link for mentor review.
         </p>
       </div>
 
@@ -59,6 +59,28 @@ const LMSAssignments = () => {
               </CardHeader>
               <CardContent className="space-y-4">
                 <p className="text-sm text-muted-foreground">{assignment.description}</p>
+
+                {assignment.deliverables && assignment.deliverables.length > 0 && (
+                  <ul className="space-y-1.5">
+                    {assignment.deliverables.map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
+                        <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-primary" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                {assignment.skills && assignment.skills.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5">
+                    {assignment.skills.map((skill) => (
+                      <Badge key={skill} variant="secondary" className="text-xs">
+                        {skill}
+                      </Badge>
+                    ))}
+                  </div>
+                )}
+
                 <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
                   <span className="flex items-center gap-1.5">
                     <Calendar className="h-4 w-4" />

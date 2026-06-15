@@ -1,29 +1,99 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useLearnerProgram } from '@/hooks/useLearnerProgram';
+import { useLmsCurriculum } from '@/hooks/useLmsCurriculum';
+import { lmsDb } from '@/integrations/supabase/lmsDb';
 import { getModuleById, getPhaseForModule } from '@/lib/lms/curriculum';
-import { getLearnPath } from '@/lib/lms/utils';
+import type { DbProgramModule } from '@/lib/lms/dbTypes';
+import { TopicAssets, isEmbeddableYouTube, resolveAssetUrl, youtubeEmbedSrc } from '@/components/lms/TopicAssets';
+import type { DbLearningAsset } from '@/lib/lms/dbTypes';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
+import {
   ArrowLeft,
-  FileText,
-  FlaskConical,
   HelpCircle,
+  Loader2,
   MessageSquare,
-  PlayCircle,
   Upload,
 } from 'lucide-react';
+import { PhaseProjectCard } from '@/components/lms/PhaseProjectCard';
+import { getDopProjectByModuleId } from '@/lib/lms/dopProjects';
+import { useToast } from '@/hooks/use-toast';
 
 const LMSModuleDetail = () => {
   const { moduleId } = useParams<{ moduleId: string }>();
-  const { programId, learnerState } = useLearnerProgram();
+  const { user, programId, courseId, learnerState } = useLearnerProgram();
+  const { phases, getDbModule } = useLmsCurriculum(courseId, programId);
+  const { toast } = useToast();
 
   const modId = parseInt(moduleId ?? '0', 10);
-  const module = getModuleById(programId, modId);
-  const phase = getPhaseForModule(programId, modId);
-  const learnPath = getLearnPath(programId);
+  const module = phases.flatMap((p) => p.modules).find((m) => m.id === modId)
+    ?? getModuleById(programId, modId);
+  const phase = phases.find((p) => p.modules.some((m) => m.id === modId))
+    ?? getPhaseForModule(programId, modId);
+  const phaseProject = phase?.project ?? (programId === 'dop' ? getDopProjectByModuleId(modId) : undefined);
+
+  const [dbModule, setDbModule] = useState<DbProgramModule | null>(null);
+  const [loadingDetail, setLoadingDetail] = useState(Boolean(courseId));
+  const [previewAsset, setPreviewAsset] = useState<{
+    asset: DbLearningAsset;
+    url: string;
+  } | null>(null);
+
+  useEffect(() => {
+    if (!courseId || !modId) {
+      setDbModule(getDbModule(modId));
+      setLoadingDetail(false);
+      return;
+    }
+
+    let cancelled = false;
+    (async () => {
+      setLoadingDetail(true);
+      try {
+        const detail = await lmsDb.getModuleDetail(courseId, modId);
+        if (!cancelled) setDbModule(detail);
+      } catch {
+        if (!cancelled) setDbModule(getDbModule(modId));
+      } finally {
+        if (!cancelled) setLoadingDetail(false);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [courseId, modId, getDbModule]);
+
+  const handleOpenAsset = async (asset: DbLearningAsset) => {
+    try {
+      const url = await resolveAssetUrl(asset, (path) => lmsDb.getSignedAssetUrl(path));
+      if (!url) {
+        toast({
+          title: 'Content not uploaded yet',
+          description: 'Your mentor will publish this resource before the live session.',
+        });
+        return;
+      }
+
+      if (isEmbeddableYouTube(asset)) {
+        setPreviewAsset({ asset, url });
+        return;
+      }
+
+      if (user) await lmsDb.markAssetComplete(user.id, asset.id).catch(() => undefined);
+      window.open(url, '_blank', 'noopener,noreferrer');
+    } catch {
+      toast({ title: 'Could not open resource', variant: 'destructive' });
+    }
+  };
 
   if (!module || !learnerState) {
     return (
@@ -36,12 +106,15 @@ const LMSModuleDetail = () => {
     );
   }
 
-  const materials = [
-    { icon: PlayCircle, label: 'Video Lessons', desc: `${module.lessonCount} guided video sessions` },
-    { icon: FileText, label: 'Notes & Slides', desc: 'Downloadable module notes and slide decks' },
-    { icon: FlaskConical, label: 'Hands-on Labs', desc: 'Interactive sandbox exercises' },
-    { icon: FileText, label: 'Resources', desc: 'Cheat sheets and reference guides' },
-  ];
+  const quizId = module.quizId ?? dbModule?.quiz_id;
+  const topics = dbModule?.topics ?? module.topics.map((title, i) => ({
+    id: `static-${i}`,
+    module_id: module.dbId ?? '',
+    title,
+    sort_order: i + 1,
+    assets: [] as DbLearningAsset[],
+    quiz_id: null as string | null,
+  }));
 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
@@ -61,30 +134,70 @@ const LMSModuleDetail = () => {
         <p className="mt-2 text-muted-foreground">{phase?.label}</p>
       </div>
 
-      {/* Learning Material */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Learning Material</CardTitle>
-        </CardHeader>
-        <CardContent className="grid gap-3 sm:grid-cols-2">
-          {materials.map(({ icon: Icon, label, desc }) => (
-            <div
-              key={label}
-              className="flex cursor-pointer items-start gap-3 rounded-lg border p-4 transition-colors duration-200 hover:border-primary/30 hover:bg-muted/40"
-            >
-              <div className="rounded-lg bg-primary/10 p-2">
-                <Icon className="h-5 w-5 text-primary" />
-              </div>
-              <div>
-                <p className="font-semibold">{label}</p>
-                <p className="text-sm text-muted-foreground">{desc}</p>
-              </div>
-            </div>
-          ))}
-        </CardContent>
-      </Card>
+      {loadingDetail ? (
+        <div className="flex items-center justify-center py-12 text-muted-foreground">
+          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+          Loading module content…
+        </div>
+      ) : (
+        <Card>
+          <CardHeader>
+            <CardTitle>Topics & Learning Materials</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Accordion type="single" collapsible className="w-full">
+              {topics.map((topic, index) => (
+                <AccordionItem key={topic.id} value={`topic-${topic.id}`}>
+                  <AccordionTrigger className="text-left">
+                    <span className="font-medium">
+                      {index + 1}. {topic.title}
+                    </span>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <TopicAssets assets={topic.assets} onOpenAsset={handleOpenAsset} />
+                    {topic.quiz_id && (
+                      <div className="mt-4 flex items-center justify-between gap-3 rounded-lg border border-primary/20 bg-primary/5 px-3 py-3">
+                        <div>
+                          <p className="text-sm font-medium">Topic Quiz</p>
+                          <p className="text-xs text-muted-foreground">Test your understanding of this topic</p>
+                        </div>
+                        <Button asChild size="sm" variant="outline">
+                          <Link to={`/dashboard/curriculum/${module.id}/quiz/${topic.quiz_id}`}>
+                            Start Quiz
+                          </Link>
+                        </Button>
+                      </div>
+                    )}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </CardContent>
+        </Card>
+      )}
 
-      {/* Module Quiz */}
+      {previewAsset && (
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between">
+            <CardTitle className="text-base">{previewAsset.asset.title}</CardTitle>
+            <Button variant="ghost" size="sm" onClick={() => setPreviewAsset(null)}>
+              Close
+            </Button>
+          </CardHeader>
+          <CardContent>
+            <div className="aspect-video overflow-hidden rounded-lg border">
+              <iframe
+                title={previewAsset.asset.title}
+                src={youtubeEmbedSrc(previewAsset.url)}
+                className="h-full w-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
       {module.hasQuiz && (
         <Card>
           <CardHeader>
@@ -95,23 +208,34 @@ const LMSModuleDetail = () => {
           </CardHeader>
           <CardContent className="flex items-center justify-between gap-4">
             <div>
-              <p className="font-medium">10 Questions</p>
-              <p className="text-sm text-muted-foreground">Test your understanding of {module.title}</p>
+              <p className="font-medium">Check your understanding</p>
+              <p className="text-sm text-muted-foreground">
+                Pass score: {dbModule?.pass_score ?? 70}% — required to complete this module
+              </p>
             </div>
-            <Button variant="outline" className="cursor-pointer shrink-0" disabled>
-              Start Quiz
-            </Button>
+            {quizId ? (
+              <Button asChild variant="outline" className="shrink-0">
+                <Link to={`/dashboard/curriculum/${module.id}/quiz/${quizId}`}>Start Quiz</Link>
+              </Button>
+            ) : (
+              <Button variant="outline" disabled className="shrink-0">
+                Coming Soon
+              </Button>
+            )}
           </CardContent>
         </Card>
       )}
 
-      {/* Assignment */}
-      {module.hasAssignment && (
+      {module.hasAssignment && phaseProject && (
+        <PhaseProjectCard project={phaseProject} />
+      )}
+
+      {module.hasAssignment && !phaseProject && (
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Upload className="h-5 w-5 text-primary" />
-              Assignment
+              Phase Project
             </CardTitle>
           </CardHeader>
           <CardContent className="flex items-center justify-between gap-4">
@@ -119,14 +243,13 @@ const LMSModuleDetail = () => {
               <p className="font-medium">Submit your work</p>
               <p className="text-sm text-muted-foreground">Upload PDF, ZIP, or GitHub link</p>
             </div>
-            <Button asChild variant="outline" className="cursor-pointer shrink-0">
-              <Link to="/dashboard/assignments">Submit</Link>
+            <Button asChild variant="outline" className="shrink-0">
+              <Link to="/dashboard/projects">Submit</Link>
             </Button>
           </CardContent>
         </Card>
       )}
 
-      {/* Discussion */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
@@ -138,15 +261,11 @@ const LMSModuleDetail = () => {
           <p className="mb-4 text-sm text-muted-foreground">
             Ask questions about this module. Your mentor and peers can help clarify concepts.
           </p>
-          <Button variant="outline" className="cursor-pointer" disabled>
+          <Button variant="outline" disabled>
             Ask a Question
           </Button>
         </CardContent>
       </Card>
-
-      <Button asChild size="lg" className="w-full cursor-pointer">
-        <Link to={learnPath}>Start Learning — Module {module.id}</Link>
-      </Button>
     </div>
   );
 };
