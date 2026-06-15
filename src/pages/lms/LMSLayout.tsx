@@ -7,13 +7,14 @@ import { useLearnerProgram } from '@/hooks/useLearnerProgram';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { BookOpen, ShieldX } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 const PAGE_META: { path: string; title: string; description: string; exact?: boolean }[] = [
   { path: '/dashboard', title: 'Dashboard', description: 'Your progress, sessions, and upcoming tasks', exact: true },
   { path: '/dashboard/curriculum', title: 'Curriculum', description: 'Modules, lessons, and learning path' },
   { path: '/dashboard/sessions', title: 'Live Sessions', description: 'Upcoming and past mentor-led sessions' },
-  { path: '/dashboard/assignments', title: 'Assignments', description: 'Submit and track your coursework' },
-  { path: '/dashboard/projects', title: 'Projects', description: 'Hands-on projects and submissions' },
+  { path: '/dashboard/assignments', title: 'Assignments', description: 'Phase projects and submissions' },
+  { path: '/dashboard/projects', title: 'Projects', description: 'Portfolio projects and mentor feedback' },
   { path: '/dashboard/resources', title: 'Resources', description: 'Downloads, links, and reference material' },
   { path: '/dashboard/certificate', title: 'Certificate', description: 'Completion status and certificate download' },
   { path: '/dashboard/profile', title: 'Profile', description: 'Account details and preferences' },
@@ -31,6 +32,8 @@ const LMSLayout = () => {
     );
     return match ?? PAGE_META[0];
   }, [location.pathname]);
+
+  const isQuizExam = /\/dashboard\/curriculum\/\d+\/quiz/.test(location.pathname);
 
   if (!user) {
     return (
@@ -60,13 +63,16 @@ const LMSLayout = () => {
     <div className="page-shell min-h-screen bg-background">
       <Navbar />
       <div className="flex min-h-[calc(100vh-var(--site-header-h))] pt-[var(--site-header-h)]">
+        {!isQuizExam && (
         <LearnerSidebar
           programCode={learnerState?.programCode}
           mobileOpen={mobileOpen}
           onMobileClose={() => setMobileOpen(false)}
         />
+        )}
 
         <div className="flex min-w-0 flex-1 flex-col">
+          {!isQuizExam && (
           <header className="sticky top-[var(--site-header-h)] z-30 flex items-center gap-3 border-b border-border/80 bg-background/95 px-4 py-4 backdrop-blur supports-[backdrop-filter]:bg-background/80 lg:px-6">
             <LearnerMobileToggle open={mobileOpen} onToggle={() => setMobileOpen((v) => !v)} />
             <div className="min-w-0 flex-1">
@@ -80,8 +86,9 @@ const LMSLayout = () => {
               </p>
             </div>
           </header>
+          )}
 
-          <main className="flex-1 overflow-y-auto p-4 lg:p-6">
+          <main className={cn('flex-1 overflow-y-auto', isQuizExam ? 'p-0' : 'p-4 lg:p-6')}>
             {!hasEnrollment ? (
               <Card className="mx-auto max-w-lg border-border/70 shadow-sm">
                 <CardContent className="py-16 text-center">

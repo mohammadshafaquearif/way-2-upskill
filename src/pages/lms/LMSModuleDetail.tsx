@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useLearnerProgram } from '@/hooks/useLearnerProgram';
 import { useLmsCurriculum } from '@/hooks/useLmsCurriculum';
@@ -7,29 +7,33 @@ import { getModuleById, getPhaseForModule } from '@/lib/lms/curriculum';
 import type { DbProgramModule } from '@/lib/lms/dbTypes';
 import { TopicAssets, isEmbeddableYouTube, resolveAssetUrl, youtubeEmbedSrc } from '@/components/lms/TopicAssets';
 import type { DbLearningAsset } from '@/lib/lms/dbTypes';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { PhaseProjectPanel } from '@/components/lms/PhaseProjectPanel';
+import { getDopProjectByModuleId } from '@/lib/lms/dopProjects';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import {
-  ArrowLeft,
-  Loader2,
-  MessageSquare,
-  Upload,
-} from 'lucide-react';
-import { PhaseProjectCard } from '@/components/lms/PhaseProjectCard';
-import { getDopProjectByModuleId } from '@/lib/lms/dopProjects';
+import { ArrowLeft, BookOpen, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import {
+  findResumableDraft,
+  getQuizDraftSecondsLeft,
+} from '@/lib/lms/quizSessionStorage';
+import {
+  computeQuizTimeLimitMinutes,
+  findTopicQuiz,
+  formatQuizCountdown,
+  formatTopicQuizSummary,
+} from '@/lib/lms/quizCatalog';
+import { getProgramMeta } from '@/lib/lms/utils';
 
 const LMSModuleDetail = () => {
   const { moduleId } = useParams<{ moduleId: string }>();
   const { user, programId, courseId, learnerState } = useLearnerProgram();
-  const { phases, getDbModule } = useLmsCurriculum(courseId, programId);
+  const { phases } = useLmsCurriculum(courseId, programId);
   const { toast } = useToast();
 
   const modId = parseInt(moduleId ?? '0', 10);
@@ -39,37 +43,75 @@ const LMSModuleDetail = () => {
     ?? getPhaseForModule(programId, modId);
   const phaseProject = phase?.project ?? (programId === 'dop' ? getDopProjectByModuleId(modId) : undefined);
 
+  const programCode = getProgramMeta(programId).code;
+
+  const getTopicQuizMeta = (topicSort: number) => {
+    const def = findTopicQuiz(programCode, modId, topicSort);
+    if (!def) return '70% to pass';
+    return formatTopicQuizSummary(def.questions.length, def.passScore ?? 70);
+  };
+
+  const staticTopics = useMemo(
+    () =>
+      module?.topics.map((title, i) => ({
+        id: `static-${i}`,
+        module_id: module.dbId ?? '',
+        title,
+        sort_order: i + 1,
+        assets: [] as DbLearningAsset[],
+        quiz_id: null as string | null,
+      })) ?? [],
+    [module],
+  );
+
   const [dbModule, setDbModule] = useState<DbProgramModule | null>(null);
-  const [loadingDetail, setLoadingDetail] = useState(Boolean(courseId));
+  const [syncing, setSyncing] = useState(false);
   const [previewAsset, setPreviewAsset] = useState<{
     asset: DbLearningAsset;
     url: string;
   } | null>(null);
+  const fetchKeyRef = useRef<string | null>(null);
+  const hasDetailRef = useRef(false);
 
   useEffect(() => {
+    const fetchKey = `${courseId ?? 'static'}:${modId}`;
+
     if (!courseId || !modId) {
-      setDbModule(getDbModule(modId));
-      setLoadingDetail(false);
+      setDbModule(null);
+      setSyncing(false);
+      fetchKeyRef.current = fetchKey;
+      hasDetailRef.current = false;
+      return;
+    }
+
+    if (fetchKeyRef.current === fetchKey && hasDetailRef.current) {
       return;
     }
 
     let cancelled = false;
+    setSyncing(true);
+
     (async () => {
-      setLoadingDetail(true);
       try {
         const detail = await lmsDb.getModuleDetail(courseId, modId);
-        if (!cancelled) setDbModule(detail);
+        if (!cancelled) {
+          setDbModule(detail);
+          fetchKeyRef.current = fetchKey;
+          hasDetailRef.current = true;
+        }
       } catch {
-        if (!cancelled) setDbModule(getDbModule(modId));
+        if (!cancelled) setDbModule(null);
       } finally {
-        if (!cancelled) setLoadingDetail(false);
+        if (!cancelled) setSyncing(false);
       }
     })();
 
     return () => {
       cancelled = true;
     };
-  }, [courseId, modId, getDbModule]);
+  }, [courseId, modId]);
+
+  const topics = dbModule?.topics ?? staticTopics;
 
   const handleOpenAsset = async (asset: DbLearningAsset) => {
     try {
@@ -96,146 +138,128 @@ const LMSModuleDetail = () => {
 
   if (!module || !learnerState) {
     return (
-      <div className="mx-auto max-w-lg text-center">
-        <p className="text-muted-foreground">Module not found.</p>
-        <Button asChild variant="link" className="mt-2">
-          <Link to="/dashboard/curriculum">Back to Curriculum</Link>
-        </Button>
+      <div className="mx-auto max-w-lg py-16 text-center text-sm text-muted-foreground">
+        Module not found.
+        <div className="mt-3">
+          <Button asChild variant="link" size="sm">
+            <Link to="/dashboard/curriculum">Back to curriculum</Link>
+          </Button>
+        </div>
       </div>
     );
   }
 
-  const topics = dbModule?.topics ?? module.topics.map((title, i) => ({
-    id: `static-${i}`,
-    module_id: module.dbId ?? '',
-    title,
-    sort_order: i + 1,
-    assets: [] as DbLearningAsset[],
-    quiz_id: null as string | null,
-  }));
-
   return (
-    <div className="mx-auto max-w-3xl space-y-6">
-      <Button asChild variant="ghost" size="sm" className="cursor-pointer">
-        <Link to="/dashboard/curriculum">
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Curriculum
-        </Link>
-      </Button>
+    <div className="mx-auto w-full max-w-3xl space-y-8">
+      <div className="space-y-4 border-b border-border/60 pb-6">
+        <Button asChild variant="ghost" size="sm" className="-ml-2 h-8 px-2 text-muted-foreground">
+          <Link to="/dashboard/curriculum">
+            <ArrowLeft className="mr-1.5 h-4 w-4" />
+            Curriculum
+          </Link>
+        </Button>
 
-      <div>
-        <div className="mb-2 flex flex-wrap gap-2">
-          <Badge variant="secondary">{phase?.phase}</Badge>
-          <Badge variant="outline">Module {module.id}</Badge>
+        <div>
+          <p className="text-xs text-muted-foreground">
+            {phase?.phase} · Module {module.id}
+          </p>
+          <h1 className="mt-1 text-2xl font-semibold tracking-tight">{module.title}</h1>
+          <p className="mt-1 text-sm text-muted-foreground">{phase?.label}</p>
         </div>
-        <h1 className="text-2xl font-bold sm:text-3xl">{module.title}</h1>
-        <p className="mt-2 text-muted-foreground">{phase?.label}</p>
+
+        {syncing && (
+          <p className="flex items-center gap-2 text-xs text-muted-foreground">
+            <Loader2 className="h-3.5 w-3.5 animate-spin" />
+            Syncing materials…
+          </p>
+        )}
       </div>
 
-      {loadingDetail ? (
-        <div className="flex items-center justify-center py-12 text-muted-foreground">
-          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-          Loading module content…
+      <section className="space-y-3">
+        <div className="flex items-center gap-2 text-sm font-medium text-foreground">
+          <BookOpen className="h-4 w-4 text-muted-foreground" />
+          Topics
         </div>
-      ) : (
-        <Card>
-          <CardHeader>
-            <CardTitle>Topics & Learning Materials</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Accordion type="single" collapsible className="w-full">
-              {topics.map((topic, index) => (
-                <AccordionItem key={topic.id} value={`topic-${topic.id}`}>
-                  <AccordionTrigger className="text-left">
-                    <span className="font-medium">
-                      {index + 1}. {topic.title}
-                    </span>
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <TopicAssets assets={topic.assets} onOpenAsset={handleOpenAsset} />
-                    {topic.quiz_id && (
-                      <div className="mt-4 flex items-center justify-between gap-3 rounded-lg border border-primary/20 bg-primary/5 px-3 py-3">
-                        <div>
-                          <p className="text-sm font-medium">Topic Quiz</p>
-                          <p className="text-xs text-muted-foreground">Test your understanding of this topic</p>
-                        </div>
-                        <Button asChild size="sm" variant="outline">
-                          <Link to={`/dashboard/curriculum/${module.id}/quiz/${topic.quiz_id}`}>
-                            Start Quiz
-                          </Link>
-                        </Button>
-                      </div>
-                    )}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </CardContent>
-        </Card>
-      )}
+
+        <Accordion type="single" collapsible className="w-full space-y-2">
+          {topics.map((topic, index) => {
+            const resumableDraft =
+              user && topic.quiz_id ? findResumableDraft(user.id, topic.quiz_id) : null;
+
+            return (
+            <AccordionItem
+              key={topic.id}
+              value={`topic-${topic.id}`}
+              className="overflow-hidden rounded-xl border border-border/80 px-4"
+            >
+              <AccordionTrigger className="py-4 text-left hover:no-underline">
+                <span className="font-medium">
+                  <span className="mr-2 text-muted-foreground">{index + 1}.</span>
+                  {topic.title}
+                </span>
+              </AccordionTrigger>
+              <AccordionContent className="pb-4">
+                <TopicAssets assets={topic.assets} onOpenAsset={handleOpenAsset} />
+
+                {topic.quiz_id ? (
+                  <div className="mt-4 flex flex-wrap items-center justify-between gap-4 rounded-lg bg-muted/40 px-4 py-3">
+                    <div>
+                      <p className="text-sm font-medium">Topic quiz</p>
+                      <p className="text-xs text-muted-foreground">
+                        {getTopicQuizMeta(topic.sort_order ?? index + 1)}
+                        {resumableDraft
+                          ? ` · ${formatQuizCountdown(getQuizDraftSecondsLeft(resumableDraft))} left`
+                          : ''}
+                      </p>
+                    </div>
+                    <Button asChild size="sm">
+                      <Link
+                        to={
+                          resumableDraft
+                            ? `/dashboard/curriculum/${module.id}/quiz/${topic.quiz_id}?resume=1`
+                            : `/dashboard/curriculum/${module.id}/quiz/${topic.quiz_id}`
+                        }
+                      >
+                        {resumableDraft ? 'Resume' : 'Start'}
+                      </Link>
+                    </Button>
+                  </div>
+                ) : courseId && syncing ? (
+                  <p className="mt-3 animate-pulse text-xs text-muted-foreground">Quiz loading…</p>
+                ) : null}
+              </AccordionContent>
+            </AccordionItem>
+            );
+          })}
+        </Accordion>
+      </section>
 
       {previewAsset && (
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle className="text-base">{previewAsset.asset.title}</CardTitle>
+        <section className="overflow-hidden rounded-xl border border-border/80">
+          <div className="flex items-center justify-between border-b border-border/60 px-4 py-3">
+            <p className="text-sm font-medium">{previewAsset.asset.title}</p>
             <Button variant="ghost" size="sm" onClick={() => setPreviewAsset(null)}>
               Close
             </Button>
-          </CardHeader>
-          <CardContent>
-            <div className="aspect-video overflow-hidden rounded-lg border">
-              <iframe
-                title={previewAsset.asset.title}
-                src={youtubeEmbedSrc(previewAsset.url)}
-                className="h-full w-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-          </CardContent>
-        </Card>
+          </div>
+          <div className="aspect-video">
+            <iframe
+              title={previewAsset.asset.title}
+              src={youtubeEmbedSrc(previewAsset.url)}
+              className="h-full w-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </section>
       )}
 
       {module.hasAssignment && phaseProject && (
-        <PhaseProjectCard project={phaseProject} />
+        <section className="space-y-3">
+          <h2 className="text-sm font-medium">Phase project</h2>
+          <PhaseProjectPanel item={phaseProject} index={module.id - 1} />
+        </section>
       )}
-
-      {module.hasAssignment && !phaseProject && (
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Upload className="h-5 w-5 text-primary" />
-              Phase Project
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="flex items-center justify-between gap-4">
-            <div>
-              <p className="font-medium">Submit your work</p>
-              <p className="text-sm text-muted-foreground">Upload PDF, ZIP, or GitHub link</p>
-            </div>
-            <Button asChild variant="outline" className="shrink-0">
-              <Link to="/dashboard/projects">Submit</Link>
-            </Button>
-          </CardContent>
-        </Card>
-      )}
-
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <MessageSquare className="h-5 w-5 text-primary" />
-            Discussion
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="mb-4 text-sm text-muted-foreground">
-            Ask questions about this module. Your mentor and peers can help clarify concepts.
-          </p>
-          <Button variant="outline" disabled>
-            Ask a Question
-          </Button>
-        </CardContent>
-      </Card>
     </div>
   );
 };

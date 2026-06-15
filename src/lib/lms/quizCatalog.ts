@@ -24,6 +24,15 @@ export function formatQuizCountdown(totalSeconds: number): string {
   return `${minutes}:${seconds.toString().padStart(2, '0')}`;
 }
 
+export function formatTopicQuizSummary(
+  questionCount: number,
+  passScore = 70,
+  storedLimit?: number | null,
+): string {
+  const totalMin = computeQuizTimeLimitMinutes(questionCount, storedLimit);
+  return `${totalMin} min total · Pass ${passScore}%`;
+}
+
 export interface RawQuizQuestion {
   question: string;
   options: string[];

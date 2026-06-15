@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useLearnerProgram } from '@/hooks/useLearnerProgram';
-import type { ProjectStatus } from '@/lib/lms/types';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { LmsPageShell } from '@/components/lms/LmsPageShell';
+import { PhaseProjectPanel } from '@/components/lms/PhaseProjectPanel';
+import { SubmittedNote } from '@/components/lms/PhaseProjectPanel';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
@@ -18,15 +18,8 @@ import {
 import { ExternalLink, Github, MessageSquare, Upload } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 
-const statusStyles: Record<ProjectStatus, { label: string; className: string }> = {
-  not_started: { label: 'Not Started', className: 'bg-muted text-muted-foreground' },
-  in_progress: { label: 'In Progress', className: 'bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-300' },
-  submitted: { label: 'Submitted', className: 'bg-green-100 text-green-800 dark:bg-green-950 dark:text-green-300' },
-  reviewed: { label: 'Reviewed', className: 'bg-purple-100 text-purple-800 dark:bg-purple-950 dark:text-purple-300' },
-};
-
 const LMSProjects = () => {
-  const { projects, learnerState } = useLearnerProgram();
+  const { projects } = useLearnerProgram();
   const [githubUrl, setGithubUrl] = useState('');
   const [demoUrl, setDemoUrl] = useState('');
 
@@ -38,140 +31,100 @@ const LMSProjects = () => {
   };
 
   return (
-    <div className="mx-auto max-w-4xl space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold">Project Tracker</h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          {learnerState?.programCode} — Build portfolio-ready projects with mentor feedback.
+    <LmsPageShell
+      meta={
+        <p className="text-sm text-muted-foreground">
+          Build portfolio-ready work across each phase. Submit GitHub and demo links for mentor review.
         </p>
-      </div>
-
-      <div className="grid gap-5">
-        {projects.map((project) => {
-          const style = statusStyles[project.status];
+      }
+    >
+      <div className="space-y-4">
+        {projects.map((project, index) => {
           const canSubmit = project.status === 'in_progress' || project.status === 'not_started';
 
           return (
-            <Card key={project.id} className="transition-shadow duration-200 hover:shadow-md">
-              <CardHeader className="pb-3">
-                <div className="flex flex-wrap items-start justify-between gap-3">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-wide text-primary">
-                      {project.label ?? `Project ${project.id.replace('p', '')}`}
-                      {project.isCapstone ? ' · Capstone' : ''}
-                    </p>
-                    <CardTitle className="text-lg">{project.title}</CardTitle>
-                  </div>
-                  <Badge className={style.className}>{style.label}</Badge>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-sm text-muted-foreground">{project.description}</p>
+            <div key={project.id} className="space-y-3">
+              <PhaseProjectPanel item={project} index={index} />
 
-                {project.deliverables && project.deliverables.length > 0 && (
-                  <ul className="space-y-1.5">
-                    {project.deliverables.map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-primary" />
-                        {item}
-                      </li>
+              {project.githubUrl && (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <Github className="h-4 w-4" />
+                  View on GitHub
+                  <ExternalLink className="h-3 w-3" />
+                </a>
+              )}
+
+              {project.feedback && project.feedback.length > 0 && (
+                <div className="rounded-lg border border-border/80 bg-muted/30 px-4 py-3">
+                  <p className="mb-2 flex items-center gap-2 text-sm font-medium">
+                    <MessageSquare className="h-4 w-4 text-muted-foreground" />
+                    Mentor feedback
+                  </p>
+                  <ul className="space-y-1 text-sm text-muted-foreground">
+                    {project.feedback.map((note) => (
+                      <li key={note}>— {note}</li>
                     ))}
                   </ul>
-                )}
+                </div>
+              )}
 
-                {project.skills && project.skills.length > 0 && (
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.skills.map((skill) => (
-                      <Badge key={skill} variant="secondary" className="text-xs">
-                        {skill}
-                      </Badge>
-                    ))}
-                  </div>
-                )}
-
-                {project.githubUrl && (
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex cursor-pointer items-center gap-2 text-sm font-medium text-primary transition-colors duration-200 hover:text-primary/80"
-                  >
-                    <Github className="h-4 w-4" />
-                    View on GitHub
-                    <ExternalLink className="h-3 w-3" />
-                  </a>
-                )}
-
-                {project.feedback && project.feedback.length > 0 && (
-                  <div className="rounded-lg border border-primary/20 bg-primary/5 p-4">
-                    <p className="mb-2 flex items-center gap-2 text-sm font-semibold">
-                      <MessageSquare className="h-4 w-4 text-primary" />
-                      Mentor Feedback
-                    </p>
-                    <ul className="space-y-1">
-                      {project.feedback.map((note) => (
-                        <li key={note} className="text-sm text-muted-foreground">
-                          — {note}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {canSubmit && (
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button variant={project.status === 'in_progress' ? 'default' : 'outline'} className="cursor-pointer">
-                        <Upload className="mr-2 h-4 w-4" />
-                        Submit Project
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent>
-                      <DialogHeader>
-                        <DialogTitle>Submit — {project.title}</DialogTitle>
-                        <DialogDescription>
-                          Share GitHub + optional demo link. Add short documentation notes for faster review.
-                        </DialogDescription>
-                      </DialogHeader>
-                      <div className="space-y-4 pt-2">
-                        <div className="space-y-2">
-                          <Label htmlFor="gh">GitHub URL</Label>
-                          <Input
-                            id="gh"
-                            placeholder="https://github.com/username/project"
-                            value={githubUrl}
-                            onChange={(e) => setGithubUrl(e.target.value)}
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="demo">Demo URL</Label>
-                          <Input
-                            id="demo"
-                            placeholder="https://your-demo.vercel.app"
-                            value={demoUrl}
-                            onChange={(e) => setDemoUrl(e.target.value)}
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="docs">Documentation Notes</Label>
-                          <Textarea id="docs" placeholder="Brief description of architecture and setup..." rows={3} />
-                        </div>
-                        <Button
-                          className="w-full cursor-pointer"
-                          onClick={() => handleSubmit(project.title)}
-                        >
-                          Submit for Review
-                        </Button>
+              {canSubmit ? (
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button variant="outline" size="sm">
+                      <Upload className="mr-2 h-4 w-4" />
+                      Submit project
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Submit — {project.title}</DialogTitle>
+                      <DialogDescription>
+                        Share GitHub and an optional demo link. Add short setup notes for faster review.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="space-y-4 pt-2">
+                      <div className="space-y-2">
+                        <Label htmlFor="gh">GitHub URL</Label>
+                        <Input
+                          id="gh"
+                          placeholder="https://github.com/username/project"
+                          value={githubUrl}
+                          onChange={(e) => setGithubUrl(e.target.value)}
+                        />
                       </div>
-                    </DialogContent>
-                  </Dialog>
-                )}
-              </CardContent>
-            </Card>
+                      <div className="space-y-2">
+                        <Label htmlFor="demo">Demo URL</Label>
+                        <Input
+                          id="demo"
+                          placeholder="https://your-demo.vercel.app"
+                          value={demoUrl}
+                          onChange={(e) => setDemoUrl(e.target.value)}
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="docs">Documentation notes</Label>
+                        <Textarea id="docs" placeholder="Architecture, setup steps, trade-offs…" rows={3} />
+                      </div>
+                      <Button className="w-full" onClick={() => handleSubmit(project.title)}>
+                        Submit for review
+                      </Button>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              ) : project.status === 'submitted' ? (
+                <SubmittedNote />
+              ) : null}
+            </div>
           );
         })}
       </div>
-    </div>
+    </LmsPageShell>
   );
 };
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { lmsDb, mapDbPhasesToLms } from '@/integrations/supabase/lmsDb';
 import { PROGRAM_CURRICULUM } from '@/lib/lms/curriculum';
 import type { DbProgramModule, DbProgramPhase } from '@/lib/lms/dbTypes';
@@ -17,12 +17,21 @@ export function useLmsCurriculum(
   courseId: string | null | undefined,
   programId: ProgramId,
 ): UseLmsCurriculumResult {
-  const fallback = PROGRAM_CURRICULUM[programId];
+  const fallback = useMemo(() => PROGRAM_CURRICULUM[programId], [programId]);
   const [phases, setPhases] = useState<LMSPhase[]>(fallback);
   const [dbPhases, setDbPhases] = useState<DbProgramPhase[] | null>(null);
   const [isFromDb, setIsFromDb] = useState(false);
   const [isLoading, setIsLoading] = useState(Boolean(courseId));
   const [error, setError] = useState<string | null>(null);
+
+  const getDbModule = useCallback((moduleNumber: number): DbProgramModule | null => {
+    if (!dbPhases) return null;
+    for (const phase of dbPhases) {
+      const mod = phase.modules.find((m) => m.module_number === moduleNumber);
+      if (mod) return mod;
+    }
+    return null;
+  }, [dbPhases]);
 
   useEffect(() => {
     if (!courseId) {
@@ -67,16 +76,7 @@ export function useLmsCurriculum(
     return () => {
       cancelled = true;
     };
-  }, [courseId, programId]);
-
-  const getDbModule = (moduleNumber: number): DbProgramModule | null => {
-    if (!dbPhases) return null;
-    for (const phase of dbPhases) {
-      const mod = phase.modules.find((m) => m.module_number === moduleNumber);
-      if (mod) return mod;
-    }
-    return null;
-  };
+  }, [courseId, programId, fallback]);
 
   return { phases, dbPhases, isFromDb, isLoading, error, getDbModule };
 }
