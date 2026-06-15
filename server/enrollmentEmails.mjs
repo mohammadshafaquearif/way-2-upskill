@@ -13,14 +13,17 @@ export function buildWelcomeEnrollmentHtml({
   duration,
   enrollmentNumber,
   portalUrl,
+  dashboardUrl,
   magicLink,
   communityDiscord,
   communityWhatsapp,
+  amountPaid,
+  currency,
 }) {
   const loginBlock = magicLink
-    ? `<p><a href="${escapeHtml(magicLink)}" style="display:inline-block;background:#6366f1;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600">Access Learning Portal</a></p>
-       <p style="font-size:13px;color:#64748b">This secure login link expires in 24 hours. You can also sign in anytime at <a href="${escapeHtml(portalUrl)}">${escapeHtml(portalUrl)}</a></p>`
-    : `<p>Login: <a href="${escapeHtml(portalUrl)}">${escapeHtml(portalUrl)}</a></p>`;
+    ? `<p><a href="${escapeHtml(magicLink)}" style="display:inline-block;background:#6366f1;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600">Access Your Dashboard</a></p>
+       <p style="font-size:13px;color:#64748b">This secure login link expires in 24 hours. You can also sign in anytime at <a href="${escapeHtml(dashboardUrl || portalUrl)}">${escapeHtml(dashboardUrl || portalUrl)}</a></p>`
+    : `<p><a href="${escapeHtml(dashboardUrl || portalUrl)}" style="display:inline-block;background:#6366f1;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600">Access Your Dashboard</a></p>`;
 
   const communityBlock = [communityDiscord, communityWhatsapp]
     .filter(Boolean)
@@ -30,20 +33,29 @@ export function buildWelcomeEnrollmentHtml({
     )
     .join('');
 
+  const amountRow = amountPaid
+    ? `<tr><td style="padding:8px 12px;border:1px solid #e2e8f0;font-weight:600">Amount Paid</td><td style="padding:8px 12px;border:1px solid #e2e8f0;font-weight:600;color:#16a34a">${escapeHtml(amountPaid)}</td></tr>`
+    : '';
+
   return `
     <div style="font-family:Arial,sans-serif;line-height:1.7;color:#0f172a;max-width:600px">
-      <h1 style="color:#6366f1;margin:0 0 16px">Welcome to Zyvotrix 🎉</h1>
+      <h1 style="color:#6366f1;margin:0 0 16px">Payment confirmed — Welcome to Zyvotrix 🎉</h1>
       <p>Hi ${escapeHtml(firstName)},</p>
-      <p>Your enrollment for <strong>${escapeHtml(courseTitle)}</strong> has been successfully confirmed.</p>
+      <p>Thank you for your payment. Your enrollment for <strong>${escapeHtml(courseTitle)}</strong> is now <strong style="color:#16a34a">active</strong>.</p>
+      <p style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:12px 16px;font-size:14px">
+        📎 Your PDF invoice is attached to this email for your records.
+      </p>
       <table style="border-collapse:collapse;width:100%;margin:16px 0">
+        <tr><td style="padding:8px 12px;border:1px solid #e2e8f0;font-weight:600">Course</td><td style="padding:8px 12px;border:1px solid #e2e8f0">${escapeHtml(courseTitle)}</td></tr>
         <tr><td style="padding:8px 12px;border:1px solid #e2e8f0;font-weight:600">Program</td><td style="padding:8px 12px;border:1px solid #e2e8f0">${escapeHtml(programCode)}</td></tr>
         <tr><td style="padding:8px 12px;border:1px solid #e2e8f0;font-weight:600">Duration</td><td style="padding:8px 12px;border:1px solid #e2e8f0">${escapeHtml(duration)}</td></tr>
         <tr><td style="padding:8px 12px;border:1px solid #e2e8f0;font-weight:600">Enrollment ID</td><td style="padding:8px 12px;border:1px solid #e2e8f0;font-family:monospace">${escapeHtml(enrollmentNumber)}</td></tr>
+        ${amountRow}
       </table>
       ${loginBlock}
       <p><strong>Next Steps:</strong></p>
       <ol>
-        <li>Access your Learning Portal and complete onboarding</li>
+        <li>Open your <strong>Learning Dashboard</strong> — curriculum, sessions &amp; assignments are unlocked</li>
         ${communityBlock || '<li>Join the learner community (link in your portal)</li>'}
         <li>Review the curriculum and attend the orientation session</li>
       </ol>

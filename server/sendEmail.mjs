@@ -105,6 +105,7 @@ export async function sendTransactionalEmail(payload) {
     to,
     subject,
     html: userHtml || `<p>${escapeHtml(subject)}</p>`,
+    attachments: payload.attachments,
   });
 
   if (userResult.error) {

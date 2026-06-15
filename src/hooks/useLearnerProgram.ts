@@ -18,6 +18,13 @@ interface EnrollmentRow {
   course_id: string;
   course_name: string;
   status: string;
+  enrollment_date?: string;
+  enrollment_number?: string | null;
+  razorpay_payment_id?: string | null;
+  total_amount?: number | null;
+  paid_amount?: number | null;
+  payment_status?: string | null;
+  country?: string | null;
 }
 
 export function useLearnerProgram() {

@@ -165,6 +165,10 @@ export type Database = {
           payment_method: string | null
           total_amount: number | null
           paid_amount: number | null
+          enrollment_number: string | null
+          razorpay_payment_id: string | null
+          razorpay_order_id: string | null
+          country: string | null
           first_name: string | null
           last_name: string | null
           email: string | null
@@ -173,7 +177,6 @@ export type Database = {
           city: string | null
           state: string | null
           zip: string | null
-          country: string | null
           education: string | null
           field: string | null
           employment_status: string | null
@@ -195,6 +198,10 @@ export type Database = {
           payment_method?: string | null
           total_amount?: number | null
           paid_amount?: number | null
+          enrollment_number?: string | null
+          razorpay_payment_id?: string | null
+          razorpay_order_id?: string | null
+          country?: string | null
           first_name?: string | null
           last_name?: string | null
           email?: string | null
@@ -203,7 +210,6 @@ export type Database = {
           city?: string | null
           state?: string | null
           zip?: string | null
-          country?: string | null
           education?: string | null
           field?: string | null
           employment_status?: string | null
@@ -225,6 +231,10 @@ export type Database = {
           payment_method?: string | null
           total_amount?: number | null
           paid_amount?: number | null
+          enrollment_number?: string | null
+          razorpay_payment_id?: string | null
+          razorpay_order_id?: string | null
+          country?: string | null
           first_name?: string | null
           last_name?: string | null
           email?: string | null
@@ -233,7 +243,6 @@ export type Database = {
           city?: string | null
           state?: string | null
           zip?: string | null
-          country?: string | null
           education?: string | null
           field?: string | null
           employment_status?: string | null

@@ -149,6 +149,7 @@ const Checkout: React.FC = () => {
       courseTitle: course.title,
       duration: course.duration,
       amount: chargeAmount,
+      currency: chargeCurrency,
       paymentPlan: paymentMethod,
       userId: session?.user?.id,
       country: new Intl.DisplayNames(['en'], { type: 'region' }).of(pricingCountry) ?? pricingCountry,
@@ -166,8 +167,9 @@ const Checkout: React.FC = () => {
         paymentPlan: paymentMethod,
         paymentMethod: `razorpay:${payment.razorpay_payment_id}`,
         totalAmount: chargeAmount,
-        status: 'completed',
+        status: 'active',
         country: new Intl.DisplayNames(['en'], { type: 'region' }).of(pricingCountry) ?? pricingCountry,
+        skipEmail: true,
       });
     }
 

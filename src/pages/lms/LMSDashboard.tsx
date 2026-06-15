@@ -20,6 +20,7 @@ import {
   TrendingUp,
   Video,
 } from 'lucide-react';
+import InvoiceDownloadCard from '@/components/lms/InvoiceDownloadCard';
 
 const StatCard = ({
   label,
@@ -46,7 +47,7 @@ const StatCard = ({
 );
 
 const LMSDashboard = () => {
-  const { user, learnerState, assignments, projects, sessions, programId } = useLearnerProgram();
+  const { user, learnerState, assignments, projects, sessions, programId, enrollments } = useLearnerProgram();
 
   if (!learnerState) return null;
 
@@ -241,6 +242,8 @@ const LMSDashboard = () => {
           </div>
         </CardContent>
       </Card>
+
+      <InvoiceDownloadCard enrollments={enrollments} />
     </div>
   );
 };

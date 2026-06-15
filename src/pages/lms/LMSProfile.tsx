@@ -8,10 +8,11 @@ import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
 import { toast } from '@/hooks/use-toast';
 import { Github, Linkedin, Mail, MapPin, Phone, Save, User } from 'lucide-react';
+import InvoiceDownloadCard from '@/components/lms/InvoiceDownloadCard';
 
 const LMSProfile = () => {
   const { user } = useAuth();
-  const { learnerState } = useLearnerProgram();
+  const { learnerState, enrollments } = useLearnerProgram();
   const [linkedin, setLinkedin] = useState('');
   const [github, setGithub] = useState('');
   const [country, setCountry] = useState('');
@@ -113,6 +114,8 @@ const LMSProfile = () => {
           </Button>
         </CardContent>
       </Card>
+
+      <InvoiceDownloadCard enrollments={enrollments} />
     </div>
   );
 };

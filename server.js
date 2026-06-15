@@ -6,6 +6,7 @@ import pg from 'pg';
 import { handleSendEmailRequest } from './server/sendEmail.mjs';
 import { handleCreateOrderRequest, handleVerifyPaymentRequest, handleRazorpayWebhook } from './server/razorpay.mjs';
 import { handleCompleteEnrollmentRequest } from './server/enrollmentWorkflow.mjs';
+import { handleDownloadInvoiceRequest } from './server/invoiceHandler.mjs';
 import { getRazorpayMode } from './server/razorpayConfig.mjs';
 
 // Load environment variables
@@ -201,6 +202,23 @@ app.post('/api/verify-payment', async (req, res) => {
 app.post('/api/complete-enrollment', async (req, res) => {
   const result = await handleCompleteEnrollmentRequest(req.body);
   res.status(result.status).json(result.body);
+});
+
+// Learner invoice PDF download
+app.get('/api/download-invoice', async (req, res) => {
+  const authHeader = req.headers.authorization;
+  const accessToken = authHeader?.startsWith('Bearer ') ? authHeader.slice(7) : '';
+  const enrollmentId = typeof req.query.enrollmentId === 'string' ? req.query.enrollmentId : '';
+
+  const result = await handleDownloadInvoiceRequest({ accessToken, enrollmentId });
+
+  if (result.pdf) {
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', `attachment; filename="${result.filename}"`);
+    return res.status(200).send(result.pdf);
+  }
+
+  return res.status(result.status).json(result.body);
 });
 
 // Admin endpoints

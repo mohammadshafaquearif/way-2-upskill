@@ -7,6 +7,8 @@ import {
   buildWelcomeEnrollmentHtml,
   buildWhatsAppMessage,
 } from './enrollmentEmails.mjs';
+import { formatMoney } from './formatMoney.mjs';
+import { generateEnrollmentInvoicePdf } from './invoicePdf.mjs';
 
 function getSupabaseAdmin() {
   const url = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
@@ -236,6 +238,22 @@ export async function handleCompleteEnrollmentRequest(body = {}) {
         magicLink = account.magicLink;
         isNewAccount = account.isNewAccount;
         tempPassword = account.tempPassword;
+      } else {
+        await admin
+          .from('users')
+          .update({
+            learner_status: 'active',
+            assigned_program: programCode,
+            country: body.country || null,
+          })
+          .eq('id', userId);
+
+        const linkResult = await admin.auth.admin.generateLink({
+          type: 'magiclink',
+          email,
+          options: { redirectTo: dashboardUrl },
+        });
+        magicLink = linkResult.data?.properties?.action_link ?? null;
       }
 
       const enrollment = await saveEnrollment(admin, {
@@ -267,6 +285,14 @@ export async function handleCompleteEnrollmentRequest(body = {}) {
     }
   }
 
+  const currency = String(body.currency || 'INR').toUpperCase();
+  const amountPaidLabel = body.amount != null ? formatMoney(body.amount, currency) : null;
+  const invoiceDate = new Date().toLocaleDateString('en-IN', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  });
+
   const welcomeHtml = buildWelcomeEnrollmentHtml({
     firstName,
     courseTitle: body.courseTitle,
@@ -274,28 +300,58 @@ export async function handleCompleteEnrollmentRequest(body = {}) {
     duration: body.duration || '—',
     enrollmentNumber,
     portalUrl: learnUrl,
+    dashboardUrl,
     magicLink,
     communityDiscord: community.discord,
     communityWhatsapp: community.whatsapp,
+    amountPaid: amountPaidLabel,
+    currency,
   });
+
+  let invoiceAttachment = null;
+  try {
+    const pdfBytes = await generateEnrollmentInvoicePdf({
+      invoiceNumber: enrollmentNumber,
+      invoiceDate,
+      learnerName: `${firstName} ${lastName}`.trim(),
+      learnerEmail: email,
+      courseTitle: body.courseTitle,
+      programCode,
+      amount: body.amount,
+      currency,
+      paymentId: body.razorpay_payment_id,
+      orderId: body.razorpay_order_id,
+      country: body.country,
+    });
+
+    invoiceAttachment = {
+      filename: `Zyvotrix-Invoice-${enrollmentNumber}.pdf`,
+      content: Buffer.from(pdfBytes).toString('base64'),
+    };
+  } catch (error) {
+    console.warn('Invoice PDF generation failed:', error);
+  }
 
   try {
     await sendTransactionalEmail({
       type: 'enrollment',
       to: email,
-      subject: 'Welcome to Zyvotrix 🎉',
+      subject: `Payment confirmed — ${body.courseTitle} | Zyvotrix`,
       html: welcomeHtml,
       notifyAdmin: false,
+      attachments: invoiceAttachment ? [invoiceAttachment] : undefined,
       data: {
         Name: `${firstName} ${lastName}`.trim(),
         firstName,
         Email: email,
         Program: programCode,
+        Course: body.courseTitle,
         'Enrollment ID': enrollmentNumber,
-        Amount: body.amount ? `₹${body.amount}` : '—',
+        'Amount Paid': amountPaidLabel || '—',
+        Currency: currency,
         Country: body.country || 'Not provided',
         Phone: body.phone || 'Not provided',
-        subject: `New enrollment — ${programCode}`,
+        subject: `Payment confirmed — ${programCode}`,
       },
     });
 
@@ -304,11 +360,11 @@ export async function handleCompleteEnrollmentRequest(body = {}) {
       Email: email,
       Program: `${body.courseTitle} (${programCode})`,
       'Enrollment ID': enrollmentNumber,
-      Amount: body.amount ? `₹${body.amount}` : '—',
+      'Amount Paid': amountPaidLabel || '—',
       Country: body.country || 'Not provided',
       Phone: body.phone || 'Not provided',
       'Payment ID': body.razorpay_payment_id,
-      Status: 'Enrolled',
+      Status: 'Active — Dashboard access granted',
     });
 
     await sendTransactionalEmail({
@@ -354,6 +410,8 @@ export async function handleCompleteEnrollmentRequest(body = {}) {
       learnerName: `${firstName} ${lastName}`.trim(),
       amount: body.amount,
       paymentId: body.razorpay_payment_id,
+      currency,
+      amountPaidLabel,
       isNewAccount,
       hasServerEnrollment: Boolean(enrollmentId),
       magicLink,
@@ -363,9 +421,9 @@ export async function handleCompleteEnrollmentRequest(body = {}) {
       community,
       whatsappNotifyUrl,
       nextSteps: [
-        'Check your email for confirmation and login details',
+        'Check your email for payment confirmation and PDF invoice',
+        'Access your learning dashboard — course is now unlocked',
         'Join the learner community',
-        'Access your learning portal',
         'Complete onboarding and attend orientation',
       ],
     },

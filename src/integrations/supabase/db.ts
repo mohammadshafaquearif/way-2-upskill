@@ -429,8 +429,10 @@ export const db = {
     const { data, error } = await supabase
       .from('enrollments')
       .select(`
-        id, course_id, status, created_at,
-        courses ( title, duration, price )
+        id, course_id, status, created_at, enrollment_date,
+        enrollment_number, razorpay_payment_id, razorpay_order_id,
+        total_amount, paid_amount, payment_status, country,
+        courses ( title, duration, price, code )
       `)
       .eq('user_id', userId)
       .order('created_at', { ascending: false });
@@ -441,7 +443,7 @@ export const db = {
     }
 
     const mapped = data.map((row) => {
-      const course = row.courses as { title: string; duration: string; price: number } | null;
+      const course = row.courses as { title: string; duration: string; price: number; code: string | null } | null;
       const progress = Math.floor(Math.random() * 100);
       const totalLessons = Math.floor(Math.random() * 50) + 20;
       const completedLessons = Math.floor(Math.random() * 30) + 5;
@@ -449,9 +451,17 @@ export const db = {
         id: row.id,
         course_id: row.course_id,
         course_name: course?.title ?? '',
-        enrollment_date: row.created_at,
+        course_code: course?.code ?? null,
+        enrollment_date: row.enrollment_date || row.created_at,
         progress,
         status: row.status || 'active',
+        enrollment_number: row.enrollment_number,
+        razorpay_payment_id: row.razorpay_payment_id,
+        razorpay_order_id: row.razorpay_order_id,
+        total_amount: row.total_amount,
+        paid_amount: row.paid_amount,
+        payment_status: row.payment_status,
+        country: row.country,
         next_lesson: `Lesson ${Math.floor(Math.random() * 20) + 1}`,
         total_lessons: totalLessons,
         completed_lessons: completedLessons,

@@ -78,9 +78,26 @@ const EnrollmentSuccess: React.FC = () => {
                   <p className="font-medium">{data.duration || '—'}</p>
                 </div>
                 <div>
+                  <p className="text-sm text-muted-foreground mb-1">Amount Paid</p>
+                  <p className="font-semibold text-green-700">
+                    {data.amountPaidLabel ||
+                      (data.amount != null
+                        ? `${data.currency === 'INR' ? '₹' : ''}${data.amount}`
+                        : '—')}
+                  </p>
+                </div>
+                <div>
                   <p className="text-sm text-muted-foreground mb-1">Registered Email</p>
                   <p className="font-medium break-all">{data.email}</p>
                 </div>
+              </div>
+
+              <div className="rounded-xl border border-green-200 bg-green-50 p-4 text-sm text-green-900">
+                <p className="font-semibold">Invoice sent to your email</p>
+                <p className="mt-1 text-green-800">
+                  A PDF invoice with your payment details is attached to your confirmation email.
+                  Your course is now unlocked in the dashboard.
+                </p>
               </div>
 
               <div className="rounded-xl bg-muted/50 p-5 space-y-3">
@@ -91,7 +108,7 @@ const EnrollmentSuccess: React.FC = () => {
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-start gap-2">
                     <Mail className="w-4 h-4 mt-0.5 shrink-0 text-primary" />
-                    Check your email for welcome message and portal access
+                    Check your email for payment confirmation and PDF invoice
                   </li>
                   <li className="flex items-start gap-2">
                     <Users className="w-4 h-4 mt-0.5 shrink-0 text-primary" />

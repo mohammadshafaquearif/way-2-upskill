@@ -12,6 +12,7 @@ export interface CompleteEnrollmentPayload {
   courseTitle: string;
   duration?: string;
   amount?: number;
+  currency?: string;
   paymentPlan?: string;
   userId?: string;
 }
@@ -27,6 +28,8 @@ export interface CompleteEnrollmentResult {
   email: string;
   learnerName: string;
   amount?: number;
+  amountPaidLabel?: string;
+  currency?: string;
   paymentId: string;
   isNewAccount?: boolean;
   hasServerEnrollment?: boolean;
