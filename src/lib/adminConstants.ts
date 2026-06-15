@@ -11,6 +11,38 @@ export const ENROLLMENT_STATUSES: EnrollmentStatus[] = [
   'cancelled',
 ];
 
+export const ENROLLMENT_STATUS_OPTIONS: {
+  value: EnrollmentStatus;
+  label: string;
+  description: string;
+  countsAsSold: boolean;
+}[] = [
+  {
+    value: 'pending',
+    label: 'Pending',
+    description: 'Payment incomplete — not counted as sold',
+    countsAsSold: false,
+  },
+  {
+    value: 'active',
+    label: 'Active',
+    description: 'Enrolled and paid — counts as sold',
+    countsAsSold: true,
+  },
+  {
+    value: 'completed',
+    label: 'Completed',
+    description: 'Course finished — counts as sold',
+    countsAsSold: true,
+  },
+  {
+    value: 'cancelled',
+    label: 'Cancelled',
+    description: 'Revoked or refunded — not counted as sold',
+    countsAsSold: false,
+  },
+];
+
 export const CONTACT_STATUSES: ContactLeadStatus[] = ['new', 'contacted', 'converted'];
 
 export const SUBMISSION_STATUSES = ['submitted', 'reviewed', 'approved', 'rejected'] as const;

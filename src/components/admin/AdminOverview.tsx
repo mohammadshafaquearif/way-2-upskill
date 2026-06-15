@@ -66,7 +66,7 @@ const AdminOverview = ({ stats }: AdminOverviewProps) => {
       label: 'Revenue',
       value: `$${stats.revenue.toLocaleString()}`,
       icon: DollarSign,
-      hint: 'From recorded enrollments',
+      hint: 'Active & completed enrollments only',
     },
   ];
 

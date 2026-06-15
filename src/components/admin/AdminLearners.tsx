@@ -21,7 +21,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { ENROLLMENT_STATUSES, LEARNER_STATUSES } from '@/lib/adminConstants';
+import { ENROLLMENT_STATUS_OPTIONS, LEARNER_STATUSES } from '@/lib/adminConstants';
+import { capitalizeStatus, enrollmentStatusClass } from '@/lib/adminUi';
 import type { AdminLearner, AdminProgram } from '@/lib/adminTypes';
 
 interface AdminLearnersProps {
@@ -149,7 +150,12 @@ const AdminLearners = ({ learners, programs, onRefresh }: AdminLearnersProps) =>
                     : new Date(learner.created_at).toLocaleDateString()}
                 </td>
                 <td className="px-4 py-3">
-                  <Badge>{learner.enrollment_status || learner.learner_status}</Badge>
+                  <Badge
+                    variant="outline"
+                    className={enrollmentStatusClass(learner.enrollment_status || learner.learner_status || 'pending')}
+                  >
+                    {capitalizeStatus(learner.enrollment_status || learner.learner_status || 'pending')}
+                  </Badge>
                 </td>
                 <td className="px-4 py-3">
                   <Button variant="ghost" size="sm" onClick={() => openEdit(learner)}>
@@ -224,11 +230,16 @@ const AdminLearners = ({ learners, programs, onRefresh }: AdminLearnersProps) =>
                 <Select value={form.enrollment_status} onValueChange={(v) => setForm({ ...form, enrollment_status: v })}>
                   <SelectTrigger><SelectValue /></SelectTrigger>
                   <SelectContent>
-                    {ENROLLMENT_STATUSES.map((s) => (
-                      <SelectItem key={s} value={s}>{s}</SelectItem>
+                    {ENROLLMENT_STATUS_OPTIONS.map((option) => (
+                      <SelectItem key={option.value} value={option.value}>
+                        {option.label}
+                      </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
+                <p className="text-xs text-muted-foreground">
+                  {ENROLLMENT_STATUS_OPTIONS.find((o) => o.value === form.enrollment_status)?.description}
+                </p>
               </div>
             </div>
             <div className="space-y-2">

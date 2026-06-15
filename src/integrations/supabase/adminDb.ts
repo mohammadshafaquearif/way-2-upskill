@@ -14,7 +14,12 @@ import type {
   SubmissionStatus,
 } from '@/lib/adminTypes';
 import { generateCertificateId } from '@/lib/certificateUtils';
-import { isEnrollmentCancelled } from '@/lib/enrollmentAccess';
+import {
+  enrollmentCountsAsSold,
+  enrollmentRevenueAmount,
+  isEnrollmentCancelled,
+  paymentStatusForEnrollmentStatus,
+} from '@/lib/enrollmentAccess';
 
 function mapProgram(row: Record<string, unknown>): AdminProgram {
   return {
@@ -39,7 +44,7 @@ export const adminDb = {
       supabase
         .from('enrollments')
         .select(`
-          id, user_id, course_id, payment_plan, status, created_at, total_amount,
+          id, user_id, course_id, payment_plan, status, created_at, total_amount, paid_amount,
           first_name, last_name, email,
           users ( first_name, last_name, email ),
           courses ( title, code, price )
@@ -74,16 +79,20 @@ export const adminDb = {
         program_code: c?.code,
         payment_plan: row.payment_plan as string | null,
         amount: Number(row.total_amount ?? c?.price ?? 0),
+        paid_amount: Number(row.paid_amount) || 0,
         status: (row.status as string) || 'pending',
         created_at: row.created_at as string,
       };
     });
 
-    const sold = mappedEnrollments.filter(
-      (e) => e.status === 'completed' || e.status === 'active',
-    ).length;
+    const soldEnrollments = mappedEnrollments.filter((e) => enrollmentCountsAsSold(e.status));
 
-    const revenue = mappedEnrollments.reduce((sum, e) => sum + e.amount, 0);
+    const programsSold = soldEnrollments.length;
+
+    const revenue = soldEnrollments.reduce(
+      (sum, e) => sum + enrollmentRevenueAmount(e),
+      0,
+    );
 
     const upcomingSessions: AdminSession[] = (sessionsRes.data ?? []).map(
       (row: Record<string, unknown>) => {
@@ -108,7 +117,7 @@ export const adminDb = {
         (u: Record<string, unknown>) =>
           (u.learner_status as string) === 'active' || u.is_active === true,
       ).length,
-      programsSold: sold,
+      programsSold,
       revenue,
       upcomingSessions,
       recentEnrollments: mappedEnrollments.slice(0, 5),
@@ -181,11 +190,7 @@ export const adminDb = {
 
   async assignProgramToLearner(userId: string, courseId: string, status = 'active') {
     const normalizedStatus = (status || 'active').toLowerCase();
-    const paymentStatus = isEnrollmentCancelled(normalizedStatus)
-      ? 'cancelled'
-      : normalizedStatus === 'completed'
-        ? 'completed'
-        : 'pending';
+    const paymentStatus = paymentStatusForEnrollmentStatus(normalizedStatus);
 
     const { data: existing } = await supabase
       .from('enrollments')

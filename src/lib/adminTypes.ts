@@ -112,6 +112,7 @@ export interface AdminEnrollment {
   program_code?: string;
   payment_plan: string | null;
   amount: number;
+  paid_amount?: number;
   status: string;
   created_at: string;
 }
