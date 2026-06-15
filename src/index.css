@@ -44,6 +44,15 @@
     --ring: 221 83% 53%;
 
     --radius: 0.75rem;
+
+    /* Fixed Navbar height — mobile nav only; sm+ includes promo bar */
+    --site-header-h: 4rem;
+  }
+
+  @media (min-width: 640px) {
+    :root {
+      --site-header-h: 5.75rem;
+    }
   }
 
   .dark {

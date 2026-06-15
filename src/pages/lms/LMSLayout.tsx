@@ -6,11 +6,11 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useLearnerProgram } from '@/hooks/useLearnerProgram';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { BookOpen } from 'lucide-react';
+import { BookOpen, ShieldX } from 'lucide-react';
 
 const LMSLayout = () => {
   const { user } = useAuth();
-  const { learnerState, isLoading, hasEnrollment } = useLearnerProgram();
+  const { learnerState, isLoading, hasEnrollment, hasCancelledEnrollment } = useLearnerProgram();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   if (!user) {
@@ -40,7 +40,9 @@ const LMSLayout = () => {
   return (
     <div className="page-shell min-h-screen bg-background">
       <Navbar />
-      <div className="flex min-h-[calc(100vh-4rem)] pt-16 lg:pt-0">
+      <div
+        className="flex min-h-[calc(100vh-var(--site-header-h))] pt-[var(--site-header-h)]"
+      >
         <LearnerSidebar
           programCode={learnerState?.programCode}
           mobileOpen={mobileOpen}
@@ -48,7 +50,7 @@ const LMSLayout = () => {
         />
 
         <div className="flex min-w-0 flex-1 flex-col">
-          <header className="sticky top-16 z-30 flex items-center gap-3 border-b bg-background/95 px-4 py-3 backdrop-blur supports-[backdrop-filter]:bg-background/80 lg:top-0 lg:px-6">
+          <header className="sticky top-[var(--site-header-h)] z-30 flex items-center gap-3 border-b bg-background/95 px-4 py-3 backdrop-blur supports-[backdrop-filter]:bg-background/80 lg:px-6">
             <LearnerMobileToggle open={mobileOpen} onToggle={() => setMobileOpen((v) => !v)} />
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-semibold text-foreground">
@@ -65,15 +67,30 @@ const LMSLayout = () => {
               <Card className="mx-auto max-w-lg">
                 <CardContent className="py-16 text-center">
                   <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-muted">
-                    <BookOpen className="h-10 w-10 text-muted-foreground" />
+                    {hasCancelledEnrollment ? (
+                      <ShieldX className="h-10 w-10 text-destructive" />
+                    ) : (
+                      <BookOpen className="h-10 w-10 text-muted-foreground" />
+                    )}
                   </div>
-                  <h2 className="mb-2 text-xl font-bold">No active enrollment</h2>
+                  <h2 className="mb-2 text-xl font-bold">
+                    {hasCancelledEnrollment ? 'Course access revoked' : 'No active enrollment'}
+                  </h2>
                   <p className="mb-6 text-sm text-muted-foreground">
-                    Enroll in a program to unlock curriculum, live sessions, assignments, and your certificate track.
+                    {hasCancelledEnrollment
+                      ? 'Your enrollment has been cancelled. LMS access, curriculum, and certificate features are no longer available for this program.'
+                      : 'Enroll in a program to unlock curriculum, live sessions, assignments, and your certificate track.'}
                   </p>
-                  <Button asChild>
-                    <Link to="/courses">Browse Programs</Link>
-                  </Button>
+                  <div className="flex flex-wrap justify-center gap-3">
+                    <Button asChild>
+                      <Link to="/courses">{hasCancelledEnrollment ? 'Re-enroll' : 'Browse Programs'}</Link>
+                    </Button>
+                    {hasCancelledEnrollment && (
+                      <Button variant="outline" asChild>
+                        <Link to="/contact">Contact support</Link>
+                      </Button>
+                    )}
+                  </div>
                 </CardContent>
               </Card>
             ) : (

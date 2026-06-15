@@ -14,6 +14,7 @@ import type {
   SubmissionStatus,
 } from '@/lib/adminTypes';
 import { generateCertificateId } from '@/lib/certificateUtils';
+import { isEnrollmentCancelled } from '@/lib/enrollmentAccess';
 
 function mapProgram(row: Record<string, unknown>): AdminProgram {
   return {
@@ -179,6 +180,13 @@ export const adminDb = {
   },
 
   async assignProgramToLearner(userId: string, courseId: string, status = 'active') {
+    const normalizedStatus = (status || 'active').toLowerCase();
+    const paymentStatus = isEnrollmentCancelled(normalizedStatus)
+      ? 'cancelled'
+      : normalizedStatus === 'completed'
+        ? 'completed'
+        : 'pending';
+
     const { data: existing } = await supabase
       .from('enrollments')
       .select('id')
@@ -189,11 +197,19 @@ export const adminDb = {
     if (existing) {
       const { data, error } = await supabase
         .from('enrollments')
-        .update({ status, payment_status: status === 'completed' ? 'completed' : 'pending' })
+        .update({ status: normalizedStatus, payment_status: paymentStatus })
         .eq('id', existing.id)
         .select()
         .single();
       if (error) throw new Error(error.message);
+
+      if (isEnrollmentCancelled(normalizedStatus)) {
+        await supabase
+          .from('users')
+          .update({ learner_status: 'inactive' })
+          .eq('id', userId);
+      }
+
       return data;
     }
 
@@ -209,18 +225,22 @@ export const adminDb = {
         last_name: user?.last_name,
         email: user?.email,
         phone: user?.phone,
-        status,
-        payment_status: status === 'completed' ? 'completed' : 'pending',
+        status: normalizedStatus,
+        payment_status: paymentStatus,
         total_amount: course?.price,
       })
       .select()
       .single();
     if (error) throw new Error(error.message);
 
-    await supabase
-      .from('users')
-      .update({ assigned_program: course?.code || course?.title })
-      .eq('id', userId);
+    const userUpdates: { assigned_program: string | null | undefined; learner_status?: string } = {
+      assigned_program: course?.code || course?.title,
+    };
+    if (isEnrollmentCancelled(normalizedStatus)) {
+      userUpdates.learner_status = 'inactive';
+    }
+
+    await supabase.from('users').update(userUpdates).eq('id', userId);
 
     return data;
   },

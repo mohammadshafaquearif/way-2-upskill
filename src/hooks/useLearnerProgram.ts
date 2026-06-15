@@ -23,6 +23,7 @@ interface EnrollmentRow {
 export function useLearnerProgram() {
   const { user } = useAuth();
   const [enrollments, setEnrollments] = useState<EnrollmentRow[]>([]);
+  const [hasCancelledEnrollment, setHasCancelledEnrollment] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -35,10 +36,16 @@ export function useLearnerProgram() {
     (async () => {
       setIsLoading(true);
       try {
-        const courses = await apiClient.getUserCourses(user.id);
-        if (!cancelled) setEnrollments(courses ?? []);
+        const { courses, hasCancelledEnrollment: revoked } = await apiClient.getUserCourses(user.id);
+        if (!cancelled) {
+          setEnrollments(courses ?? []);
+          setHasCancelledEnrollment(revoked);
+        }
       } catch {
-        if (!cancelled) setEnrollments([]);
+        if (!cancelled) {
+          setEnrollments([]);
+          setHasCancelledEnrollment(false);
+        }
       } finally {
         if (!cancelled) setIsLoading(false);
       }
@@ -101,5 +108,7 @@ export function useLearnerProgram() {
     sessions: getSessions(programId),
     isLoading,
     hasEnrollment: enrollments.length > 0,
+    hasCancelledEnrollment,
+    hasCourseAccess: enrollments.length > 0,
   };
 }

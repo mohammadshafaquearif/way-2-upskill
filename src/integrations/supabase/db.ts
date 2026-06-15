@@ -1,4 +1,5 @@
 import type { User as AuthUser } from '@supabase/supabase-js';
+import { enrollmentGrantsAccess, isEnrollmentCancelled } from '@/lib/enrollmentAccess';
 import { supabase } from './client';
 import type { Tables, TablesInsert } from './types';
 
@@ -435,9 +436,11 @@ export const db = {
       .order('created_at', { ascending: false });
 
     if (error) throw new Error(error.message);
-    if (!data?.length) return [];
+    if (!data?.length) {
+      return { courses: [], hasCancelledEnrollment: false };
+    }
 
-    return data.map((row: Record<string, unknown>) => {
+    const mapped = data.map((row) => {
       const course = row.courses as { title: string; duration: string; price: number } | null;
       const progress = Math.floor(Math.random() * 100);
       const totalLessons = Math.floor(Math.random() * 50) + 20;
@@ -457,5 +460,10 @@ export const db = {
         price: course?.price ?? 0,
       };
     });
+
+    const hasCancelledEnrollment = mapped.some((row) => isEnrollmentCancelled(row.status));
+    const courses = mapped.filter((row) => enrollmentGrantsAccess(row.status));
+
+    return { courses, hasCancelledEnrollment };
   },
 };

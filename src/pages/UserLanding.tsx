@@ -65,8 +65,8 @@ const UserLanding = () => {
   const fetchUserData = async () => {
     setIsLoading(true);
     try {
-      const courses = await apiClient.getUserCourses(user.id);
-      if (courses) {
+      const { courses } = await apiClient.getUserCourses(user.id);
+      if (courses?.length) {
         setUserCourses(courses);
 
         // Calculate progress based on real data
