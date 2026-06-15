@@ -42,6 +42,7 @@ import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import VerifyCertificate from "./pages/VerifyCertificate";
 import ScrollToHash from "./components/ScrollToHash";
+import AuthHashHandler from "./components/AuthHashHandler";
 
 const queryClient = new QueryClient();
 
@@ -53,6 +54,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+        <AuthHashHandler />
         <ScrollToHash />
         <Routes>
           <Route element={<PageLayout />}>

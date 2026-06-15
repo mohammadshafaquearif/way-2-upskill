@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PageShell from '@/components/layout/PageShell';
@@ -7,48 +7,73 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import { supabase } from '@/integrations/supabase/client';
+import { apiClient } from '@/integrations/api/client';
 import { toast } from '@/hooks/use-toast';
-import { KeyRound, Loader2 } from 'lucide-react';
+import { authErrorMessage, clearAuthHash, parseAuthHash } from '@/lib/authHash';
+import { AlertCircle, KeyRound, Loader2, Mail } from 'lucide-react';
+
+type LocationState = {
+  authError?: string;
+  errorCode?: string;
+};
 
 const ResetPassword = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const locationState = (location.state as LocationState | null) ?? null;
+
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [resendEmail, setResendEmail] = useState('');
   const [isReady, setIsReady] = useState(false);
   const [isChecking, setIsChecking] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isResending, setIsResending] = useState(false);
+  const [expiredMessage, setExpiredMessage] = useState<string | null>(locationState?.authError ?? null);
 
   useEffect(() => {
     let cancelled = false;
 
     const init = async () => {
-      const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ''));
-      const type = hashParams.get('type');
+      const hashParams = parseAuthHash();
+
+      if (hashParams.error) {
+        if (!cancelled) {
+          setExpiredMessage(
+            authErrorMessage(hashParams.errorCode, hashParams.errorDescription),
+          );
+          setIsReady(false);
+          setIsChecking(false);
+          clearAuthHash();
+        }
+        return;
+      }
+
+      const type = hashParams.type;
 
       const { data: { session }, error } = await supabase.auth.getSession();
 
       if (cancelled) return;
 
       if (error) {
-        toast({
-          title: 'Invalid or expired link',
-          description: 'Request a new password reset email and try again.',
-          variant: 'destructive',
-        });
+        setExpiredMessage('Could not verify this reset link. Please request a new one.');
         setIsChecking(false);
         return;
       }
 
       if (session && (type === 'recovery' || type === null)) {
         setIsReady(true);
-        window.history.replaceState({}, '', '/reset-password');
+        setExpiredMessage(null);
+        clearAuthHash();
       } else {
-        toast({
-          title: 'Invalid or expired link',
-          description: 'Open the latest reset link from your email.',
-          variant: 'destructive',
-        });
+        setExpiredMessage(
+          (prev) =>
+            prev ??
+            locationState?.authError ??
+            'This reset link is invalid or has expired. Request a new link below.',
+        );
       }
 
       setIsChecking(false);
@@ -60,7 +85,8 @@ const ResetPassword = () => {
       if (event === 'PASSWORD_RECOVERY') {
         setIsReady(true);
         setIsChecking(false);
-        window.history.replaceState({}, '', '/reset-password');
+        setExpiredMessage(null);
+        clearAuthHash();
       }
     });
 
@@ -68,7 +94,7 @@ const ResetPassword = () => {
       cancelled = true;
       subscription.unsubscribe();
     };
-  }, []);
+  }, [location.hash, locationState?.authError]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -114,6 +140,30 @@ const ResetPassword = () => {
     }
   };
 
+  const handleResend = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const email = resendEmail.trim();
+    if (!email) return;
+
+    setIsResending(true);
+    try {
+      await apiClient.resetPassword(email);
+      toast({
+        title: 'New reset email sent',
+        description: `Check ${email} and use the latest link within 1 hour.`,
+      });
+      setResendEmail('');
+    } catch {
+      toast({
+        title: 'Could not send reset email',
+        description: 'Please try again in a moment.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsResending(false);
+    }
+  };
+
   return (
     <PageShell>
       <Navbar />
@@ -124,9 +174,11 @@ const ResetPassword = () => {
             <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
               <KeyRound className="h-6 w-6 text-primary" />
             </div>
-            <CardTitle>Set new password</CardTitle>
+            <CardTitle>{isReady ? 'Set new password' : 'Reset your password'}</CardTitle>
             <CardDescription>
-              Choose a strong password for your Zyvotrix account.
+              {isReady
+                ? 'Choose a strong password for your Zyvotrix account.'
+                : 'Request a new link if yours expired or was already used.'}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -173,12 +225,48 @@ const ResetPassword = () => {
                 </Button>
               </form>
             ) : (
-              <div className="space-y-4 text-center">
-                <p className="text-sm text-muted-foreground">
-                  This reset link is invalid or has expired.
+              <div className="space-y-4">
+                {expiredMessage && (
+                  <Alert variant="destructive">
+                    <AlertCircle className="h-4 w-4" />
+                    <AlertDescription>{expiredMessage}</AlertDescription>
+                  </Alert>
+                )}
+
+                <form onSubmit={handleResend} className="space-y-3">
+                  <div className="space-y-2">
+                    <Label htmlFor="resend-email">Email address</Label>
+                    <Input
+                      id="resend-email"
+                      type="email"
+                      placeholder="you@example.com"
+                      value={resendEmail}
+                      onChange={(e) => setResendEmail(e.target.value)}
+                      required
+                      autoComplete="email"
+                    />
+                  </div>
+                  <Button type="submit" className="w-full" disabled={isResending}>
+                    {isResending ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Sending…
+                      </>
+                    ) : (
+                      <>
+                        <Mail className="mr-2 h-4 w-4" />
+                        Send new reset link
+                      </>
+                    )}
+                  </Button>
+                </form>
+
+                <p className="text-center text-xs text-muted-foreground">
+                  Links expire after about 1 hour. Always open the most recent email.
                 </p>
+
                 <Button asChild variant="outline" className="w-full">
-                  <Link to="/">Go home & request new link</Link>
+                  <Link to="/">Back to home</Link>
                 </Button>
               </div>
             )}

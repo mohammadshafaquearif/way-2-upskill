@@ -229,7 +229,7 @@ const LoginSignupModal: React.FC<LoginSignupModalProps> = ({ isOpen, onClose }) 
 
       toast({
         title: "Password Reset Email Sent!",
-        description: `We've sent a password reset link to ${forgotPasswordEmail}. Please check your email.`,
+        description: `Check ${forgotPasswordEmail} and open the latest link within 1 hour. It will take you to reset your password.`,
       });
       
       setShowForgotPassword(false);

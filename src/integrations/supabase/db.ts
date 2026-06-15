@@ -1,15 +1,8 @@
 import type { User as AuthUser } from '@supabase/supabase-js';
 import { supabase } from './client';
+import type { Tables, TablesInsert } from './types';
 
-export type UserProfile = {
-  id: string;
-  first_name: string;
-  last_name: string;
-  email: string;
-  phone: string;
-  interested_subject: string | null;
-  created_at?: string;
-};
+export type UserProfile = Tables<'users'>;
 
 function mapProfileToAppUser(profile: UserProfile) {
   return {
@@ -26,6 +19,7 @@ function profileFromSignup(
   userId: string,
   params: { firstName: string; lastName: string; email: string; phone: string; interestedSubject: string }
 ): UserProfile {
+  const now = new Date().toISOString();
   return {
     id: userId,
     first_name: params.firstName,
@@ -33,6 +27,14 @@ function profileFromSignup(
     email: params.email,
     phone: params.phone,
     interested_subject: params.interestedSubject,
+    username: null,
+    is_active: true,
+    country: null,
+    learner_status: 'active',
+    assigned_program: null,
+    admin_notes: null,
+    created_at: now,
+    updated_at: now,
   };
 }
 
@@ -170,7 +172,18 @@ export const db = {
     const appUser = await getAppUserFromAuthUser(data.user);
     if (!appUser) throw new Error('Profile not found');
 
-    return { profile: appUser as unknown as UserProfile, appUser, session: data.session };
+    const profile = await getProfile(data.user.id).catch(() => null);
+    return {
+      profile: profile ?? profileFromSignup(data.user.id, {
+        firstName: appUser.firstName,
+        lastName: appUser.lastName,
+        email: appUser.email,
+        phone: appUser.phone,
+        interestedSubject: appUser.interestedSubject ?? '',
+      }),
+      appUser,
+      session: data.session,
+    };
   },
 
   async signOut() {
@@ -306,7 +319,7 @@ export const db = {
     const { data: { session } } = await supabase.auth.getSession();
     const authUserId = session?.user?.id;
 
-    const row: Record<string, unknown> = {
+    const row: TablesInsert<'enrollments'> = {
       course_id: enrollmentData.courseId,
       first_name: enrollmentData.firstName,
       last_name: enrollmentData.lastName,
