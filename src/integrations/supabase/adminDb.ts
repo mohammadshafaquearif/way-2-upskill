@@ -16,10 +16,10 @@ import type {
 import { generateCertificateId } from '@/lib/certificateUtils';
 import {
   enrollmentCountsAsSold,
-  enrollmentRevenueAmount,
   isEnrollmentCancelled,
   paymentStatusForEnrollmentStatus,
 } from '@/lib/enrollmentAccess';
+import { enrollmentPaidAmountInInr } from '@/lib/coursePricing';
 
 function mapProgram(row: Record<string, unknown>): AdminProgram {
   return {
@@ -44,7 +44,8 @@ export const adminDb = {
       supabase
         .from('enrollments')
         .select(`
-          id, user_id, course_id, payment_plan, status, created_at, total_amount, paid_amount,
+          id, user_id, course_id, payment_plan, status, payment_status, razorpay_payment_id,
+          created_at, total_amount, paid_amount, country, payment_currency,
           first_name, last_name, email,
           users ( first_name, last_name, email ),
           courses ( title, code, price )
@@ -80,17 +81,21 @@ export const adminDb = {
         payment_plan: row.payment_plan as string | null,
         amount: Number(row.total_amount ?? c?.price ?? 0),
         paid_amount: Number(row.paid_amount) || 0,
+        payment_status: (row.payment_status as string) || 'pending',
+        razorpay_payment_id: (row.razorpay_payment_id as string) || null,
+        country: (row.country as string) || null,
+        payment_currency: (row.payment_currency as string) || null,
         status: (row.status as string) || 'pending',
         created_at: row.created_at as string,
       };
     });
 
-    const soldEnrollments = mappedEnrollments.filter((e) => enrollmentCountsAsSold(e.status));
+    const soldEnrollments = mappedEnrollments.filter((e) => enrollmentCountsAsSold(e));
 
     const programsSold = soldEnrollments.length;
 
     const revenue = soldEnrollments.reduce(
-      (sum, e) => sum + enrollmentRevenueAmount(e),
+      (sum, e) => sum + enrollmentPaidAmountInInr(e),
       0,
     );
 
@@ -190,19 +195,27 @@ export const adminDb = {
 
   async assignProgramToLearner(userId: string, courseId: string, status = 'active') {
     const normalizedStatus = (status || 'active').toLowerCase();
-    const paymentStatus = paymentStatusForEnrollmentStatus(normalizedStatus);
 
     const { data: existing } = await supabase
       .from('enrollments')
-      .select('id')
+      .select('id, razorpay_payment_id, payment_status')
       .eq('user_id', userId)
       .eq('course_id', courseId)
       .maybeSingle();
 
+    const resolvePaymentStatus = (razorpayPaymentId?: string | null) => {
+      const hasRazorpay = Boolean(razorpayPaymentId?.trim());
+      if (hasRazorpay) {
+        return isEnrollmentCancelled(normalizedStatus) ? 'cancelled' : 'completed';
+      }
+      return paymentStatusForEnrollmentStatus(normalizedStatus);
+    };
+
     if (existing) {
+      const nextPaymentStatus = resolvePaymentStatus(existing.razorpay_payment_id);
       const { data, error } = await supabase
         .from('enrollments')
-        .update({ status: normalizedStatus, payment_status: paymentStatus })
+        .update({ status: normalizedStatus, payment_status: nextPaymentStatus })
         .eq('id', existing.id)
         .select()
         .single();
@@ -220,6 +233,7 @@ export const adminDb = {
 
     const { data: user } = await supabase.from('users').select('*').eq('id', userId).single();
     const { data: course } = await supabase.from('courses').select('*').eq('id', courseId).single();
+    const paymentStatus = paymentStatusForEnrollmentStatus(normalizedStatus);
 
     const { data, error } = await supabase
       .from('enrollments')

@@ -4,6 +4,7 @@ ALTER TABLE public.enrollments ADD COLUMN IF NOT EXISTS enrollment_number VARCHA
 ALTER TABLE public.enrollments ADD COLUMN IF NOT EXISTS razorpay_payment_id VARCHAR(100);
 ALTER TABLE public.enrollments ADD COLUMN IF NOT EXISTS razorpay_order_id VARCHAR(100);
 ALTER TABLE public.enrollments ADD COLUMN IF NOT EXISTS country VARCHAR(100);
+ALTER TABLE public.enrollments ADD COLUMN IF NOT EXISTS payment_currency VARCHAR(3) DEFAULT 'INR';
 
 CREATE INDEX IF NOT EXISTS idx_enrollments_number ON public.enrollments(enrollment_number);
 CREATE INDEX IF NOT EXISTS idx_enrollments_email ON public.enrollments(email);

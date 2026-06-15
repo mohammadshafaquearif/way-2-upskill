@@ -188,6 +188,7 @@ async function saveEnrollment(admin, payload) {
     payment_method: `razorpay:${payload.paymentId}`,
     total_amount: payload.amount,
     paid_amount: payload.amount,
+    payment_currency: payload.currency || 'INR',
     status: 'active',
     payment_status: 'completed',
     enrollment_date: new Date().toISOString(),
@@ -304,6 +305,7 @@ export async function handleCompleteEnrollmentRequest(body = {}) {
         orderId: body.razorpay_order_id,
         paymentPlan: body.paymentPlan,
         amount: verifiedAmount / 100,
+        currency,
       });
 
       enrollmentId = enrollment.id;

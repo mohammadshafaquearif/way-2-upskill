@@ -5,13 +5,14 @@ import {
   Users,
   UserCheck,
   ShoppingBag,
-  DollarSign,
+  IndianRupee,
   CalendarOff,
   Inbox,
   type LucideIcon,
 } from 'lucide-react';
 import type { AdminDashboardStats } from '@/lib/adminTypes';
 import { capitalizeStatus, enrollmentStatusClass, formatAdminDate } from '@/lib/adminUi';
+import { formatInrAmount } from '@/lib/coursePricing';
 
 interface AdminOverviewProps {
   stats: AdminDashboardStats;
@@ -64,9 +65,9 @@ const AdminOverview = ({ stats }: AdminOverviewProps) => {
     { label: 'Programs Sold', value: stats.programsSold, icon: ShoppingBag },
     {
       label: 'Revenue',
-      value: `$${stats.revenue.toLocaleString()}`,
-      icon: DollarSign,
-      hint: 'Active & completed enrollments only',
+      value: formatInrAmount(stats.revenue),
+      icon: IndianRupee,
+      hint: 'Razorpay sales in INR (foreign payments converted)',
     },
   ];
 

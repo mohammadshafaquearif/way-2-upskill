@@ -169,6 +169,7 @@ export type Database = {
           razorpay_payment_id: string | null
           razorpay_order_id: string | null
           country: string | null
+          payment_currency: string | null
           first_name: string | null
           last_name: string | null
           email: string | null

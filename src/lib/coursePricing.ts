@@ -156,6 +156,81 @@ export function convertUsdToCurrency(usd: number, currency: RazorpayCurrency): n
   return Math.round(usd * rate);
 }
 
+/** Convert a paid amount in any Razorpay currency to INR (uses USD cross-rate). */
+export function convertAmountToInr(amount: number, currency: RazorpayCurrency): number {
+  if (!amount || amount <= 0) return 0;
+  if (currency === 'INR') return Math.round(amount);
+  const usd = amount / (USD_FX[currency] ?? 1);
+  return Math.round(usd * USD_FX.INR);
+}
+
+const COUNTRY_ALIASES: Record<string, CountryCode> = {
+  in: 'IN',
+  india: 'IN',
+  us: 'US',
+  usa: 'US',
+  'united states': 'US',
+  'united states of america': 'US',
+  uk: 'GB',
+  gb: 'GB',
+  'united kingdom': 'GB',
+  ca: 'CA',
+  canada: 'CA',
+  au: 'AU',
+  australia: 'AU',
+  ae: 'AE',
+  'united arab emirates': 'AE',
+  sa: 'SA',
+  'saudi arabia': 'SA',
+  sg: 'SG',
+  singapore: 'SG',
+  my: 'MY',
+  malaysia: 'MY',
+  de: 'DE',
+  germany: 'DE',
+  fr: 'FR',
+  france: 'FR',
+};
+
+function normalizeCountryToCode(country: string | null | undefined): CountryCode | null {
+  const key = (country ?? '').trim().toLowerCase();
+  if (!key) return null;
+  if (COUNTRY_ALIASES[key]) return COUNTRY_ALIASES[key];
+  if (key.length === 2) {
+    return (key === 'uk' ? 'GB' : key.toUpperCase()) as CountryCode;
+  }
+  if (key.includes('india')) return 'IN';
+  if (key.includes('united kingdom') || key.includes('britain')) return 'GB';
+  if (key.includes('united states')) return 'US';
+  return null;
+}
+
+export function inferPaymentCurrency(
+  country?: string | null,
+  explicitCurrency?: string | null,
+): RazorpayCurrency {
+  const normalized = explicitCurrency?.trim().toUpperCase();
+  if (normalized && normalized in USD_FX) {
+    return normalized as RazorpayCurrency;
+  }
+  const code = normalizeCountryToCode(country);
+  if (code) return getRazorpayCurrencyForCountry(code);
+  return 'INR';
+}
+
+export function enrollmentPaidAmountInInr(enrollment: {
+  paid_amount?: number | null;
+  total_amount?: number | null;
+  amount?: number;
+  country?: string | null;
+  payment_currency?: string | null;
+}): number {
+  const paid = Number(enrollment.paid_amount);
+  const raw = paid > 0 ? paid : Number(enrollment.total_amount ?? enrollment.amount ?? 0);
+  const currency = inferPaymentCurrency(enrollment.country, enrollment.payment_currency);
+  return convertAmountToInr(raw, currency);
+}
+
 export function formatCoursePrice(amount: number, currency: RazorpayCurrency): string {
   return new Intl.NumberFormat(CURRENCY_LOCALE[currency] ?? 'en-US', {
     style: 'currency',

@@ -67,6 +67,7 @@ CREATE TABLE IF NOT EXISTS public.enrollments (
     state VARCHAR(100),
     zip VARCHAR(20),
     country VARCHAR(100),
+    payment_currency VARCHAR(3) DEFAULT 'INR',
     education VARCHAR(100),
     field VARCHAR(100),
     employment_status VARCHAR(50),

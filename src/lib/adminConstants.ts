@@ -26,14 +26,14 @@ export const ENROLLMENT_STATUS_OPTIONS: {
   {
     value: 'active',
     label: 'Active',
-    description: 'Enrolled and paid — counts as sold',
-    countsAsSold: true,
+    description: 'User enrolled — counts as sold only after Razorpay payment',
+    countsAsSold: false,
   },
   {
     value: 'completed',
     label: 'Completed',
-    description: 'Course finished — counts as sold',
-    countsAsSold: true,
+    description: 'Course finished — counts as sold only if Razorpay payment exists',
+    countsAsSold: false,
   },
   {
     value: 'cancelled',

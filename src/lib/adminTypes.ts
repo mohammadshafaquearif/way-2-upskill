@@ -113,6 +113,10 @@ export interface AdminEnrollment {
   payment_plan: string | null;
   amount: number;
   paid_amount?: number;
+  payment_status?: string | null;
+  razorpay_payment_id?: string | null;
+  country?: string | null;
+  payment_currency?: string | null;
   status: string;
   created_at: string;
 }
