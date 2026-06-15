@@ -126,10 +126,8 @@ export const lmsDb = {
       assetsByTopic.set(asset.topic_id, list);
     }
 
-    const quizByModule = new Map<string, string>();
     const quizByTopic = new Map<string, string>();
     for (const q of quizzesRes.data ?? []) {
-      if (q.module_id) quizByModule.set(q.module_id as string, q.id as string);
       if (q.topic_id) quizByTopic.set(q.topic_id as string, q.id as string);
     }
 
@@ -166,7 +164,7 @@ export const lmsDb = {
         has_assignment: row.has_assignment === true,
         pass_score: Number(row.pass_score) || 70,
         topics: topicsByModule.get(modId) ?? [],
-        quiz_id: quizByModule.get(modId) ?? null,
+        quiz_id: null,
       };
       const list = modulesByPhase.get(phaseId) ?? [];
       list.push(mod);
@@ -202,7 +200,7 @@ export const lmsDb = {
 
     const moduleId = mod.id as string;
 
-    const [topicsRes, assetsRes, moduleQuizRes, topicQuizzesRes] = await Promise.all([
+    const [topicsRes, assetsRes, topicQuizzesRes] = await Promise.all([
       supabase
         .from('module_topics')
         .select('*')
@@ -215,12 +213,6 @@ export const lmsDb = {
         .eq('course_id', courseId)
         .eq('is_published', true)
         .order('sort_order'),
-      supabase
-        .from('quizzes')
-        .select('id')
-        .eq('module_id', moduleId)
-        .eq('is_published', true)
-        .maybeSingle(),
       supabase
         .from('quizzes')
         .select('id, topic_id')
@@ -272,7 +264,7 @@ export const lmsDb = {
       has_assignment: mod.has_assignment === true,
       pass_score: Number(mod.pass_score) || 70,
       topics,
-      quiz_id: (moduleQuizRes.data?.id as string) ?? null,
+      quiz_id: null,
       moduleAssets,
     };
   },

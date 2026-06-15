@@ -18,7 +18,6 @@ import {
 } from '@/components/ui/accordion';
 import {
   ArrowLeft,
-  HelpCircle,
   Loader2,
   MessageSquare,
   Upload,
@@ -106,7 +105,6 @@ const LMSModuleDetail = () => {
     );
   }
 
-  const quizId = module.quizId ?? dbModule?.quiz_id;
   const topics = dbModule?.topics ?? module.topics.map((title, i) => ({
     id: `static-${i}`,
     module_id: module.dbId ?? '',
@@ -194,34 +192,6 @@ const LMSModuleDetail = () => {
                 allowFullScreen
               />
             </div>
-          </CardContent>
-        </Card>
-      )}
-
-      {module.hasQuiz && (
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <HelpCircle className="h-5 w-5 text-primary" />
-              Module Quiz
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="flex items-center justify-between gap-4">
-            <div>
-              <p className="font-medium">Check your understanding</p>
-              <p className="text-sm text-muted-foreground">
-                Pass score: {dbModule?.pass_score ?? 70}% — required to complete this module
-              </p>
-            </div>
-            {quizId ? (
-              <Button asChild variant="outline" className="shrink-0">
-                <Link to={`/dashboard/curriculum/${module.id}/quiz/${quizId}`}>Start Quiz</Link>
-              </Button>
-            ) : (
-              <Button variant="outline" disabled className="shrink-0">
-                Coming Soon
-              </Button>
-            )}
           </CardContent>
         </Card>
       )}

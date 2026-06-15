@@ -393,6 +393,7 @@ DECLARE
   v_best_score SMALLINT;
   v_attempts_used INT;
   v_best_passed BOOLEAN;
+  v_module_quizzes_complete BOOLEAN;
 BEGIN
   IF NEW.submitted_at IS NULL THEN
     RETURN NEW;
@@ -402,6 +403,12 @@ BEGIN
   INTO v_module_id, v_topic_id, v_pass_score
   FROM public.quizzes q
   WHERE q.id = NEW.quiz_id;
+
+  IF v_module_id IS NULL AND v_topic_id IS NOT NULL THEN
+    SELECT mt.module_id INTO v_module_id
+    FROM public.module_topics mt
+    WHERE mt.id = v_topic_id;
+  END IF;
 
   SELECT COALESCE(MAX(score), 0), COUNT(*)::int
   INTO v_best_score, v_attempts_used
@@ -448,17 +455,30 @@ BEGIN
   END IF;
 
   IF v_module_id IS NOT NULL THEN
+    SELECT NOT EXISTS (
+      SELECT 1
+      FROM public.module_topics mt
+      INNER JOIN public.quizzes qz
+        ON qz.topic_id = mt.id
+       AND qz.is_published = true
+      LEFT JOIN public.learner_quiz_progress lqp
+        ON lqp.quiz_id = qz.id
+       AND lqp.user_id = NEW.user_id
+      WHERE mt.module_id = v_module_id
+        AND COALESCE(lqp.best_passed, false) = false
+    ) INTO v_module_quizzes_complete;
+
     INSERT INTO public.learner_module_progress (user_id, module_id, quiz_passed, status, updated_at)
-    VALUES (NEW.user_id, v_module_id, v_best_passed, 'in_progress', NOW())
+    VALUES (NEW.user_id, v_module_id, v_module_quizzes_complete, 'in_progress', NOW())
     ON CONFLICT (user_id, module_id) DO UPDATE
-    SET quiz_passed = v_best_passed,
+    SET quiz_passed = v_module_quizzes_complete,
         status = CASE
-          WHEN v_best_passed AND public.learner_module_progress.assignment_done THEN 'completed'
-          WHEN v_best_passed THEN 'in_progress'
+          WHEN v_module_quizzes_complete AND public.learner_module_progress.assignment_done THEN 'completed'
+          WHEN v_module_quizzes_complete OR public.learner_module_progress.quiz_passed THEN 'in_progress'
           ELSE public.learner_module_progress.status
         END,
         completed_at = CASE
-          WHEN v_best_passed AND public.learner_module_progress.assignment_done
+          WHEN v_module_quizzes_complete AND public.learner_module_progress.assignment_done
             THEN COALESCE(public.learner_module_progress.completed_at, NOW())
           ELSE public.learner_module_progress.completed_at
         END,
@@ -804,37 +824,16 @@ BEGIN
       );
     END LOOP;
 
-    -- Module quiz shell
-    IF r.quiz THEN
-      INSERT INTO public.quizzes (course_id, module_id, title, pass_score, is_published)
-      SELECT v_course_id, v_module_id, r.mod_title || ' — Module Quiz', 70, true
-      WHERE NOT EXISTS (
-        SELECT 1 FROM public.quizzes q WHERE q.module_id = v_module_id
-      );
+    -- Topic quizzes are seeded via seed_topic_quizzes() / lms-seed-quizzes.sql (not module-level placeholders)
+    DELETE FROM public.quiz_questions qq
+    USING public.quizzes q
+    WHERE qq.quiz_id = q.id
+      AND q.module_id = v_module_id
+      AND q.topic_id IS NULL;
 
-      SELECT id INTO v_quiz_id
-      FROM public.quizzes
-      WHERE module_id = v_module_id
-      LIMIT 1;
-
-      IF v_quiz_id IS NOT NULL AND NOT EXISTS (
-        SELECT 1 FROM public.quiz_questions WHERE quiz_id = v_quiz_id
-      ) THEN
-        INSERT INTO public.quiz_questions (quiz_id, question_text, options, sort_order) VALUES
-        (v_quiz_id, 'What is the primary learning objective of ' || r.mod_title || '?', jsonb_build_array(
-          jsonb_build_object('id','a','text','Understand core concepts and apply them in labs', 'is_correct', true),
-          jsonb_build_object('id','b','text','Memorize definitions only', 'is_correct', false),
-          jsonb_build_object('id','c','text','Skip hands-on practice', 'is_correct', false),
-          jsonb_build_object('id','d','text','Avoid production patterns', 'is_correct', false)
-        ), 1),
-        (v_quiz_id, 'Which resource should you review before the live session?', jsonb_build_array(
-          jsonb_build_object('id','a','text','Module slides (PPT) for each topic', 'is_correct', true),
-          jsonb_build_object('id','b','text','Unrelated social media posts', 'is_correct', false),
-          jsonb_build_object('id','c','text','Only the capstone brief', 'is_correct', false),
-          jsonb_build_object('id','d','text','Nothing — skip prep', 'is_correct', false)
-        ), 2);
-      END IF;
-    END IF;
+    DELETE FROM public.quizzes
+    WHERE module_id = v_module_id
+      AND topic_id IS NULL;
   END LOOP;
 
   -- Retire legacy DOP modules from the old 7-module layout (now 4 phases × 1 module)
@@ -842,6 +841,11 @@ BEGIN
   SET is_published = false, updated_at = NOW()
   WHERE course_id IN (SELECT id FROM public.courses WHERE upper(code) = 'DOP')
     AND module_number > 4;
+
+  -- Remove any legacy module-level placeholder quizzes (real quizzes are per-topic)
+  DELETE FROM public.quizzes
+  WHERE module_id IS NOT NULL
+    AND topic_id IS NULL;
 END;
 $$;
 
