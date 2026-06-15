@@ -314,7 +314,7 @@ export async function handleCompleteEnrollmentRequest(body = {}) {
     await sendTransactionalEmail({
       type: 'enrollment',
       to: process.env.ADMIN_EMAIL || 'support@zyvotrix.com',
-      subject: `[ENROLLMENT] New paid enrollment — ${programCode}`,
+      subject: `[Enrollment] New paid enrollment — ${programCode}`,
       html: adminHtml,
       notifyAdmin: false,
       data: {

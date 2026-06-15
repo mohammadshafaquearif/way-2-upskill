@@ -1,3 +1,4 @@
+import type { User as AuthUser } from '@supabase/supabase-js';
 import { supabase } from './client';
 
 export type UserProfile = {
@@ -58,6 +59,31 @@ async function waitForProfile(userId: string, attempts = 6): Promise<UserProfile
     }
   }
   throw new Error('Profile not found');
+}
+
+function appUserFromAuthMetadata(authUser: AuthUser) {
+  const meta = authUser.user_metadata ?? {};
+  const firstName = meta.first_name ?? meta.firstName ?? '';
+  const lastName = meta.last_name ?? meta.lastName ?? '';
+  if (!firstName && !authUser.email) return null;
+
+  return {
+    id: authUser.id,
+    firstName: String(firstName),
+    lastName: String(lastName),
+    email: authUser.email ?? '',
+    phone: String(meta.phone ?? ''),
+    interestedSubject: meta.interested_subject ?? meta.interestedSubject ?? undefined,
+  };
+}
+
+async function getAppUserFromAuthUser(authUser: AuthUser) {
+  try {
+    const profile = await getProfile(authUser.id);
+    return mapProfileToAppUser(profile);
+  } catch {
+    return appUserFromAuthMetadata(authUser);
+  }
 }
 
 export const db = {
@@ -141,8 +167,10 @@ export const db = {
     if (error) throw new Error(error.message);
     if (!data.user) throw new Error('Login failed');
 
-    const profile = await getProfile(data.user.id);
-    return { profile, appUser: mapProfileToAppUser(profile), session: data.session };
+    const appUser = await getAppUserFromAuthUser(data.user);
+    if (!appUser) throw new Error('Profile not found');
+
+    return { profile: appUser as unknown as UserProfile, appUser, session: data.session };
   },
 
   async signOut() {
@@ -158,12 +186,11 @@ export const db = {
   async getSession() {
     const { data: { session } } = await supabase.auth.getSession();
     if (!session?.user) return null;
-    try {
-      const profile = await getProfile(session.user.id);
-      return mapProfileToAppUser(profile);
-    } catch {
-      return null;
-    }
+    return getAppUserFromAuthUser(session.user);
+  },
+
+  async getAppUserFromAuthUser(authUser: AuthUser) {
+    return getAppUserFromAuthUser(authUser);
   },
 
   async createUser(userData: {

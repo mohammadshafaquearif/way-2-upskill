@@ -101,6 +101,7 @@ const Enroll = () => {
     canonical: '/enroll',
   });
   const [defaultCourseId, setDefaultCourseId] = useState<string | null>(null);
+  const [defaultCourseName, setDefaultCourseName] = useState<string>('Zyvotrix Program');
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedPlan, setSelectedPlan] = useState(paymentPlans[0].id);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -110,6 +111,7 @@ const Enroll = () => {
     apiClient.getAllCourses().then((courses) => {
       if (courses?.length > 0) {
         setDefaultCourseId(courses[0].id);
+        setDefaultCourseName(courses[0].title || 'Zyvotrix Program');
       }
     }).catch(() => {});
   }, []);
@@ -248,7 +250,8 @@ const Enroll = () => {
         github: formData.background.github,
         paymentPlan: selectedPlan,
         paymentMethod: formData.payment.method,
-        totalAmount: selectedPlan === 'seat' ? 25 : 300
+        totalAmount: selectedPlan === 'seat' ? 25 : 300,
+        courseName: defaultCourseName,
       });
       
       console.log('Enrollment submitted successfully:', enrollment);

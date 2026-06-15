@@ -1,7 +1,13 @@
 // API client — uses Supabase (works on Vercel + local without Express)
 import { db } from '@/integrations/supabase/db';
 import { adminDb } from '@/integrations/supabase/adminDb';
-import { buildContactEmailPayload, sendEmail, type EmailType } from '@/lib/email';
+import {
+  buildContactEmailPayload,
+  buildEnrollmentEmailPayload,
+  buildSignupEmailPayload,
+  notifyByEmail,
+  type EmailType,
+} from '@/lib/email';
 import type { ContactLeadStatus, SubmissionStatus } from '@/lib/adminTypes';
 
 class ApiClient {
@@ -60,8 +66,17 @@ class ApiClient {
     paymentMethod?: string;
     totalAmount?: number;
     status?: string;
+    courseName?: string;
+    skipEmail?: boolean;
   }) {
-    return db.createEnrollment(enrollmentData);
+    const { courseName, skipEmail, ...dbData } = enrollmentData;
+    const enrollment = await db.createEnrollment(dbData);
+
+    if (!skipEmail && enrollmentData.email) {
+      notifyByEmail(buildEnrollmentEmailPayload({ ...enrollmentData, courseName }));
+    }
+
+    return enrollment;
   }
 
   async createContact(
@@ -77,16 +92,12 @@ class ApiClient {
   ) {
     const contact = await db.createContact(contactData);
 
-    try {
-      await sendEmail(
-        buildContactEmailPayload({
-          ...contactData,
-          type: options?.emailType || 'contact',
-        }),
-      );
-    } catch (error) {
-      console.warn('Email notification failed:', error);
-    }
+    notifyByEmail(
+      buildContactEmailPayload({
+        ...contactData,
+        type: options?.emailType || 'contact',
+      }),
+    );
 
     return contact;
   }
@@ -115,7 +126,9 @@ class ApiClient {
     password: string;
     interestedSubject: string;
   }) {
-    return db.signUp(params);
+    const result = await db.signUp(params);
+    notifyByEmail(buildSignupEmailPayload(params));
+    return result;
   }
 
   async signOut() {
