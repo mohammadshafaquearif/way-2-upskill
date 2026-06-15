@@ -91,14 +91,17 @@ export async function openRazorpayCheckout({
   onDismiss,
   onError,
 }: OpenCheckoutParams): Promise<void> {
-  const keyId = getRazorpayKeyId();
-  if (!keyId) {
-    throw new Error('Razorpay key is not configured for current mode');
-  }
-
   await loadRazorpayScript();
 
   const order = await createOrder(amountPaise, receipt);
+
+  const keyId = order.key_id || getRazorpayKeyId();
+  if (!keyId) {
+    const mode = order.mode ?? (import.meta.env.DEV ? 'test' : 'live');
+    throw new Error(
+      `Razorpay ${mode} credentials are not configured. Add RAZORPAY_${mode.toUpperCase()}_KEY_ID and RAZORPAY_${mode.toUpperCase()}_KEY_SECRET on the server.`,
+    );
+  }
 
   if (!window.Razorpay) {
     throw new Error('Razorpay checkout is unavailable');

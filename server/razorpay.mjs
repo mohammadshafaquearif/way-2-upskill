@@ -52,6 +52,8 @@ export async function handleCreateOrderRequest(body = {}) {
         order_id: order.id,
         amount: order.amount,
         currency: order.currency,
+        key_id: config.key_id,
+        mode: config.mode,
       },
     };
   } catch (error) {

@@ -2,6 +2,9 @@ export interface CreateOrderResponse {
   order_id: string;
   amount: number;
   currency: string;
+  /** Public key from server — avoids duplicating VITE_RAZORPAY_* in production */
+  key_id?: string;
+  mode?: 'test' | 'live';
 }
 
 export interface VerifyPaymentPayload {
