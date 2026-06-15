@@ -1,14 +1,14 @@
 import crypto from 'crypto';
 import { createClient } from '@supabase/supabase-js';
-import { handleVerifyPaymentRequest } from './razorpay.mjs';
+import { handleVerifyPaymentRequest, verifyPaymentWithRazorpay } from './razorpay.mjs';
 import { sendTransactionalEmail } from './sendEmail.mjs';
 import {
   buildAdminEnrollmentHtml,
   buildWelcomeEnrollmentHtml,
-  buildWhatsAppMessage,
 } from './enrollmentEmails.mjs';
 import { formatMoney } from './formatMoney.mjs';
 import { generateEnrollmentInvoicePdf } from './invoicePdf.mjs';
+import { getExpectedOrderAmount } from './coursePricing.mjs';
 
 function getSupabaseAdmin() {
   const url = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
@@ -163,6 +163,16 @@ async function ensureLearnerAccount(admin, { email, firstName, lastName, phone, 
 }
 
 async function saveEnrollment(admin, payload) {
+  const { data: existing } = await admin
+    .from('enrollments')
+    .select('id, enrollment_number')
+    .eq('razorpay_payment_id', payload.paymentId)
+    .maybeSingle();
+
+  if (existing?.id) {
+    return existing;
+  }
+
   const row = {
     course_id: payload.courseId,
     user_id: payload.userId || null,
@@ -207,6 +217,31 @@ export async function handleCompleteEnrollmentRequest(body = {}) {
   if (!body.courseId || !body.programCode || !body.courseTitle) {
     return { status: 400, body: { error: 'courseId, programCode, and courseTitle are required' } };
   }
+
+  const countryCode = String(body.countryCode || 'IN').toUpperCase().slice(0, 2);
+  const expectedPrice = await getExpectedOrderAmount({
+    courseId: body.courseId,
+    courseCode: body.programCode,
+    country: countryCode,
+  });
+
+  if (expectedPrice.error) {
+    return { status: 400, body: { error: expectedPrice.error } };
+  }
+
+  const amountVerify = await verifyPaymentWithRazorpay({
+    orderId: body.razorpay_order_id,
+    paymentId: body.razorpay_payment_id,
+    expectedAmountMinor: expectedPrice.amountMinor,
+    expectedCurrency: expectedPrice.currency,
+  });
+
+  if (amountVerify.status !== 200) {
+    return amountVerify;
+  }
+
+  const verifiedAmount = amountVerify.body.amount;
+  const currency = amountVerify.body.currency;
 
   const { firstName, lastName } = splitName(body.learnerName, email);
   const programCode = String(body.programCode).toUpperCase();
@@ -268,7 +303,7 @@ export async function handleCompleteEnrollmentRequest(body = {}) {
         paymentId: body.razorpay_payment_id,
         orderId: body.razorpay_order_id,
         paymentPlan: body.paymentPlan,
-        amount: body.amount,
+        amount: verifiedAmount / 100,
       });
 
       enrollmentId = enrollment.id;
@@ -285,8 +320,7 @@ export async function handleCompleteEnrollmentRequest(body = {}) {
     }
   }
 
-  const currency = String(body.currency || 'INR').toUpperCase();
-  const amountPaidLabel = body.amount != null ? formatMoney(body.amount, currency) : null;
+  const amountPaidLabel = formatMoney(verifiedAmount / 100, currency);
   const invoiceDate = new Date().toLocaleDateString('en-IN', {
     day: '2-digit',
     month: 'short',
@@ -317,7 +351,7 @@ export async function handleCompleteEnrollmentRequest(body = {}) {
       learnerEmail: email,
       courseTitle: body.courseTitle,
       programCode,
-      amount: body.amount,
+      amount: verifiedAmount / 100,
       currency,
       paymentId: body.razorpay_payment_id,
       orderId: body.razorpay_order_id,
@@ -384,18 +418,6 @@ export async function handleCompleteEnrollmentRequest(body = {}) {
     console.warn('Enrollment emails failed:', error);
   }
 
-  const whatsappMessage = buildWhatsAppMessage({
-    firstName,
-    programCode,
-    enrollmentNumber,
-    portalUrl: learnUrl,
-    communityWhatsapp: community.whatsapp,
-  });
-
-  const whatsappNotifyUrl = community.whatsapp
-    ? community.whatsapp
-    : `https://wa.me/?text=${encodeURIComponent(whatsappMessage)}`;
-
   return {
     status: 200,
     body: {
@@ -408,18 +430,14 @@ export async function handleCompleteEnrollmentRequest(body = {}) {
       duration: body.duration || '',
       email,
       learnerName: `${firstName} ${lastName}`.trim(),
-      amount: body.amount,
+      amount: verifiedAmount / 100,
       paymentId: body.razorpay_payment_id,
       currency,
       amountPaidLabel,
       isNewAccount,
       hasServerEnrollment: Boolean(enrollmentId),
-      magicLink,
-      tempPassword: isNewAccount ? tempPassword : undefined,
       portalUrl: learnUrl,
       dashboardUrl,
-      community,
-      whatsappNotifyUrl,
       nextSteps: [
         'Check your email for payment confirmation and PDF invoice',
         'Access your learning dashboard — course is now unlocked',

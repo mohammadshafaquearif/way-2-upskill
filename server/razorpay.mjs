@@ -1,6 +1,7 @@
 import Razorpay from 'razorpay';
 import crypto from 'crypto';
 import { getRazorpayCredentials } from './razorpayConfig.mjs';
+import { getExpectedOrderAmount } from './coursePricing.mjs';
 
 function getRazorpayConfig() {
   const { mode, key_id, key_secret } = getRazorpayCredentials();
@@ -29,16 +30,26 @@ const RAZORPAY_CURRENCIES = new Set([
 ]);
 
 export async function handleCreateOrderRequest(body = {}) {
-  const amount = Number(body.amount);
-  const currency = String(body.currency || 'INR').toUpperCase();
+  const courseId = body.courseId;
+  const country = String(body.country || 'IN').toUpperCase();
   const receipt = body.receipt || `rcpt_${Date.now()}`;
 
-  if (!Number.isFinite(amount) || amount < 100) {
-    return {
-      status: 400,
-      body: { error: `Amount must be at least 100 minor units (e.g. ₹1 or $1) for ${currency}` },
-    };
+  if (!courseId) {
+    return { status: 400, body: { error: 'courseId is required' } };
   }
+
+  const expected = await getExpectedOrderAmount({
+    courseId,
+    courseCode: body.courseCode,
+    country,
+  });
+
+  if (expected.error) {
+    return { status: 400, body: { error: expected.error } };
+  }
+
+  const amount = expected.amountMinor;
+  const currency = expected.currency;
 
   if (!RAZORPAY_CURRENCIES.has(currency)) {
     return {
@@ -55,6 +66,11 @@ export async function handleCreateOrderRequest(body = {}) {
       amount: Math.round(amount),
       currency,
       receipt,
+      notes: {
+        course_id: String(courseId),
+        country,
+        course_code: expected.courseCode,
+      },
     });
 
     return {
@@ -125,6 +141,51 @@ export async function handleVerifyPaymentRequest(body = {}) {
       payment_id: paymentId,
     },
   };
+}
+
+export async function verifyPaymentWithRazorpay({ orderId, paymentId, expectedAmountMinor, expectedCurrency }) {
+  const config = getRazorpayConfig();
+  if (config.error) return config.error;
+
+  try {
+    const payment = await config.instance.payments.fetch(paymentId);
+    const order = await config.instance.orders.fetch(orderId);
+
+    if (!['captured', 'authorized'].includes(payment.status)) {
+      return { status: 400, body: { error: 'Payment not completed' } };
+    }
+
+    if (payment.order_id !== orderId) {
+      return { status: 400, body: { error: 'Payment order mismatch' } };
+    }
+
+    if (Number(order.amount) !== Number(expectedAmountMinor)) {
+      return { status: 400, body: { error: 'Order amount mismatch' } };
+    }
+
+    if (Number(payment.amount) !== Number(expectedAmountMinor)) {
+      return { status: 400, body: { error: 'Payment amount mismatch' } };
+    }
+
+    const currency = String(expectedCurrency || order.currency).toUpperCase();
+    if (String(payment.currency).toUpperCase() !== currency) {
+      return { status: 400, body: { error: 'Payment currency mismatch' } };
+    }
+
+    return {
+      status: 200,
+      body: {
+        verified: true,
+        amount: Number(payment.amount),
+        currency: String(payment.currency).toUpperCase(),
+      },
+    };
+  } catch (error) {
+    return {
+      status: 400,
+      body: { error: 'Could not verify payment with Razorpay' },
+    };
+  }
 }
 
 function verifyWebhookSignature(rawBody, signature, webhookSecret) {

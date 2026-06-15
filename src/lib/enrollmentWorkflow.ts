@@ -6,13 +6,12 @@ export interface CompleteEnrollmentPayload {
   learnerName?: string;
   phone?: string;
   country?: string;
+  countryCode?: string;
   courseId: string;
   programCode: string;
   programSlug: string;
   courseTitle: string;
   duration?: string;
-  amount?: number;
-  currency?: string;
   paymentPlan?: string;
   userId?: string;
 }
@@ -33,16 +32,8 @@ export interface CompleteEnrollmentResult {
   paymentId: string;
   isNewAccount?: boolean;
   hasServerEnrollment?: boolean;
-  magicLink?: string | null;
-  tempPassword?: string;
   portalUrl: string;
   dashboardUrl: string;
-  community: {
-    discord: string;
-    whatsapp: string;
-    telegram: string;
-  };
-  whatsappNotifyUrl: string;
   nextSteps: string[];
   error?: string;
 }
@@ -50,7 +41,34 @@ export interface CompleteEnrollmentResult {
 export const ENROLLMENT_SUCCESS_KEY = 'zyvotrix_enrollment_success';
 
 export function saveEnrollmentSuccess(data: CompleteEnrollmentResult): void {
-  sessionStorage.setItem(ENROLLMENT_SUCCESS_KEY, JSON.stringify(data));
+  const safe: CompleteEnrollmentResult = {
+    success: data.success,
+    verified: data.verified,
+    enrollmentNumber: data.enrollmentNumber,
+    enrollmentId: data.enrollmentId,
+    programCode: data.programCode,
+    courseTitle: data.courseTitle,
+    duration: data.duration,
+    email: data.email,
+    learnerName: data.learnerName,
+    amount: data.amount,
+    amountPaidLabel: data.amountPaidLabel,
+    currency: data.currency,
+    paymentId: data.paymentId,
+    isNewAccount: data.isNewAccount,
+    hasServerEnrollment: data.hasServerEnrollment,
+    portalUrl: data.portalUrl,
+    dashboardUrl: data.dashboardUrl,
+    nextSteps: data.nextSteps,
+  };
+  sessionStorage.setItem(ENROLLMENT_SUCCESS_KEY, JSON.stringify(safe));
+}
+
+export function hasVerifiedGuestAccess(programSlug: string): boolean {
+  const data = loadEnrollmentSuccess();
+  if (!data?.success || !data.hasServerEnrollment) return false;
+  const slug = data.programCode?.toLowerCase().replace(/\s+/g, '-') || '';
+  return slug === programSlug.toLowerCase();
 }
 
 export function loadEnrollmentSuccess(): CompleteEnrollmentResult | null {

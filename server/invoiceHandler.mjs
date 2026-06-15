@@ -73,8 +73,8 @@ export async function handleDownloadInvoiceRequest({ accessToken, enrollmentId }
     return { status: 404, body: { error: 'Enrollment not found' } };
   }
 
-  if (!enrollmentGrantsAccess(enrollment.status)) {
-    return { status: 403, body: { error: 'Invoice not available for cancelled enrollment' } };
+  if (!enrollmentGrantsAccess(enrollment.status, enrollment.payment_status)) {
+    return { status: 403, body: { error: 'Invoice not available for this enrollment' } };
   }
 
   const hasPayment =

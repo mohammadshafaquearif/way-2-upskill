@@ -17,7 +17,28 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
-app.use(cors());
+const allowedOrigins = [
+  'http://localhost:8080',
+  'http://localhost:5173',
+  'http://127.0.0.1:8080',
+  'http://127.0.0.1:5173',
+  process.env.PORTAL_URL,
+  process.env.VITE_APP_URL,
+  'https://www.zyvotrix.com',
+  'https://zyvotrix.com',
+].filter(Boolean);
+
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Origin not allowed'));
+      }
+    },
+  }),
+);
 
 // Razorpay webhook — must use raw body (before express.json())
 app.post('/api/razorpay-webhook', express.raw({ type: 'application/json' }), async (req, res) => {
@@ -92,8 +113,15 @@ app.get('/api/instructors', async (req, res) => {
   }
 });
 
-// Create user (signup)
-app.post('/api/users', async (req, res) => {
+// Create user (signup) — disabled in production; use Supabase Auth
+app.post('/api/users', (req, res) => {
+  if (process.env.NODE_ENV === 'production') {
+    return res.status(410).json({ error: 'Endpoint removed. Use Supabase Auth.' });
+  }
+  return createUserHandler(req, res);
+});
+
+async function createUserHandler(req, res) {
   try {
     const { firstName, lastName, email, phone, username, passwordHash, interestedSubject } = req.body;
     
@@ -113,10 +141,17 @@ app.post('/api/users', async (req, res) => {
       res.status(500).json({ error: 'Failed to create user' });
     }
   }
+}
+
+// Get user by email — disabled in production
+app.get('/api/users/email/:email', (req, res) => {
+  if (process.env.NODE_ENV === 'production') {
+    return res.status(410).json({ error: 'Endpoint removed.' });
+  }
+  return getUserByEmailHandler(req, res);
 });
 
-// Get user by email
-app.get('/api/users/email/:email', async (req, res) => {
+async function getUserByEmailHandler(req, res) {
   try {
     const { email } = req.params;
     const result = await query('SELECT * FROM users WHERE email = $1', [email]);
@@ -130,35 +165,11 @@ app.get('/api/users/email/:email', async (req, res) => {
     console.error('Error fetching user:', error);
     res.status(500).json({ error: 'Failed to fetch user' });
   }
-});
+}
 
-// Create enrollment (from checkout)
-app.post('/api/enrollments', async (req, res) => {
-  try {
-    const { userId, courseId, paymentPlan, amount, status } = req.body;
-
-    // Get user details from users table
-    const userResult = await query('SELECT * FROM users WHERE id = $1', [userId]);
-    if (userResult.rows.length === 0) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-    
-    const user = userResult.rows[0];
-
-    const result = await query(
-      `INSERT INTO enrollments (
-        user_id, course_id, payment_plan, status, created_at
-      ) VALUES ($1, $2, $3, $4, NOW())
-      RETURNING *`,
-      [userId, courseId, paymentPlan, status || 'completed']
-    );
-    
-    console.log('✅ Enrollment created:', result.rows[0]);
-    res.status(201).json(result.rows[0]);
-  } catch (error) {
-    console.error('❌ Error creating enrollment:', error);
-    res.status(500).json({ error: 'Failed to create enrollment', details: error.message });
-  }
+// Create enrollment — disabled; enrollments require verified payment via /api/complete-enrollment
+app.post('/api/enrollments', (req, res) => {
+  return res.status(410).json({ error: 'Use /api/complete-enrollment after verified payment.' });
 });
 
 // Create contact message
@@ -221,9 +232,26 @@ app.get('/api/download-invoice', async (req, res) => {
   return res.status(result.status).json(result.body);
 });
 
-// Admin endpoints
+// Admin endpoints — require API key in production
+function requireAdminKey(req, res, next) {
+  const configuredKey = process.env.ADMIN_API_KEY;
+  if (!configuredKey) {
+    if (process.env.NODE_ENV === 'production') {
+      return res.status(503).json({ error: 'Admin API is disabled' });
+    }
+    return next();
+  }
+
+  const provided = req.headers['x-admin-key'];
+  if (provided !== configuredKey) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  return next();
+}
+
 // Get all users (for admin dashboard)
-app.get('/api/admin/users', async (req, res) => {
+app.get('/api/admin/users', requireAdminKey, async (req, res) => {
   try {
     const result = await query(`
       SELECT 
@@ -240,7 +268,7 @@ app.get('/api/admin/users', async (req, res) => {
 });
 
 // Get all enrollments (for admin dashboard)
-app.get('/api/admin/enrollments', async (req, res) => {
+app.get('/api/admin/enrollments', requireAdminKey, async (req, res) => {
   try {
     const result = await query(`
       SELECT 

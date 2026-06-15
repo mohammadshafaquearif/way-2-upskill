@@ -30,14 +30,17 @@ async function parseJsonResponse<T>(response: Response): Promise<T> {
 }
 
 export async function createOrder(
-  amountMinor: number,
-  receipt: string,
-  currency = 'INR',
+  params: {
+    courseId: string;
+    courseCode?: string;
+    country: string;
+    receipt: string;
+  },
 ): Promise<CreateOrderResponse> {
   const response = await fetch('/api/create-order', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ amount: amountMinor, currency, receipt }),
+    body: JSON.stringify(params),
   });
 
   return parseJsonResponse<CreateOrderResponse>(response);

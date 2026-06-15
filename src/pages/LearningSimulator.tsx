@@ -4,11 +4,13 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PageShell from '@/components/layout/PageShell';
 import { useAuth } from '@/contexts/AuthContext';
+import { apiClient } from '@/integrations/api/client';
 import { getCourseByCheckoutId } from '@/lib/courses';
+import { enrollmentGrantsAccess } from '@/lib/enrollmentAccess';
+import { hasVerifiedGuestAccess } from '@/lib/enrollmentWorkflow';
 import {
   getSimulatorModules,
   getTotalLessons,
-  getGuestCheckoutEmail,
   getSimulatorUserKey,
   loadSimulatorProgress,
   saveSimulatorProgress,
@@ -37,12 +39,15 @@ const LearningSimulator: React.FC = () => {
   const navigate = useNavigate();
   const { user, isAuthenticated } = useAuth();
   const simulatorUserKey = getSimulatorUserKey(user?.id);
-  const guestEmail = getGuestCheckoutEmail();
-  const hasAccess = isAuthenticated || !!guestEmail;
+  const guestVerified = hasVerifiedGuestAccess(courseId);
+  const [enrollmentVerified, setEnrollmentVerified] = useState(false);
+  const [accessChecked, setAccessChecked] = useState(false);
 
   const course = getCourseByCheckoutId(courseId);
   const modules = useMemo(() => getSimulatorModules(courseId), [courseId]);
   const totalLessons = useMemo(() => getTotalLessons(modules), [modules]);
+
+  const hasAccess = enrollmentVerified || guestVerified;
 
   const [activeModule, setActiveModule] = useState<SimulatorModule>(modules[0]);
   const [activeLesson, setActiveLesson] = useState<SimulatorLesson>(modules[0].lessons[0]);
@@ -56,6 +61,53 @@ const LearningSimulator: React.FC = () => {
       return;
     }
 
+    let cancelled = false;
+
+    const verifyAccess = async () => {
+      if (guestVerified) {
+        if (!cancelled) {
+          setEnrollmentVerified(true);
+          setAccessChecked(true);
+        }
+        return;
+      }
+
+      if (!isAuthenticated || !user) {
+        if (!cancelled) setAccessChecked(true);
+        return;
+      }
+
+      try {
+        const { courses } = await apiClient.getUserCourses(user.id);
+        const programCode = course.code.toUpperCase();
+        const paid = (courses ?? []).some(
+          (row: { status: string; payment_status?: string | null; course_code?: string | null }) =>
+            enrollmentGrantsAccess(row.status, row.payment_status) &&
+            (row.course_code?.toUpperCase() === programCode ||
+              row.course_code?.toLowerCase() === courseId),
+        );
+        if (!cancelled) {
+          setEnrollmentVerified(paid);
+          setAccessChecked(true);
+        }
+      } catch {
+        if (!cancelled) {
+          setEnrollmentVerified(false);
+          setAccessChecked(true);
+        }
+      }
+    };
+
+    verifyAccess();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [course, courseId, guestVerified, isAuthenticated, user, navigate]);
+
+  useEffect(() => {
+    if (!accessChecked || !course) return;
+
     if (!hasAccess) {
       toast({
         title: 'Complete checkout first',
@@ -64,7 +116,7 @@ const LearningSimulator: React.FC = () => {
       });
       navigate(`/checkout/${courseId}`);
     }
-  }, [course, hasAccess, courseId, navigate]);
+  }, [accessChecked, hasAccess, course, courseId, navigate]);
 
   useEffect(() => {
     if (searchParams.get('payment') === 'success') {
@@ -101,9 +153,9 @@ const LearningSimulator: React.FC = () => {
     });
   }, [completedLessons, activeLesson.id, hasAccess, simulatorUserKey, courseId]);
 
-  if (!course || !hasAccess) return null;
+  if (!course || !accessChecked || !hasAccess) return null;
 
-  const displayName = user?.firstName || guestEmail?.split('@')[0] || 'Learner';
+  const displayName = user?.firstName || 'Learner';
 
   const progressPercent =
     totalLessons > 0 ? Math.round((completedLessons.length / totalLessons) * 100) : 0;

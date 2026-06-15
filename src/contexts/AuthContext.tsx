@@ -56,12 +56,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         if (sessionUser) {
           persistUser(sessionUser);
         } else {
-          const stored = localStorage.getItem('Zyvotrix_user');
-          if (stored) setUser(JSON.parse(stored));
+          localStorage.removeItem('Zyvotrix_user');
         }
       } catch {
-        const stored = localStorage.getItem('Zyvotrix_user');
-        if (stored) setUser(JSON.parse(stored));
+        localStorage.removeItem('Zyvotrix_user');
       } finally {
         if (window.location.hash.includes('access_token')) {
           const path = window.location.pathname;

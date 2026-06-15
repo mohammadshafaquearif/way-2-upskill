@@ -1,4 +1,4 @@
-const GA_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-6CZMFJ109Y';
+const GA_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
 
 /**
  * Google Analytics — script often loads, but POST to google-analytics.com/g/collect

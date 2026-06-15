@@ -15,10 +15,8 @@ import { setGuestCheckoutEmail } from '@/lib/learningSimulator';
 import {
   BookOpen,
   CheckCircle2,
-  ExternalLink,
   GraduationCap,
   Mail,
-  MessageCircle,
   Sparkles,
   Users,
 } from 'lucide-react';
@@ -39,9 +37,6 @@ const EnrollmentSuccess: React.FC = () => {
   }, [data, navigate]);
 
   if (!data?.success) return null;
-
-  const communityLink =
-    data.community?.discord || data.community?.whatsapp || data.community?.telegram || '';
 
   const programSlug = data.programCode?.toLowerCase().replace(/\s+/g, '-') || 'aac';
 
@@ -132,26 +127,9 @@ const EnrollmentSuccess: React.FC = () => {
                 <Button asChild size="lg" variant="outline" className="w-full">
                   <Link to="/dashboard">Access Dashboard</Link>
                 </Button>
-                {communityLink ? (
-                  <Button asChild size="lg" variant="outline" className="w-full sm:col-span-2">
-                    <a href={communityLink} target="_blank" rel="noopener noreferrer">
-                      <Users className="w-4 h-4 mr-2" />
-                      Join Community
-                      <ExternalLink className="w-3 h-3 ml-2" />
-                    </a>
-                  </Button>
-                ) : null}
                 <Button asChild size="lg" variant="secondary" className="w-full sm:col-span-2">
                   <Link to={`/learn/${programSlug}`}>View Curriculum</Link>
                 </Button>
-                {data.whatsappNotifyUrl && (
-                  <Button asChild size="lg" variant="ghost" className="w-full sm:col-span-2">
-                    <a href={data.whatsappNotifyUrl} target="_blank" rel="noopener noreferrer">
-                      <MessageCircle className="w-4 h-4 mr-2" />
-                      Open WhatsApp Welcome Message
-                    </a>
-                  </Button>
-                )}
               </div>
 
               {data.isNewAccount && (

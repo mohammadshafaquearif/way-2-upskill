@@ -341,8 +341,8 @@ export const db = {
       payment_plan: enrollmentData.paymentPlan,
       payment_method: enrollmentData.paymentMethod,
       total_amount: enrollmentData.totalAmount,
-      status: enrollmentData.status || 'pending',
-      payment_status: enrollmentData.status === 'completed' ? 'completed' : 'pending',
+      status: 'pending',
+      payment_status: 'pending',
     };
 
     // Only link user_id when Supabase session matches (RLS: auth.uid() = user_id)
@@ -472,7 +472,9 @@ export const db = {
     });
 
     const hasCancelledEnrollment = mapped.some((row) => isEnrollmentCancelled(row.status));
-    const courses = mapped.filter((row) => enrollmentGrantsAccess(row.status));
+    const courses = mapped.filter((row) =>
+      enrollmentGrantsAccess(row.status, row.payment_status),
+    );
 
     return { courses, hasCancelledEnrollment };
   },

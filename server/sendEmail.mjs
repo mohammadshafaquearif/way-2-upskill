@@ -133,15 +133,37 @@ export async function sendTransactionalEmail(payload) {
   return { success: true };
 }
 
+const ALLOWED_EMAIL_TYPES = new Set(['contact', 'enrollment', 'inquiry', 'signup']);
+
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email || '').trim());
+}
+
 export async function handleSendEmailRequest(body) {
-  const { type, to, subject, html, data } = body || {};
+  const { type, to, subject, data } = body || {};
 
   if (!type || !to || !subject) {
     return { status: 400, body: { error: 'type, to, and subject are required' } };
   }
 
+  if (!ALLOWED_EMAIL_TYPES.has(type)) {
+    return { status: 400, body: { error: 'Invalid email type' } };
+  }
+
+  if (!isValidEmail(to)) {
+    return { status: 400, body: { error: 'Valid recipient email is required' } };
+  }
+
+  if (body?.html) {
+    return { status: 400, body: { error: 'Custom HTML is not allowed' } };
+  }
+
+  if (subject.length > 200) {
+    return { status: 400, body: { error: 'Subject too long' } };
+  }
+
   try {
-    await sendTransactionalEmail({ type, to, subject, html, data });
+    await sendTransactionalEmail({ type, to, subject, data });
     return { status: 200, body: { success: true } };
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Failed to send email';

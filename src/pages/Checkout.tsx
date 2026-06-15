@@ -148,29 +148,14 @@ const Checkout: React.FC = () => {
       programSlug: course.id,
       courseTitle: course.title,
       duration: course.duration,
-      amount: chargeAmount,
-      currency: chargeCurrency,
       paymentPlan: paymentMethod,
       userId: session?.user?.id,
+      countryCode: pricingCountry,
       country: new Intl.DisplayNames(['en'], { type: 'region' }).of(pricingCountry) ?? pricingCountry,
     });
 
     if (!result.hasServerEnrollment) {
-      const nameFromEmail = email.split('@')[0] || 'Learner';
-      await apiClient.createEnrollment({
-        userId: session?.user?.id,
-        courseId: dbCourseId,
-        firstName: user?.firstName || nameFromEmail,
-        lastName: user?.lastName || '',
-        email,
-        phone: checkoutPhone,
-        paymentPlan: paymentMethod,
-        paymentMethod: `razorpay:${payment.razorpay_payment_id}`,
-        totalAmount: chargeAmount,
-        status: 'active',
-        country: new Intl.DisplayNames(['en'], { type: 'region' }).of(pricingCountry) ?? pricingCountry,
-        skipEmail: true,
-      });
+      throw new Error('Enrollment could not be confirmed. Contact support@zyvotrix.com with your payment ID.');
     }
 
     saveEnrollmentSuccess(result);
@@ -214,14 +199,24 @@ const Checkout: React.FC = () => {
       return;
     }
 
+    if (!dbCourseId) {
+      toast({
+        title: 'Course unavailable',
+        description: 'Please try again in a moment or contact support.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
     setLoading(true);
 
     const receiptSuffix = user?.id?.slice(0, 8) ?? checkoutEmail.replace(/[^a-z0-9]/gi, '').slice(0, 8);
 
     try {
       await openRazorpayCheckout({
-        amountMinor,
-        currency: chargeCurrency,
+        courseId: dbCourseId,
+        courseCode: course.code,
+        country: pricingCountry,
         receipt: `enroll_${course.id}_${receiptSuffix}`,
         courseTitle: course.title,
         userName: user ? `${user.firstName} ${user.lastName}`.trim() : checkoutEmail.split('@')[0],
