@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { toast } from '@/hooks/use-toast';
 import { downloadEnrollmentInvoice } from '@/lib/downloadInvoice';
-import { FileText, Download, Loader2 } from 'lucide-react';
+import { Download, Loader2 } from 'lucide-react';
 
 export interface LearnerInvoiceEnrollment {
   id: string;
@@ -69,12 +69,9 @@ const InvoiceDownloadCard = ({ enrollments }: { enrollments: LearnerInvoiceEnrol
   };
 
   return (
-    <Card>
+    <Card className="border-border/70 shadow-sm">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <FileText className="h-5 w-5 text-primary" />
-          Invoices &amp; Payments
-        </CardTitle>
+        <CardTitle className="text-base font-semibold">Invoices &amp; Payments</CardTitle>
         <CardDescription>
           Download PDF invoices for your completed enrollments.
         </CardDescription>
@@ -83,7 +80,7 @@ const InvoiceDownloadCard = ({ enrollments }: { enrollments: LearnerInvoiceEnrol
         {invoiceable.map((enrollment) => (
           <div
             key={enrollment.id}
-            className="flex flex-col gap-3 rounded-lg border p-4 sm:flex-row sm:items-center sm:justify-between"
+            className="flex flex-col gap-3 rounded-lg border border-border/60 p-4 sm:flex-row sm:items-center sm:justify-between"
           >
             <div className="min-w-0 space-y-1">
               <p className="font-semibold truncate">{enrollment.course_name}</p>

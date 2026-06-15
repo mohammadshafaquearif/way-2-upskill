@@ -10,7 +10,8 @@ AS $$
   SELECT COALESCE(
     (auth.jwt() ->> 'email') IN (
       'letsupskill57@gmail.com',
-      'admin@zyvotrix.com'
+      'admin@zyvotrix.com',
+      'support@zyvotrix.com'
     ),
     false
   );
@@ -78,6 +79,7 @@ CREATE TABLE IF NOT EXISTS public.certificates (
     course_id UUID REFERENCES public.courses(id) ON DELETE SET NULL,
     program_code VARCHAR(20),
     completion_date DATE NOT NULL,
+    status VARCHAR(50) DEFAULT 'issued',
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
@@ -114,10 +116,8 @@ BEGIN
   END LOOP;
 END $$;
 
--- Public read certificates for verification
+-- Public certificate verification uses certificates_public view (see security-hardening.sql)
 DROP POLICY IF EXISTS certificates_public_verify ON public.certificates;
-CREATE POLICY certificates_public_verify ON public.certificates
-    FOR SELECT USING (true);
 
 -- Admin update users
 DROP POLICY IF EXISTS users_admin_update ON public.users;

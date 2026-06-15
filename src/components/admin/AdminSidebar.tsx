@@ -39,12 +39,14 @@ const AdminSidebar = ({ active, onChange, mobileOpen, onMobileClose }: AdminSide
 
   const nav = (
     <div className="flex h-full flex-col">
-      <div className="border-b px-4 py-5">
-        <p className="text-xs font-semibold uppercase tracking-wider text-primary">Zyvotrix</p>
-        <h2 className="text-lg font-bold">Admin Panel</h2>
-        <p className="mt-1 truncate text-xs text-muted-foreground">{user?.email}</p>
+      <div className="border-b border-border/80 px-4 py-5">
+        <p className="text-sm font-semibold tracking-tight text-foreground">ZYVOTRIX</p>
+        <p className="mt-0.5 text-xs font-medium text-muted-foreground">Administration</p>
+        <p className="mt-3 truncate rounded-md bg-muted/60 px-2 py-1.5 text-xs text-muted-foreground">
+          {user?.email}
+        </p>
       </div>
-      <nav className="flex-1 space-y-1 p-3">
+      <nav className="flex-1 space-y-0.5 p-3">
         {ADMIN_SECTIONS.map(({ id, label }) => {
           const Icon = sectionIcons[id];
           const isActive = active === id;
@@ -56,13 +58,13 @@ const AdminSidebar = ({ active, onChange, mobileOpen, onMobileClose }: AdminSide
                 onChange(id);
                 onMobileClose();
               }}
-              className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
+              className={`flex w-full cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 ${
                 isActive
-                  ? 'bg-primary text-primary-foreground'
-                  : 'text-foreground/80 hover:bg-muted hover:text-foreground'
+                  ? 'bg-primary text-primary-foreground shadow-sm'
+                  : 'text-muted-foreground hover:bg-muted hover:text-foreground'
               }`}
             >
-              <Icon className="h-4 w-4 shrink-0" />
+              <Icon className="h-4 w-4 shrink-0" aria-hidden />
               {label}
             </button>
           );
@@ -86,7 +88,7 @@ const AdminSidebar = ({ active, onChange, mobileOpen, onMobileClose }: AdminSide
 
   return (
     <>
-      <aside className="hidden w-64 shrink-0 border-r bg-card lg:block">{nav}</aside>
+      <aside className="hidden w-60 shrink-0 border-r border-border/80 bg-card lg:block">{nav}</aside>
       {mobileOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <button

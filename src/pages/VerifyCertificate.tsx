@@ -26,7 +26,7 @@ const VerifyCertificate = () => {
     setLoading(true);
     setResult(null);
     try {
-      const data = await apiClient.verifyAdminCertificate(certificateId.trim());
+      const data = await apiClient.verifyCertificate(certificateId.trim());
       setResult(data || 'invalid');
     } catch {
       setResult('invalid');

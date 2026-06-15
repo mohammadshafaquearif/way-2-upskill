@@ -101,6 +101,16 @@ const AdminDashboard = () => {
     contacts: 'Contact Leads',
   };
 
+  const sectionSubtitles: Record<AdminSection, string> = {
+    dashboard: 'Overview of learners, revenue, and recent activity',
+    learners: 'Manage profiles, programs, and enrollment status',
+    programs: 'Course catalog, pricing, and availability',
+    sessions: 'Schedule and manage live program sessions',
+    assignments: 'Review submissions and track learner progress',
+    certificates: 'Issue and verify program certificates',
+    contacts: 'Inbound leads from the contact form',
+  };
+
   const renderSection = () => {
     switch (section) {
       case 'dashboard':
@@ -137,7 +147,7 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-muted/20">
+    <div className="flex min-h-screen bg-background">
       <AdminSidebar
         active={section}
         onChange={setSection}
@@ -146,12 +156,12 @@ const AdminDashboard = () => {
       />
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-10 flex items-center justify-between gap-4 border-b bg-background/95 px-4 py-4 backdrop-blur sm:px-6">
+        <header className="sticky top-0 z-10 flex items-center justify-between gap-4 border-b border-border/80 bg-background/95 px-4 py-4 backdrop-blur supports-[backdrop-filter]:bg-background/80 sm:px-6">
           <div className="flex items-center gap-3">
             <AdminMobileToggle open={mobileOpen} onToggle={() => setMobileOpen((v) => !v)} />
             <div>
-              <h1 className="text-xl font-bold sm:text-2xl">{sectionTitles[section]}</h1>
-              <p className="text-xs text-muted-foreground sm:text-sm">Phase 1 — Launch admin panel</p>
+              <h1 className="text-xl font-semibold tracking-tight sm:text-2xl">{sectionTitles[section]}</h1>
+              <p className="text-sm text-muted-foreground">{sectionSubtitles[section]}</p>
             </div>
           </div>
           <Button variant="outline" size="sm" onClick={loadData} disabled={loading}>

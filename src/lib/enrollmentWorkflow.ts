@@ -66,9 +66,27 @@ export function saveEnrollmentSuccess(data: CompleteEnrollmentResult): void {
 
 export function hasVerifiedGuestAccess(programSlug: string): boolean {
   const data = loadEnrollmentSuccess();
-  if (!data?.success || !data.hasServerEnrollment) return false;
+  if (!data?.success || !data.hasServerEnrollment || !data.paymentId || !data.email) return false;
   const slug = data.programCode?.toLowerCase().replace(/\s+/g, '-') || '';
   return slug === programSlug.toLowerCase();
+}
+
+export async function verifyEnrollmentAccess(params: {
+  email: string;
+  paymentId: string;
+  programSlug: string;
+}): Promise<boolean> {
+  try {
+    const response = await fetch('/api/verify-enrollment-access', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(params),
+    });
+    const data = await response.json();
+    return Boolean(data.hasAccess);
+  } catch {
+    return false;
+  }
 }
 
 export function loadEnrollmentSuccess(): CompleteEnrollmentResult | null {

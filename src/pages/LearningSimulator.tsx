@@ -7,7 +7,10 @@ import { useAuth } from '@/contexts/AuthContext';
 import { apiClient } from '@/integrations/api/client';
 import { getCourseByCheckoutId } from '@/lib/courses';
 import { enrollmentGrantsAccess } from '@/lib/enrollmentAccess';
-import { hasVerifiedGuestAccess } from '@/lib/enrollmentWorkflow';
+import {
+  loadEnrollmentSuccess,
+  verifyEnrollmentAccess,
+} from '@/lib/enrollmentWorkflow';
 import {
   getSimulatorModules,
   getTotalLessons,
@@ -39,7 +42,6 @@ const LearningSimulator: React.FC = () => {
   const navigate = useNavigate();
   const { user, isAuthenticated } = useAuth();
   const simulatorUserKey = getSimulatorUserKey(user?.id);
-  const guestVerified = hasVerifiedGuestAccess(courseId);
   const [enrollmentVerified, setEnrollmentVerified] = useState(false);
   const [accessChecked, setAccessChecked] = useState(false);
 
@@ -47,7 +49,7 @@ const LearningSimulator: React.FC = () => {
   const modules = useMemo(() => getSimulatorModules(courseId), [courseId]);
   const totalLessons = useMemo(() => getTotalLessons(modules), [modules]);
 
-  const hasAccess = enrollmentVerified || guestVerified;
+  const hasAccess = enrollmentVerified;
 
   const [activeModule, setActiveModule] = useState<SimulatorModule>(modules[0]);
   const [activeLesson, setActiveLesson] = useState<SimulatorLesson>(modules[0].lessons[0]);
@@ -64,12 +66,23 @@ const LearningSimulator: React.FC = () => {
     let cancelled = false;
 
     const verifyAccess = async () => {
-      if (guestVerified) {
-        if (!cancelled) {
+      const guestEnrollment = loadEnrollmentSuccess();
+      if (
+        guestEnrollment?.success &&
+        guestEnrollment.hasServerEnrollment &&
+        guestEnrollment.paymentId &&
+        guestEnrollment.email
+      ) {
+        const verified = await verifyEnrollmentAccess({
+          email: guestEnrollment.email,
+          paymentId: guestEnrollment.paymentId,
+          programSlug: courseId,
+        });
+        if (!cancelled && verified) {
           setEnrollmentVerified(true);
           setAccessChecked(true);
+          return;
         }
-        return;
       }
 
       if (!isAuthenticated || !user) {
@@ -103,7 +116,7 @@ const LearningSimulator: React.FC = () => {
     return () => {
       cancelled = true;
     };
-  }, [course, courseId, guestVerified, isAuthenticated, user, navigate]);
+  }, [course, courseId, isAuthenticated, user, navigate]);
 
   useEffect(() => {
     if (!accessChecked || !course) return;

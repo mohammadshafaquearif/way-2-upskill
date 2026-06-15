@@ -3,14 +3,15 @@ import { Link } from 'react-router-dom';
 import { useLearnerProgram } from '@/hooks/useLearnerProgram';
 import { ACHIEVEMENT_BADGES } from '@/lib/lms/content';
 import { getLearnPath } from '@/lib/lms/utils';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { formatLmsSessionDate } from '@/lib/lmsUi';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import {
   Award,
   BookOpen,
-  Calendar,
+  CalendarOff,
   CheckCircle2,
   ClipboardList,
   Flame,
@@ -19,6 +20,7 @@ import {
   PlayCircle,
   TrendingUp,
   Video,
+  type LucideIcon,
 } from 'lucide-react';
 import InvoiceDownloadCard from '@/components/lms/InvoiceDownloadCard';
 
@@ -26,24 +28,40 @@ const StatCard = ({
   label,
   value,
   icon: Icon,
-  iconClass,
 }: {
   label: string;
   value: string;
-  icon: React.ElementType;
-  iconClass: string;
+  icon: LucideIcon;
 }) => (
-  <Card className="transition-shadow duration-200 hover:shadow-md">
+  <Card className="border-border/70 shadow-sm">
     <CardContent className="flex items-center gap-4 p-5">
-      <div className={`rounded-xl p-2.5 ${iconClass}`}>
-        <Icon className="h-5 w-5" />
+      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+        <Icon className="h-5 w-5" aria-hidden />
       </div>
-      <div>
-        <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{label}</p>
-        <p className="text-xl font-bold text-foreground">{value}</p>
+      <div className="min-w-0">
+        <p className="text-sm font-medium text-muted-foreground">{label}</p>
+        <p className="text-xl font-semibold tracking-tight text-foreground">{value}</p>
       </div>
     </CardContent>
   </Card>
+);
+
+const EmptyState = ({
+  icon: Icon,
+  title,
+  description,
+}: {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+}) => (
+  <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-border/80 bg-muted/30 px-6 py-10 text-center">
+    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-muted">
+      <Icon className="h-5 w-5 text-muted-foreground" aria-hidden />
+    </div>
+    <p className="mt-4 text-sm font-medium text-foreground">{title}</p>
+    <p className="mt-1 max-w-xs text-sm text-muted-foreground">{description}</p>
+  </div>
 );
 
 const LMSDashboard = () => {
@@ -58,75 +76,77 @@ const LMSDashboard = () => {
 
   return (
     <div className="mx-auto max-w-6xl space-y-6">
-      {/* Welcome */}
-      <Card className="overflow-hidden border-primary/20 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+      <Card className="border-border/70 shadow-sm">
         <CardContent className="p-6 sm:p-8">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div className="space-y-3">
-              <p className="text-sm font-medium text-primary">Welcome back</p>
-              <h1 className="text-2xl font-bold sm:text-3xl">
-                Hi {user?.firstName}
-              </h1>
-              <p className="max-w-lg text-sm text-muted-foreground sm:text-base">
-                {learnerState.programTitle}
-              </p>
-              <div className="flex flex-wrap items-center gap-3">
-                <Badge variant="secondary" className="gap-1">
-                  <Flame className="h-3 w-3 text-orange-500" />
-                  {learnerState.streak} Day Streak
+              <p className="text-sm font-medium text-muted-foreground">Welcome back</p>
+              <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+                Hi, {user?.firstName}
+              </h2>
+              <p className="max-w-lg text-sm text-muted-foreground">{learnerState.programTitle}</p>
+              <div className="flex flex-wrap items-center gap-2">
+                <Badge variant="outline" className="gap-1 border-emerald-200 bg-emerald-50 font-medium text-emerald-700">
+                  <Flame className="h-3 w-3" aria-hidden />
+                  {learnerState.streak} day streak
                 </Badge>
-                {learnerState.currentModule && (
-                  <Badge variant="outline">
-                    Current: Module {learnerState.currentModule.id}
+                {learnerState.currentModule ? (
+                  <Badge variant="outline" className="font-medium">
+                    Module {learnerState.currentModule.id}
                   </Badge>
-                )}
+                ) : null}
               </div>
             </div>
-            <div className="w-full sm:w-64">
+            <div className="w-full sm:w-56">
               <div className="mb-2 flex justify-between text-sm">
-                <span className="font-medium">Progress</span>
-                <span className="font-bold text-primary">{learnerState.progress}%</span>
+                <span className="font-medium text-muted-foreground">Overall progress</span>
+                <span className="font-semibold text-foreground">{learnerState.progress}%</span>
               </div>
-              <Progress value={learnerState.progress} className="h-3" />
+              <Progress value={learnerState.progress} className="h-2" />
             </div>
           </div>
         </CardContent>
       </Card>
 
-      {/* Quick Stats */}
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-5">
-        <StatCard label="My Program" value={learnerState.programCode} icon={BookOpen} iconClass="bg-primary/10 text-primary" />
-        <StatCard label="Completion" value={`${learnerState.progress}%`} icon={TrendingUp} iconClass="bg-green-100 text-green-600 dark:bg-green-950 dark:text-green-400" />
-        <StatCard label="Assignments" value={`${learnerState.pendingAssignments} Pending`} icon={ClipboardList} iconClass="bg-amber-100 text-amber-600 dark:bg-amber-950 dark:text-amber-400" />
-        <StatCard label="Projects" value={`${learnerState.submittedProjects} Submitted`} icon={FolderKanban} iconClass="bg-blue-100 text-blue-600 dark:bg-blue-950 dark:text-blue-400" />
+        <StatCard label="My Program" value={learnerState.programCode} icon={BookOpen} />
+        <StatCard label="Completion" value={`${learnerState.progress}%`} icon={TrendingUp} />
+        <StatCard
+          label="Assignments"
+          value={`${learnerState.pendingAssignments} pending`}
+          icon={ClipboardList}
+        />
+        <StatCard
+          label="Projects"
+          value={`${learnerState.submittedProjects} submitted`}
+          icon={FolderKanban}
+        />
         <StatCard
           label="Certificate"
           value={learnerState.certificateLocked ? 'Locked' : 'Ready'}
           icon={learnerState.certificateLocked ? Lock : Award}
-          iconClass={learnerState.certificateLocked ? 'bg-muted text-muted-foreground' : 'bg-yellow-100 text-yellow-600 dark:bg-yellow-950 dark:text-yellow-400'}
         />
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        {/* Continue Learning */}
-        <Card className="border-primary/30 transition-shadow duration-200 hover:shadow-lg">
+        <Card className="border-border/70 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="flex items-center gap-2 text-lg">
-              <PlayCircle className="h-5 w-5 text-primary" />
-              Continue Learning
-            </CardTitle>
+            <CardTitle className="text-base font-semibold">Continue Learning</CardTitle>
+            <CardDescription>Pick up where you left off</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-primary">
+              <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
                 Module {learnerState.currentModule?.id}
               </p>
-              <p className="text-xl font-bold">{learnerState.currentModuleTitle}</p>
+              <p className="mt-1 text-lg font-semibold text-foreground">
+                {learnerState.currentModuleTitle}
+              </p>
             </div>
-            <div className="rounded-lg bg-muted/60 p-3">
+            <div className="rounded-lg border border-border/60 bg-muted/40 px-4 py-3">
               <p className="text-xs font-medium text-muted-foreground">Last watched</p>
-              <p className="flex items-center gap-2 text-sm font-medium">
-                <Video className="h-4 w-4 text-primary" />
+              <p className="mt-1 flex items-center gap-2 text-sm font-medium text-foreground">
+                <Video className="h-4 w-4 shrink-0 text-primary" aria-hidden />
                 {learnerState.lastWatchedLesson}
               </p>
             </div>
@@ -136,107 +156,126 @@ const LMSDashboard = () => {
           </CardContent>
         </Card>
 
-        {/* Upcoming Session */}
-        {upcomingSession && (
-          <Card className="transition-shadow duration-200 hover:shadow-md">
-            <CardHeader className="pb-3">
-              <CardTitle className="flex items-center gap-2 text-lg">
-                <Calendar className="h-5 w-5 text-primary" />
-                Upcoming Live Session
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-lg font-bold">{upcomingSession.title}</p>
-              <div className="grid grid-cols-2 gap-3 text-sm">
-                <div className="rounded-lg bg-muted/60 p-3">
-                  <p className="text-xs text-muted-foreground">Date</p>
-                  <p className="font-semibold">{new Date(upcomingSession.sessionDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'long' })}</p>
+        <Card className="border-border/70 shadow-sm">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base font-semibold">Upcoming Live Session</CardTitle>
+            <CardDescription>Your next scheduled mentor session</CardDescription>
+          </CardHeader>
+          <CardContent>
+            {!upcomingSession ? (
+              <EmptyState
+                icon={CalendarOff}
+                title="No session scheduled"
+                description="Check the Live Sessions page for your full schedule."
+              />
+            ) : (
+              <div className="space-y-4">
+                <p className="text-lg font-semibold text-foreground">{upcomingSession.title}</p>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="rounded-lg border border-border/60 bg-muted/40 px-4 py-3">
+                    <p className="text-xs font-medium text-muted-foreground">Date</p>
+                    <p className="mt-1 text-sm font-semibold text-foreground">
+                      {formatLmsSessionDate(upcomingSession.sessionDate)}
+                    </p>
+                  </div>
+                  <div className="rounded-lg border border-border/60 bg-muted/40 px-4 py-3">
+                    <p className="text-xs font-medium text-muted-foreground">Time</p>
+                    <p className="mt-1 text-sm font-semibold text-foreground">
+                      {upcomingSession.sessionTime}
+                    </p>
+                  </div>
                 </div>
-                <div className="rounded-lg bg-muted/60 p-3">
-                  <p className="text-xs text-muted-foreground">Time</p>
-                  <p className="font-semibold">{upcomingSession.sessionTime}</p>
-                </div>
+                <p className="text-sm text-muted-foreground">
+                  Mentor:{' '}
+                  <span className="font-medium text-foreground">{upcomingSession.mentorName}</span>
+                </p>
+                {upcomingSession.meetLink ? (
+                  <Button asChild variant="outline" className="w-full cursor-pointer">
+                    <a href={upcomingSession.meetLink} target="_blank" rel="noopener noreferrer">
+                      Join Session
+                    </a>
+                  </Button>
+                ) : null}
               </div>
-              <p className="text-sm text-muted-foreground">
-                Mentor: <span className="font-medium text-foreground">{upcomingSession.mentorName}</span>
-              </p>
-              {upcomingSession.meetLink && (
-                <Button asChild variant="outline" className="w-full cursor-pointer">
-                  <a href={upcomingSession.meetLink} target="_blank" rel="noopener noreferrer">
-                    Join Session
-                  </a>
-                </Button>
-              )}
-            </CardContent>
-          </Card>
-        )}
+            )}
+          </CardContent>
+        </Card>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
-        {/* Current Assignment */}
-        {pendingAssignment && (
-          <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-lg">Current Assignment</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <p className="font-semibold">{pendingAssignment.title}</p>
-              <p className="text-sm text-muted-foreground">{pendingAssignment.description}</p>
-              <div className="flex items-center justify-between">
-                <Badge variant="secondary">Pending</Badge>
-                <Button asChild size="sm" variant="outline" className="cursor-pointer">
-                  <Link to="/dashboard/assignments">View Assignment</Link>
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        )}
+      {(pendingAssignment || activeProject) && (
+        <div className="grid gap-6 lg:grid-cols-2">
+          {pendingAssignment ? (
+            <Card className="border-border/70 shadow-sm">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-base font-semibold">Current Assignment</CardTitle>
+                <CardDescription>Pending submission</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <p className="font-semibold text-foreground">{pendingAssignment.title}</p>
+                <p className="text-sm text-muted-foreground">{pendingAssignment.description}</p>
+                <div className="flex items-center justify-between gap-3 pt-1">
+                  <Badge variant="outline" className="border-amber-200 bg-amber-50 font-medium text-amber-700">
+                    Pending
+                  </Badge>
+                  <Button asChild size="sm" variant="outline" className="cursor-pointer">
+                    <Link to="/dashboard/assignments">View Assignment</Link>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          ) : null}
 
-        {/* Project Tracker */}
-        {activeProject && (
-          <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-lg">Project Tracker</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <p className="font-semibold">{activeProject.title}</p>
-              <p className="text-sm text-muted-foreground">{activeProject.description}</p>
-              <div className="flex items-center justify-between">
-                <Badge className="bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-300">In Progress</Badge>
-                <Button asChild size="sm" variant="outline" className="cursor-pointer">
-                  <Link to="/dashboard/projects">View Project</Link>
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        )}
-      </div>
+          {activeProject ? (
+            <Card className="border-border/70 shadow-sm">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-base font-semibold">Project Tracker</CardTitle>
+                <CardDescription>Active hands-on project</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <p className="font-semibold text-foreground">{activeProject.title}</p>
+                <p className="text-sm text-muted-foreground">{activeProject.description}</p>
+                <div className="flex items-center justify-between gap-3 pt-1">
+                  <Badge variant="outline" className="border-blue-200 bg-blue-50 font-medium text-blue-700">
+                    In progress
+                  </Badge>
+                  <Button asChild size="sm" variant="outline" className="cursor-pointer">
+                    <Link to="/dashboard/projects">View Project</Link>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          ) : null}
+        </div>
+      )}
 
-      {/* Achievement Badges */}
-      <Card>
+      <Card className="border-border/70 shadow-sm">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-lg">
-            <Award className="h-5 w-5 text-primary" />
-            Achievement Badges
-          </CardTitle>
+          <CardTitle className="text-base font-semibold">Achievement Badges</CardTitle>
+          <CardDescription>Milestones unlocked as you progress</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
             {ACHIEVEMENT_BADGES.map((badge) => (
               <div
                 key={badge.id}
-                className={`rounded-xl border p-4 text-center transition-colors duration-200 ${
-                  badge.unlocked ? 'border-primary/20 bg-primary/5' : 'border-muted bg-muted/30 opacity-60'
+                className={`rounded-lg border p-4 text-center transition-colors duration-200 ${
+                  badge.unlocked
+                    ? 'border-primary/20 bg-primary/5'
+                    : 'border-border/60 bg-muted/30 opacity-70'
                 }`}
               >
-                <div className={`mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full ${badge.unlocked ? 'bg-primary/10' : 'bg-muted'}`}>
+                <div
+                  className={`mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full ${
+                    badge.unlocked ? 'bg-primary/10 text-primary' : 'bg-muted text-muted-foreground'
+                  }`}
+                >
                   {badge.unlocked ? (
-                    <CheckCircle2 className="h-5 w-5 text-primary" />
+                    <CheckCircle2 className="h-5 w-5" aria-hidden />
                   ) : (
-                    <Lock className="h-4 w-4 text-muted-foreground" />
+                    <Lock className="h-4 w-4" aria-hidden />
                   )}
                 </div>
-                <p className="text-xs font-semibold leading-tight">{badge.title}</p>
+                <p className="text-xs font-medium leading-tight text-foreground">{badge.title}</p>
               </div>
             ))}
           </div>

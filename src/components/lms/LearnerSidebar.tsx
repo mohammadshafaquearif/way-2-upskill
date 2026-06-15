@@ -56,13 +56,15 @@ const LearnerSidebar = ({ programCode, mobileOpen, onMobileClose }: LearnerSideb
 
   const nav = (
     <div className="flex h-full flex-col">
-      <div className="border-b px-4 py-5">
-        <p className="text-xs font-semibold uppercase tracking-wider text-primary">Zyvotrix</p>
-        <h2 className="text-lg font-bold">Learning OS</h2>
-        {programCode && (
-          <p className="mt-1 text-xs font-medium text-primary">{programCode} Program</p>
-        )}
-        <p className="mt-1 truncate text-xs text-muted-foreground">{user?.email}</p>
+      <div className="border-b border-border/80 px-4 py-5">
+        <p className="text-sm font-semibold tracking-tight text-foreground">ZYVOTRIX</p>
+        <p className="mt-0.5 text-xs font-medium text-muted-foreground">Learning Platform</p>
+        {programCode ? (
+          <p className="mt-3 text-xs font-medium text-primary">{programCode} Program</p>
+        ) : null}
+        <p className="mt-2 truncate rounded-md bg-muted/60 px-2 py-1.5 text-xs text-muted-foreground">
+          {user?.email}
+        </p>
       </div>
 
       <nav className="flex-1 space-y-0.5 overflow-y-auto p-3">
@@ -74,25 +76,25 @@ const LearnerSidebar = ({ programCode, mobileOpen, onMobileClose }: LearnerSideb
               key={id}
               to={path}
               onClick={onMobileClose}
-              className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors duration-200 ${
+              className={`flex w-full cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 ${
                 active
-                  ? 'bg-primary text-primary-foreground'
-                  : 'text-foreground/80 hover:bg-muted hover:text-foreground'
+                  ? 'bg-primary text-primary-foreground shadow-sm'
+                  : 'text-muted-foreground hover:bg-muted hover:text-foreground'
               }`}
             >
-              <Icon className="h-4 w-4 shrink-0" />
+              <Icon className="h-4 w-4 shrink-0" aria-hidden />
               <span className="flex-1">{label}</span>
-              {badge && (
+              {badge ? (
                 <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary">
                   {badge}
                 </span>
-              )}
+              ) : null}
             </Link>
           );
         })}
       </nav>
 
-      <div className="space-y-2 border-t p-3">
+      <div className="space-y-2 border-t border-border/80 p-3">
         <Button variant="outline" className="w-full justify-start" asChild>
           <Link to="/">Back to site</Link>
         </Button>
@@ -110,8 +112,8 @@ const LearnerSidebar = ({ programCode, mobileOpen, onMobileClose }: LearnerSideb
 
   return (
     <>
-      <aside className="hidden w-64 shrink-0 border-r bg-card lg:block">{nav}</aside>
-      {mobileOpen && (
+      <aside className="hidden w-60 shrink-0 border-r border-border/80 bg-card lg:block">{nav}</aside>
+      {mobileOpen ? (
         <div className="fixed inset-0 z-50 lg:hidden">
           <button
             type="button"
@@ -121,7 +123,7 @@ const LearnerSidebar = ({ programCode, mobileOpen, onMobileClose }: LearnerSideb
           />
           <aside className="relative h-full w-72 max-w-[85vw] bg-card shadow-xl">{nav}</aside>
         </div>
-      )}
+      ) : null}
     </>
   );
 };

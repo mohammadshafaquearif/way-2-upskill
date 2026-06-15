@@ -114,6 +114,10 @@ class ApiClient {
     return db.getUserCourses(userId);
   }
 
+  async verifyCertificate(certificateId: string) {
+    return db.verifyPublicCertificate(certificateId);
+  }
+
   async signIn(email: string, password: string) {
     return db.signIn(email, password);
   }

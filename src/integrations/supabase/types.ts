@@ -498,6 +498,7 @@ export type Database = {
           course_id: string | null
           program_code: string | null
           completion_date: string
+          status: string | null
           created_at: string
         }
         Insert: {
@@ -508,6 +509,7 @@ export type Database = {
           course_id?: string | null
           program_code?: string | null
           completion_date: string
+          status?: string | null
           created_at?: string
         }
         Update: {
@@ -518,6 +520,7 @@ export type Database = {
           course_id?: string | null
           program_code?: string | null
           completion_date?: string
+          status?: string | null
           created_at?: string
         }
         Relationships: [
@@ -539,7 +542,16 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      certificates_public: {
+        Row: {
+          certificate_id: string
+          student_name: string
+          program_code: string | null
+          completion_date: string
+          status: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       is_admin: {

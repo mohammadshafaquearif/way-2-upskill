@@ -478,4 +478,14 @@ export const db = {
 
     return { courses, hasCancelledEnrollment };
   },
+
+  async verifyPublicCertificate(certificateId: string) {
+    const { data, error } = await supabase
+      .from('certificates_public')
+      .select('certificate_id, student_name, program_code, completion_date, status')
+      .eq('certificate_id', certificateId.trim())
+      .maybeSingle();
+    if (error) throw new Error(error.message);
+    return data;
+  },
 };

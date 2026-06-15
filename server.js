@@ -7,7 +7,9 @@ import { handleSendEmailRequest } from './server/sendEmail.mjs';
 import { handleCreateOrderRequest, handleVerifyPaymentRequest, handleRazorpayWebhook } from './server/razorpay.mjs';
 import { handleCompleteEnrollmentRequest } from './server/enrollmentWorkflow.mjs';
 import { handleDownloadInvoiceRequest } from './server/invoiceHandler.mjs';
+import { handleVerifyEnrollmentAccessRequest } from './server/verifyEnrollmentAccess.mjs';
 import { getRazorpayMode } from './server/razorpayConfig.mjs';
+import { guardApiRequest } from './server/security.mjs';
 
 // Load environment variables
 dotenv.config();
@@ -39,6 +41,23 @@ app.use(
     },
   }),
 );
+
+app.use((req, res, next) => {
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+  next();
+});
+
+function applyApiGuard(req, res, rateKey, maxRequests) {
+  const guard = guardApiRequest(req, { rateKey, maxRequests });
+  if (guard) {
+    res.status(guard.status).json(guard.body);
+    return false;
+  }
+  return true;
+}
 
 // Razorpay webhook — must use raw body (before express.json())
 app.post('/api/razorpay-webhook', express.raw({ type: 'application/json' }), async (req, res) => {
@@ -76,7 +95,9 @@ const query = async (text, params) => {
   try {
     const res = await pool.query(text, params);
     const duration = Date.now() - start;
-    console.log('📊 Query executed:', { text, duration, rows: res.rowCount });
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('📊 Query executed:', { duration, rows: res.rowCount });
+    }
     return res;
   } catch (error) {
     console.error('❌ Query error:', error);
@@ -159,7 +180,8 @@ async function getUserByEmailHandler(req, res) {
     if (result.rows.length === 0) {
       res.status(404).json({ error: 'User not found' });
     } else {
-      res.json(result.rows[0]);
+      const { password_hash: _passwordHash, ...safeUser } = result.rows[0];
+      res.json(safeUser);
     }
   } catch (error) {
     console.error('Error fetching user:', error);
@@ -193,25 +215,36 @@ app.post('/api/contacts', async (req, res) => {
 
 // Resend transactional email (local dev — production uses /api/send-email on Vercel)
 app.post('/api/send-email', async (req, res) => {
+  if (!applyApiGuard(req, res, 'send-email', 10)) return;
   const result = await handleSendEmailRequest(req.body);
   res.status(result.status).json(result.body);
 });
 
 // Razorpay — create order (local dev — production uses /api/create-order on Vercel)
 app.post('/api/create-order', async (req, res) => {
+  if (!applyApiGuard(req, res, 'create-order', 15)) return;
   const result = await handleCreateOrderRequest(req.body);
   res.status(result.status).json(result.body);
 });
 
 // Razorpay — verify payment signature
 app.post('/api/verify-payment', async (req, res) => {
+  if (!applyApiGuard(req, res, 'verify-payment', 20)) return;
   const result = await handleVerifyPaymentRequest(req.body);
   res.status(result.status).json(result.body);
 });
 
 // Post-payment enrollment workflow (verify + enroll + email + admin notify)
 app.post('/api/complete-enrollment', async (req, res) => {
+  if (!applyApiGuard(req, res, 'complete-enrollment', 10)) return;
   const result = await handleCompleteEnrollmentRequest(req.body);
+  res.status(result.status).json(result.body);
+});
+
+// Verify paid enrollment access (guest learning portal)
+app.post('/api/verify-enrollment-access', async (req, res) => {
+  if (!applyApiGuard(req, res, 'verify-enrollment-access', 30)) return;
+  const result = await handleVerifyEnrollmentAccessRequest(req.body);
   res.status(result.status).json(result.body);
 });
 
