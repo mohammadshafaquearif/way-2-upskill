@@ -150,7 +150,7 @@ export const db = {
   },
 
   async resetPassword(email: string) {
-    const redirectTo = `${window.location.origin}/`;
+    const redirectTo = `${window.location.origin}/reset-password`;
     const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo });
     if (error) throw new Error(error.message);
   },

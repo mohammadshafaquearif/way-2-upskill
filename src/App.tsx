@@ -32,6 +32,7 @@ import LMSCertificate from "./pages/lms/LMSCertificate";
 import LMSProfile from "./pages/lms/LMSProfile";
 import Checkout from "./pages/Checkout";
 import LearningSimulator from "./pages/LearningSimulator";
+import ResetPassword from "./pages/ResetPassword";
 import EnrollmentSuccess from "./pages/EnrollmentSuccess";
 import NotFound from "./pages/NotFound";
 import Resources from "./pages/Resources";
@@ -80,6 +81,7 @@ const App = () => (
             <Route path="/proifle" element={<Navigate to="/profile" replace />} />
             <Route path="/profie" element={<Navigate to="/profile" replace />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/dashboarsd" element={<Navigate to="/dashboard" replace />} />
             <Route path="/dashboard" element={<LMSLayout />}>
               <Route index element={<LMSDashboard />} />
