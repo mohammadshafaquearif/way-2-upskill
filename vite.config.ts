@@ -26,24 +26,41 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    chunkSizeWarningLimit: 600,
+    chunkSizeWarningLimit: 1200,
     rollupOptions: {
       output: {
         manualChunks(id) {
           if (!id.includes('node_modules')) return;
 
-          if (id.includes('@radix-ui')) return 'radix-ui';
+          // Only split libs that do NOT depend on React at module init.
+          // Splitting React away from UI libs causes:
+          // "Cannot read properties of undefined (reading 'createContext')"
           if (id.includes('@supabase')) return 'supabase';
-          if (id.includes('@tanstack')) return 'react-query';
-          if (id.includes('recharts') || id.includes('d3-')) return 'charts';
-          if (id.includes('lucide-react')) return 'icons';
+
           if (
-            id.includes('react-dom') ||
+            id.includes('react') ||
+            id.includes('scheduler') ||
+            id.includes('use-sync-external-store') ||
+            id.includes('@radix-ui') ||
+            id.includes('@tanstack') ||
             id.includes('react-router') ||
-            id.includes('/react/')
+            id.includes('sonner') ||
+            id.includes('next-themes') ||
+            id.includes('lucide-react') ||
+            id.includes('recharts') ||
+            id.includes('d3-') ||
+            id.includes('vaul') ||
+            id.includes('cmdk') ||
+            id.includes('embla') ||
+            id.includes('@hookform') ||
+            id.includes('react-hook-form') ||
+            id.includes('react-day-picker') ||
+            id.includes('react-resizable') ||
+            id.includes('input-otp')
           ) {
             return 'react-vendor';
           }
+
           return 'vendor';
         },
       },
