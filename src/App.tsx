@@ -31,6 +31,7 @@ const LMSDashboard = lazy(() => import("./pages/lms/LMSDashboard"));
 const LMSCurriculum = lazy(() => import("./pages/lms/LMSCurriculum"));
 const LMSModuleDetail = lazy(() => import("./pages/lms/LMSModuleDetail"));
 const LMSQuiz = lazy(() => import("./pages/lms/LMSQuiz"));
+const LMSQuizScorecard = lazy(() => import("./pages/lms/LMSQuizScorecard"));
 const LMSLiveSessions = lazy(() => import("./pages/lms/LMSLiveSessions"));
 const LMSAssignments = lazy(() => import("./pages/lms/LMSAssignments"));
 const LMSProjects = lazy(() => import("./pages/lms/LMSProjects"));
@@ -101,6 +102,10 @@ const App = () => (
                 <Route path="curriculum/:moduleId" element={<LMSModuleDetail />} />
                 <Route path="curriculum/:moduleId/quiz/:quizId" element={<LMSQuiz />} />
                 <Route path="curriculum/:moduleId/quiz" element={<LMSQuiz />} />
+                <Route
+                  path="curriculum/:moduleId/quiz/:quizId/attempt/:attemptId"
+                  element={<LMSQuizScorecard />}
+                />
                 <Route path="sessions" element={<LMSLiveSessions />} />
                 <Route path="assignments" element={<LMSAssignments />} />
                 <Route path="projects" element={<LMSProjects />} />

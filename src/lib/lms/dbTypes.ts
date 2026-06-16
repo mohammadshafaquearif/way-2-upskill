@@ -113,6 +113,23 @@ export interface QuizAttemptSummary {
   canRetry: boolean;
 }
 
+export interface DbQuizAttempt {
+  id: string;
+  quiz_id: string;
+  user_id: string;
+  score: number;
+  passed: boolean;
+  answers: Record<string, string>;
+  submitted_at: string | null;
+}
+
+export interface DbQuizAttemptListItem {
+  id: string;
+  score: number;
+  passed: boolean;
+  submitted_at: string | null;
+}
+
 export interface DbModuleProgress {
   module_id: string;
   module_number?: number;

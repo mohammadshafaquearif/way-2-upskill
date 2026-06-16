@@ -84,6 +84,7 @@ const LMSQuiz = () => {
     attemptsUsed: number;
     attemptsRemaining: number;
     canRetry: boolean;
+    attemptId: string;
     timedOut?: boolean;
   } | null>(null);
 
@@ -232,6 +233,7 @@ const LMSQuiz = () => {
           attemptsUsed: res.attemptsUsed,
           attemptsRemaining: res.attemptsRemaining,
           canRetry: res.canRetry,
+          attemptId: res.attemptId,
           timedOut: options?.timedOut,
         });
         setSummary({
@@ -744,6 +746,11 @@ const LMSQuiz = () => {
               </p>
             </div>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
+              <Button asChild variant="outline">
+                <Link to={`/dashboard/curriculum/${module.id}/quiz/${quiz.id}/attempt/${result.attemptId}`}>
+                  View scorecard
+                </Link>
+              </Button>
               {result.canRetry && (
                 <Button variant="outline" onClick={handleRetry}>
                   <RotateCcw className="mr-2 h-4 w-4" />

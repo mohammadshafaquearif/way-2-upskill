@@ -7,6 +7,8 @@ import type {
   DbModuleTopic,
   DbProgramModule,
   DbProgramPhase,
+  DbQuizAttempt,
+  DbQuizAttemptListItem,
   DbQuiz,
   DbQuizQuestion,
   LearnerOverview,
@@ -438,6 +440,46 @@ export const lmsDb = {
       bestPassed: updated.bestPassed,
       canRetry: updated.canRetry,
     };
+  },
+
+  async getQuizAttempt(attemptId: string): Promise<DbQuizAttempt | null> {
+    const { data, error } = await supabase
+      .from('quiz_attempts')
+      .select('id, quiz_id, user_id, score, passed, answers, submitted_at')
+      .eq('id', attemptId)
+      .maybeSingle();
+
+    if (error) throw new Error(error.message);
+    if (!data) return null;
+
+    return {
+      id: data.id as string,
+      quiz_id: data.quiz_id as string,
+      user_id: data.user_id as string,
+      score: Number(data.score) || 0,
+      passed: data.passed === true,
+      answers: (data.answers as Record<string, string>) ?? {},
+      submitted_at: (data.submitted_at as string) ?? null,
+    };
+  },
+
+  async listQuizAttempts(userId: string, quizId: string): Promise<DbQuizAttemptListItem[]> {
+    const { data, error } = await supabase
+      .from('quiz_attempts')
+      .select('id, score, passed, submitted_at')
+      .eq('quiz_id', quizId)
+      .eq('user_id', userId)
+      .not('submitted_at', 'is', null)
+      .order('submitted_at', { ascending: false });
+
+    if (error) throw new Error(error.message);
+
+    return (data ?? []).map((row) => ({
+      id: row.id as string,
+      score: Number(row.score) || 0,
+      passed: row.passed === true,
+      submitted_at: (row.submitted_at as string) ?? null,
+    }));
   },
 
   async markAssetComplete(userId: string, assetId: string): Promise<void> {
