@@ -79,6 +79,17 @@ export default {
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
+      backgroundImage: {
+        'liquid': [
+          'radial-gradient(1200px 700px at 10% 10%, hsl(var(--liquid-blob-1) / 0.14), transparent 55%)',
+          'radial-gradient(900px 600px at 85% 20%, hsl(var(--liquid-blob-2) / 0.14), transparent 55%)',
+          'radial-gradient(900px 700px at 50% 95%, hsl(var(--liquid-blob-3) / 0.10), transparent 60%)',
+          'linear-gradient(to bottom, transparent, hsl(var(--background)))',
+        ].join(', '),
+      },
+      boxShadow: {
+        'glass': '0 10px 30px -12px hsl(var(--primary) / 0.25), 0 2px 10px -6px rgb(15 23 42 / 0.18)',
+      },
 			keyframes: {
 				'accordion-down': {
 					from: {

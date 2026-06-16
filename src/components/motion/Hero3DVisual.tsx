@@ -22,7 +22,15 @@ const ProgramThumb = ({
   area: string;
 }) => (
   <DepthCard className={`hero-bento-thumb ${area}`} maxTilt={6}>
-    <img src={src} alt={alt} className="h-full w-full object-cover" loading="lazy" />
+    <img
+      src={src}
+      alt={alt}
+      className="h-full w-full object-cover"
+      loading="lazy"
+      decoding="async"
+      width={480}
+      height={360}
+    />
     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-brand-950/75 via-brand-950/10 to-transparent" />
     <span className="hero-bento-label">{label}</span>
   </DepthCard>
@@ -41,6 +49,10 @@ const Hero3DVisual = () => (
           alt="Learners collaborating on tech projects at Zyvotrix"
           className="h-full w-full object-cover"
           loading="eager"
+          decoding="async"
+          fetchPriority="high"
+          width={1400}
+          height={933}
         />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-brand-950/85 via-brand-950/20 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 flex flex-wrap items-end justify-between gap-2 p-3 sm:gap-3 sm:p-4">
@@ -59,7 +71,15 @@ const Hero3DVisual = () => (
                   className="h-7 w-7 overflow-hidden rounded-full border-2 border-white/40 shadow-lg sm:h-9 sm:w-9"
                   style={{ zIndex: 3 - i }}
                 >
-                  <img src={src} alt="" className="h-full w-full object-cover" />
+                  <img
+                    src={src}
+                    alt=""
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    width={144}
+                    height={144}
+                  />
                 </div>
               ),
             )}

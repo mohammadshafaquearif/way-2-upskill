@@ -80,6 +80,10 @@ const DomainGallery3D = () => {
                 src={current.image}
                 alt={`${current.title} program at Zyvotrix`}
                 className="aspect-[4/3] w-full object-cover transition-opacity duration-500"
+                loading="lazy"
+                decoding="async"
+                width={1200}
+                height={900}
               />
               <div className={`absolute inset-0 bg-gradient-to-t ${current.color} mix-blend-multiply`} />
               <div className="absolute inset-0 bg-gradient-to-t from-brand-950/90 via-brand-950/20 to-transparent" />
@@ -103,6 +107,8 @@ const DomainGallery3D = () => {
                 key={domain.title}
                 type="button"
                 onClick={() => setActive(i)}
+                aria-label={`Show ${domain.title} learning path`}
+                aria-pressed={active === i}
                 className={`gallery-3d-thumb group relative overflow-hidden rounded-2xl border-2 text-left transition-all duration-300 ${
                   active === i
                     ? 'border-primary shadow-lg shadow-primary/20 scale-[1.02]'
@@ -114,6 +120,9 @@ const DomainGallery3D = () => {
                   alt={domain.title}
                   className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-110"
                   loading="lazy"
+                  decoding="async"
+                  width={800}
+                  height={500}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-950/80 to-transparent" />
                 <span className="absolute bottom-2 left-3 text-sm font-bold text-white">{domain.title}</span>

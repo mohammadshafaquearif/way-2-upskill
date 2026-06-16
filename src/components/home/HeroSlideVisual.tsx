@@ -22,7 +22,15 @@ const HeroSlideVisual = ({ image, imageAlt, accents, wide }: HeroSlideVisualProp
       </div>
     ))}
     <div className={`hero-slide-photo-wrap${wide ? ' hero-slide-photo-wrap--wide' : ''}`}>
-      <img src={image} alt={imageAlt} className="hero-slide-photo" loading="eager" />
+      <img
+        src={image}
+        alt={imageAlt}
+        className="hero-slide-photo"
+        loading="lazy"
+        decoding="async"
+        width={1200}
+        height={800}
+      />
     </div>
   </div>
 );
