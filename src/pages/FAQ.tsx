@@ -8,8 +8,7 @@ import PageCta from '@/components/PageCta';
 import FAQList from '@/components/FAQList';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { FAQS, FAQ_CATEGORIES, type FaqCategory } from '@/lib/faqs';
-import { Button } from '@/components/ui/button';
-import { MessageCircle, Search } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 
 const FAQ = () => {
@@ -103,22 +102,6 @@ const FAQ = () => {
                 for help.
               </p>
             )}
-          </div>
-
-          <div className="mx-auto mt-14 max-w-2xl overflow-hidden rounded-3xl border border-primary/15 bg-gradient-to-br from-primary/5 via-card to-secondary/5 p-8 text-center shadow-lg">
-            <MessageCircle className="mx-auto mb-4 h-10 w-10 text-primary" />
-            <h2 className="mb-2 text-xl font-bold">Still have questions?</h2>
-            <p className="mb-6 text-muted-foreground">
-              Our team is happy to help you choose the right program.
-            </p>
-            <div className="flex flex-col justify-center gap-3 sm:flex-row">
-              <Button asChild className="btn-brand">
-                <Link to="/contact">Contact Us</Link>
-              </Button>
-              <Button asChild variant="outline" className="border-primary/30 text-primary">
-                <Link to="/courses">Browse Programs</Link>
-              </Button>
-            </div>
           </div>
         </div>
       </section>

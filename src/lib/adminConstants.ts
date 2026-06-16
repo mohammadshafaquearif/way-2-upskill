@@ -1,4 +1,4 @@
-import type { ContactLeadStatus, EnrollmentStatus, LearnerStatus } from '@/lib/adminTypes';
+import type { AdminSection, ContactLeadStatus, EnrollmentStatus, LearnerStatus } from '@/lib/adminTypes';
 
 export const PROGRAM_CODES = ['DOP', 'AAC', 'AWS', 'DSP'] as const;
 
@@ -56,3 +56,14 @@ export const ADMIN_SECTIONS = [
   { id: 'certificates', label: 'Certificates' },
   { id: 'contacts', label: 'Contact Leads' },
 ] as const;
+
+export function adminSectionFromPath(pathname: string): AdminSection {
+  const slug = pathname.replace(/^\/admin\/?/, '').split('/')[0];
+  if (!slug) return 'dashboard';
+  const match = ADMIN_SECTIONS.find((s) => s.id === slug);
+  return match ? (match.id as AdminSection) : 'dashboard';
+}
+
+export function adminPathForSection(section: AdminSection): string {
+  return section === 'dashboard' ? '/admin' : `/admin/${section}`;
+}

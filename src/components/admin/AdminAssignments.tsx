@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Upload } from 'lucide-react';
+import { Trash2, Upload } from 'lucide-react';
 import { apiClient } from '@/integrations/api/client';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
@@ -133,7 +133,14 @@ const AdminAssignments = ({ assignments, submissions, programs, onRefresh }: Adm
                 </tr>
               </thead>
               <tbody>
-                {assignments.map((a) => (
+                {assignments.length === 0 ? (
+                  <tr>
+                    <td colSpan={5} className="px-4 py-8 text-center text-muted-foreground">
+                      No assignments yet. Upload one to get started.
+                    </td>
+                  </tr>
+                ) : (
+                  assignments.map((a) => (
                   <tr key={a.id} className="border-b last:border-0 hover:bg-muted/30">
                     <td className="px-4 py-3"><Badge variant="secondary">{a.program_code}</Badge></td>
                     <td className="px-4 py-3 font-medium">{a.title}</td>
@@ -145,7 +152,8 @@ const AdminAssignments = ({ assignments, submissions, programs, onRefresh }: Adm
                       </Button>
                     </td>
                   </tr>
-                ))}
+                  ))
+                )}
               </tbody>
             </table>
           </div>

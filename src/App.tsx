@@ -101,7 +101,7 @@ const App = () => (
             </Route>
             <Route path="/learn/:courseId" element={<LearningSimulator />} />
             <Route path="/enrollment/success" element={<EnrollmentSuccess />} />
-            <Route path="/admin" element={<AdminRoute />} />
+            <Route path="/admin/*" element={<AdminRoute />} />
             <Route path="/verify-certificate" element={<VerifyCertificate />} />
             <Route path="/checkout/dop" element={<Navigate to="/checkout/devops-engineer-program" replace />} />
             <Route path="/checkout/:courseId" element={<Checkout />} />

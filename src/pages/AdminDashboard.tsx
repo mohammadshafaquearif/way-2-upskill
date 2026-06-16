@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { RefreshCw, AlertCircle } from 'lucide-react';
 import { apiClient } from '@/integrations/api/client';
+import { adminPathForSection, adminSectionFromPath } from '@/lib/adminConstants';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import AdminSidebar, { AdminMobileToggle } from '@/components/admin/AdminSidebar';
@@ -33,7 +35,9 @@ const emptyStats: AdminDashboardStats = {
 };
 
 const AdminDashboard = () => {
-  const [section, setSection] = useState<AdminSection>('dashboard');
+  const location = useLocation();
+  const navigate = useNavigate();
+  const section = adminSectionFromPath(location.pathname);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -150,7 +154,7 @@ const AdminDashboard = () => {
     <div className="flex min-h-screen bg-background">
       <AdminSidebar
         active={section}
-        onChange={setSection}
+        onChange={(id) => navigate(adminPathForSection(id))}
         mobileOpen={mobileOpen}
         onMobileClose={() => setMobileOpen(false)}
       />
