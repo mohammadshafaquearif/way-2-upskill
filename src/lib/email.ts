@@ -1,4 +1,11 @@
-export type EmailType = 'contact' | 'enrollment' | 'inquiry' | 'signup' | 'newsletter' | 'resource';
+export type EmailType =
+  | 'contact'
+  | 'enrollment'
+  | 'inquiry'
+  | 'signup'
+  | 'newsletter'
+  | 'resource'
+  | 'lead_assignment';
 
 export interface SendEmailPayload {
   type: EmailType;
@@ -23,8 +30,7 @@ export async function sendEmail(payload: SendEmailPayload): Promise<void> {
     });
 
     if (!response.ok) {
-      const body = (await response.json().catch(() => ({}))) as { error?: string };
-      throw new Error(body.error || 'Failed to send email');
+      throw new Error('Failed to send email');
     }
   } catch (error) {
     if (error instanceof Error && error.name === 'AbortError') {
@@ -133,6 +139,39 @@ export function buildEnrollmentEmailPayload(enrollment: {
       State: formatOptional(enrollment.state),
       ZIP: formatOptional(enrollment.zip),
       Status: formatOptional(enrollment.status, 'pending'),
+    },
+  };
+}
+
+export function buildLeadAssignmentEmailPayload(params: {
+  agentEmail: string;
+  contact: {
+    first_name: string;
+    last_name: string;
+    email: string;
+    phone?: string | null;
+    subject?: string | null;
+    message: string;
+    created_at: string;
+  };
+  assignedBy?: string | null;
+}): SendEmailPayload {
+  const leadName = `${params.contact.first_name} ${params.contact.last_name}`.trim();
+
+  return {
+    type: 'lead_assignment',
+    to: params.agentEmail,
+    subject: `Lead assigned to you — ${leadName}`,
+    data: {
+      firstName: params.agentEmail.split('@')[0] || 'there',
+      subject: `Lead assigned — ${leadName}`,
+      Name: leadName,
+      Email: params.contact.email,
+      Phone: formatOptional(params.contact.phone),
+      Subject: formatOptional(params.contact.subject, 'General inquiry'),
+      Message: params.contact.message,
+      'Submitted on': new Date(params.contact.created_at).toLocaleString('en-IN'),
+      'Assigned by': formatOptional(params.assignedBy, 'Admin'),
     },
   };
 }

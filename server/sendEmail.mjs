@@ -1,11 +1,47 @@
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'support@zyvotrix.com';
-const FROM_EMAIL = process.env.FROM_EMAIL || 'Zyvotrix <onboarding@resend.dev>';
+const FROM_EMAIL = process.env.FROM_EMAIL || 'Zyvotrix <support@zyvotrix.com>';
+const LEADS_CC_EMAIL = process.env.LEADS_CC_EMAIL || 'paul.stephano@zyvotrix.com';
+export const PAYMENT_ADMIN_EMAIL = process.env.PAYMENT_ADMIN_EMAIL || 'admin@zyvotrix.com';
+
+const DEFAULT_PAYMENT_ADMIN_CC = [
+  'paul.stephano@zyvotrix.com',
+  'mohd.shafaque@zyvotrix.com',
+  'md.taslim@zyvotrix.com',
+  'support@zyvotrix.com',
+];
+
+export function getPaymentAdminCc(primaryTo) {
+  const fromEnv = process.env.PAYMENT_ADMIN_CC;
+  const list = fromEnv
+    ? fromEnv.split(',').map((email) => email.trim()).filter(Boolean)
+    : DEFAULT_PAYMENT_ADMIN_CC;
+  const to = String(primaryTo || '').trim().toLowerCase();
+  return list.filter((email) => email.trim().toLowerCase() !== to);
+}
+
+/** Email types that CC the leads coordinator (single address) */
+const CC_EMAIL_TYPES = new Set(['contact', 'enrollment', 'inquiry', 'lead_assignment']);
+
+function leadsCcFor(type, primaryTo) {
+  if (!CC_EMAIL_TYPES.has(type)) return undefined;
+  const cc = LEADS_CC_EMAIL.trim().toLowerCase();
+  const to = String(primaryTo || '').trim().toLowerCase();
+  if (!cc || cc === to) return undefined;
+  return [LEADS_CC_EMAIL];
+}
+
+function resolveCc(type, to, explicitCc) {
+  if (explicitCc !== undefined) return explicitCc;
+  if (type === 'payment_confirmation') return undefined;
+  return leadsCcFor(type, to);
+}
 
 const ADMIN_SUBJECT_LABELS = {
   contact: 'Contact Us',
   enrollment: 'Enrollment',
   inquiry: 'Program Inquiry',
   signup: 'New Sign Up',
+  payment_confirmation: 'Payment Confirmed',
 };
 
 function escapeHtml(value) {
@@ -69,6 +105,26 @@ function buildContactAdminHtml(data) {
   `;
 }
 
+function buildLeadAssignmentHtml(data) {
+  const skipKeys = new Set(['firstName', 'subject']);
+  const rows = Object.entries(data)
+    .filter(([key]) => !skipKeys.has(key))
+    .map(
+      ([key, value]) =>
+        `<tr><td style="padding:8px 12px;border:1px solid #e2e8f0;font-weight:600">${escapeHtml(key)}</td><td style="padding:8px 12px;border:1px solid #e2e8f0">${escapeHtml(value)}</td></tr>`,
+    )
+    .join('');
+
+  return `
+    <div style="font-family:Arial,sans-serif;line-height:1.6;color:#0f172a;max-width:640px">
+      <p>Hi ${escapeHtml(data.firstName || 'there')},</p>
+      <p>A new contact lead has been <strong>assigned to you</strong>. Please follow up with the lead at your earliest convenience.</p>
+      <table style="border-collapse:collapse;width:100%;margin-top:16px">${rows}</table>
+      <p style="margin-top:20px;color:#64748b;font-size:14px">— Zyvotrix Admin</p>
+    </div>
+  `;
+}
+
 export async function sendTransactionalEmail(payload) {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
@@ -98,6 +154,8 @@ export async function sendTransactionalEmail(payload) {
     userHtml = buildSignupUserHtml({
       firstName: data.firstName || 'there',
     });
+  } else if (!userHtml && type === 'lead_assignment') {
+    userHtml = buildLeadAssignmentHtml(data);
   }
 
   const userResult = await resend.emails.send({
@@ -105,6 +163,9 @@ export async function sendTransactionalEmail(payload) {
     to,
     subject,
     html: userHtml || `<p>${escapeHtml(subject)}</p>`,
+    replyTo:
+      type === 'lead_assignment' || type === 'payment_confirmation' ? ADMIN_EMAIL : undefined,
+    cc: resolveCc(type, to, payload.cc),
     attachments: payload.attachments,
   });
 
@@ -114,6 +175,8 @@ export async function sendTransactionalEmail(payload) {
 
   if (
     payload.notifyAdmin !== false &&
+    type !== 'lead_assignment' &&
+    type !== 'payment_confirmation' &&
     (type === 'contact' || type === 'enrollment' || type === 'inquiry' || type === 'signup')
   ) {
     const label = ADMIN_SUBJECT_LABELS[type] || type;
@@ -123,6 +186,7 @@ export async function sendTransactionalEmail(payload) {
       to: ADMIN_EMAIL,
       subject: adminSubject,
       html: buildContactAdminHtml(data),
+      cc: leadsCcFor(type, ADMIN_EMAIL),
     });
 
     if (adminResult.error) {
@@ -133,7 +197,14 @@ export async function sendTransactionalEmail(payload) {
   return { success: true };
 }
 
-const ALLOWED_EMAIL_TYPES = new Set(['contact', 'enrollment', 'inquiry', 'signup']);
+const ALLOWED_EMAIL_TYPES = new Set([
+  'contact',
+  'enrollment',
+  'inquiry',
+  'signup',
+  'lead_assignment',
+  'payment_confirmation',
+]);
 
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email || '').trim());
@@ -166,7 +237,7 @@ export async function handleSendEmailRequest(body) {
     await sendTransactionalEmail({ type, to, subject, data });
     return { status: 200, body: { success: true } };
   } catch (error) {
-    const message = error instanceof Error ? error.message : 'Failed to send email';
-    return { status: 500, body: { error: message } };
+    console.error('[send-email]', error);
+    return { status: 500, body: { error: 'Failed to send email' } };
   }
 }

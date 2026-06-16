@@ -7,6 +7,8 @@ import {
   ClipboardList,
   Award,
   MessageSquare,
+  Shield,
+  Receipt,
   LogOut,
   Menu,
   X,
@@ -16,6 +18,7 @@ import { Button } from '@/components/ui/button';
 import { ADMIN_SECTIONS } from '@/lib/adminConstants';
 import type { AdminSection } from '@/lib/adminTypes';
 import { useAuth } from '@/contexts/AuthContext';
+import { useAdminAccess } from '@/contexts/AdminAccessContext';
 
 const sectionIcons: Record<AdminSection, React.ElementType> = {
   dashboard: LayoutDashboard,
@@ -25,6 +28,8 @@ const sectionIcons: Record<AdminSection, React.ElementType> = {
   assignments: ClipboardList,
   certificates: Award,
   contacts: MessageSquare,
+  sales_report: Receipt,
+  admin_access: Shield,
 };
 
 interface AdminSidebarProps {
@@ -36,6 +41,9 @@ interface AdminSidebarProps {
 
 const AdminSidebar = ({ active, onChange, mobileOpen, onMobileClose }: AdminSidebarProps) => {
   const { user, logout } = useAuth();
+  const { canAccess } = useAdminAccess();
+
+  const visibleSections = ADMIN_SECTIONS.filter((section) => canAccess(section.id));
 
   const nav = (
     <div className="flex h-full flex-col">
@@ -47,7 +55,7 @@ const AdminSidebar = ({ active, onChange, mobileOpen, onMobileClose }: AdminSide
         </p>
       </div>
       <nav className="flex-1 space-y-0.5 p-3">
-        {ADMIN_SECTIONS.map(({ id, label }) => {
+        {visibleSections.map(({ id, label }) => {
           const Icon = sectionIcons[id];
           const isActive = active === id;
           return (

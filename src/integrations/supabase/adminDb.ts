@@ -7,6 +7,7 @@ import type {
   AdminEnrollment,
   AdminLearner,
   AdminProgram,
+  AdminSaleRecord,
   AdminSession,
   AdminSubmission,
   ContactLeadStatus,
@@ -20,6 +21,9 @@ import {
   paymentStatusForEnrollmentStatus,
 } from '@/lib/enrollmentAccess';
 import { enrollmentPaidAmountInInr } from '@/lib/coursePricing';
+import { classifySalePaymentSource } from '@/lib/salesReport';
+import { ADMIN_TAB_PERMISSIONS, isSuperAdminEmail } from '@/lib/admin';
+import { ADMIN_ACCESS_VERIFY_FAILED, ADMIN_DATA_LOAD_FAILED, ADMIN_SAVE_FAILED, logAdminError } from '@/lib/adminErrors';
 
 function dedupeProgramsByCode(programs: AdminProgram[]): AdminProgram[] {
   const byCode = new Map<string, AdminProgram>();
@@ -290,7 +294,7 @@ export const adminDb = {
         phone: user?.phone,
         status: normalizedStatus,
         payment_status: paymentStatus,
-        total_amount: course?.price,
+        paid_amount: 0,
       })
       .select()
       .single();
@@ -532,6 +536,55 @@ export const adminDb = {
     if (error) throw new Error(error.message);
   },
 
+  async getSalesReport(): Promise<AdminSaleRecord[]> {
+    const { data, error } = await supabase
+      .from('enrollments')
+      .select(`
+        id, user_id, course_id, payment_plan, payment_method, status,
+        payment_status, razorpay_payment_id, razorpay_order_id,
+        total_amount, paid_amount, country, payment_currency,
+        first_name, last_name, email, created_at,
+        users ( first_name, last_name, email ),
+        courses ( title, code, price )
+      `)
+      .order('created_at', { ascending: false });
+
+    if (error) throw new Error(error.message);
+
+    return (data ?? []).map((row: Record<string, unknown>) => {
+      const u = row.users as { first_name: string; last_name: string; email: string } | null;
+      const c = row.courses as { title: string; code: string; price: number } | null;
+      const fn = (row.first_name as string) || '';
+      const ln = (row.last_name as string) || '';
+      const guestEmail = (row.email as string) || '';
+
+      const record: AdminSaleRecord = {
+        id: row.id as string,
+        user_id: (row.user_id as string) || null,
+        course_id: (row.course_id as string) || null,
+        user_name: u ? `${u.first_name} ${u.last_name}`.trim() : `${fn} ${ln}`.trim() || 'Guest',
+        user_email: u?.email ?? guestEmail,
+        course_name: c?.title ?? '',
+        program_code: c?.code ?? null,
+        payment_plan: (row.payment_plan as string) || null,
+        payment_method: (row.payment_method as string) || null,
+        status: (row.status as string) || 'pending',
+        payment_status: (row.payment_status as string) || 'pending',
+        razorpay_payment_id: (row.razorpay_payment_id as string) || null,
+        razorpay_order_id: (row.razorpay_order_id as string) || null,
+        total_amount: row.total_amount != null ? Number(row.total_amount) : null,
+        paid_amount: Number(row.paid_amount) || 0,
+        country: (row.country as string) || null,
+        payment_currency: (row.payment_currency as string) || null,
+        created_at: row.created_at as string,
+        payment_source: 'pending',
+      };
+
+      record.payment_source = classifySalePaymentSource(record);
+      return record;
+    });
+  },
+
   async getCertificates(): Promise<AdminCertificate[]> {
     const { data, error } = await supabase
       .from('certificates')
@@ -584,6 +637,9 @@ export const adminDb = {
       message: row.message as string,
       subject: (row.subject as string) || null,
       status: ((row.status as string) || 'new') as ContactLeadStatus,
+      assigned_to: (row.assigned_to as string) || null,
+      assigned_at: (row.assigned_at as string) || null,
+      assigned_by: (row.assigned_by as string) || null,
       created_at: row.created_at as string,
     }));
   },
@@ -591,5 +647,127 @@ export const adminDb = {
   async updateContactStatus(id: string, status: ContactLeadStatus) {
     const { error } = await supabase.from('contacts').update({ status }).eq('id', id);
     if (error) throw new Error(error.message);
+  },
+
+  async assignContactLead(contactId: string, assigneeEmail: string) {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    const assignedBy = user?.email?.trim().toLowerCase() ?? null;
+    const assignee = assigneeEmail.trim().toLowerCase();
+
+    const { data, error } = await supabase
+      .from('contacts')
+      .update({
+        assigned_to: assignee,
+        assigned_at: new Date().toISOString(),
+        assigned_by: assignedBy,
+      })
+      .eq('id', contactId)
+      .select('*')
+      .single();
+
+    if (error) {
+      logAdminError('assign contact lead', error);
+      throw new Error(ADMIN_SAVE_FAILED);
+    }
+
+    return data;
+  },
+
+  async getMyAdminAccess() {
+    const { data, error } = await supabase.rpc('get_my_admin_permissions');
+    if (!error && data) return data;
+
+    if (error) logAdminError('get_my_admin_permissions rpc', error);
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    const email = user?.email?.trim().toLowerCase() ?? '';
+
+    if (isSuperAdminEmail(email)) {
+      return {
+        is_super_admin: true,
+        permissions: [...ADMIN_TAB_PERMISSIONS],
+      };
+    }
+
+    const { data: row, error: tableError } = await supabase
+      .from('admin_access')
+      .select('permissions, is_active')
+      .eq('email', email)
+      .maybeSingle();
+
+    if (!tableError && row?.is_active && Array.isArray(row.permissions)) {
+      return {
+        is_super_admin: false,
+        permissions: row.permissions,
+      };
+    }
+
+    if (tableError) logAdminError('admin_access fallback lookup', tableError);
+
+    throw new Error(ADMIN_ACCESS_VERIFY_FAILED);
+  },
+
+  async listAdminAccess() {
+    const { data, error } = await supabase
+      .from('admin_access')
+      .select('*')
+      .order('created_at', { ascending: false });
+    if (error) {
+      logAdminError('list admin access', error);
+      throw new Error(ADMIN_DATA_LOAD_FAILED);
+    }
+    return (data ?? []) as import('@/lib/adminTypes').AdminAccessRecord[];
+  },
+
+  async upsertAdminAccess(record: {
+    id?: string;
+    email: string;
+    permissions: import('@/lib/adminTypes').AdminPermission[];
+    is_active: boolean;
+    notes?: string | null;
+  }) {
+    const payload = {
+      email: record.email.trim().toLowerCase(),
+      permissions: record.permissions,
+      is_active: record.is_active,
+      notes: record.notes ?? null,
+    };
+
+    if (record.id) {
+      const { data, error } = await supabase
+        .from('admin_access')
+        .update(payload)
+        .eq('id', record.id)
+        .select()
+        .single();
+      if (error) {
+        logAdminError('update admin access', error);
+        throw new Error(ADMIN_SAVE_FAILED);
+      }
+      return data;
+    }
+
+    const { data, error } = await supabase
+      .from('admin_access')
+      .insert(payload)
+      .select()
+      .single();
+    if (error) {
+      logAdminError('insert admin access', error);
+      throw new Error(ADMIN_SAVE_FAILED);
+    }
+    return data;
+  },
+
+  async deleteAdminAccess(id: string) {
+    const { error } = await supabase.from('admin_access').delete().eq('id', id);
+    if (error) {
+      logAdminError('delete admin access', error);
+      throw new Error(ADMIN_SAVE_FAILED);
+    }
   },
 };

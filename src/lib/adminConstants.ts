@@ -55,6 +55,8 @@ export const ADMIN_SECTIONS = [
   { id: 'assignments', label: 'Assignments' },
   { id: 'certificates', label: 'Certificates' },
   { id: 'contacts', label: 'Contact Leads' },
+  { id: 'sales_report', label: 'Sales Report' },
+  { id: 'admin_access', label: 'Admin Access' },
 ] as const;
 
 export function adminSectionFromPath(pathname: string): AdminSection {

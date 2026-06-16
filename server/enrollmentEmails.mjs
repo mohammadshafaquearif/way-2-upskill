@@ -74,9 +74,9 @@ export function buildAdminEnrollmentHtml(data) {
 
   return `
     <div style="font-family:Arial,sans-serif;line-height:1.6;color:#0f172a;max-width:640px">
-      <h2 style="margin:0 0 12px;color:#16a34a">🎉 New Enrollment — Payment Received</h2>
+      <h2 style="margin:0 0 12px;color:#16a34a">Payment received — new enrollment</h2>
+      <p style="margin:0 0 16px;color:#475569">A learner has completed payment and enrollment is now active.</p>
       <table style="border-collapse:collapse;width:100%">${rows}</table>
-      <p style="margin-top:16px;color:#64748b;font-size:14px">Lead status updated: Enrolled</p>
     </div>
   `;
 }

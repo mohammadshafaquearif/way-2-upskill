@@ -1,7 +1,7 @@
 import crypto from 'crypto';
 import { createClient } from '@supabase/supabase-js';
 import { handleVerifyPaymentRequest, verifyPaymentWithRazorpay } from './razorpay.mjs';
-import { sendTransactionalEmail } from './sendEmail.mjs';
+import { sendTransactionalEmail, PAYMENT_ADMIN_EMAIL, getPaymentAdminCc } from './sendEmail.mjs';
 import {
   buildAdminEnrollmentHtml,
   buildWelcomeEnrollmentHtml,
@@ -323,6 +323,15 @@ export async function handleCompleteEnrollmentRequest(body = {}) {
   }
 
   const amountPaidLabel = formatMoney(verifiedAmount / 100, currency);
+  const paymentDateTime = new Date().toLocaleString('en-IN', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone: 'Asia/Kolkata',
+    timeZoneName: 'short',
+  });
   const invoiceDate = new Date().toLocaleDateString('en-IN', {
     day: '2-digit',
     month: 'short',
@@ -370,7 +379,7 @@ export async function handleCompleteEnrollmentRequest(body = {}) {
 
   try {
     await sendTransactionalEmail({
-      type: 'enrollment',
+      type: 'payment_confirmation',
       to: email,
       subject: `Payment confirmed — ${body.courseTitle} | Zyvotrix`,
       html: welcomeHtml,
@@ -394,26 +403,32 @@ export async function handleCompleteEnrollmentRequest(body = {}) {
     const adminHtml = buildAdminEnrollmentHtml({
       Name: `${firstName} ${lastName}`.trim(),
       Email: email,
-      Program: `${body.courseTitle} (${programCode})`,
+      Phone: body.phone || 'Not provided',
+      Country: body.country || 'Not provided',
+      Course: body.courseTitle,
+      Program: programCode,
       'Enrollment ID': enrollmentNumber,
       'Amount Paid': amountPaidLabel || '—',
-      Country: body.country || 'Not provided',
-      Phone: body.phone || 'Not provided',
+      Currency: currency,
+      'Payment Date': paymentDateTime,
+      'Payment Plan': body.paymentPlan || 'full',
       'Payment ID': body.razorpay_payment_id,
+      'Order ID': body.razorpay_order_id || '—',
       Status: 'Active — Dashboard access granted',
     });
 
     await sendTransactionalEmail({
-      type: 'enrollment',
-      to: process.env.ADMIN_EMAIL || 'support@zyvotrix.com',
-      subject: `[Enrollment] New paid enrollment — ${programCode}`,
+      type: 'payment_confirmation',
+      to: PAYMENT_ADMIN_EMAIL,
+      cc: getPaymentAdminCc(PAYMENT_ADMIN_EMAIL),
+      subject: `[Payment] ${amountPaidLabel} — ${body.courseTitle} (${programCode})`,
       html: adminHtml,
       notifyAdmin: false,
       data: {
         Name: `${firstName} ${lastName}`.trim(),
         Email: email,
         Program: programCode,
-        subject: `New enrollment — ${programCode}`,
+        subject: `Payment received — ${programCode}`,
       },
     });
   } catch (error) {

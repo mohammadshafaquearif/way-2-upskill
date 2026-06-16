@@ -4,11 +4,14 @@ import { adminDb } from '@/integrations/supabase/adminDb';
 import {
   buildContactEmailPayload,
   buildEnrollmentEmailPayload,
+  buildLeadAssignmentEmailPayload,
   buildSignupEmailPayload,
   notifyByEmail,
+  sendEmail,
   type EmailType,
 } from '@/lib/email';
 import type { ContactLeadStatus, SubmissionStatus } from '@/lib/adminTypes';
+import { logAdminError } from '@/lib/adminErrors';
 
 class ApiClient {
   async healthCheck() {
@@ -176,8 +179,40 @@ class ApiClient {
     adminDb.createCertificate(cert);
   verifyAdminCertificate = (certificateId: string) => adminDb.verifyCertificate(certificateId);
   getAdminContacts = () => adminDb.getContacts();
+  getAdminSalesReport = () => adminDb.getSalesReport();
   updateAdminContactStatus = (id: string, status: ContactLeadStatus) =>
     adminDb.updateContactStatus(id, status);
+
+  async assignAdminContact(contactId: string, assigneeEmail: string) {
+    const contact = await adminDb.assignContactLead(contactId, assigneeEmail);
+    const payload = buildLeadAssignmentEmailPayload({
+      agentEmail: assigneeEmail,
+      contact: {
+        first_name: contact.first_name as string,
+        last_name: contact.last_name as string,
+        email: contact.email as string,
+        phone: contact.phone as string | null,
+        subject: contact.subject as string | null,
+        message: contact.message as string,
+        created_at: contact.created_at as string,
+      },
+      assignedBy: contact.assigned_by as string | null,
+    });
+
+    try {
+      await sendEmail(payload);
+      return { contact, emailSent: true as const };
+    } catch (error) {
+      logAdminError('lead assignment email', error);
+      return { contact, emailSent: false as const };
+    }
+  }
+
+  getMyAdminAccess = () => adminDb.getMyAdminAccess();
+  listAdminAccess = () => adminDb.listAdminAccess();
+  upsertAdminAccess = (record: Parameters<typeof adminDb.upsertAdminAccess>[0]) =>
+    adminDb.upsertAdminAccess(record);
+  deleteAdminAccess = (id: string) => adminDb.deleteAdminAccess(id);
 }
 
 export const apiClient = new ApiClient();

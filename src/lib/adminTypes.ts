@@ -3,14 +3,52 @@ export type EnrollmentStatus = 'pending' | 'active' | 'completed' | 'cancelled';
 export type ContactLeadStatus = 'new' | 'contacted' | 'converted';
 export type SubmissionStatus = 'submitted' | 'reviewed' | 'approved' | 'rejected';
 
-export type AdminSection =
+export type AdminPermission =
   | 'dashboard'
   | 'learners'
   | 'programs'
   | 'sessions'
   | 'assignments'
   | 'certificates'
-  | 'contacts';
+  | 'contacts'
+  | 'sales_report';
+
+export type SalePaymentSource = 'razorpay' | 'manual' | 'pending' | 'cancelled';
+
+export interface AdminSaleRecord {
+  id: string;
+  user_id: string | null;
+  course_id: string | null;
+  user_name: string;
+  user_email: string;
+  course_name: string;
+  program_code: string | null;
+  payment_plan: string | null;
+  payment_method: string | null;
+  status: string;
+  payment_status: string;
+  payment_source: SalePaymentSource;
+  razorpay_payment_id: string | null;
+  razorpay_order_id: string | null;
+  total_amount: number | null;
+  paid_amount: number;
+  country: string | null;
+  payment_currency: string | null;
+  created_at: string;
+}
+
+export type AdminSection = AdminPermission | 'admin_access';
+
+export interface AdminAccessRecord {
+  id: string;
+  email: string;
+  permissions: AdminPermission[];
+  is_active: boolean;
+  notes: string | null;
+  created_by: string | null;
+  created_at: string;
+  updated_at: string;
+}
 
 export interface AdminLearner {
   id: string;
@@ -100,7 +138,15 @@ export interface AdminContact {
   message: string;
   subject: string | null;
   status: ContactLeadStatus;
+  assigned_to: string | null;
+  assigned_at: string | null;
+  assigned_by: string | null;
   created_at: string;
+}
+
+export interface AdminAgent {
+  email: string;
+  label: string;
 }
 
 export interface AdminEnrollment {

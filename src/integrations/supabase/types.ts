@@ -281,6 +281,9 @@ export type Database = {
           subject: string | null
           message: string
           status: string | null
+          assigned_to: string | null
+          assigned_at: string | null
+          assigned_by: string | null
           created_at: string
         }
         Insert: {
@@ -292,6 +295,9 @@ export type Database = {
           subject?: string | null
           message: string
           status?: string | null
+          assigned_to?: string | null
+          assigned_at?: string | null
+          assigned_by?: string | null
           created_at?: string
         }
         Update: {
@@ -303,6 +309,9 @@ export type Database = {
           subject?: string | null
           message?: string
           status?: string | null
+          assigned_to?: string | null
+          assigned_at?: string | null
+          assigned_by?: string | null
           created_at?: string
         }
         Relationships: []
@@ -541,6 +550,39 @@ export type Database = {
           },
         ]
       }
+      admin_access: {
+        Row: {
+          id: string
+          email: string
+          permissions: string[]
+          is_active: boolean
+          notes: string | null
+          created_by: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          email: string
+          permissions?: string[]
+          is_active?: boolean
+          notes?: string | null
+          created_by?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          email?: string
+          permissions?: string[]
+          is_active?: boolean
+          notes?: string | null
+          created_by?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       certificates_public: {
@@ -558,6 +600,20 @@ export type Database = {
       is_admin: {
         Args: Record<PropertyKey, never>
         Returns: boolean
+      }
+      is_super_admin: {
+        Args: Record<PropertyKey, never>
+        Returns: boolean
+      }
+      has_admin_permission: {
+        Args: {
+          p_permission: string
+        }
+        Returns: boolean
+      }
+      get_my_admin_permissions: {
+        Args: Record<PropertyKey, never>
+        Returns: Json
       }
     }
     Enums: {
