@@ -6,7 +6,7 @@ export interface ResourceArticle {
   description: string;
   category: ResourceCategory;
   courseRoute?: string;
-  sections: { heading?: string; body: string }[];
+  sections: { heading?: string; body?: string; bullets?: string[]; remember?: string; tip?: string }[];
 }
 
 export interface FeaturedRoadmap {
@@ -137,10 +137,17 @@ function article(
   title: string,
   description: string,
   category: ResourceCategory,
-  sections: { heading?: string; body: string }[],
+  sections: { heading?: string; body?: string; bullets?: string[]; remember?: string; tip?: string }[],
   courseRoute?: string,
 ): ResourceArticle {
-  return { slug, title, description, category, sections, courseRoute: courseRoute ?? CATEGORY_META[category].courseRoute };
+  return {
+    slug,
+    title,
+    description,
+    category,
+    sections,
+    courseRoute: courseRoute ?? CATEGORY_META[category].courseRoute,
+  };
 }
 
 export const RESOURCE_ARTICLES: Record<string, ResourceArticle> = {
@@ -392,11 +399,190 @@ export const RESOURCE_ARTICLES: Record<string, ResourceArticle> = {
   ),
   'devops-interview-questions': article(
     'devops-interview-questions',
-    'DevOps Interview Questions',
-    'Common DevOps interview questions — CI/CD, Docker, Kubernetes, Terraform, and SRE.',
+    'Top 30 Most Asked DevOps Interview Questions and Answers',
+    'Prepare for DevOps interviews with answers to the 30 most common questions on CI/CD, Docker, Kubernetes, Terraform, AWS, monitoring, and DevSecOps.',
     'interview',
     [
-      { body: 'Prepare stories about pipelines you built, incidents you resolved, and IaC modules you wrote. Expect deep dives on Git workflows, container security, and monitoring stack design.' },
+      {
+        heading: '1. What is DevOps?',
+        body: 'DevOps is a culture and set of practices that brings Development and Operations teams together to build, test, deploy, and manage software efficiently. Its goal is to improve collaboration, automate repetitive tasks, and deliver software faster with fewer failures.',
+        remember: 'DevOps = Development + Operations + Automation',
+        tip: 'Mention collaboration, automation, and CI/CD while answering.',
+      },
+      {
+        heading: '2. What are the main benefits of DevOps?',
+        body: 'DevOps helps organizations release software faster, reduce deployment failures, improve team collaboration, and automate repetitive tasks. It also improves application reliability and scalability.',
+        remember: 'Faster Delivery + Better Quality + More Automation',
+        tip: 'Always mention speed, automation, and reliability.',
+      },
+      {
+        heading: '3. What is CI/CD?',
+        body: 'CI/CD is a software delivery practice where code changes are automatically built, tested, and deployed. It helps teams release software frequently and with confidence.',
+        remember: 'CI = Build & Test\nCD = Release & Deploy',
+        tip: 'Explain both Continuous Integration and Continuous Delivery.',
+      },
+      {
+        heading: '4. What is the difference between Continuous Delivery and Continuous Deployment?',
+        body: 'In Continuous Delivery, deployments require manual approval before reaching production. In Continuous Deployment, every successful change is automatically deployed to production.',
+        remember: 'Delivery = Manual Approval\nDeployment = Fully Automatic',
+        tip: 'Many candidates confuse these two, so answer carefully.',
+      },
+      {
+        heading: '5. What is Infrastructure as Code (IaC)?',
+        body: 'Infrastructure as Code is the practice of creating and managing infrastructure using code instead of manual configuration. It makes infrastructure repeatable, version-controlled, and automated.',
+        remember: 'Servers using Code instead of Clicks',
+        tip: 'Mention Terraform as the most common IaC tool.',
+      },
+      {
+        heading: '6. What is Docker?',
+        body: 'Docker is a containerization platform that packages an application and its dependencies into containers so that it runs consistently across different environments.',
+        remember: 'Image = Blueprint\nContainer = Running Application',
+        tip: 'Mention that Docker solves the "It works on my machine" problem.',
+      },
+      {
+        heading: '7. What is the difference between Docker Image and Docker Container?',
+        body: 'A Docker Image is a template used to create containers. A Docker Container is the running instance of that image.',
+        remember: 'Image = Recipe\nContainer = Prepared Food',
+        tip: 'Remember that containers are created from images.',
+      },
+      {
+        heading: '8. What is Kubernetes?',
+        body: 'Kubernetes is a container orchestration platform that automates deployment, scaling, networking, and management of containerized applications.',
+        remember: 'Docker runs containers.\nKubernetes manages containers.',
+        tip: 'Mention auto-scaling and self-healing.',
+      },
+      {
+        heading: '9. What is a Pod in Kubernetes?',
+        body: 'A Pod is the smallest deployable unit in Kubernetes. It contains one or more containers that share networking and storage resources.',
+        remember: 'Pod = Home for Containers',
+        tip: 'Most Pods contain a single container.',
+      },
+      {
+        heading: '10. What is the difference between Deployment and StatefulSet?',
+        body: 'Deployments are used for stateless applications, while StatefulSets are used for stateful applications such as databases where each Pod needs a unique identity.',
+        remember: 'Deployment = Stateless\nStatefulSet = Stateful',
+        tip: 'Mention databases when talking about StatefulSets.',
+      },
+      {
+        heading: '11. What is a Kubernetes Service?',
+        body: 'A Service provides a stable network endpoint for accessing Pods. It allows applications to communicate reliably even if Pods are recreated.',
+        remember: 'Service = Permanent Address for Pods',
+        tip: 'Mention ClusterIP and LoadBalancer.',
+      },
+      {
+        heading: '12. What is Terraform?',
+        body: 'Terraform is an Infrastructure as Code tool that provisions and manages cloud resources using configuration files.',
+        remember: 'Terraform = Infrastructure using Code',
+        tip: 'Mention AWS, Azure, and GCP support.',
+      },
+      {
+        heading: '13. What is Terraform State?',
+        body: 'Terraform State is a file that stores information about infrastructure resources managed by Terraform. It helps Terraform track changes and existing resources.',
+        remember: "State = Terraform's Memory",
+        tip: 'Mention terraform.tfstate.',
+      },
+      {
+        heading: '14. What are Terraform Modules?',
+        body: 'Terraform Modules are reusable collections of resources and configurations that help reduce duplication and standardize infrastructure.',
+        remember: 'Module = Reusable Terraform Code',
+        tip: 'Mention code reusability.',
+      },
+      {
+        heading: '15. What is Ansible?',
+        body: 'Ansible is an automation and configuration management tool used for server provisioning, software installation, and infrastructure management.',
+        remember: 'Ansible = Server Automation',
+        tip: 'Mention configuration management.',
+      },
+      {
+        heading: '16. Why is Ansible called Agentless?',
+        body: 'Ansible does not require any software agent on managed servers. It uses SSH for Linux and WinRM for Windows systems.',
+        remember: 'No Agent = Less Management',
+        tip: 'Mention SSH communication.',
+      },
+      {
+        heading: '17. What is Git?',
+        body: 'Git is a distributed version control system used to track source code changes and collaborate with teams.',
+        remember: 'Git = Code History',
+        tip: 'Mention version control and collaboration.',
+      },
+      {
+        heading: '18. What is the difference between Git Merge and Git Rebase?',
+        body: 'Merge combines branches while preserving history. Rebase moves commits to create a cleaner and more linear history.',
+        remember: 'Merge = Combine\nRebase = Rewrite',
+        tip: 'Mention cleaner history for rebase.',
+      },
+      {
+        heading: '19. What is a Pull Request?',
+        body: 'A Pull Request is a request to merge code changes from one branch into another after review and approval.',
+        remember: 'PR = Request to Merge',
+        tip: 'Mention code review process.',
+      },
+      {
+        heading: '20. What is Jenkins?',
+        body: 'Jenkins is an open-source automation server used to build, test, and deploy applications automatically.',
+        remember: 'Jenkins = CI/CD Automation',
+        tip: 'Mention pipelines.',
+      },
+      {
+        heading: '21. What is Monitoring in DevOps?',
+        body: 'Monitoring is the process of collecting and analyzing metrics, logs, and traces to understand system health and performance.',
+        remember: 'Monitor = Observe Everything',
+        tip: 'Mention Prometheus and Grafana.',
+      },
+      {
+        heading: '22. What is Prometheus?',
+        body: 'Prometheus is an open-source monitoring tool that collects and stores time-series metrics from applications and infrastructure.',
+        remember: 'Prometheus = Metrics Collector',
+        tip: 'Mention alerting capability.',
+      },
+      {
+        heading: '23. What is Grafana?',
+        body: 'Grafana is a visualization platform used to create dashboards and analyze monitoring data.',
+        remember: 'Grafana = Data Visualization',
+        tip: 'Mention dashboards and alerts.',
+      },
+      {
+        heading: '24. What is Blue-Green Deployment?',
+        body: 'Blue-Green Deployment uses two identical environments. One serves production traffic while the other hosts the new version. Traffic is switched after testing.',
+        remember: 'Blue = Current\nGreen = New',
+        tip: 'Mention quick rollback.',
+      },
+      {
+        heading: '25. What is Canary Deployment?',
+        body: 'Canary Deployment releases a new version to a small percentage of users first before gradually rolling it out to everyone.',
+        remember: 'Small Users → More Users → Everyone',
+        tip: 'Mention risk reduction.',
+      },
+      {
+        heading: '26. What is a VPC in AWS?',
+        body: 'A Virtual Private Cloud (VPC) is a logically isolated network where AWS resources are launched securely.',
+        remember: 'VPC = Private Network in AWS',
+        tip: 'Mention subnets and route tables.',
+      },
+      {
+        heading: '27. What is the difference between Security Groups and NACLs?',
+        body: 'Security Groups work at the instance level and are stateful. NACLs work at the subnet level and are stateless.',
+        remember: 'Security Group = Instance\nNACL = Subnet',
+        tip: 'Always mention Stateful vs Stateless.',
+      },
+      {
+        heading: '28. What is AWS IAM?',
+        body: 'AWS IAM is a service used to manage authentication and authorization for AWS resources through users, groups, roles, and policies.',
+        remember: 'IAM = Access Management',
+        tip: 'Mention least privilege principle.',
+      },
+      {
+        heading: '29. What is DevSecOps?',
+        body: 'DevSecOps integrates security into every stage of the software development lifecycle instead of treating it as a separate phase.',
+        remember: 'Dev + Sec + Ops',
+        tip: 'Mention Shift Left Security.',
+      },
+      {
+        heading: '30. What is AIOps?',
+        body: 'AIOps uses Artificial Intelligence and Machine Learning to improve monitoring, incident detection, log analysis, and operational efficiency.',
+        remember: 'AI + IT Operations = AIOps',
+        tip: 'Mention anomaly detection and automated remediation.',
+      },
     ],
     '/courses/devops-engineer-program',
   ),
