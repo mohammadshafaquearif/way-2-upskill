@@ -2732,5 +2732,621 @@
         "correctAnswer": "Low Temperature and moderate Top-P"
       }
     ]
+  },
+  {
+    "courseCode": "AAC",
+    "moduleNumber": 2,
+    "topicSort": 1,
+    "topicTitle": "Zero-shot prompting",
+    "quizTitle": "Zero-shot prompting — Topic Quiz",
+    "passScore": 70,
+    "maxAttempts": 3,
+    "questions": [
+      {
+        "question": "What is Zero-Shot Prompting in Generative AI?",
+        "options": [
+          "Providing examples before asking a question",
+          "Asking the model to perform a task without giving examples",
+          "Training the model with new data",
+          "Fine-tuning a model"
+        ],
+        "correctAnswer": "Asking the model to perform a task without giving examples"
+      },
+      {
+        "question": "Which of the following is an example of Zero-Shot Prompting?",
+        "options": [
+          "Translate 'Hello' to French",
+          "Translate 'Hello' to French. Example: Hello → Bonjour",
+          "Train a model on French vocabulary",
+          "Upload a French dataset"
+        ],
+        "correctAnswer": "Translate 'Hello' to French"
+      },
+      {
+        "question": "Why is Zero-Shot Prompting widely used with modern LLMs?",
+        "options": [
+          "Because modern models already possess broad knowledge",
+          "Because it requires model retraining",
+          "Because it increases token limits",
+          "Because it replaces embeddings"
+        ],
+        "correctAnswer": "Because modern models already possess broad knowledge"
+      },
+      {
+        "question": "What is the biggest advantage of Zero-Shot Prompting?",
+        "options": [
+          "Simple and quick to use",
+          "Requires additional training",
+          "Consumes more compute",
+          "Needs examples every time"
+        ],
+        "correctAnswer": "Simple and quick to use"
+      },
+      {
+        "question": "Which task is best suited for Zero-Shot Prompting?",
+        "options": [
+          "Summarize this article",
+          "Train a recommendation system",
+          "Build a neural network",
+          "Create embeddings manually"
+        ],
+        "correctAnswer": "Summarize this article"
+      },
+      {
+        "question": "What is a limitation of Zero-Shot Prompting?",
+        "options": [
+          "Results may vary for complex tasks",
+          "It cannot generate text",
+          "It only works with images",
+          "It requires GPUs from the user"
+        ],
+        "correctAnswer": "Results may vary for complex tasks"
+      },
+      {
+        "question": "How can you improve the accuracy of a Zero-Shot Prompt?",
+        "options": [
+          "Provide clear instructions and context",
+          "Reduce internet speed",
+          "Delete tokens",
+          "Disable embeddings"
+        ],
+        "correctAnswer": "Provide clear instructions and context"
+      },
+      {
+        "question": "Which prompt is a better Zero-Shot Prompt?",
+        "options": [
+          "Explain Kubernetes to a beginner in 5 bullet points",
+          "Tell me something about Kubernetes",
+          "Kubernetes",
+          "Explain"
+        ],
+        "correctAnswer": "Explain Kubernetes to a beginner in 5 bullet points"
+      },
+      {
+        "question": "In Prompt Engineering, what is meant by 'context'?",
+        "options": [
+          "Additional information that helps the model understand the task",
+          "The model's source code",
+          "The training dataset",
+          "A cloud storage service"
+        ],
+        "correctAnswer": "Additional information that helps the model understand the task"
+      },
+      {
+        "question": "A user asks, 'Write a professional email requesting leave for two days.' This is an example of which prompting technique?",
+        "options": [
+          "Zero-Shot Prompting",
+          "Fine-Tuning",
+          "Model Training",
+          "Transfer Learning"
+        ],
+        "correctAnswer": "Zero-Shot Prompting"
+      },
+      {
+        "question": "What happens if a Zero-Shot Prompt is too vague?",
+        "options": [
+          "The output may be inconsistent or unclear",
+          "The model automatically retrains",
+          "The model crashes",
+          "The context window doubles"
+        ],
+        "correctAnswer": "The output may be inconsistent or unclear"
+      },
+      {
+        "question": "Which of the following is NOT a characteristic of Zero-Shot Prompting?",
+        "options": [
+          "Providing sample examples",
+          "Using natural language instructions",
+          "Fast task execution",
+          "No example-based guidance"
+        ],
+        "correctAnswer": "Providing sample examples"
+      },
+      {
+        "question": "Why is Zero-Shot Prompting important for business users?",
+        "options": [
+          "It allows non-technical users to interact with AI easily",
+          "It requires coding knowledge",
+          "It trains AI models",
+          "It replaces cloud infrastructure"
+        ],
+        "correctAnswer": "It allows non-technical users to interact with AI easily"
+      },
+      {
+        "question": "Which AI applications commonly use Zero-Shot Prompting?",
+        "options": [
+          "Chatbots, content generation, and summarization",
+          "Network switches",
+          "Database indexing",
+          "Operating systems"
+        ],
+        "correctAnswer": "Chatbots, content generation, and summarization"
+      },
+      {
+        "question": "A DevOps engineer enters the prompt: 'Generate a Dockerfile for a Node.js application running on port 3000.' What type of prompting is this?",
+        "options": [
+          "Zero-Shot Prompting",
+          "Few-Shot Prompting",
+          "Fine-Tuning",
+          "Model Retraining"
+        ],
+        "correctAnswer": "Zero-Shot Prompting"
+      }
+    ]
+  },
+  {
+    "courseCode": "AAC",
+    "moduleNumber": 2,
+    "topicSort": 2,
+    "topicTitle": "Chain-of-thought",
+    "quizTitle": "Chain-of-thought — Topic Quiz",
+    "passScore": 70,
+    "maxAttempts": 3,
+    "questions": [
+      {
+        "question": "What is Chain-of-Thought (CoT) Prompting in Generative AI?",
+        "options": [
+          "A technique that encourages the model to reason step-by-step",
+          "A method for training a model",
+          "A type of vector database",
+          "A cloud deployment strategy"
+        ],
+        "correctAnswer": "A technique that encourages the model to reason step-by-step"
+      },
+      {
+        "question": "What is the primary goal of Chain-of-Thought Prompting?",
+        "options": [
+          "Improve reasoning and problem-solving",
+          "Increase internet speed",
+          "Reduce tokenization",
+          "Store embeddings"
+        ],
+        "correctAnswer": "Improve reasoning and problem-solving"
+      },
+      {
+        "question": "Which prompt best demonstrates Chain-of-Thought Prompting?",
+        "options": [
+          "Solve this problem step by step",
+          "Give the final answer only",
+          "Generate a random response",
+          "Train a new model"
+        ],
+        "correctAnswer": "Solve this problem step by step"
+      },
+      {
+        "question": "For which type of tasks is Chain-of-Thought Prompting most useful?",
+        "options": [
+          "Logical reasoning and problem solving",
+          "File compression",
+          "Operating system installation",
+          "Network configuration"
+        ],
+        "correctAnswer": "Logical reasoning and problem solving"
+      },
+      {
+        "question": "A user asks an AI model to calculate a discount and then calculate tax before providing the final price. Why would Chain-of-Thought be useful?",
+        "options": [
+          "It helps break the calculation into logical steps",
+          "It increases model size",
+          "It reduces context length",
+          "It creates embeddings"
+        ],
+        "correctAnswer": "It helps break the calculation into logical steps"
+      },
+      {
+        "question": "Which statement about Chain-of-Thought Prompting is true?",
+        "options": [
+          "It often improves performance on reasoning tasks",
+          "It replaces model training",
+          "It eliminates hallucinations completely",
+          "It only works with mathematics"
+        ],
+        "correctAnswer": "It often improves performance on reasoning tasks"
+      },
+      {
+        "question": "A recruiter asks an AI to analyze a candidate's resume and explain why the candidate matches a role. Which prompting technique would help produce a detailed explanation?",
+        "options": [
+          "Chain-of-Thought Prompting",
+          "Random Sampling",
+          "Embedding Generation",
+          "Fine-Tuning"
+        ],
+        "correctAnswer": "Chain-of-Thought Prompting"
+      },
+      {
+        "question": "What is a common phrase used to trigger Chain-of-Thought reasoning?",
+        "options": [
+          "Let's think step by step",
+          "Generate quickly",
+          "Skip reasoning",
+          "Use embeddings"
+        ],
+        "correctAnswer": "Let's think step by step"
+      },
+      {
+        "question": "How does Chain-of-Thought Prompting help learners?",
+        "options": [
+          "It shows intermediate reasoning instead of only the final answer",
+          "It trains new AI models",
+          "It reduces cloud costs",
+          "It increases storage capacity"
+        ],
+        "correctAnswer": "It shows intermediate reasoning instead of only the final answer"
+      },
+      {
+        "question": "A customer support chatbot needs to diagnose a problem by checking multiple conditions before suggesting a solution. Which prompting technique would be helpful?",
+        "options": [
+          "Chain-of-Thought Prompting",
+          "Tokenization",
+          "Image Generation",
+          "Data Labeling"
+        ],
+        "correctAnswer": "Chain-of-Thought Prompting"
+      },
+      {
+        "question": "What is one limitation of Chain-of-Thought Prompting?",
+        "options": [
+          "Responses can become longer and consume more tokens",
+          "It prevents reasoning",
+          "It only works offline",
+          "It disables context windows"
+        ],
+        "correctAnswer": "Responses can become longer and consume more tokens"
+      },
+      {
+        "question": "Which of the following tasks would benefit the least from Chain-of-Thought Prompting?",
+        "options": [
+          "Simple factual lookup such as 'What is the capital of France?'",
+          "Solving a math problem",
+          "Analyzing business scenarios",
+          "Debugging code"
+        ],
+        "correctAnswer": "Simple factual lookup such as 'What is the capital of France?'"
+      },
+      {
+        "question": "In AI Agents, why is Chain-of-Thought often important?",
+        "options": [
+          "Agents frequently need to plan and reason through multiple steps",
+          "Agents require less memory",
+          "Agents do not use prompts",
+          "Agents replace LLMs"
+        ],
+        "correctAnswer": "Agents frequently need to plan and reason through multiple steps"
+      },
+      {
+        "question": "A software engineer asks an LLM to debug a Python script and explain each issue before suggesting fixes. What prompting technique is being encouraged?",
+        "options": [
+          "Chain-of-Thought Prompting",
+          "Fine-Tuning",
+          "Embedding Search",
+          "Token Sampling"
+        ],
+        "correctAnswer": "Chain-of-Thought Prompting"
+      },
+      {
+        "question": "Why is Chain-of-Thought considered an important Prompt Engineering technique in modern AI applications?",
+        "options": [
+          "It improves transparency and reasoning quality for complex tasks",
+          "It increases GPU memory",
+          "It replaces vector databases",
+          "It reduces training data requirements"
+        ],
+        "correctAnswer": "It improves transparency and reasoning quality for complex tasks"
+      }
+    ]
+  },
+  {
+    "courseCode": "AAC",
+    "moduleNumber": 2,
+    "topicSort": 3,
+    "topicTitle": "System prompts",
+    "quizTitle": "System prompts — Topic Quiz",
+    "passScore": 70,
+    "maxAttempts": 3,
+    "questions": [
+      {
+        "question": "What is a System Prompt in Large Language Models (LLMs)?",
+        "options": [
+          "A hidden instruction that defines how the AI should behave",
+          "A user message sent to the model",
+          "A database query",
+          "A vector embedding"
+        ],
+        "correctAnswer": "A hidden instruction that defines how the AI should behave"
+      },
+      {
+        "question": "What is the primary purpose of a System Prompt?",
+        "options": [
+          "To control the model's behavior and responses",
+          "To train the model from scratch",
+          "To increase token limits",
+          "To store conversation history"
+        ],
+        "correctAnswer": "To control the model's behavior and responses"
+      },
+      {
+        "question": "Which prompt type usually has the highest priority in an LLM conversation?",
+        "options": [
+          "System Prompt",
+          "User Prompt",
+          "Assistant Message",
+          "Embedding Prompt"
+        ],
+        "correctAnswer": "System Prompt"
+      },
+      {
+        "question": "A company wants its AI assistant to always respond professionally and avoid informal language. Where should this instruction be placed?",
+        "options": [
+          "System Prompt",
+          "User Message",
+          "Vector Database",
+          "Training Dataset"
+        ],
+        "correctAnswer": "System Prompt"
+      },
+      {
+        "question": "Which of the following is an example of a System Prompt?",
+        "options": [
+          "You are a helpful AI tutor who explains concepts in simple language.",
+          "What is Docker?",
+          "Explain Kubernetes.",
+          "Summarize this document."
+        ],
+        "correctAnswer": "You are a helpful AI tutor who explains concepts in simple language."
+      },
+      {
+        "question": "How do System Prompts improve AI applications?",
+        "options": [
+          "By making responses more consistent and aligned with business goals",
+          "By increasing internet speed",
+          "By reducing cloud storage",
+          "By replacing embeddings"
+        ],
+        "correctAnswer": "By making responses more consistent and aligned with business goals"
+      },
+      {
+        "question": "A customer support chatbot should only answer questions related to company products and politely refuse unrelated topics. Which Prompt Engineering technique is best for this?",
+        "options": [
+          "System Prompt",
+          "Few-Shot Prompting",
+          "Temperature Control",
+          "Top-P Sampling"
+        ],
+        "correctAnswer": "System Prompt"
+      },
+      {
+        "question": "What happens if a user asks the AI to ignore its instructions but the System Prompt explicitly forbids that behavior?",
+        "options": [
+          "The System Prompt generally takes priority",
+          "The model always follows the user",
+          "The conversation ends",
+          "The model retrains itself"
+        ],
+        "correctAnswer": "The System Prompt generally takes priority"
+      },
+      {
+        "question": "Which business use case commonly relies on System Prompts?",
+        "options": [
+          "Customer Support Assistants",
+          "AI Tutors",
+          "Sales Chatbots",
+          "All of the Above"
+        ],
+        "correctAnswer": "All of the Above"
+      },
+      {
+        "question": "Why are System Prompts important in AI Agent development?",
+        "options": [
+          "They define the agent's role, objectives, and behavior",
+          "They increase GPU memory",
+          "They replace tools and APIs",
+          "They eliminate prompts entirely"
+        ],
+        "correctAnswer": "They define the agent's role, objectives, and behavior"
+      },
+      {
+        "question": "A recruiter builds an AI assistant that should behave like an experienced hiring manager. Which prompt should contain this instruction?",
+        "options": [
+          "System Prompt",
+          "User Prompt",
+          "Context Window",
+          "Embedding Vector"
+        ],
+        "correctAnswer": "System Prompt"
+      },
+      {
+        "question": "What is one benefit of writing detailed System Prompts?",
+        "options": [
+          "More reliable and predictable outputs",
+          "Automatic model training",
+          "Unlimited context windows",
+          "Reduced API latency"
+        ],
+        "correctAnswer": "More reliable and predictable outputs"
+      },
+      {
+        "question": "Which instruction is most appropriate for a System Prompt?",
+        "options": [
+          "Always explain technical concepts using beginner-friendly language.",
+          "What is AWS?",
+          "Summarize this article.",
+          "Generate a Dockerfile."
+        ],
+        "correctAnswer": "Always explain technical concepts using beginner-friendly language."
+      },
+      {
+        "question": "What is a common mistake when designing System Prompts?",
+        "options": [
+          "Providing vague or unclear instructions",
+          "Defining the AI's role",
+          "Setting response guidelines",
+          "Establishing safety rules"
+        ],
+        "correctAnswer": "Providing vague or unclear instructions"
+      },
+      {
+        "question": "A company creates an AI assistant with the System Prompt: 'You are a cloud architect specializing in AWS. Provide accurate, practical, and beginner-friendly answers.' What is the main purpose of this prompt?",
+        "options": [
+          "To establish expertise, tone, and response expectations",
+          "To train the model on AWS",
+          "To increase token limits",
+          "To create embeddings"
+        ],
+        "correctAnswer": "To establish expertise, tone, and response expectations"
+      }
+    ]
+  },
+  {
+    "courseCode": "AAC",
+    "moduleNumber": 3,
+    "topicSort": 1,
+    "topicTitle": "Structured outputs",
+    "quizTitle": "Structured outputs — Topic Quiz",
+    "passScore": 70,
+    "maxAttempts": 3,
+    "questions": [
+      {
+        "question": "What is Function Calling in modern Large Language Models (LLMs)?",
+        "options": [
+          "A capability that allows an LLM to invoke external tools, APIs, or functions",
+          "A method of training a model",
+          "A way to create embeddings",
+          "A database indexing technique"
+        ],
+        "correctAnswer": "A capability that allows an LLM to invoke external tools, APIs, or functions"
+      },
+      {
+        "question": "Why is Function Calling important when building AI Agents?",
+        "options": [
+          "It allows agents to perform actions beyond text generation",
+          "It increases internet speed",
+          "It replaces prompts",
+          "It removes the need for APIs"
+        ],
+        "correctAnswer": "It allows agents to perform actions beyond text generation"
+      },
+      {
+        "question": "A chatbot needs to check the current weather before answering a user. What would typically be used?",
+        "options": [
+          "Function Calling to a weather API",
+          "Embeddings only",
+          "Tokenization",
+          "Vector Compression"
+        ],
+        "correctAnswer": "Function Calling to a weather API"
+      },
+      {
+        "question": "What are Structured Outputs in Generative AI?",
+        "options": [
+          "Responses returned in a predefined format such as JSON",
+          "Long paragraphs generated by the model",
+          "Model training logs",
+          "Embedding vectors"
+        ],
+        "correctAnswer": "Responses returned in a predefined format such as JSON"
+      },
+      {
+        "question": "Why are Structured Outputs commonly used in production AI applications?",
+        "options": [
+          "They make responses predictable and machine-readable",
+          "They increase model size",
+          "They replace databases",
+          "They reduce internet usage"
+        ],
+        "correctAnswer": "They make responses predictable and machine-readable"
+      }
+    ]
+  },
+  {
+    "courseCode": "AAC",
+    "moduleNumber": 3,
+    "topicSort": 2,
+    "topicTitle": "Ollama & Llama 3",
+    "quizTitle": "Ollama & Llama 3 — Topic Quiz",
+    "passScore": 70,
+    "maxAttempts": 3,
+    "questions": [
+      {
+        "question": "What is Ollama?",
+        "options": [
+          "A tool for running open-source LLMs locally",
+          "A cloud database",
+          "A vector search engine",
+          "A monitoring platform"
+        ],
+        "correctAnswer": "A tool for running open-source LLMs locally"
+      },
+      {
+        "question": "Which of the following models can commonly be run using Ollama?",
+        "options": [
+          "Llama 3",
+          "MySQL",
+          "Redis",
+          "Prometheus"
+        ],
+        "correctAnswer": "Llama 3"
+      },
+      {
+        "question": "What is one major advantage of running Llama 3 locally using Ollama?",
+        "options": [
+          "Better privacy and data control",
+          "Unlimited cloud storage",
+          "Automatic model training",
+          "Free internet access"
+        ],
+        "correctAnswer": "Better privacy and data control"
+      }
+    ]
+  },
+  {
+    "courseCode": "AAC",
+    "moduleNumber": 3,
+    "topicSort": 3,
+    "topicTitle": "Local inference",
+    "quizTitle": "Local inference — Topic Quiz",
+    "passScore": 70,
+    "maxAttempts": 3,
+    "questions": [
+      {
+        "question": "What does 'Local Inference' mean in Generative AI?",
+        "options": [
+          "Running AI models directly on your own machine instead of a cloud service",
+          "Training models locally",
+          "Creating embeddings",
+          "Compressing prompts"
+        ],
+        "correctAnswer": "Running AI models directly on your own machine instead of a cloud service"
+      },
+      {
+        "question": "A company wants to build an internal AI assistant that can access company documents, call internal APIs, return structured JSON responses, and keep all data within its network. Which combination would be most suitable?",
+        "options": [
+          "Llama 3 + Ollama + Function Calling + Structured Outputs",
+          "Only Tokenization",
+          "Only Embeddings",
+          "Only Prompt Engineering"
+        ],
+        "correctAnswer": "Llama 3 + Ollama + Function Calling + Structured Outputs"
+      }
+    ]
   }
 ]

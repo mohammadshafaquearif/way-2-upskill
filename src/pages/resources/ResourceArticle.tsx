@@ -7,6 +7,7 @@ import PageShell from '@/components/layout/PageShell';
 import PageHero from '@/components/PageHero';
 import PageCta from '@/components/PageCta';
 import ResourceEmailCapture from '@/components/resources/ResourceEmailCapture';
+import AwsInterviewPromoBanner from '@/components/resources/AwsInterviewPromoBanner';
 import DevOpsInterviewPromoBanner from '@/components/resources/DevOpsInterviewPromoBanner';
 import { Button } from '@/components/ui/button';
 import {
@@ -97,7 +98,10 @@ const ResourceArticle = () => {
   const meta = article ? CATEGORY_META[article.category] : null;
   const roadmap = FEATURED_ROADMAPS.find((r) => r.slug === slug);
   const isDevOpsInterview = slug === 'devops-interview-questions';
+  const isAwsInterview = slug === 'aws-interview-questions';
   const isInterviewGuide = article?.category === 'interview';
+  const isPromoInterview = isDevOpsInterview || isAwsInterview;
+  const promoInterval = isAwsInterview ? 5 : 6;
 
   const qaSections = useMemo(
     () => article?.sections.filter((section) => section.heading) ?? [],
@@ -175,17 +179,25 @@ const ResourceArticle = () => {
                       >
                         <h2 className="resource-blog-question">{section.heading}</h2>
                         <InterviewSectionAnswer section={section} />
-                        {(!isDevOpsInterview || (index + 1) % 6 !== 0) &&
+                        {(!isPromoInterview || (index + 1) % promoInterval !== 0) &&
                           index < qaSections.length - 1 && (
                             <hr className="resource-blog-divider" aria-hidden />
                           )}
                       </section>
 
                       {isDevOpsInterview &&
-                        (index + 1) % 6 === 0 &&
+                        (index + 1) % promoInterval === 0 &&
                         index < qaSections.length - 1 && (
                           <DevOpsInterviewPromoBanner
-                            variant={(((index + 1) / 6 - 1) % 2) as 0 | 1}
+                            variant={(((index + 1) / promoInterval - 1) % 2) as 0 | 1}
+                          />
+                        )}
+
+                      {isAwsInterview &&
+                        (index + 1) % promoInterval === 0 &&
+                        index < qaSections.length - 1 && (
+                          <AwsInterviewPromoBanner
+                            variant={(((index + 1) / promoInterval - 1) % 2) as 0 | 1}
                           />
                         )}
                     </React.Fragment>
@@ -243,8 +255,14 @@ const ResourceArticle = () => {
         badge="Free resources · Paid transformation"
         title="Ready for mentor-led training?"
         description="Move from free guides to live programs with projects, feedback, and career support."
-        primaryLabel={isDevOpsInterview ? 'Explore Program' : 'Explore Programs'}
-        primaryHref={isDevOpsInterview ? '/courses/devops-engineer-program' : '/courses'}
+        primaryLabel={isPromoInterview ? 'Explore Program' : 'Explore Programs'}
+        primaryHref={
+          isDevOpsInterview
+            ? '/courses/devops-engineer-program'
+            : isAwsInterview
+              ? '/courses/aws'
+              : '/courses'
+        }
         secondaryLabel="Talk to an Advisor"
         secondaryHref="/contact"
         className="resources-page-cta"

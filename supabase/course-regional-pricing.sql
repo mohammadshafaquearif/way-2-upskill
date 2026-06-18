@@ -32,13 +32,13 @@ CREATE POLICY "Admins manage regional prices"
     USING (public.is_admin())
     WITH CHECK (public.is_admin());
 
--- AAC: ₹22,999 + GST | $349 international
+-- AAC: ₹23,689 + GST | $349 international
 INSERT INTO public.course_regional_prices (course_id, region_code, amount, currency, amount_inr)
 SELECT c.id, v.region, v.amount, v.currency, v.amount_inr
 FROM public.courses c
 CROSS JOIN (
     VALUES
-    ('IN', 22999::decimal, 'INR', NULL::decimal),
+    ('IN', 23689::decimal, 'INR', NULL::decimal),
     ('ROW', 349::decimal, 'USD', NULL::decimal)
 ) AS v(region, amount, currency, amount_inr)
 WHERE c.code = 'AAC'
@@ -48,13 +48,13 @@ ON CONFLICT (course_id, region_code) DO UPDATE SET
     amount_inr = EXCLUDED.amount_inr,
     updated_at = NOW();
 
--- DOP: ₹23,999 + GST | $359 international
+-- DOP: ₹24,179 + GST | $359 international
 INSERT INTO public.course_regional_prices (course_id, region_code, amount, currency, amount_inr)
 SELECT c.id, v.region, v.amount, v.currency, v.amount_inr
 FROM public.courses c
 CROSS JOIN (
     VALUES
-    ('IN', 23999::decimal, 'INR', NULL::decimal),
+    ('IN', 24179::decimal, 'INR', NULL::decimal),
     ('ROW', 359::decimal, 'USD', NULL::decimal)
 ) AS v(region, amount, currency, amount_inr)
 WHERE c.code = 'DOP'
@@ -64,13 +64,13 @@ ON CONFLICT (course_id, region_code) DO UPDATE SET
     amount_inr = EXCLUDED.amount_inr,
     updated_at = NOW();
 
--- AWS: ₹18,999 + GST | $209 international
+-- AWS: ₹19,569 + GST | $209 international
 INSERT INTO public.course_regional_prices (course_id, region_code, amount, currency, amount_inr)
 SELECT c.id, v.region, v.amount, v.currency, v.amount_inr
 FROM public.courses c
 CROSS JOIN (
     VALUES
-    ('IN', 18999::decimal, 'INR', NULL::decimal),
+    ('IN', 19569::decimal, 'INR', NULL::decimal),
     ('ROW', 209::decimal, 'USD', NULL::decimal)
 ) AS v(region, amount, currency, amount_inr)
 WHERE c.code = 'AWS'
@@ -80,13 +80,13 @@ ON CONFLICT (course_id, region_code) DO UPDATE SET
     amount_inr = EXCLUDED.amount_inr,
     updated_at = NOW();
 
--- DSP: ₹21,999 + GST | $334 international
+-- DSP: ₹22,569 + GST | $334 international
 INSERT INTO public.course_regional_prices (course_id, region_code, amount, currency, amount_inr)
 SELECT c.id, v.region, v.amount, v.currency, v.amount_inr
 FROM public.courses c
 CROSS JOIN (
     VALUES
-    ('IN', 21999::decimal, 'INR', NULL::decimal),
+    ('IN', 22569::decimal, 'INR', NULL::decimal),
     ('ROW', 334::decimal, 'USD', NULL::decimal)
 ) AS v(region, amount, currency, amount_inr)
 WHERE c.code = 'DSP'
