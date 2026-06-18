@@ -7400,6 +7400,1042 @@ BEGIN
         ]
       }
     ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 1,
+    "topic_sort": 1,
+    "topic_title": "Tokens & embeddings",
+    "quiz_title": "Tokens & embeddings — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 30,
+    "questions": [
+      {
+        "question": "When using Large Language Models (LLMs) like ChatGPT, what is a token?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A complete paragraph",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A unit of text processed by the model",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A database record",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A machine learning algorithm",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why do AI models use tokens instead of processing entire documents at once?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To make storage easier",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To break text into manageable units for processing",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To increase internet speed",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To reduce cloud costs only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best describes tokenization?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Converting images into videos",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Splitting text into smaller units called tokens",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Encrypting user data",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Compressing databases",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What happens if a prompt contains more tokens than a model's context window allows?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The model crashes",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "The extra tokens are ignored or truncated",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "The prompt becomes encrypted",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The model learns permanently from the prompt",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In Generative AI, what is an embedding?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A type of database",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A numerical representation of data",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A programming language",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A cloud service",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are embeddings important in modern AI applications?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They replace GPUs",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "They help measure similarity between pieces of data",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "They increase internet speed",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They remove the need for prompts",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which real-world AI feature commonly uses embeddings?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Semantic Search",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Keyboard Backlight",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Disk Partitioning",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Network Routing",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the main difference between tokens and embeddings?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Tokens are text units, embeddings are numerical representations",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Both are exactly the same",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Embeddings are larger versions of tokens",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Tokens only work for images",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AI application heavily relies on embeddings for retrieving relevant documents?",
+        "options": [
+          {
+            "id": "a",
+            "text": "RAG (Retrieval-Augmented Generation)",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "FTP Server",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Load Balancer",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "VPN Gateway",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a vector database?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A database optimized for storing embeddings",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A database used only for videos",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A database without indexing",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A cloud backup tool",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "When two embeddings are very close in vector space, what does it usually indicate?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The content is semantically similar",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "The data is corrupted",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "The model failed",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The tokens are duplicated",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which of the following is a common use case for embeddings in enterprise AI systems?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Document Search",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Network Cabling",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Operating System Installation",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Hardware Manufacturing",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are embeddings frequently used in AI chatbots?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To help retrieve relevant context before generating answers",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To improve monitor resolution",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To install software packages",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To manage cloud billing",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement about embeddings is true?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Embeddings capture meaning, not just exact words",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Embeddings only work with English",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Embeddings replace language models",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Embeddings are used only in databases",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company wants to build an AI knowledge assistant that answers questions from internal documents. Which combination would most likely be used?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Embeddings + Vector Database + LLM",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Only HTML and CSS",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Firewall + Router",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Docker + Kubernetes only",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 1,
+    "topic_sort": 2,
+    "topic_title": "Transformers",
+    "quiz_title": "Transformers — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 30,
+    "questions": [
+      {
+        "question": "What is the primary purpose of the Transformer architecture in AI?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Image compression",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Understanding relationships within sequences of data",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Database optimization",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Network routing",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which breakthrough paper introduced the Transformer architecture?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Deep Learning Revolution",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Attention Is All You Need",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Neural Networks Explained",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The Future of AI",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the key innovation that makes Transformers different from RNNs and LSTMs?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Convolution",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Self-Attention",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Virtual Machines",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Caching",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What does Self-Attention help a Transformer model do?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Increase internet speed",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Focus on important words in a sequence",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Store data permanently",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Reduce cloud costs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are Transformers faster to train than traditional RNN-based models?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They use SSD storage",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "They process tokens in parallel",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "They require less memory always",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They use fewer parameters",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In a Transformer model, what are tokens?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Database records",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Units of text processed by the model",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Cloud servers",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Neural network layers",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the role of positional encoding in Transformers?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Store passwords",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Provide information about token order",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Compress embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Generate images",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which modern AI models are based on the Transformer architecture?",
+        "options": [
+          {
+            "id": "a",
+            "text": "ChatGPT, Gemini, Claude",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "MySQL, PostgreSQL",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Docker, Kubernetes",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Terraform, Ansible",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an embedding in the context of Transformers?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A storage device",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A numerical representation of tokens",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A type of API",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A database query",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which component allows Transformers to understand context from earlier and later words in a sentence?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Virtualization",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Self-Attention Mechanism",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Caching Engine",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Operating System",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a context window in Transformer-based models?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The number of users supported",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "The maximum number of tokens the model can process at once",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A cloud region",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A GPU type",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are larger context windows useful in modern LLMs?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They reduce internet usage",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "They allow the model to remember and analyze more information",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "They eliminate embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They replace GPUs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the Encoder component mainly responsible for in a Transformer?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Understanding and encoding input information",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Generating invoices",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Managing databases",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Deploying applications",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the Decoder component mainly responsible for?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Generating output based on learned representations",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Installing software",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Creating cloud infrastructure",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Managing APIs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company is building a chatbot that can answer questions from documents, generate summaries, and assist users. Why would a Transformer-based model be a good choice?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It understands context, generates human-like responses, and scales well across NLP tasks",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It removes the need for training data",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It replaces databases completely",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It works without tokens",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 1,
+    "topic_sort": 3,
+    "topic_title": "Sampling parameters",
+    "quiz_title": "Sampling parameters — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of sampling parameters in Large Language Models (LLMs)?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To control how the model generates responses",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To increase internet speed",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To train the model from scratch",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To store embeddings",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which sampling parameter is most commonly used to control the randomness of a model's response?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Temperature",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Embedding Size",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Context Length",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Token Count",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What typically happens when the Temperature value is set very low (e.g., 0.1)?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Responses become more predictable and focused",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Responses become highly creative",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "The model generates images",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The context window increases",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the effect of setting a high Temperature value (e.g., 1.5)?",
+        "options": [
+          {
+            "id": "a",
+            "text": "More creative and diverse responses",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Shorter context windows",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Faster model training",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "More embeddings generated",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What does the Top-P (Nucleus Sampling) parameter control?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The set of most probable tokens considered during generation",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "The size of the model",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "The number of GPUs",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The length of embeddings",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A Top-P value of 0.9 means what?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The model considers tokens that make up the top 90% cumulative probability",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "The model generates exactly 90 tokens",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "The model uses 90% of its memory",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The model trains 90% faster",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the purpose of the Top-K parameter?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Limit token selection to the K most probable tokens",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Limit context length",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Reduce model size",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Increase embedding dimensions",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "When would you typically use a low Temperature and low Top-P setting?",
+        "options": [
+          {
+            "id": "a",
+            "text": "For factual and consistent responses",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "For creative storytelling",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "For image generation",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "For model training",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which combination is generally better for creative content generation?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Higher Temperature and higher Top-P",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Lower Temperature and lower Top-P",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Temperature 0 only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "No sampling parameters",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company is building an AI-powered customer support chatbot that must provide accurate and consistent answers. Which configuration would be most appropriate?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Low Temperature and moderate Top-P",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "High Temperature and high Top-P",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Maximum randomness",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Random parameter values for every request",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
   }
 ]
 $catalog$::jsonb) AS x(

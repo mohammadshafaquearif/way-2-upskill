@@ -2299,5 +2299,438 @@
         "correctAnswer": "Build systems that are reliable, secure, observable, and cost-efficient before going live"
       }
     ]
+  },
+  {
+    "courseCode": "AAC",
+    "moduleNumber": 1,
+    "topicSort": 1,
+    "topicTitle": "Tokens & embeddings",
+    "quizTitle": "Tokens & embeddings — Topic Quiz",
+    "passScore": 70,
+    "maxAttempts": 3,
+    "questions": [
+      {
+        "question": "When using Large Language Models (LLMs) like ChatGPT, what is a token?",
+        "options": [
+          "A complete paragraph",
+          "A unit of text processed by the model",
+          "A database record",
+          "A machine learning algorithm"
+        ],
+        "correctAnswer": "A unit of text processed by the model"
+      },
+      {
+        "question": "Why do AI models use tokens instead of processing entire documents at once?",
+        "options": [
+          "To make storage easier",
+          "To break text into manageable units for processing",
+          "To increase internet speed",
+          "To reduce cloud costs only"
+        ],
+        "correctAnswer": "To break text into manageable units for processing"
+      },
+      {
+        "question": "Which statement best describes tokenization?",
+        "options": [
+          "Converting images into videos",
+          "Splitting text into smaller units called tokens",
+          "Encrypting user data",
+          "Compressing databases"
+        ],
+        "correctAnswer": "Splitting text into smaller units called tokens"
+      },
+      {
+        "question": "What happens if a prompt contains more tokens than a model's context window allows?",
+        "options": [
+          "The model crashes",
+          "The extra tokens are ignored or truncated",
+          "The prompt becomes encrypted",
+          "The model learns permanently from the prompt"
+        ],
+        "correctAnswer": "The extra tokens are ignored or truncated"
+      },
+      {
+        "question": "In Generative AI, what is an embedding?",
+        "options": [
+          "A type of database",
+          "A numerical representation of data",
+          "A programming language",
+          "A cloud service"
+        ],
+        "correctAnswer": "A numerical representation of data"
+      },
+      {
+        "question": "Why are embeddings important in modern AI applications?",
+        "options": [
+          "They replace GPUs",
+          "They help measure similarity between pieces of data",
+          "They increase internet speed",
+          "They remove the need for prompts"
+        ],
+        "correctAnswer": "They help measure similarity between pieces of data"
+      },
+      {
+        "question": "Which real-world AI feature commonly uses embeddings?",
+        "options": [
+          "Semantic Search",
+          "Keyboard Backlight",
+          "Disk Partitioning",
+          "Network Routing"
+        ],
+        "correctAnswer": "Semantic Search"
+      },
+      {
+        "question": "What is the main difference between tokens and embeddings?",
+        "options": [
+          "Tokens are text units, embeddings are numerical representations",
+          "Both are exactly the same",
+          "Embeddings are larger versions of tokens",
+          "Tokens only work for images"
+        ],
+        "correctAnswer": "Tokens are text units, embeddings are numerical representations"
+      },
+      {
+        "question": "Which AI application heavily relies on embeddings for retrieving relevant documents?",
+        "options": [
+          "RAG (Retrieval-Augmented Generation)",
+          "FTP Server",
+          "Load Balancer",
+          "VPN Gateway"
+        ],
+        "correctAnswer": "RAG (Retrieval-Augmented Generation)"
+      },
+      {
+        "question": "What is a vector database?",
+        "options": [
+          "A database optimized for storing embeddings",
+          "A database used only for videos",
+          "A database without indexing",
+          "A cloud backup tool"
+        ],
+        "correctAnswer": "A database optimized for storing embeddings"
+      },
+      {
+        "question": "When two embeddings are very close in vector space, what does it usually indicate?",
+        "options": [
+          "The content is semantically similar",
+          "The data is corrupted",
+          "The model failed",
+          "The tokens are duplicated"
+        ],
+        "correctAnswer": "The content is semantically similar"
+      },
+      {
+        "question": "Which of the following is a common use case for embeddings in enterprise AI systems?",
+        "options": [
+          "Document Search",
+          "Network Cabling",
+          "Operating System Installation",
+          "Hardware Manufacturing"
+        ],
+        "correctAnswer": "Document Search"
+      },
+      {
+        "question": "Why are embeddings frequently used in AI chatbots?",
+        "options": [
+          "To help retrieve relevant context before generating answers",
+          "To improve monitor resolution",
+          "To install software packages",
+          "To manage cloud billing"
+        ],
+        "correctAnswer": "To help retrieve relevant context before generating answers"
+      },
+      {
+        "question": "Which statement about embeddings is true?",
+        "options": [
+          "Embeddings capture meaning, not just exact words",
+          "Embeddings only work with English",
+          "Embeddings replace language models",
+          "Embeddings are used only in databases"
+        ],
+        "correctAnswer": "Embeddings capture meaning, not just exact words"
+      },
+      {
+        "question": "A company wants to build an AI knowledge assistant that answers questions from internal documents. Which combination would most likely be used?",
+        "options": [
+          "Embeddings + Vector Database + LLM",
+          "Only HTML and CSS",
+          "Firewall + Router",
+          "Docker + Kubernetes only"
+        ],
+        "correctAnswer": "Embeddings + Vector Database + LLM"
+      }
+    ]
+  },
+  {
+    "courseCode": "AAC",
+    "moduleNumber": 1,
+    "topicSort": 2,
+    "topicTitle": "Transformers",
+    "quizTitle": "Transformers — Topic Quiz",
+    "passScore": 70,
+    "maxAttempts": 3,
+    "questions": [
+      {
+        "question": "What is the primary purpose of the Transformer architecture in AI?",
+        "options": [
+          "Image compression",
+          "Understanding relationships within sequences of data",
+          "Database optimization",
+          "Network routing"
+        ],
+        "correctAnswer": "Understanding relationships within sequences of data"
+      },
+      {
+        "question": "Which breakthrough paper introduced the Transformer architecture?",
+        "options": [
+          "Deep Learning Revolution",
+          "Attention Is All You Need",
+          "Neural Networks Explained",
+          "The Future of AI"
+        ],
+        "correctAnswer": "Attention Is All You Need"
+      },
+      {
+        "question": "What is the key innovation that makes Transformers different from RNNs and LSTMs?",
+        "options": [
+          "Convolution",
+          "Self-Attention",
+          "Virtual Machines",
+          "Caching"
+        ],
+        "correctAnswer": "Self-Attention"
+      },
+      {
+        "question": "What does Self-Attention help a Transformer model do?",
+        "options": [
+          "Increase internet speed",
+          "Focus on important words in a sequence",
+          "Store data permanently",
+          "Reduce cloud costs"
+        ],
+        "correctAnswer": "Focus on important words in a sequence"
+      },
+      {
+        "question": "Why are Transformers faster to train than traditional RNN-based models?",
+        "options": [
+          "They use SSD storage",
+          "They process tokens in parallel",
+          "They require less memory always",
+          "They use fewer parameters"
+        ],
+        "correctAnswer": "They process tokens in parallel"
+      },
+      {
+        "question": "In a Transformer model, what are tokens?",
+        "options": [
+          "Database records",
+          "Units of text processed by the model",
+          "Cloud servers",
+          "Neural network layers"
+        ],
+        "correctAnswer": "Units of text processed by the model"
+      },
+      {
+        "question": "What is the role of positional encoding in Transformers?",
+        "options": [
+          "Store passwords",
+          "Provide information about token order",
+          "Compress embeddings",
+          "Generate images"
+        ],
+        "correctAnswer": "Provide information about token order"
+      },
+      {
+        "question": "Which modern AI models are based on the Transformer architecture?",
+        "options": [
+          "ChatGPT, Gemini, Claude",
+          "MySQL, PostgreSQL",
+          "Docker, Kubernetes",
+          "Terraform, Ansible"
+        ],
+        "correctAnswer": "ChatGPT, Gemini, Claude"
+      },
+      {
+        "question": "What is an embedding in the context of Transformers?",
+        "options": [
+          "A storage device",
+          "A numerical representation of tokens",
+          "A type of API",
+          "A database query"
+        ],
+        "correctAnswer": "A numerical representation of tokens"
+      },
+      {
+        "question": "Which component allows Transformers to understand context from earlier and later words in a sentence?",
+        "options": [
+          "Virtualization",
+          "Self-Attention Mechanism",
+          "Caching Engine",
+          "Operating System"
+        ],
+        "correctAnswer": "Self-Attention Mechanism"
+      },
+      {
+        "question": "What is a context window in Transformer-based models?",
+        "options": [
+          "The number of users supported",
+          "The maximum number of tokens the model can process at once",
+          "A cloud region",
+          "A GPU type"
+        ],
+        "correctAnswer": "The maximum number of tokens the model can process at once"
+      },
+      {
+        "question": "Why are larger context windows useful in modern LLMs?",
+        "options": [
+          "They reduce internet usage",
+          "They allow the model to remember and analyze more information",
+          "They eliminate embeddings",
+          "They replace GPUs"
+        ],
+        "correctAnswer": "They allow the model to remember and analyze more information"
+      },
+      {
+        "question": "What is the Encoder component mainly responsible for in a Transformer?",
+        "options": [
+          "Understanding and encoding input information",
+          "Generating invoices",
+          "Managing databases",
+          "Deploying applications"
+        ],
+        "correctAnswer": "Understanding and encoding input information"
+      },
+      {
+        "question": "What is the Decoder component mainly responsible for?",
+        "options": [
+          "Generating output based on learned representations",
+          "Installing software",
+          "Creating cloud infrastructure",
+          "Managing APIs"
+        ],
+        "correctAnswer": "Generating output based on learned representations"
+      },
+      {
+        "question": "A company is building a chatbot that can answer questions from documents, generate summaries, and assist users. Why would a Transformer-based model be a good choice?",
+        "options": [
+          "It understands context, generates human-like responses, and scales well across NLP tasks",
+          "It removes the need for training data",
+          "It replaces databases completely",
+          "It works without tokens"
+        ],
+        "correctAnswer": "It understands context, generates human-like responses, and scales well across NLP tasks"
+      }
+    ]
+  },
+  {
+    "courseCode": "AAC",
+    "moduleNumber": 1,
+    "topicSort": 3,
+    "topicTitle": "Sampling parameters",
+    "quizTitle": "Sampling parameters — Topic Quiz",
+    "passScore": 70,
+    "maxAttempts": 3,
+    "questions": [
+      {
+        "question": "What is the primary purpose of sampling parameters in Large Language Models (LLMs)?",
+        "options": [
+          "To control how the model generates responses",
+          "To increase internet speed",
+          "To train the model from scratch",
+          "To store embeddings"
+        ],
+        "correctAnswer": "To control how the model generates responses"
+      },
+      {
+        "question": "Which sampling parameter is most commonly used to control the randomness of a model's response?",
+        "options": [
+          "Temperature",
+          "Embedding Size",
+          "Context Length",
+          "Token Count"
+        ],
+        "correctAnswer": "Temperature"
+      },
+      {
+        "question": "What typically happens when the Temperature value is set very low (e.g., 0.1)?",
+        "options": [
+          "Responses become more predictable and focused",
+          "Responses become highly creative",
+          "The model generates images",
+          "The context window increases"
+        ],
+        "correctAnswer": "Responses become more predictable and focused"
+      },
+      {
+        "question": "What is the effect of setting a high Temperature value (e.g., 1.5)?",
+        "options": [
+          "More creative and diverse responses",
+          "Shorter context windows",
+          "Faster model training",
+          "More embeddings generated"
+        ],
+        "correctAnswer": "More creative and diverse responses"
+      },
+      {
+        "question": "What does the Top-P (Nucleus Sampling) parameter control?",
+        "options": [
+          "The set of most probable tokens considered during generation",
+          "The size of the model",
+          "The number of GPUs",
+          "The length of embeddings"
+        ],
+        "correctAnswer": "The set of most probable tokens considered during generation"
+      },
+      {
+        "question": "A Top-P value of 0.9 means what?",
+        "options": [
+          "The model considers tokens that make up the top 90% cumulative probability",
+          "The model generates exactly 90 tokens",
+          "The model uses 90% of its memory",
+          "The model trains 90% faster"
+        ],
+        "correctAnswer": "The model considers tokens that make up the top 90% cumulative probability"
+      },
+      {
+        "question": "What is the purpose of the Top-K parameter?",
+        "options": [
+          "Limit token selection to the K most probable tokens",
+          "Limit context length",
+          "Reduce model size",
+          "Increase embedding dimensions"
+        ],
+        "correctAnswer": "Limit token selection to the K most probable tokens"
+      },
+      {
+        "question": "When would you typically use a low Temperature and low Top-P setting?",
+        "options": [
+          "For factual and consistent responses",
+          "For creative storytelling",
+          "For image generation",
+          "For model training"
+        ],
+        "correctAnswer": "For factual and consistent responses"
+      },
+      {
+        "question": "Which combination is generally better for creative content generation?",
+        "options": [
+          "Higher Temperature and higher Top-P",
+          "Lower Temperature and lower Top-P",
+          "Temperature 0 only",
+          "No sampling parameters"
+        ],
+        "correctAnswer": "Higher Temperature and higher Top-P"
+      },
+      {
+        "question": "A company is building an AI-powered customer support chatbot that must provide accurate and consistent answers. Which configuration would be most appropriate?",
+        "options": [
+          "Low Temperature and moderate Top-P",
+          "High Temperature and high Top-P",
+          "Maximum randomness",
+          "Random parameter values for every request"
+        ],
+        "correctAnswer": "Low Temperature and moderate Top-P"
+      }
+    ]
   }
 ]
