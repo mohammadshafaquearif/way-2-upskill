@@ -8,6 +8,7 @@ import PageHero from '@/components/PageHero';
 import PageCta from '@/components/PageCta';
 import ResourceEmailCapture from '@/components/resources/ResourceEmailCapture';
 import AwsInterviewPromoBanner from '@/components/resources/AwsInterviewPromoBanner';
+import DataScienceInterviewPromoBanner from '@/components/resources/DataScienceInterviewPromoBanner';
 import DevOpsInterviewPromoBanner from '@/components/resources/DevOpsInterviewPromoBanner';
 import { Button } from '@/components/ui/button';
 import {
@@ -99,9 +100,10 @@ const ResourceArticle = () => {
   const roadmap = FEATURED_ROADMAPS.find((r) => r.slug === slug);
   const isDevOpsInterview = slug === 'devops-interview-questions';
   const isAwsInterview = slug === 'aws-interview-questions';
+  const isDataScienceInterview = slug === 'data-science-interview-questions';
   const isInterviewGuide = article?.category === 'interview';
-  const isPromoInterview = isDevOpsInterview || isAwsInterview;
-  const promoInterval = isAwsInterview ? 5 : 6;
+  const isPromoInterview = isDevOpsInterview || isAwsInterview || isDataScienceInterview;
+  const promoInterval = isDevOpsInterview ? 6 : 5;
 
   const qaSections = useMemo(
     () => article?.sections.filter((section) => section.heading) ?? [],
@@ -200,6 +202,14 @@ const ResourceArticle = () => {
                             variant={(((index + 1) / promoInterval - 1) % 2) as 0 | 1}
                           />
                         )}
+
+                      {isDataScienceInterview &&
+                        (index + 1) % promoInterval === 0 &&
+                        index < qaSections.length - 1 && (
+                          <DataScienceInterviewPromoBanner
+                            variant={(((index + 1) / promoInterval - 1) % 2) as 0 | 1}
+                          />
+                        )}
                     </React.Fragment>
                   ))}
                 </div>
@@ -261,7 +271,9 @@ const ResourceArticle = () => {
             ? '/courses/devops-engineer-program'
             : isAwsInterview
               ? '/courses/aws'
-              : '/courses'
+              : isDataScienceInterview
+                ? '/courses/data-science'
+                : '/courses'
         }
         secondaryLabel="Talk to an Advisor"
         secondaryHref="/contact"
