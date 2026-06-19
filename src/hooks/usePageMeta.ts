@@ -4,6 +4,7 @@ interface PageMeta {
   title: string;
   description: string;
   canonical?: string;
+  robots?: string;
 }
 
 const SITE = 'Zyvotrix';
@@ -33,7 +34,7 @@ function formatTitle(title: string) {
   return title.includes(SITE) ? title : `${title} | ${SITE}`;
 }
 
-export function usePageMeta({ title, description, canonical }: PageMeta) {
+export function usePageMeta({ title, description, canonical, robots }: PageMeta) {
   useEffect(() => {
     const pageTitle = formatTitle(title);
     document.title = pageTitle;
@@ -42,10 +43,13 @@ export function usePageMeta({ title, description, canonical }: PageMeta) {
     setMetaTag('property', 'og:description', description);
     setMetaTag('name', 'twitter:title', pageTitle);
     setMetaTag('name', 'twitter:description', description);
+    if (robots) {
+      setMetaTag('name', 'robots', robots);
+    }
     if (canonical) {
       const url = canonical.startsWith('http') ? canonical : `${BASE_URL}${canonical}`;
       setCanonical(url);
       setMetaTag('property', 'og:url', url);
     }
-  }, [title, description, canonical]);
+  }, [title, description, canonical, robots]);
 }
