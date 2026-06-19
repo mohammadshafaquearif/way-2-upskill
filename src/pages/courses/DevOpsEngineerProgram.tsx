@@ -51,10 +51,13 @@ import type { FaqItem } from '@/lib/faqs';
 import { DEVOPS_TOOLS } from '@/lib/devopsTools';
 import { IMAGES } from '@/lib/images';
 import { cn } from '@/lib/utils';
+import { STATIC_PAGE_SEO } from '@/lib/seo';
+import { buildCourseSchema } from '@/lib/courseSchema';
 import { usePageMeta } from '@/hooks/usePageMeta';
 
 const course = COURSE_BY_ID.dop;
 const visuals = IMAGES.programVisuals.dop;
+const dopCourseSchema = buildCourseSchema(course)!;
 
 const curriculum = [
   {
@@ -749,12 +752,7 @@ const TechMarquee = ({ tools, reverse }: { tools: typeof DEVOPS_TOOLS; reverse?:
 );
 
 const DevOpsEngineerProgram = () => {
-  usePageMeta({
-    title: 'Become an AI-Powered DevOps Engineer | Zyvotrix',
-    description:
-      '4-month project-oriented DevOps certification for working professionals. 12+ hands-on labs + 4 portfolio projects — job-ready AI-Powered DevOps Engineer.',
-    canonical: '/courses/devops-engineer-program',
-  });
+  usePageMeta(STATIC_PAGE_SEO['/courses/devops-engineer-program']);
 
   const techRowA = DEVOPS_TOOLS.slice(0, 8);
   const techRowB = DEVOPS_TOOLS.slice(8);
@@ -764,6 +762,10 @@ const DevOpsEngineerProgram = () => {
 
   return (
     <PageShell className="devops-program-page dop-program-page program-page-polish">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(dopCourseSchema) }}
+      />
       <Navbar />
 
       <section className="program-landing-hero relative overflow-hidden">

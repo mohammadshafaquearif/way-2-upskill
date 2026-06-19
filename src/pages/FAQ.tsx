@@ -6,6 +6,7 @@ import PageShell from '@/components/layout/PageShell';
 import PageHero from '@/components/PageHero';
 import PageCta from '@/components/PageCta';
 import FAQList from '@/components/FAQList';
+import { STATIC_PAGE_SEO } from '@/lib/seo';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { FAQS, FAQ_CATEGORIES, type FaqCategory } from '@/lib/faqs';
 import { Search } from 'lucide-react';
@@ -15,12 +16,7 @@ const FAQ = () => {
   const [activeCategory, setActiveCategory] = useState<FaqCategory | 'all'>('all');
   const [search, setSearch] = useState('');
 
-  usePageMeta({
-    title: 'Frequently Asked Questions',
-    description:
-      'Answers about Zyvotrix programs, enrollment, pricing, learning format, certificates, career support, and technical requirements.',
-    canonical: '/faq',
-  });
+  usePageMeta(STATIC_PAGE_SEO['/faq']);
 
   const categoryFiltered =
     activeCategory === 'all' ? FAQS : FAQS.filter((f) => f.category === activeCategory);

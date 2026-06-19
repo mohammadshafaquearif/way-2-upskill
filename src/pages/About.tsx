@@ -24,7 +24,17 @@ import {
   Video,
 } from 'lucide-react';
 import { IMAGES } from '@/lib/images';
+import { STATIC_PAGE_SEO } from '@/lib/seo';
 import { usePageMeta } from '@/hooks/usePageMeta';
+import GoogleMapEmbed from '@/components/local/GoogleMapEmbed';
+import BusinessNap from '@/components/local/BusinessNap';
+import {
+  ZYVOTRIX_LOCAL_BUSINESS_SCHEMA,
+  ZYVOTRIX_LOCAL_KEYWORDS,
+  ZYVOTRIX_NAP,
+} from '@/lib/localBusiness';
+import { ZYVOTRIX_GOOGLE_MAPS_URL } from '@/lib/seo';
+import { SOCIAL_LINKS } from '@/lib/socialLinks';
 
 const { aboutVisuals } = IMAGES;
 
@@ -84,15 +94,14 @@ const learnerHighlights = [
 ];
 
 const About = () => {
-  usePageMeta({
-    title: 'About Zyvotrix — Building Career-Ready Tech Professionals',
-    description:
-      'Zyvotrix helps learners and working professionals build practical skills in DevOps, Agentic AI, AWS, and Data Science through hands-on projects, mentorship, and portfolio-driven learning.',
-    canonical: '/about',
-  });
+  usePageMeta(STATIC_PAGE_SEO['/about']);
 
   return (
     <PageShell className="about-page">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ZYVOTRIX_LOCAL_BUSINESS_SCHEMA) }}
+      />
       <Navbar />
 
       <PageHero
@@ -102,7 +111,7 @@ const About = () => {
             Building <span className="gradient-text">Career-Ready</span> Tech Professionals
           </>
         }
-        subtitle="At Zyvotrix, we believe learning should lead to real outcomes — practical skills, meaningful projects, and the confidence to solve real-world problems. Our programs are designed for learners and working professionals who want more than theory."
+        subtitle="At Zyvotrix in Bengaluru, we believe learning should lead to real outcomes — practical skills, meaningful projects, and the confidence to solve real-world problems. Our programs are designed for learners and working professionals who want more than theory."
         image={aboutVisuals.hero}
         imageAlt="Diverse professionals learning DevOps, AI, cloud, and data skills in a modern workspace"
         imageCaption={IMAGES.heroCaptions.about}
@@ -324,16 +333,41 @@ const About = () => {
         </div>
       </section>
 
-      <section className="section-padding section-white border-t border-border">
+      <section className="section-padding section-white border-t border-border" id="location">
         <div className="about-page-container">
-          <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5">
-              <MapPin className="h-4 w-4 text-primary" /> Bengaluru, Karnataka
-            </span>
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5">
-              <Phone className="h-4 w-4 text-primary" /> +91 8887720741
-            </span>
+          <header className="about-section-header mx-auto mb-10 max-w-2xl text-center">
+            <span className="about-section-eyebrow mb-3 inline-block">Our Location</span>
+            <h2 className="about-section-title mb-4">Zyvotrix in Bengaluru, Karnataka</h2>
+            <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
+              {ZYVOTRIX_LOCAL_KEYWORDS.tagline} Visit us on Google Maps or reach out for the best
+              DevOps, Agentic AI, AWS, and Data Science training programs in Bengaluru.
+            </p>
+          </header>
+
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-start">
+            <BusinessNap />
+            <GoogleMapEmbed />
           </div>
+
+          <div className="mt-8 flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
+            <a
+              href={SOCIAL_LINKS.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 hover:border-primary/30"
+            >
+              <Phone className="h-4 w-4 text-primary" /> {ZYVOTRIX_NAP.phoneDisplay}
+            </a>
+            <a
+              href={ZYVOTRIX_GOOGLE_MAPS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 hover:border-primary/30"
+            >
+              <MapPin className="h-4 w-4 text-primary" /> Google Maps
+            </a>
+          </div>
+
           <div className="mt-8 text-center">
             <Button asChild size="lg" variant="outline" className="h-12 border-primary/25 px-8">
               <Link to="/contact">Talk to Our Team</Link>

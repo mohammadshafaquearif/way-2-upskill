@@ -24,8 +24,17 @@ import PageHero from '@/components/PageHero';
 import PageCta from '@/components/PageCta';
 import PageShell from '@/components/layout/PageShell';
 import { IMAGES } from '@/lib/images';
+import { STATIC_PAGE_SEO } from '@/lib/seo';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { DEFAULT_COUNTRY, toE164, validatePhone } from '@/lib/phone';
+import GoogleMapEmbed from '@/components/local/GoogleMapEmbed';
+import BusinessNap from '@/components/local/BusinessNap';
+import {
+  ZYVOTRIX_ADDRESS_LINE,
+  ZYVOTRIX_LOCAL_BUSINESS_SCHEMA,
+  ZYVOTRIX_LOCAL_KEYWORDS,
+  ZYVOTRIX_NAP,
+} from '@/lib/localBusiness';
 
 interface FormData {
   firstName: string;
@@ -36,20 +45,16 @@ interface FormData {
 }
 
 const contactMethods = [
-  { icon: Mail, title: 'Email Us', value: 'support@zyvotrix.com', action: 'email' as const, color: 'bg-primary/10 text-primary' },
-  { icon: Phone, title: 'WhatsApp', value: '+91 8887720741', action: 'whatsapp' as const, color: 'bg-secondary/10 text-secondary' },
-  { icon: MapPin, title: 'Visit Us', value: 'Bengaluru, Karnataka, 560102', action: null, color: 'bg-primary/10 text-primary' },
-  { icon: Calendar, title: 'Office Hours', value: 'Mon–Fri: 9 AM – 5 PM', action: null, color: 'bg-primary/10 text-primary' },
+  { icon: Mail, title: 'Email Us', value: ZYVOTRIX_NAP.email, action: 'email' as const, color: 'bg-primary/10 text-primary' },
+  { icon: Phone, title: 'WhatsApp', value: ZYVOTRIX_NAP.phoneDisplay, action: 'whatsapp' as const, color: 'bg-secondary/10 text-secondary' },
+  { icon: MapPin, title: 'Visit Us', value: ZYVOTRIX_ADDRESS_LINE, action: null, color: 'bg-primary/10 text-primary' },
+  { icon: Calendar, title: 'Office Hours', value: ZYVOTRIX_NAP.officeHours, action: null, color: 'bg-primary/10 text-primary' },
 ];
 
 const Contact = () => {
   const { toast } = useToast();
 
-  usePageMeta({
-    title: 'Contact Us',
-    description: 'Contact Zyvotrix for program inquiries, enrollment support, partnerships, and career guidance.',
-    canonical: '/contact',
-  });
+  usePageMeta(STATIC_PAGE_SEO['/contact']);
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
@@ -151,6 +156,10 @@ const Contact = () => {
 
   return (
     <PageShell>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ZYVOTRIX_LOCAL_BUSINESS_SCHEMA) }}
+      />
       <Navbar />
       
       <PageHero
@@ -160,7 +169,7 @@ const Contact = () => {
             Get in <span className="gradient-text">Touch</span>
           </>
         }
-        subtitle="Questions about programs, enrollment, or partnerships? We're here to help."
+        subtitle={`Questions about programs, enrollment, or partnerships? ${ZYVOTRIX_LOCAL_KEYWORDS.tagline}`}
         image={IMAGES.hero.contact}
         imageAlt="Zyvotrix support team — we're here to help with programs and enrollment"
         imageCaption={IMAGES.heroCaptions.contact}
@@ -175,8 +184,14 @@ const Contact = () => {
               </span>
               <h2 className="section-title mx-0 text-left">Get in Touch</h2>
               <p className="mb-8 text-lg text-muted-foreground">
-                Fill out the form and our team will get back to you within a few hours.
+                Fill out the form and our Bengaluru-based team will get back to you within a few hours.
+                Zyvotrix offers top tech training programs in Karnataka — DevOps, Agentic AI, AWS, and
+                Data Science — with live mentor-led classes online and local learner support.
               </p>
+              
+              <div className="mb-8">
+                <BusinessNap />
+              </div>
               
               <div className="grid gap-4 sm:grid-cols-2">
                 {contactMethods.map((method) => (
@@ -307,6 +322,25 @@ const Contact = () => {
                 </Button>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding section-alt border-t border-border">
+        <div className="container px-4 md:px-6">
+          <div className="mx-auto max-w-5xl">
+            <div className="mb-8 text-center">
+              <span className="mb-3 inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-primary">
+                Find Us in Bengaluru
+              </span>
+              <h2 className="section-title">Visit Zyvotrix on Google Maps</h2>
+              <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
+                Our {ZYVOTRIX_LOCAL_KEYWORDS.city} office is listed on Google Maps. Learners across Karnataka
+                and India join our live online programs — stop by or connect with us for DevOps, Agentic AI,
+                AWS, and Data Science training in Bengaluru.
+              </p>
+            </div>
+            <GoogleMapEmbed />
           </div>
         </div>
       </section>

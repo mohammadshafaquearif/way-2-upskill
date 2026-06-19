@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PageShell from '@/components/layout/PageShell';
 import PageHero from '@/components/PageHero';
+import { STATIC_PAGE_SEO } from '@/lib/seo';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { Shield } from 'lucide-react';
 
@@ -67,12 +68,7 @@ const sections = [
 ];
 
 const Privacy = () => {
-  usePageMeta({
-    title: 'Privacy Policy',
-    description:
-      'Zyvotrix Privacy Policy — how we collect, use, store, and protect personal information for learners, enrollments, live programs, and community access.',
-    canonical: '/privacy',
-  });
+  usePageMeta(STATIC_PAGE_SEO['/privacy']);
 
   return (
     <PageShell>

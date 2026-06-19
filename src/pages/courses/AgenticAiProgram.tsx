@@ -46,10 +46,13 @@ import { COURSE_BY_ID } from '@/lib/courses';
 import type { FaqItem } from '@/lib/faqs';
 import { IMAGES } from '@/lib/images';
 import { cn } from '@/lib/utils';
+import { STATIC_PAGE_SEO } from '@/lib/seo';
+import { buildCourseSchema } from '@/lib/courseSchema';
 import { usePageMeta } from '@/hooks/usePageMeta';
 
 const course = COURSE_BY_ID.aac;
 const visuals = IMAGES.programVisuals.aac;
+const aacCourseSchema = buildCourseSchema(course)!;
 
 const curriculum = [
   {
@@ -530,12 +533,7 @@ const TechMarquee = ({ tools, reverse }: { tools: typeof AGENTIC_TOOLS; reverse?
 );
 
 const AgenticAiProgram = () => {
-  usePageMeta({
-    title: 'Agentic AI Certification Training (AAC)',
-    description:
-      '3-month Agentic AI certification at Zyvotrix. Master LLMs, RAG, LangChain, multi-agent systems, and deploy portfolio-ready AI applications.',
-    canonical: '/courses/aac',
-  });
+  usePageMeta(STATIC_PAGE_SEO['/courses/aac']);
 
   const techRowA = AGENTIC_TOOLS.slice(0, 11);
   const techRowB = AGENTIC_TOOLS.slice(11);
@@ -545,6 +543,10 @@ const AgenticAiProgram = () => {
 
   return (
     <PageShell className="devops-program-page aac-program-page program-page-polish">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aacCourseSchema) }}
+      />
       <Navbar />
 
       <section className="program-landing-hero relative overflow-hidden">

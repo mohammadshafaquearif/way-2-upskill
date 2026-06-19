@@ -18,6 +18,7 @@ import {
   getResourceArticle,
   type ResourceArticle as ResourceArticleType,
 } from '@/lib/resourcesContent';
+import { buildResourceArticleSeo } from '@/lib/seo';
 import { usePageMeta } from '@/hooks/usePageMeta';
 
 type ArticleSection = ResourceArticleType['sections'][number];
@@ -91,11 +92,15 @@ const ResourceArticle = () => {
   const { slug = '' } = useParams();
   const article = getResourceArticle(slug);
 
-  usePageMeta({
-    title: article ? article.title : 'Resource Not Found',
-    description: article?.description ?? 'Free learning resource from Zyvotrix.',
-    canonical: `/resources/${slug}`,
-  });
+  const articleSeo = article
+    ? buildResourceArticleSeo(article)
+    : {
+        title: 'Resource Not Found — Zyvotrix',
+        description: 'This learning resource was not found on Zyvotrix.',
+        canonical: `/resources/${slug}`,
+      };
+
+  usePageMeta(articleSeo);
 
   const meta = article ? CATEGORY_META[article.category] : null;
   const roadmap = FEATURED_ROADMAPS.find((r) => r.slug === slug);

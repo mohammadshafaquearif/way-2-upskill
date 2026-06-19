@@ -29,13 +29,18 @@ function setCanonical(href: string) {
   el.href = href;
 }
 
+function formatTitle(title: string) {
+  return title.includes(SITE) ? title : `${title} | ${SITE}`;
+}
+
 export function usePageMeta({ title, description, canonical }: PageMeta) {
   useEffect(() => {
-    document.title = `${title} | ${SITE}`;
+    const pageTitle = formatTitle(title);
+    document.title = pageTitle;
     setMetaTag('name', 'description', description);
-    setMetaTag('property', 'og:title', `${title} | ${SITE}`);
+    setMetaTag('property', 'og:title', pageTitle);
     setMetaTag('property', 'og:description', description);
-    setMetaTag('name', 'twitter:title', `${title} | ${SITE}`);
+    setMetaTag('name', 'twitter:title', pageTitle);
     setMetaTag('name', 'twitter:description', description);
     if (canonical) {
       const url = canonical.startsWith('http') ? canonical : `${BASE_URL}${canonical}`;

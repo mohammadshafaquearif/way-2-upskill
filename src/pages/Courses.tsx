@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Check, Clock, FolderKanban, Sparkles } from 'lucide-react';
 import { IMAGES } from '@/lib/images';
 import { COURSES } from '@/lib/courses';
+import { STATIC_PAGE_SEO } from '@/lib/seo';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import CoursePriceDisplay from '@/components/courses/CoursePriceDisplay';
 
@@ -57,12 +58,7 @@ const graduateOutcomes = [
 ];
 
 const Courses = () => {
-  usePageMeta({
-    title: 'DevOps, Agentic AI, AWS & Data Science Certification Programs',
-    description:
-      'Explore Zyvotrix certification programs: DevOps (DOP), Agentic AI (AAC), AWS Solutions Architect, and Data Science & Machine Learning with Python. Live mentor-led training with hands-on projects.',
-    canonical: '/courses',
-  });
+  usePageMeta(STATIC_PAGE_SEO['/courses']);
 
   return (
     <PageShell className="courses-page">

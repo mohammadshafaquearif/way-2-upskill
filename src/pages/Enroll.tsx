@@ -20,6 +20,7 @@ import { apiClient } from '@/integrations/api/client';
 import PageHero from '@/components/PageHero';
 import PageShell from '@/components/layout/PageShell';
 import { IMAGES } from '@/lib/images';
+import { STATIC_PAGE_SEO } from '@/lib/seo';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { DEFAULT_COUNTRY, toE164, validatePhone } from '@/lib/phone';
 
@@ -94,12 +95,7 @@ const Enroll = () => {
   const { toast } = useToast();
   const { user } = useAuth();
 
-  usePageMeta({
-    title: 'Apply & Enroll',
-    description:
-      'Apply to Zyvotrix certification programs: DOP, AAC, AWS Solutions Architect, and Data Science with Python. Share your goals and start your learning journey.',
-    canonical: '/enroll',
-  });
+  usePageMeta(STATIC_PAGE_SEO['/enroll']);
   const [defaultCourseId, setDefaultCourseId] = useState<string | null>(null);
   const [defaultCourseName, setDefaultCourseName] = useState<string>('Zyvotrix Program');
   const [currentStep, setCurrentStep] = useState(1);

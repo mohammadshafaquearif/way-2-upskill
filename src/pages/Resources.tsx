@@ -38,6 +38,7 @@ import {
   POPULAR_RESOURCES,
   PROJECT_IDEAS,
 } from '@/lib/resourcesContent';
+import { STATIC_PAGE_SEO } from '@/lib/seo';
 import { usePageMeta } from '@/hooks/usePageMeta';
 
 const trustPoints = [
@@ -81,12 +82,7 @@ const projectTierMeta = {
 const categoryOrder = ['devops', 'aac', 'aws', 'data-science'] as const;
 
 const Resources = () => {
-  usePageMeta({
-    title: 'Free DevOps, Agentic AI, AWS & Data Science Resources',
-    description:
-      'Free roadmaps, project ideas, guides, interview preparation, and career resources for DevOps, Agentic AI, AWS certification, and Data Science. Learn. Build. Grow.',
-    canonical: '/resources',
-  });
+  usePageMeta(STATIC_PAGE_SEO['/resources']);
 
   return (
     <PageShell className="resources-page">

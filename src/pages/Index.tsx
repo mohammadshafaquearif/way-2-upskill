@@ -1,4 +1,5 @@
 import React from 'react';
+import { STATIC_PAGE_SEO } from '@/lib/seo';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import PageShell from '@/components/layout/PageShell';
 import Hero from '@/components/Hero';
@@ -17,12 +18,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 const Index = () => {
-  usePageMeta({
-    title: 'Practical Tech Learning for Career Growth',
-    description:
-      'Zyvotrix helps working professionals build career-ready skills in DevOps, Agentic AI, AWS, and Data Science through live mentor-led programs, hands-on projects, and free learning resources.',
-    canonical: '/',
-  });
+  usePageMeta(STATIC_PAGE_SEO['/']);
 
   return (
     <PageShell>

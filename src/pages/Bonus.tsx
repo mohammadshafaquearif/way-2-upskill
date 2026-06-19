@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Check, Award, Sparkles } from 'lucide-react';
 import { IMAGES } from '@/lib/images';
+import { STATIC_PAGE_SEO } from '@/lib/seo';
 import { usePageMeta } from '@/hooks/usePageMeta';
 
 const certifications = [
@@ -41,12 +42,7 @@ const extras = [
 ];
 
 const Bonus = () => {
-  usePageMeta({
-    title: 'Program Bonuses',
-    description:
-      'Zyvotrix program bonuses include certifications, career resources, LLM workshops, and portfolio support bundled with select programs.',
-    canonical: '/bonus',
-  });
+  usePageMeta(STATIC_PAGE_SEO['/bonus']);
 
   return (
     <PageShell>

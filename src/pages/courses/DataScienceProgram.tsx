@@ -51,10 +51,13 @@ import { COURSE_BY_ID } from '@/lib/courses';
 import type { FaqItem } from '@/lib/faqs';
 import { IMAGES } from '@/lib/images';
 import { cn } from '@/lib/utils';
+import { STATIC_PAGE_SEO } from '@/lib/seo';
+import { buildCourseSchema } from '@/lib/courseSchema';
 import { usePageMeta } from '@/hooks/usePageMeta';
 
 const course = COURSE_BY_ID['data-science'];
 const visuals = IMAGES.programVisuals.ds;
+const dsCourseSchema = buildCourseSchema(course)!;
 
 const curriculum = [
   {
@@ -836,18 +839,17 @@ const TechMarquee = ({ tools, reverse }: { tools: typeof DATA_SCIENCE_TOOLS; rev
 );
 
 const DataScienceProgram = () => {
-  usePageMeta({
-    title: 'Data Science & Machine Learning with Python | 3-Month Certification',
-    description:
-      'Data Science & Machine Learning with Python certification at Zyvotrix. Master Python, SQL, statistics, visualization, and ML — build 6+ portfolio projects in 3 months. Built for international working professionals.',
-    canonical: '/courses/data-science',
-  });
+  usePageMeta(STATIC_PAGE_SEO['/courses/data-science']);
 
   const techRowA = DATA_SCIENCE_TOOLS.slice(0, 7);
   const techRowB = DATA_SCIENCE_TOOLS.slice(7);
 
   return (
     <PageShell className="devops-program-page ds-program-page program-page-polish">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(dsCourseSchema) }}
+      />
       <Navbar />
 
       <section className="program-landing-hero relative overflow-hidden">

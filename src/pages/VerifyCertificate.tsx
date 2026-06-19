@@ -7,14 +7,11 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { STATIC_PAGE_SEO } from '@/lib/seo';
 import { usePageMeta } from '@/hooks/usePageMeta';
 
 const VerifyCertificate = () => {
-  usePageMeta({
-    title: 'Verify Certificate',
-    description: 'Verify Zyvotrix program certificates by certificate ID.',
-    canonical: '/verify-certificate',
-  });
+  usePageMeta(STATIC_PAGE_SEO['/verify-certificate']);
 
   const [certificateId, setCertificateId] = useState('');
   const [loading, setLoading] = useState(false);

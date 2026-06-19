@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PageShell from '@/components/layout/PageShell';
 import PageHero from '@/components/PageHero';
+import { STATIC_PAGE_SEO } from '@/lib/seo';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { FileText } from 'lucide-react';
 
@@ -284,12 +285,7 @@ const sections: TermsSection[] = [
 ];
 
 const Terms = () => {
-  usePageMeta({
-    title: 'Terms of Service',
-    description:
-      'Zyvotrix Terms of Service — enrollment, live training, certifications, payments, intellectual property, community guidelines, and policies for international working professionals.',
-    canonical: '/terms',
-  });
+  usePageMeta(STATIC_PAGE_SEO['/terms']);
 
   return (
     <PageShell>

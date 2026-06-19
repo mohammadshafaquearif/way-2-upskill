@@ -52,10 +52,13 @@ import { COURSE_BY_ID } from '@/lib/courses';
 import type { FaqItem } from '@/lib/faqs';
 import { IMAGES } from '@/lib/images';
 import { cn } from '@/lib/utils';
+import { STATIC_PAGE_SEO } from '@/lib/seo';
+import { buildCourseSchema } from '@/lib/courseSchema';
 import { usePageMeta } from '@/hooks/usePageMeta';
 
 const course = COURSE_BY_ID.aws;
 const visuals = IMAGES.programVisuals.aws;
+const awsCourseSchema = buildCourseSchema(course)!;
 
 const curriculum = [
   {
@@ -869,18 +872,17 @@ const TechMarquee = ({ tools, reverse }: { tools: typeof AWS_TOOLS; reverse?: bo
 );
 
 const AwsSolutionsArchitectProgram = () => {
-  usePageMeta({
-    title: 'AWS Solutions Architect Certification Program | SAA-C03 Training',
-    description:
-      'AWS Solutions Architect training & certification course at Zyvotrix. Master EC2, S3, VPC, IAM, Lambda, Terraform, build 7+ projects, and prepare for AWS Certified Solutions Architect Associate (SAA-C03) in 3 months.',
-    canonical: '/courses/aws',
-  });
+  usePageMeta(STATIC_PAGE_SEO['/courses/aws']);
 
   const techRowA = AWS_TOOLS.slice(0, 10);
   const techRowB = AWS_TOOLS.slice(10);
 
   return (
     <PageShell className="devops-program-page aws-program-page program-page-polish">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(awsCourseSchema) }}
+      />
       <Navbar />
 
       <section className="program-landing-hero relative overflow-hidden">

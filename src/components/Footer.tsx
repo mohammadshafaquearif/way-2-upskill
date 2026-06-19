@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, ArrowUpRight } from 'lucide-react';
+import { Mail, MapPin, Phone, ArrowUpRight } from 'lucide-react';
 import SocialLinks from '@/components/SocialLinks';
 import { COURSES } from '@/lib/courses';
+import { ZYVOTRIX_ADDRESS_LINE, ZYVOTRIX_NAP } from '@/lib/localBusiness';
+import { ZYVOTRIX_GOOGLE_MAPS_URL } from '@/lib/seo';
 
 const programLinks = [
   { label: 'All Programs', to: '/courses' },
@@ -47,11 +49,31 @@ const Footer = () => {
               learning.
             </p>
             <a
-              href="mailto:support@zyvotrix.com"
+              href={`mailto:${ZYVOTRIX_NAP.email}`}
               className="link-glow inline-flex items-center gap-2 text-sm text-slate-400"
             >
               <Mail className="h-4 w-4" />
-              support@zyvotrix.com
+              {ZYVOTRIX_NAP.email}
+            </a>
+            <a
+              href={ZYVOTRIX_GOOGLE_MAPS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-glow mt-3 flex items-start gap-2 text-sm text-slate-400"
+            >
+              <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
+              <span>
+                {ZYVOTRIX_NAP.name}
+                <br />
+                {ZYVOTRIX_ADDRESS_LINE}
+              </span>
+            </a>
+            <a
+              href={`tel:${ZYVOTRIX_NAP.phoneE164}`}
+              className="link-glow mt-3 inline-flex items-center gap-2 text-sm text-slate-400"
+            >
+              <Phone className="h-4 w-4" />
+              {ZYVOTRIX_NAP.phoneDisplay}
             </a>
             <div className="mt-6">
               <SocialLinks variant="footer" />

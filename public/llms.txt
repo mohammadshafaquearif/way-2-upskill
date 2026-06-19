@@ -44,9 +44,19 @@ Common questions:
 
 ## Contact
 
+- Business name: Zyvotrix
+- Address: HSR Layout, Sector 3, Bengaluru, Karnataka 560102, India
+- Phone: +91 8887720741
 - Email: support@zyvotrix.com
+- Google Maps: https://www.google.com/maps/place/Zyvotrix/@12.9079567,77.640957,17z
 - Contact form: https://www.zyvotrix.com/contact
 - Twitter: @zyvotrix_
+- LinkedIn: https://www.linkedin.com/company/zyvotrix
+
+### Google Business Profile website link (with UTM tracking)
+
+Use this URL in your Google Business Profile website field:
+https://www.zyvotrix.com/?utm_source=google&utm_medium=organic&utm_campaign=gmb
 
 ## Legal
 
