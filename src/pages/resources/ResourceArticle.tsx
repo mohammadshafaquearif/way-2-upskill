@@ -8,6 +8,7 @@ import PageHero from '@/components/PageHero';
 import PageCta from '@/components/PageCta';
 import ResourceEmailCapture from '@/components/resources/ResourceEmailCapture';
 import AwsInterviewPromoBanner from '@/components/resources/AwsInterviewPromoBanner';
+import AiEngineerInterviewPromoBanner from '@/components/resources/AiEngineerInterviewPromoBanner';
 import DataScienceInterviewPromoBanner from '@/components/resources/DataScienceInterviewPromoBanner';
 import DevOpsInterviewPromoBanner from '@/components/resources/DevOpsInterviewPromoBanner';
 import { Button } from '@/components/ui/button';
@@ -101,8 +102,10 @@ const ResourceArticle = () => {
   const isDevOpsInterview = slug === 'devops-interview-questions';
   const isAwsInterview = slug === 'aws-interview-questions';
   const isDataScienceInterview = slug === 'data-science-interview-questions';
+  const isAiEngineerInterview = slug === 'ai-engineer-interview-questions';
   const isInterviewGuide = article?.category === 'interview';
-  const isPromoInterview = isDevOpsInterview || isAwsInterview || isDataScienceInterview;
+  const isPromoInterview =
+    isDevOpsInterview || isAwsInterview || isDataScienceInterview || isAiEngineerInterview;
   const promoInterval = isDevOpsInterview ? 6 : 5;
 
   const qaSections = useMemo(
@@ -146,7 +149,7 @@ const ResourceArticle = () => {
             Back to Resources
           </Link>
 
-          <div className="mx-auto max-w-3xl">
+          <div className="resource-article-content">
             {faqSchema && (
               <script
                 type="application/ld+json"
@@ -207,6 +210,14 @@ const ResourceArticle = () => {
                         (index + 1) % promoInterval === 0 &&
                         index < qaSections.length - 1 && (
                           <DataScienceInterviewPromoBanner
+                            variant={(((index + 1) / promoInterval - 1) % 2) as 0 | 1}
+                          />
+                        )}
+
+                      {isAiEngineerInterview &&
+                        (index + 1) % promoInterval === 0 &&
+                        index < qaSections.length - 1 && (
+                          <AiEngineerInterviewPromoBanner
                             variant={(((index + 1) / promoInterval - 1) % 2) as 0 | 1}
                           />
                         )}
@@ -273,7 +284,9 @@ const ResourceArticle = () => {
               ? '/courses/aws'
               : isDataScienceInterview
                 ? '/courses/data-science'
-                : '/courses'
+                : isAiEngineerInterview
+                  ? '/courses/aac'
+                  : '/courses'
         }
         secondaryLabel="Talk to an Advisor"
         secondaryHref="/contact"

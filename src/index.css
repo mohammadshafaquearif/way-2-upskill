@@ -3949,6 +3949,11 @@
     position: relative;
   }
 
+  .resource-article-content {
+    @apply mx-auto w-full;
+    max-width: calc(48rem + 8cm);
+  }
+
   .resource-article-back {
     display: inline-flex;
     align-items: center;
@@ -4225,7 +4230,8 @@
   }
 
   .resource-interview-banner-stage--aws .resource-interview-banner-foot,
-  .resource-interview-banner-stage--ds .resource-interview-banner-foot {
+  .resource-interview-banner-stage--ds .resource-interview-banner-foot,
+  .resource-interview-banner-stage--aac .resource-interview-banner-foot {
     position: absolute;
     inset: auto 0 0 0;
     z-index: 2;
@@ -4240,6 +4246,14 @@
 
   .resource-interview-banner-foot--guide {
     padding: 0 0 6.5% 3.5%;
+  }
+
+  .resource-interview-banner-foot--agents {
+    padding: 0 0 5.5% 4%;
+  }
+
+  .resource-interview-banner-foot--build {
+    padding: 0 0 5.5% 3.5%;
   }
 
   .resource-interview-banner-btn {
@@ -4294,6 +4308,14 @@
 
     .resource-interview-banner-foot--guide {
       padding: 0 0 5.5% 3%;
+    }
+
+    .resource-interview-banner-foot--agents {
+      padding: 0 0 4.5% 3.5%;
+    }
+
+    .resource-interview-banner-foot--build {
+      padding: 0 0 4.5% 3%;
     }
 
     .resource-interview-banner-btn {
