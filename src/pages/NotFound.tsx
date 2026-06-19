@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PageShell from '@/components/layout/PageShell';
+import { STATIC_PAGE_SEO } from '@/lib/seo';
+import { usePageMeta } from '@/hooks/usePageMeta';
 import { Button } from '@/components/ui/button';
 import TiltCard from '@/components/motion/TiltCard';
 import AmbientDepth from '@/components/motion/AmbientDepth';
@@ -18,6 +20,8 @@ const quickLinks = [
 
 const NotFound = () => {
   const location = useLocation();
+
+  usePageMeta(STATIC_PAGE_SEO['/404']);
 
   useEffect(() => {
     console.error('404:', location.pathname);

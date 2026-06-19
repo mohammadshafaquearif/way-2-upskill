@@ -18,6 +18,8 @@ import { Badge } from '@/components/ui/badge';
 import { getCourseByCheckoutId } from '@/lib/courses';
 import { GST_RATE } from '@/lib/coursePricing';
 import { useCoursePrice } from '@/hooks/useCoursePrice';
+import { buildCheckoutSeo } from '@/lib/seo';
+import { usePageMeta } from '@/hooks/usePageMeta';
 import { openRazorpayCheckout } from '@/lib/razorpayCheckout';
 import {
   completeEnrollment,
@@ -45,6 +47,9 @@ const Checkout: React.FC = () => {
   const checkoutEmail = isAuthenticated && user ? user.email : guestEmail.trim();
 
   const courseMeta = courseId ? getCourseByCheckoutId(courseId) : undefined;
+
+  usePageMeta(buildCheckoutSeo(courseId ?? ''));
+
   const course = useMemo(
     () =>
       courseMeta

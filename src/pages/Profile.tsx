@@ -8,6 +8,8 @@ import { Button } from '@/components/ui/button';
 import EnrollButton from '@/components/EnrollButton';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
+import { STATIC_PAGE_SEO } from '@/lib/seo';
+import { usePageMeta } from '@/hooks/usePageMeta';
 import { 
   User, 
   CreditCard, 
@@ -23,6 +25,8 @@ import {
 const Profile = () => {
   const { user, logout } = useAuth();
   const [activeTab, setActiveTab] = useState('details');
+
+  usePageMeta(STATIC_PAGE_SEO['/profile']);
 
   if (!user) {
     return (

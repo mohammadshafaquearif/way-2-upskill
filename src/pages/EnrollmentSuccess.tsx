@@ -12,6 +12,8 @@ import {
   type CompleteEnrollmentResult,
 } from '@/lib/enrollmentWorkflow';
 import { setGuestCheckoutEmail } from '@/lib/learningSimulator';
+import { STATIC_PAGE_SEO } from '@/lib/seo';
+import { usePageMeta } from '@/hooks/usePageMeta';
 import {
   BookOpen,
   CheckCircle2,
@@ -24,6 +26,8 @@ import {
 const EnrollmentSuccess: React.FC = () => {
   const navigate = useNavigate();
   const data = loadEnrollmentSuccess() as CompleteEnrollmentResult | null;
+
+  usePageMeta(STATIC_PAGE_SEO['/enrollment/success']);
 
   useEffect(() => {
     if (!data?.success) {

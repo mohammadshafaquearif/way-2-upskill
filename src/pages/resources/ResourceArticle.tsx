@@ -18,7 +18,7 @@ import {
   getResourceArticle,
   type ResourceArticle as ResourceArticleType,
 } from '@/lib/resourcesContent';
-import { buildResourceArticleSeo } from '@/lib/seo';
+import { buildResourceArticleSeo, buildResourceNotFoundSeo } from '@/lib/seo';
 import { usePageMeta } from '@/hooks/usePageMeta';
 
 type ArticleSection = ResourceArticleType['sections'][number];
@@ -94,11 +94,7 @@ const ResourceArticle = () => {
 
   const articleSeo = article
     ? buildResourceArticleSeo(article)
-    : {
-        title: 'Resource Not Found — Zyvotrix',
-        description: 'This learning resource was not found on Zyvotrix.',
-        canonical: `/resources/${slug}`,
-      };
+    : buildResourceNotFoundSeo(slug);
 
   usePageMeta(articleSeo);
 
