@@ -7,13 +7,14 @@
     "dev": "vite",
     "server": "node server.js",
     "dev:full": "concurrently \"npm run server\" \"npm run dev\"",
-    "build": "npm run generate:sitemap && vite build",
+    "build": "npm run generate:sitemap && vite build && npm run prerender:meta",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
-    "vercel-build": "vite build",
+    "vercel-build": "npm run generate:sitemap && vite build && npm run prerender:meta",
     "sync:quiz-seed": "node scripts/sync-lms-quiz-seed.mjs",
-    "generate:sitemap": "node scripts/generate-sitemap.mjs"
+    "generate:sitemap": "node scripts/generate-sitemap.mjs",
+    "prerender:meta": "tsx scripts/prerender-meta.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -95,6 +96,7 @@
     "lovable-tagger": "^1.1.7",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.11",
+    "tsx": "^4.22.4",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
     "vite": "^5.4.1"

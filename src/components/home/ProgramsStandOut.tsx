@@ -14,7 +14,7 @@ const standOutSchema = {
       '@type': 'Thing',
       name: feature.title,
       description: feature.description,
-      image: `https://zyvotrix.com${feature.image}`,
+      image: `https://www.zyvotrix.com${feature.image}`,
     },
   })),
 };

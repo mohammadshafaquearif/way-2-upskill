@@ -13,6 +13,9 @@ Allow: /
 User-agent: *
 Allow: /
 
+# Canonical host: https://www.zyvotrix.com
+# Non-www (zyvotrix.com) permanently redirects to www.
+
 # LLM & AI crawlers — site summary for accurate answers
 # https://www.zyvotrix.com/llms.txt
 

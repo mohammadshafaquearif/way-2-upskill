@@ -21,15 +21,55 @@
   ],
   "redirects": [
     {
-      "source": "/(.*)",
+      "source": "/courses/ai-ml",
+      "destination": "/courses/aac",
+      "statusCode": 301
+    },
+    {
+      "source": "/courses/devops",
+      "destination": "/courses/devops-engineer-program",
+      "statusCode": 301
+    },
+    {
+      "source": "/courses/dop",
+      "destination": "/courses/devops-engineer-program",
+      "statusCode": 301
+    },
+    {
+      "source": "/courses/cybersecurity",
+      "destination": "/courses",
+      "statusCode": 301
+    },
+    {
+      "source": "/courses/web-development",
+      "destination": "/courses/data-science",
+      "statusCode": 301
+    },
+    {
+      "source": "/courses/cloud-computing",
+      "destination": "/courses/aws",
+      "statusCode": 301
+    },
+    {
+      "source": "/syllabus",
+      "destination": "/courses",
+      "statusCode": 301
+    },
+    {
+      "source": "/checkout/dop",
+      "destination": "/checkout/devops-engineer-program",
+      "statusCode": 301
+    },
+    {
+      "source": "/:path*",
       "has": [
         {
           "type": "host",
           "value": "zyvotrix.com"
         }
       ],
-      "destination": "https://www.zyvotrix.com/$1",
-      "permanent": true
+      "destination": "https://www.zyvotrix.com/:path*",
+      "statusCode": 301
     }
   ],
   "rewrites": [
