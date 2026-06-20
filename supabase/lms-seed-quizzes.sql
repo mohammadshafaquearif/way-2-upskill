@@ -17,13 +17,13498 @@ DECLARE
   v_topic_id UUID;
   v_quiz_id UUID;
   v_sort INT;
-  v_expected INT;
-  v_existing INT;
 BEGIN
   FOR entry IN
     SELECT *
     FROM jsonb_to_recordset($catalog$
 [
+  {
+    "course_code": "AAC",
+    "module_number": 1,
+    "topic_sort": 1,
+    "topic_title": "Tokens & embeddings",
+    "quiz_title": "Tokens & embeddings — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 30,
+    "questions": [
+      {
+        "question": "What is a token in the context of Large Language Models (LLMs)?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A complete document",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A unit of text processed by the model",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A database record",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A neural network layer",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why do LLMs convert text into tokens before processing?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To store data in a database",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To reduce internet usage",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To transform text into manageable units for computation",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "To improve image generation",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best describes tokenization?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Compressing text files",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Splitting text into smaller units called tokens",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Translating text into another language",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Encrypting text",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What happens after text is tokenized in an LLM?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Tokens are deleted",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Tokens are converted into numerical IDs",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Tokens become images",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Tokens are stored as PDFs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an embedding?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A database backup",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A compressed image file",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A numerical vector representing the meaning of data",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "A programming language",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are embeddings important in LLMs?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They increase internet speed",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "They allow models to understand relationships and meanings between words",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "They replace neural networks",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They generate images",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "If the words \"doctor\" and \"physician\" have similar embeddings, what does this indicate?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They have similar meanings",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "They are different languages",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "They are stored in the same database",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They have identical spellings",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the primary output of an embedding layer?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A PDF document",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A vector of numerical values",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A database table",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "An image",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why can't LLMs work directly with human-readable text?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Text is too large",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Neural networks require numerical inputs",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Text cannot be stored digitally",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Text is encrypted",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a token limit in an LLM?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Maximum number of users",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Maximum number of images generated",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Maximum number of tokens the model can process at once",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "Maximum number of training epochs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which of the following is true about embeddings?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They only work for English text",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "They represent data as vectors in a high-dimensional space",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "They replace tokenization entirely",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They are used only during training",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How do embeddings help in semantic search?",
+        "options": [
+          {
+            "id": "a",
+            "text": "By sorting files alphabetically",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "By comparing meanings rather than exact keywords",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "By compressing documents",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "By increasing storage capacity",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the relationship between tokens and embeddings?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Embeddings create tokens",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Tokens are converted into embeddings before deeper processing",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Tokens replace embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They are unrelated concepts",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are embeddings often represented as vectors?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Vectors enable mathematical operations and similarity calculations",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Vectors reduce storage costs to zero",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Vectors are easier for humans to read",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Vectors eliminate tokenization",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes the role of tokens and embeddings in an LLM?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Tokens store data and embeddings generate images",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Tokens break text into units, while embeddings convert those units into meaningful numerical representations",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Tokens train the model and embeddings deploy it",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Tokens and embeddings perform the same function",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 1,
+    "topic_sort": 2,
+    "topic_title": "Transformers & context windows",
+    "quiz_title": "Transformers & context windows — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary role of the Transformer architecture in Large Language Models?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Storing data in databases",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Processing and understanding relationships between tokens in a sequence",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Compressing text files",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Generating images",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which component of a Transformer helps the model determine which words in a sentence are most relevant to each other?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Tokenizer",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Embedding Layer",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Self-Attention Mechanism",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "Context Window",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is meant by a \"context window\" in an LLM?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A graphical user interface element",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "The amount of text a model can process and remember in a single interaction",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A storage location for datasets",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A neural network layer",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is a larger context window beneficial in many LLM applications?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It reduces model size",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "It allows the model to consider more information simultaneously",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "It eliminates the need for training",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It increases internet speed",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What happens when the input exceeds the model's context window?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The model automatically expands its memory",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Older tokens may be truncated or ignored",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "The model retrains itself",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The input is converted into images",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How does self-attention improve language understanding?",
+        "options": [
+          {
+            "id": "a",
+            "text": "By storing all text permanently",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "By allowing tokens to influence each other's representations based on relevance",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "By replacing embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "By reducing vocabulary size",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Consider the sentence: \"The laptop was expensive, but it was worth every penny.\" What helps the model understand that \"it\" refers to the laptop?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Tokenization",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Context Window Only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Self-Attention Mechanism",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "Data Compression",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best describes the relationship between Transformers and context windows?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Context windows replace Transformers",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Transformers process information within the limits of the context window",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Transformers do not use context windows",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Context windows only apply during training",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why can long context windows be valuable for tasks such as document analysis or code review?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They allow the model to access more relevant information without losing earlier context",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "They eliminate the need for embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "They reduce computational requirements",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They remove token limits",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes how Transformers and context windows work together in an LLM?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Transformers generate tokens while context windows generate embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Transformers analyze relationships between tokens, while context windows define how much information can be considered at once",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Context windows replace attention mechanisms",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Both perform the same function",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 1,
+    "topic_sort": 3,
+    "topic_title": "Temperature, Top-P & Top-K sampling",
+    "quiz_title": "Temperature, Top-P & Top-K sampling — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of sampling techniques such as Temperature, Top-P, and Top-K in LLMs?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To increase model training speed",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To control how the model selects the next token during text generation",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To reduce model size",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To create embeddings",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What does the Temperature parameter control in an LLM?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The number of tokens in a context window",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "The randomness of token selection",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "The size of the training dataset",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The embedding dimension",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the likely effect of setting Temperature to a very low value (e.g., 0.1)?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Responses become more random",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Responses become more deterministic and focused",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "The model generates longer answers",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The model ignores context",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the primary goal of Top-K sampling?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To select from only the K most probable next tokens",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To increase context window size",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To reduce tokenization errors",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To improve embeddings",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "If Top-K is set to 5, what does this mean?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The model generates only 5 words",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "The model considers only the 5 most likely next-token candidates",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "The context window is limited to 5 tokens",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The model uses 5 attention heads",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is Top-P (Nucleus) Sampling?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Selecting tokens based on paragraph count",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Choosing tokens from the smallest set whose cumulative probability reaches a specified threshold",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Limiting responses to the top predicted token only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Reducing context size",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How does Top-P differ from Top-K?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Top-P uses a probability threshold, while Top-K uses a fixed number of candidate tokens",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Top-P increases training speed, while Top-K decreases it",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Top-P works only during training",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "There is no difference",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which configuration is generally most suitable for factual or technical content generation?",
+        "options": [
+          {
+            "id": "a",
+            "text": "High Temperature (1.5)",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Low Temperature (0.2–0.4) with controlled sampling",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Maximum randomness",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "No sampling controls",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A creative writing application wants diverse and imaginative outputs. Which setting would generally help?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Low Temperature and very small Top-K",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Higher Temperature with broader Top-P or Top-K values",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Temperature set to zero",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Smaller context window",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes the role of Temperature, Top-P, and Top-K in text generation?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They determine how the model was trained",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "They control how the model selects the next token, balancing creativity and predictability",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "They increase context window size",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They replace the Transformer architecture",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 2,
+    "topic_sort": 1,
+    "topic_title": "Zero-shot & few-shot prompting",
+    "quiz_title": "Zero-shot & few-shot prompting — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is Zero-Shot Prompting in the context of Large Language Models?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Training a model with zero data",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Asking a model to perform a task without providing examples",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Running a model without prompts",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Fine-tuning a model on new data",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which of the following is an example of a Zero-Shot Prompt?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Translate 'Hello' to French. Example: Hello → Bonjour. Now translate 'Good Morning'.",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Classify this review as Positive or Negative: 'The service was excellent.'",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Example 1: Positive. Example 2: Negative. Now classify this review.",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Here are five examples before you answer.",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is Few-Shot Prompting?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Training a model with a small dataset",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Providing a few examples within the prompt before asking the model to perform a task",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Limiting the model to a few tokens",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Reducing the context window",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is Few-Shot Prompting often more effective than Zero-Shot Prompting for specialized tasks?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It changes the model architecture",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "It provides examples that clarify expectations and output patterns",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "It increases model parameters",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It retrains the model",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Consider the following prompt:\n\"Apple → Fruit\nCarrot → Vegetable\nMango → ?\"\nThis is an example of:",
+        "options": [
+          {
+            "id": "a",
+            "text": "Zero-Shot Prompting",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Fine-Tuning",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Few-Shot Prompting",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "Reinforcement Learning",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which scenario is most suitable for Zero-Shot Prompting?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A common task such as summarizing an article",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A highly specialized classification task with strict formatting requirements",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A domain-specific legal analysis requiring examples",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A custom workflow with unique labels",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is one key advantage of Few-Shot Prompting?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It permanently updates the model's knowledge",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "It helps improve consistency and accuracy without retraining",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "It reduces model size",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It removes token limits",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which factor should be considered when using Few-Shot Prompting?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Examples consume part of the available context window",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Examples increase model parameters",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Examples replace embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Examples remove tokenization",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company wants an LLM to generate customer support replies in a specific tone and format. Which approach is generally more effective?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Zero-Shot Prompting only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Few-Shot Prompting with examples of desired responses",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Removing instructions entirely",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Lowering the context window",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes the difference between Zero-Shot and Few-Shot Prompting?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Zero-shot uses instructions only, while few-shot includes examples to guide the model",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Zero-shot requires training, while few-shot does not",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Few-shot changes model weights permanently",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "There is no practical difference",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 2,
+    "topic_sort": 2,
+    "topic_title": "Chain-of-thought reasoning",
+    "quiz_title": "Chain-of-thought reasoning — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is Chain-of-Thought (CoT) Reasoning in Prompt Engineering?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A method for increasing model size",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A prompting technique that encourages the model to reason through intermediate steps before reaching an answer",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A training algorithm for neural networks",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A technique for tokenization",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the primary benefit of Chain-of-Thought prompting?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It reduces the number of model parameters",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "It helps the model solve complex tasks by reasoning step-by-step",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "It eliminates the need for training data",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It increases internet speed",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which type of task benefits most from Chain-of-Thought prompting?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Simple spelling corrections",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Logical reasoning and multi-step problem solving",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "File compression",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Image resizing",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which prompt is most likely to trigger Chain-of-Thought reasoning?",
+        "options": [
+          {
+            "id": "a",
+            "text": "What is 25 × 12?",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Calculate 25 × 12 and explain your reasoning step by step.",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Translate this sentence into Spanish.",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "List three fruits.",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why can Chain-of-Thought improve answer accuracy?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It allows the model to verify intermediate reasoning before reaching a conclusion",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It increases model parameters",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It retrains the model during inference",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It expands the context window automatically",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In Prompt Engineering, when should Chain-of-Thought prompting be used?",
+        "options": [
+          {
+            "id": "a",
+            "text": "For every task regardless of complexity",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Primarily for tasks involving reasoning, planning, calculations, or decision-making",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Only during model training",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Only for image generation",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is one potential drawback of Chain-of-Thought prompting?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It can produce longer responses and consume more tokens",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It decreases model intelligence",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It disables attention mechanisms",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It prevents text generation",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A business analyst asks an LLM to evaluate three vendors based on cost, reliability, and scalability before making a recommendation. Which prompting approach is most suitable?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Random Sampling",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Chain-of-Thought Reasoning",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Tokenization",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Embedding Generation",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best describes how Chain-of-Thought differs from a direct-answer prompt?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Chain-of-Thought encourages intermediate reasoning steps, while direct-answer prompts focus only on the final response",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Chain-of-Thought changes the model architecture",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Direct-answer prompts require retraining",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "There is no difference",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes the role of Chain-of-Thought reasoning in Prompt Engineering?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It helps the model process images",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "It improves performance on complex reasoning tasks by encouraging structured, step-by-step thinking",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "It increases the context window size",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It replaces embeddings and attention mechanisms",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 2,
+    "topic_sort": 3,
+    "topic_title": "System prompts & reusable templates",
+    "quiz_title": "System prompts & reusable templates — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of a system prompt in an AI application?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To train the model on new data",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To define the AI's role, behavior, and response guidelines",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To increase the model's context window",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To generate embeddings",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best describes a system prompt?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A user's question to the AI",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A hidden instruction that influences the AI's behavior and responses",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A database query",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A model training algorithm",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are system prompts important in enterprise AI applications?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They increase internet speed",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "They ensure consistent behavior, tone, and compliance across interactions",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "They reduce model size",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They replace prompt engineering",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which of the following is the best example of a system prompt?",
+        "options": [
+          {
+            "id": "a",
+            "text": "What is cloud computing?",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Summarize this document.",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "You are a professional IT support assistant. Provide accurate, concise, and user-friendly technical guidance.",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "Explain Docker in simple terms.",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a reusable prompt template?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A fixed training dataset",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A structured prompt format that can be used repeatedly with different inputs",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A neural network layer",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A tokenization method",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which of the following is an example of a reusable prompt template?",
+        "options": [
+          {
+            "id": "a",
+            "text": "What is Kubernetes?",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Explain [TOPIC] to a beginner in under 200 words.",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "How does AWS work?",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Define DevOps.",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is one major benefit of reusable prompt templates in business environments?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They eliminate the need for AI models",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "They improve consistency, scalability, and productivity",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "They increase model parameters",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They reduce internet bandwidth",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company wants all AI-generated emails to follow the same professional structure and tone. What is the most effective approach?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Use random prompts each time",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Create a reusable email template supported by a system prompt",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Disable prompt engineering",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Increase the temperature setting only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which factor should be considered when designing reusable templates?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Templates should be flexible enough to handle different inputs while maintaining consistency",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Templates should contain no instructions",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Templates should only work for one task",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Templates should ignore user requirements",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes the relationship between system prompts and reusable templates?",
+        "options": [
+          {
+            "id": "a",
+            "text": "System prompts define behavior, while reusable templates standardize task execution and output structure",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "They perform exactly the same function",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Templates replace system prompts completely",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "System prompts are only used during model training",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 3,
+    "topic_sort": 1,
+    "topic_title": "Function calling & structured outputs",
+    "quiz_title": "Function calling & structured outputs — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is Function Calling in the context of Large Language Models (LLMs)?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Writing functions in Python",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Allowing an LLM to trigger predefined functions or external tools to perform specific tasks",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Training a model using functions",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Converting text into embeddings",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is Function Calling useful in AI applications?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It increases model size",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "It allows the model to execute real-world actions and retrieve external information",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "It replaces tokenization",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It reduces context window usage",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which of the following is a common use case for Function Calling?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Generating random text only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Calling a weather API to fetch current weather information",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Compressing training data",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Creating embeddings",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a Structured Output in an LLM system?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A response that follows a predefined format such as JSON, XML, or a schema",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A longer text response",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A compressed model file",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A training dataset",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are structured outputs preferred in enterprise applications?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They make responses more random",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "They provide consistency and simplify system integration",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "They increase token count intentionally",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They eliminate APIs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Consider the following output:\n{\"city\": \"Bengaluru\", \"temperature\": \"28°C\"}\nThis is an example of:",
+        "options": [
+          {
+            "id": "a",
+            "text": "Tokenization",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Structured Output",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Embedding Vector",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Context Window",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best describes the relationship between Function Calling and Structured Outputs?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They are unrelated concepts",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Function Calling often relies on structured outputs to pass parameters correctly",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Function Calling replaces structured outputs",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Structured outputs are only used during training",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is one major advantage of using Function Calling with Open Source LLMs?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It eliminates the need for prompts",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "It enables integration with custom tools, APIs, and enterprise workflows",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "It increases model training speed automatically",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It removes token limits",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In a customer support chatbot, which task would most likely require Function Calling?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Greeting a user",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Retrieving the user's latest order status from a database",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Correcting grammar in a sentence",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Summarizing a paragraph",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes the purpose of Function Calling and Structured Outputs?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They help LLMs interact reliably with external systems by generating predictable, machine-readable responses",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "They increase the number of model parameters",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "They replace transformers and attention mechanisms",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They are only useful during model training",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 3,
+    "topic_sort": 2,
+    "topic_title": "Pydantic schemas for LLM responses",
+    "quiz_title": "Pydantic schemas for LLM responses — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of using a Pydantic schema with LLM responses?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To train the model faster",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To enforce a structured and validated output format",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To increase the context window",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To improve tokenization",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In AI applications, why are structured outputs often preferred over free-text responses?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They consume more tokens",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "They are easier for downstream systems to parse and process automatically",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "They eliminate the need for prompts",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They make models larger",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Consider the following schema:\nclass User(BaseModel):\n   name: str\n   age: int\nWhich response would successfully validate?",
+        "options": [
+          {
+            "id": "a",
+            "text": "{\"name\": \"John\", \"age\": 30}",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "{\"name\": \"John\", \"age\": \"Thirty\"}",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "{\"name\": 123, \"age\": 30}",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "{\"age\": 30}",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What happens if an LLM response does not match the expected Pydantic schema?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The model retrains automatically",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Validation fails, allowing the application to detect and handle the error",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "The schema is ignored",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The context window increases",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which of the following is a key benefit of schema validation in Function Calling workflows?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Increased GPU memory",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Reduced need for prompt engineering",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Improved reliability and consistency of application outputs",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "Larger model context windows",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why might developers use Pydantic with OpenAI-style Function Calling?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To generate images",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To define the exact structure expected from the model's response",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To train custom embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To reduce API latency",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which use case would benefit most from Pydantic schema validation?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Casual chatting with an AI assistant",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Generating random stories",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Extracting customer information into a structured CRM system",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "Creating creative poetry",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the purpose of defining field types such as str, int, or bool in a Pydantic model?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To increase model accuracy",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To specify and validate expected data types",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To reduce token usage",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To create embeddings",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Consider a schema designed for an order-processing system:\nclass Order(BaseModel):\n   order_id: str\n   quantity: int\n   delivered: bool\nWhich response is most likely valid?",
+        "options": [
+          {
+            "id": "a",
+            "text": "{\"order_id\": \"ORD123\", \"quantity\": 5, \"delivered\": true}",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "{\"order_id\": \"ORD123\", \"quantity\": \"Five\", \"delivered\": true}",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "{\"order_id\": 123, \"quantity\": 5, \"delivered\": true}",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "{\"quantity\": 5}",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes the role of Pydantic schemas in LLM-powered applications?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They improve model training quality",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "They ensure generated responses conform to predefined structures and validation rules",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "They increase model size",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They replace prompt engineering entirely",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 3,
+    "topic_sort": 3,
+    "topic_title": "Ollama, Llama 3 & Mistral locally",
+    "quiz_title": "Ollama, Llama 3 & Mistral locally — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of Ollama?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To train LLMs from scratch",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To run and manage open-source LLMs locally on a computer",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To create databases for AI applications",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To replace operating systems",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which of the following is a key advantage of running LLMs locally using Ollama?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Unlimited internet bandwidth",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Improved privacy and control over data",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Automatic model retraining",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "No hardware requirements",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is Llama 3?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A database engine",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "An open-source large language model developed by Meta",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A Linux distribution",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A cloud storage service",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is Mistral primarily known for in the open-source AI ecosystem?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Lightweight and high-performance language models",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Database optimization tools",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Image editing software",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Web hosting services",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which command is commonly used to start a model in Ollama?",
+        "options": [
+          {
+            "id": "a",
+            "text": "ollama install model",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "ollama start model",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "ollama run model-name",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "ollama execute model",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why might an organization choose an open-source LLM such as Llama 3 or Mistral instead of a proprietary model?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To avoid all infrastructure costs",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To gain greater customization, transparency, and deployment flexibility",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To eliminate hardware requirements",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To remove the need for prompts",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In a local AI setup, what role does Ollama play relative to models such as Llama 3 and Mistral?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Ollama is the language model itself",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Ollama acts as a platform for running and managing models",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Ollama replaces the model's neural network",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Ollama performs tokenization only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which factor most significantly affects the performance of locally hosted LLMs?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Browser version",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Available system resources such as RAM, CPU, and GPU",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Screen resolution",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Keyboard type",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How can open-source LLMs support function-calling workflows?",
+        "options": [
+          {
+            "id": "a",
+            "text": "By directly replacing business applications",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "By generating structured outputs that can trigger external tools or APIs",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "By removing the need for APIs entirely",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "By increasing internet speed",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes the relationship between Ollama, Llama 3, and Mistral?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Ollama is a platform used to run models such as Llama 3 and Mistral locally",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Llama 3 and Mistral are alternatives to operating systems",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Ollama is a cloud provider for AI services",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "All three are database technologies",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 4,
+    "topic_sort": 1,
+    "topic_title": "LCEL pipelines",
+    "quiz_title": "LCEL pipelines — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of LCEL (LangChain Expression Language) in LangChain Core?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To train large language models",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To build and compose AI workflows using reusable components",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To store vector embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To manage cloud infrastructure",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which of the following best describes an LCEL pipeline?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A database used for storing prompts",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A sequence of connected components that process data step-by-step",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A machine learning algorithm",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A vector database",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In LCEL, what is the purpose of the pipe operator (|)?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To delete data between components",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To connect workflow components together",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To create embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To train a model",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which component is typically used to structure input before sending it to an LLM?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Vector Store",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Prompt Template",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Output Parser",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Memory",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the role of a Runnable in LangChain Core?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A storage system for embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A standard interface that can execute a step in an LCEL pipeline",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A database connector",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A training framework",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is LCEL considered more maintainable than traditional custom-coded workflows?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It reduces modularity",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "It eliminates prompts",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It encourages reusable and composable components",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "It removes model dependencies",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which LCEL component is responsible for transforming raw model output into a structured format?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Prompt Template",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Retriever",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Output Parser",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "Runnable Sequence",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A developer wants to create a workflow where a prompt is generated, processed by an LLM, and then converted into JSON. Which LCEL design principle is being applied?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Sequential Composition",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Data Encryption",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Fine-Tuning",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Vector Compression",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is one major advantage of LCEL pipelines when building production AI applications?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They remove the need for testing",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "They provide clear, modular workflows that are easier to monitor and maintain",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "They automatically retrain models",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They eliminate latency",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes the value of LCEL pipelines in LangChain Core?",
+        "options": [
+          {
+            "id": "a",
+            "text": "LCEL is mainly used for model training",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "LCEL provides a standardized and flexible way to connect AI application components into workflows",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "LCEL replaces large language models",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "LCEL is only useful for chatbots",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 4,
+    "topic_sort": 2,
+    "topic_title": "Chains & output parsers",
+    "quiz_title": "Chains & output parsers — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of a Chain in an AI agent workflow?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To train the language model",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To connect multiple processing steps into a single workflow",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To store embeddings permanently",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To manage cloud infrastructure",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In Agent Engineering, when is a Chain most useful?",
+        "options": [
+          {
+            "id": "a",
+            "text": "When a task requires multiple sequential actions",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "When training a new LLM",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "When creating embeddings only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "When increasing hardware resources",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What problem do Output Parsers primarily solve?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Slow internet connections",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Unstructured and inconsistent LLM responses",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Model training failures",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Cloud deployment issues",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which of the following is an example of a structured output generated by an Output Parser?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Random text paragraph",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "JSON object with predefined fields",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Image file",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Raw token sequence",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A support agent receives a user query, searches a knowledge base, generates an answer, and formats the result. What enables these steps to work together?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Embeddings only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Chain",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Tokenizer",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Context Window",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are Output Parsers important for enterprise AI applications?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They improve GPU performance",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "They help applications reliably process AI-generated responses",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "They increase model size",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They replace APIs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which workflow best represents the use of Chains and Output Parsers together?",
+        "options": [
+          {
+            "id": "a",
+            "text": "User Input → Prompt → LLM → Output Parser → Structured Response",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "User Input → Database → Training → Deployment",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Prompt → GPU → Storage",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Model → Dataset → Retraining",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a key benefit of modular Chains in Agent Engineering?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Easier testing, maintenance, and reuse of workflows",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Automatic model training",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Unlimited context windows",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Reduced need for prompts",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "An AI agent must return product information in a fixed format with fields such as Name, Price, and Availability. Which component is most responsible for enforcing this structure?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Retriever",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Memory Module",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Output Parser",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "Embedding Model",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best describes the relationship between Chains and Output Parsers?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Chains execute workflow steps, while Output Parsers structure the final output",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Chains and Output Parsers perform the same function",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Output Parsers replace Chains entirely",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Chains are used only for training models",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 5,
+    "topic_sort": 1,
+    "topic_title": "ReAct agent loop",
+    "quiz_title": "ReAct agent loop — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What does \"ReAct\" stand for in AI Agents?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Retrieve and Act",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Reason and Act",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "React and Analyze",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Respond and Train",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the primary purpose of the ReAct Agent Loop?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To train language models faster",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To allow agents to alternate between reasoning and taking actions",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To generate embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To reduce tokenization costs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which sequence best represents a ReAct workflow?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Train → Deploy → Monitor",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Question → Answer",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Thought → Action → Observation → Thought",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "Input → Output",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In a ReAct Agent, what is a \"Thought\"?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A database query",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "The agent's reasoning process about what to do next",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "The final answer to the user",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A stored memory record",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an \"Action\" in the ReAct framework?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A training step",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "An operation performed by the agent, such as using a tool or API",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A memory update only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A model checkpoint",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an \"Observation\" in the ReAct loop?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The result returned after an action is performed",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A training dataset",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A prompt template",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "An embedding vector",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is the ReAct approach often more effective than generating a single response?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It allows the agent to gather information and adjust its reasoning dynamically",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It eliminates the need for prompts",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It increases model parameters",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It removes context windows",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A travel-planning agent searches for flights, reviews hotel options, and then recommends an itinerary. Which ReAct capability is being demonstrated?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Single-step inference",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Iterative reasoning and action-taking",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Tokenization",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Model fine-tuning",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which component is most commonly used alongside a ReAct Agent?",
+        "options": [
+          {
+            "id": "a",
+            "text": "External tools and APIs",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Image compression algorithms",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Hardware drivers",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Data labeling software",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes the ReAct Agent Loop?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The agent alternates between reasoning and actions until it reaches a solution",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "The agent only generates text responses",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "The agent continuously retrains itself",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The agent stores all data permanently",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 5,
+    "topic_sort": 2,
+    "topic_title": "Planning & reflection patterns",
+    "quiz_title": "Planning & reflection patterns — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of planning in AI agents?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To increase model size",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To break complex tasks into smaller, manageable steps before execution",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To generate embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To reduce training data requirements",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In AI agents, what does \"reflection\" refer to?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Copying previous responses",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Evaluating past actions or outputs to improve future decisions",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Increasing context window size",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Training a new model",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are planning patterns important for complex tasks?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They eliminate the need for reasoning",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "They help agents execute tasks systematically and efficiently",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "They increase hardware performance",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They replace external tools",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which scenario best demonstrates planning by an AI agent?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Instantly answering a simple greeting",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Creating a step-by-step strategy for organizing a business trip",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Generating random text",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Converting text into embeddings",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a key benefit of reflection in agent workflows?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It helps the agent learn from previous outputs and improve accuracy",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It removes token limits",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It increases model parameters",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It eliminates the need for prompts",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which sequence best represents a Planning and Reflection workflow?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Input → Output",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Plan → Act → Reflect → Refine → Final Output",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Train → Deploy → Monitor",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Prompt → Tokenize → Store",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A coding agent writes code, reviews it for errors, fixes issues, and then provides the final version. Which pattern is being used?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Reflection Pattern",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Tokenization Pattern",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Embedding Pattern",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Vector Search Pattern",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How does planning improve the performance of AI agents?",
+        "options": [
+          {
+            "id": "a",
+            "text": "By helping agents define intermediate goals and execution steps",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "By increasing internet speed",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "By reducing the need for reasoning",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "By replacing APIs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In a travel-booking agent, which activity best represents reflection?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Searching for available flights",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Reviewing selected options to ensure they meet user preferences before finalizing recommendations",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Connecting to an API",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Generating embeddings",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes Planning and Reflection Patterns in AI agents?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Planning organizes task execution, while reflection evaluates and improves results",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Both are used only during model training",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Reflection replaces planning entirely",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Planning is only useful for simple tasks",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 5,
+    "topic_sort": 3,
+    "topic_title": "Tool use & web search",
+    "quiz_title": "Tool use & web search — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is meant by \"Tool Use\" in AI agents?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Training a new language model",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Enabling an agent to interact with external systems, APIs, databases, or applications",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Increasing model parameters",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Creating embeddings",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why do AI agents use external tools instead of relying only on their internal knowledge?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To reduce tokenization costs",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To access real-time, specialized, or external information unavailable in the model's training data",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To increase model size",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To eliminate prompts",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the primary purpose of web search in AI agents?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To train the model continuously",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To retrieve up-to-date information from online sources",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To generate embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To compress data",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which scenario best demonstrates effective tool use?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Generating a poem from memory",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Using a calculator tool to solve a complex mathematical problem",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Repeating the same answer multiple times",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Increasing the context window",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a key advantage of integrating web search into an AI agent?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It allows access to real-time and updated information",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It increases model parameters automatically",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It removes token limits",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It replaces APIs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In an agent workflow, when should a web search tool typically be used?",
+        "options": [
+          {
+            "id": "a",
+            "text": "When current or external information is needed to answer a query accurately",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "For every user query regardless of context",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Only during training",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Never, because the model already knows everything",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A user asks, \"What is today's weather in Bengaluru?\" Why would an AI agent use a weather API or web search tool?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To improve embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Because weather information changes frequently and requires real-time data",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To reduce response length",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To retrain the model",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What challenge can occur if an AI agent relies on web search results without verification?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Improved accuracy",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Exposure to inaccurate, outdated, or unreliable information",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Larger context windows",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Faster training",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which sequence best represents tool-assisted reasoning in an AI agent?",
+        "options": [
+          {
+            "id": "a",
+            "text": "User Query → Tool Selection → Tool Execution → Observation → Final Answer",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "User Query → Model Training → Deployment",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Input → Storage → Deletion",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Embedding → Tokenization → Compression",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes Tool Use and Web Search in AI agents?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Tools extend an agent's capabilities, while web search provides access to external and current information",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Tools are only used during model training",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Web search replaces reasoning entirely",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Tools and web search perform the same function",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 6,
+    "topic_sort": 1,
+    "topic_title": "ChromaDB & Pinecone vector stores",
+    "quiz_title": "ChromaDB & Pinecone vector stores — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of a vector database in a RAG system?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To store application logs",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To store embeddings and enable semantic similarity search",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To train large language models",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To compress documents",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is ChromaDB primarily designed for?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Cloud infrastructure management",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Local and lightweight vector storage for AI applications",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Model training and fine-tuning",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "API gateway management",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is Pinecone?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A programming language",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A managed cloud-based vector database service",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A prompt engineering framework",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A model deployment platform",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In a RAG workflow, where are document embeddings typically stored?",
+        "options": [
+          {
+            "id": "a",
+            "text": "SQL Tables only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Vector Databases such as ChromaDB or Pinecone",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Application Cache only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Web Browsers",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which feature allows ChromaDB and Pinecone to find similar documents?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Exact String Matching",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Semantic Similarity Search using Vectors",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Database Replication",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "File Compression",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company wants a fully managed, cloud-native vector database for production workloads. Which option is generally more suitable?",
+        "options": [
+          {
+            "id": "a",
+            "text": "ChromaDB",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Pinecone",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "CSV File Storage",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "SQLite",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best describes ChromaDB?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A lightweight, open-source vector database suitable for development and experimentation",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A cloud-only database service",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A model hosting platform",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A web search engine",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are embeddings stored instead of raw documents in vector databases?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Embeddings capture semantic meaning and enable similarity search",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Raw documents cannot be stored digitally",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Embeddings reduce internet usage",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Embeddings replace language models",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In a RAG system using Pinecone or ChromaDB, what happens after a user submits a query?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The model retrains itself",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "The query is converted into an embedding and matched against stored vectors",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Documents are deleted automatically",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The vector database generates the final answer",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes the role of ChromaDB and Pinecone in RAG systems?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They train LLMs using retrieved documents",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "They store embeddings and enable fast semantic retrieval of relevant information",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "They replace language models entirely",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They only store structured SQL data",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 6,
+    "topic_sort": 3,
+    "topic_title": "Hybrid search for better retrieval",
+    "quiz_title": "Hybrid search for better retrieval — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is Hybrid Search in a RAG system?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Using only keyword search",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Combining semantic (vector) search and keyword-based search to retrieve information",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Training two language models together",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Using multiple databases simultaneously",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is Hybrid Search often more effective than using only vector search?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It eliminates embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "It captures both semantic meaning and exact keyword matches",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "It reduces model parameters",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It replaces vector databases",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which two retrieval techniques are typically combined in Hybrid Search?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Fine-Tuning and RLHF",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Keyword Search and Vector Search",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Tokenization and Embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Chunking and Parsing",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In which scenario would Hybrid Search provide significant benefits?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Searching for documents containing exact product IDs while also understanding related concepts",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Training a language model",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Generating images",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Creating embeddings",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a limitation of relying only on keyword search?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It cannot find semantically similar content when exact keywords differ",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It requires embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It uses too much memory",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It cannot search documents",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a limitation of relying only on vector search?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It cannot process embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "It may overlook exact keywords, IDs, product codes, or names that are critical to retrieval",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "It only works offline",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It requires SQL databases",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How does Hybrid Search improve retrieval quality in RAG systems?",
+        "options": [
+          {
+            "id": "a",
+            "text": "By balancing semantic relevance and keyword precision",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "By increasing model size",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "By removing chunking",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "By eliminating vector databases",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A user searches for \"AWS EC2 Instance Pricing\". Why might Hybrid Search outperform pure vector search?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Because it can prioritize exact matches for terms like \"AWS\" and \"EC2\" while still understanding the context of pricing",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Because it retrains the model",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Because it increases context windows",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Because it removes embeddings",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In a typical Hybrid Search workflow, how are retrieval results usually handled?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Results from keyword and vector searches are combined and ranked before being sent to the LLM",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Only keyword results are used",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Only vector results are used",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The LLM performs retrieval itself",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes Hybrid Search?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It combines semantic understanding with exact keyword matching to improve retrieval performance",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It replaces embeddings entirely",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It is only used during training",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It eliminates the need for vector databases",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 7,
+    "topic_sort": 1,
+    "topic_title": "Buffer memory for short context",
+    "quiz_title": "Buffer memory for short context — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is Buffer Memory in AI agents?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A database used for storing embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A memory mechanism that stores recent interactions in a conversation",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A model training technique",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A vector search algorithm",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the primary purpose of Buffer Memory?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To improve GPU performance",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To help the agent remember recent messages and maintain conversational continuity",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To replace vector databases",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To train the model on new data",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which type of information is typically stored in Buffer Memory?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Entire training datasets",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Recent conversation exchanges between the user and the AI agent",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "System logs only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Embedding vectors only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is Buffer Memory important in conversational AI applications?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It enables the agent to understand references to previous messages",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It increases model parameters",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It eliminates prompts",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It replaces APIs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a limitation of Buffer Memory?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It can only store images",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "It may consume valuable context window space as conversations grow longer",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "It cannot store text",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It eliminates reasoning capabilities",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A user says, \"My name is Rahul,\" and later asks, \"What is my name?\" How does Buffer Memory help?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It retrains the model",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "It stores the earlier message so the agent can recall the user's name during the conversation",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "It searches the internet",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It creates embeddings automatically",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How does Buffer Memory differ from long-term memory systems?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Buffer Memory stores recent interactions, while long-term memory retains information for extended periods",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Both serve the same purpose",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Buffer Memory is permanent",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Long-term memory cannot store text",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In an AI agent workflow, where is Buffer Memory most commonly used?",
+        "options": [
+          {
+            "id": "a",
+            "text": "During ongoing conversations with users",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "During model training only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "For image generation only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "For hardware monitoring",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What challenge can occur if Buffer Memory becomes too large?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The agent may exceed the available context window and require truncation of older messages",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "The model automatically retrains",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "The vector database stops working",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The agent loses internet access",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes Buffer Memory?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It stores recent conversation history to maintain short-term context during interactions",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It permanently stores all user data",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It replaces retrieval systems",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It functions as a vector database",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 7,
+    "topic_sort": 3,
+    "topic_title": "Persistent session storage",
+    "quiz_title": "Persistent session storage — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is Persistent Session Storage in AI systems?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A temporary memory that lasts only for a single prompt",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A mechanism for storing user and session data beyond a single interaction or application restart",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A model training technique",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A vector embedding algorithm",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is Persistent Session Storage important in AI agents?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It increases model parameters",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "It allows agents to remember relevant information across sessions",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "It replaces language models",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It reduces tokenization costs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which type of information is commonly stored in Persistent Session Storage?",
+        "options": [
+          {
+            "id": "a",
+            "text": "User preferences, conversation history, and application state",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "GPU drivers only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Operating system files",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Model weights",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How does Persistent Session Storage differ from Buffer Memory?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Buffer Memory is persistent, while session storage is temporary",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Persistent Session Storage retains information across sessions, while Buffer Memory stores short-term conversation context",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Both are identical",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Persistent Session Storage only stores embeddings",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which storage technology is commonly used for Persistent Session Storage?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Databases such as PostgreSQL, MySQL, MongoDB, or Redis",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Prompt templates only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Context windows only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Embedding models only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A user updates their preferred notification settings. Why would an AI application use Persistent Session Storage?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To remember those preferences during future sessions",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To retrain the model",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To create embeddings automatically",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To increase context window size",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What challenge would occur if an AI assistant lacked Persistent Session Storage?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The assistant would forget important user preferences after each session ends",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "The model would stop generating responses",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "The vector database would fail automatically",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The context window would become larger",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best describes the relationship between Vector Memory and Persistent Session Storage?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They are the same technology",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Vector Memory can be stored using persistent storage systems to enable long-term recall",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Persistent Session Storage replaces embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Vector Memory only works in RAM",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In an enterprise AI assistant, which use case best demonstrates Persistent Session Storage?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Remembering a user's department, preferred language, and previous support tickets across multiple logins",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Storing only the last message in a conversation",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Increasing model size dynamically",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Generating embeddings for a single query",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes Persistent Session Storage?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It stores information temporarily during a conversation only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "It enables AI systems to retain and access data across multiple sessions and application restarts",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "It replaces vector databases and memory systems",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It is only used during model training",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 8,
+    "topic_sort": 1,
+    "topic_title": "State machines & cyclic workflows",
+    "quiz_title": "State machines & cyclic workflows — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of a state machine in LangGraph?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To train language models",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To manage workflow execution by defining states and transitions between them",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To generate embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To store vector data",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In LangGraph, what does a \"state\" represent?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A model checkpoint",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A specific stage or condition in a workflow",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A database record",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A prompt template",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a transition in a state machine?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A model retraining process",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "The movement from one state to another based on defined logic or conditions",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A database migration",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A vector search operation",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are state machines useful in AI agent workflows?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They provide a structured way to manage complex, multi-step processes",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "They eliminate the need for reasoning",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "They replace language models",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They reduce tokenization costs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a cyclic workflow in LangGraph?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A workflow that executes only once",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A workflow where the system can return to previous states and repeat steps when necessary",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A workflow used only for model training",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A workflow that stores embeddings",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which scenario best demonstrates a cyclic workflow?",
+        "options": [
+          {
+            "id": "a",
+            "text": "An agent continuously refining an answer until it meets quality requirements",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A single database query",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A one-time prompt execution",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A static webpage request",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How does LangGraph differ from a simple linear chain?",
+        "options": [
+          {
+            "id": "a",
+            "text": "LangGraph supports branching, loops, and state-based execution, while linear chains follow a fixed sequence",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "LangGraph only works with vector databases",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Linear chains support loops, but LangGraph does not",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "There is no difference",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A customer support agent reviews its response, checks for missing information, and revises the answer if needed. Which LangGraph capability is being used?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Vector Search",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Cyclic Workflow",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Fine-Tuning",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Tokenization",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a key advantage of cyclic workflows in AI agents?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They enable iterative reasoning, reflection, and self-correction",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "They reduce model size",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "They eliminate memory requirements",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They replace APIs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes state machines and cyclic workflows in LangGraph?",
+        "options": [
+          {
+            "id": "a",
+            "text": "State machines manage workflow states and transitions, while cyclic workflows enable repeated execution and refinement",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Both concepts are only used during model training",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Cyclic workflows replace state machines entirely",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They are used only for storing embeddings",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 8,
+    "topic_sort": 2,
+    "topic_title": "Human-in-the-loop checkpoints",
+    "quiz_title": "Human-in-the-loop checkpoints — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of Human-in-the-Loop (HITL) checkpoints in AI workflows?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To retrain the model automatically",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To allow human review, approval, or intervention before critical actions are executed",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To generate embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To increase context window size",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In a LangGraph workflow, when is a Human-in-the-Loop checkpoint most useful?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Before performing high-impact or irreversible actions",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "During tokenization",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "During model training only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "When generating embeddings",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which scenario best demonstrates a Human-in-the-Loop checkpoint?",
+        "options": [
+          {
+            "id": "a",
+            "text": "An AI agent automatically sending an email without review",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "An AI agent drafting a legal contract that requires human approval before submission",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A chatbot greeting a user",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A model generating embeddings",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the main benefit of incorporating HITL checkpoints into AI systems?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Reduced hardware costs",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Improved safety, accountability, and decision quality",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Increased model size",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Elimination of prompts",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In LangGraph, what typically happens when a workflow reaches a HITL checkpoint?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The workflow pauses and waits for human input or approval",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "The workflow restarts automatically",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "The model retrains itself",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The context window expands",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are HITL checkpoints important in enterprise AI applications?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They help ensure compliance, governance, and risk management",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "They replace security controls",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "They increase GPU utilization",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They remove the need for testing",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "An AI-powered expense approval system recommends reimbursement amounts, but a manager must approve payments above ₹50,000. What does this represent?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Buffer Memory",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Human-in-the-Loop Checkpoint",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Vector Search",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Context Window Management",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What risk can arise if critical AI workflows operate without Human-in-the-Loop checkpoints?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Increased oversight and accountability",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Potential execution of incorrect, unsafe, or non-compliant actions",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Faster model training",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Improved semantic search",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best describes the relationship between LangGraph and HITL checkpoints?",
+        "options": [
+          {
+            "id": "a",
+            "text": "LangGraph can pause workflow execution and wait for human decisions before continuing",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "LangGraph eliminates the need for human review",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "LangGraph only supports fully autonomous workflows",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "LangGraph replaces approval systems",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes Human-in-the-Loop checkpoints?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They allow humans to review and guide AI decisions at critical workflow stages",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "They are only used during model training",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "They replace AI reasoning entirely",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They function as vector databases",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 8,
+    "topic_sort": 3,
+    "topic_title": "State persistence & recovery",
+    "quiz_title": "State persistence & recovery — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is State Persistence in an AI workflow?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The process of training a model repeatedly",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "The ability to save workflow state and progress so it can be resumed later",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "The storage of embeddings only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The generation of prompts",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is State Persistence important in LangGraph-based applications?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It increases model parameters",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "It allows workflows to survive interruptions, crashes, or restarts",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "It eliminates memory systems",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It replaces vector databases",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What does State Recovery refer to?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Training a new model after failure",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Restoring a previously saved workflow state and continuing execution",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Creating new embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Resetting the workflow",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which scenario best demonstrates State Persistence?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Saving the current workflow status before calling an external API",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Generating a single response to a prompt",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Creating a vector embedding",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Running a one-time database query",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a common benefit of State Recovery?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Faster model training",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Reduced need to repeat completed workflow steps after failures",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Increased context window size",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Automatic fine-tuning",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In a multi-step AI agent workflow, when should state typically be persisted?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Only after the workflow finishes",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "At important checkpoints or state transitions",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Only during model training",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Never",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "An AI agent is processing 10,000 documents. After processing 8,000 documents, the system crashes. How does State Recovery help?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It restarts from document 1",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "It resumes from the last saved checkpoint instead of repeating completed work",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "It deletes all processed documents",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It retrains the model",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which storage system is commonly used to support State Persistence?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Databases, object storage, or persistent memory systems",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Prompt templates only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Tokenizers only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Context windows only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How does State Persistence support Human-in-the-Loop workflows?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It stores workflow progress while waiting for human approval",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It eliminates the need for approvals",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It retrains the model automatically",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It removes workflow checkpoints",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes State Persistence & Recovery?",
+        "options": [
+          {
+            "id": "a",
+            "text": "State Persistence saves workflow progress, while State Recovery restores and continues execution after interruptions",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Both concepts are only used during training",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "State Recovery replaces memory systems",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "State Persistence is only used for embeddings",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 9,
+    "topic_sort": 1,
+    "topic_title": "CrewAI role-based teams",
+    "quiz_title": "CrewAI role-based teams — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of CrewAI in Multi-Agent Systems?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To train large language models",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To coordinate multiple AI agents working together as a team",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To store vector embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To replace APIs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In CrewAI, what is a \"role\"?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A database table",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A specific responsibility assigned to an agent within a team",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A vector embedding",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A context window",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are role-based teams useful in Multi-Agent Systems?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They reduce model parameters",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "They allow agents to specialize and collaborate efficiently",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "They eliminate the need for prompts",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They replace memory systems",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which scenario best demonstrates a CrewAI role-based team?",
+        "options": [
+          {
+            "id": "a",
+            "text": "One agent handling every task independently",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A Research Agent gathers information, a Writer Agent creates content, and a Reviewer Agent validates it",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A database storing embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A model generating tokens",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a key benefit of assigning specialized roles to agents?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Improved task quality and workflow efficiency",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Larger context windows",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Reduced storage requirements",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Elimination of reasoning",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In a CrewAI workflow, what is the role of a Manager or Coordinator Agent?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To store vector embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To oversee tasks, assign work, and coordinate collaboration among agents",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To replace all other agents",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To train language models",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A marketing crew consists of a Research Agent, Content Writer Agent, and SEO Reviewer Agent. What principle does this demonstrate?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Role-Based Collaboration",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Context Window Expansion",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Tokenization Strategy",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Fine-Tuning",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why might a Multi-Agent Crew outperform a single-agent system?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Multiple agents can divide work and contribute specialized expertise",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Multi-agent systems require fewer prompts",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "They eliminate the need for memory",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They automatically increase model size",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What challenge can role-based teams help address?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Managing complex workflows that require different types of expertise",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Increasing GPU memory",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Eliminating APIs",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Reducing embeddings",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes CrewAI role-based teams?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Multiple specialized agents collaborate through defined roles to achieve a shared objective",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "CrewAI is used only for model training",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Role-based teams replace vector databases",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Every agent performs the same task",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 9,
+    "topic_sort": 2,
+    "topic_title": "AutoGen agent collaboration",
+    "quiz_title": "AutoGen agent collaboration — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of AutoGen in Multi-Agent Systems?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To train large language models",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To enable multiple AI agents to collaborate and solve tasks through conversation and coordination",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To store embeddings in vector databases",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To manage cloud infrastructure",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In AutoGen, how do agents typically collaborate?",
+        "options": [
+          {
+            "id": "a",
+            "text": "By retraining each other",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Through message exchanges and task-oriented conversations",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "By sharing model parameters",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "By increasing context windows",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a key advantage of using multiple agents in AutoGen?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Reduced tokenization requirements",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Division of responsibilities among specialized agents",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Elimination of prompts",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Automatic model fine-tuning",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which scenario best demonstrates AutoGen collaboration?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A single AI model answering a question",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A Planner Agent creates a strategy, a Research Agent gathers information, and a Reviewer Agent validates the results",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A database storing embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A model generating tokens",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What role does communication play in AutoGen systems?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It allows agents to exchange information and coordinate actions",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It increases model parameters",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It replaces vector databases",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It removes memory requirements",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which type of task is most suitable for AutoGen agent collaboration?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Complex, multi-step workflows requiring different skills or expertise",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Simple arithmetic calculations only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Tokenization tasks",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Operating system updates",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the purpose of a Reviewer Agent in an AutoGen workflow?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To store embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To evaluate outputs, identify issues, and improve result quality",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To train new models",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To increase context windows",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How does AutoGen differ from a single-agent architecture?",
+        "options": [
+          {
+            "id": "a",
+            "text": "AutoGen supports collaboration among multiple agents, while a single-agent system relies on one agent for all tasks",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "AutoGen eliminates reasoning",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Single-agent systems support more collaboration",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "There is no difference",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What challenge can AutoGen help address in enterprise AI systems?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Coordinating complex workflows involving planning, execution, and validation",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Increasing hardware temperatures",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Eliminating APIs",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Removing security requirements",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes AutoGen agent collaboration?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Multiple AI agents communicate and collaborate to solve tasks more effectively than a single agent working alone",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "AutoGen is only used for model training",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "AutoGen replaces vector databases",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "All agents perform identical tasks without communication",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 9,
+    "topic_sort": 3,
+    "topic_title": "Supervisor delegation pattern",
+    "quiz_title": "Supervisor delegation pattern — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of the Supervisor Delegation Pattern in a Multi-Agent System?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To train multiple language models simultaneously",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To use a central supervisor agent that assigns tasks to specialized agents",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To store embeddings in a vector database",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To increase context window size",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the main responsibility of a Supervisor Agent?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Performing every task itself",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Managing, assigning, and monitoring tasks across multiple agents",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Training the underlying LLM",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Creating embeddings",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is the Supervisor Delegation Pattern useful in complex workflows?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It eliminates the need for specialized agents",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "It improves coordination and task distribution among agents",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "It increases model size",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It removes memory systems",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which scenario best demonstrates the Supervisor Delegation Pattern?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A single agent handling all tasks independently",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A Supervisor Agent assigning research to a Research Agent and validation to a Reviewer Agent",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A vector database performing searches",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A model generating embeddings",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a key advantage of using specialized agents under a supervisor?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Improved task quality through domain-specific expertise",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Larger context windows",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Reduced storage requirements",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Elimination of prompts",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In a Supervisor Delegation workflow, what typically happens after an agent completes its assigned task?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The workflow ends immediately",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "The result is returned to the supervisor for further coordination or decision-making",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "The model retrains itself",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The vector database is updated automatically",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A customer service system uses a Billing Agent for payment issues and a Technical Support Agent for product issues. Which pattern is being applied?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Supervisor Delegation Pattern",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Tokenization Pattern",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Embedding Pattern",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Fine-Tuning Pattern",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What challenge can arise if a Supervisor Agent is poorly designed?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Inefficient task allocation and workflow bottlenecks",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Increased semantic search quality",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Improved collaboration automatically",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Reduced memory usage",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How does the Supervisor Delegation Pattern differ from fully decentralized agent collaboration?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A supervisor centrally manages tasks, while decentralized systems allow agents to coordinate directly with each other",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "There is no difference",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Decentralized systems require no communication",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Supervisor systems eliminate specialized agents",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes the Supervisor Delegation Pattern?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A central supervisor coordinates specialized agents by assigning, monitoring, and managing tasks to achieve a shared goal",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "All agents perform identical tasks without coordination",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "The supervisor replaces all specialized agents",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The pattern is used only during model training",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 10,
+    "topic_sort": 1,
+    "topic_title": "LangSmith tracing & debugging",
+    "quiz_title": "LangSmith tracing & debugging — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of LangSmith in AI application development?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To train Large Language Models",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To monitor, trace, debug, and evaluate LLM applications and agent workflows",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To store embeddings in vector databases",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To manage cloud infrastructure",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What does \"tracing\" mean in LangSmith?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Storing embeddings in a database",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Recording and visualizing the execution flow of an AI application",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Training a model on new data",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Generating prompts automatically",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is tracing important when building AI agents?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It increases context window size",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "It helps developers understand decisions, identify failures, and troubleshoot workflows",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "It replaces testing",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It improves internet speed",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which information can LangSmith traces typically capture?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Prompt inputs, model outputs, tool calls, and execution steps",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "GPU hardware specifications only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Operating system files",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Source code repositories only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the primary purpose of debugging in LangSmith?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To retrain the model",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To identify and resolve errors, unexpected behaviors, or workflow failures",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To create embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To expand context windows",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A LangGraph workflow unexpectedly produces incorrect outputs. How can LangSmith help?",
+        "options": [
+          {
+            "id": "a",
+            "text": "By visualizing the workflow execution path and identifying problematic steps",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "By automatically retraining the model",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "By deleting workflow logs",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "By replacing the workflow",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a key advantage of using LangSmith for observability?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It provides transparency into how AI applications operate internally",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It removes the need for testing",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It increases model parameters",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It eliminates memory systems",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which scenario best demonstrates the value of LangSmith tracing?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Investigating why an agent selected the wrong tool during task execution",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Increasing storage capacity",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Compressing embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Installing software updates",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How does LangSmith support evaluation in AI applications?",
+        "options": [
+          {
+            "id": "a",
+            "text": "By tracking workflow performance and helping measure output quality",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "By replacing language models",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "By eliminating prompts",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "By storing vector embeddings",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes LangSmith Tracing & Debugging?",
+        "options": [
+          {
+            "id": "a",
+            "text": "LangSmith provides visibility into AI workflows by recording execution details, helping developers monitor, evaluate, and debug applications",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "LangSmith is only used for model training",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "LangSmith replaces observability tools entirely",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "LangSmith functions as a vector database",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 10,
+    "topic_sort": 2,
+    "topic_title": "LangFuse & AgentOps monitoring",
+    "quiz_title": "LangFuse & AgentOps monitoring — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of tools like LangFuse and AgentOps?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To train Large Language Models",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To monitor, observe, and evaluate AI agents and LLM applications in production",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To create embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To manage operating systems",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is observability in the context of AI applications?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The process of increasing model size",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "The ability to monitor, analyze, and understand how an AI system behaves during execution",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "The storage of embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The creation of prompts",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which type of information can LangFuse typically track?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Prompts, responses, token usage, latency, and application traces",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Operating system updates only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "GPU temperatures only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Database schemas only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the primary focus of AgentOps?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Monitoring and managing AI agents, workflows, and operational performance",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Training neural networks",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Building vector databases",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Creating embeddings",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is monitoring important for AI agents in production environments?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To understand performance, detect failures, and improve reliability",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To eliminate prompts",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To replace language models",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To reduce context windows",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which metric would be most useful when evaluating an AI application's efficiency?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Token usage and response latency",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Screen brightness",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Keyboard layout",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Operating system version",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company wants to know why an AI agent failed to complete a workflow. Which capability provided by LangFuse or AgentOps would be most useful?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Workflow tracing and execution logs",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "GPU overclocking",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Database compression",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "File encryption",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How can LangFuse and AgentOps contribute to AI application evaluation?",
+        "options": [
+          {
+            "id": "a",
+            "text": "By providing metrics and insights that help measure performance and output quality",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "By automatically retraining models",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "By replacing testing procedures",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "By increasing model parameters",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which scenario best demonstrates the value of AI monitoring tools?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Tracking how often an agent uses tools and identifying where errors occur",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Increasing storage capacity",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Installing operating system patches",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Generating embeddings",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes LangFuse and AgentOps?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They provide observability, monitoring, tracing, and evaluation capabilities for AI applications and agents",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "They are used only for model training",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "They replace vector databases",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They function as language models",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 10,
+    "topic_sort": 3,
+    "topic_title": "Agent evaluation metrics",
+    "quiz_title": "Agent evaluation metrics — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of agent evaluation metrics?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To increase model size",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To measure the performance, quality, and reliability of AI agents",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To generate embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To train language models",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which metric measures whether an AI agent successfully completes a task?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Latency",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Task Success Rate",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Token Count",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Context Window Size",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What does latency measure in an AI agent system?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The amount of memory used",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "The time taken to generate a response or complete a task",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "The number of embeddings stored",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The size of the training dataset",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is accuracy an important evaluation metric for AI agents?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It measures how correctly the agent performs tasks or provides information",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It increases context windows",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It reduces storage requirements",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It replaces monitoring systems",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What does \"Hallucination Rate\" measure?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The percentage of responses containing incorrect or fabricated information",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "The number of tool calls made by an agent",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "The speed of vector search",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The size of the prompt",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which metric is most useful for tracking the operational cost of an AI agent?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Token Usage",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Accuracy",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "State Persistence",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Context Retention",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What does Tool Usage Success Rate evaluate?",
+        "options": [
+          {
+            "id": "a",
+            "text": "How often external tools or APIs are used successfully by the agent",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "How many prompts are generated",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "The quality of embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The size of the vector database",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company wants to measure how often users are satisfied with an AI assistant's responses. Which metric would be most relevant?",
+        "options": [
+          {
+            "id": "a",
+            "text": "User Satisfaction Score",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Context Window Size",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Embedding Dimension",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "GPU Utilization",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is evaluating workflow completion important in Multi-Agent Systems?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It helps determine whether agents are successfully collaborating to achieve goals",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It increases model parameters",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It eliminates memory systems",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It replaces observability tools",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes agent evaluation metrics?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They provide measurable indicators of an agent's performance, quality, reliability, and efficiency",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "They are only used during model training",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "They replace monitoring systems entirely",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They function as vector databases",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 11,
+    "topic_sort": 1,
+    "topic_title": "FastAPI agent endpoints",
+    "quiz_title": "FastAPI agent endpoints — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of FastAPI in AI agent deployment?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To train language models",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To expose AI agent functionality through RESTful APIs",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To create embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To store vector data",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an API endpoint in a FastAPI-based AI application?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A database table",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A URL that receives requests and returns responses from the AI agent",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A vector embedding",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A model checkpoint",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are FastAPI endpoints commonly used for AI agents?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They provide a simple and scalable way to integrate AI capabilities into applications",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "They increase model parameters",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "They replace vector databases",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They eliminate prompts",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which HTTP method is most commonly used to send user queries to an AI agent endpoint?",
+        "options": [
+          {
+            "id": "a",
+            "text": "GET",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "POST",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "DELETE",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "PATCH",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a common responsibility of a FastAPI endpoint in an AI application?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Receiving user input, invoking the AI agent, and returning the generated response",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Training the model from scratch",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Creating vector embeddings only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Managing operating system updates",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is request validation important in FastAPI agent endpoints?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To ensure incoming data is properly formatted and safe to process",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To increase context windows",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To improve GPU performance",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To replace authentication",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which feature makes FastAPI particularly popular for AI deployments?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Automatic API documentation generation using OpenAPI and Swagger UI",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Automatic model training",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Unlimited context windows",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Built-in vector databases",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A chatbot frontend sends a message to an AI backend through a FastAPI endpoint. What happens next?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The endpoint processes the request, calls the AI agent, and returns a response",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "The model retrains itself",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "The endpoint creates a new database automatically",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The request is ignored",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which deployment scenario best demonstrates the use of FastAPI agent endpoints?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A customer support application sending user queries to an AI service through REST APIs",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A local text file editor",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A spreadsheet application without APIs",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A hardware driver installation",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes FastAPI agent endpoints?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They provide a scalable API interface that allows external systems to communicate with AI agents",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "They replace language models entirely",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "They are used only during model training",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They function as vector databases",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 11,
+    "topic_sort": 2,
+    "topic_title": "Docker & Docker Compose",
+    "quiz_title": "Docker & Docker Compose — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of Docker?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To train machine learning models",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To package applications and their dependencies into portable containers",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To store embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To manage databases",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a Docker container?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A virtual machine with a separate operating system",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A lightweight, isolated environment that runs an application and its dependencies",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A cloud storage service",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A programming language",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is Docker commonly used in AI and Agent deployments?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It ensures consistent application behavior across development, testing, and production environments",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It increases model parameters",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It replaces APIs",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It eliminates the need for cloud services",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a Docker Image?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A running container",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A blueprint or template used to create containers",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A database backup",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A vector embedding",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is Docker Compose primarily used for?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Managing multiple containers as a single application stack",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Training language models",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Creating embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Monitoring APIs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which file is commonly used to define services in Docker Compose?",
+        "options": [
+          {
+            "id": "a",
+            "text": "requirements.txt",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "docker-compose.yml",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "config.json",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "package-lock.json",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "An AI application consists of a FastAPI service, a PostgreSQL database, and a ChromaDB instance. Why would Docker Compose be useful?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It can start and manage all services together with a single command",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It increases context window size",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It replaces databases",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It trains the model automatically",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a key advantage of containerization with Docker?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Portability across different environments",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Automatic model training",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Unlimited storage capacity",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Elimination of networking requirements",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What happens when the command docker-compose up is executed?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It creates and starts all defined services in the Compose configuration",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It deletes containers",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It trains a language model",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It creates embeddings",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes Docker and Docker Compose?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Docker packages applications into containers, while Docker Compose manages multiple containers as a unified application",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Docker and Docker Compose are identical tools",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Docker Compose replaces Docker entirely",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Both tools are used only for machine learning training",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 11,
+    "topic_sort": 3,
+    "topic_title": "Streaming responses to clients",
+    "quiz_title": "Streaming responses to clients — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is meant by \"Streaming Responses\" in AI applications?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Downloading model weights continuously",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Sending generated output to the client incrementally as it is produced",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Storing responses in a database",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Training models in real time",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is streaming commonly used in LLM-powered applications?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It reduces model accuracy",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "It improves perceived responsiveness and user experience",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "It eliminates tokenization",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It increases model parameters",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a key benefit of streaming responses in chat applications?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Users can begin reading the answer before the complete response is generated",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "The model requires less memory",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "The context window becomes larger",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The application stops using APIs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which protocol is commonly used to deliver streamed responses from a server to a client?",
+        "options": [
+          {
+            "id": "a",
+            "text": "FTP",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Server-Sent Events (SSE) or WebSockets",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "SMTP",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "SNMP",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How does streaming differ from a traditional request-response workflow?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Traditional workflows return the entire response at once, while streaming delivers partial outputs incrementally",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Streaming requires model retraining",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Streaming removes the need for APIs",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Both approaches work identically",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In an AI chatbot, what is typically streamed to the user?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Model training data",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Tokens or chunks of generated text as they are produced",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Vector embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Database backups",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why can streaming improve the perceived performance of an AI application?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It allows users to see progress immediately instead of waiting for the full response",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It increases model parameters",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It reduces storage requirements",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It eliminates latency completely",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which deployment scenario benefits most from streaming responses?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Real-time chat assistants and conversational AI applications",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Static website hosting",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "File storage systems",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Operating system updates",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What challenge should developers consider when implementing streaming?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Handling partial outputs, connection management, and client-side updates",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Increasing model size",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Removing authentication mechanisms",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Eliminating monitoring",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes streaming responses to clients?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Streaming delivers generated content incrementally, improving responsiveness and user experience in AI applications",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Streaming is only used during model training",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Streaming replaces APIs entirely",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Streaming functions as a vector database",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 12,
+    "topic_sort": 1,
+    "topic_title": "AWS Bedrock & Azure OpenAI overview",
+    "quiz_title": "AWS Bedrock & Azure OpenAI overview — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of cloud AI platforms such as AWS Bedrock and Azure OpenAI?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To train operating systems",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To provide managed access to foundation models and AI services through cloud infrastructure",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To replace databases",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To create hardware devices",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is AWS Bedrock?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A managed AWS service that provides access to foundation models through APIs",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A vector database",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A container orchestration platform",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A programming language",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is Azure OpenAI Service?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A database service",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A managed cloud service that provides access to OpenAI models within the Azure ecosystem",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A monitoring platform",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A web browser",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a key advantage of AWS Bedrock?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Access to multiple foundation model providers through a single managed service",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Automatic model training for every request",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Unlimited context windows",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Built-in relational databases",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why do enterprises often choose Azure OpenAI?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It offers integration with Azure services, security controls, and enterprise compliance capabilities",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It eliminates cloud costs",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It replaces APIs entirely",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It removes authentication requirements",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which use case is suitable for both AWS Bedrock and Azure OpenAI?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Building chatbots, AI assistants, summarization tools, and RAG applications",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Installing operating systems",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Creating physical hardware devices",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Managing network switches",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a common benefit of using managed AI services instead of self-hosting models?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Reduced infrastructure management and operational complexity",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Larger model sizes automatically",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Elimination of API usage",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Unlimited storage",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company already uses AWS extensively and wants to build a generative AI application. Which platform would typically align well with its existing ecosystem?",
+        "options": [
+          {
+            "id": "a",
+            "text": "AWS Bedrock",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Desktop Software Only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Spreadsheet Applications",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Local File Storage",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement accurately compares AWS Bedrock and Azure OpenAI?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Both provide managed access to powerful AI models, but they are integrated into different cloud ecosystems",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Both are vector databases",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Both replace language models entirely",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Both are used only for model training",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes AWS Bedrock and Azure OpenAI?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They are managed cloud AI platforms that provide scalable access to foundation models for building AI-powered applications",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "They are operating systems",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "They replace observability tools",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They function as container orchestration platforms",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 12,
+    "topic_sort": 2,
+    "topic_title": "Cost optimization strategies",
+    "quiz_title": "Cost optimization strategies — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary goal of cost optimization in AI applications?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To increase model size",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To reduce operational expenses while maintaining acceptable performance and quality",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To eliminate monitoring systems",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To increase token usage",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which factor most directly impacts the cost of LLM-based applications?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Token usage",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Screen resolution",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Keyboard layout",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Operating system version",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How can prompt optimization help reduce AI costs?",
+        "options": [
+          {
+            "id": "a",
+            "text": "By reducing unnecessary tokens and making requests more efficient",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "By increasing context windows automatically",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "By retraining the model",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "By eliminating APIs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is choosing the right model important for cost optimization?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Different models have varying costs, capabilities, and performance characteristics",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "All models cost exactly the same",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Model selection only affects accuracy",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Models do not impact expenses",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which strategy can reduce repeated AI processing costs?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Caching frequently requested responses",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Increasing token usage",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Expanding context windows unnecessarily",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Disabling monitoring tools",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How can Retrieval-Augmented Generation (RAG) contribute to cost optimization?",
+        "options": [
+          {
+            "id": "a",
+            "text": "By providing relevant context and reducing the need for large prompts or model fine-tuning",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "By increasing model size",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "By eliminating vector databases",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "By removing APIs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is monitoring token usage important?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It helps organizations understand and control AI-related expenses",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It increases context windows",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It improves GPU performance automatically",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It eliminates latency",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which deployment strategy can improve cost efficiency for AI workloads?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Auto-scaling resources based on demand",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Running maximum resources continuously regardless of traffic",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Disabling performance monitoring",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Using the largest model for every task",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company uses a premium LLM for all requests, including simple FAQ responses. What cost optimization opportunity exists?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Use smaller or less expensive models for simple tasks and reserve advanced models for complex requests",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Increase token limits",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Disable caching",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Expand prompts unnecessarily",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes cost optimization strategies for AI systems?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Cost optimization involves managing token usage, selecting appropriate models, caching results, monitoring usage, and scaling resources efficiently",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Cost optimization focuses only on reducing hardware costs",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It eliminates the need for AI monitoring",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It replaces security controls",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AAC",
+    "module_number": 12,
+    "topic_sort": 3,
+    "topic_title": "Security & access control for agents",
+    "quiz_title": "Security & access control for agents — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of security in AI agent systems?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To increase model parameters",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To protect data, systems, and resources from unauthorized access or misuse",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To generate embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To improve tokenization",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What does \"Access Control\" mean in AI applications?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Allowing unrestricted access to all resources",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Defining who or what can access specific systems, tools, or data",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Increasing context window size",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Training language models",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why should AI agents follow the Principle of Least Privilege (PoLP)?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To grant only the minimum permissions required to perform tasks",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To maximize system access",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To increase model performance",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To eliminate authentication",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which authentication mechanism is commonly used to secure AI APIs?",
+        "options": [
+          {
+            "id": "a",
+            "text": "API Keys, OAuth, or Token-Based Authentication",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Context Windows",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Prompt Templates",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is authorization important after authentication?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Authentication identifies users, while authorization determines what actions they are allowed to perform",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Authorization replaces authentication",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Authorization increases token limits",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Authorization creates embeddings",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A customer support agent can read customer information but cannot modify billing records. What security concept does this demonstrate?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Role-Based Access Control (RBAC)",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Tokenization",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Fine-Tuning",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Context Expansion",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why should tool access be restricted in AI agents?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To prevent agents from performing unauthorized or potentially harmful actions",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To increase model size",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To improve embeddings",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To eliminate monitoring",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the purpose of audit logging in AI systems?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To record actions and events for monitoring, troubleshooting, and compliance purposes",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To retrain models automatically",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To increase context windows",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To generate prompts",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which scenario best demonstrates secure AI agent design?",
+        "options": [
+          {
+            "id": "a",
+            "text": "An agent with unrestricted access to all company systems",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "An agent with role-based permissions, authentication, and activity logging",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "An agent without monitoring or controls",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "An agent that bypasses security checks",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes Security & Access Control for Agents?",
+        "options": [
+          {
+            "id": "a",
+            "text": "AI agents should operate with authenticated, authorized, and least-privileged access while maintaining auditability and security controls",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Security is only needed during model training",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Access control eliminates the need for monitoring",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Agents should have unrestricted access to maximize efficiency",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 1,
+    "topic_sort": 1,
+    "topic_title": "Shared responsibility",
+    "quiz_title": "Shared responsibility — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "In the AWS Shared Responsibility Model, which of the following is the customer's responsibility?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Physical security of data centers",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Patching the hypervisor",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Configuring security groups and IAM policies",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "Maintaining hardware infrastructure",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Who is responsible for patching the guest operating system on an Amazon EC2 instance?",
+        "options": [
+          {
+            "id": "a",
+            "text": "AWS",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "The customer",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Amazon S3",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS Support",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best describes the AWS Shared Responsibility Model?",
+        "options": [
+          {
+            "id": "a",
+            "text": "AWS is responsible for everything in the cloud",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "The customer is responsible for everything",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "AWS secures the cloud infrastructure; the customer secures what they run in the cloud",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "Responsibility is split equally for all services",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "For a managed service like Amazon RDS, which task is primarily AWS's responsibility?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Database engine patching and underlying infrastructure",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Database schema design",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Application-level encryption keys",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "User access policies inside the application",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company stores sensitive data in Amazon S3. Under the Shared Responsibility Model, who is responsible for encrypting data at rest?",
+        "options": [
+          {
+            "id": "a",
+            "text": "AWS only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "The customer only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Both AWS and the customer depending on configuration",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "Neither — encryption is automatic",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which area falls under AWS's responsibility in the Shared Responsibility Model?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Network configuration inside a VPC",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Global infrastructure and regional availability",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Operating system patches on EC2",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "IAM user password policies",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "For AWS Lambda, which of the following is AWS responsible for?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Writing function code",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Managing the underlying compute infrastructure",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Configuring IAM roles for the function",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Designing application logic",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A startup wants to understand what security tasks they must handle when using Amazon EC2. Which task is theirs?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Securing physical data center access",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Managing security groups and OS-level patches",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Maintaining AWS global network backbone",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Patching the hypervisor",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS service category generally shifts more operational responsibility to AWS compared to EC2?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Infrastructure as a Service (IaaS) like EC2",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Managed services like RDS or Lambda",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "On-premises servers",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Custom bare-metal instances",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement accurately summarizes shared responsibility for security in AWS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Security is entirely AWS's job once you migrate",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Customers are responsible for security \"in\" the cloud; AWS is responsible for security \"of\" the cloud",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Customers handle physical data center security",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS manages all application-level access controls",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 1,
+    "topic_sort": 2,
+    "topic_title": "IAM policies",
+    "quiz_title": "IAM policies — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of AWS Identity and Access Management (IAM)?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Launch virtual servers",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Manage users, groups, roles, and permissions",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Store objects in the cloud",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Route DNS traffic",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which IAM entity should an EC2 application use to access AWS services securely?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Root account access keys",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "IAM role attached to the instance",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Shared admin user credentials",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Public S3 bucket policy only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What does the IAM policy evaluation logic follow when multiple policies apply?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Explicit deny overrides allow",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Allow always overrides deny",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Most permissive policy wins",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Root account policy is ignored",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A developer needs read-only access to Amazon S3 buckets. Which approach follows least privilege?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Attach AdministratorAccess policy",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Create a custom policy allowing only s3:GetObject and s3:ListBucket on specific buckets",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Share root account credentials",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Make all buckets public",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an IAM role?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A permanent user account with a password",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "An identity with temporary credentials that can be assumed by trusted entities",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A VPC subnet configuration",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "An EC2 instance type",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which IAM best practice should always be followed?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Use the root account for daily operations",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Enable MFA on privileged accounts and avoid long-lived access keys where possible",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Share one admin user across the team",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Disable CloudTrail to reduce costs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the difference between an IAM user and an IAM role?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Users are for people or apps with long-term credentials; roles provide temporary credentials via assumption",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Roles are only for AWS employees",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Users cannot have policies attached",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "There is no difference",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company wants developers to manage EC2 instances but not delete production databases. What should they use?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Single AdministratorAccess policy for everyone",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Separate IAM policies scoped to specific actions and resources",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Disable IAM entirely",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Use root account for all developers",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS service integrates with IAM to provide a centralized view of who has access to what across accounts?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon Route 53",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "AWS IAM Access Analyzer",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Amazon CloudFront",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS Glue",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "An IAM policy document contains \"Effect\", \"Action\", \"Resource\", and \"Principal\" elements. What does \"Effect\": \"Deny\" do?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It grants permissions",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "It explicitly blocks the specified actions even if an Allow exists elsewhere",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "It creates a new user",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It enables MFA automatically",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 1,
+    "topic_sort": 3,
+    "topic_title": "Organizations",
+    "quiz_title": "Organizations — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of AWS Organizations?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Manage multiple AWS accounts centrally with consolidated billing and policies",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Launch EC2 instances across regions",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Store backup files",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Monitor application logs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a key benefit of using AWS Organizations for a company with multiple teams?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Each team must pay separately without visibility",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Centralized billing and ability to apply Service Control Policies (SCPs)",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Eliminates the need for IAM",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Automatically creates VPCs in every region",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What are Service Control Policies (SCPs) in AWS Organizations?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Policies that define permissions for IAM users within a single account",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Policies that set maximum permissions for accounts in an organization",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "S3 bucket policies",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "EC2 security group rules",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS Organizations feature helps reduce costs by sharing Reserved Instances and Savings Plans across accounts?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Consolidated billing",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "CloudTrail",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Route 53",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS Shield",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company wants to prevent member accounts from disabling CloudTrail. What should they use?",
+        "options": [
+          {
+            "id": "a",
+            "text": "An S3 bucket policy",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A Service Control Policy (SCP) denying cloudtrail:StopLogging",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "An EC2 security group",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A Lambda function",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an Organizational Unit (OU) in AWS Organizations?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A type of EC2 instance",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A container for accounts that helps group them for policy application",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "An IAM role",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A VPC subnet",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which account type in AWS Organizations typically manages the organization and billing?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Member account",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Management (master) account",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Guest account",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Read-only account",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A startup has separate AWS accounts for development, staging, and production. What service helps manage them together?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon S3",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "AWS Organizations",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Amazon RDS",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS Lambda",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Can SCPs grant permissions to IAM users?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Yes, SCPs directly grant permissions",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "No, SCPs set guardrails; IAM policies within accounts still define actual permissions",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Only root users are affected",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "SCPs replace IAM entirely",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best describes AWS Organizations?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It is only for enterprise customers with 100+ accounts",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "It helps centrally govern multiple accounts with billing consolidation and policy guardrails",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "It automatically migrates on-premises servers",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It replaces the need for VPCs",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 2,
+    "topic_sort": 1,
+    "topic_title": "EC2",
+    "quiz_title": "EC2 — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is Amazon EC2 primarily used for?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Object storage",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Resizable compute capacity in the cloud (virtual servers)",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Managed relational databases",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "DNS routing",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which EC2 pricing model allows you to pay for compute capacity by the hour or second with no long-term commitment?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Reserved Instances",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "On-Demand Instances",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Dedicated Hosts only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Spot Instances with guaranteed availability",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A workload can tolerate interruptions and wants the lowest compute cost. Which EC2 option is most suitable?",
+        "options": [
+          {
+            "id": "a",
+            "text": "On-Demand Instances",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Spot Instances",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Dedicated Instances",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Reserved Instances with 3-year term only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an Amazon Machine Image (AMI)?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A monitoring dashboard",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A template containing the OS and software configuration for launching EC2 instances",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A load balancer configuration",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "An IAM policy document",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which EC2 feature allows automatic adjustment of capacity based on demand?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon S3 lifecycle rules",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Auto Scaling groups",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Route 53 health checks only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "IAM roles",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A web application needs consistent performance and cannot tolerate interruptions. Which instance purchasing option is best?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Spot Instances",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "On-Demand or Reserved Instances",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Spot Fleet only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "No instance type selection needed",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the purpose of an EC2 security group?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Store application data",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Act as a virtual firewall controlling inbound and outbound traffic",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Manage DNS records",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Encrypt S3 objects",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which storage type is best for an EC2 root volume that requires high IOPS for a database?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon S3",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Amazon EBS (e.g., gp3 or io2 volume)",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Amazon Glacier",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS Snowball",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What happens when you stop an EC2 instance (not terminate)?",
+        "options": [
+          {
+            "id": "a",
+            "text": "All data on EBS volumes is deleted",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "The instance can be restarted later; EBS root volume data is preserved",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "The AMI is deleted",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The VPC is removed",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company needs to run a predictable production workload 24/7 for one year. Which option offers the best cost savings?",
+        "options": [
+          {
+            "id": "a",
+            "text": "On-Demand Instances only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Reserved Instances or Savings Plans",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Spot Instances exclusively",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "No reserved capacity needed",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 2,
+    "topic_sort": 2,
+    "topic_title": "VPC design",
+    "quiz_title": "VPC design — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is an Amazon VPC?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A content delivery network",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A logically isolated virtual network in AWS",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A managed database service",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "An object storage bucket",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which component allows resources in a private subnet to access the internet while remaining unreachable from the internet?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Internet Gateway attached directly to private instances",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "NAT Gateway in a public subnet",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "S3 bucket policy",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Route 53 record",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the purpose of an Internet Gateway (IGW) in a VPC?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Connect private subnets to on-premises only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Enable communication between the VPC and the internet",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Store VPC flow logs",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Encrypt EBS volumes",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company needs secure connectivity between their on-premises data center and AWS VPC. Which service should they use?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon S3",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "AWS Direct Connect or Site-to-Site VPN",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Amazon DynamoDB",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS Lambda",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a subnet in a VPC?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A range of IP addresses in the VPC where resources are launched",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "An IAM policy",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "An EC2 instance type",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A CloudWatch alarm",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which design places web servers in a public subnet and databases in a private subnet?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Single-tier architecture",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Multi-tier (multi-AZ) architecture with public and private subnets",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "No subnet separation needed",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "All resources in one public subnet",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What does a VPC peering connection enable?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Routing traffic between two VPCs privately",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Public internet access for all VPCs",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Automatic EC2 scaling",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "S3 cross-region replication",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS component controls traffic between subnets within a VPC?",
+        "options": [
+          {
+            "id": "a",
+            "text": "S3 lifecycle policy",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Network ACLs and route tables",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "IAM roles",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "CloudTrail",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A VPC is created with CIDR block 10.0.0.0/16. How many IP addresses does this theoretically support (before AWS reservations)?",
+        "options": [
+          {
+            "id": "a",
+            "text": "256",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "65,536",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "16",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Unlimited without limits",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which best practice improves VPC security for production workloads?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Place all resources in public subnets",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Use private subnets for backend services and restrict security group rules to least privilege",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Disable flow logs to save costs",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Use 0.0.0.0/0 for all inbound rules",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 2,
+    "topic_sort": 3,
+    "topic_title": "Load balancers",
+    "quiz_title": "Load balancers — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of an Elastic Load Balancer (ELB) in AWS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Store static files",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Distribute incoming traffic across multiple targets for high availability",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Manage IAM users",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Run serverless functions",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which load balancer type is best suited for HTTP/HTTPS traffic with advanced routing features?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Classic Load Balancer",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Application Load Balancer (ALB)",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Network Load Balancer only for DNS",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Amazon S3",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which load balancer operates at Layer 4 (TCP/UDP) and provides ultra-low latency?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Application Load Balancer",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Network Load Balancer (NLB)",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Classic Load Balancer for HTTP only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Amazon CloudFront",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company runs EC2 instances across multiple Availability Zones and wants automatic traffic distribution. What should they use?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Single EC2 instance with elastic IP",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Elastic Load Balancer with targets in multiple AZs",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "S3 static website hosting only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Route 53 without any compute",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a target group in the context of AWS load balancing?",
+        "options": [
+          {
+            "id": "a",
+            "text": "An IAM group",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A collection of registered targets (e.g., EC2 instances) that receive traffic from a load balancer",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "An S3 bucket",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A VPC subnet",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which health check feature do ELBs provide?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Automatic replacement of unhealthy targets by routing traffic only to healthy ones",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Automatic database backups",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "IAM password rotation",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "S3 versioning",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "An application needs sticky sessions (session affinity) for HTTP traffic. Which load balancer supports this?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Application Load Balancer with sticky sessions enabled",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Amazon RDS",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "AWS Lambda",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Amazon EBS",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the benefit of placing an ALB in front of Auto Scaling EC2 instances?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Eliminates the need for security groups",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Distributes traffic and works with Auto Scaling to maintain availability during scale events",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Replaces the need for VPCs",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Automatically encrypts all data at rest",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS service can integrate with an Application Load Balancer to run containerized applications?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon ECS or EKS with ALB target groups",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Amazon S3 only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "AWS IAM",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Amazon Glacier",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A global application needs to route users to the nearest healthy endpoint. Which combination is commonly used?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Single EC2 instance in one region",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Route 53 routing policies combined with load balancers in multiple regions",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "S3 bucket without CloudFront",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "One NAT Gateway for all regions",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 3,
+    "topic_sort": 1,
+    "topic_title": "S3",
+    "quiz_title": "S3 — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is Amazon S3 primarily designed for?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Block storage for EC2",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Scalable object storage",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Relational database hosting",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Virtual server compute",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an S3 bucket?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A virtual machine",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A container for storing objects in Amazon S3",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "An IAM role",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A VPC component",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which S3 storage class is most cost-effective for data accessed infrequently but requiring rapid access when needed?",
+        "options": [
+          {
+            "id": "a",
+            "text": "S3 Standard",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "S3 Standard-IA (Infrequent Access)",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "S3 Glacier Deep Archive for immediate access",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "EBS gp3",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What feature helps prevent accidental deletion of S3 objects?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Disabling versioning",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "S3 Versioning and MFA Delete",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Making the bucket public",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Removing bucket policies",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company needs to serve static website content globally with low latency. Which combination is commonly used?",
+        "options": [
+          {
+            "id": "a",
+            "text": "EC2 only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Amazon S3 with Amazon CloudFront CDN",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "RDS Multi-AZ",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS Lambda only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the maximum size of a single object upload to S3 (using multipart upload for larger files)?",
+        "options": [
+          {
+            "id": "a",
+            "text": "5 GB maximum",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "5 TB per object",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "1 MB maximum",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Unlimited without multipart",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which S3 feature automatically transitions objects to lower-cost storage classes based on rules?",
+        "options": [
+          {
+            "id": "a",
+            "text": "S3 Lifecycle policies",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "IAM policies",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Security groups",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Auto Scaling",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How can you restrict access to an S3 bucket so only specific IAM users can read objects?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Make the bucket public",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Use bucket policies and IAM policies to grant least-privilege access",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Disable encryption",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Remove all ACLs and make objects public",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is Amazon S3 Glacier used for?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Real-time transactional database workloads",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Long-term archival storage at lower cost",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "EC2 boot volumes",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "DNS routing",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which S3 consistency model applies to new object PUT requests in modern AWS regions?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Read-after-write consistency for PUTs of new objects",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "No consistency guarantees ever",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Only eventual consistency for all operations",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Strong consistency only in one AZ",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 3,
+    "topic_sort": 2,
+    "topic_title": "RDS",
+    "quiz_title": "RDS — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is Amazon RDS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "An object storage service",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A managed relational database service",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A serverless compute platform",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A DNS service",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which benefit does Amazon RDS provide compared to running a database on EC2?",
+        "options": [
+          {
+            "id": "a",
+            "text": "You must manage all OS patching yourself",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "AWS handles backups, patching, and infrastructure management",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "No backup options available",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "No Multi-AZ support",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is Multi-AZ deployment in Amazon RDS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Running read replicas in the same AZ",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A standby replica in another AZ for high availability and automatic failover",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Storing data in S3",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Using Lambda for database queries",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an RDS Read Replica used for?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Automatic failover to standby",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Scaling read traffic by replicating data to additional read-only instances",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Replacing the need for backups",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Encrypting S3 objects",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which RDS feature allows you to restore a database to a specific point in time?",
+        "options": [
+          {
+            "id": "a",
+            "text": "S3 Lifecycle",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Automated backups and point-in-time recovery (PITR)",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "CloudFront caching",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "IAM MFA",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A production database must minimize downtime during maintenance. Which RDS feature helps?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Single-AZ deployment only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Multi-AZ deployment with automatic failover",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Public accessibility for all instances",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Disabling automated backups",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which database engines are supported by Amazon RDS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Only DynamoDB",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "MySQL, PostgreSQL, MariaDB, Oracle, SQL Server, and Aurora",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Only MongoDB",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Only Redis",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is Amazon Aurora?",
+        "options": [
+          {
+            "id": "a",
+            "text": "An S3 storage tier",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A MySQL and PostgreSQL-compatible RDS database built for high performance and availability",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A load balancer type",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "An IAM policy",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How can you improve RDS security for a production application?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Place the database in a public subnet with open security groups",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Deploy RDS in private subnets with restricted security group access",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Share the master password publicly",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Disable encryption",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company needs a managed database with automatic scaling of storage up to 64 TB. Which RDS feature supports this?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Manual EBS volume resizing only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "RDS storage autoscaling",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "S3 Transfer Acceleration",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Route 53 health checks",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 3,
+    "topic_sort": 3,
+    "topic_title": "DynamoDB",
+    "quiz_title": "DynamoDB — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What type of database is Amazon DynamoDB?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Relational SQL database",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Fully managed NoSQL key-value and document database",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Object storage system",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Block storage volume",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which DynamoDB feature provides single-digit millisecond latency at any scale?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Batch processing on EC2 only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "DynamoDB's distributed architecture with SSD-backed storage",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "S3 Standard storage",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "RDS Read Replicas",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a DynamoDB partition key?",
+        "options": [
+          {
+            "id": "a",
+            "text": "An IAM user name",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "The primary attribute used to distribute data across partitions",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A VPC subnet ID",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "An EC2 instance ID",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the purpose of a sort key in DynamoDB?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Encrypt data at rest",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Allow multiple items with the same partition key to be stored and queried in sorted order",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Replace the need for a partition key",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Configure Auto Scaling for EC2",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which DynamoDB feature automatically adjusts read and write capacity based on traffic?",
+        "options": [
+          {
+            "id": "a",
+            "text": "S3 Lifecycle",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "DynamoDB Auto Scaling (or on-demand capacity mode)",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "CloudTrail",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "NAT Gateway",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is DynamoDB Streams used for?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Storing backup archives only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Capturing item-level changes for triggering Lambda functions or cross-region replication",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "DNS failover",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "EC2 AMI creation",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A gaming application needs a database that handles millions of requests per second with predictable performance. Which service fits best?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon RDS with single-AZ",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Amazon DynamoDB",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Amazon S3",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Amazon Glacier",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is Global Tables in DynamoDB?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A Route 53 feature",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Multi-region, multi-active replication for DynamoDB tables",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "An S3 cross-region replication rule",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "An IAM federation feature",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which capacity mode bills you per request without provisioning throughput?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Provisioned capacity only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "On-demand capacity mode",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Reserved Instance mode",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Spot capacity mode",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How does DynamoDB differ from Amazon RDS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "DynamoDB is relational; RDS is NoSQL",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "DynamoDB is a NoSQL database optimized for key-value access patterns; RDS is for relational SQL workloads",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Both are identical object stores",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "DynamoDB only stores files",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 4,
+    "topic_sort": 1,
+    "topic_title": "Lambda patterns",
+    "quiz_title": "Lambda patterns — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is AWS Lambda?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A virtual server service",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A serverless compute service that runs code in response to events",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "An object storage service",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A managed relational database",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which pricing model does AWS Lambda use?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Hourly EC2 instance charges only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Pay per request and compute duration (GB-seconds)",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Annual upfront license fee",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Per VPC created",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What triggers can invoke a Lambda function?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Only manual console clicks",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Events from S3, API Gateway, DynamoDB Streams, EventBridge, and many other services",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Only CloudWatch alarms",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Only EC2 instance launches",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a common Lambda pattern for processing uploaded files?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Run a 24/7 EC2 instance to poll S3",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "S3 event notification triggers Lambda to process each new object",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Use RDS triggers only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Store files in EBS and reboot EC2",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why should Lambda functions use IAM roles instead of hardcoded access keys?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Roles are slower",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Roles provide temporary credentials and follow security best practices",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Access keys are more secure",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "IAM roles cannot access AWS services",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the maximum execution timeout for a single Lambda function invocation (as of standard limits)?",
+        "options": [
+          {
+            "id": "a",
+            "text": "5 seconds",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "15 minutes",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "24 hours",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Unlimited",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A Lambda function needs to run inside a VPC to access a private RDS database. What must be configured?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Public IP on RDS only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Lambda VPC configuration with appropriate subnets and security groups",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Disable IAM roles",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Use S3 public access",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is Lambda concurrency?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The number of S3 buckets",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "The number of simultaneous executions of a function",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "The size of an EBS volume",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The number of Route 53 records",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which pattern uses Lambda to transform and route events between microservices?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Monolithic EC2 deployment",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Event-driven architecture with Lambda as event processors",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Manual SSH file transfers",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Single RDS stored procedure",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What happens if a Lambda function exceeds its configured memory?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The function is terminated — memory is a hard limit for the execution environment",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "AWS automatically adds unlimited memory",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "The function runs on EC2 instead",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Nothing — memory is unlimited",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 4,
+    "topic_sort": 2,
+    "topic_title": "API Gateway",
+    "quiz_title": "API Gateway — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is Amazon API Gateway primarily used for?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Object storage",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Creating, publishing, and managing REST and HTTP APIs at scale",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Running relational databases",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "DNS routing only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS service commonly integrates with API Gateway to run backend logic without servers?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon EC2 only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "AWS Lambda",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Amazon Glacier",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS Snowball",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a common architecture for a serverless REST API?",
+        "options": [
+          {
+            "id": "a",
+            "text": "API Gateway → Lambda → DynamoDB",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "EC2 → On-premises database only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "S3 → RDS direct connection",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Route 53 → EBS",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which API Gateway feature helps protect APIs from traffic spikes and abuse?",
+        "options": [
+          {
+            "id": "a",
+            "text": "S3 Lifecycle rules",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Throttling, usage plans, and AWS WAF integration",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Disabling CloudWatch",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Public security groups",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What does API Gateway caching help with?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Storing EC2 AMIs",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Reducing backend load by caching responses for a configured TTL",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Encrypting IAM passwords",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Creating VPC peering",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which API type supports WebSocket connections for real-time two-way communication?",
+        "options": [
+          {
+            "id": "a",
+            "text": "API Gateway WebSocket APIs",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Amazon S3",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Amazon RDS",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS Batch",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How can you authorize API Gateway requests using AWS credentials?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Disable all authentication",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "IAM authorization, Lambda authorizers, or Amazon Cognito",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Make all endpoints public",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Use root account keys in client code",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a stage in API Gateway?",
+        "options": [
+          {
+            "id": "a",
+            "text": "An EC2 instance state",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A named reference to a deployment (e.g., dev, prod) of an API",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "An S3 storage class",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A DynamoDB partition",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A mobile app needs a secure HTTPS endpoint that triggers Lambda functions. Which service provides the front door?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon API Gateway",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Amazon EBS",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "AWS Direct Connect only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Amazon Glacier",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which benefit does using API Gateway with Lambda provide?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Requires managing server infrastructure 24/7",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Automatic scaling, pay-per-use, and simplified API management",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Eliminates the need for authentication",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Forces all traffic through a single EC2 instance",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 4,
+    "topic_sort": 3,
+    "topic_title": "EventBridge",
+    "quiz_title": "EventBridge — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is Amazon EventBridge?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A block storage service",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A serverless event bus that connects application components via events",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A relational database",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "An EC2 instance type",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which pattern does EventBridge enable?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Tight coupling between monolithic services",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Event-driven architecture with decoupled producers and consumers",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Manual polling of S3 every hour",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Direct database-to-database replication only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What can EventBridge route events to?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Only EC2 instances",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Lambda, SQS, SNS, Step Functions, and other AWS targets",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Only S3 buckets",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Only on-premises servers without configuration",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an EventBridge rule?",
+        "options": [
+          {
+            "id": "a",
+            "text": "An IAM user policy",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A pattern that matches events and routes them to specified targets",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "An EC2 security group",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "An S3 lifecycle rule",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How does EventBridge differ from SNS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "EventBridge is for object storage",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "EventBridge provides content-based filtering and integration with SaaS and AWS events; SNS is primarily pub/sub messaging",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "They are identical services",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "SNS cannot send to Lambda",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company wants to trigger a Lambda function when an EC2 instance changes state. Which service can capture and route that event?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon S3",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Amazon EventBridge (via CloudWatch Events integration)",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Amazon RDS",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS IAM",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a custom event bus in EventBridge?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A default bus that cannot be modified",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A dedicated event bus for your application's custom events",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "An S3 bucket alias",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A VPC endpoint",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which EventBridge feature allows scheduling recurring tasks?",
+        "options": [
+          {
+            "id": "a",
+            "text": "S3 Versioning",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "EventBridge Scheduler (or scheduled rules)",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "EBS snapshots",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Route 53 alias records",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "An e-commerce platform emits \"OrderPlaced\" events that multiple services consume (inventory, shipping, analytics). Which architecture fits best?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Single monolithic EC2 application",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "EventBridge event bus with rules routing to multiple targets",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Manual CSV file transfers",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "One shared RDS table with no events",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a key benefit of using EventBridge in a microservices architecture?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Services must know each other's internal APIs directly",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Loose coupling — services react to events without tight dependencies",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Eliminates the need for monitoring",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Forces synchronous communication only",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 5,
+    "topic_sort": 1,
+    "topic_title": "Multi-AZ",
+    "quiz_title": "Multi-AZ — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is an Availability Zone (AZ) in AWS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A single data center with no redundancy",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "One or more discrete data centers with redundant power and networking within a region",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A global CDN edge location only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "An IAM policy scope",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the primary purpose of Multi-AZ deployment?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Reduce storage costs",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "High availability through automatic failover to a standby in another AZ",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Increase latency globally",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Eliminate the need for backups",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How does RDS Multi-AZ handle a primary database failure?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Manual restore from tape required",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Automatic failover to the standby instance in another AZ",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Data is lost permanently",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Switches to S3 automatically",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the difference between Multi-AZ and Read Replicas in RDS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They are identical",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Multi-AZ is for high availability/failover; Read Replicas scale read traffic",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Read Replicas provide automatic failover only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Multi-AZ is only for DynamoDB",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS service automatically distributes EC2 instances across multiple AZs when configured?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon S3",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Auto Scaling groups spanning multiple AZs",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Amazon Glacier",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS IAM",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A production application requires 99.99% availability. Which design principle helps achieve this?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Deploy all resources in a single AZ",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Deploy across multiple AZs with load balancing and automatic failover",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Use one EC2 instance without backups",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Disable health checks",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an AWS Region?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A single building",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A geographic area containing multiple isolated Availability Zones",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "An IAM account",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "An S3 bucket namespace",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which ELB feature supports high availability across AZs?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Single-AZ deployment only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Cross-zone load balancing distributing traffic to targets in multiple AZs",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "No health checks",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Static IP on one instance",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why should architects avoid single-AZ deployments for critical workloads?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Single AZ is always cheaper and equally reliable",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "An AZ outage would take down the entire application without redundancy",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Multi-AZ increases latency significantly in all cases",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS does not support multiple AZs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best describes Multi-AZ architecture?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Resources are duplicated across AZs to survive individual AZ failures",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "All data is stored in one AZ for consistency",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Multi-AZ only applies to S3",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Multi-AZ eliminates the need for monitoring",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 5,
+    "topic_sort": 2,
+    "topic_title": "Route 53",
+    "quiz_title": "Route 53 — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is Amazon Route 53?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A compute service",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A scalable DNS and domain name registration service",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "An object storage service",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A managed SQL database",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which Route 53 routing policy distributes traffic evenly across multiple resources?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Failover routing only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Simple routing or Weighted routing depending on use case",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "No routing policies exist",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Latency routing disables distribution",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What does Route 53 latency-based routing do?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Routes all users to one region",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Routes users to the AWS region with the lowest latency",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Blocks international traffic",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Replaces the need for load balancers",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which Route 53 routing policy sends traffic to a primary resource and fails over to a secondary if the primary is unhealthy?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Weighted routing",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Failover routing",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Geolocation routing for cost only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Simple routing with no health checks",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a Route 53 health check?",
+        "options": [
+          {
+            "id": "a",
+            "text": "An EC2 instance type",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A monitoring mechanism that checks endpoint health for DNS routing decisions",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "An S3 lifecycle rule",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "An IAM MFA device",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company wants to route European users to eu-west-1 and US users to us-east-1. Which routing policy helps?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Simple routing only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Geolocation or Geoproximity routing",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Random routing",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "No DNS configuration needed",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an alias record in Route 53?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A record pointing to an external non-AWS IP only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A Route 53-specific record that maps to AWS resources like ALB, CloudFront, or S3 website endpoints",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "An IAM alias",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "An EC2 AMI name",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which Route 53 feature helps register a new domain name?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon RDS",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Route 53 domain registration",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "AWS Lambda",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Amazon EBS",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How does Route 53 support disaster recovery with minimal downtime?",
+        "options": [
+          {
+            "id": "a",
+            "text": "By disabling DNS",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Failover routing with health checks to switch to a standby site",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Using only one static IP",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Deleting all DNS records during outages",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the TTL (Time To Live) in DNS records?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The EC2 instance lifetime",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "How long resolvers cache a DNS record before querying again",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "The Lambda timeout setting",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The S3 object expiration time",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 5,
+    "topic_sort": 3,
+    "topic_title": "Backup strategies",
+    "quiz_title": "Backup strategies — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "Which AWS service provides automated daily backups and point-in-time recovery for RDS databases?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon S3 Lifecycle only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "RDS automated backups",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Route 53",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS Lambda",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an EBS snapshot?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A DNS record",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A point-in-time backup of an EBS volume stored incrementally in S3",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "An IAM policy",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A Lambda function version",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which S3 feature helps protect against accidental object deletion?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Disabling versioning",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "S3 Versioning combined with MFA Delete and lifecycle rules",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Public bucket access",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Removing bucket encryption",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the AWS Backup service used for?",
+        "options": [
+          {
+            "id": "a",
+            "text": "DNS management",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Centralized backup management across AWS services (EBS, RDS, DynamoDB, EFS, etc.)",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "EC2 instance type selection",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "API rate limiting",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a common 3-2-1 backup strategy adapted for AWS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "3 copies, 2 media types, 1 offsite — implemented with snapshots, cross-region replication, and S3/Glacier",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "One copy in one AZ only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "No backups needed with Multi-AZ",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Backups only on EC2 local storage",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How can you protect against regional disasters for critical data?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Store everything in one AZ",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Cross-region replication (S3 CRR, RDS cross-region snapshots, DynamoDB Global Tables)",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Disable all backups to save cost",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Use only ephemeral instance storage",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is Amazon S3 Glacier best suited for in a backup strategy?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Primary transactional database",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Long-term archival and compliance retention at lower cost",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Real-time application caching",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "EC2 boot volumes",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How often should backup restore procedures be tested?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Never — backups always work",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Regularly, as part of disaster recovery drills",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Only after a disaster occurs",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Once during initial setup only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which RDS feature creates a snapshot you can copy to another region?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Auto Scaling",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Manual or automated DB snapshots with cross-region copy",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "CloudFront distribution",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "IAM Access Analyzer",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is Recovery Time Objective (RTO) in disaster recovery planning?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The amount of data loss measured in bytes",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "The maximum acceptable time to restore service after a disruption",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "The number of EC2 instances required",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The S3 storage class selection",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 6,
+    "topic_sort": 1,
+    "topic_title": "Exam domains",
+    "quiz_title": "Exam domains — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "How many domains are covered in the AWS Certified Solutions Architect – Associate (SAA-C03) exam?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Two domains",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Four domains",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Six domains",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Ten domains",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which SAA-C03 domain has the highest weight on the exam?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Design Secure Architectures (~30%)",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Design Cost-Optimized Architectures (~0%)",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Cloud Practitioner basics only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS billing console navigation",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which domain covers designing solutions for performance, scalability, and elasticity?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Domain 1 only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Domain 3: Design High-Performing Architectures",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Domain 4: Billing only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "No domain covers performance",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which domain focuses on selecting storage, database, and compute services for cost efficiency?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Design Cost-Optimized Architectures",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Design Secure Architectures only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Migration only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Support plan selection",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What type of questions are common on the SAA-C03 exam?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Only memorization of service names",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Scenario-based questions requiring the best architectural choice",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Only coding challenges",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Only pricing calculation without context",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which skill is essential for the \"Design Resilient Architectures\" domain?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Single-AZ deployment expertise",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Understanding Multi-AZ, failover, and disaster recovery patterns",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Disabling backups",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Using one EC2 instance for everything",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "The \"Design Secure Architectures\" domain covers which topics?",
+        "options": [
+          {
+            "id": "a",
+            "text": "IAM, encryption, network security, and compliance controls",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Only S3 bucket naming",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Only EC2 instance colors",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Only Route 53 TTL values",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS Well-Architected Framework pillar aligns closely with exam domains?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Only the Performance Efficiency pillar",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Operational Excellence, Security, Reliability, Performance Efficiency, Cost Optimization, and Sustainability",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "No pillars exist",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Only the Billing pillar",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A question asks you to choose the MOST cost-effective AND secure solution. What approach should you take?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Pick the cheapest option regardless of security",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Eliminate options that violate security or requirements, then compare remaining valid options",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Always choose the newest service",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Pick the first answer",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which resource provides official exam guide details including domain weights?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Random blog posts only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "AWS Certified Solutions Architect – Associate (SAA-C03) exam guide on AWS Training",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Amazon S3 documentation only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "EC2 user manual only",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 6,
+    "topic_sort": 2,
+    "topic_title": "Practice tests",
+    "quiz_title": "Practice tests — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the best way to prepare for SAA-C03 using practice tests?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Memorize answers without understanding",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Take timed practice exams, review wrong answers, and understand why each correct option is best",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Skip practice tests entirely",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Only read service FAQs once",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "During a practice test, you notice you spend too long on each question. What should you do?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Skip the exam entirely",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Practice time management — flag hard questions and move on, then review",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Memorize all 500+ services",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Disable the timer",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is reviewing incorrect practice test answers important?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It helps identify knowledge gaps and reinforces architectural reasoning",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It guarantees the same questions appear on the exam",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It replaces hands-on labs",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It is not important",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What score on practice exams generally indicates readiness for SAA-C03?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Consistently scoring well above the passing threshold (720/1000) on multiple practice tests",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Scoring 50% once",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Never taking practice tests",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Only reading the exam guide",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A practice question presents four plausible answers. How should you approach it?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Choose the first option that sounds familiar",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Eliminate clearly wrong options and compare remaining choices against AWS best practices",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Always pick the most expensive option",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Randomly guess",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which combination of study methods is most effective alongside practice tests?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Reading only, no labs",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Hands-on labs, whitepapers, exam guide, and timed practice exams",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Watching unrelated videos only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Cramming service names the night before",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What should you do if you consistently miss questions about VPC networking in practice tests?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Ignore networking topics",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Focus additional study on VPC, subnets, gateways, and security groups with hands-on labs",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Skip the exam",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Only study S3",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How similar are official AWS practice questions to the actual exam?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Identical word-for-word",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Similar in style and difficulty but actual exam questions are different",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Completely unrelated",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Only about billing",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the passing score for the SAA-C03 exam?",
+        "options": [
+          {
+            "id": "a",
+            "text": "500 out of 1000",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "720 out of 1000",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "900 out of 1000",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "100% required",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "After completing a full-length practice test, what is the recommended next step?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Immediately schedule the exam without review",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Analyze weak domains, restudy those topics, and retake practice tests",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Stop studying entirely",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Only focus on topics you already know well",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 6,
+    "topic_sort": 3,
+    "topic_title": "Review sessions",
+    "quiz_title": "Review sessions — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary goal of an exam review session before SAA-C03?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Learn unrelated programming languages",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Reinforce weak areas, clarify concepts, and validate readiness",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Skip all difficult topics",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Replace hands-on practice entirely",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which topics should be prioritized in a final review session?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Only services you already mastered",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Domains where practice test scores were lowest",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Only AWS history",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Only pricing for services you will never use",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the AWS Well-Architected Framework useful for during review?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Only billing disputes",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Understanding best practices across security, reliability, performance, cost, and operations",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Replacing all exam domains",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Configuring EC2 only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "During a review session, a student confuses Security Groups and Network ACLs. What is the key difference?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They are identical",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Security Groups are stateful firewalls at the instance level; NACLs are stateless at the subnet level",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "NACLs only apply to S3",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Security Groups only apply to RDS",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which mnemonic helps remember the difference between horizontal and vertical scaling?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Horizontal = bigger machine; Vertical = more machines",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Horizontal = add more instances; Vertical = increase instance size",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Both mean the same thing",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Scaling is not on the exam",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What should you review regarding IAM before the exam?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Only root account usage",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Users, roles, policies, least privilege, and cross-account access patterns",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Disable MFA recommendations",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "How to share access keys",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which storage service review points are critical for SAA-C03?",
+        "options": [
+          {
+            "id": "a",
+            "text": "S3 storage classes, EBS vs EFS, Glacier use cases, and when to use instance store",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Only S3 bucket names",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Only EBS volume colors",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Storage is not tested",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What exam day strategy should be discussed in review sessions?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Spend unlimited time on each question",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Read each question carefully, eliminate wrong answers, manage time, and flag uncertain questions",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Answer randomly to finish quickly",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Skip scenario questions",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is discussing wrong answers in group review sessions valuable?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It encourages memorization without reasoning",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Peers may explain concepts differently, helping solidify understanding",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "It replaces individual study",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Group review is never useful",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the recommended action if review sessions reveal significant gaps one week before the exam?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Take the exam anyway without preparation",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Delay the exam, focus intensive study on weak domains, and retake practice tests",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Only review topics you already know",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Ignore the gaps",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
   {
     "course_code": "DOP",
     "module_number": 1,
@@ -7400,2489 +20885,6 @@ BEGIN
         ]
       }
     ]
-  },
-  {
-    "course_code": "AAC",
-    "module_number": 1,
-    "topic_sort": 1,
-    "topic_title": "Tokens & embeddings",
-    "quiz_title": "Tokens & embeddings — Topic Quiz",
-    "pass_score": 70,
-    "max_attempts": 3,
-    "time_limit_min": 30,
-    "questions": [
-      {
-        "question": "When using Large Language Models (LLMs) like ChatGPT, what is a token?",
-        "options": [
-          {
-            "id": "a",
-            "text": "A complete paragraph",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "A unit of text processed by the model",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "A database record",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "A machine learning algorithm",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Why do AI models use tokens instead of processing entire documents at once?",
-        "options": [
-          {
-            "id": "a",
-            "text": "To make storage easier",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "To break text into manageable units for processing",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "To increase internet speed",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "To reduce cloud costs only",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which statement best describes tokenization?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Converting images into videos",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Splitting text into smaller units called tokens",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Encrypting user data",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Compressing databases",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What happens if a prompt contains more tokens than a model's context window allows?",
-        "options": [
-          {
-            "id": "a",
-            "text": "The model crashes",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "The extra tokens are ignored or truncated",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "The prompt becomes encrypted",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "The model learns permanently from the prompt",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "In Generative AI, what is an embedding?",
-        "options": [
-          {
-            "id": "a",
-            "text": "A type of database",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "A numerical representation of data",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "A programming language",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "A cloud service",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Why are embeddings important in modern AI applications?",
-        "options": [
-          {
-            "id": "a",
-            "text": "They replace GPUs",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "They help measure similarity between pieces of data",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "They increase internet speed",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "They remove the need for prompts",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which real-world AI feature commonly uses embeddings?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Semantic Search",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Keyboard Backlight",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Disk Partitioning",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Network Routing",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is the main difference between tokens and embeddings?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Tokens are text units, embeddings are numerical representations",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Both are exactly the same",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Embeddings are larger versions of tokens",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Tokens only work for images",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which AI application heavily relies on embeddings for retrieving relevant documents?",
-        "options": [
-          {
-            "id": "a",
-            "text": "RAG (Retrieval-Augmented Generation)",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "FTP Server",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Load Balancer",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "VPN Gateway",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is a vector database?",
-        "options": [
-          {
-            "id": "a",
-            "text": "A database optimized for storing embeddings",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "A database used only for videos",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "A database without indexing",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "A cloud backup tool",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "When two embeddings are very close in vector space, what does it usually indicate?",
-        "options": [
-          {
-            "id": "a",
-            "text": "The content is semantically similar",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "The data is corrupted",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "The model failed",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "The tokens are duplicated",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which of the following is a common use case for embeddings in enterprise AI systems?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Document Search",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Network Cabling",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Operating System Installation",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Hardware Manufacturing",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Why are embeddings frequently used in AI chatbots?",
-        "options": [
-          {
-            "id": "a",
-            "text": "To help retrieve relevant context before generating answers",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "To improve monitor resolution",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "To install software packages",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "To manage cloud billing",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which statement about embeddings is true?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Embeddings capture meaning, not just exact words",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Embeddings only work with English",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Embeddings replace language models",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Embeddings are used only in databases",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "A company wants to build an AI knowledge assistant that answers questions from internal documents. Which combination would most likely be used?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Embeddings + Vector Database + LLM",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Only HTML and CSS",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Firewall + Router",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Docker + Kubernetes only",
-            "is_correct": false
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "course_code": "AAC",
-    "module_number": 1,
-    "topic_sort": 2,
-    "topic_title": "Transformers",
-    "quiz_title": "Transformers — Topic Quiz",
-    "pass_score": 70,
-    "max_attempts": 3,
-    "time_limit_min": 30,
-    "questions": [
-      {
-        "question": "What is the primary purpose of the Transformer architecture in AI?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Image compression",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Understanding relationships within sequences of data",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Database optimization",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Network routing",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which breakthrough paper introduced the Transformer architecture?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Deep Learning Revolution",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Attention Is All You Need",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Neural Networks Explained",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "The Future of AI",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is the key innovation that makes Transformers different from RNNs and LSTMs?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Convolution",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Self-Attention",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Virtual Machines",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Caching",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What does Self-Attention help a Transformer model do?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Increase internet speed",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Focus on important words in a sequence",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Store data permanently",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Reduce cloud costs",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Why are Transformers faster to train than traditional RNN-based models?",
-        "options": [
-          {
-            "id": "a",
-            "text": "They use SSD storage",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "They process tokens in parallel",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "They require less memory always",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "They use fewer parameters",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "In a Transformer model, what are tokens?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Database records",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Units of text processed by the model",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Cloud servers",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Neural network layers",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is the role of positional encoding in Transformers?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Store passwords",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Provide information about token order",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Compress embeddings",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Generate images",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which modern AI models are based on the Transformer architecture?",
-        "options": [
-          {
-            "id": "a",
-            "text": "ChatGPT, Gemini, Claude",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "MySQL, PostgreSQL",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Docker, Kubernetes",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Terraform, Ansible",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is an embedding in the context of Transformers?",
-        "options": [
-          {
-            "id": "a",
-            "text": "A storage device",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "A numerical representation of tokens",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "A type of API",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "A database query",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which component allows Transformers to understand context from earlier and later words in a sentence?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Virtualization",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Self-Attention Mechanism",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Caching Engine",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Operating System",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is a context window in Transformer-based models?",
-        "options": [
-          {
-            "id": "a",
-            "text": "The number of users supported",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "The maximum number of tokens the model can process at once",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "A cloud region",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "A GPU type",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Why are larger context windows useful in modern LLMs?",
-        "options": [
-          {
-            "id": "a",
-            "text": "They reduce internet usage",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "They allow the model to remember and analyze more information",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "They eliminate embeddings",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "They replace GPUs",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is the Encoder component mainly responsible for in a Transformer?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Understanding and encoding input information",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Generating invoices",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Managing databases",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Deploying applications",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is the Decoder component mainly responsible for?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Generating output based on learned representations",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Installing software",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Creating cloud infrastructure",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Managing APIs",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "A company is building a chatbot that can answer questions from documents, generate summaries, and assist users. Why would a Transformer-based model be a good choice?",
-        "options": [
-          {
-            "id": "a",
-            "text": "It understands context, generates human-like responses, and scales well across NLP tasks",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "It removes the need for training data",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "It replaces databases completely",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "It works without tokens",
-            "is_correct": false
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "course_code": "AAC",
-    "module_number": 1,
-    "topic_sort": 3,
-    "topic_title": "Sampling parameters",
-    "quiz_title": "Sampling parameters — Topic Quiz",
-    "pass_score": 70,
-    "max_attempts": 3,
-    "time_limit_min": 20,
-    "questions": [
-      {
-        "question": "What is the primary purpose of sampling parameters in Large Language Models (LLMs)?",
-        "options": [
-          {
-            "id": "a",
-            "text": "To control how the model generates responses",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "To increase internet speed",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "To train the model from scratch",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "To store embeddings",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which sampling parameter is most commonly used to control the randomness of a model's response?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Temperature",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Embedding Size",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Context Length",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Token Count",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What typically happens when the Temperature value is set very low (e.g., 0.1)?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Responses become more predictable and focused",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Responses become highly creative",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "The model generates images",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "The context window increases",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is the effect of setting a high Temperature value (e.g., 1.5)?",
-        "options": [
-          {
-            "id": "a",
-            "text": "More creative and diverse responses",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Shorter context windows",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Faster model training",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "More embeddings generated",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What does the Top-P (Nucleus Sampling) parameter control?",
-        "options": [
-          {
-            "id": "a",
-            "text": "The set of most probable tokens considered during generation",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "The size of the model",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "The number of GPUs",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "The length of embeddings",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "A Top-P value of 0.9 means what?",
-        "options": [
-          {
-            "id": "a",
-            "text": "The model considers tokens that make up the top 90% cumulative probability",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "The model generates exactly 90 tokens",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "The model uses 90% of its memory",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "The model trains 90% faster",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is the purpose of the Top-K parameter?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Limit token selection to the K most probable tokens",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Limit context length",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Reduce model size",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Increase embedding dimensions",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "When would you typically use a low Temperature and low Top-P setting?",
-        "options": [
-          {
-            "id": "a",
-            "text": "For factual and consistent responses",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "For creative storytelling",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "For image generation",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "For model training",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which combination is generally better for creative content generation?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Higher Temperature and higher Top-P",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Lower Temperature and lower Top-P",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Temperature 0 only",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "No sampling parameters",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "A company is building an AI-powered customer support chatbot that must provide accurate and consistent answers. Which configuration would be most appropriate?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Low Temperature and moderate Top-P",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "High Temperature and high Top-P",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Maximum randomness",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Random parameter values for every request",
-            "is_correct": false
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "course_code": "AAC",
-    "module_number": 2,
-    "topic_sort": 1,
-    "topic_title": "Zero-shot prompting",
-    "quiz_title": "Zero-shot prompting — Topic Quiz",
-    "pass_score": 70,
-    "max_attempts": 3,
-    "time_limit_min": 30,
-    "questions": [
-      {
-        "question": "What is Zero-Shot Prompting in Generative AI?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Providing examples before asking a question",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Asking the model to perform a task without giving examples",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Training the model with new data",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Fine-tuning a model",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which of the following is an example of Zero-Shot Prompting?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Translate 'Hello' to French",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Translate 'Hello' to French. Example: Hello → Bonjour",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Train a model on French vocabulary",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Upload a French dataset",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Why is Zero-Shot Prompting widely used with modern LLMs?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Because modern models already possess broad knowledge",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Because it requires model retraining",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Because it increases token limits",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Because it replaces embeddings",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is the biggest advantage of Zero-Shot Prompting?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Simple and quick to use",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Requires additional training",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Consumes more compute",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Needs examples every time",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which task is best suited for Zero-Shot Prompting?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Summarize this article",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Train a recommendation system",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Build a neural network",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Create embeddings manually",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is a limitation of Zero-Shot Prompting?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Results may vary for complex tasks",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "It cannot generate text",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "It only works with images",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "It requires GPUs from the user",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "How can you improve the accuracy of a Zero-Shot Prompt?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Provide clear instructions and context",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Reduce internet speed",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Delete tokens",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Disable embeddings",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which prompt is a better Zero-Shot Prompt?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Explain Kubernetes to a beginner in 5 bullet points",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Tell me something about Kubernetes",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Kubernetes",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Explain",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "In Prompt Engineering, what is meant by 'context'?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Additional information that helps the model understand the task",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "The model's source code",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "The training dataset",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "A cloud storage service",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "A user asks, 'Write a professional email requesting leave for two days.' This is an example of which prompting technique?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Zero-Shot Prompting",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Fine-Tuning",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Model Training",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Transfer Learning",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What happens if a Zero-Shot Prompt is too vague?",
-        "options": [
-          {
-            "id": "a",
-            "text": "The output may be inconsistent or unclear",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "The model automatically retrains",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "The model crashes",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "The context window doubles",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which of the following is NOT a characteristic of Zero-Shot Prompting?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Providing sample examples",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Using natural language instructions",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Fast task execution",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "No example-based guidance",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Why is Zero-Shot Prompting important for business users?",
-        "options": [
-          {
-            "id": "a",
-            "text": "It allows non-technical users to interact with AI easily",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "It requires coding knowledge",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "It trains AI models",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "It replaces cloud infrastructure",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which AI applications commonly use Zero-Shot Prompting?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Chatbots, content generation, and summarization",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Network switches",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Database indexing",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Operating systems",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "A DevOps engineer enters the prompt: 'Generate a Dockerfile for a Node.js application running on port 3000.' What type of prompting is this?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Zero-Shot Prompting",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Few-Shot Prompting",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Fine-Tuning",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Model Retraining",
-            "is_correct": false
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "course_code": "AAC",
-    "module_number": 2,
-    "topic_sort": 2,
-    "topic_title": "Chain-of-thought",
-    "quiz_title": "Chain-of-thought — Topic Quiz",
-    "pass_score": 70,
-    "max_attempts": 3,
-    "time_limit_min": 30,
-    "questions": [
-      {
-        "question": "What is Chain-of-Thought (CoT) Prompting in Generative AI?",
-        "options": [
-          {
-            "id": "a",
-            "text": "A technique that encourages the model to reason step-by-step",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "A method for training a model",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "A type of vector database",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "A cloud deployment strategy",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is the primary goal of Chain-of-Thought Prompting?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Improve reasoning and problem-solving",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Increase internet speed",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Reduce tokenization",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Store embeddings",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which prompt best demonstrates Chain-of-Thought Prompting?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Solve this problem step by step",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Give the final answer only",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Generate a random response",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Train a new model",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "For which type of tasks is Chain-of-Thought Prompting most useful?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Logical reasoning and problem solving",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "File compression",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Operating system installation",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Network configuration",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "A user asks an AI model to calculate a discount and then calculate tax before providing the final price. Why would Chain-of-Thought be useful?",
-        "options": [
-          {
-            "id": "a",
-            "text": "It helps break the calculation into logical steps",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "It increases model size",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "It reduces context length",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "It creates embeddings",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which statement about Chain-of-Thought Prompting is true?",
-        "options": [
-          {
-            "id": "a",
-            "text": "It often improves performance on reasoning tasks",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "It replaces model training",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "It eliminates hallucinations completely",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "It only works with mathematics",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "A recruiter asks an AI to analyze a candidate's resume and explain why the candidate matches a role. Which prompting technique would help produce a detailed explanation?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Chain-of-Thought Prompting",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Random Sampling",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Embedding Generation",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Fine-Tuning",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is a common phrase used to trigger Chain-of-Thought reasoning?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Let's think step by step",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Generate quickly",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Skip reasoning",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Use embeddings",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "How does Chain-of-Thought Prompting help learners?",
-        "options": [
-          {
-            "id": "a",
-            "text": "It shows intermediate reasoning instead of only the final answer",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "It trains new AI models",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "It reduces cloud costs",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "It increases storage capacity",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "A customer support chatbot needs to diagnose a problem by checking multiple conditions before suggesting a solution. Which prompting technique would be helpful?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Chain-of-Thought Prompting",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Tokenization",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Image Generation",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Data Labeling",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is one limitation of Chain-of-Thought Prompting?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Responses can become longer and consume more tokens",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "It prevents reasoning",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "It only works offline",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "It disables context windows",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which of the following tasks would benefit the least from Chain-of-Thought Prompting?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Simple factual lookup such as 'What is the capital of France?'",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Solving a math problem",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Analyzing business scenarios",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Debugging code",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "In AI Agents, why is Chain-of-Thought often important?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Agents frequently need to plan and reason through multiple steps",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Agents require less memory",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Agents do not use prompts",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Agents replace LLMs",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "A software engineer asks an LLM to debug a Python script and explain each issue before suggesting fixes. What prompting technique is being encouraged?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Chain-of-Thought Prompting",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Fine-Tuning",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Embedding Search",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Token Sampling",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Why is Chain-of-Thought considered an important Prompt Engineering technique in modern AI applications?",
-        "options": [
-          {
-            "id": "a",
-            "text": "It improves transparency and reasoning quality for complex tasks",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "It increases GPU memory",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "It replaces vector databases",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "It reduces training data requirements",
-            "is_correct": false
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "course_code": "AAC",
-    "module_number": 2,
-    "topic_sort": 3,
-    "topic_title": "System prompts",
-    "quiz_title": "System prompts — Topic Quiz",
-    "pass_score": 70,
-    "max_attempts": 3,
-    "time_limit_min": 30,
-    "questions": [
-      {
-        "question": "What is a System Prompt in Large Language Models (LLMs)?",
-        "options": [
-          {
-            "id": "a",
-            "text": "A hidden instruction that defines how the AI should behave",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "A user message sent to the model",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "A database query",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "A vector embedding",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is the primary purpose of a System Prompt?",
-        "options": [
-          {
-            "id": "a",
-            "text": "To control the model's behavior and responses",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "To train the model from scratch",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "To increase token limits",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "To store conversation history",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which prompt type usually has the highest priority in an LLM conversation?",
-        "options": [
-          {
-            "id": "a",
-            "text": "System Prompt",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "User Prompt",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Assistant Message",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Embedding Prompt",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "A company wants its AI assistant to always respond professionally and avoid informal language. Where should this instruction be placed?",
-        "options": [
-          {
-            "id": "a",
-            "text": "System Prompt",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "User Message",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Vector Database",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Training Dataset",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which of the following is an example of a System Prompt?",
-        "options": [
-          {
-            "id": "a",
-            "text": "You are a helpful AI tutor who explains concepts in simple language.",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "What is Docker?",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Explain Kubernetes.",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Summarize this document.",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "How do System Prompts improve AI applications?",
-        "options": [
-          {
-            "id": "a",
-            "text": "By making responses more consistent and aligned with business goals",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "By increasing internet speed",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "By reducing cloud storage",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "By replacing embeddings",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "A customer support chatbot should only answer questions related to company products and politely refuse unrelated topics. Which Prompt Engineering technique is best for this?",
-        "options": [
-          {
-            "id": "a",
-            "text": "System Prompt",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Few-Shot Prompting",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Temperature Control",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Top-P Sampling",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What happens if a user asks the AI to ignore its instructions but the System Prompt explicitly forbids that behavior?",
-        "options": [
-          {
-            "id": "a",
-            "text": "The System Prompt generally takes priority",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "The model always follows the user",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "The conversation ends",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "The model retrains itself",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which business use case commonly relies on System Prompts?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Customer Support Assistants",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "AI Tutors",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Sales Chatbots",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "All of the Above",
-            "is_correct": true
-          }
-        ]
-      },
-      {
-        "question": "Why are System Prompts important in AI Agent development?",
-        "options": [
-          {
-            "id": "a",
-            "text": "They define the agent's role, objectives, and behavior",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "They increase GPU memory",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "They replace tools and APIs",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "They eliminate prompts entirely",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "A recruiter builds an AI assistant that should behave like an experienced hiring manager. Which prompt should contain this instruction?",
-        "options": [
-          {
-            "id": "a",
-            "text": "System Prompt",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "User Prompt",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Context Window",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Embedding Vector",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is one benefit of writing detailed System Prompts?",
-        "options": [
-          {
-            "id": "a",
-            "text": "More reliable and predictable outputs",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Automatic model training",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Unlimited context windows",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Reduced API latency",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which instruction is most appropriate for a System Prompt?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Always explain technical concepts using beginner-friendly language.",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "What is AWS?",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Summarize this article.",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Generate a Dockerfile.",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is a common mistake when designing System Prompts?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Providing vague or unclear instructions",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Defining the AI's role",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Setting response guidelines",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Establishing safety rules",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "A company creates an AI assistant with the System Prompt: 'You are a cloud architect specializing in AWS. Provide accurate, practical, and beginner-friendly answers.' What is the main purpose of this prompt?",
-        "options": [
-          {
-            "id": "a",
-            "text": "To establish expertise, tone, and response expectations",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "To train the model on AWS",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "To increase token limits",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "To create embeddings",
-            "is_correct": false
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "course_code": "AAC",
-    "module_number": 3,
-    "topic_sort": 1,
-    "topic_title": "Structured outputs",
-    "quiz_title": "Structured outputs — Topic Quiz",
-    "pass_score": 70,
-    "max_attempts": 3,
-    "time_limit_min": 10,
-    "questions": [
-      {
-        "question": "What is Function Calling in modern Large Language Models (LLMs)?",
-        "options": [
-          {
-            "id": "a",
-            "text": "A capability that allows an LLM to invoke external tools, APIs, or functions",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "A method of training a model",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "A way to create embeddings",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "A database indexing technique",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Why is Function Calling important when building AI Agents?",
-        "options": [
-          {
-            "id": "a",
-            "text": "It allows agents to perform actions beyond text generation",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "It increases internet speed",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "It replaces prompts",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "It removes the need for APIs",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "A chatbot needs to check the current weather before answering a user. What would typically be used?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Function Calling to a weather API",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Embeddings only",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Tokenization",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Vector Compression",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What are Structured Outputs in Generative AI?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Responses returned in a predefined format such as JSON",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Long paragraphs generated by the model",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Model training logs",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Embedding vectors",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Why are Structured Outputs commonly used in production AI applications?",
-        "options": [
-          {
-            "id": "a",
-            "text": "They make responses predictable and machine-readable",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "They increase model size",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "They replace databases",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "They reduce internet usage",
-            "is_correct": false
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "course_code": "AAC",
-    "module_number": 3,
-    "topic_sort": 2,
-    "topic_title": "Ollama & Llama 3",
-    "quiz_title": "Ollama & Llama 3 — Topic Quiz",
-    "pass_score": 70,
-    "max_attempts": 3,
-    "time_limit_min": 6,
-    "questions": [
-      {
-        "question": "What is Ollama?",
-        "options": [
-          {
-            "id": "a",
-            "text": "A tool for running open-source LLMs locally",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "A cloud database",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "A vector search engine",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "A monitoring platform",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which of the following models can commonly be run using Ollama?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Llama 3",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "MySQL",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Redis",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Prometheus",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is one major advantage of running Llama 3 locally using Ollama?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Better privacy and data control",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Unlimited cloud storage",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Automatic model training",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Free internet access",
-            "is_correct": false
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "course_code": "AAC",
-    "module_number": 3,
-    "topic_sort": 3,
-    "topic_title": "Local inference",
-    "quiz_title": "Local inference — Topic Quiz",
-    "pass_score": 70,
-    "max_attempts": 3,
-    "time_limit_min": 4,
-    "questions": [
-      {
-        "question": "What does 'Local Inference' mean in Generative AI?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Running AI models directly on your own machine instead of a cloud service",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Training models locally",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Creating embeddings",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Compressing prompts",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "A company wants to build an internal AI assistant that can access company documents, call internal APIs, return structured JSON responses, and keep all data within its network. Which combination would be most suitable?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Llama 3 + Ollama + Function Calling + Structured Outputs",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Only Tokenization",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Only Embeddings",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Only Prompt Engineering",
-            "is_correct": false
-          }
-        ]
-      }
-    ]
   }
 ]
 $catalog$::jsonb) AS x(
@@ -9946,14 +20948,6 @@ $catalog$::jsonb) AS x(
       max_attempts = entry.max_attempts,
       time_limit_min = entry.time_limit_min
     WHERE id = v_quiz_id;
-
-    v_expected := jsonb_array_length(entry.questions);
-    SELECT count(*)::int INTO v_existing FROM public.quiz_questions WHERE quiz_id = v_quiz_id;
-
-    IF v_existing = v_expected THEN
-      RAISE NOTICE 'Quiz already seeded: % (% questions)', entry.quiz_title, v_existing;
-      CONTINUE;
-    END IF;
 
     DELETE FROM public.quiz_questions WHERE quiz_id = v_quiz_id;
 

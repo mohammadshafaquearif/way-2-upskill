@@ -57,8 +57,6 @@ DECLARE
   v_topic_id UUID;
   v_quiz_id UUID;
   v_sort INT;
-  v_expected INT;
-  v_existing INT;
 BEGIN
   FOR entry IN
     SELECT *
@@ -125,14 +123,6 @@ $catalog$::jsonb) AS x(
       max_attempts = entry.max_attempts,
       time_limit_min = entry.time_limit_min
     WHERE id = v_quiz_id;
-
-    v_expected := jsonb_array_length(entry.questions);
-    SELECT count(*)::int INTO v_existing FROM public.quiz_questions WHERE quiz_id = v_quiz_id;
-
-    IF v_existing = v_expected THEN
-      RAISE NOTICE 'Quiz already seeded: % (% questions)', entry.quiz_title, v_existing;
-      CONTINUE;
-    END IF;
 
     DELETE FROM public.quiz_questions WHERE quiz_id = v_quiz_id;
 
