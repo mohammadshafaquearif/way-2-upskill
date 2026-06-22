@@ -1,5 +1,11 @@
 import { BASE_URL, SITE_NAME, ZYVOTRIX_GOOGLE_MAPS_URL } from '@/lib/seo';
 
+/** Learner-facing support (footer, contact page). */
+export const ZYVOTRIX_SUPPORT_EMAIL = 'support@zyvotrix.com';
+
+/** Internal notifications & non-contact pages. */
+export const ZYVOTRIX_ADMIN_EMAIL = 'admin@zyvotrix.com';
+
 /** Canonical NAP — must match Google Business Profile exactly. Update here only. */
 export const ZYVOTRIX_NAP = {
   name: SITE_NAME,
@@ -10,7 +16,7 @@ export const ZYVOTRIX_NAP = {
   addressCountry: 'IN',
   phoneDisplay: '+91 8887720741',
   phoneE164: '+918887720741',
-  email: 'support@zyvotrix.com',
+  email: ZYVOTRIX_SUPPORT_EMAIL,
   website: BASE_URL,
   officeHours: 'Mon–Fri: 9 AM – 5 PM IST',
   geo: {

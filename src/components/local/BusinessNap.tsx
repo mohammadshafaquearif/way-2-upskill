@@ -1,16 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Clock, Mail, MapPin, Phone, Star } from 'lucide-react';
-import { ZYVOTRIX_ADDRESS_LINE, ZYVOTRIX_NAP } from '@/lib/localBusiness';
+import { ZYVOTRIX_ADDRESS_LINE, ZYVOTRIX_NAP, ZYVOTRIX_SUPPORT_EMAIL } from '@/lib/localBusiness';
 import { ZYVOTRIX_GOOGLE_MAPS_URL } from '@/lib/seo';
 import { SOCIAL_LINKS } from '@/lib/socialLinks';
 
 interface BusinessNapProps {
   variant?: 'light' | 'dark';
   showReviewLink?: boolean;
+  /** Defaults to learner support email (contact page / footer). */
+  contactEmail?: string;
 }
 
-const BusinessNap = ({ variant = 'light', showReviewLink = true }: BusinessNapProps) => {
+const BusinessNap = ({
+  variant = 'light',
+  showReviewLink = true,
+  contactEmail = ZYVOTRIX_SUPPORT_EMAIL,
+}: BusinessNapProps) => {
   const isDark = variant === 'dark';
   const labelClass = isDark ? 'text-slate-400' : 'text-muted-foreground';
   const valueClass = isDark ? 'text-white' : 'text-foreground';
@@ -51,8 +57,8 @@ const BusinessNap = ({ variant = 'light', showReviewLink = true }: BusinessNapPr
         <Mail className={`mt-0.5 h-5 w-5 shrink-0 ${isDark ? 'text-teal-400' : 'text-primary'}`} aria-hidden />
         <div>
           <p className={`text-xs font-semibold uppercase tracking-wider ${labelClass}`}>Email</p>
-          <a href={SOCIAL_LINKS.email} className={`mt-1 block text-sm font-medium ${linkClass}`}>
-            {ZYVOTRIX_NAP.email}
+          <a href={`mailto:${contactEmail}`} className={`mt-1 block text-sm font-medium ${linkClass}`}>
+            {contactEmail}
           </a>
         </div>
       </div>

@@ -68,7 +68,7 @@ const DownloadBrochureButton = ({
     if (!course?.brochurePath) {
       toast({
         title: 'Brochure unavailable',
-        description: 'Please contact support@zyvotrix.com for program details.',
+        description: 'Please contact admin@zyvotrix.com for program details.',
         variant: 'destructive',
       });
       return;

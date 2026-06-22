@@ -195,7 +195,7 @@ const Checkout: React.FC = () => {
       } catch {
         toast({
           title: 'Could not submit request',
-          description: 'Please try again or email support@zyvotrix.com',
+          description: 'Please try again or email admin@zyvotrix.com',
           variant: 'destructive',
         });
       } finally {

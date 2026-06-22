@@ -1,4 +1,4 @@
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'support@zyvotrix.com';
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@zyvotrix.com';
 const FROM_EMAIL = process.env.FROM_EMAIL || 'Zyvotrix <support@zyvotrix.com>';
 const LEADS_CC_EMAIL = process.env.LEADS_CC_EMAIL || 'paul.stephano@zyvotrix.com';
 export const PAYMENT_ADMIN_EMAIL = process.env.PAYMENT_ADMIN_EMAIL || 'admin@zyvotrix.com';
@@ -60,7 +60,7 @@ function buildContactUserHtml({ firstName, subject }) {
         subject ? ` about <strong>${escapeHtml(subject)}</strong>` : ''
       }.</p>
       <p>Our team will get back to you within a few hours.</p>
-      <p style="color:#64748b;font-size:14px">— Zyvotrix Support<br/>support@zyvotrix.com</p>
+      <p style="color:#64748b;font-size:14px">— Zyvotrix<br/>admin@zyvotrix.com</p>
     </div>
   `;
 }
@@ -73,7 +73,7 @@ function buildEnrollmentUserHtml({ firstName, program }) {
         program ? ` for <strong>${escapeHtml(program)}</strong>` : ''
       }.</p>
       <p>Our team will review your application and contact you with next steps.</p>
-      <p style="color:#64748b;font-size:14px">— Zyvotrix Admissions<br/>support@zyvotrix.com</p>
+      <p style="color:#64748b;font-size:14px">— Zyvotrix Admissions<br/>admin@zyvotrix.com</p>
     </div>
   `;
 }
@@ -84,7 +84,7 @@ function buildSignupUserHtml({ firstName }) {
       <p>Hi ${escapeHtml(firstName)},</p>
       <p>Welcome to <strong>Zyvotrix</strong> — your account has been created successfully.</p>
       <p>Explore programs, track your learning, and connect with our community from your dashboard.</p>
-      <p style="color:#64748b;font-size:14px">— Team Zyvotrix<br/>support@zyvotrix.com</p>
+      <p style="color:#64748b;font-size:14px">— Team Zyvotrix<br/>admin@zyvotrix.com</p>
     </div>
   `;
 }

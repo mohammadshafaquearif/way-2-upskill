@@ -59,7 +59,7 @@ export function buildWelcomeEnrollmentHtml({
         ${communityBlock || '<li>Join the learner community (link in your portal)</li>'}
         <li>Review the curriculum and attend the orientation session</li>
       </ol>
-      <p style="color:#64748b;font-size:14px;margin-top:24px">— Team Zyvotrix<br/>support@zyvotrix.com</p>
+      <p style="color:#64748b;font-size:14px;margin-top:24px">— Team Zyvotrix<br/>admin@zyvotrix.com</p>
     </div>
   `;
 }

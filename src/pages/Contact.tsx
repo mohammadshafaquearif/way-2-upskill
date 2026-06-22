@@ -34,6 +34,7 @@ import {
   ZYVOTRIX_LOCAL_BUSINESS_SCHEMA,
   ZYVOTRIX_LOCAL_KEYWORDS,
   ZYVOTRIX_NAP,
+  ZYVOTRIX_SUPPORT_EMAIL,
 } from '@/lib/localBusiness';
 
 interface FormData {

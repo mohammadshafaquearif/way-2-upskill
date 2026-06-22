@@ -157,7 +157,7 @@ export async function generateEnrollmentInvoicePdf({
     font,
     color: muted,
   });
-  page.drawText('support@zyvotrix.com  |  www.zyvotrix.com', {
+  page.drawText('admin@zyvotrix.com  |  www.zyvotrix.com', {
     x: 48,
     y: footerY - 14,
     size: 9,

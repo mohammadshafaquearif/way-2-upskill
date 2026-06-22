@@ -31,6 +31,7 @@ import BusinessNap from '@/components/local/BusinessNap';
 import {
   ZYVOTRIX_LOCAL_BUSINESS_SCHEMA,
   ZYVOTRIX_LOCAL_KEYWORDS,
+  ZYVOTRIX_ADMIN_EMAIL,
   ZYVOTRIX_NAP,
 } from '@/lib/localBusiness';
 import { ZYVOTRIX_GOOGLE_MAPS_URL } from '@/lib/seo';
@@ -272,7 +273,7 @@ const About = () => {
                 </div>
                 <div className="mt-6 flex flex-wrap justify-center gap-4 text-sm md:justify-start">
                   <a
-                    href="mailto:support@zyvotrix.com"
+                    href={`mailto:${ZYVOTRIX_ADMIN_EMAIL}`}
                     className="inline-flex items-center gap-2 font-medium text-primary hover:underline"
                   >
                     <Mail className="h-4 w-4" /> Email
@@ -345,7 +346,7 @@ const About = () => {
           </header>
 
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-start">
-            <BusinessNap />
+            <BusinessNap contactEmail={ZYVOTRIX_ADMIN_EMAIL} />
             <GoogleMapEmbed />
           </div>
 
