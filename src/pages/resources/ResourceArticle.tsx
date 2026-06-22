@@ -257,7 +257,12 @@ const ResourceArticle = () => {
                     <BookOpen className="h-5 w-5 text-primary" />
                     <h3 className="font-bold text-foreground">Download {roadmap.downloadLabel}</h3>
                   </div>
-                  <ResourceEmailCapture resourceName={roadmap.downloadLabel} variant="card" />
+                  <ResourceEmailCapture
+                    resourceName={roadmap.downloadLabel}
+                    pdfPath={roadmap.pdfPath}
+                    source={`Resource article — ${roadmap.title}`}
+                    variant="card"
+                  />
                 </div>
               </div>
             )}

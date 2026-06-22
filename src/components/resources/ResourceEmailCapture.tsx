@@ -3,16 +3,34 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Download, Mail } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { apiClient } from '@/integrations/api/client';
+import { trackEvent } from '@/lib/analytics';
 
 interface ResourceEmailCaptureProps {
   resourceName: string;
+  pdfPath: string;
+  source?: string;
   variant?: 'inline' | 'card';
   buttonLabel?: string;
   className?: string;
 }
 
+function triggerPdfDownload(pdfPath: string) {
+  const filename = pdfPath.split('/').pop() || 'zyvotrix-resource.pdf';
+  const link = document.createElement('a');
+  link.href = pdfPath;
+  link.download = filename;
+  link.target = '_blank';
+  link.rel = 'noopener noreferrer';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
 const ResourceEmailCapture = ({
   resourceName,
+  pdfPath,
+  source = 'Resources page',
   variant = 'inline',
   buttonLabel = 'Download PDF',
   className = '',
@@ -24,25 +42,67 @@ const ResourceEmailCapture = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim() || !email.includes('@')) {
+    const trimmedEmail = email.trim();
+
+    if (!trimmedEmail || !trimmedEmail.includes('@')) {
       toast({ title: 'Enter a valid email', variant: 'destructive' });
       return;
     }
+
+    if (!pdfPath) {
+      toast({
+        title: 'Download unavailable',
+        description: 'Please contact support@zyvotrix.com for this resource.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    const emailLocal = trimmedEmail.split('@')[0] || 'Learner';
+
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 600));
-    setLoading(false);
-    setSubmitted(true);
-    toast({
-      title: 'Download ready!',
-      description: `We sent ${resourceName} access details to your inbox.`,
-    });
-    setEmail('');
+    try {
+      await apiClient.createContact(
+        {
+          firstName: emailLocal,
+          lastName: '—',
+          email: trimmedEmail,
+          subject: `${resourceName} — PDF Download`,
+          message: [
+            `Resource: ${resourceName}`,
+            'Action: Downloaded learning roadmap PDF',
+            `Source: ${source}`,
+          ].join('\n'),
+        },
+        { emailType: 'inquiry' },
+      );
+
+      trackEvent('resource_pdf_download', {
+        resource: resourceName,
+        source,
+      });
+
+      triggerPdfDownload(pdfPath);
+
+      setSubmitted(true);
+      toast({
+        title: 'Download started',
+        description: 'Your PDF is downloading.',
+      });
+      setEmail('');
+    } catch (error) {
+      const description =
+        error instanceof Error ? error.message : 'Something went wrong. Please try again.';
+      toast({ title: 'Download failed', description, variant: 'destructive' });
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (submitted && variant === 'inline') {
     return (
       <p className={`text-sm font-medium text-primary ${className}`}>
-        Check your email for the download link.
+        Your PDF download has started.
       </p>
     );
   }
@@ -66,7 +126,7 @@ const ResourceEmailCapture = ({
         </div>
         <Button type="submit" disabled={loading} className="btn-brand h-10 shrink-0 gap-2 px-4">
           <Download className="h-4 w-4" />
-          {loading ? 'Sending...' : buttonLabel}
+          {loading ? 'Preparing...' : buttonLabel}
         </Button>
       </div>
     </form>

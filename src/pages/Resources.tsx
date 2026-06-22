@@ -8,7 +8,6 @@ import {
   Briefcase,
   ChevronRight,
   Cloud,
-  Download,
   FileText,
   Gift,
   GitBranch,
@@ -33,7 +32,6 @@ import {
   CAREER_GUIDES,
   CATEGORY_META,
   FEATURED_ROADMAPS,
-  FREE_DOWNLOADS,
   INTERVIEW_RESOURCES,
   POPULAR_RESOURCES,
   PROJECT_IDEAS,
@@ -62,7 +60,6 @@ const sectionNav = [
   { id: 'popular-resources', label: 'Guides', icon: FileText },
   { id: 'project-ideas', label: 'Projects', icon: Lightbulb },
   { id: 'interview-prep', label: 'Interview', icon: Briefcase },
-  { id: 'free-downloads', label: 'Downloads', icon: Download },
   { id: 'career-resources', label: 'Career', icon: BookOpen },
 ] as const;
 
@@ -107,9 +104,9 @@ const Resources = () => {
           </a>
         </Button>
         <Button asChild variant="outline" size="lg" className="h-12 border-primary/25 px-8">
-          <a href="#free-downloads">
-            Get Free PDFs
-            <Download className="ml-2 h-5 w-5" />
+          <a href="#popular-resources">
+            Browse Guides
+            <FileText className="ml-2 h-5 w-5" />
           </a>
         </Button>
       </PageHero>
@@ -212,6 +209,8 @@ const Resources = () => {
                     </Button>
                     <ResourceEmailCapture
                       resourceName={roadmap.downloadLabel}
+                      pdfPath={roadmap.pdfPath}
+                      source="Resources page — 2026 Learning Roadmaps"
                       buttonLabel="Download PDF"
                       className="resources-roadmap-download"
                     />
@@ -371,42 +370,6 @@ const Resources = () => {
                 </span>
               </Link>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-padding section-alt resources-section" id="free-downloads">
-        <div className="resources-page-container">
-          <div className="resources-download-panel">
-            <div className="resources-download-panel-glow" aria-hidden />
-            <header className="relative mb-8 text-center">
-              <span className="resources-section-badge">
-                <Download className="h-3.5 w-3.5" />
-                Free Downloads
-              </span>
-              <h2 className="resources-section-title mb-3 text-2xl font-bold text-foreground sm:text-3xl">
-                Download Free Guides &amp; Roadmaps
-              </h2>
-              <p className="mx-auto max-w-xl text-sm text-muted-foreground sm:text-base">
-                Enter your email to receive PDF roadmaps and study guides — free, zero spam.
-              </p>
-            </header>
-
-            <div className="resources-download-grid">
-              {FREE_DOWNLOADS.map((item) => (
-                <div key={item.slug} className="resources-download-card">
-                  <p className="resources-download-card-title">
-                    <Download className="h-4 w-4 text-primary" />
-                    {item.label}
-                  </p>
-                  <ResourceEmailCapture
-                    resourceName={item.label}
-                    buttonLabel="Get PDF"
-                    variant="card"
-                  />
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>

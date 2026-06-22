@@ -135,7 +135,7 @@ const DownloadBrochureButton = ({
 
       toast({
         title: 'Brochure downloading',
-        description: 'Your program brochure is downloading. Our team has been notified.',
+        description: 'Your program brochure is downloading.',
       });
 
       resetForm();

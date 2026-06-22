@@ -37,6 +37,8 @@ export interface FeaturedRoadmap {
   path: string;
   category: ResourceCategory;
   downloadLabel: string;
+  /** Public path to PDF in /public/docs */
+  pdfPath: string;
 }
 
 export const FEATURED_ROADMAPS: FeaturedRoadmap[] = [
@@ -46,6 +48,7 @@ export const FEATURED_ROADMAPS: FeaturedRoadmap[] = [
     path: 'Linux → Docker → Kubernetes → Terraform → DevSecOps → AIOps',
     category: 'devops',
     downloadLabel: 'DevOps Roadmap PDF',
+    pdfPath: '/docs/zyvotrix-dop-program.pdf',
   },
   {
     slug: 'agentic-ai-engineer-roadmap-2026',
@@ -53,6 +56,7 @@ export const FEATURED_ROADMAPS: FeaturedRoadmap[] = [
     path: 'LLMs → RAG → LangChain → LangGraph → CrewAI → Production Agents',
     category: 'aac',
     downloadLabel: 'Agentic AI Roadmap PDF',
+    pdfPath: '/docs/zyvotrix-aac-program.pdf',
   },
   {
     slug: 'aws-solutions-architect-roadmap-2026',
@@ -60,6 +64,7 @@ export const FEATURED_ROADMAPS: FeaturedRoadmap[] = [
     path: 'Cloud → IAM → EC2 → VPC → S3 → Lambda → SAA-C03',
     category: 'aws',
     downloadLabel: 'AWS Roadmap PDF',
+    pdfPath: '/docs/ZyvotrixAWS_Program.pdf',
   },
   {
     slug: 'data-science-roadmap-2026',
@@ -67,6 +72,7 @@ export const FEATURED_ROADMAPS: FeaturedRoadmap[] = [
     path: 'Python → SQL → Pandas → Statistics → ML → Portfolio',
     category: 'data-science',
     downloadLabel: 'Data Science Career Guide',
+    pdfPath: '/docs/zyvotrix-ds-program.pdf',
   },
 ];
 
@@ -123,13 +129,6 @@ export const INTERVIEW_RESOURCES = [
   { title: 'AWS Interview Questions', slug: 'aws-interview-questions' },
   { title: 'Data Science Interview Questions', slug: 'data-science-interview-questions' },
   { title: 'AI Engineer Interview Questions', slug: 'ai-engineer-interview-questions' },
-];
-
-export const FREE_DOWNLOADS = [
-  { label: 'DevOps Roadmap PDF', slug: 'devops-roadmap-2026' },
-  { label: 'Agentic AI Roadmap PDF', slug: 'agentic-ai-engineer-roadmap-2026' },
-  { label: 'AWS SAA-C03 Study Guide', slug: 'saa-c03-preparation-guide' },
-  { label: 'Data Science Career Guide', slug: 'data-science-roadmap-2026' },
 ];
 
 export const CAREER_GUIDES = [
