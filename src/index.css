@@ -20,7 +20,7 @@
     --card: 0 0% 100% / 0.72;
     --card-foreground: 222 47% 11%;
 
-    --popover: 0 0% 100% / 0.78;
+    --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
     --primary: 224 64% 33%;
@@ -64,7 +64,7 @@
     --foreground: 210 40% 96%;
     --card: 222 40% 12% / 0.72;
     --card-foreground: 210 40% 96%;
-    --popover: 222 40% 12% / 0.78;
+    --popover: 222 40% 12%;
     --popover-foreground: 210 40% 96%;
     --primary: 221 83% 58%;
     --primary-foreground: 222 47% 8%;
@@ -2952,7 +2952,7 @@
     line-height: 1.2;
   }
 
-  .top-program-card--enroll .top-program-card-price p:last-child {
+  .top-program-card--enroll .top-program-card-price p + p {
     font-size: 0.6875rem;
   }
 
@@ -3079,7 +3079,7 @@
     color: hsl(var(--primary));
   }
 
-  .courses-enroll-card-price p:last-child {
+  .courses-enroll-card-price p + p {
     margin-top: 0.2rem;
     font-size: 0.6875rem;
     color: hsl(var(--muted-foreground));

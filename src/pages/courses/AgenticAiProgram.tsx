@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import EnrollButton from '@/components/EnrollButton';
+import DownloadBrochureButton from '@/components/courses/DownloadBrochureButton';
 import {
   ArrowRight,
   Award,
@@ -601,11 +602,17 @@ const AgenticAiProgram = () => {
                 </span>
               </div>
 
-              <div className="flex flex-col gap-3 sm:flex-row">
+              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <EnrollButton programName={course.title} size="lg" className="btn-brand btn-shimmer h-12 px-8">
                   Enroll Now
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </EnrollButton>
+                <DownloadBrochureButton
+                  courseId={course.id}
+                  size="lg"
+                  variant="outline"
+                  className="h-12 border-primary/20 px-8 backdrop-blur-sm"
+                />
                 <Button asChild size="lg" variant="outline" className="h-12 border-primary/20 px-8 backdrop-blur-sm">
                   <Link to="/contact">Talk to an Advisor</Link>
                 </Button>

@@ -3,10 +3,10 @@ import { createClient } from '@supabase/supabase-js';
 const GST_RATE = 0.18;
 
 const PROGRAM_PRICES = {
-  DOP: { inrBase: 23999, usdInternational: 359 },
-  AAC: { inrBase: 22999, usdInternational: 349 },
-  AWS: { inrBase: 18999, usdInternational: 209 },
-  DSP: { inrBase: 21999, usdInternational: 334 },
+  DOP: { inrBase: 23999, usdInternational: 370 },
+  AAC: { inrBase: 22999, usdInternational: 359 },
+  AWS: { inrBase: 18999, usdInternational: 215 },
+  DSP: { inrBase: 21999, usdInternational: 344 },
 };
 
 const USD_FX = {

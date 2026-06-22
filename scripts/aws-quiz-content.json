@@ -1,0 +1,4924 @@
+[
+  {
+    "moduleNumber": 1,
+    "topicSort": 1,
+    "topicTitle": "What is cloud computing?",
+    "questions": [
+      {
+        "question": "What is cloud computing?",
+        "options": [
+          "Using a computer without internet access",
+          "Delivering computing services such as servers, storage, databases, and networking over the internet",
+          "Building hardware components manually",
+          "Installing software only on local machines"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which of the following is a key characteristic of cloud computing?",
+        "options": [
+          "Fixed hardware capacity",
+          "On-demand access to computing resources",
+          "Manual server provisioning only",
+          "Permanent hardware ownership"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Why do businesses adopt cloud computing?",
+        "options": [
+          "To increase infrastructure costs",
+          "To gain scalability, flexibility, and cost efficiency",
+          "To eliminate internet usage",
+          "To avoid data storage"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which of the following is an example of a cloud computing service?",
+        "options": [
+          "Purchasing a physical server for a data center",
+          "Using AWS EC2 to launch virtual machines on demand",
+          "Installing software from a DVD",
+          "Building a personal computer"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What does \"on-demand\" mean in cloud computing?",
+        "options": [
+          "Resources are available only during business hours",
+          "Resources can be provisioned whenever needed without waiting for hardware purchases",
+          "Resources are available only after approval from the provider",
+          "Resources are permanently allocated"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which cloud computing benefit allows applications to handle increased traffic automatically?",
+        "options": [
+          "Virtualization",
+          "Scalability",
+          "Encryption",
+          "Tokenization"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which statement best describes the pay-as-you-go pricing model?",
+        "options": [
+          "Users pay a fixed amount regardless of usage",
+          "Users pay only for the cloud resources they consume",
+          "Users purchase hardware upfront",
+          "Users pay only once"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "A startup launches a website and expects traffic to increase rapidly. Why is cloud computing beneficial?",
+        "options": [
+          "It allows resources to scale as demand grows without major hardware investments",
+          "It eliminates the need for security",
+          "It prevents internet access",
+          "It reduces website functionality"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which of the following is NOT typically considered a cloud computing benefit?",
+        "options": [
+          "Scalability",
+          "Elasticity",
+          "High upfront hardware investment",
+          "Cost efficiency"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "Which statement best summarizes cloud computing?",
+        "options": [
+          "Cloud computing delivers IT resources over the internet with flexibility, scalability, and pay-as-you-go pricing",
+          "Cloud computing requires organizations to own all infrastructure",
+          "Cloud computing eliminates networking requirements",
+          "Cloud computing is only used by large enterprises"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 1,
+    "topicSort": 2,
+    "topicTitle": "IaaS, PaaS & SaaS service models",
+    "questions": [
+      {
+        "question": "What are IaaS, PaaS, and SaaS in cloud computing?",
+        "options": [
+          "Types of databases",
+          "Cloud service delivery models that define how resources are provided to users",
+          "Networking protocols",
+          "Security frameworks"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What does IaaS stand for?",
+        "options": [
+          "Internet as a Service",
+          "Infrastructure as a Service",
+          "Integration as a Service",
+          "Information as a Service"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which AWS service is a common example of IaaS?",
+        "options": [
+          "Amazon EC2",
+          "Gmail",
+          "Microsoft Word Online",
+          "Salesforce CRM"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What does PaaS stand for?",
+        "options": [
+          "Platform as a Service",
+          "Processing as a Service",
+          "Programming as a Service",
+          "Protocol as a Service"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which of the following is an example of PaaS?",
+        "options": [
+          "Amazon EC2",
+          "AWS Elastic Beanstalk",
+          "Physical Server",
+          "Network Switch"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What does SaaS stand for?",
+        "options": [
+          "Storage as a Service",
+          "Software as a Service",
+          "Security as a Service",
+          "Server as a Service"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which of the following is an example of SaaS?",
+        "options": [
+          "Amazon EC2",
+          "AWS Lambda",
+          "Google Workspace",
+          "Amazon VPC"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "Which service model provides the highest level of user control over infrastructure?",
+        "options": [
+          "SaaS",
+          "PaaS",
+          "IaaS",
+          "All provide equal control"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "Which service model requires the least infrastructure management from the customer?",
+        "options": [
+          "IaaS",
+          "PaaS",
+          "SaaS",
+          "Hybrid Cloud"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "Which statement best summarizes IaaS, PaaS, and SaaS?",
+        "options": [
+          "IaaS provides infrastructure, PaaS provides development platforms, and SaaS provides complete software solutions",
+          "All three models provide identical services",
+          "SaaS offers more infrastructure control than IaaS",
+          "PaaS replaces cloud computing"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 1,
+    "topicSort": 3,
+    "topicTitle": "Public, private & hybrid cloud",
+    "questions": [
+      {
+        "question": "What is a cloud deployment model?",
+        "options": [
+          "A method for training AI models",
+          "A way of defining where cloud infrastructure is deployed and who can access it",
+          "A type of database architecture",
+          "A programming framework"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is a Public Cloud?",
+        "options": [
+          "A cloud environment owned and operated by a third-party provider and shared among multiple customers",
+          "A cloud environment used by only one organization",
+          "A cloud deployed without internet access",
+          "A personal computer network"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which of the following is an example of a Public Cloud provider?",
+        "options": [
+          "On-premises data center",
+          "Amazon Web Services",
+          "Local Network Server",
+          "Physical Desktop Computer"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is a Private Cloud?",
+        "options": [
+          "A cloud environment dedicated to a single organization",
+          "A public cloud shared by everyone",
+          "A cloud service available only during business hours",
+          "A cloud without security controls"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Why might an organization choose a Private Cloud?",
+        "options": [
+          "For enhanced security, compliance, and control over resources",
+          "To eliminate networking requirements",
+          "To avoid data storage",
+          "To reduce internet usage"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is a Hybrid Cloud?",
+        "options": [
+          "A cloud model that combines public cloud and private cloud environments",
+          "A cloud with multiple databases",
+          "A cloud without internet access",
+          "A cloud that supports only AI workloads"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which scenario best demonstrates a Hybrid Cloud approach?",
+        "options": [
+          "Running all workloads in a public cloud",
+          "Keeping sensitive data in a private cloud while hosting customer-facing applications in a public cloud",
+          "Using only on-premises servers",
+          "Storing files on a personal laptop"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is a key advantage of Public Cloud?",
+        "options": [
+          "High scalability and lower upfront infrastructure costs",
+          "Complete hardware ownership",
+          "No internet requirement",
+          "Unlimited security by default"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is a major benefit of Hybrid Cloud?",
+        "options": [
+          "Flexibility to place workloads in the most appropriate environment",
+          "Elimination of cloud costs",
+          "Automatic model training",
+          "Removal of security requirements"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes Public, Private, and Hybrid Cloud models?",
+        "options": [
+          "Public Cloud is shared infrastructure, Private Cloud is dedicated infrastructure, and Hybrid Cloud combines both approaches",
+          "All three models are identical",
+          "Private Cloud is less secure than Public Cloud",
+          "Hybrid Cloud replaces Public Cloud entirely"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 1,
+    "topicSort": 4,
+    "topicTitle": "AWS global infrastructure",
+    "questions": [
+      {
+        "question": "What is the primary purpose of AWS Global Infrastructure?",
+        "options": [
+          "To train AI models only",
+          "To provide highly available, scalable, and low-latency cloud services worldwide",
+          "To manage local computer networks",
+          "To replace the internet"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is an AWS Region?",
+        "options": [
+          "A physical server",
+          "A geographic area containing multiple Availability Zones",
+          "A virtual machine",
+          "A storage device"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Why does AWS have multiple Regions around the world?",
+        "options": [
+          "To provide redundancy, compliance options, and lower latency for customers",
+          "To increase electricity consumption",
+          "To eliminate networking requirements",
+          "To reduce storage capacity"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is an Availability Zone (AZ)?",
+        "options": [
+          "A collection of one or more physically separate data centers within a Region",
+          "A cloud storage service",
+          "A networking protocol",
+          "A virtual machine image"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Why are Availability Zones physically separated?",
+        "options": [
+          "To reduce the impact of failures such as power outages or natural disasters",
+          "To increase API costs",
+          "To improve tokenization",
+          "To eliminate backups"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which AWS infrastructure component is primarily used to deliver content with low latency to end users?",
+        "options": [
+          "Edge Locations",
+          "EC2 Instances",
+          "Availability Zones",
+          "VPCs"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is the relationship between Regions and Availability Zones?",
+        "options": [
+          "A Region contains multiple Availability Zones",
+          "An Availability Zone contains multiple Regions",
+          "They are identical concepts",
+          "Neither depends on the other"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "A company wants high availability for its application. Which AWS design practice should it follow?",
+        "options": [
+          "Deploy resources across multiple Availability Zones",
+          "Use only one Availability Zone",
+          "Disable backups",
+          "Store all resources on one server"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which AWS Global Infrastructure component helps reduce latency by serving content closer to users?",
+        "options": [
+          "Edge Location",
+          "Availability Zone",
+          "Security Group",
+          "IAM Role"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes AWS Global Infrastructure?",
+        "options": [
+          "AWS Global Infrastructure consists of Regions, Availability Zones, and Edge Locations that provide scalability, fault tolerance, and low-latency services worldwide",
+          "AWS operates from a single global data center",
+          "Regions and Availability Zones are the same thing",
+          "Edge Locations are used only for storage"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 1,
+    "topicSort": 5,
+    "topicTitle": "Regions & Availability Zones",
+    "questions": [
+      {
+        "question": "What is an AWS Region?",
+        "options": [
+          "A virtual machine running in AWS",
+          "A geographic area that contains multiple Availability Zones",
+          "A storage service",
+          "A networking protocol"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is an Availability Zone (AZ)?",
+        "options": [
+          "A user account in AWS",
+          "One or more isolated data centers within an AWS Region",
+          "A cloud storage bucket",
+          "A virtual network"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "How many Availability Zones does an AWS Region typically contain?",
+        "options": [
+          "Only one",
+          "Multiple Availability Zones",
+          "Unlimited Availability Zones",
+          "None"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Why does AWS use multiple Availability Zones within a Region?",
+        "options": [
+          "To improve high availability and fault tolerance",
+          "To increase hardware costs",
+          "To eliminate networking requirements",
+          "To reduce storage capacity"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best describes the relationship between Regions and Availability Zones?",
+        "options": [
+          "Availability Zones contain Regions",
+          "Regions contain multiple Availability Zones",
+          "They are identical concepts",
+          "They operate independently"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Why are Availability Zones physically separated from each other?",
+        "options": [
+          "To reduce the risk of a single failure affecting all resources",
+          "To increase latency",
+          "To eliminate backups",
+          "To reduce internet access"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "A company deploys its application across two Availability Zones. What benefit does this provide?",
+        "options": [
+          "Increased fault tolerance and availability",
+          "Automatic model training",
+          "Larger context windows",
+          "Reduced internet usage"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which AWS infrastructure component should you choose when you want to deploy resources closer to users in a specific geographic location?",
+        "options": [
+          "Region",
+          "Security Group",
+          "IAM Policy",
+          "S3 Bucket"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is a common reason for selecting a specific AWS Region?",
+        "options": [
+          "Lower latency, compliance requirements, or proximity to customers",
+          "Increasing context windows",
+          "Eliminating backups",
+          "Creating embeddings"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes Regions and Availability Zones?",
+        "options": [
+          "Regions are geographic locations that contain multiple isolated Availability Zones designed for high availability and fault tolerance",
+          "Regions and Availability Zones are the same thing",
+          "Availability Zones contain multiple Regions",
+          "Availability Zones are used only for storage"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 1,
+    "topicSort": 6,
+    "topicTitle": "AWS Shared Responsibility Model",
+    "questions": [
+      {
+        "question": "What is the AWS Shared Responsibility Model?",
+        "options": [
+          "A pricing model used by AWS",
+          "A framework that defines security responsibilities shared between AWS and customers",
+          "A networking architecture",
+          "A cloud deployment model"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What does AWS mean by \"Security of the Cloud\"?",
+        "options": [
+          "Protecting customer application code",
+          "Protecting the AWS infrastructure that runs cloud services",
+          "Managing customer passwords",
+          "Configuring customer firewalls"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What does the customer typically manage under \"Security in the Cloud\"?",
+        "options": [
+          "AWS data center buildings",
+          "Physical servers",
+          "User access, data protection, and application security",
+          "AWS global network infrastructure"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "Which of the following is AWS's responsibility?",
+        "options": [
+          "Configuring IAM users",
+          "Managing operating system patches on customer-managed EC2 instances",
+          "Securing physical data centers",
+          "Creating security groups"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "Which of the following is typically the customer's responsibility when using Amazon EC2?",
+        "options": [
+          "Protecting the AWS Region",
+          "Managing the guest operating system and its updates",
+          "Securing AWS hardware",
+          "Maintaining data center cooling systems"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Why is the Shared Responsibility Model important?",
+        "options": [
+          "It clarifies security ownership and helps prevent security gaps",
+          "It increases cloud costs",
+          "It eliminates compliance requirements",
+          "It replaces IAM"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "In Amazon S3, who is responsible for configuring bucket permissions?",
+        "options": [
+          "AWS only",
+          "The customer",
+          "Internet Service Providers",
+          "Availability Zones"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which statement best describes responsibility for data encryption?",
+        "options": [
+          "AWS always encrypts and manages customer data automatically",
+          "Customers are generally responsible for deciding how their data is encrypted and protected",
+          "Encryption is not required in cloud environments",
+          "AWS customers cannot use encryption"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "How does the Shared Responsibility Model change with managed services such as AWS RDS?",
+        "options": [
+          "Customers have more infrastructure responsibilities",
+          "AWS assumes more operational responsibilities compared to EC2",
+          "AWS assumes all responsibilities",
+          "There is no difference"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which statement best summarizes the AWS Shared Responsibility Model?",
+        "options": [
+          "AWS secures the cloud infrastructure, while customers secure their data, applications, and configurations within the cloud",
+          "AWS handles all security responsibilities",
+          "Customers manage AWS data centers",
+          "Security is optional in AWS"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 2,
+    "topicSort": 1,
+    "topicTitle": "IAM users, groups & roles",
+    "questions": [
+      {
+        "question": "What does IAM stand for in AWS?",
+        "options": [
+          "Internet Access Management",
+          "Identity and Access Management",
+          "Infrastructure Access Monitoring",
+          "Internal Application Management"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is the primary purpose of AWS IAM?",
+        "options": [
+          "To create virtual machines",
+          "To manage authentication and authorization for AWS resources",
+          "To store application logs",
+          "To monitor network traffic"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is an IAM User?",
+        "options": [
+          "A physical server in AWS",
+          "A digital identity created for an individual person or application requiring AWS access",
+          "A virtual private cloud",
+          "A storage bucket"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Why are IAM Groups used?",
+        "options": [
+          "To store files",
+          "To organize IAM users and assign permissions collectively",
+          "To create virtual machines",
+          "To manage Availability Zones"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "A company has 20 developers who need identical AWS permissions. What is the recommended approach?",
+        "options": [
+          "Create separate policies for each user",
+          "Add all developers to an IAM Group with the required permissions",
+          "Give everyone administrator access",
+          "Create multiple AWS accounts"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is an IAM Role?",
+        "options": [
+          "A permanent AWS user account",
+          "An AWS identity that provides temporary permissions and can be assumed by users, applications, or services",
+          "A storage service",
+          "A network firewall"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which AWS service commonly uses IAM Roles to access other AWS resources securely?",
+        "options": [
+          "Amazon EC2",
+          "Amazon S3 only",
+          "CloudFront only",
+          "Route 53 only"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Why are IAM Roles generally preferred over hard-coded access keys in applications?",
+        "options": [
+          "They provide temporary credentials and improve security",
+          "They increase storage capacity",
+          "They eliminate permissions management",
+          "They improve internet speed"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which AWS security principle recommends granting only the permissions necessary to perform a task?",
+        "options": [
+          "High Availability",
+          "Elasticity",
+          "Principle of Least Privilege",
+          "Auto Scaling"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "Which statement best summarizes IAM Users, Groups, and Roles?",
+        "options": [
+          "Users represent identities, Groups simplify permission management, and Roles provide temporary access to AWS resources",
+          "Users, Groups, and Roles perform the same function",
+          "Roles permanently replace users",
+          "Groups provide temporary credentials"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 2,
+    "topicSort": 2,
+    "topicTitle": "IAM policies & permission boundaries",
+    "questions": [
+      {
+        "question": "What is an IAM Policy in AWS?",
+        "options": [
+          "A virtual machine configuration",
+          "A JSON document that defines permissions for AWS resources and actions",
+          "A storage service",
+          "A networking protocol"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is the primary purpose of an IAM Policy?",
+        "options": [
+          "To store application logs",
+          "To define permissions and control access to AWS services and resources",
+          "To create Availability Zones",
+          "To manage databases"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which format is used to write AWS IAM Policies?",
+        "options": [
+          "XML",
+          "YAML",
+          "JSON",
+          "CSV"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "What are the main elements of an IAM Policy statement?",
+        "options": [
+          "Effect, Action, Resource, and Condition",
+          "User, Password, Region, and Zone",
+          "Server, Network, Storage, and Compute",
+          "Bucket, Object, Volume, and Snapshot"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What does the \"Effect\" field in an IAM Policy specify?",
+        "options": [
+          "Which Region is used",
+          "Whether an action is Allowed or Denied",
+          "The storage size",
+          "The instance type"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is a Permission Boundary in AWS IAM?",
+        "options": [
+          "A maximum limit that defines the highest permissions an IAM user or role can receive",
+          "A networking boundary between Regions",
+          "A backup policy",
+          "A storage quota"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Why are Permission Boundaries useful in large organizations?",
+        "options": [
+          "They help enforce security controls and prevent excessive permissions",
+          "They increase EC2 performance",
+          "They create Availability Zones",
+          "They replace IAM Policies"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "If an IAM Role has a policy allowing S3 access but a Permission Boundary does not allow S3 actions, what happens?",
+        "options": [
+          "S3 access is allowed",
+          "S3 access is denied because Permission Boundaries limit maximum permissions",
+          "AWS ignores the Permission Boundary",
+          "The role receives administrator access"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which statement best describes the relationship between IAM Policies and Permission Boundaries?",
+        "options": [
+          "Policies grant permissions, while Permission Boundaries define the maximum permissions that can be granted",
+          "Permission Boundaries replace Policies entirely",
+          "Policies and Boundaries are identical",
+          "Permission Boundaries automatically grant administrator access"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes IAM Policies and Permission Boundaries?",
+        "options": [
+          "IAM Policies define access permissions, while Permission Boundaries restrict the maximum permissions users and roles can obtain",
+          "Both are used only for billing purposes",
+          "Permission Boundaries increase storage capacity",
+          "Policies and Boundaries are unrelated to security"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 2,
+    "topicSort": 3,
+    "topicTitle": "MFA & credential security",
+    "questions": [
+      {
+        "question": "What does MFA stand for in AWS security?",
+        "options": [
+          "Multi-Factor Authentication",
+          "Managed File Access",
+          "Multi-Function Authorization",
+          "Managed Firewall Architecture"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Why is MFA important for AWS accounts?",
+        "options": [
+          "It increases storage capacity",
+          "It helps protect accounts even if passwords are compromised",
+          "It improves EC2 performance",
+          "It reduces network latency"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which of the following is an example of a second authentication factor?",
+        "options": [
+          "Username",
+          "Password",
+          "One-Time Password (OTP) generated by an authenticator app",
+          "IAM Policy"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "What is the recommended security practice for the AWS root account?",
+        "options": [
+          "Share credentials with the team",
+          "Enable MFA and avoid routine use of the root account",
+          "Disable passwords",
+          "Use the root account for all daily activities"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is a credential in AWS?",
+        "options": [
+          "A Region",
+          "Information used to authenticate an identity, such as usernames, passwords, or access keys",
+          "A storage bucket",
+          "A virtual machine"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Why should access keys be protected carefully?",
+        "options": [
+          "They grant programmatic access to AWS resources and can be misused if exposed",
+          "They increase storage costs",
+          "They create Availability Zones",
+          "They replace IAM Policies"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is a recommended alternative to hard-coded access keys in AWS applications?",
+        "options": [
+          "IAM Roles",
+          "Root Account Credentials",
+          "Shared Passwords",
+          "Public Access Policies"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which security practice helps reduce the risk of credential compromise?",
+        "options": [
+          "Regular credential rotation and strong password policies",
+          "Reusing passwords across multiple accounts",
+          "Sharing credentials through email",
+          "Disabling authentication logs"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "A developer accidentally publishes AWS access keys in a public repository. What should be done first?",
+        "options": [
+          "Ignore the issue",
+          "Immediately disable or rotate the exposed credentials and investigate usage",
+          "Create a new AWS Region",
+          "Restart the application"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which statement best summarizes MFA and Credential Security?",
+        "options": [
+          "MFA adds additional verification layers, while credential security focuses on protecting passwords, access keys, and authentication mechanisms",
+          "MFA replaces passwords entirely",
+          "Credential security is only AWS's responsibility",
+          "MFA is only required for administrators"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 2,
+    "topicSort": 4,
+    "topicTitle": "AWS Organizations basics",
+    "questions": [
+      {
+        "question": "What is AWS Organizations?",
+        "options": [
+          "A storage service for AWS accounts",
+          "A service that helps centrally manage and govern multiple AWS accounts",
+          "A virtual machine management tool",
+          "A database service"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is the primary benefit of AWS Organizations?",
+        "options": [
+          "Centralized account management and governance",
+          "Increased EC2 performance",
+          "Automatic application deployment",
+          "Unlimited storage"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is the top-level container in AWS Organizations called?",
+        "options": [
+          "Organizational Unit (OU)",
+          "Root",
+          "IAM Group",
+          "Region"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is an Organizational Unit (OU)?",
+        "options": [
+          "A virtual machine cluster",
+          "A logical grouping of AWS accounts within an organization",
+          "A storage bucket",
+          "A security group"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Why do organizations create multiple AWS accounts?",
+        "options": [
+          "To improve governance, security isolation, and billing management",
+          "To increase internet speed",
+          "To eliminate IAM",
+          "To reduce storage capacity"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is consolidated billing in AWS Organizations?",
+        "options": [
+          "A feature that combines billing from multiple AWS accounts into a single bill",
+          "A database service",
+          "A networking feature",
+          "A backup solution"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is a Service Control Policy (SCP)?",
+        "options": [
+          "A policy that manages EC2 instances",
+          "A governance policy that sets permission boundaries across AWS accounts in an organization",
+          "A storage configuration file",
+          "A backup policy"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which statement best describes the relationship between SCPs and IAM Policies?",
+        "options": [
+          "SCPs define maximum permissions, while IAM Policies grant actual permissions",
+          "SCPs replace IAM Policies entirely",
+          "IAM Policies override SCPs",
+          "Both are identical"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "A company wants separate AWS accounts for Development, Testing, and Production environments. Which AWS Organizations feature helps structure this setup?",
+        "options": [
+          "Organizational Units (OUs)",
+          "Availability Zones",
+          "VPCs",
+          "CloudFront"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes AWS Organizations?",
+        "options": [
+          "AWS Organizations provides centralized account management, governance, consolidated billing, and security controls across multiple AWS accounts",
+          "AWS Organizations is used only for storage management",
+          "AWS Organizations replaces IAM entirely",
+          "AWS Organizations is a networking service"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 3,
+    "topicSort": 1,
+    "topicTitle": "Amazon EC2 instance types & AMIs",
+    "questions": [
+      {
+        "question": "What does EC2 stand for in AWS?",
+        "options": [
+          "Elastic Cloud Compute",
+          "Elastic Compute Cloud",
+          "Enterprise Compute Cluster",
+          "Enhanced Cloud Container"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is the primary purpose of Amazon EC2?",
+        "options": [
+          "Object storage",
+          "Running virtual machines and applications in the cloud",
+          "Managing DNS records",
+          "Delivering content globally"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is an EC2 Instance?",
+        "options": [
+          "A physical AWS data center",
+          "A virtual server running in AWS",
+          "A storage bucket",
+          "A network firewall"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is an Amazon Machine Image (AMI)?",
+        "options": [
+          "A monitoring dashboard",
+          "A template used to launch EC2 instances with predefined configurations",
+          "A security group",
+          "A database backup"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which component is typically included in an AMI?",
+        "options": [
+          "Operating System and application configuration",
+          "Availability Zones",
+          "IAM Groups",
+          "Billing reports"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Why are different EC2 instance types available?",
+        "options": [
+          "To support different workload requirements such as compute, memory, storage, and networking needs",
+          "To increase billing complexity",
+          "To eliminate virtualization",
+          "To replace Availability Zones"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which EC2 instance family is commonly optimized for general-purpose workloads?",
+        "options": [
+          "T-Series and M-Series",
+          "R-Series only",
+          "P-Series only",
+          "D-Series only"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which EC2 instance family is designed for memory-intensive applications such as databases?",
+        "options": [
+          "T-Series",
+          "R-Series",
+          "C-Series",
+          "G-Series"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "A company needs high-performance computing for scientific simulations. Which EC2 instance family would generally be most appropriate?",
+        "options": [
+          "C-Series (Compute Optimized)",
+          "T-Series (Burstable)",
+          "R-Series (Memory Optimized)",
+          "S-Series"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes EC2 Instance Types and AMIs?",
+        "options": [
+          "AMIs provide the template for launching EC2 instances, while instance types define the hardware resources available to the virtual server",
+          "AMIs and instance types are identical concepts",
+          "Instance types store operating systems",
+          "AMIs determine AWS Regions"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 3,
+    "topicSort": 2,
+    "topicTitle": "EBS volumes & snapshots",
+    "questions": [
+      {
+        "question": "What does EBS stand for in AWS?",
+        "options": [
+          "Elastic Backup Storage",
+          "Elastic Block Store",
+          "Enterprise Block Service",
+          "Enhanced Backup System"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is the primary purpose of an EBS Volume?",
+        "options": [
+          "To provide persistent storage for EC2 instances",
+          "To manage DNS records",
+          "To deliver content globally",
+          "To create IAM users"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What happens to data stored on an EBS volume when an EC2 instance is stopped?",
+        "options": [
+          "The data is lost permanently",
+          "The data remains stored and can be accessed when the instance starts again",
+          "The volume is deleted automatically",
+          "The data is moved to Amazon S3"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which storage type best describes Amazon EBS?",
+        "options": [
+          "Object Storage",
+          "Block Storage",
+          "File Storage",
+          "Archive Storage"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Can an EBS volume be detached from one EC2 instance and attached to another?",
+        "options": [
+          "Yes, in many cases within the same Availability Zone",
+          "No, never",
+          "Only across Regions",
+          "Only after converting it to S3"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is an EBS Snapshot?",
+        "options": [
+          "A copy of an EC2 instance",
+          "A backup of an EBS volume stored in AWS-managed storage",
+          "A network configuration file",
+          "An IAM policy"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Why are EBS Snapshots useful?",
+        "options": [
+          "They allow backup, disaster recovery, and volume restoration",
+          "They increase CPU performance",
+          "They replace Availability Zones",
+          "They manage IAM users"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Where are EBS Snapshots stored?",
+        "options": [
+          "On the EC2 instance itself",
+          "In AWS-managed storage (internally backed by Amazon S3)",
+          "Inside IAM",
+          "In Route 53"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "A company wants to create a backup before updating a production server. What is the recommended action?",
+        "options": [
+          "Create an EBS Snapshot of the attached volume",
+          "Delete the volume",
+          "Stop using EBS",
+          "Create a new Availability Zone"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes EBS Volumes and Snapshots?",
+        "options": [
+          "EBS Volumes provide persistent block storage for EC2 instances, while Snapshots create point-in-time backups of those volumes",
+          "EBS Volumes and Snapshots are identical",
+          "Snapshots replace EBS Volumes permanently",
+          "EBS is used only for networking"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 3,
+    "topicSort": 3,
+    "topicTitle": "Placement groups",
+    "questions": [
+      {
+        "question": "What is an AWS Placement Group?",
+        "options": [
+          "A storage service for EC2 instances",
+          "A logical grouping of EC2 instances that influences how they are placed within AWS infrastructure",
+          "A backup service",
+          "A DNS management tool"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Why are Placement Groups used?",
+        "options": [
+          "To optimize performance, networking, or availability depending on workload requirements",
+          "To increase storage capacity",
+          "To manage IAM users",
+          "To create snapshots"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "How many main types of Placement Groups are available in AWS?",
+        "options": [
+          "One",
+          "Two",
+          "Three",
+          "Five"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "Which Placement Group strategy is designed to provide the lowest network latency and highest throughput between EC2 instances?",
+        "options": [
+          "Spread Placement Group",
+          "Partition Placement Group",
+          "Cluster Placement Group",
+          "Auto Scaling Group"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "Which workload is best suited for a Cluster Placement Group?",
+        "options": [
+          "High-performance computing (HPC) applications",
+          "Email services only",
+          "DNS management",
+          "Backup storage"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is the primary goal of a Spread Placement Group?",
+        "options": [
+          "Place instances across distinct hardware to reduce the risk of simultaneous failure",
+          "Increase storage performance",
+          "Improve internet speed",
+          "Create backups"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which Placement Group strategy is commonly used for critical applications requiring high availability?",
+        "options": [
+          "Cluster Placement Group",
+          "Spread Placement Group",
+          "Partition Placement Group only",
+          "None of the above"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is a Partition Placement Group?",
+        "options": [
+          "A strategy that divides instances into logical partitions to improve fault isolation at scale",
+          "A storage partitioning service",
+          "A database feature",
+          "A network firewall"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which workload is commonly associated with Partition Placement Groups?",
+        "options": [
+          "Large distributed systems such as Hadoop or Kafka clusters",
+          "Small personal websites",
+          "DNS services only",
+          "IAM management"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes AWS Placement Groups?",
+        "options": [
+          "Placement Groups control how EC2 instances are physically deployed to optimize performance, latency, and fault tolerance",
+          "Placement Groups are used only for storage management",
+          "Placement Groups replace Availability Zones",
+          "Placement Groups manage IAM permissions"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 3,
+    "topicSort": 4,
+    "topicTitle": "Launch templates",
+    "questions": [
+      {
+        "question": "What is an AWS Launch Template?",
+        "options": [
+          "A backup service for EC2 instances",
+          "A reusable configuration template used to launch EC2 instances",
+          "A storage service",
+          "A networking component"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is the primary purpose of a Launch Template?",
+        "options": [
+          "To automate and standardize EC2 instance deployments",
+          "To create snapshots",
+          "To manage IAM users",
+          "To configure DNS records"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which of the following can be defined within a Launch Template?",
+        "options": [
+          "AMI, instance type, security groups, and storage configuration",
+          "Only instance names",
+          "Only IAM users",
+          "Only Availability Zones"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Why are Launch Templates useful in large-scale environments?",
+        "options": [
+          "They ensure consistent configuration across multiple EC2 instances",
+          "They increase internet speed",
+          "They replace IAM policies",
+          "They eliminate storage requirements"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which AWS service commonly integrates with Launch Templates for automatic scaling?",
+        "options": [
+          "Amazon Route 53",
+          "AWS Auto Scaling Groups",
+          "Amazon S3",
+          "AWS Organizations"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What advantage do Launch Template versions provide?",
+        "options": [
+          "The ability to track and manage configuration changes over time",
+          "Increased storage capacity",
+          "Automatic model training",
+          "Reduced network latency"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "A company wants every new EC2 instance to use the same AMI, security group, and instance type. What AWS feature should be used?",
+        "options": [
+          "Launch Template",
+          "Security Group",
+          "Availability Zone",
+          "Snapshot"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which configuration is NOT typically stored in a Launch Template?",
+        "options": [
+          "AMI ID",
+          "Instance Type",
+          "Security Groups",
+          "IAM User Passwords"
+        ],
+        "correctIndex": 3
+      },
+      {
+        "question": "How do Launch Templates improve operational efficiency?",
+        "options": [
+          "By reducing repetitive manual configuration tasks",
+          "By increasing EC2 costs automatically",
+          "By eliminating backups",
+          "By replacing monitoring systems"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes AWS Launch Templates?",
+        "options": [
+          "Launch Templates provide reusable EC2 deployment configurations that support automation, consistency, and scalability",
+          "Launch Templates replace EC2 instances",
+          "Launch Templates are used only for storage management",
+          "Launch Templates manage IAM permissions"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 4,
+    "topicSort": 1,
+    "topicTitle": "Amazon S3 & storage classes",
+    "questions": [
+      {
+        "question": "What does S3 stand for in AWS?",
+        "options": [
+          "Secure Storage Service",
+          "Simple Storage Service",
+          "Standard Storage Solution",
+          "Scalable Storage System"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What type of storage does Amazon S3 provide?",
+        "options": [
+          "Block Storage",
+          "File Storage",
+          "Object Storage",
+          "Database Storage"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "What is an S3 Bucket?",
+        "options": [
+          "A virtual machine",
+          "A container used to store objects in Amazon S3",
+          "A database table",
+          "A security group"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is an S3 Object?",
+        "options": [
+          "A physical storage device",
+          "A file stored in an S3 bucket along with its metadata",
+          "A virtual network",
+          "An IAM role"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which feature makes Amazon S3 highly durable?",
+        "options": [
+          "Data is redundantly stored across multiple devices within an AWS Region",
+          "Files are stored on a single server",
+          "Storage is limited to one Availability Zone",
+          "Objects are automatically deleted after upload"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is an S3 Storage Class?",
+        "options": [
+          "A security policy for S3 buckets",
+          "A category that defines the cost, availability, and access characteristics of stored data",
+          "A networking feature",
+          "A database engine"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which S3 Storage Class is designed for frequently accessed data?",
+        "options": [
+          "S3 Standard",
+          "S3 Glacier Deep Archive",
+          "S3 Glacier Flexible Retrieval",
+          "S3 One Zone-IA"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which S3 Storage Class is best suited for long-term archival data that is rarely accessed?",
+        "options": [
+          "S3 Standard",
+          "S3 Intelligent-Tiering",
+          "S3 Glacier Deep Archive",
+          "S3 Standard-IA"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "What is the purpose of S3 Intelligent-Tiering?",
+        "options": [
+          "Automatically move data between access tiers based on usage patterns",
+          "Increase EC2 performance",
+          "Replace IAM policies",
+          "Create Availability Zones"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes Amazon S3 and Storage Classes?",
+        "options": [
+          "Amazon S3 is an object storage service, and Storage Classes allow organizations to balance cost and access requirements for different types of data",
+          "S3 is a block storage service only",
+          "Storage Classes are used only for security purposes",
+          "S3 replaces EC2 instances"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 4,
+    "topicSort": 2,
+    "topicTitle": "EBS vs EFS",
+    "questions": [
+      {
+        "question": "What does EBS stand for in AWS?",
+        "options": [
+          "Elastic Backup Service",
+          "Elastic Block Store",
+          "Enhanced Block Storage",
+          "Enterprise Backup System"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What does EFS stand for in AWS?",
+        "options": [
+          "Elastic File Service",
+          "Enhanced File Storage",
+          "Elastic File System",
+          "Enterprise File System"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "What type of storage does Amazon EBS provide?",
+        "options": [
+          "Object Storage",
+          "File Storage",
+          "Block Storage",
+          "Archive Storage"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "What type of storage does Amazon EFS provide?",
+        "options": [
+          "File Storage",
+          "Block Storage",
+          "Object Storage",
+          "Archive Storage"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which AWS storage service is typically attached to a single EC2 instance?",
+        "options": [
+          "Amazon EFS",
+          "Amazon EBS",
+          "Amazon S3",
+          "AWS Glacier"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which AWS storage service can be accessed by multiple EC2 instances simultaneously?",
+        "options": [
+          "Amazon EBS",
+          "Amazon EFS",
+          "Amazon EC2",
+          "Amazon Route 53"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which storage solution would be most suitable for a shared web application where multiple servers need access to the same files?",
+        "options": [
+          "Amazon EBS",
+          "Amazon EFS",
+          "EC2 Instance Store",
+          "AWS Lambda"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which storage service is commonly used as the primary disk for an EC2 instance?",
+        "options": [
+          "Amazon EFS",
+          "Amazon EBS",
+          "Amazon S3",
+          "AWS Backup"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is a major advantage of Amazon EFS?",
+        "options": [
+          "Shared file access with automatic scaling",
+          "Direct object storage access",
+          "Lower latency than all storage services",
+          "Replaces EC2 instances"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes EBS and EFS?",
+        "options": [
+          "EBS provides block storage for individual EC2 instances, while EFS provides scalable shared file storage for multiple EC2 instances",
+          "EBS and EFS are identical services",
+          "EFS is object storage and EBS is file storage",
+          "Both are used only for backups"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 4,
+    "topicSort": 3,
+    "topicTitle": "Lifecycle policies & versioning",
+    "questions": [
+      {
+        "question": "What is S3 Versioning?",
+        "options": [
+          "A feature that automatically increases storage size",
+          "A feature that keeps multiple versions of an object in an S3 bucket",
+          "A backup service for EC2",
+          "A networking configuration"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Why is S3 Versioning useful?",
+        "options": [
+          "It protects against accidental deletion and overwriting of objects",
+          "It increases CPU performance",
+          "It creates new AWS accounts automatically",
+          "It reduces internet latency"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What happens when an object is updated in a version-enabled S3 bucket?",
+        "options": [
+          "The old version is deleted permanently",
+          "A new version is created while previous versions are retained",
+          "The bucket is recreated",
+          "The object becomes read-only"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is the primary purpose of an S3 Lifecycle Policy?",
+        "options": [
+          "To automate storage management and optimize costs",
+          "To manage IAM users",
+          "To create EC2 instances",
+          "To configure networking"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which action can a Lifecycle Policy perform?",
+        "options": [
+          "Move objects to a lower-cost storage class after a specific period",
+          "Create Availability Zones",
+          "Increase EC2 memory automatically",
+          "Manage IAM roles"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "A company stores logs that are rarely accessed after 90 days. Which Lifecycle Policy action would be most appropriate?",
+        "options": [
+          "Transition objects to a lower-cost storage class such as Glacier",
+          "Delete the bucket immediately",
+          "Launch a new EC2 instance",
+          "Create a new Region"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is a common use case for S3 Versioning?",
+        "options": [
+          "Recovering accidentally deleted or modified files",
+          "Managing network traffic",
+          "Creating virtual machines",
+          "Configuring DNS records"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Can Lifecycle Policies be applied to previous object versions?",
+        "options": [
+          "Yes, Lifecycle Policies can manage current and non-current object versions",
+          "No, only current versions can be managed",
+          "Only IAM administrators can manage versions manually",
+          "Versioning and Lifecycle Policies cannot work together"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which combination provides both data protection and cost optimization in Amazon S3?",
+        "options": [
+          "Versioning + Lifecycle Policies",
+          "EC2 + IAM",
+          "VPC + Route 53",
+          "EBS + Security Groups"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes Lifecycle Policies and Versioning?",
+        "options": [
+          "Versioning protects object history, while Lifecycle Policies automate storage transitions and deletion to optimize costs",
+          "Both features perform the same function",
+          "Lifecycle Policies replace Versioning entirely",
+          "Versioning is only used for networking"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 4,
+    "topicSort": 4,
+    "topicTitle": "Encryption at rest & in transit",
+    "questions": [
+      {
+        "question": "What is encryption?",
+        "options": [
+          "A method of compressing files",
+          "The process of converting readable data into an unreadable format to protect it from unauthorized access",
+          "A backup strategy",
+          "A networking protocol"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is Encryption at Rest?",
+        "options": [
+          "Encrypting data while it is stored on disks, databases, or storage services",
+          "Encrypting data while it travels across a network",
+          "Encrypting data only during backups",
+          "Encrypting user passwords only"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which AWS service commonly supports Encryption at Rest?",
+        "options": [
+          "Amazon S3",
+          "Amazon EBS",
+          "Amazon RDS",
+          "All of the above"
+        ],
+        "correctIndex": 3
+      },
+      {
+        "question": "What is Encryption in Transit?",
+        "options": [
+          "Encrypting data while it is being transferred between systems or over a network",
+          "Encrypting only archived data",
+          "Encrypting physical servers",
+          "Encrypting IAM policies"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which protocol is commonly used to provide Encryption in Transit for web applications?",
+        "options": [
+          "FTP",
+          "HTTP",
+          "HTTPS (TLS/SSL)",
+          "SMTP"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "Why is Encryption at Rest important?",
+        "options": [
+          "It protects stored data from unauthorized access if storage media is compromised",
+          "It increases CPU performance",
+          "It eliminates the need for backups",
+          "It improves internet speed"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Why is Encryption in Transit important?",
+        "options": [
+          "It protects data from interception or tampering during transmission",
+          "It increases storage capacity",
+          "It reduces EC2 costs",
+          "It replaces authentication"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which AWS service is commonly used to manage encryption keys?",
+        "options": [
+          "Amazon EC2",
+          "AWS Key Management Service (KMS)",
+          "Amazon Route 53",
+          "AWS Organizations"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "A company stores customer records in Amazon S3 and accesses them through HTTPS. Which types of encryption are being used?",
+        "options": [
+          "Encryption at Rest only",
+          "Encryption in Transit only",
+          "Both Encryption at Rest and Encryption in Transit",
+          "No encryption"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "Which statement best summarizes Encryption at Rest and Encryption in Transit?",
+        "options": [
+          "Encryption at Rest protects stored data, while Encryption in Transit protects data as it moves between systems",
+          "Both perform the same function",
+          "Encryption is only required during transmission",
+          "Encryption is only required for stored data"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 5,
+    "topicSort": 1,
+    "topicTitle": "VPCs, subnets & route tables",
+    "questions": [
+      {
+        "question": "What does VPC stand for in AWS?",
+        "options": [
+          "Virtual Private Cloud",
+          "Virtual Public Connection",
+          "Virtual Protected Cluster",
+          "Virtual Processing Center"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is the primary purpose of an AWS VPC?",
+        "options": [
+          "To store files",
+          "To provide an isolated networking environment for AWS resources",
+          "To manage IAM users",
+          "To create backups"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is a subnet in AWS?",
+        "options": [
+          "A storage bucket",
+          "A smaller network segment within a VPC",
+          "A security policy",
+          "An EC2 instance type"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Why are subnets used inside a VPC?",
+        "options": [
+          "To organize resources and control network access",
+          "To increase storage capacity",
+          "To manage IAM roles",
+          "To create snapshots"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is a Public Subnet?",
+        "options": [
+          "A subnet that has a route to the internet through an Internet Gateway",
+          "A subnet used only for storage",
+          "A subnet without IP addresses",
+          "A subnet used only for databases"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is a Private Subnet?",
+        "options": [
+          "A subnet connected directly to the internet",
+          "A subnet without direct internet access",
+          "A subnet that contains only databases",
+          "A subnet used only by AWS services"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is a Route Table?",
+        "options": [
+          "A list of firewall rules",
+          "A set of routing rules that determine where network traffic is directed",
+          "A storage management tool",
+          "A backup configuration"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is the role of an Internet Gateway (IGW) in a VPC?",
+        "options": [
+          "To provide internet connectivity for resources in public subnets",
+          "To encrypt data",
+          "To manage IAM permissions",
+          "To store application logs"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "A company hosts a web server in a public subnet and a database in a private subnet. What is the main advantage of this architecture?",
+        "options": [
+          "Improved security by preventing direct internet access to the database",
+          "Faster EC2 performance",
+          "Reduced storage requirements",
+          "Elimination of route tables"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes VPCs, Subnets, and Route Tables?",
+        "options": [
+          "A VPC provides an isolated network, subnets divide the network into segments, and route tables control traffic flow between resources",
+          "They are all used only for storage management",
+          "Route tables replace VPCs",
+          "Subnets manage IAM users"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 5,
+    "topicSort": 2,
+    "topicTitle": "Internet Gateway & NAT Gateway",
+    "questions": [
+      {
+        "question": "What is the primary purpose of an Internet Gateway (IGW) in AWS?",
+        "options": [
+          "To provide internet connectivity between a VPC and the public internet",
+          "To store backups",
+          "To manage IAM users",
+          "To create EC2 instances"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which AWS networking component must be attached to a VPC to enable internet access?",
+        "options": [
+          "Route Table",
+          "Internet Gateway",
+          "Security Group",
+          "EBS Volume"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which type of subnet typically uses an Internet Gateway?",
+        "options": [
+          "Private Subnet",
+          "Public Subnet",
+          "Database Subnet Only",
+          "Backup Subnet"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is a NAT Gateway?",
+        "options": [
+          "A service that allows resources in private subnets to access the internet without accepting inbound internet connections",
+          "A storage service",
+          "A DNS server",
+          "An IAM feature"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Why would an EC2 instance in a private subnet need a NAT Gateway?",
+        "options": [
+          "To download software updates or access external services without being publicly accessible",
+          "To increase storage capacity",
+          "To manage IAM roles",
+          "To create snapshots"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Where should a NAT Gateway be deployed?",
+        "options": [
+          "In a Public Subnet",
+          "In a Private Subnet",
+          "In an IAM Group",
+          "In an Availability Zone only"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement correctly describes inbound internet traffic to resources behind a NAT Gateway?",
+        "options": [
+          "Direct inbound internet connections are not allowed",
+          "All inbound traffic is automatically allowed",
+          "NAT Gateway replaces security groups",
+          "NAT Gateway acts as a load balancer"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is a key security benefit of using private subnets with a NAT Gateway?",
+        "options": [
+          "Resources can access the internet without being directly exposed to external users",
+          "It removes the need for firewalls",
+          "It eliminates route tables",
+          "It increases CPU performance"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "A company places web servers in a public subnet and database servers in a private subnet. Which component allows the database servers to download operating system updates?",
+        "options": [
+          "Internet Gateway",
+          "NAT Gateway",
+          "Security Group",
+          "Route 53"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which statement best summarizes Internet Gateway and NAT Gateway?",
+        "options": [
+          "Internet Gateways provide direct internet access for public resources, while NAT Gateways allow private resources to access the internet securely without accepting inbound connections",
+          "Both services perform exactly the same function",
+          "NAT Gateways provide inbound internet access to private resources",
+          "Internet Gateways replace route tables"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 5,
+    "topicSort": 3,
+    "topicTitle": "Security groups vs NACLs",
+    "questions": [
+      {
+        "question": "What is the primary purpose of a Security Group in AWS?",
+        "options": [
+          "To provide instance-level firewall protection",
+          "To store application logs",
+          "To create subnets",
+          "To manage IAM users"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "At which level does a Security Group operate?",
+        "options": [
+          "VPC Level",
+          "Subnet Level",
+          "Instance Level",
+          "Region Level"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "What is a Network Access Control List (NACL)?",
+        "options": [
+          "A subnet-level firewall that controls inbound and outbound traffic",
+          "A storage service",
+          "A backup mechanism",
+          "An IAM policy"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "At which level does a NACL operate?",
+        "options": [
+          "Instance Level",
+          "Subnet Level",
+          "Region Level",
+          "Account Level"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which of the following is stateful?",
+        "options": [
+          "Security Group",
+          "NACL",
+          "Route Table",
+          "Internet Gateway"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which of the following is stateless?",
+        "options": [
+          "Security Group",
+          "IAM Policy",
+          "NACL",
+          "Route 53"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "Which AWS security feature supports only Allow rules?",
+        "options": [
+          "NACL",
+          "Security Group",
+          "Route Table",
+          "Internet Gateway"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which AWS security feature supports both Allow and Deny rules?",
+        "options": [
+          "Security Group",
+          "IAM Group",
+          "NACL",
+          "EC2 Instance"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "A company wants to block a specific IP address from accessing an entire subnet. Which AWS feature is best suited for this requirement?",
+        "options": [
+          "Security Group",
+          "NACL",
+          "EBS Volume",
+          "Launch Template"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which statement best summarizes Security Groups and NACLs?",
+        "options": [
+          "Security Groups are stateful instance-level firewalls, while NACLs are stateless subnet-level firewalls that support both allow and deny rules",
+          "Both services are identical",
+          "Security Groups operate at subnet level and NACLs operate at instance level",
+          "NACLs replace Security Groups entirely"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 5,
+    "topicSort": 4,
+    "topicTitle": "Public & private tier design",
+    "questions": [
+      {
+        "question": "What is the primary purpose of a multi-tier architecture in AWS?",
+        "options": [
+          "To increase storage capacity only",
+          "To separate application components for security, scalability, and manageability",
+          "To eliminate subnets",
+          "To replace VPCs"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is typically placed in the Public Tier of an AWS architecture?",
+        "options": [
+          "Database Servers",
+          "Internet-facing resources such as Web Servers and Load Balancers",
+          "Backup Storage Only",
+          "IAM Users"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is typically placed in the Private Tier?",
+        "options": [
+          "Internet Gateways",
+          "Backend Application Servers and Databases",
+          "Public Load Balancers",
+          "DNS Servers Only"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Why are databases commonly deployed in private subnets?",
+        "options": [
+          "To improve security by preventing direct internet access",
+          "To increase internet speed",
+          "To reduce storage costs",
+          "To eliminate backups"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which AWS component allows internet traffic to reach resources in the Public Tier?",
+        "options": [
+          "NAT Gateway",
+          "Internet Gateway",
+          "Security Group",
+          "Route 53"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "How do resources in a Private Tier typically access the internet for updates and patches?",
+        "options": [
+          "Through an Internet Gateway directly",
+          "Through a NAT Gateway",
+          "Through a Security Group",
+          "Through a Launch Template"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is a common three-tier architecture design?",
+        "options": [
+          "Web Tier, Application Tier, Database Tier",
+          "Storage Tier, IAM Tier, DNS Tier",
+          "Region Tier, AZ Tier, Subnet Tier",
+          "Route Tier, Firewall Tier, Backup Tier"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is the primary security benefit of separating public and private tiers?",
+        "options": [
+          "Reduced attack surface and better access control",
+          "Increased CPU performance",
+          "Automatic scaling",
+          "Lower storage costs"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "A web application receives requests from users, processes them through application servers, and stores data in a database. Which component should be in the Private Tier?",
+        "options": [
+          "Internet Gateway",
+          "Load Balancer",
+          "Database Server",
+          "Public Web Server"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "Which statement best summarizes Public & Private Tier Design?",
+        "options": [
+          "Public tiers host internet-facing resources, while private tiers host internal systems that require additional security and controlled access",
+          "Public and private tiers serve the same purpose",
+          "Private tiers require direct internet access",
+          "Public tiers are more secure than private tiers"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 6,
+    "topicSort": 1,
+    "topicTitle": "Application Load Balancer (ALB)",
+    "questions": [
+      {
+        "question": "What is the primary purpose of an Application Load Balancer (ALB)?",
+        "options": [
+          "To store application data",
+          "To distribute incoming application traffic across multiple targets",
+          "To manage IAM users",
+          "To create backups"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "At which layer of the OSI model does an Application Load Balancer operate?",
+        "options": [
+          "Layer 2 (Data Link)",
+          "Layer 3 (Network)",
+          "Layer 4 (Transport)",
+          "Layer 7 (Application)"
+        ],
+        "correctIndex": 3
+      },
+      {
+        "question": "Which protocols are commonly supported by an Application Load Balancer?",
+        "options": [
+          "HTTP and HTTPS",
+          "FTP only",
+          "SMTP only",
+          "SSH only"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is a Target Group in an ALB?",
+        "options": [
+          "A collection of resources that receive traffic from the load balancer",
+          "A security group",
+          "An IAM role",
+          "A route table"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is a major benefit of using an ALB?",
+        "options": [
+          "High availability through traffic distribution across multiple targets",
+          "Increased storage capacity",
+          "Automatic database backups",
+          "IAM policy management"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is Path-Based Routing in an ALB?",
+        "options": [
+          "Routing requests based on URL paths such as /api or /images",
+          "Routing based on storage size",
+          "Routing based on IAM permissions",
+          "Routing based on Availability Zones only"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is Host-Based Routing in an ALB?",
+        "options": [
+          "Routing traffic based on domain names or host headers",
+          "Routing based on EC2 instance size",
+          "Routing based on subnet type",
+          "Routing based on EBS volume size"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Why are health checks important in an ALB?",
+        "options": [
+          "They identify unhealthy targets and stop routing traffic to them",
+          "They increase internet speed",
+          "They create snapshots automatically",
+          "They replace security groups"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "A company hosts multiple web applications behind a single ALB. Which ALB feature allows traffic to be routed to the correct application?",
+        "options": [
+          "Path-Based and Host-Based Routing",
+          "IAM Policies",
+          "Security Groups",
+          "EBS Snapshots"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes an Application Load Balancer?",
+        "options": [
+          "An ALB distributes HTTP/HTTPS traffic across multiple targets and supports advanced routing features for scalable, highly available applications",
+          "An ALB is a storage service",
+          "An ALB replaces Auto Scaling Groups",
+          "An ALB manages IAM users"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 6,
+    "topicSort": 2,
+    "topicTitle": "Network Load Balancer (NLB)",
+    "questions": [
+      {
+        "question": "What is the primary purpose of a Network Load Balancer (NLB)?",
+        "options": [
+          "To store application data",
+          "To distribute network traffic with ultra-high performance and low latency",
+          "To manage IAM users",
+          "To create snapshots"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "At which layer of the OSI model does a Network Load Balancer operate?",
+        "options": [
+          "Layer 2 (Data Link)",
+          "Layer 3 (Network)",
+          "Layer 4 (Transport)",
+          "Layer 7 (Application)"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "Which protocols are commonly supported by a Network Load Balancer?",
+        "options": [
+          "HTTP and HTTPS only",
+          "TCP, UDP, and TLS",
+          "SMTP only",
+          "FTP only"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is a key advantage of an NLB compared to an Application Load Balancer?",
+        "options": [
+          "Lower latency and higher performance for network traffic",
+          "Built-in path-based routing",
+          "URL-based routing",
+          "Host-based routing"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which type of workload is best suited for a Network Load Balancer?",
+        "options": [
+          "High-performance TCP applications and gaming services",
+          "Static website hosting only",
+          "IAM authentication services",
+          "Route table management"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which AWS load balancer preserves the client's source IP address by default?",
+        "options": [
+          "Application Load Balancer",
+          "Network Load Balancer",
+          "Classic Load Balancer",
+          "Route 53"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Why are health checks important in a Network Load Balancer?",
+        "options": [
+          "They ensure traffic is routed only to healthy targets",
+          "They increase storage capacity",
+          "They manage IAM policies",
+          "They replace Auto Scaling"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "A company runs a real-time gaming application that requires very low latency. Which AWS load balancer is the best choice?",
+        "options": [
+          "Application Load Balancer",
+          "Network Load Balancer",
+          "Route 53",
+          "Security Group"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which routing capability is supported by an NLB?",
+        "options": [
+          "Connection-based routing at Layer 4",
+          "URL path routing",
+          "Hostname routing",
+          "Cookie-based routing"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes a Network Load Balancer?",
+        "options": [
+          "An NLB operates at Layer 4, providing ultra-high performance, low latency, and scalable traffic distribution for TCP, UDP, and TLS workloads",
+          "An NLB is used only for storage services",
+          "An NLB replaces VPC networking",
+          "An NLB manages IAM permissions"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 6,
+    "topicSort": 3,
+    "topicTitle": "Target groups & health checks",
+    "questions": [
+      {
+        "question": "What is a Target Group in AWS Elastic Load Balancing?",
+        "options": [
+          "A collection of resources that receive traffic from a load balancer",
+          "A security policy",
+          "A storage service",
+          "A VPC component"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which AWS resources can commonly be registered as targets?",
+        "options": [
+          "EC2 Instances",
+          "IP Addresses",
+          "AWS Lambda Functions",
+          "All of the Above"
+        ],
+        "correctIndex": 3
+      },
+      {
+        "question": "What is the primary purpose of a Target Group?",
+        "options": [
+          "To store application data",
+          "To organize and route traffic to backend resources",
+          "To manage IAM users",
+          "To create snapshots"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is a Health Check in AWS Load Balancing?",
+        "options": [
+          "A mechanism used to determine whether a target is available and functioning correctly",
+          "A backup procedure",
+          "A monitoring dashboard only",
+          "A VPC routing rule"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Why are Health Checks important?",
+        "options": [
+          "They improve application availability by detecting unhealthy targets",
+          "They increase storage capacity",
+          "They replace security groups",
+          "They manage Route Tables"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What happens when a target repeatedly fails health checks?",
+        "options": [
+          "It continues receiving traffic normally",
+          "It is marked unhealthy and removed from traffic routing",
+          "It is automatically deleted",
+          "It becomes a load balancer"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which protocol is commonly used for Application Load Balancer health checks?",
+        "options": [
+          "HTTP/HTTPS",
+          "SMTP",
+          "FTP",
+          "SNMP"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "A load balancer has three EC2 instances in a Target Group. One instance becomes unavailable. What happens?",
+        "options": [
+          "Traffic continues to be sent to all instances equally",
+          "The unhealthy instance is removed from rotation, and traffic is sent to healthy instances only",
+          "The load balancer stops working",
+          "All instances are marked unhealthy"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which AWS feature works closely with Target Groups to support high availability?",
+        "options": [
+          "Health Checks",
+          "IAM Roles",
+          "EBS Snapshots",
+          "Route Tables"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes Target Groups and Health Checks?",
+        "options": [
+          "Target Groups define traffic destinations, while Health Checks ensure traffic is routed only to healthy resources",
+          "Both perform the same function",
+          "Health Checks replace Target Groups",
+          "Target Groups are used only for storage services"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 6,
+    "topicSort": 4,
+    "topicTitle": "Auto Scaling groups & policies",
+    "questions": [
+      {
+        "question": "What is the primary purpose of an Auto Scaling Group (ASG)?",
+        "options": [
+          "To automatically adjust the number of EC2 instances based on demand",
+          "To store application data",
+          "To manage IAM users",
+          "To create VPCs"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What problem does Auto Scaling solve?",
+        "options": [
+          "Over-provisioning and under-provisioning of resources",
+          "Database corruption",
+          "IAM authentication issues",
+          "Route table management"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which AWS component is typically used by an Auto Scaling Group to launch new EC2 instances?",
+        "options": [
+          "Route Table",
+          "Launch Template",
+          "Security Group",
+          "EBS Snapshot"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is the desired capacity in an Auto Scaling Group?",
+        "options": [
+          "The number of EC2 instances the group attempts to maintain",
+          "The storage size of EBS volumes",
+          "The number of Availability Zones",
+          "The number of IAM users"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is a Scaling Policy?",
+        "options": [
+          "A set of rules that determines when Auto Scaling should add or remove instances",
+          "A backup configuration",
+          "An IAM permission document",
+          "A routing rule"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which metric is commonly used to trigger Auto Scaling?",
+        "options": [
+          "CPU Utilization",
+          "Keyboard Activity",
+          "Screen Resolution",
+          "Storage Class"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is Scale-Out?",
+        "options": [
+          "Adding more EC2 instances when demand increases",
+          "Removing EC2 instances when demand decreases",
+          "Increasing storage only",
+          "Creating new VPCs"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is Scale-In?",
+        "options": [
+          "Adding more EC2 instances",
+          "Removing unnecessary EC2 instances when demand decreases",
+          "Creating more Availability Zones",
+          "Increasing database storage"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "A web application experiences a sudden traffic spike. Which AWS service helps automatically launch additional servers?",
+        "options": [
+          "Auto Scaling Group",
+          "Route 53",
+          "IAM",
+          "EBS"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes Auto Scaling Groups and Policies?",
+        "options": [
+          "Auto Scaling Groups maintain the desired number of EC2 instances, while Scaling Policies automatically adjust capacity based on demand",
+          "Auto Scaling Groups are used only for storage services",
+          "Scaling Policies replace Load Balancers",
+          "Auto Scaling is used only for databases"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 7,
+    "topicSort": 1,
+    "topicTitle": "Amazon RDS & Multi-AZ",
+    "questions": [
+      {
+        "question": "What does RDS stand for in AWS?",
+        "options": [
+          "Relational Database Service",
+          "Remote Data Storage",
+          "Regional Database System",
+          "Reliable Data Service"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is the primary benefit of Amazon RDS?",
+        "options": [
+          "AWS manages database infrastructure tasks such as backups, patching, and maintenance",
+          "It eliminates databases entirely",
+          "It replaces EC2 instances",
+          "It provides object storage"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which type of database does Amazon RDS provide?",
+        "options": [
+          "Relational Database",
+          "Object Storage",
+          "File Storage",
+          "Graph Database Only"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What does Multi-AZ mean in Amazon RDS?",
+        "options": [
+          "Multiple AWS accounts",
+          "Database deployment across multiple Availability Zones for high availability",
+          "Multiple VPCs",
+          "Multiple storage classes"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is the primary purpose of a Multi-AZ deployment?",
+        "options": [
+          "High Availability and Disaster Recovery",
+          "Increased storage capacity only",
+          "Lower networking costs",
+          "Faster IAM authentication"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What happens if the primary database instance fails in a Multi-AZ deployment?",
+        "options": [
+          "The database is deleted",
+          "Traffic automatically fails over to the standby instance",
+          "A new AWS Region is created",
+          "Users lose all database access permanently"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Does a Multi-AZ standby instance serve application read traffic?",
+        "options": [
+          "Yes, always",
+          "No, it is primarily used for failover purposes",
+          "Only during backups",
+          "Only during maintenance"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which AWS feature automatically handles database backups in Amazon RDS?",
+        "options": [
+          "Amazon RDS Managed Backups",
+          "Route 53",
+          "Security Groups",
+          "NAT Gateway"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "A company runs a production database that requires minimal downtime. Which Amazon RDS feature should be enabled?",
+        "options": [
+          "Multi-AZ Deployment",
+          "Public Subnet Only",
+          "IAM Group",
+          "EBS Snapshot Only"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes Amazon RDS and Multi-AZ?",
+        "options": [
+          "Amazon RDS is a managed relational database service, and Multi-AZ deployments provide high availability through automatic failover to a standby database",
+          "Multi-AZ is used only for backups",
+          "RDS replaces VPC networking",
+          "Multi-AZ increases database size only"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 7,
+    "topicSort": 2,
+    "topicTitle": "DynamoDB fundamentals",
+    "questions": [
+      {
+        "question": "What is Amazon DynamoDB?",
+        "options": [
+          "A managed relational database service",
+          "A fully managed NoSQL database service provided by AWS",
+          "A file storage service",
+          "A load balancer"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What type of database is DynamoDB?",
+        "options": [
+          "Relational Database",
+          "Graph Database",
+          "NoSQL Database",
+          "Data Warehouse"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "What is the primary data structure in DynamoDB?",
+        "options": [
+          "Bucket",
+          "Table",
+          "Volume",
+          "Cluster"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is an Item in DynamoDB?",
+        "options": [
+          "A database backup",
+          "A single record stored within a table",
+          "A network configuration",
+          "An IAM role"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is an Attribute in DynamoDB?",
+        "options": [
+          "A column-like piece of data associated with an item",
+          "A storage volume",
+          "A subnet",
+          "A security group"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Why is the Primary Key important in DynamoDB?",
+        "options": [
+          "It uniquely identifies items within a table",
+          "It manages IAM users",
+          "It creates backups automatically",
+          "It controls networking"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which feature makes DynamoDB highly scalable?",
+        "options": [
+          "Automatic scaling and distributed architecture",
+          "Manual server management",
+          "Fixed storage capacity",
+          "Single Availability Zone deployment"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which use case is well-suited for DynamoDB?",
+        "options": [
+          "Real-time applications requiring low-latency access at scale",
+          "Traditional relational reporting with complex joins",
+          "Operating system management",
+          "DNS configuration"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is a key advantage of DynamoDB compared to self-managed databases?",
+        "options": [
+          "AWS handles infrastructure, scaling, availability, and maintenance",
+          "Users must manage servers manually",
+          "It requires operating system patching by customers",
+          "It can only store structured SQL data"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes DynamoDB?",
+        "options": [
+          "DynamoDB is a fully managed NoSQL database service that provides high performance, automatic scaling, and low-latency access to data",
+          "DynamoDB is a relational database service only",
+          "DynamoDB replaces VPC networking",
+          "DynamoDB is used only for backups"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 7,
+    "topicSort": 3,
+    "topicTitle": "ElastiCache for performance",
+    "questions": [
+      {
+        "question": "What is Amazon ElastiCache?",
+        "options": [
+          "A managed caching service that improves application performance",
+          "A relational database service",
+          "A load balancer",
+          "A file storage service"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is the primary purpose of ElastiCache?",
+        "options": [
+          "To increase database storage size",
+          "To reduce application latency and improve performance",
+          "To manage IAM users",
+          "To create VPCs"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which type of storage does ElastiCache primarily use?",
+        "options": [
+          "Disk-Based Storage",
+          "In-Memory Storage",
+          "Object Storage",
+          "File Storage"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which caching engines are supported by Amazon ElastiCache?",
+        "options": [
+          "Redis and Memcached",
+          "MySQL and PostgreSQL",
+          "Oracle and SQL Server",
+          "DynamoDB and Neptune"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Why is caching commonly used in modern applications?",
+        "options": [
+          "To reduce repeated database queries and improve response times",
+          "To increase internet bandwidth",
+          "To replace security groups",
+          "To eliminate storage requirements"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is a Cache Hit?",
+        "options": [
+          "When requested data is found in the cache",
+          "When a database fails",
+          "When a security group blocks traffic",
+          "When a backup is created"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is a Cache Miss?",
+        "options": [
+          "When data is unavailable in the cache and must be retrieved from the original data source",
+          "When a user logs out",
+          "When an instance is terminated",
+          "When a snapshot fails"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which application scenario is most likely to benefit from ElastiCache?",
+        "options": [
+          "Frequently accessed product catalog data in an e-commerce application",
+          "Long-term archival storage",
+          "DNS management",
+          "IAM policy administration"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "How does ElastiCache improve database performance?",
+        "options": [
+          "By serving frequently requested data from memory and reducing database workload",
+          "By replacing databases entirely",
+          "By increasing database storage automatically",
+          "By creating additional Availability Zones"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes Amazon ElastiCache?",
+        "options": [
+          "ElastiCache is a managed in-memory caching service that improves application speed, reduces latency, and decreases database load",
+          "ElastiCache is a relational database service",
+          "ElastiCache is used only for backups",
+          "ElastiCache replaces VPC networking"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 7,
+    "topicSort": 4,
+    "topicTitle": "Amazon Aurora overview",
+    "questions": [
+      {
+        "question": "What is Amazon Aurora?",
+        "options": [
+          "A file storage service",
+          "A fully managed relational database engine built for the cloud",
+          "A load balancer",
+          "A NoSQL database"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Amazon Aurora is compatible with which popular database engines?",
+        "options": [
+          "MySQL and PostgreSQL",
+          "Oracle and MongoDB only",
+          "Redis and Memcached",
+          "DynamoDB and Cassandra"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which AWS service family does Aurora belong to?",
+        "options": [
+          "Amazon S3",
+          "Amazon RDS",
+          "Amazon EC2",
+          "Amazon CloudFront"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is a key advantage of Aurora compared to traditional self-managed databases?",
+        "options": [
+          "AWS handles infrastructure, backups, patching, and high availability",
+          "Users must manage hardware themselves",
+          "Aurora only supports local deployments",
+          "Aurora requires manual scaling for every operation"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "How does Aurora improve availability?",
+        "options": [
+          "By replicating data across multiple Availability Zones automatically",
+          "By storing data on a single server",
+          "By eliminating backups",
+          "By disabling failover"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is an Aurora Replica?",
+        "options": [
+          "A read-only database instance used to scale read workloads",
+          "A backup file",
+          "A VPC component",
+          "A load balancer"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which type of workload benefits most from Aurora Replicas?",
+        "options": [
+          "Read-intensive applications",
+          "Backup-only environments",
+          "IAM management systems",
+          "DNS services"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What happens if the primary Aurora instance becomes unavailable?",
+        "options": [
+          "Aurora can automatically fail over to a replica",
+          "The database is deleted",
+          "All data is lost permanently",
+          "Users must manually recreate the database"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Why do organizations choose Aurora for production applications?",
+        "options": [
+          "High performance, scalability, availability, and managed operations",
+          "It replaces networking services",
+          "It only supports test environments",
+          "It eliminates database security requirements"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes Amazon Aurora?",
+        "options": [
+          "Aurora is a fully managed relational database service that offers high performance, automatic replication, scalability, and fault tolerance",
+          "Aurora is a NoSQL database service",
+          "Aurora is a storage service only",
+          "Aurora replaces EC2 instances"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 8,
+    "topicSort": 1,
+    "topicTitle": "Route 53 routing policies",
+    "questions": [
+      {
+        "question": "What is Amazon Route 53?",
+        "options": [
+          "A database service",
+          "A scalable DNS (Domain Name System) and traffic routing service",
+          "A storage service",
+          "A virtual machine platform"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is the primary purpose of a Route 53 Routing Policy?",
+        "options": [
+          "To determine how DNS queries are answered and where traffic is directed",
+          "To manage IAM users",
+          "To create EC2 instances",
+          "To store application logs"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which Route 53 routing policy routes traffic to a single resource?",
+        "options": [
+          "Weighted Routing",
+          "Latency Routing",
+          "Simple Routing",
+          "Geolocation Routing"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "Which routing policy distributes traffic across multiple resources based on assigned percentages?",
+        "options": [
+          "Geolocation Routing",
+          "Weighted Routing",
+          "Failover Routing",
+          "Multivalue Routing"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "A company wants to send 80% of traffic to Server A and 20% to Server B during testing. Which routing policy should be used?",
+        "options": [
+          "Simple Routing",
+          "Failover Routing",
+          "Weighted Routing",
+          "Latency Routing"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "Which Route 53 routing policy directs users to the AWS Region with the lowest network latency?",
+        "options": [
+          "Latency Routing",
+          "Geolocation Routing",
+          "Weighted Routing",
+          "Simple Routing"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which routing policy sends users to resources based on their geographic location?",
+        "options": [
+          "Latency Routing",
+          "Geolocation Routing",
+          "Failover Routing",
+          "Simple Routing"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is the purpose of Failover Routing?",
+        "options": [
+          "To provide disaster recovery by directing traffic to a backup resource when the primary resource becomes unavailable",
+          "To improve storage performance",
+          "To manage IAM permissions",
+          "To create Availability Zones"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which Route 53 routing policy returns multiple healthy records in response to a DNS query?",
+        "options": [
+          "Multivalue Answer Routing",
+          "Geolocation Routing",
+          "Weighted Routing",
+          "Failover Routing"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes Route 53 Routing Policies?",
+        "options": [
+          "Route 53 Routing Policies determine how DNS traffic is directed based on requirements such as performance, availability, testing, and geographic location",
+          "Route 53 is used only for storage services",
+          "Routing Policies replace Load Balancers entirely",
+          "Route 53 manages database backups"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 8,
+    "topicSort": 2,
+    "topicTitle": "CloudFront CDN delivery",
+    "questions": [
+      {
+        "question": "What is Amazon CloudFront?",
+        "options": [
+          "A relational database service",
+          "A Content Delivery Network (CDN) service that delivers content with low latency and high performance",
+          "A virtual machine service",
+          "A storage volume service"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is the primary purpose of a CDN?",
+        "options": [
+          "To increase database storage",
+          "To deliver content faster by serving it from locations closer to users",
+          "To manage IAM users",
+          "To create backups"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which AWS service provides CDN functionality?",
+        "options": [
+          "Amazon RDS",
+          "Amazon EC2",
+          "Amazon CloudFront",
+          "Amazon EBS"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "What are Edge Locations in CloudFront?",
+        "options": [
+          "Data centers that cache content closer to users worldwide",
+          "Database servers",
+          "IAM authentication servers",
+          "Route tables"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which type of content is commonly delivered through CloudFront?",
+        "options": [
+          "Images, videos, websites, APIs, and static files",
+          "IAM policies only",
+          "Route tables only",
+          "EC2 instance configurations"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is an Origin in CloudFront?",
+        "options": [
+          "The source location from which CloudFront retrieves content",
+          "A security group",
+          "A VPC subnet",
+          "A load balancer only"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What happens when a user requests content that is already cached at an Edge Location?",
+        "options": [
+          "CloudFront retrieves it from the origin again",
+          "CloudFront serves it directly from the cache, reducing latency",
+          "The request fails",
+          "A new Edge Location is created"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is a Cache Miss in CloudFront?",
+        "options": [
+          "When requested content is not available at the Edge Location and must be fetched from the origin",
+          "When a database fails",
+          "When a Route 53 record expires",
+          "When an EC2 instance stops"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "How does CloudFront improve application performance?",
+        "options": [
+          "By reducing latency and offloading traffic from origin servers",
+          "By increasing EC2 instance size automatically",
+          "By replacing Route 53",
+          "By creating Availability Zones"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes CloudFront CDN Delivery?",
+        "options": [
+          "CloudFront is a global CDN service that caches content at Edge Locations to deliver applications, websites, and media with low latency and high performance",
+          "CloudFront is a database service",
+          "CloudFront replaces Amazon S3",
+          "CloudFront manages IAM permissions"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 8,
+    "topicSort": 3,
+    "topicTitle": "AWS Certificate Manager (ACM)",
+    "questions": [
+      {
+        "question": "What is AWS Certificate Manager (ACM)?",
+        "options": [
+          "A database management service",
+          "A service that provisions, manages, and deploys SSL/TLS certificates for AWS resources",
+          "A storage service",
+          "A virtual machine service"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is the primary purpose of an SSL/TLS certificate?",
+        "options": [
+          "To encrypt data transmitted between clients and servers",
+          "To increase storage capacity",
+          "To create EC2 instances",
+          "To manage IAM users"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which protocol commonly uses SSL/TLS certificates?",
+        "options": [
+          "HTTP",
+          "HTTPS",
+          "FTP",
+          "Telnet"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is a major benefit of using AWS Certificate Manager?",
+        "options": [
+          "Automatic certificate renewal and management",
+          "Automatic database backups",
+          "Automatic VPC creation",
+          "Automatic scaling of EC2 instances"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which AWS service commonly integrates with ACM to provide HTTPS support?",
+        "options": [
+          "Application Load Balancer (ALB)",
+          "Amazon S3 only",
+          "EBS Volumes",
+          "Route Tables"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which AWS CDN service commonly uses ACM certificates for secure content delivery?",
+        "options": [
+          "Amazon RDS",
+          "Amazon CloudFront",
+          "Amazon DynamoDB",
+          "Amazon EBS"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Why is certificate renewal important?",
+        "options": [
+          "Expired certificates can cause security warnings and service disruptions",
+          "It increases storage space",
+          "It improves CPU performance",
+          "It creates backups"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What does ACM automate for AWS-managed certificates?",
+        "options": [
+          "Certificate issuance and renewal",
+          "IAM policy creation",
+          "Route table updates",
+          "EC2 instance patching"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "A company wants to secure its website with HTTPS while minimizing operational overhead. Which AWS service should it use?",
+        "options": [
+          "AWS Certificate Manager (ACM)",
+          "Amazon EBS",
+          "Route Tables",
+          "Security Groups"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes AWS Certificate Manager?",
+        "options": [
+          "ACM simplifies SSL/TLS certificate provisioning, deployment, and automatic renewal for AWS applications and services",
+          "ACM is a database service",
+          "ACM replaces DNS services",
+          "ACM is used only for backups"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 9,
+    "topicSort": 1,
+    "topicTitle": "AWS Lambda & execution models",
+    "questions": [
+      {
+        "question": "What is AWS Lambda?",
+        "options": [
+          "A managed database service",
+          "A serverless compute service that runs code without managing servers",
+          "A storage service",
+          "A networking service"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is the primary benefit of AWS Lambda?",
+        "options": [
+          "No server management required",
+          "Unlimited database storage",
+          "Automatic DNS management",
+          "Dedicated physical servers"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What does \"serverless\" mean in AWS Lambda?",
+        "options": [
+          "No servers exist anywhere",
+          "Developers do not need to manage the underlying servers",
+          "Applications cannot use compute resources",
+          "Lambda runs only on local machines"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What triggers an AWS Lambda function?",
+        "options": [
+          "Events from AWS services, applications, or external systems",
+          "IAM user creation only",
+          "Route table updates only",
+          "Availability Zone changes only"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which AWS service commonly triggers Lambda when a file is uploaded?",
+        "options": [
+          "Amazon S3",
+          "Amazon RDS",
+          "Amazon EBS",
+          "AWS Organizations"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is an execution model in AWS Lambda?",
+        "options": [
+          "The way Lambda functions are invoked and executed in response to events",
+          "A storage configuration",
+          "A DNS routing strategy",
+          "A backup policy"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which execution model waits for the function to complete before returning a response?",
+        "options": [
+          "Synchronous Invocation",
+          "Asynchronous Invocation",
+          "Scheduled Invocation Only",
+          "Batch Invocation Only"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which execution model allows the caller to continue immediately while Lambda processes the request in the background?",
+        "options": [
+          "Synchronous Invocation",
+          "Asynchronous Invocation",
+          "Manual Invocation",
+          "Static Invocation"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "A web application sends a request to Lambda and requires an immediate response. Which execution model is most appropriate?",
+        "options": [
+          "Asynchronous Invocation",
+          "Synchronous Invocation",
+          "Batch Processing Only",
+          "Manual Trigger"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which statement best summarizes AWS Lambda and its execution models?",
+        "options": [
+          "AWS Lambda is a serverless compute service that executes code in response to events using synchronous or asynchronous invocation models",
+          "Lambda is a storage service",
+          "Lambda replaces Amazon S3",
+          "Lambda is used only for backups"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 9,
+    "topicSort": 2,
+    "topicTitle": "API Gateway REST APIs",
+    "questions": [
+      {
+        "question": "What is Amazon API Gateway?",
+        "options": [
+          "A database service",
+          "A fully managed service for creating, publishing, securing, and monitoring APIs",
+          "A storage service",
+          "A virtual machine platform"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is the primary purpose of API Gateway?",
+        "options": [
+          "To provide a secure entry point for applications and backend services",
+          "To store files",
+          "To manage EC2 instances",
+          "To create VPCs"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What does REST stand for in REST API?",
+        "options": [
+          "Remote Execution Service Technology",
+          "Representational State Transfer",
+          "Regional Security Transfer",
+          "Resource Execution Standard Technology"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which HTTP method is commonly used to retrieve data in a REST API?",
+        "options": [
+          "POST",
+          "GET",
+          "DELETE",
+          "PUT"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which AWS service is most commonly integrated with API Gateway in serverless architectures?",
+        "options": [
+          "AWS Lambda",
+          "Amazon EBS",
+          "Route Tables",
+          "IAM Groups"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is an API Endpoint?",
+        "options": [
+          "A URL through which clients access an API",
+          "A database backup",
+          "A subnet configuration",
+          "A security group rule"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Why is API Gateway useful for security?",
+        "options": [
+          "It supports authentication, authorization, throttling, and encryption",
+          "It replaces IAM entirely",
+          "It removes the need for HTTPS",
+          "It automatically blocks all traffic"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is throttling in API Gateway?",
+        "options": [
+          "Limiting the number of API requests to protect backend systems",
+          "Increasing database storage",
+          "Creating backups automatically",
+          "Managing DNS records"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "A mobile application needs to call a serverless backend built with Lambda. Which AWS service should expose the API endpoint?",
+        "options": [
+          "Amazon API Gateway",
+          "Amazon S3",
+          "Amazon EBS",
+          "AWS Organizations"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes Amazon API Gateway REST APIs?",
+        "options": [
+          "API Gateway enables organizations to create, secure, manage, and scale REST APIs while integrating with AWS services such as Lambda",
+          "API Gateway is a storage service",
+          "API Gateway replaces Route 53",
+          "API Gateway is used only for monitoring"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 9,
+    "topicSort": 3,
+    "topicTitle": "SNS & SQS messaging",
+    "questions": [
+      {
+        "question": "What is Amazon SNS?",
+        "options": [
+          "A database service",
+          "A fully managed publish/subscribe messaging service",
+          "A storage service",
+          "A virtual machine platform"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is Amazon SQS?",
+        "options": [
+          "A managed message queue service",
+          "A DNS service",
+          "A relational database",
+          "A monitoring service"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What communication model does SNS primarily use?",
+        "options": [
+          "Publish/Subscribe (Pub/Sub)",
+          "Client/Server Only",
+          "Peer-to-Peer Only",
+          "Database Replication"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What communication model does SQS primarily use?",
+        "options": [
+          "Publish/Subscribe",
+          "Message Queue",
+          "File Transfer",
+          "DNS Resolution"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is a key benefit of Amazon SNS?",
+        "options": [
+          "One message can be delivered to multiple subscribers simultaneously",
+          "It increases EC2 memory",
+          "It replaces Route 53",
+          "It stores large files"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is a key benefit of Amazon SQS?",
+        "options": [
+          "Decoupling application components for improved reliability and scalability",
+          "Increasing database size",
+          "Managing IAM permissions",
+          "Replacing API Gateway"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What happens to a message in SQS after it is sent?",
+        "options": [
+          "It remains in the queue until a consumer processes it",
+          "It is automatically deleted immediately",
+          "It is stored in Route 53",
+          "It becomes a Lambda function"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "A company wants to send one notification to multiple systems, including email, Lambda, and SQS queues. Which AWS service is most appropriate?",
+        "options": [
+          "Amazon SNS",
+          "Amazon RDS",
+          "Amazon EBS",
+          "AWS Organizations"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which AWS service is commonly used to buffer workloads and prevent application overload?",
+        "options": [
+          "Amazon SQS",
+          "Amazon Route 53",
+          "Amazon CloudFront",
+          "Amazon ACM"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes SNS and SQS?",
+        "options": [
+          "SNS provides publish/subscribe messaging for notifications, while SQS provides message queues for asynchronous communication between application components",
+          "SNS and SQS perform exactly the same function",
+          "SQS replaces Lambda",
+          "SNS is used only for databases"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 9,
+    "topicSort": 4,
+    "topicTitle": "EventBridge event routing",
+    "questions": [
+      {
+        "question": "What is Amazon EventBridge?",
+        "options": [
+          "A database service",
+          "A serverless event bus service that routes events between applications and AWS services",
+          "A storage service",
+          "A load balancer"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is an event in EventBridge?",
+        "options": [
+          "A notification that something has happened in a system or application",
+          "A storage volume",
+          "A security group",
+          "A subnet"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is the primary purpose of EventBridge?",
+        "options": [
+          "To route events from sources to targets based on defined rules",
+          "To store application files",
+          "To manage IAM users",
+          "To create EC2 instances"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is an Event Source in EventBridge?",
+        "options": [
+          "The service or application that generates events",
+          "A database backup",
+          "A route table",
+          "A VPC subnet"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is a Rule in EventBridge?",
+        "options": [
+          "A condition that determines which events should be routed to which targets",
+          "A security policy",
+          "A storage configuration",
+          "A DNS record"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is a Target in EventBridge?",
+        "options": [
+          "The destination service that receives an event after a rule matches it",
+          "A database server only",
+          "A subnet",
+          "A load balancer"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which AWS service is commonly triggered by EventBridge for serverless automation?",
+        "options": [
+          "AWS Lambda",
+          "Amazon EBS",
+          "Route Tables",
+          "Security Groups"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "A company wants to automatically trigger a Lambda function whenever a file is uploaded to Amazon S3. Which AWS service can route this event?",
+        "options": [
+          "Amazon EventBridge",
+          "Amazon EBS",
+          "AWS Organizations",
+          "Route 53"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is a major benefit of EventBridge?",
+        "options": [
+          "Decoupling applications through event-driven communication",
+          "Increasing storage capacity",
+          "Replacing IAM policies",
+          "Creating Availability Zones"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes Amazon EventBridge?",
+        "options": [
+          "EventBridge is a serverless event bus that routes events from sources to targets using rules, enabling scalable event-driven architectures",
+          "EventBridge is a database service",
+          "EventBridge replaces API Gateway",
+          "EventBridge is used only for monitoring"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 10,
+    "topicSort": 1,
+    "topicTitle": "CloudWatch metrics, logs & alarms",
+    "questions": [
+      {
+        "question": "What is Amazon CloudWatch?",
+        "options": [
+          "A database service",
+          "A monitoring and observability service for AWS resources and applications",
+          "A storage service",
+          "A load balancer"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is a CloudWatch Metric?",
+        "options": [
+          "A measurable data point that represents the performance or status of a resource",
+          "A storage volume",
+          "An IAM role",
+          "A route table"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which CloudWatch metric is commonly monitored for Amazon EC2 instances?",
+        "options": [
+          "CPU Utilization",
+          "Bucket Versioning",
+          "Route Table Count",
+          "IAM User Count"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What are CloudWatch Logs?",
+        "options": [
+          "A service that collects, stores, and analyzes log data from AWS resources and applications",
+          "A backup service",
+          "A networking feature",
+          "A database engine"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Why are logs important in cloud environments?",
+        "options": [
+          "They provide visibility into application behavior and system events",
+          "They increase storage performance",
+          "They replace security groups",
+          "They create EC2 instances"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is a CloudWatch Alarm?",
+        "options": [
+          "A feature that monitors metrics and performs actions when thresholds are reached",
+          "A storage configuration",
+          "A VPC component",
+          "A DNS record"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What action can a CloudWatch Alarm perform?",
+        "options": [
+          "Send notifications through Amazon SNS",
+          "Trigger Auto Scaling actions",
+          "Alert administrators",
+          "All of the Above"
+        ],
+        "correctIndex": 3
+      },
+      {
+        "question": "A company wants to receive an alert when EC2 CPU utilization exceeds 80%. Which CloudWatch feature should be used?",
+        "options": [
+          "CloudWatch Logs",
+          "CloudWatch Alarm",
+          "Route 53",
+          "EBS Snapshot"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "How can CloudWatch contribute to cost optimization?",
+        "options": [
+          "By identifying underutilized resources and monitoring usage trends",
+          "By replacing EC2 instances",
+          "By increasing storage costs automatically",
+          "By disabling monitoring"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes CloudWatch Metrics, Logs, and Alarms?",
+        "options": [
+          "CloudWatch Metrics track performance data, Logs capture system activity, and Alarms automate notifications and responses based on defined thresholds",
+          "All three components perform the same function",
+          "CloudWatch is only used for security monitoring",
+          "CloudWatch replaces Auto Scaling"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 10,
+    "topicSort": 2,
+    "topicTitle": "CloudTrail auditing",
+    "questions": [
+      {
+        "question": "What is AWS CloudTrail?",
+        "options": [
+          "A monitoring dashboard service",
+          "A service that records and tracks AWS account activity and API calls",
+          "A database service",
+          "A load balancer"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What type of information does CloudTrail record?",
+        "options": [
+          "API calls and account activity across AWS services",
+          "Only CPU utilization metrics",
+          "Only storage usage statistics",
+          "Only network traffic"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is the primary purpose of CloudTrail?",
+        "options": [
+          "Auditing, governance, security monitoring, and compliance",
+          "Database management",
+          "Load balancing",
+          "Content delivery"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which question can CloudTrail help answer?",
+        "options": [
+          "Who deleted an S3 bucket?",
+          "Who modified an IAM policy?",
+          "When was an EC2 instance terminated?",
+          "All of the Above"
+        ],
+        "correctIndex": 3
+      },
+      {
+        "question": "What is an Event in CloudTrail?",
+        "options": [
+          "A record of an action performed within an AWS account",
+          "A database backup",
+          "A VPC route",
+          "A security group"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which information is commonly included in a CloudTrail event?",
+        "options": [
+          "User identity, timestamp, source IP, and action performed",
+          "Monitor resolution",
+          "Storage class only",
+          "Route table count"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "How does CloudTrail support security investigations?",
+        "options": [
+          "By providing a historical record of AWS account activity",
+          "By increasing EC2 performance",
+          "By replacing CloudWatch",
+          "By creating backups"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "A company wants to know who changed an IAM role yesterday. Which AWS service should be used?",
+        "options": [
+          "CloudWatch",
+          "CloudTrail",
+          "Route 53",
+          "EBS"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is the difference between CloudTrail and CloudWatch?",
+        "options": [
+          "CloudTrail tracks account activity and API calls, while CloudWatch focuses on monitoring metrics, logs, and operational performance",
+          "They are identical services",
+          "CloudTrail replaces CloudWatch entirely",
+          "CloudWatch records only API calls"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes AWS CloudTrail?",
+        "options": [
+          "CloudTrail records AWS account activity and API calls, providing auditing, compliance, governance, and security visibility across AWS environments",
+          "CloudTrail is a storage service",
+          "CloudTrail is used only for monitoring CPU utilization",
+          "CloudTrail replaces IAM"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 10,
+    "topicSort": 3,
+    "topicTitle": "AWS Config compliance",
+    "questions": [
+      {
+        "question": "What is AWS Config?",
+        "options": [
+          "A database service",
+          "A service that records, tracks, and evaluates AWS resource configurations over time",
+          "A load balancer",
+          "A content delivery service"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is the primary purpose of AWS Config?",
+        "options": [
+          "Resource configuration tracking and compliance monitoring",
+          "Database management",
+          "Network routing",
+          "Content caching"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What type of information does AWS Config record?",
+        "options": [
+          "Resource configurations and configuration history",
+          "CPU temperature only",
+          "Internet bandwidth only",
+          "Database query results only"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is a Configuration Item in AWS Config?",
+        "options": [
+          "A snapshot of an AWS resource's configuration at a specific point in time",
+          "A database record",
+          "A VPC route",
+          "An IAM user password"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is an AWS Config Rule?",
+        "options": [
+          "A compliance rule used to evaluate resource configurations against desired settings",
+          "A routing policy",
+          "A security group rule",
+          "A database schema"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "A company requires all S3 buckets to have encryption enabled. Which AWS Config feature can verify this requirement?",
+        "options": [
+          "Config Rule",
+          "Route Table",
+          "NAT Gateway",
+          "EBS Snapshot"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What does a \"Non-Compliant\" result indicate in AWS Config?",
+        "options": [
+          "A resource does not meet the requirements defined by a Config Rule",
+          "A resource is deleted",
+          "A resource is overloaded",
+          "A resource is encrypted"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "How does AWS Config support security and governance?",
+        "options": [
+          "By continuously evaluating resources against compliance standards and organizational policies",
+          "By increasing storage capacity",
+          "By replacing IAM policies",
+          "By creating backups"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is the relationship between AWS Config and compliance auditing?",
+        "options": [
+          "AWS Config provides historical configuration data and compliance status for audit purposes",
+          "AWS Config replaces CloudTrail entirely",
+          "AWS Config stores application code",
+          "AWS Config manages EC2 networking"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes AWS Config?",
+        "options": [
+          "AWS Config tracks resource configurations, records configuration history, and evaluates compliance using configurable rules",
+          "AWS Config is a database service",
+          "AWS Config is used only for monitoring CPU usage",
+          "AWS Config replaces VPC networking"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 11,
+    "topicSort": 1,
+    "topicTitle": "CloudFormation templates & stacks",
+    "questions": [
+      {
+        "question": "What is AWS CloudFormation?",
+        "options": [
+          "A database service",
+          "An Infrastructure as Code (IaC) service used to provision and manage AWS resources using templates",
+          "A monitoring service",
+          "A content delivery service"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is Infrastructure as Code (IaC)?",
+        "options": [
+          "Managing infrastructure through manual console operations only",
+          "Defining and provisioning infrastructure using code and configuration files",
+          "Creating databases automatically",
+          "Monitoring application logs"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is a CloudFormation Template?",
+        "options": [
+          "A file that describes AWS resources and their configurations",
+          "A backup file",
+          "A database schema",
+          "A Route 53 record"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which formats are commonly used for CloudFormation Templates?",
+        "options": [
+          "YAML and JSON",
+          "XML and HTML",
+          "CSV and TXT",
+          "SQL and YAML"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is a CloudFormation Stack?",
+        "options": [
+          "A collection of AWS resources created and managed as a single unit from a template",
+          "A storage bucket",
+          "A VPC subnet",
+          "A security group"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What happens when a CloudFormation Stack is updated?",
+        "options": [
+          "CloudFormation compares the current and desired state and applies necessary changes",
+          "All resources are deleted automatically",
+          "A new AWS account is created",
+          "Only IAM resources are updated"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Why do organizations use CloudFormation?",
+        "options": [
+          "To automate infrastructure deployment and maintain consistency across environments",
+          "To replace databases",
+          "To increase internet speed",
+          "To manage user passwords"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "A company wants identical Dev, Test, and Production environments. Which AWS service can help achieve this?",
+        "options": [
+          "AWS CloudFormation",
+          "Route 53",
+          "Amazon EBS",
+          "Amazon SNS"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is a major benefit of Infrastructure as Code?",
+        "options": [
+          "Version control, automation, and repeatable deployments",
+          "Increased storage costs",
+          "Elimination of security controls",
+          "Manual infrastructure management"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes CloudFormation Templates and Stacks?",
+        "options": [
+          "Templates define AWS infrastructure as code, while Stacks are the deployed instances of those templates that create and manage AWS resources",
+          "Templates and Stacks are identical concepts",
+          "Stacks are used only for monitoring",
+          "CloudFormation replaces AWS networking"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 12,
+    "topicSort": 1,
+    "topicTitle": "Multi-AZ & multi-region patterns",
+    "questions": [
+      {
+        "question": "What does High Availability (HA) mean in AWS?",
+        "options": [
+          "Increasing storage capacity only",
+          "Designing systems to remain operational even when components fail",
+          "Creating more IAM users",
+          "Reducing network traffic"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is an Availability Zone (AZ)?",
+        "options": [
+          "A collection of AWS accounts",
+          "One or more isolated data centers within an AWS Region",
+          "A DNS service",
+          "A virtual machine"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is a Multi-AZ architecture?",
+        "options": [
+          "Deploying resources across multiple Availability Zones within the same Region",
+          "Deploying resources in multiple AWS accounts",
+          "Deploying resources in multiple VPCs only",
+          "Deploying resources in multiple continents"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is the primary benefit of Multi-AZ deployments?",
+        "options": [
+          "Improved fault tolerance and high availability",
+          "Increased storage size",
+          "Reduced IAM permissions",
+          "Faster DNS resolution"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is a Multi-Region architecture?",
+        "options": [
+          "Deploying resources across multiple AWS Regions",
+          "Deploying resources across multiple subnets only",
+          "Deploying resources across multiple IAM groups",
+          "Deploying resources in a single AZ"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which disaster scenario is Multi-Region architecture designed to address?",
+        "options": [
+          "Availability Zone failure only",
+          "Entire Region failure or large-scale disaster",
+          "Password expiration",
+          "EC2 reboot events"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "A company wants its application to survive the failure of one Availability Zone. Which architecture should it use?",
+        "options": [
+          "Single-AZ",
+          "Multi-AZ",
+          "Single EC2 Instance",
+          "Local Storage"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "A financial application requires business continuity even if an entire AWS Region becomes unavailable. Which architecture is most appropriate?",
+        "options": [
+          "Single-AZ",
+          "Multi-AZ Only",
+          "Multi-Region Deployment",
+          "Local Backup Only"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "Which AWS service can help route users to healthy endpoints across Regions?",
+        "options": [
+          "Amazon Route 53",
+          "Amazon EBS",
+          "Security Groups",
+          "AWS Config"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes Multi-AZ and Multi-Region patterns?",
+        "options": [
+          "Multi-AZ provides high availability within a Region, while Multi-Region provides disaster recovery and resilience across Regions",
+          "Both architectures are identical",
+          "Multi-Region replaces Multi-AZ entirely",
+          "Multi-AZ is only used for databases"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 12,
+    "topicSort": 2,
+    "topicTitle": "Backup, restore & DR planning (RTO/RPO)",
+    "questions": [
+      {
+        "question": "What is the primary goal of Disaster Recovery (DR)?",
+        "options": [
+          "To increase application performance",
+          "To restore systems and data after a disruption or disaster",
+          "To reduce storage usage",
+          "To manage IAM users"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is a backup?",
+        "options": [
+          "A copy of data stored separately for recovery purposes",
+          "A load balancer configuration",
+          "A security group rule",
+          "A DNS record"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What is the purpose of a restore operation?",
+        "options": [
+          "To recover data or systems from a backup",
+          "To create a new VPC",
+          "To increase CPU utilization",
+          "To update IAM permissions"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What does RTO stand for?",
+        "options": [
+          "Recovery Time Objective",
+          "Recovery Transfer Operation",
+          "Resource Tracking Objective",
+          "Replication Time Output"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "What does RPO stand for?",
+        "options": [
+          "Recovery Process Objective",
+          "Recovery Point Objective",
+          "Resource Performance Output",
+          "Replication Process Output"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "If a company has an RTO of 2 hours, what does it mean?",
+        "options": [
+          "Systems must be restored within 2 hours after a disruption",
+          "Data must be backed up every 2 hours",
+          "Recovery requires exactly 2 hours",
+          "Systems can remain offline indefinitely"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "If a company has an RPO of 15 minutes, what does it mean?",
+        "options": [
+          "Up to 15 minutes of data loss is acceptable",
+          "Recovery must complete within 15 minutes",
+          "Backups occur once every 15 days",
+          "Data cannot be lost"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which AWS service is commonly used for storing backups?",
+        "options": [
+          "Amazon S3",
+          "Route 53",
+          "Security Groups",
+          "IAM"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which disaster recovery strategy provides the fastest recovery but typically costs the most?",
+        "options": [
+          "Backup & Restore",
+          "Pilot Light",
+          "Warm Standby",
+          "Multi-Site Active/Active"
+        ],
+        "correctIndex": 3
+      },
+      {
+        "question": "Which statement best summarizes RTO and RPO?",
+        "options": [
+          "RTO defines acceptable downtime, while RPO defines acceptable data loss",
+          "RTO and RPO mean the same thing",
+          "RTO measures storage size and RPO measures bandwidth",
+          "RTO applies only to databases"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 12,
+    "topicSort": 3,
+    "topicTitle": "AWS Well-Architected Framework",
+    "questions": [
+      {
+        "question": "What is the AWS Well-Architected Framework?",
+        "options": [
+          "A database service",
+          "A set of best practices and design principles for building secure, reliable, efficient, and cost-effective cloud architectures",
+          "A monitoring tool",
+          "A storage service"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What is the primary goal of the AWS Well-Architected Framework?",
+        "options": [
+          "To help teams build and operate high-quality cloud architectures",
+          "To increase EC2 instance size automatically",
+          "To manage IAM users",
+          "To replace CloudFormation"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "How many pillars are included in the AWS Well-Architected Framework?",
+        "options": [
+          "4",
+          "5",
+          "6",
+          "8"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "Which pillar focuses on protecting systems, data, and assets?",
+        "options": [
+          "Reliability",
+          "Security",
+          "Performance Efficiency",
+          "Sustainability"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which pillar focuses on recovering from failures and maintaining service availability?",
+        "options": [
+          "Reliability",
+          "Cost Optimization",
+          "Sustainability",
+          "Operational Excellence"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which pillar focuses on monitoring systems, automating changes, and improving operational processes?",
+        "options": [
+          "Performance Efficiency",
+          "Security",
+          "Operational Excellence",
+          "Cost Optimization"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "Which pillar focuses on using resources efficiently and selecting the right technologies?",
+        "options": [
+          "Performance Efficiency",
+          "Reliability",
+          "Sustainability",
+          "Security"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which pillar focuses on avoiding unnecessary costs and maximizing business value?",
+        "options": [
+          "Operational Excellence",
+          "Cost Optimization",
+          "Reliability",
+          "Security"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which pillar was added to help organizations reduce environmental impact?",
+        "options": [
+          "Governance",
+          "Sustainability",
+          "Scalability",
+          "Automation"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which statement best summarizes the AWS Well-Architected Framework?",
+        "options": [
+          "It provides six architectural pillars that help organizations design secure, reliable, efficient, sustainable, and cost-optimized cloud solutions",
+          "It is used only for networking",
+          "It replaces AWS services",
+          "It applies only to large enterprises"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 12,
+    "topicSort": 4,
+    "topicTitle": "SAA-C03 exam domains & scenario questions",
+    "questions": [
+      {
+        "question": "What is the primary focus of the AWS Certified Solutions Architect – Associate (SAA-C03) exam?",
+        "options": [
+          "Software development only",
+          "Designing secure, resilient, high-performing, and cost-optimized AWS architectures",
+          "Managing Linux servers only",
+          "Writing application code"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which AWS Well-Architected pillar is most closely associated with designing fault-tolerant systems?",
+        "options": [
+          "Cost Optimization",
+          "Reliability",
+          "Sustainability",
+          "Operational Excellence"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Scenario: A company wants its application to remain available if an Availability Zone fails. Which solution is most appropriate?",
+        "options": [
+          "Deploy all resources in a single AZ",
+          "Use Multi-AZ architecture with Load Balancing",
+          "Store data locally only",
+          "Disable Auto Scaling"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Scenario: An application experiences unpredictable traffic spikes. Which AWS service combination is best?",
+        "options": [
+          "EC2 + Auto Scaling + Application Load Balancer",
+          "EC2 only",
+          "S3 only",
+          "Route 53 only"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Scenario: A company wants to store large amounts of static website content at low cost. Which AWS service is most suitable?",
+        "options": [
+          "Amazon S3",
+          "Amazon RDS",
+          "AWS Lambda",
+          "Amazon EC2"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Scenario: A global application needs to deliver content with low latency to users worldwide. Which AWS service should be used?",
+        "options": [
+          "Amazon CloudFront",
+          "Amazon EBS",
+          "AWS Config",
+          "Amazon SNS"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Scenario: A company wants to reduce database read load while improving application response times. Which AWS service is most appropriate?",
+        "options": [
+          "Amazon ElastiCache",
+          "Amazon Route 53",
+          "AWS CloudTrail",
+          "IAM"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Scenario: A company needs a serverless architecture that runs code in response to events. Which AWS service should be selected?",
+        "options": [
+          "Amazon EC2",
+          "AWS Lambda",
+          "Amazon EBS",
+          "Amazon RDS"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Scenario: A security team wants to know who modified an IAM policy yesterday. Which AWS service provides this information?",
+        "options": [
+          "AWS CloudTrail",
+          "Amazon CloudFront",
+          "AWS Config",
+          "Amazon SQS"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Scenario: A company wants to automatically evaluate whether S3 buckets comply with encryption requirements. Which AWS service should be used?",
+        "options": [
+          "AWS Config",
+          "Route 53",
+          "Amazon EBS",
+          "AWS Lambda"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  {
+    "moduleNumber": 12,
+    "topicSort": 5,
+    "topicTitle": "Architecture trade-offs: security, cost, reliability",
+    "questions": [
+      {
+        "question": "What is an architecture trade-off in cloud design?",
+        "options": [
+          "Choosing between different design options based on business requirements and constraints",
+          "Increasing storage capacity only",
+          "Creating IAM users",
+          "Deploying resources in a single Availability Zone"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Why is it important to consider trade-offs when designing AWS architectures?",
+        "options": [
+          "Every design decision affects cost, security, performance, or reliability",
+          "AWS services have no limitations",
+          "Security is the only factor that matters",
+          "Cost is always the highest priority"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Scenario: A company wants the lowest possible cost for a non-critical internal application. Which option is most appropriate?",
+        "options": [
+          "Single-AZ deployment",
+          "Multi-Region active-active deployment",
+          "Global load balancing across continents",
+          "Duplicate infrastructure in multiple Regions"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Scenario: A financial application requires maximum availability and minimal downtime. Which design is most appropriate?",
+        "options": [
+          "Single EC2 instance",
+          "Multi-AZ deployment with Load Balancing and Auto Scaling",
+          "Local backups only",
+          "One Availability Zone"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Which design choice generally increases reliability but also increases cost?",
+        "options": [
+          "Multi-AZ architecture",
+          "Deleting backups",
+          "Removing monitoring",
+          "Disabling encryption"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which AWS service helps improve security through centralized identity and access management?",
+        "options": [
+          "IAM",
+          "CloudFront",
+          "ElastiCache",
+          "EBS"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Scenario: A company wants to improve security by enabling encryption for all stored data. What is the trade-off?",
+        "options": [
+          "Slightly increased operational complexity while improving data protection",
+          "Lower reliability",
+          "No security benefit",
+          "Elimination of backups"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which AWS architecture provides the highest reliability but generally has the highest cost?",
+        "options": [
+          "Single EC2 Instance",
+          "Single-AZ Deployment",
+          "Multi-Region Active-Active Architecture",
+          "Local Storage Only"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "Scenario: A startup wants a balance between cost and availability. Which architecture is often recommended?",
+        "options": [
+          "Multi-AZ deployment within a single Region",
+          "Active-Active across multiple continents",
+          "Dedicated infrastructure in every Region",
+          "Multiple backup data centers worldwide"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "question": "Which statement best summarizes architecture trade-offs?",
+        "options": [
+          "Cloud architects must balance security, cost, and reliability based on business requirements because optimizing one area often impacts another",
+          "Cost should always be ignored",
+          "Reliability is never important",
+          "Security and cost have no relationship"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  }
+]

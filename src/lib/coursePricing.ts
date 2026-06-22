@@ -27,10 +27,10 @@ export const PROGRAM_PRICES: Record<
   string,
   { inrBase: number; usdInternational: number }
 > = {
-  DOP: { inrBase: 24179, usdInternational: 359 },
-  AAC: { inrBase: 23689, usdInternational: 349 },
-  AWS: { inrBase: 19569, usdInternational: 209 },
-  DSP: { inrBase: 22569, usdInternational: 334 },
+  DOP: { inrBase: 24179, usdInternational: 370 },
+  AAC: { inrBase: 23689, usdInternational: 359 },
+  AWS: { inrBase: 19569, usdInternational: 215 },
+  DSP: { inrBase: 22569, usdInternational: 344 },
 };
 
 export interface RegionalPriceRow {

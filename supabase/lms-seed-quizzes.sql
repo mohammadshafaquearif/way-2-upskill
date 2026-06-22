@@ -8797,258 +8797,258 @@ BEGIN
     "course_code": "AWS",
     "module_number": 1,
     "topic_sort": 1,
-    "topic_title": "Shared responsibility",
-    "quiz_title": "Shared responsibility — Topic Quiz",
+    "topic_title": "What is cloud computing?",
+    "quiz_title": "What is cloud computing? — Topic Quiz",
     "pass_score": 70,
     "max_attempts": 3,
     "time_limit_min": 20,
     "questions": [
       {
-        "question": "In the AWS Shared Responsibility Model, which of the following is the customer's responsibility?",
+        "question": "What is cloud computing?",
         "options": [
           {
             "id": "a",
-            "text": "Physical security of data centers",
+            "text": "Using a computer without internet access",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "Patching the hypervisor",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Configuring security groups and IAM policies",
+            "text": "Delivering computing services such as servers, storage, databases, and networking over the internet",
             "is_correct": true
           },
           {
+            "id": "c",
+            "text": "Building hardware components manually",
+            "is_correct": false
+          },
+          {
             "id": "d",
-            "text": "Maintaining hardware infrastructure",
+            "text": "Installing software only on local machines",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Who is responsible for patching the guest operating system on an Amazon EC2 instance?",
+        "question": "Which of the following is a key characteristic of cloud computing?",
         "options": [
           {
             "id": "a",
-            "text": "AWS",
+            "text": "Fixed hardware capacity",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "The customer",
+            "text": "On-demand access to computing resources",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "Amazon S3",
+            "text": "Manual server provisioning only",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "AWS Support",
+            "text": "Permanent hardware ownership",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which statement best describes the AWS Shared Responsibility Model?",
+        "question": "Why do businesses adopt cloud computing?",
         "options": [
           {
             "id": "a",
-            "text": "AWS is responsible for everything in the cloud",
+            "text": "To increase infrastructure costs",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "The customer is responsible for everything",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "AWS secures the cloud infrastructure; the customer secures what they run in the cloud",
+            "text": "To gain scalability, flexibility, and cost efficiency",
             "is_correct": true
           },
           {
+            "id": "c",
+            "text": "To eliminate internet usage",
+            "is_correct": false
+          },
+          {
             "id": "d",
-            "text": "Responsibility is split equally for all services",
+            "text": "To avoid data storage",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "For a managed service like Amazon RDS, which task is primarily AWS's responsibility?",
+        "question": "Which of the following is an example of a cloud computing service?",
         "options": [
           {
             "id": "a",
-            "text": "Database engine patching and underlying infrastructure",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Database schema design",
+            "text": "Purchasing a physical server for a data center",
             "is_correct": false
           },
           {
+            "id": "b",
+            "text": "Using AWS EC2 to launch virtual machines on demand",
+            "is_correct": true
+          },
+          {
             "id": "c",
-            "text": "Application-level encryption keys",
+            "text": "Installing software from a DVD",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "User access policies inside the application",
+            "text": "Building a personal computer",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "A company stores sensitive data in Amazon S3. Under the Shared Responsibility Model, who is responsible for encrypting data at rest?",
+        "question": "What does \"on-demand\" mean in cloud computing?",
         "options": [
           {
             "id": "a",
-            "text": "AWS only",
+            "text": "Resources are available only during business hours",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "The customer only",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Both AWS and the customer depending on configuration",
+            "text": "Resources can be provisioned whenever needed without waiting for hardware purchases",
             "is_correct": true
           },
           {
+            "id": "c",
+            "text": "Resources are available only after approval from the provider",
+            "is_correct": false
+          },
+          {
             "id": "d",
-            "text": "Neither — encryption is automatic",
+            "text": "Resources are permanently allocated",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which area falls under AWS's responsibility in the Shared Responsibility Model?",
+        "question": "Which cloud computing benefit allows applications to handle increased traffic automatically?",
         "options": [
           {
             "id": "a",
-            "text": "Network configuration inside a VPC",
+            "text": "Virtualization",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "Global infrastructure and regional availability",
+            "text": "Scalability",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "Operating system patches on EC2",
+            "text": "Encryption",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "IAM user password policies",
+            "text": "Tokenization",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "For AWS Lambda, which of the following is AWS responsible for?",
+        "question": "Which statement best describes the pay-as-you-go pricing model?",
         "options": [
           {
             "id": "a",
-            "text": "Writing function code",
+            "text": "Users pay a fixed amount regardless of usage",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "Managing the underlying compute infrastructure",
+            "text": "Users pay only for the cloud resources they consume",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "Configuring IAM roles for the function",
+            "text": "Users purchase hardware upfront",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Designing application logic",
+            "text": "Users pay only once",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "A startup wants to understand what security tasks they must handle when using Amazon EC2. Which task is theirs?",
+        "question": "A startup launches a website and expects traffic to increase rapidly. Why is cloud computing beneficial?",
         "options": [
           {
             "id": "a",
-            "text": "Securing physical data center access",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Managing security groups and OS-level patches",
+            "text": "It allows resources to scale as demand grows without major hardware investments",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "It eliminates the need for security",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Maintaining AWS global network backbone",
+            "text": "It prevents internet access",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Patching the hypervisor",
+            "text": "It reduces website functionality",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which AWS service category generally shifts more operational responsibility to AWS compared to EC2?",
+        "question": "Which of the following is NOT typically considered a cloud computing benefit?",
         "options": [
           {
             "id": "a",
-            "text": "Infrastructure as a Service (IaaS) like EC2",
+            "text": "Scalability",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "Managed services like RDS or Lambda",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "On-premises servers",
+            "text": "Elasticity",
             "is_correct": false
           },
           {
+            "id": "c",
+            "text": "High upfront hardware investment",
+            "is_correct": true
+          },
+          {
             "id": "d",
-            "text": "Custom bare-metal instances",
+            "text": "Cost efficiency",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which statement accurately summarizes shared responsibility for security in AWS?",
+        "question": "Which statement best summarizes cloud computing?",
         "options": [
           {
             "id": "a",
-            "text": "Security is entirely AWS's job once you migrate",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Customers are responsible for security \"in\" the cloud; AWS is responsible for security \"of\" the cloud",
+            "text": "Cloud computing delivers IT resources over the internet with flexibility, scalability, and pay-as-you-go pricing",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "Cloud computing requires organizations to own all infrastructure",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Customers handle physical data center security",
+            "text": "Cloud computing eliminates networking requirements",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "AWS manages all application-level access controls",
+            "text": "Cloud computing is only used by large enterprises",
             "is_correct": false
           }
         ]
@@ -9059,258 +9059,258 @@ BEGIN
     "course_code": "AWS",
     "module_number": 1,
     "topic_sort": 2,
-    "topic_title": "IAM policies",
-    "quiz_title": "IAM policies — Topic Quiz",
+    "topic_title": "IaaS, PaaS & SaaS service models",
+    "quiz_title": "IaaS, PaaS & SaaS service models — Topic Quiz",
     "pass_score": 70,
     "max_attempts": 3,
     "time_limit_min": 20,
     "questions": [
       {
-        "question": "What is the primary purpose of AWS Identity and Access Management (IAM)?",
+        "question": "What are IaaS, PaaS, and SaaS in cloud computing?",
         "options": [
           {
             "id": "a",
-            "text": "Launch virtual servers",
+            "text": "Types of databases",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "Manage users, groups, roles, and permissions",
+            "text": "Cloud service delivery models that define how resources are provided to users",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "Store objects in the cloud",
+            "text": "Networking protocols",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Route DNS traffic",
+            "text": "Security frameworks",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which IAM entity should an EC2 application use to access AWS services securely?",
+        "question": "What does IaaS stand for?",
         "options": [
           {
             "id": "a",
-            "text": "Root account access keys",
+            "text": "Internet as a Service",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "IAM role attached to the instance",
+            "text": "Infrastructure as a Service",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "Shared admin user credentials",
+            "text": "Integration as a Service",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Public S3 bucket policy only",
+            "text": "Information as a Service",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What does the IAM policy evaluation logic follow when multiple policies apply?",
+        "question": "Which AWS service is a common example of IaaS?",
         "options": [
           {
             "id": "a",
-            "text": "Explicit deny overrides allow",
+            "text": "Amazon EC2",
             "is_correct": true
           },
           {
             "id": "b",
-            "text": "Allow always overrides deny",
+            "text": "Gmail",
             "is_correct": false
           },
           {
             "id": "c",
-            "text": "Most permissive policy wins",
+            "text": "Microsoft Word Online",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Root account policy is ignored",
+            "text": "Salesforce CRM",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "A developer needs read-only access to Amazon S3 buckets. Which approach follows least privilege?",
+        "question": "What does PaaS stand for?",
         "options": [
           {
             "id": "a",
-            "text": "Attach AdministratorAccess policy",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Create a custom policy allowing only s3:GetObject and s3:ListBucket on specific buckets",
+            "text": "Platform as a Service",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "Processing as a Service",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Share root account credentials",
+            "text": "Programming as a Service",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Make all buckets public",
+            "text": "Protocol as a Service",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What is an IAM role?",
+        "question": "Which of the following is an example of PaaS?",
         "options": [
           {
             "id": "a",
-            "text": "A permanent user account with a password",
+            "text": "Amazon EC2",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "An identity with temporary credentials that can be assumed by trusted entities",
+            "text": "AWS Elastic Beanstalk",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "A VPC subnet configuration",
+            "text": "Physical Server",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "An EC2 instance type",
+            "text": "Network Switch",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which IAM best practice should always be followed?",
+        "question": "What does SaaS stand for?",
         "options": [
           {
             "id": "a",
-            "text": "Use the root account for daily operations",
+            "text": "Storage as a Service",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "Enable MFA on privileged accounts and avoid long-lived access keys where possible",
+            "text": "Software as a Service",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "Share one admin user across the team",
+            "text": "Security as a Service",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Disable CloudTrail to reduce costs",
+            "text": "Server as a Service",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What is the difference between an IAM user and an IAM role?",
+        "question": "Which of the following is an example of SaaS?",
         "options": [
           {
             "id": "a",
-            "text": "Users are for people or apps with long-term credentials; roles provide temporary credentials via assumption",
-            "is_correct": true
+            "text": "Amazon EC2",
+            "is_correct": false
           },
           {
             "id": "b",
-            "text": "Roles are only for AWS employees",
+            "text": "AWS Lambda",
             "is_correct": false
           },
           {
             "id": "c",
-            "text": "Users cannot have policies attached",
-            "is_correct": false
+            "text": "Google Workspace",
+            "is_correct": true
           },
           {
             "id": "d",
-            "text": "There is no difference",
+            "text": "Amazon VPC",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "A company wants developers to manage EC2 instances but not delete production databases. What should they use?",
+        "question": "Which service model provides the highest level of user control over infrastructure?",
         "options": [
           {
             "id": "a",
-            "text": "Single AdministratorAccess policy for everyone",
+            "text": "SaaS",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "Separate IAM policies scoped to specific actions and resources",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Disable IAM entirely",
+            "text": "PaaS",
             "is_correct": false
           },
           {
+            "id": "c",
+            "text": "IaaS",
+            "is_correct": true
+          },
+          {
             "id": "d",
-            "text": "Use root account for all developers",
+            "text": "All provide equal control",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which AWS service integrates with IAM to provide a centralized view of who has access to what across accounts?",
+        "question": "Which service model requires the least infrastructure management from the customer?",
         "options": [
           {
             "id": "a",
-            "text": "Amazon Route 53",
+            "text": "IaaS",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "AWS IAM Access Analyzer",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Amazon CloudFront",
+            "text": "PaaS",
             "is_correct": false
           },
           {
+            "id": "c",
+            "text": "SaaS",
+            "is_correct": true
+          },
+          {
             "id": "d",
-            "text": "AWS Glue",
+            "text": "Hybrid Cloud",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "An IAM policy document contains \"Effect\", \"Action\", \"Resource\", and \"Principal\" elements. What does \"Effect\": \"Deny\" do?",
+        "question": "Which statement best summarizes IaaS, PaaS, and SaaS?",
         "options": [
           {
             "id": "a",
-            "text": "It grants permissions",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "It explicitly blocks the specified actions even if an Allow exists elsewhere",
+            "text": "IaaS provides infrastructure, PaaS provides development platforms, and SaaS provides complete software solutions",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "All three models provide identical services",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "It creates a new user",
+            "text": "SaaS offers more infrastructure control than IaaS",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "It enables MFA automatically",
+            "text": "PaaS replaces cloud computing",
             "is_correct": false
           }
         ]
@@ -9321,258 +9321,1044 @@ BEGIN
     "course_code": "AWS",
     "module_number": 1,
     "topic_sort": 3,
-    "topic_title": "Organizations",
-    "quiz_title": "Organizations — Topic Quiz",
+    "topic_title": "Public, private & hybrid cloud",
+    "quiz_title": "Public, private & hybrid cloud — Topic Quiz",
     "pass_score": 70,
     "max_attempts": 3,
     "time_limit_min": 20,
     "questions": [
       {
-        "question": "What is the primary purpose of AWS Organizations?",
+        "question": "What is a cloud deployment model?",
         "options": [
           {
             "id": "a",
-            "text": "Manage multiple AWS accounts centrally with consolidated billing and policies",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Launch EC2 instances across regions",
+            "text": "A method for training AI models",
             "is_correct": false
           },
           {
+            "id": "b",
+            "text": "A way of defining where cloud infrastructure is deployed and who can access it",
+            "is_correct": true
+          },
+          {
             "id": "c",
-            "text": "Store backup files",
+            "text": "A type of database architecture",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Monitor application logs",
+            "text": "A programming framework",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What is a key benefit of using AWS Organizations for a company with multiple teams?",
+        "question": "What is a Public Cloud?",
         "options": [
           {
             "id": "a",
-            "text": "Each team must pay separately without visibility",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Centralized billing and ability to apply Service Control Policies (SCPs)",
+            "text": "A cloud environment owned and operated by a third-party provider and shared among multiple customers",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "A cloud environment used by only one organization",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Eliminates the need for IAM",
+            "text": "A cloud deployed without internet access",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Automatically creates VPCs in every region",
+            "text": "A personal computer network",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What are Service Control Policies (SCPs) in AWS Organizations?",
+        "question": "Which of the following is an example of a Public Cloud provider?",
         "options": [
           {
             "id": "a",
-            "text": "Policies that define permissions for IAM users within a single account",
+            "text": "On-premises data center",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "Policies that set maximum permissions for accounts in an organization",
+            "text": "Amazon Web Services",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "S3 bucket policies",
+            "text": "Local Network Server",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "EC2 security group rules",
+            "text": "Physical Desktop Computer",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which AWS Organizations feature helps reduce costs by sharing Reserved Instances and Savings Plans across accounts?",
+        "question": "What is a Private Cloud?",
         "options": [
           {
             "id": "a",
-            "text": "Consolidated billing",
+            "text": "A cloud environment dedicated to a single organization",
             "is_correct": true
           },
           {
             "id": "b",
-            "text": "CloudTrail",
+            "text": "A public cloud shared by everyone",
             "is_correct": false
           },
           {
             "id": "c",
-            "text": "Route 53",
+            "text": "A cloud service available only during business hours",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "AWS Shield",
+            "text": "A cloud without security controls",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "A company wants to prevent member accounts from disabling CloudTrail. What should they use?",
+        "question": "Why might an organization choose a Private Cloud?",
         "options": [
           {
             "id": "a",
-            "text": "An S3 bucket policy",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "A Service Control Policy (SCP) denying cloudtrail:StopLogging",
+            "text": "For enhanced security, compliance, and control over resources",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "To eliminate networking requirements",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "An EC2 security group",
+            "text": "To avoid data storage",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "A Lambda function",
+            "text": "To reduce internet usage",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What is an Organizational Unit (OU) in AWS Organizations?",
+        "question": "What is a Hybrid Cloud?",
         "options": [
           {
             "id": "a",
-            "text": "A type of EC2 instance",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "A container for accounts that helps group them for policy application",
+            "text": "A cloud model that combines public cloud and private cloud environments",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "A cloud with multiple databases",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "An IAM role",
+            "text": "A cloud without internet access",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "A VPC subnet",
+            "text": "A cloud that supports only AI workloads",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which account type in AWS Organizations typically manages the organization and billing?",
+        "question": "Which scenario best demonstrates a Hybrid Cloud approach?",
         "options": [
           {
             "id": "a",
-            "text": "Member account",
+            "text": "Running all workloads in a public cloud",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "Management (master) account",
+            "text": "Keeping sensitive data in a private cloud while hosting customer-facing applications in a public cloud",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "Guest account",
+            "text": "Using only on-premises servers",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Read-only account",
+            "text": "Storing files on a personal laptop",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "A startup has separate AWS accounts for development, staging, and production. What service helps manage them together?",
+        "question": "What is a key advantage of Public Cloud?",
         "options": [
           {
             "id": "a",
-            "text": "Amazon S3",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "AWS Organizations",
+            "text": "High scalability and lower upfront infrastructure costs",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "Complete hardware ownership",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Amazon RDS",
+            "text": "No internet requirement",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "AWS Lambda",
+            "text": "Unlimited security by default",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Can SCPs grant permissions to IAM users?",
+        "question": "What is a major benefit of Hybrid Cloud?",
         "options": [
           {
             "id": "a",
-            "text": "Yes, SCPs directly grant permissions",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "No, SCPs set guardrails; IAM policies within accounts still define actual permissions",
+            "text": "Flexibility to place workloads in the most appropriate environment",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "Elimination of cloud costs",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Only root users are affected",
+            "text": "Automatic model training",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "SCPs replace IAM entirely",
+            "text": "Removal of security requirements",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which statement best describes AWS Organizations?",
+        "question": "Which statement best summarizes Public, Private, and Hybrid Cloud models?",
         "options": [
           {
             "id": "a",
-            "text": "It is only for enterprise customers with 100+ accounts",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "It helps centrally govern multiple accounts with billing consolidation and policy guardrails",
+            "text": "Public Cloud is shared infrastructure, Private Cloud is dedicated infrastructure, and Hybrid Cloud combines both approaches",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "All three models are identical",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "It automatically migrates on-premises servers",
+            "text": "Private Cloud is less secure than Public Cloud",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "It replaces the need for VPCs",
+            "text": "Hybrid Cloud replaces Public Cloud entirely",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 1,
+    "topic_sort": 4,
+    "topic_title": "AWS global infrastructure",
+    "quiz_title": "AWS global infrastructure — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of AWS Global Infrastructure?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To train AI models only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To provide highly available, scalable, and low-latency cloud services worldwide",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To manage local computer networks",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To replace the internet",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an AWS Region?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A physical server",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A geographic area containing multiple Availability Zones",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A virtual machine",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A storage device",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why does AWS have multiple Regions around the world?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To provide redundancy, compliance options, and lower latency for customers",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To increase electricity consumption",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To eliminate networking requirements",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To reduce storage capacity",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an Availability Zone (AZ)?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A collection of one or more physically separate data centers within a Region",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A cloud storage service",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A networking protocol",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A virtual machine image",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are Availability Zones physically separated?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To reduce the impact of failures such as power outages or natural disasters",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To increase API costs",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To improve tokenization",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To eliminate backups",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS infrastructure component is primarily used to deliver content with low latency to end users?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Edge Locations",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "EC2 Instances",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Availability Zones",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "VPCs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the relationship between Regions and Availability Zones?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A Region contains multiple Availability Zones",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "An Availability Zone contains multiple Regions",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "They are identical concepts",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Neither depends on the other",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company wants high availability for its application. Which AWS design practice should it follow?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Deploy resources across multiple Availability Zones",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Use only one Availability Zone",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Disable backups",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Store all resources on one server",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS Global Infrastructure component helps reduce latency by serving content closer to users?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Edge Location",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Availability Zone",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Security Group",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "IAM Role",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes AWS Global Infrastructure?",
+        "options": [
+          {
+            "id": "a",
+            "text": "AWS Global Infrastructure consists of Regions, Availability Zones, and Edge Locations that provide scalability, fault tolerance, and low-latency services worldwide",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "AWS operates from a single global data center",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Regions and Availability Zones are the same thing",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Edge Locations are used only for storage",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 1,
+    "topic_sort": 5,
+    "topic_title": "Regions & Availability Zones",
+    "quiz_title": "Regions & Availability Zones — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is an AWS Region?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A virtual machine running in AWS",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A geographic area that contains multiple Availability Zones",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A storage service",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A networking protocol",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an Availability Zone (AZ)?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A user account in AWS",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "One or more isolated data centers within an AWS Region",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A cloud storage bucket",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A virtual network",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How many Availability Zones does an AWS Region typically contain?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Only one",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Multiple Availability Zones",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Unlimited Availability Zones",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "None",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why does AWS use multiple Availability Zones within a Region?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To improve high availability and fault tolerance",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To increase hardware costs",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To eliminate networking requirements",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To reduce storage capacity",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best describes the relationship between Regions and Availability Zones?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Availability Zones contain Regions",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Regions contain multiple Availability Zones",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "They are identical concepts",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They operate independently",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are Availability Zones physically separated from each other?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To reduce the risk of a single failure affecting all resources",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To increase latency",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To eliminate backups",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To reduce internet access",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company deploys its application across two Availability Zones. What benefit does this provide?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Increased fault tolerance and availability",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Automatic model training",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Larger context windows",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Reduced internet usage",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS infrastructure component should you choose when you want to deploy resources closer to users in a specific geographic location?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Region",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Security Group",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "IAM Policy",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "S3 Bucket",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a common reason for selecting a specific AWS Region?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Lower latency, compliance requirements, or proximity to customers",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Increasing context windows",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Eliminating backups",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Creating embeddings",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes Regions and Availability Zones?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Regions are geographic locations that contain multiple isolated Availability Zones designed for high availability and fault tolerance",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Regions and Availability Zones are the same thing",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Availability Zones contain multiple Regions",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Availability Zones are used only for storage",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 1,
+    "topic_sort": 6,
+    "topic_title": "AWS Shared Responsibility Model",
+    "quiz_title": "AWS Shared Responsibility Model — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the AWS Shared Responsibility Model?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A pricing model used by AWS",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A framework that defines security responsibilities shared between AWS and customers",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A networking architecture",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A cloud deployment model",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What does AWS mean by \"Security of the Cloud\"?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Protecting customer application code",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Protecting the AWS infrastructure that runs cloud services",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Managing customer passwords",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Configuring customer firewalls",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What does the customer typically manage under \"Security in the Cloud\"?",
+        "options": [
+          {
+            "id": "a",
+            "text": "AWS data center buildings",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Physical servers",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "User access, data protection, and application security",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "AWS global network infrastructure",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which of the following is AWS's responsibility?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Configuring IAM users",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Managing operating system patches on customer-managed EC2 instances",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Securing physical data centers",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "Creating security groups",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which of the following is typically the customer's responsibility when using Amazon EC2?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Protecting the AWS Region",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Managing the guest operating system and its updates",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Securing AWS hardware",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Maintaining data center cooling systems",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is the Shared Responsibility Model important?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It clarifies security ownership and helps prevent security gaps",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It increases cloud costs",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It eliminates compliance requirements",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It replaces IAM",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "In Amazon S3, who is responsible for configuring bucket permissions?",
+        "options": [
+          {
+            "id": "a",
+            "text": "AWS only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "The customer",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Internet Service Providers",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Availability Zones",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best describes responsibility for data encryption?",
+        "options": [
+          {
+            "id": "a",
+            "text": "AWS always encrypts and manages customer data automatically",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Customers are generally responsible for deciding how their data is encrypted and protected",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Encryption is not required in cloud environments",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS customers cannot use encryption",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How does the Shared Responsibility Model change with managed services such as AWS RDS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Customers have more infrastructure responsibilities",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "AWS assumes more operational responsibilities compared to EC2",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "AWS assumes all responsibilities",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "There is no difference",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes the AWS Shared Responsibility Model?",
+        "options": [
+          {
+            "id": "a",
+            "text": "AWS secures the cloud infrastructure, while customers secure their data, applications, and configurations within the cloud",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "AWS handles all security responsibilities",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Customers manage AWS data centers",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Security is optional in AWS",
             "is_correct": false
           }
         ]
@@ -9583,14 +10369,1087 @@ BEGIN
     "course_code": "AWS",
     "module_number": 2,
     "topic_sort": 1,
-    "topic_title": "EC2",
-    "quiz_title": "EC2 — Topic Quiz",
+    "topic_title": "IAM users, groups & roles",
+    "quiz_title": "IAM users, groups & roles — Topic Quiz",
     "pass_score": 70,
     "max_attempts": 3,
     "time_limit_min": 20,
     "questions": [
       {
-        "question": "What is Amazon EC2 primarily used for?",
+        "question": "What does IAM stand for in AWS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Internet Access Management",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Identity and Access Management",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Infrastructure Access Monitoring",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Internal Application Management",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the primary purpose of AWS IAM?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To create virtual machines",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To manage authentication and authorization for AWS resources",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To store application logs",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To monitor network traffic",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an IAM User?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A physical server in AWS",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A digital identity created for an individual person or application requiring AWS access",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A virtual private cloud",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A storage bucket",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are IAM Groups used?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To store files",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To organize IAM users and assign permissions collectively",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To create virtual machines",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To manage Availability Zones",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company has 20 developers who need identical AWS permissions. What is the recommended approach?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Create separate policies for each user",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Add all developers to an IAM Group with the required permissions",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Give everyone administrator access",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Create multiple AWS accounts",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an IAM Role?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A permanent AWS user account",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "An AWS identity that provides temporary permissions and can be assumed by users, applications, or services",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A storage service",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A network firewall",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS service commonly uses IAM Roles to access other AWS resources securely?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon EC2",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Amazon S3 only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "CloudFront only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Route 53 only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are IAM Roles generally preferred over hard-coded access keys in applications?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They provide temporary credentials and improve security",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "They increase storage capacity",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "They eliminate permissions management",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They improve internet speed",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS security principle recommends granting only the permissions necessary to perform a task?",
+        "options": [
+          {
+            "id": "a",
+            "text": "High Availability",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Elasticity",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Principle of Least Privilege",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "Auto Scaling",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes IAM Users, Groups, and Roles?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Users represent identities, Groups simplify permission management, and Roles provide temporary access to AWS resources",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Users, Groups, and Roles perform the same function",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Roles permanently replace users",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Groups provide temporary credentials",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 2,
+    "topic_sort": 2,
+    "topic_title": "IAM policies & permission boundaries",
+    "quiz_title": "IAM policies & permission boundaries — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is an IAM Policy in AWS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A virtual machine configuration",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A JSON document that defines permissions for AWS resources and actions",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A storage service",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A networking protocol",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the primary purpose of an IAM Policy?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To store application logs",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To define permissions and control access to AWS services and resources",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To create Availability Zones",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To manage databases",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which format is used to write AWS IAM Policies?",
+        "options": [
+          {
+            "id": "a",
+            "text": "XML",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "YAML",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "JSON",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "CSV",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What are the main elements of an IAM Policy statement?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Effect, Action, Resource, and Condition",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "User, Password, Region, and Zone",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Server, Network, Storage, and Compute",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Bucket, Object, Volume, and Snapshot",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What does the \"Effect\" field in an IAM Policy specify?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Which Region is used",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Whether an action is Allowed or Denied",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "The storage size",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The instance type",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a Permission Boundary in AWS IAM?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A maximum limit that defines the highest permissions an IAM user or role can receive",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A networking boundary between Regions",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A backup policy",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A storage quota",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are Permission Boundaries useful in large organizations?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They help enforce security controls and prevent excessive permissions",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "They increase EC2 performance",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "They create Availability Zones",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They replace IAM Policies",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "If an IAM Role has a policy allowing S3 access but a Permission Boundary does not allow S3 actions, what happens?",
+        "options": [
+          {
+            "id": "a",
+            "text": "S3 access is allowed",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "S3 access is denied because Permission Boundaries limit maximum permissions",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "AWS ignores the Permission Boundary",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The role receives administrator access",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best describes the relationship between IAM Policies and Permission Boundaries?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Policies grant permissions, while Permission Boundaries define the maximum permissions that can be granted",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Permission Boundaries replace Policies entirely",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Policies and Boundaries are identical",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Permission Boundaries automatically grant administrator access",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes IAM Policies and Permission Boundaries?",
+        "options": [
+          {
+            "id": "a",
+            "text": "IAM Policies define access permissions, while Permission Boundaries restrict the maximum permissions users and roles can obtain",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Both are used only for billing purposes",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Permission Boundaries increase storage capacity",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Policies and Boundaries are unrelated to security",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 2,
+    "topic_sort": 3,
+    "topic_title": "MFA & credential security",
+    "quiz_title": "MFA & credential security — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What does MFA stand for in AWS security?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Multi-Factor Authentication",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Managed File Access",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Multi-Function Authorization",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Managed Firewall Architecture",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is MFA important for AWS accounts?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It increases storage capacity",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "It helps protect accounts even if passwords are compromised",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "It improves EC2 performance",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It reduces network latency",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which of the following is an example of a second authentication factor?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Username",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Password",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "One-Time Password (OTP) generated by an authenticator app",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "IAM Policy",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the recommended security practice for the AWS root account?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Share credentials with the team",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Enable MFA and avoid routine use of the root account",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Disable passwords",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Use the root account for all daily activities",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a credential in AWS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A Region",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Information used to authenticate an identity, such as usernames, passwords, or access keys",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A storage bucket",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A virtual machine",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why should access keys be protected carefully?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They grant programmatic access to AWS resources and can be misused if exposed",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "They increase storage costs",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "They create Availability Zones",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They replace IAM Policies",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a recommended alternative to hard-coded access keys in AWS applications?",
+        "options": [
+          {
+            "id": "a",
+            "text": "IAM Roles",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Root Account Credentials",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Shared Passwords",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Public Access Policies",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which security practice helps reduce the risk of credential compromise?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Regular credential rotation and strong password policies",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Reusing passwords across multiple accounts",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Sharing credentials through email",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Disabling authentication logs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A developer accidentally publishes AWS access keys in a public repository. What should be done first?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Ignore the issue",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Immediately disable or rotate the exposed credentials and investigate usage",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Create a new AWS Region",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Restart the application",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes MFA and Credential Security?",
+        "options": [
+          {
+            "id": "a",
+            "text": "MFA adds additional verification layers, while credential security focuses on protecting passwords, access keys, and authentication mechanisms",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "MFA replaces passwords entirely",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Credential security is only AWS's responsibility",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "MFA is only required for administrators",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 2,
+    "topic_sort": 4,
+    "topic_title": "AWS Organizations basics",
+    "quiz_title": "AWS Organizations basics — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is AWS Organizations?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A storage service for AWS accounts",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A service that helps centrally manage and govern multiple AWS accounts",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A virtual machine management tool",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A database service",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the primary benefit of AWS Organizations?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Centralized account management and governance",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Increased EC2 performance",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Automatic application deployment",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Unlimited storage",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the top-level container in AWS Organizations called?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Organizational Unit (OU)",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Root",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "IAM Group",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Region",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an Organizational Unit (OU)?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A virtual machine cluster",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A logical grouping of AWS accounts within an organization",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A storage bucket",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A security group",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why do organizations create multiple AWS accounts?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To improve governance, security isolation, and billing management",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To increase internet speed",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To eliminate IAM",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To reduce storage capacity",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is consolidated billing in AWS Organizations?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A feature that combines billing from multiple AWS accounts into a single bill",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A database service",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A networking feature",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A backup solution",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a Service Control Policy (SCP)?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A policy that manages EC2 instances",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A governance policy that sets permission boundaries across AWS accounts in an organization",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A storage configuration file",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A backup policy",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best describes the relationship between SCPs and IAM Policies?",
+        "options": [
+          {
+            "id": "a",
+            "text": "SCPs define maximum permissions, while IAM Policies grant actual permissions",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "SCPs replace IAM Policies entirely",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "IAM Policies override SCPs",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Both are identical",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company wants separate AWS accounts for Development, Testing, and Production environments. Which AWS Organizations feature helps structure this setup?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Organizational Units (OUs)",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Availability Zones",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "VPCs",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "CloudFront",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes AWS Organizations?",
+        "options": [
+          {
+            "id": "a",
+            "text": "AWS Organizations provides centralized account management, governance, consolidated billing, and security controls across multiple AWS accounts",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "AWS Organizations is used only for storage management",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "AWS Organizations replaces IAM entirely",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS Organizations is a networking service",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 3,
+    "topic_sort": 1,
+    "topic_title": "Amazon EC2 instance types & AMIs",
+    "quiz_title": "Amazon EC2 instance types & AMIs — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What does EC2 stand for in AWS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Elastic Cloud Compute",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Elastic Compute Cloud",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Enterprise Compute Cluster",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Enhanced Cloud Container",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the primary purpose of Amazon EC2?",
         "options": [
           {
             "id": "a",
@@ -9599,67 +11458,42 @@ BEGIN
           },
           {
             "id": "b",
-            "text": "Resizable compute capacity in the cloud (virtual servers)",
+            "text": "Running virtual machines and applications in the cloud",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "Managed relational databases",
+            "text": "Managing DNS records",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "DNS routing",
+            "text": "Delivering content globally",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which EC2 pricing model allows you to pay for compute capacity by the hour or second with no long-term commitment?",
+        "question": "What is an EC2 Instance?",
         "options": [
           {
             "id": "a",
-            "text": "Reserved Instances",
+            "text": "A physical AWS data center",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "On-Demand Instances",
+            "text": "A virtual server running in AWS",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "Dedicated Hosts only",
+            "text": "A storage bucket",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Spot Instances with guaranteed availability",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "A workload can tolerate interruptions and wants the lowest compute cost. Which EC2 option is most suitable?",
-        "options": [
-          {
-            "id": "a",
-            "text": "On-Demand Instances",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Spot Instances",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Dedicated Instances",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Reserved Instances with 3-year term only",
+            "text": "A network firewall",
             "is_correct": false
           }
         ]
@@ -9674,691 +11508,167 @@ BEGIN
           },
           {
             "id": "b",
-            "text": "A template containing the OS and software configuration for launching EC2 instances",
+            "text": "A template used to launch EC2 instances with predefined configurations",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "A load balancer configuration",
+            "text": "A security group",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "An IAM policy document",
+            "text": "A database backup",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which EC2 feature allows automatic adjustment of capacity based on demand?",
+        "question": "Which component is typically included in an AMI?",
         "options": [
           {
             "id": "a",
-            "text": "Amazon S3 lifecycle rules",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Auto Scaling groups",
+            "text": "Operating System and application configuration",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "Availability Zones",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Route 53 health checks only",
+            "text": "IAM Groups",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "IAM roles",
+            "text": "Billing reports",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "A web application needs consistent performance and cannot tolerate interruptions. Which instance purchasing option is best?",
+        "question": "Why are different EC2 instance types available?",
         "options": [
           {
             "id": "a",
-            "text": "Spot Instances",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "On-Demand or Reserved Instances",
+            "text": "To support different workload requirements such as compute, memory, storage, and networking needs",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "To increase billing complexity",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Spot Fleet only",
+            "text": "To eliminate virtualization",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "No instance type selection needed",
+            "text": "To replace Availability Zones",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What is the purpose of an EC2 security group?",
+        "question": "Which EC2 instance family is commonly optimized for general-purpose workloads?",
         "options": [
           {
             "id": "a",
-            "text": "Store application data",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Act as a virtual firewall controlling inbound and outbound traffic",
+            "text": "T-Series and M-Series",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "R-Series only",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Manage DNS records",
+            "text": "P-Series only",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Encrypt S3 objects",
+            "text": "D-Series only",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which storage type is best for an EC2 root volume that requires high IOPS for a database?",
+        "question": "Which EC2 instance family is designed for memory-intensive applications such as databases?",
         "options": [
           {
             "id": "a",
-            "text": "Amazon S3",
+            "text": "T-Series",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "Amazon EBS (e.g., gp3 or io2 volume)",
+            "text": "R-Series",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "Amazon Glacier",
+            "text": "C-Series",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "AWS Snowball",
+            "text": "G-Series",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What happens when you stop an EC2 instance (not terminate)?",
+        "question": "A company needs high-performance computing for scientific simulations. Which EC2 instance family would generally be most appropriate?",
         "options": [
           {
             "id": "a",
-            "text": "All data on EBS volumes is deleted",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "The instance can be restarted later; EBS root volume data is preserved",
+            "text": "C-Series (Compute Optimized)",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "T-Series (Burstable)",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "The AMI is deleted",
+            "text": "R-Series (Memory Optimized)",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "The VPC is removed",
+            "text": "S-Series",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "A company needs to run a predictable production workload 24/7 for one year. Which option offers the best cost savings?",
+        "question": "Which statement best summarizes EC2 Instance Types and AMIs?",
         "options": [
           {
             "id": "a",
-            "text": "On-Demand Instances only",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Reserved Instances or Savings Plans",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Spot Instances exclusively",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "No reserved capacity needed",
-            "is_correct": false
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "course_code": "AWS",
-    "module_number": 2,
-    "topic_sort": 2,
-    "topic_title": "VPC design",
-    "quiz_title": "VPC design — Topic Quiz",
-    "pass_score": 70,
-    "max_attempts": 3,
-    "time_limit_min": 20,
-    "questions": [
-      {
-        "question": "What is an Amazon VPC?",
-        "options": [
-          {
-            "id": "a",
-            "text": "A content delivery network",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "A logically isolated virtual network in AWS",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "A managed database service",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "An object storage bucket",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which component allows resources in a private subnet to access the internet while remaining unreachable from the internet?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Internet Gateway attached directly to private instances",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "NAT Gateway in a public subnet",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "S3 bucket policy",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Route 53 record",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is the purpose of an Internet Gateway (IGW) in a VPC?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Connect private subnets to on-premises only",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Enable communication between the VPC and the internet",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Store VPC flow logs",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Encrypt EBS volumes",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "A company needs secure connectivity between their on-premises data center and AWS VPC. Which service should they use?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Amazon S3",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "AWS Direct Connect or Site-to-Site VPN",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Amazon DynamoDB",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "AWS Lambda",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is a subnet in a VPC?",
-        "options": [
-          {
-            "id": "a",
-            "text": "A range of IP addresses in the VPC where resources are launched",
+            "text": "AMIs provide the template for launching EC2 instances, while instance types define the hardware resources available to the virtual server",
             "is_correct": true
           },
           {
             "id": "b",
-            "text": "An IAM policy",
+            "text": "AMIs and instance types are identical concepts",
             "is_correct": false
           },
           {
             "id": "c",
-            "text": "An EC2 instance type",
+            "text": "Instance types store operating systems",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "A CloudWatch alarm",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which design places web servers in a public subnet and databases in a private subnet?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Single-tier architecture",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Multi-tier (multi-AZ) architecture with public and private subnets",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "No subnet separation needed",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "All resources in one public subnet",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What does a VPC peering connection enable?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Routing traffic between two VPCs privately",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Public internet access for all VPCs",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Automatic EC2 scaling",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "S3 cross-region replication",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which AWS component controls traffic between subnets within a VPC?",
-        "options": [
-          {
-            "id": "a",
-            "text": "S3 lifecycle policy",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Network ACLs and route tables",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "IAM roles",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "CloudTrail",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "A VPC is created with CIDR block 10.0.0.0/16. How many IP addresses does this theoretically support (before AWS reservations)?",
-        "options": [
-          {
-            "id": "a",
-            "text": "256",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "65,536",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "16",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Unlimited without limits",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which best practice improves VPC security for production workloads?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Place all resources in public subnets",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Use private subnets for backend services and restrict security group rules to least privilege",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Disable flow logs to save costs",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Use 0.0.0.0/0 for all inbound rules",
-            "is_correct": false
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "course_code": "AWS",
-    "module_number": 2,
-    "topic_sort": 3,
-    "topic_title": "Load balancers",
-    "quiz_title": "Load balancers — Topic Quiz",
-    "pass_score": 70,
-    "max_attempts": 3,
-    "time_limit_min": 20,
-    "questions": [
-      {
-        "question": "What is the primary purpose of an Elastic Load Balancer (ELB) in AWS?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Store static files",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Distribute incoming traffic across multiple targets for high availability",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Manage IAM users",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Run serverless functions",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which load balancer type is best suited for HTTP/HTTPS traffic with advanced routing features?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Classic Load Balancer",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Application Load Balancer (ALB)",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Network Load Balancer only for DNS",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Amazon S3",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which load balancer operates at Layer 4 (TCP/UDP) and provides ultra-low latency?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Application Load Balancer",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Network Load Balancer (NLB)",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Classic Load Balancer for HTTP only",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Amazon CloudFront",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "A company runs EC2 instances across multiple Availability Zones and wants automatic traffic distribution. What should they use?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Single EC2 instance with elastic IP",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Elastic Load Balancer with targets in multiple AZs",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "S3 static website hosting only",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Route 53 without any compute",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is a target group in the context of AWS load balancing?",
-        "options": [
-          {
-            "id": "a",
-            "text": "An IAM group",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "A collection of registered targets (e.g., EC2 instances) that receive traffic from a load balancer",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "An S3 bucket",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "A VPC subnet",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which health check feature do ELBs provide?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Automatic replacement of unhealthy targets by routing traffic only to healthy ones",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Automatic database backups",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "IAM password rotation",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "S3 versioning",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "An application needs sticky sessions (session affinity) for HTTP traffic. Which load balancer supports this?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Application Load Balancer with sticky sessions enabled",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Amazon RDS",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "AWS Lambda",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Amazon EBS",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is the benefit of placing an ALB in front of Auto Scaling EC2 instances?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Eliminates the need for security groups",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Distributes traffic and works with Auto Scaling to maintain availability during scale events",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Replaces the need for VPCs",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Automatically encrypts all data at rest",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which AWS service can integrate with an Application Load Balancer to run containerized applications?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Amazon ECS or EKS with ALB target groups",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Amazon S3 only",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "AWS IAM",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Amazon Glacier",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "A global application needs to route users to the nearest healthy endpoint. Which combination is commonly used?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Single EC2 instance in one region",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Route 53 routing policies combined with load balancers in multiple regions",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "S3 bucket without CloudFront",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "One NAT Gateway for all regions",
+            "text": "AMIs determine AWS Regions",
             "is_correct": false
           }
         ]
@@ -10368,40 +11678,851 @@ BEGIN
   {
     "course_code": "AWS",
     "module_number": 3,
-    "topic_sort": 1,
-    "topic_title": "S3",
-    "quiz_title": "S3 — Topic Quiz",
+    "topic_sort": 2,
+    "topic_title": "EBS volumes & snapshots",
+    "quiz_title": "EBS volumes & snapshots — Topic Quiz",
     "pass_score": 70,
     "max_attempts": 3,
     "time_limit_min": 20,
     "questions": [
       {
-        "question": "What is Amazon S3 primarily designed for?",
+        "question": "What does EBS stand for in AWS?",
         "options": [
           {
             "id": "a",
-            "text": "Block storage for EC2",
+            "text": "Elastic Backup Storage",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "Scalable object storage",
+            "text": "Elastic Block Store",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "Relational database hosting",
+            "text": "Enterprise Block Service",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Virtual server compute",
+            "text": "Enhanced Backup System",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What is an S3 bucket?",
+        "question": "What is the primary purpose of an EBS Volume?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To provide persistent storage for EC2 instances",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To manage DNS records",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To deliver content globally",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To create IAM users",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What happens to data stored on an EBS volume when an EC2 instance is stopped?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The data is lost permanently",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "The data remains stored and can be accessed when the instance starts again",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "The volume is deleted automatically",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The data is moved to Amazon S3",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which storage type best describes Amazon EBS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Object Storage",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Block Storage",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "File Storage",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Archive Storage",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Can an EBS volume be detached from one EC2 instance and attached to another?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Yes, in many cases within the same Availability Zone",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "No, never",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Only across Regions",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Only after converting it to S3",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an EBS Snapshot?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A copy of an EC2 instance",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A backup of an EBS volume stored in AWS-managed storage",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A network configuration file",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "An IAM policy",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are EBS Snapshots useful?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They allow backup, disaster recovery, and volume restoration",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "They increase CPU performance",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "They replace Availability Zones",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They manage IAM users",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Where are EBS Snapshots stored?",
+        "options": [
+          {
+            "id": "a",
+            "text": "On the EC2 instance itself",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "In AWS-managed storage (internally backed by Amazon S3)",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Inside IAM",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "In Route 53",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company wants to create a backup before updating a production server. What is the recommended action?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Create an EBS Snapshot of the attached volume",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Delete the volume",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Stop using EBS",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Create a new Availability Zone",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes EBS Volumes and Snapshots?",
+        "options": [
+          {
+            "id": "a",
+            "text": "EBS Volumes provide persistent block storage for EC2 instances, while Snapshots create point-in-time backups of those volumes",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "EBS Volumes and Snapshots are identical",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Snapshots replace EBS Volumes permanently",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "EBS is used only for networking",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 3,
+    "topic_sort": 3,
+    "topic_title": "Placement groups",
+    "quiz_title": "Placement groups — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is an AWS Placement Group?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A storage service for EC2 instances",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A logical grouping of EC2 instances that influences how they are placed within AWS infrastructure",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A backup service",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A DNS management tool",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are Placement Groups used?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To optimize performance, networking, or availability depending on workload requirements",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To increase storage capacity",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To manage IAM users",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To create snapshots",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How many main types of Placement Groups are available in AWS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "One",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Two",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Three",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "Five",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which Placement Group strategy is designed to provide the lowest network latency and highest throughput between EC2 instances?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Spread Placement Group",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Partition Placement Group",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Cluster Placement Group",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "Auto Scaling Group",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which workload is best suited for a Cluster Placement Group?",
+        "options": [
+          {
+            "id": "a",
+            "text": "High-performance computing (HPC) applications",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Email services only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "DNS management",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Backup storage",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the primary goal of a Spread Placement Group?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Place instances across distinct hardware to reduce the risk of simultaneous failure",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Increase storage performance",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Improve internet speed",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Create backups",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which Placement Group strategy is commonly used for critical applications requiring high availability?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Cluster Placement Group",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Spread Placement Group",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Partition Placement Group only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "None of the above",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a Partition Placement Group?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A strategy that divides instances into logical partitions to improve fault isolation at scale",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A storage partitioning service",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A database feature",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A network firewall",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which workload is commonly associated with Partition Placement Groups?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Large distributed systems such as Hadoop or Kafka clusters",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Small personal websites",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "DNS services only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "IAM management",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes AWS Placement Groups?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Placement Groups control how EC2 instances are physically deployed to optimize performance, latency, and fault tolerance",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Placement Groups are used only for storage management",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Placement Groups replace Availability Zones",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Placement Groups manage IAM permissions",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 3,
+    "topic_sort": 4,
+    "topic_title": "Launch templates",
+    "quiz_title": "Launch templates — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is an AWS Launch Template?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A backup service for EC2 instances",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A reusable configuration template used to launch EC2 instances",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A storage service",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A networking component",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the primary purpose of a Launch Template?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To automate and standardize EC2 instance deployments",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To create snapshots",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To manage IAM users",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To configure DNS records",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which of the following can be defined within a Launch Template?",
+        "options": [
+          {
+            "id": "a",
+            "text": "AMI, instance type, security groups, and storage configuration",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Only instance names",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Only IAM users",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Only Availability Zones",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are Launch Templates useful in large-scale environments?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They ensure consistent configuration across multiple EC2 instances",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "They increase internet speed",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "They replace IAM policies",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They eliminate storage requirements",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS service commonly integrates with Launch Templates for automatic scaling?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon Route 53",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "AWS Auto Scaling Groups",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Amazon S3",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS Organizations",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What advantage do Launch Template versions provide?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The ability to track and manage configuration changes over time",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Increased storage capacity",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Automatic model training",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Reduced network latency",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company wants every new EC2 instance to use the same AMI, security group, and instance type. What AWS feature should be used?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Launch Template",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Security Group",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Availability Zone",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Snapshot",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which configuration is NOT typically stored in a Launch Template?",
+        "options": [
+          {
+            "id": "a",
+            "text": "AMI ID",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Instance Type",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Security Groups",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "IAM User Passwords",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "question": "How do Launch Templates improve operational efficiency?",
+        "options": [
+          {
+            "id": "a",
+            "text": "By reducing repetitive manual configuration tasks",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "By increasing EC2 costs automatically",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "By eliminating backups",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "By replacing monitoring systems",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes AWS Launch Templates?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Launch Templates provide reusable EC2 deployment configurations that support automation, consistency, and scalability",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Launch Templates replace EC2 instances",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Launch Templates are used only for storage management",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Launch Templates manage IAM permissions",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 4,
+    "topic_sort": 1,
+    "topic_title": "Amazon S3 & storage classes",
+    "quiz_title": "Amazon S3 & storage classes — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What does S3 stand for in AWS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Secure Storage Service",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Simple Storage Service",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Standard Storage Solution",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Scalable Storage System",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What type of storage does Amazon S3 provide?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Block Storage",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "File Storage",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Object Storage",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "Database Storage",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an S3 Bucket?",
         "options": [
           {
             "id": "a",
@@ -10410,12 +12531,2582 @@ BEGIN
           },
           {
             "id": "b",
-            "text": "A container for storing objects in Amazon S3",
+            "text": "A container used to store objects in Amazon S3",
             "is_correct": true
           },
           {
             "id": "c",
+            "text": "A database table",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A security group",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an S3 Object?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A physical storage device",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A file stored in an S3 bucket along with its metadata",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A virtual network",
+            "is_correct": false
+          },
+          {
+            "id": "d",
             "text": "An IAM role",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which feature makes Amazon S3 highly durable?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Data is redundantly stored across multiple devices within an AWS Region",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Files are stored on a single server",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Storage is limited to one Availability Zone",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Objects are automatically deleted after upload",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an S3 Storage Class?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A security policy for S3 buckets",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A category that defines the cost, availability, and access characteristics of stored data",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A networking feature",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A database engine",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which S3 Storage Class is designed for frequently accessed data?",
+        "options": [
+          {
+            "id": "a",
+            "text": "S3 Standard",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "S3 Glacier Deep Archive",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "S3 Glacier Flexible Retrieval",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "S3 One Zone-IA",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which S3 Storage Class is best suited for long-term archival data that is rarely accessed?",
+        "options": [
+          {
+            "id": "a",
+            "text": "S3 Standard",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "S3 Intelligent-Tiering",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "S3 Glacier Deep Archive",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "S3 Standard-IA",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the purpose of S3 Intelligent-Tiering?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Automatically move data between access tiers based on usage patterns",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Increase EC2 performance",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Replace IAM policies",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Create Availability Zones",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes Amazon S3 and Storage Classes?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon S3 is an object storage service, and Storage Classes allow organizations to balance cost and access requirements for different types of data",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "S3 is a block storage service only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Storage Classes are used only for security purposes",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "S3 replaces EC2 instances",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 4,
+    "topic_sort": 2,
+    "topic_title": "EBS vs EFS",
+    "quiz_title": "EBS vs EFS — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What does EBS stand for in AWS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Elastic Backup Service",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Elastic Block Store",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Enhanced Block Storage",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Enterprise Backup System",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What does EFS stand for in AWS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Elastic File Service",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Enhanced File Storage",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Elastic File System",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "Enterprise File System",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What type of storage does Amazon EBS provide?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Object Storage",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "File Storage",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Block Storage",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "Archive Storage",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What type of storage does Amazon EFS provide?",
+        "options": [
+          {
+            "id": "a",
+            "text": "File Storage",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Block Storage",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Object Storage",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Archive Storage",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS storage service is typically attached to a single EC2 instance?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon EFS",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Amazon EBS",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Amazon S3",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS Glacier",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS storage service can be accessed by multiple EC2 instances simultaneously?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon EBS",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Amazon EFS",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Amazon EC2",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Amazon Route 53",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which storage solution would be most suitable for a shared web application where multiple servers need access to the same files?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon EBS",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Amazon EFS",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "EC2 Instance Store",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS Lambda",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which storage service is commonly used as the primary disk for an EC2 instance?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon EFS",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Amazon EBS",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Amazon S3",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS Backup",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a major advantage of Amazon EFS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Shared file access with automatic scaling",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Direct object storage access",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Lower latency than all storage services",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Replaces EC2 instances",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes EBS and EFS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "EBS provides block storage for individual EC2 instances, while EFS provides scalable shared file storage for multiple EC2 instances",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "EBS and EFS are identical services",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "EFS is object storage and EBS is file storage",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Both are used only for backups",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 4,
+    "topic_sort": 3,
+    "topic_title": "Lifecycle policies & versioning",
+    "quiz_title": "Lifecycle policies & versioning — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is S3 Versioning?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A feature that automatically increases storage size",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A feature that keeps multiple versions of an object in an S3 bucket",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A backup service for EC2",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A networking configuration",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is S3 Versioning useful?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It protects against accidental deletion and overwriting of objects",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It increases CPU performance",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It creates new AWS accounts automatically",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It reduces internet latency",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What happens when an object is updated in a version-enabled S3 bucket?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The old version is deleted permanently",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A new version is created while previous versions are retained",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "The bucket is recreated",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "The object becomes read-only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the primary purpose of an S3 Lifecycle Policy?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To automate storage management and optimize costs",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To manage IAM users",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To create EC2 instances",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To configure networking",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which action can a Lifecycle Policy perform?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Move objects to a lower-cost storage class after a specific period",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Create Availability Zones",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Increase EC2 memory automatically",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Manage IAM roles",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company stores logs that are rarely accessed after 90 days. Which Lifecycle Policy action would be most appropriate?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Transition objects to a lower-cost storage class such as Glacier",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Delete the bucket immediately",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Launch a new EC2 instance",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Create a new Region",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a common use case for S3 Versioning?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Recovering accidentally deleted or modified files",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Managing network traffic",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Creating virtual machines",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Configuring DNS records",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Can Lifecycle Policies be applied to previous object versions?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Yes, Lifecycle Policies can manage current and non-current object versions",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "No, only current versions can be managed",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Only IAM administrators can manage versions manually",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Versioning and Lifecycle Policies cannot work together",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which combination provides both data protection and cost optimization in Amazon S3?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Versioning + Lifecycle Policies",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "EC2 + IAM",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "VPC + Route 53",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "EBS + Security Groups",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes Lifecycle Policies and Versioning?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Versioning protects object history, while Lifecycle Policies automate storage transitions and deletion to optimize costs",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Both features perform the same function",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Lifecycle Policies replace Versioning entirely",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Versioning is only used for networking",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 4,
+    "topic_sort": 4,
+    "topic_title": "Encryption at rest & in transit",
+    "quiz_title": "Encryption at rest & in transit — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is encryption?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A method of compressing files",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "The process of converting readable data into an unreadable format to protect it from unauthorized access",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A backup strategy",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A networking protocol",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is Encryption at Rest?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Encrypting data while it is stored on disks, databases, or storage services",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Encrypting data while it travels across a network",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Encrypting data only during backups",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Encrypting user passwords only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS service commonly supports Encryption at Rest?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon S3",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Amazon EBS",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Amazon RDS",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "All of the above",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "question": "What is Encryption in Transit?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Encrypting data while it is being transferred between systems or over a network",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Encrypting only archived data",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Encrypting physical servers",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Encrypting IAM policies",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which protocol is commonly used to provide Encryption in Transit for web applications?",
+        "options": [
+          {
+            "id": "a",
+            "text": "FTP",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "HTTP",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "HTTPS (TLS/SSL)",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "SMTP",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is Encryption at Rest important?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It protects stored data from unauthorized access if storage media is compromised",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It increases CPU performance",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It eliminates the need for backups",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It improves internet speed",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is Encryption in Transit important?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It protects data from interception or tampering during transmission",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It increases storage capacity",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It reduces EC2 costs",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It replaces authentication",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS service is commonly used to manage encryption keys?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon EC2",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "AWS Key Management Service (KMS)",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Amazon Route 53",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS Organizations",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company stores customer records in Amazon S3 and accesses them through HTTPS. Which types of encryption are being used?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Encryption at Rest only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Encryption in Transit only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Both Encryption at Rest and Encryption in Transit",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "No encryption",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes Encryption at Rest and Encryption in Transit?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Encryption at Rest protects stored data, while Encryption in Transit protects data as it moves between systems",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Both perform the same function",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Encryption is only required during transmission",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Encryption is only required for stored data",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 5,
+    "topic_sort": 1,
+    "topic_title": "VPCs, subnets & route tables",
+    "quiz_title": "VPCs, subnets & route tables — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What does VPC stand for in AWS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Virtual Private Cloud",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Virtual Public Connection",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Virtual Protected Cluster",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Virtual Processing Center",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the primary purpose of an AWS VPC?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To store files",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To provide an isolated networking environment for AWS resources",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To manage IAM users",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To create backups",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a subnet in AWS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A storage bucket",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A smaller network segment within a VPC",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A security policy",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "An EC2 instance type",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are subnets used inside a VPC?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To organize resources and control network access",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To increase storage capacity",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To manage IAM roles",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To create snapshots",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a Public Subnet?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A subnet that has a route to the internet through an Internet Gateway",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A subnet used only for storage",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A subnet without IP addresses",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A subnet used only for databases",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a Private Subnet?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A subnet connected directly to the internet",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A subnet without direct internet access",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A subnet that contains only databases",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A subnet used only by AWS services",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a Route Table?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A list of firewall rules",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A set of routing rules that determine where network traffic is directed",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A storage management tool",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A backup configuration",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the role of an Internet Gateway (IGW) in a VPC?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To provide internet connectivity for resources in public subnets",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To encrypt data",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To manage IAM permissions",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To store application logs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company hosts a web server in a public subnet and a database in a private subnet. What is the main advantage of this architecture?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Improved security by preventing direct internet access to the database",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Faster EC2 performance",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Reduced storage requirements",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Elimination of route tables",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes VPCs, Subnets, and Route Tables?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A VPC provides an isolated network, subnets divide the network into segments, and route tables control traffic flow between resources",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "They are all used only for storage management",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Route tables replace VPCs",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Subnets manage IAM users",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 5,
+    "topic_sort": 2,
+    "topic_title": "Internet Gateway & NAT Gateway",
+    "quiz_title": "Internet Gateway & NAT Gateway — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of an Internet Gateway (IGW) in AWS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To provide internet connectivity between a VPC and the public internet",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To store backups",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To manage IAM users",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To create EC2 instances",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS networking component must be attached to a VPC to enable internet access?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Route Table",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Internet Gateway",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Security Group",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "EBS Volume",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which type of subnet typically uses an Internet Gateway?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Private Subnet",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Public Subnet",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Database Subnet Only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Backup Subnet",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a NAT Gateway?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A service that allows resources in private subnets to access the internet without accepting inbound internet connections",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A storage service",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A DNS server",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "An IAM feature",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why would an EC2 instance in a private subnet need a NAT Gateway?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To download software updates or access external services without being publicly accessible",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To increase storage capacity",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To manage IAM roles",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To create snapshots",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Where should a NAT Gateway be deployed?",
+        "options": [
+          {
+            "id": "a",
+            "text": "In a Public Subnet",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "In a Private Subnet",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "In an IAM Group",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "In an Availability Zone only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement correctly describes inbound internet traffic to resources behind a NAT Gateway?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Direct inbound internet connections are not allowed",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "All inbound traffic is automatically allowed",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "NAT Gateway replaces security groups",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "NAT Gateway acts as a load balancer",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a key security benefit of using private subnets with a NAT Gateway?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Resources can access the internet without being directly exposed to external users",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It removes the need for firewalls",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It eliminates route tables",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It increases CPU performance",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company places web servers in a public subnet and database servers in a private subnet. Which component allows the database servers to download operating system updates?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Internet Gateway",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "NAT Gateway",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Security Group",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Route 53",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes Internet Gateway and NAT Gateway?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Internet Gateways provide direct internet access for public resources, while NAT Gateways allow private resources to access the internet securely without accepting inbound connections",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Both services perform exactly the same function",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "NAT Gateways provide inbound internet access to private resources",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Internet Gateways replace route tables",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 5,
+    "topic_sort": 3,
+    "topic_title": "Security groups vs NACLs",
+    "quiz_title": "Security groups vs NACLs — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of a Security Group in AWS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To provide instance-level firewall protection",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To store application logs",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To create subnets",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To manage IAM users",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "At which level does a Security Group operate?",
+        "options": [
+          {
+            "id": "a",
+            "text": "VPC Level",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Subnet Level",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Instance Level",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "Region Level",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a Network Access Control List (NACL)?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A subnet-level firewall that controls inbound and outbound traffic",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A storage service",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A backup mechanism",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "An IAM policy",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "At which level does a NACL operate?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Instance Level",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Subnet Level",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Region Level",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Account Level",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which of the following is stateful?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Security Group",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "NACL",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Route Table",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Internet Gateway",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which of the following is stateless?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Security Group",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "IAM Policy",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "NACL",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "Route 53",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS security feature supports only Allow rules?",
+        "options": [
+          {
+            "id": "a",
+            "text": "NACL",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Security Group",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Route Table",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Internet Gateway",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS security feature supports both Allow and Deny rules?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Security Group",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "IAM Group",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "NACL",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "EC2 Instance",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company wants to block a specific IP address from accessing an entire subnet. Which AWS feature is best suited for this requirement?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Security Group",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "NACL",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "EBS Volume",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Launch Template",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes Security Groups and NACLs?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Security Groups are stateful instance-level firewalls, while NACLs are stateless subnet-level firewalls that support both allow and deny rules",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Both services are identical",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Security Groups operate at subnet level and NACLs operate at instance level",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "NACLs replace Security Groups entirely",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 5,
+    "topic_sort": 4,
+    "topic_title": "Public & private tier design",
+    "quiz_title": "Public & private tier design — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of a multi-tier architecture in AWS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To increase storage capacity only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To separate application components for security, scalability, and manageability",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To eliminate subnets",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To replace VPCs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is typically placed in the Public Tier of an AWS architecture?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Database Servers",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Internet-facing resources such as Web Servers and Load Balancers",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Backup Storage Only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "IAM Users",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is typically placed in the Private Tier?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Internet Gateways",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Backend Application Servers and Databases",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Public Load Balancers",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "DNS Servers Only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are databases commonly deployed in private subnets?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To improve security by preventing direct internet access",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To increase internet speed",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To reduce storage costs",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To eliminate backups",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS component allows internet traffic to reach resources in the Public Tier?",
+        "options": [
+          {
+            "id": "a",
+            "text": "NAT Gateway",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Internet Gateway",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Security Group",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Route 53",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How do resources in a Private Tier typically access the internet for updates and patches?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Through an Internet Gateway directly",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Through a NAT Gateway",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Through a Security Group",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Through a Launch Template",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a common three-tier architecture design?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Web Tier, Application Tier, Database Tier",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Storage Tier, IAM Tier, DNS Tier",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Region Tier, AZ Tier, Subnet Tier",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Route Tier, Firewall Tier, Backup Tier",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the primary security benefit of separating public and private tiers?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Reduced attack surface and better access control",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Increased CPU performance",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Automatic scaling",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Lower storage costs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A web application receives requests from users, processes them through application servers, and stores data in a database. Which component should be in the Private Tier?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Internet Gateway",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Load Balancer",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Database Server",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "Public Web Server",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes Public & Private Tier Design?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Public tiers host internet-facing resources, while private tiers host internal systems that require additional security and controlled access",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Public and private tiers serve the same purpose",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Private tiers require direct internet access",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Public tiers are more secure than private tiers",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 6,
+    "topic_sort": 1,
+    "topic_title": "Application Load Balancer (ALB)",
+    "quiz_title": "Application Load Balancer (ALB) — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of an Application Load Balancer (ALB)?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To store application data",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To distribute incoming application traffic across multiple targets",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To manage IAM users",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To create backups",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "At which layer of the OSI model does an Application Load Balancer operate?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Layer 2 (Data Link)",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Layer 3 (Network)",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Layer 4 (Transport)",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Layer 7 (Application)",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "question": "Which protocols are commonly supported by an Application Load Balancer?",
+        "options": [
+          {
+            "id": "a",
+            "text": "HTTP and HTTPS",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "FTP only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "SMTP only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "SSH only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a Target Group in an ALB?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A collection of resources that receive traffic from the load balancer",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A security group",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "An IAM role",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A route table",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a major benefit of using an ALB?",
+        "options": [
+          {
+            "id": "a",
+            "text": "High availability through traffic distribution across multiple targets",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Increased storage capacity",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Automatic database backups",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "IAM policy management",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is Path-Based Routing in an ALB?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Routing requests based on URL paths such as /api or /images",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Routing based on storage size",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Routing based on IAM permissions",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Routing based on Availability Zones only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is Host-Based Routing in an ALB?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Routing traffic based on domain names or host headers",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Routing based on EC2 instance size",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Routing based on subnet type",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Routing based on EBS volume size",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are health checks important in an ALB?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They identify unhealthy targets and stop routing traffic to them",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "They increase internet speed",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "They create snapshots automatically",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They replace security groups",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company hosts multiple web applications behind a single ALB. Which ALB feature allows traffic to be routed to the correct application?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Path-Based and Host-Based Routing",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "IAM Policies",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Security Groups",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "EBS Snapshots",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes an Application Load Balancer?",
+        "options": [
+          {
+            "id": "a",
+            "text": "An ALB distributes HTTP/HTTPS traffic across multiple targets and supports advanced routing features for scalable, highly available applications",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "An ALB is a storage service",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "An ALB replaces Auto Scaling Groups",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "An ALB manages IAM users",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 6,
+    "topic_sort": 2,
+    "topic_title": "Network Load Balancer (NLB)",
+    "quiz_title": "Network Load Balancer (NLB) — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary purpose of a Network Load Balancer (NLB)?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To store application data",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To distribute network traffic with ultra-high performance and low latency",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To manage IAM users",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To create snapshots",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "At which layer of the OSI model does a Network Load Balancer operate?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Layer 2 (Data Link)",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Layer 3 (Network)",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Layer 4 (Transport)",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "Layer 7 (Application)",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which protocols are commonly supported by a Network Load Balancer?",
+        "options": [
+          {
+            "id": "a",
+            "text": "HTTP and HTTPS only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "TCP, UDP, and TLS",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "SMTP only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "FTP only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a key advantage of an NLB compared to an Application Load Balancer?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Lower latency and higher performance for network traffic",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Built-in path-based routing",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "URL-based routing",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Host-based routing",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which type of workload is best suited for a Network Load Balancer?",
+        "options": [
+          {
+            "id": "a",
+            "text": "High-performance TCP applications and gaming services",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Static website hosting only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "IAM authentication services",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Route table management",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS load balancer preserves the client's source IP address by default?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Application Load Balancer",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Network Load Balancer",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Classic Load Balancer",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Route 53",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are health checks important in a Network Load Balancer?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They ensure traffic is routed only to healthy targets",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "They increase storage capacity",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "They manage IAM policies",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They replace Auto Scaling",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company runs a real-time gaming application that requires very low latency. Which AWS load balancer is the best choice?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Application Load Balancer",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Network Load Balancer",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Route 53",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Security Group",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which routing capability is supported by an NLB?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Connection-based routing at Layer 4",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "URL path routing",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Hostname routing",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Cookie-based routing",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes a Network Load Balancer?",
+        "options": [
+          {
+            "id": "a",
+            "text": "An NLB operates at Layer 4, providing ultra-high performance, low latency, and scalable traffic distribution for TCP, UDP, and TLS workloads",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "An NLB is used only for storage services",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "An NLB replaces VPC networking",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "An NLB manages IAM permissions",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 6,
+    "topic_sort": 3,
+    "topic_title": "Target groups & health checks",
+    "quiz_title": "Target groups & health checks — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is a Target Group in AWS Elastic Load Balancing?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A collection of resources that receive traffic from a load balancer",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A security policy",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A storage service",
             "is_correct": false
           },
           {
@@ -10426,201 +15117,226 @@ BEGIN
         ]
       },
       {
-        "question": "Which S3 storage class is most cost-effective for data accessed infrequently but requiring rapid access when needed?",
+        "question": "Which AWS resources can commonly be registered as targets?",
         "options": [
           {
             "id": "a",
-            "text": "S3 Standard",
+            "text": "EC2 Instances",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "S3 Standard-IA (Infrequent Access)",
-            "is_correct": true
+            "text": "IP Addresses",
+            "is_correct": false
           },
           {
             "id": "c",
-            "text": "S3 Glacier Deep Archive for immediate access",
+            "text": "AWS Lambda Functions",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "EBS gp3",
+            "text": "All of the Above",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "question": "What is the primary purpose of a Target Group?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To store application data",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To organize and route traffic to backend resources",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To manage IAM users",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To create snapshots",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What feature helps prevent accidental deletion of S3 objects?",
+        "question": "What is a Health Check in AWS Load Balancing?",
         "options": [
           {
             "id": "a",
-            "text": "Disabling versioning",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "S3 Versioning and MFA Delete",
+            "text": "A mechanism used to determine whether a target is available and functioning correctly",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "A backup procedure",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Making the bucket public",
+            "text": "A monitoring dashboard only",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Removing bucket policies",
+            "text": "A VPC routing rule",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "A company needs to serve static website content globally with low latency. Which combination is commonly used?",
+        "question": "Why are Health Checks important?",
         "options": [
           {
             "id": "a",
-            "text": "EC2 only",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Amazon S3 with Amazon CloudFront CDN",
+            "text": "They improve application availability by detecting unhealthy targets",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "They increase storage capacity",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "RDS Multi-AZ",
+            "text": "They replace security groups",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "AWS Lambda only",
+            "text": "They manage Route Tables",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What is the maximum size of a single object upload to S3 (using multipart upload for larger files)?",
+        "question": "What happens when a target repeatedly fails health checks?",
         "options": [
           {
             "id": "a",
-            "text": "5 GB maximum",
+            "text": "It continues receiving traffic normally",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "5 TB per object",
+            "text": "It is marked unhealthy and removed from traffic routing",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "1 MB maximum",
+            "text": "It is automatically deleted",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Unlimited without multipart",
+            "text": "It becomes a load balancer",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which S3 feature automatically transitions objects to lower-cost storage classes based on rules?",
+        "question": "Which protocol is commonly used for Application Load Balancer health checks?",
         "options": [
           {
             "id": "a",
-            "text": "S3 Lifecycle policies",
+            "text": "HTTP/HTTPS",
             "is_correct": true
           },
           {
             "id": "b",
-            "text": "IAM policies",
+            "text": "SMTP",
             "is_correct": false
           },
           {
             "id": "c",
-            "text": "Security groups",
+            "text": "FTP",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Auto Scaling",
+            "text": "SNMP",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "How can you restrict access to an S3 bucket so only specific IAM users can read objects?",
+        "question": "A load balancer has three EC2 instances in a Target Group. One instance becomes unavailable. What happens?",
         "options": [
           {
             "id": "a",
-            "text": "Make the bucket public",
+            "text": "Traffic continues to be sent to all instances equally",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "Use bucket policies and IAM policies to grant least-privilege access",
+            "text": "The unhealthy instance is removed from rotation, and traffic is sent to healthy instances only",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "Disable encryption",
+            "text": "The load balancer stops working",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Remove all ACLs and make objects public",
+            "text": "All instances are marked unhealthy",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What is Amazon S3 Glacier used for?",
+        "question": "Which AWS feature works closely with Target Groups to support high availability?",
         "options": [
           {
             "id": "a",
-            "text": "Real-time transactional database workloads",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Long-term archival storage at lower cost",
+            "text": "Health Checks",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "IAM Roles",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "EC2 boot volumes",
+            "text": "EBS Snapshots",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "DNS routing",
+            "text": "Route Tables",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which S3 consistency model applies to new object PUT requests in modern AWS regions?",
+        "question": "Which statement best summarizes Target Groups and Health Checks?",
         "options": [
           {
             "id": "a",
-            "text": "Read-after-write consistency for PUTs of new objects",
+            "text": "Target Groups define traffic destinations, while Health Checks ensure traffic is routed only to healthy resources",
             "is_correct": true
           },
           {
             "id": "b",
-            "text": "No consistency guarantees ever",
+            "text": "Both perform the same function",
             "is_correct": false
           },
           {
             "id": "c",
-            "text": "Only eventual consistency for all operations",
+            "text": "Health Checks replace Target Groups",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Strong consistency only in one AZ",
+            "text": "Target Groups are used only for storage services",
             "is_correct": false
           }
         ]
@@ -10629,260 +15345,260 @@ BEGIN
   },
   {
     "course_code": "AWS",
-    "module_number": 3,
-    "topic_sort": 2,
-    "topic_title": "RDS",
-    "quiz_title": "RDS — Topic Quiz",
+    "module_number": 6,
+    "topic_sort": 4,
+    "topic_title": "Auto Scaling groups & policies",
+    "quiz_title": "Auto Scaling groups & policies — Topic Quiz",
     "pass_score": 70,
     "max_attempts": 3,
     "time_limit_min": 20,
     "questions": [
       {
-        "question": "What is Amazon RDS?",
+        "question": "What is the primary purpose of an Auto Scaling Group (ASG)?",
         "options": [
           {
             "id": "a",
-            "text": "An object storage service",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "A managed relational database service",
+            "text": "To automatically adjust the number of EC2 instances based on demand",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "To store application data",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "A serverless compute platform",
+            "text": "To manage IAM users",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "A DNS service",
+            "text": "To create VPCs",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which benefit does Amazon RDS provide compared to running a database on EC2?",
+        "question": "What problem does Auto Scaling solve?",
         "options": [
           {
             "id": "a",
-            "text": "You must manage all OS patching yourself",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "AWS handles backups, patching, and infrastructure management",
+            "text": "Over-provisioning and under-provisioning of resources",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "Database corruption",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "No backup options available",
+            "text": "IAM authentication issues",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "No Multi-AZ support",
+            "text": "Route table management",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What is Multi-AZ deployment in Amazon RDS?",
+        "question": "Which AWS component is typically used by an Auto Scaling Group to launch new EC2 instances?",
         "options": [
           {
             "id": "a",
-            "text": "Running read replicas in the same AZ",
+            "text": "Route Table",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "A standby replica in another AZ for high availability and automatic failover",
+            "text": "Launch Template",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "Storing data in S3",
+            "text": "Security Group",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Using Lambda for database queries",
+            "text": "EBS Snapshot",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What is an RDS Read Replica used for?",
+        "question": "What is the desired capacity in an Auto Scaling Group?",
         "options": [
           {
             "id": "a",
-            "text": "Automatic failover to standby",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Scaling read traffic by replicating data to additional read-only instances",
+            "text": "The number of EC2 instances the group attempts to maintain",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "The storage size of EBS volumes",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Replacing the need for backups",
+            "text": "The number of Availability Zones",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Encrypting S3 objects",
+            "text": "The number of IAM users",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which RDS feature allows you to restore a database to a specific point in time?",
+        "question": "What is a Scaling Policy?",
         "options": [
           {
             "id": "a",
-            "text": "S3 Lifecycle",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Automated backups and point-in-time recovery (PITR)",
+            "text": "A set of rules that determines when Auto Scaling should add or remove instances",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "A backup configuration",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "CloudFront caching",
+            "text": "An IAM permission document",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "IAM MFA",
+            "text": "A routing rule",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "A production database must minimize downtime during maintenance. Which RDS feature helps?",
+        "question": "Which metric is commonly used to trigger Auto Scaling?",
         "options": [
           {
             "id": "a",
-            "text": "Single-AZ deployment only",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Multi-AZ deployment with automatic failover",
+            "text": "CPU Utilization",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "Keyboard Activity",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Public accessibility for all instances",
+            "text": "Screen Resolution",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Disabling automated backups",
+            "text": "Storage Class",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which database engines are supported by Amazon RDS?",
+        "question": "What is Scale-Out?",
         "options": [
           {
             "id": "a",
-            "text": "Only DynamoDB",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "MySQL, PostgreSQL, MariaDB, Oracle, SQL Server, and Aurora",
+            "text": "Adding more EC2 instances when demand increases",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "Removing EC2 instances when demand decreases",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Only MongoDB",
+            "text": "Increasing storage only",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Only Redis",
+            "text": "Creating new VPCs",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What is Amazon Aurora?",
+        "question": "What is Scale-In?",
         "options": [
           {
             "id": "a",
-            "text": "An S3 storage tier",
+            "text": "Adding more EC2 instances",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "A MySQL and PostgreSQL-compatible RDS database built for high performance and availability",
+            "text": "Removing unnecessary EC2 instances when demand decreases",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "A load balancer type",
+            "text": "Creating more Availability Zones",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "An IAM policy",
+            "text": "Increasing database storage",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "How can you improve RDS security for a production application?",
+        "question": "A web application experiences a sudden traffic spike. Which AWS service helps automatically launch additional servers?",
         "options": [
           {
             "id": "a",
-            "text": "Place the database in a public subnet with open security groups",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Deploy RDS in private subnets with restricted security group access",
+            "text": "Auto Scaling Group",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "Route 53",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Share the master password publicly",
+            "text": "IAM",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Disable encryption",
+            "text": "EBS",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "A company needs a managed database with automatic scaling of storage up to 64 TB. Which RDS feature supports this?",
+        "question": "Which statement best summarizes Auto Scaling Groups and Policies?",
         "options": [
           {
             "id": "a",
-            "text": "Manual EBS volume resizing only",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "RDS storage autoscaling",
+            "text": "Auto Scaling Groups maintain the desired number of EC2 instances, while Scaling Policies automatically adjust capacity based on demand",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "Auto Scaling Groups are used only for storage services",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "S3 Transfer Acceleration",
+            "text": "Scaling Policies replace Load Balancers",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Route 53 health checks",
+            "text": "Auto Scaling is used only for databases",
             "is_correct": false
           }
         ]
@@ -10891,130 +15607,205 @@ BEGIN
   },
   {
     "course_code": "AWS",
-    "module_number": 3,
-    "topic_sort": 3,
-    "topic_title": "DynamoDB",
-    "quiz_title": "DynamoDB — Topic Quiz",
+    "module_number": 7,
+    "topic_sort": 1,
+    "topic_title": "Amazon RDS & Multi-AZ",
+    "quiz_title": "Amazon RDS & Multi-AZ — Topic Quiz",
     "pass_score": 70,
     "max_attempts": 3,
     "time_limit_min": 20,
     "questions": [
       {
-        "question": "What type of database is Amazon DynamoDB?",
+        "question": "What does RDS stand for in AWS?",
         "options": [
           {
             "id": "a",
-            "text": "Relational SQL database",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Fully managed NoSQL key-value and document database",
+            "text": "Relational Database Service",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "Remote Data Storage",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Object storage system",
+            "text": "Regional Database System",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Block storage volume",
+            "text": "Reliable Data Service",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which DynamoDB feature provides single-digit millisecond latency at any scale?",
+        "question": "What is the primary benefit of Amazon RDS?",
         "options": [
           {
             "id": "a",
-            "text": "Batch processing on EC2 only",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "DynamoDB's distributed architecture with SSD-backed storage",
+            "text": "AWS manages database infrastructure tasks such as backups, patching, and maintenance",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "It eliminates databases entirely",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "S3 Standard storage",
+            "text": "It replaces EC2 instances",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "RDS Read Replicas",
+            "text": "It provides object storage",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What is a DynamoDB partition key?",
+        "question": "Which type of database does Amazon RDS provide?",
         "options": [
           {
             "id": "a",
-            "text": "An IAM user name",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "The primary attribute used to distribute data across partitions",
+            "text": "Relational Database",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "Object Storage",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "A VPC subnet ID",
+            "text": "File Storage",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "An EC2 instance ID",
+            "text": "Graph Database Only",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What is the purpose of a sort key in DynamoDB?",
+        "question": "What does Multi-AZ mean in Amazon RDS?",
         "options": [
           {
             "id": "a",
-            "text": "Encrypt data at rest",
+            "text": "Multiple AWS accounts",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "Allow multiple items with the same partition key to be stored and queried in sorted order",
+            "text": "Database deployment across multiple Availability Zones for high availability",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "Replace the need for a partition key",
+            "text": "Multiple VPCs",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Configure Auto Scaling for EC2",
+            "text": "Multiple storage classes",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which DynamoDB feature automatically adjusts read and write capacity based on traffic?",
+        "question": "What is the primary purpose of a Multi-AZ deployment?",
         "options": [
           {
             "id": "a",
-            "text": "S3 Lifecycle",
+            "text": "High Availability and Disaster Recovery",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Increased storage capacity only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Lower networking costs",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Faster IAM authentication",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What happens if the primary database instance fails in a Multi-AZ deployment?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The database is deleted",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "DynamoDB Auto Scaling (or on-demand capacity mode)",
+            "text": "Traffic automatically fails over to the standby instance",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "CloudTrail",
+            "text": "A new AWS Region is created",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Users lose all database access permanently",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Does a Multi-AZ standby instance serve application read traffic?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Yes, always",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "No, it is primarily used for failover purposes",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Only during backups",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Only during maintenance",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS feature automatically handles database backups in Amazon RDS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon RDS Managed Backups",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Route 53",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Security Groups",
             "is_correct": false
           },
           {
@@ -11025,126 +15816,51 @@ BEGIN
         ]
       },
       {
-        "question": "What is DynamoDB Streams used for?",
+        "question": "A company runs a production database that requires minimal downtime. Which Amazon RDS feature should be enabled?",
         "options": [
           {
             "id": "a",
-            "text": "Storing backup archives only",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Capturing item-level changes for triggering Lambda functions or cross-region replication",
+            "text": "Multi-AZ Deployment",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "Public Subnet Only",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "DNS failover",
+            "text": "IAM Group",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "EC2 AMI creation",
+            "text": "EBS Snapshot Only",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "A gaming application needs a database that handles millions of requests per second with predictable performance. Which service fits best?",
+        "question": "Which statement best summarizes Amazon RDS and Multi-AZ?",
         "options": [
           {
             "id": "a",
-            "text": "Amazon RDS with single-AZ",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Amazon DynamoDB",
+            "text": "Amazon RDS is a managed relational database service, and Multi-AZ deployments provide high availability through automatic failover to a standby database",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "Multi-AZ is used only for backups",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Amazon S3",
+            "text": "RDS replaces VPC networking",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Amazon Glacier",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is Global Tables in DynamoDB?",
-        "options": [
-          {
-            "id": "a",
-            "text": "A Route 53 feature",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Multi-region, multi-active replication for DynamoDB tables",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "An S3 cross-region replication rule",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "An IAM federation feature",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which capacity mode bills you per request without provisioning throughput?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Provisioned capacity only",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "On-demand capacity mode",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Reserved Instance mode",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Spot capacity mode",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "How does DynamoDB differ from Amazon RDS?",
-        "options": [
-          {
-            "id": "a",
-            "text": "DynamoDB is relational; RDS is NoSQL",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "DynamoDB is a NoSQL database optimized for key-value access patterns; RDS is for relational SQL workloads",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Both are identical object stores",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "DynamoDB only stores files",
+            "text": "Multi-AZ increases database size only",
             "is_correct": false
           }
         ]
@@ -11153,522 +15869,260 @@ BEGIN
   },
   {
     "course_code": "AWS",
-    "module_number": 4,
-    "topic_sort": 1,
-    "topic_title": "Lambda patterns",
-    "quiz_title": "Lambda patterns — Topic Quiz",
-    "pass_score": 70,
-    "max_attempts": 3,
-    "time_limit_min": 20,
-    "questions": [
-      {
-        "question": "What is AWS Lambda?",
-        "options": [
-          {
-            "id": "a",
-            "text": "A virtual server service",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "A serverless compute service that runs code in response to events",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "An object storage service",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "A managed relational database",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which pricing model does AWS Lambda use?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Hourly EC2 instance charges only",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Pay per request and compute duration (GB-seconds)",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Annual upfront license fee",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Per VPC created",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What triggers can invoke a Lambda function?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Only manual console clicks",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Events from S3, API Gateway, DynamoDB Streams, EventBridge, and many other services",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Only CloudWatch alarms",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Only EC2 instance launches",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is a common Lambda pattern for processing uploaded files?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Run a 24/7 EC2 instance to poll S3",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "S3 event notification triggers Lambda to process each new object",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Use RDS triggers only",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Store files in EBS and reboot EC2",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Why should Lambda functions use IAM roles instead of hardcoded access keys?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Roles are slower",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Roles provide temporary credentials and follow security best practices",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Access keys are more secure",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "IAM roles cannot access AWS services",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is the maximum execution timeout for a single Lambda function invocation (as of standard limits)?",
-        "options": [
-          {
-            "id": "a",
-            "text": "5 seconds",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "15 minutes",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "24 hours",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Unlimited",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "A Lambda function needs to run inside a VPC to access a private RDS database. What must be configured?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Public IP on RDS only",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Lambda VPC configuration with appropriate subnets and security groups",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Disable IAM roles",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Use S3 public access",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is Lambda concurrency?",
-        "options": [
-          {
-            "id": "a",
-            "text": "The number of S3 buckets",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "The number of simultaneous executions of a function",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "The size of an EBS volume",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "The number of Route 53 records",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which pattern uses Lambda to transform and route events between microservices?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Monolithic EC2 deployment",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Event-driven architecture with Lambda as event processors",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Manual SSH file transfers",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Single RDS stored procedure",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What happens if a Lambda function exceeds its configured memory?",
-        "options": [
-          {
-            "id": "a",
-            "text": "The function is terminated — memory is a hard limit for the execution environment",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "AWS automatically adds unlimited memory",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "The function runs on EC2 instead",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Nothing — memory is unlimited",
-            "is_correct": false
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "course_code": "AWS",
-    "module_number": 4,
+    "module_number": 7,
     "topic_sort": 2,
-    "topic_title": "API Gateway",
-    "quiz_title": "API Gateway — Topic Quiz",
+    "topic_title": "DynamoDB fundamentals",
+    "quiz_title": "DynamoDB fundamentals — Topic Quiz",
     "pass_score": 70,
     "max_attempts": 3,
     "time_limit_min": 20,
     "questions": [
       {
-        "question": "What is Amazon API Gateway primarily used for?",
+        "question": "What is Amazon DynamoDB?",
         "options": [
           {
             "id": "a",
-            "text": "Object storage",
+            "text": "A managed relational database service",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "Creating, publishing, and managing REST and HTTP APIs at scale",
+            "text": "A fully managed NoSQL database service provided by AWS",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "Running relational databases",
+            "text": "A file storage service",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "DNS routing only",
+            "text": "A load balancer",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which AWS service commonly integrates with API Gateway to run backend logic without servers?",
+        "question": "What type of database is DynamoDB?",
         "options": [
           {
             "id": "a",
-            "text": "Amazon EC2 only",
+            "text": "Relational Database",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "AWS Lambda",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Amazon Glacier",
+            "text": "Graph Database",
             "is_correct": false
           },
           {
+            "id": "c",
+            "text": "NoSQL Database",
+            "is_correct": true
+          },
+          {
             "id": "d",
-            "text": "AWS Snowball",
+            "text": "Data Warehouse",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What is a common architecture for a serverless REST API?",
+        "question": "What is the primary data structure in DynamoDB?",
         "options": [
           {
             "id": "a",
-            "text": "API Gateway → Lambda → DynamoDB",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "EC2 → On-premises database only",
+            "text": "Bucket",
             "is_correct": false
           },
           {
+            "id": "b",
+            "text": "Table",
+            "is_correct": true
+          },
+          {
             "id": "c",
-            "text": "S3 → RDS direct connection",
+            "text": "Volume",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Route 53 → EBS",
+            "text": "Cluster",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which API Gateway feature helps protect APIs from traffic spikes and abuse?",
+        "question": "What is an Item in DynamoDB?",
         "options": [
           {
             "id": "a",
-            "text": "S3 Lifecycle rules",
+            "text": "A database backup",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "Throttling, usage plans, and AWS WAF integration",
+            "text": "A single record stored within a table",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "Disabling CloudWatch",
+            "text": "A network configuration",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Public security groups",
+            "text": "An IAM role",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What does API Gateway caching help with?",
+        "question": "What is an Attribute in DynamoDB?",
         "options": [
           {
             "id": "a",
-            "text": "Storing EC2 AMIs",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Reducing backend load by caching responses for a configured TTL",
+            "text": "A column-like piece of data associated with an item",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "A storage volume",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Encrypting IAM passwords",
+            "text": "A subnet",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Creating VPC peering",
+            "text": "A security group",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which API type supports WebSocket connections for real-time two-way communication?",
+        "question": "Why is the Primary Key important in DynamoDB?",
         "options": [
           {
             "id": "a",
-            "text": "API Gateway WebSocket APIs",
+            "text": "It uniquely identifies items within a table",
             "is_correct": true
           },
           {
             "id": "b",
-            "text": "Amazon S3",
+            "text": "It manages IAM users",
             "is_correct": false
           },
           {
             "id": "c",
-            "text": "Amazon RDS",
+            "text": "It creates backups automatically",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "AWS Batch",
+            "text": "It controls networking",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "How can you authorize API Gateway requests using AWS credentials?",
+        "question": "Which feature makes DynamoDB highly scalable?",
         "options": [
           {
             "id": "a",
-            "text": "Disable all authentication",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "IAM authorization, Lambda authorizers, or Amazon Cognito",
+            "text": "Automatic scaling and distributed architecture",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "Manual server management",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Make all endpoints public",
+            "text": "Fixed storage capacity",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Use root account keys in client code",
+            "text": "Single Availability Zone deployment",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What is a stage in API Gateway?",
+        "question": "Which use case is well-suited for DynamoDB?",
         "options": [
           {
             "id": "a",
-            "text": "An EC2 instance state",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "A named reference to a deployment (e.g., dev, prod) of an API",
+            "text": "Real-time applications requiring low-latency access at scale",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "Traditional relational reporting with complex joins",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "An S3 storage class",
+            "text": "Operating system management",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "A DynamoDB partition",
+            "text": "DNS configuration",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "A mobile app needs a secure HTTPS endpoint that triggers Lambda functions. Which service provides the front door?",
+        "question": "What is a key advantage of DynamoDB compared to self-managed databases?",
         "options": [
           {
             "id": "a",
-            "text": "Amazon API Gateway",
+            "text": "AWS handles infrastructure, scaling, availability, and maintenance",
             "is_correct": true
           },
           {
             "id": "b",
-            "text": "Amazon EBS",
+            "text": "Users must manage servers manually",
             "is_correct": false
           },
           {
             "id": "c",
-            "text": "AWS Direct Connect only",
+            "text": "It requires operating system patching by customers",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Amazon Glacier",
+            "text": "It can only store structured SQL data",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which benefit does using API Gateway with Lambda provide?",
+        "question": "Which statement best summarizes DynamoDB?",
         "options": [
           {
             "id": "a",
-            "text": "Requires managing server infrastructure 24/7",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Automatic scaling, pay-per-use, and simplified API management",
+            "text": "DynamoDB is a fully managed NoSQL database service that provides high performance, automatic scaling, and low-latency access to data",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "DynamoDB is a relational database service only",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Eliminates the need for authentication",
+            "text": "DynamoDB replaces VPC networking",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Forces all traffic through a single EC2 instance",
+            "text": "DynamoDB is used only for backups",
             "is_correct": false
           }
         ]
@@ -11677,141 +16131,328 @@ BEGIN
   },
   {
     "course_code": "AWS",
-    "module_number": 4,
+    "module_number": 7,
     "topic_sort": 3,
-    "topic_title": "EventBridge",
-    "quiz_title": "EventBridge — Topic Quiz",
+    "topic_title": "ElastiCache for performance",
+    "quiz_title": "ElastiCache for performance — Topic Quiz",
     "pass_score": 70,
     "max_attempts": 3,
     "time_limit_min": 20,
     "questions": [
       {
-        "question": "What is Amazon EventBridge?",
+        "question": "What is Amazon ElastiCache?",
         "options": [
           {
             "id": "a",
-            "text": "A block storage service",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "A serverless event bus that connects application components via events",
+            "text": "A managed caching service that improves application performance",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "A relational database service",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "A relational database",
+            "text": "A load balancer",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "An EC2 instance type",
+            "text": "A file storage service",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which pattern does EventBridge enable?",
+        "question": "What is the primary purpose of ElastiCache?",
         "options": [
           {
             "id": "a",
-            "text": "Tight coupling between monolithic services",
+            "text": "To increase database storage size",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "Event-driven architecture with decoupled producers and consumers",
+            "text": "To reduce application latency and improve performance",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "Manual polling of S3 every hour",
+            "text": "To manage IAM users",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Direct database-to-database replication only",
+            "text": "To create VPCs",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What can EventBridge route events to?",
+        "question": "Which type of storage does ElastiCache primarily use?",
         "options": [
           {
             "id": "a",
-            "text": "Only EC2 instances",
+            "text": "Disk-Based Storage",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "Lambda, SQS, SNS, Step Functions, and other AWS targets",
+            "text": "In-Memory Storage",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "Only S3 buckets",
+            "text": "Object Storage",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Only on-premises servers without configuration",
+            "text": "File Storage",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What is an EventBridge rule?",
+        "question": "Which caching engines are supported by Amazon ElastiCache?",
         "options": [
           {
             "id": "a",
-            "text": "An IAM user policy",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "A pattern that matches events and routes them to specified targets",
+            "text": "Redis and Memcached",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "MySQL and PostgreSQL",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "An EC2 security group",
+            "text": "Oracle and SQL Server",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "An S3 lifecycle rule",
+            "text": "DynamoDB and Neptune",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "How does EventBridge differ from SNS?",
+        "question": "Why is caching commonly used in modern applications?",
         "options": [
           {
             "id": "a",
-            "text": "EventBridge is for object storage",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "EventBridge provides content-based filtering and integration with SaaS and AWS events; SNS is primarily pub/sub messaging",
+            "text": "To reduce repeated database queries and improve response times",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "To increase internet bandwidth",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "They are identical services",
+            "text": "To replace security groups",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "SNS cannot send to Lambda",
+            "text": "To eliminate storage requirements",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "A company wants to trigger a Lambda function when an EC2 instance changes state. Which service can capture and route that event?",
+        "question": "What is a Cache Hit?",
+        "options": [
+          {
+            "id": "a",
+            "text": "When requested data is found in the cache",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "When a database fails",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "When a security group blocks traffic",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "When a backup is created",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a Cache Miss?",
+        "options": [
+          {
+            "id": "a",
+            "text": "When data is unavailable in the cache and must be retrieved from the original data source",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "When a user logs out",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "When an instance is terminated",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "When a snapshot fails",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which application scenario is most likely to benefit from ElastiCache?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Frequently accessed product catalog data in an e-commerce application",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Long-term archival storage",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "DNS management",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "IAM policy administration",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How does ElastiCache improve database performance?",
+        "options": [
+          {
+            "id": "a",
+            "text": "By serving frequently requested data from memory and reducing database workload",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "By replacing databases entirely",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "By increasing database storage automatically",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "By creating additional Availability Zones",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes Amazon ElastiCache?",
+        "options": [
+          {
+            "id": "a",
+            "text": "ElastiCache is a managed in-memory caching service that improves application speed, reduces latency, and decreases database load",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "ElastiCache is a relational database service",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "ElastiCache is used only for backups",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "ElastiCache replaces VPC networking",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 7,
+    "topic_sort": 4,
+    "topic_title": "Amazon Aurora overview",
+    "quiz_title": "Amazon Aurora overview — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is Amazon Aurora?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A file storage service",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A fully managed relational database engine built for the cloud",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A load balancer",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A NoSQL database",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Amazon Aurora is compatible with which popular database engines?",
+        "options": [
+          {
+            "id": "a",
+            "text": "MySQL and PostgreSQL",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Oracle and MongoDB only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Redis and Memcached",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "DynamoDB and Cassandra",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS service family does Aurora belong to?",
         "options": [
           {
             "id": "a",
@@ -11820,117 +16461,192 @@ BEGIN
           },
           {
             "id": "b",
-            "text": "Amazon EventBridge (via CloudWatch Events integration)",
-            "is_correct": true
-          },
-          {
-            "id": "c",
             "text": "Amazon RDS",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Amazon EC2",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "AWS IAM",
+            "text": "Amazon CloudFront",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What is a custom event bus in EventBridge?",
+        "question": "What is a key advantage of Aurora compared to traditional self-managed databases?",
         "options": [
           {
             "id": "a",
-            "text": "A default bus that cannot be modified",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "A dedicated event bus for your application's custom events",
+            "text": "AWS handles infrastructure, backups, patching, and high availability",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "Users must manage hardware themselves",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "An S3 bucket alias",
+            "text": "Aurora only supports local deployments",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "A VPC endpoint",
+            "text": "Aurora requires manual scaling for every operation",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which EventBridge feature allows scheduling recurring tasks?",
+        "question": "How does Aurora improve availability?",
         "options": [
           {
             "id": "a",
-            "text": "S3 Versioning",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "EventBridge Scheduler (or scheduled rules)",
+            "text": "By replicating data across multiple Availability Zones automatically",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "By storing data on a single server",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "EBS snapshots",
+            "text": "By eliminating backups",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Route 53 alias records",
+            "text": "By disabling failover",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "An e-commerce platform emits \"OrderPlaced\" events that multiple services consume (inventory, shipping, analytics). Which architecture fits best?",
+        "question": "What is an Aurora Replica?",
         "options": [
           {
             "id": "a",
-            "text": "Single monolithic EC2 application",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "EventBridge event bus with rules routing to multiple targets",
+            "text": "A read-only database instance used to scale read workloads",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "A backup file",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Manual CSV file transfers",
+            "text": "A VPC component",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "One shared RDS table with no events",
+            "text": "A load balancer",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What is a key benefit of using EventBridge in a microservices architecture?",
+        "question": "Which type of workload benefits most from Aurora Replicas?",
         "options": [
           {
             "id": "a",
-            "text": "Services must know each other's internal APIs directly",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Loose coupling — services react to events without tight dependencies",
+            "text": "Read-intensive applications",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "Backup-only environments",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Eliminates the need for monitoring",
+            "text": "IAM management systems",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Forces synchronous communication only",
+            "text": "DNS services",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What happens if the primary Aurora instance becomes unavailable?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Aurora can automatically fail over to a replica",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "The database is deleted",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "All data is lost permanently",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Users must manually recreate the database",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why do organizations choose Aurora for production applications?",
+        "options": [
+          {
+            "id": "a",
+            "text": "High performance, scalability, availability, and managed operations",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It replaces networking services",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It only supports test environments",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It eliminates database security requirements",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes Amazon Aurora?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Aurora is a fully managed relational database service that offers high performance, automatic replication, scalability, and fault tolerance",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Aurora is a NoSQL database service",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Aurora is a storage service only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Aurora replaces EC2 instances",
             "is_correct": false
           }
         ]
@@ -11939,272 +16655,10 @@ BEGIN
   },
   {
     "course_code": "AWS",
-    "module_number": 5,
+    "module_number": 8,
     "topic_sort": 1,
-    "topic_title": "Multi-AZ",
-    "quiz_title": "Multi-AZ — Topic Quiz",
-    "pass_score": 70,
-    "max_attempts": 3,
-    "time_limit_min": 20,
-    "questions": [
-      {
-        "question": "What is an Availability Zone (AZ) in AWS?",
-        "options": [
-          {
-            "id": "a",
-            "text": "A single data center with no redundancy",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "One or more discrete data centers with redundant power and networking within a region",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "A global CDN edge location only",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "An IAM policy scope",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is the primary purpose of Multi-AZ deployment?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Reduce storage costs",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "High availability through automatic failover to a standby in another AZ",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Increase latency globally",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Eliminate the need for backups",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "How does RDS Multi-AZ handle a primary database failure?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Manual restore from tape required",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Automatic failover to the standby instance in another AZ",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Data is lost permanently",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Switches to S3 automatically",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is the difference between Multi-AZ and Read Replicas in RDS?",
-        "options": [
-          {
-            "id": "a",
-            "text": "They are identical",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Multi-AZ is for high availability/failover; Read Replicas scale read traffic",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Read Replicas provide automatic failover only",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Multi-AZ is only for DynamoDB",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which AWS service automatically distributes EC2 instances across multiple AZs when configured?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Amazon S3",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Auto Scaling groups spanning multiple AZs",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Amazon Glacier",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "AWS IAM",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "A production application requires 99.99% availability. Which design principle helps achieve this?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Deploy all resources in a single AZ",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Deploy across multiple AZs with load balancing and automatic failover",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Use one EC2 instance without backups",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Disable health checks",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is an AWS Region?",
-        "options": [
-          {
-            "id": "a",
-            "text": "A single building",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "A geographic area containing multiple isolated Availability Zones",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "An IAM account",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "An S3 bucket namespace",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which ELB feature supports high availability across AZs?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Single-AZ deployment only",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Cross-zone load balancing distributing traffic to targets in multiple AZs",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "No health checks",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Static IP on one instance",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Why should architects avoid single-AZ deployments for critical workloads?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Single AZ is always cheaper and equally reliable",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "An AZ outage would take down the entire application without redundancy",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Multi-AZ increases latency significantly in all cases",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "AWS does not support multiple AZs",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which statement best describes Multi-AZ architecture?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Resources are duplicated across AZs to survive individual AZ failures",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "All data is stored in one AZ for consistency",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Multi-AZ only applies to S3",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Multi-AZ eliminates the need for monitoring",
-            "is_correct": false
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "course_code": "AWS",
-    "module_number": 5,
-    "topic_sort": 2,
-    "topic_title": "Route 53",
-    "quiz_title": "Route 53 — Topic Quiz",
+    "topic_title": "Route 53 routing policies",
+    "quiz_title": "Route 53 routing policies — Topic Quiz",
     "pass_score": 70,
     "max_attempts": 3,
     "time_limit_min": 20,
@@ -12214,178 +16668,315 @@ BEGIN
         "options": [
           {
             "id": "a",
-            "text": "A compute service",
+            "text": "A database service",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "A scalable DNS and domain name registration service",
+            "text": "A scalable DNS (Domain Name System) and traffic routing service",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "An object storage service",
+            "text": "A storage service",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "A managed SQL database",
+            "text": "A virtual machine platform",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which Route 53 routing policy distributes traffic evenly across multiple resources?",
+        "question": "What is the primary purpose of a Route 53 Routing Policy?",
         "options": [
           {
             "id": "a",
-            "text": "Failover routing only",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Simple routing or Weighted routing depending on use case",
+            "text": "To determine how DNS queries are answered and where traffic is directed",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "To manage IAM users",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "No routing policies exist",
+            "text": "To create EC2 instances",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Latency routing disables distribution",
+            "text": "To store application logs",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What does Route 53 latency-based routing do?",
+        "question": "Which Route 53 routing policy routes traffic to a single resource?",
         "options": [
           {
             "id": "a",
-            "text": "Routes all users to one region",
+            "text": "Weighted Routing",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "Routes users to the AWS region with the lowest latency",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Blocks international traffic",
+            "text": "Latency Routing",
             "is_correct": false
           },
           {
+            "id": "c",
+            "text": "Simple Routing",
+            "is_correct": true
+          },
+          {
             "id": "d",
-            "text": "Replaces the need for load balancers",
+            "text": "Geolocation Routing",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which Route 53 routing policy sends traffic to a primary resource and fails over to a secondary if the primary is unhealthy?",
+        "question": "Which routing policy distributes traffic across multiple resources based on assigned percentages?",
         "options": [
           {
             "id": "a",
-            "text": "Weighted routing",
+            "text": "Geolocation Routing",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "Failover routing",
+            "text": "Weighted Routing",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "Geolocation routing for cost only",
+            "text": "Failover Routing",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Simple routing with no health checks",
+            "text": "Multivalue Routing",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What is a Route 53 health check?",
+        "question": "A company wants to send 80% of traffic to Server A and 20% to Server B during testing. Which routing policy should be used?",
         "options": [
           {
             "id": "a",
-            "text": "An EC2 instance type",
+            "text": "Simple Routing",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "A monitoring mechanism that checks endpoint health for DNS routing decisions",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "An S3 lifecycle rule",
+            "text": "Failover Routing",
             "is_correct": false
           },
           {
+            "id": "c",
+            "text": "Weighted Routing",
+            "is_correct": true
+          },
+          {
             "id": "d",
-            "text": "An IAM MFA device",
+            "text": "Latency Routing",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "A company wants to route European users to eu-west-1 and US users to us-east-1. Which routing policy helps?",
+        "question": "Which Route 53 routing policy directs users to the AWS Region with the lowest network latency?",
         "options": [
           {
             "id": "a",
-            "text": "Simple routing only",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Geolocation or Geoproximity routing",
+            "text": "Latency Routing",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "Geolocation Routing",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Random routing",
+            "text": "Weighted Routing",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "No DNS configuration needed",
+            "text": "Simple Routing",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What is an alias record in Route 53?",
+        "question": "Which routing policy sends users to resources based on their geographic location?",
         "options": [
           {
             "id": "a",
-            "text": "A record pointing to an external non-AWS IP only",
+            "text": "Latency Routing",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "A Route 53-specific record that maps to AWS resources like ALB, CloudFront, or S3 website endpoints",
+            "text": "Geolocation Routing",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "An IAM alias",
+            "text": "Failover Routing",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "An EC2 AMI name",
+            "text": "Simple Routing",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which Route 53 feature helps register a new domain name?",
+        "question": "What is the purpose of Failover Routing?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To provide disaster recovery by directing traffic to a backup resource when the primary resource becomes unavailable",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To improve storage performance",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To manage IAM permissions",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To create Availability Zones",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which Route 53 routing policy returns multiple healthy records in response to a DNS query?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Multivalue Answer Routing",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Geolocation Routing",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Weighted Routing",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Failover Routing",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes Route 53 Routing Policies?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Route 53 Routing Policies determine how DNS traffic is directed based on requirements such as performance, availability, testing, and geographic location",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Route 53 is used only for storage services",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Routing Policies replace Load Balancers entirely",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Route 53 manages database backups",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 8,
+    "topic_sort": 2,
+    "topic_title": "CloudFront CDN delivery",
+    "quiz_title": "CloudFront CDN delivery — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is Amazon CloudFront?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A relational database service",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A Content Delivery Network (CDN) service that delivers content with low latency and high performance",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A virtual machine service",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A storage volume service",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the primary purpose of a CDN?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To increase database storage",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To deliver content faster by serving it from locations closer to users",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To manage IAM users",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To create backups",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS service provides CDN functionality?",
         "options": [
           {
             "id": "a",
@@ -12394,12 +16985,349 @@ BEGIN
           },
           {
             "id": "b",
-            "text": "Route 53 domain registration",
+            "text": "Amazon EC2",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Amazon CloudFront",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "Amazon EBS",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What are Edge Locations in CloudFront?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Data centers that cache content closer to users worldwide",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Database servers",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "IAM authentication servers",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Route tables",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which type of content is commonly delivered through CloudFront?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Images, videos, websites, APIs, and static files",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "IAM policies only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Route tables only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "EC2 instance configurations",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an Origin in CloudFront?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The source location from which CloudFront retrieves content",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A security group",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A VPC subnet",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A load balancer only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What happens when a user requests content that is already cached at an Edge Location?",
+        "options": [
+          {
+            "id": "a",
+            "text": "CloudFront retrieves it from the origin again",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "CloudFront serves it directly from the cache, reducing latency",
             "is_correct": true
           },
           {
             "id": "c",
-            "text": "AWS Lambda",
+            "text": "The request fails",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A new Edge Location is created",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a Cache Miss in CloudFront?",
+        "options": [
+          {
+            "id": "a",
+            "text": "When requested content is not available at the Edge Location and must be fetched from the origin",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "When a database fails",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "When a Route 53 record expires",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "When an EC2 instance stops",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How does CloudFront improve application performance?",
+        "options": [
+          {
+            "id": "a",
+            "text": "By reducing latency and offloading traffic from origin servers",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "By increasing EC2 instance size automatically",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "By replacing Route 53",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "By creating Availability Zones",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes CloudFront CDN Delivery?",
+        "options": [
+          {
+            "id": "a",
+            "text": "CloudFront is a global CDN service that caches content at Edge Locations to deliver applications, websites, and media with low latency and high performance",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "CloudFront is a database service",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "CloudFront replaces Amazon S3",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "CloudFront manages IAM permissions",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 8,
+    "topic_sort": 3,
+    "topic_title": "AWS Certificate Manager (ACM)",
+    "quiz_title": "AWS Certificate Manager (ACM) — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is AWS Certificate Manager (ACM)?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A database management service",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A service that provisions, manages, and deploys SSL/TLS certificates for AWS resources",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A storage service",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A virtual machine service",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the primary purpose of an SSL/TLS certificate?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To encrypt data transmitted between clients and servers",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To increase storage capacity",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To create EC2 instances",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To manage IAM users",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which protocol commonly uses SSL/TLS certificates?",
+        "options": [
+          {
+            "id": "a",
+            "text": "HTTP",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "HTTPS",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "FTP",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Telnet",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a major benefit of using AWS Certificate Manager?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Automatic certificate renewal and management",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Automatic database backups",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Automatic VPC creation",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Automatic scaling of EC2 instances",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS service commonly integrates with ACM to provide HTTPS support?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Application Load Balancer (ALB)",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Amazon S3 only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "EBS Volumes",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Route Tables",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS CDN service commonly uses ACM certificates for secure content delivery?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon RDS",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Amazon CloudFront",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Amazon DynamoDB",
             "is_correct": false
           },
           {
@@ -12410,51 +17338,101 @@ BEGIN
         ]
       },
       {
-        "question": "How does Route 53 support disaster recovery with minimal downtime?",
+        "question": "Why is certificate renewal important?",
         "options": [
           {
             "id": "a",
-            "text": "By disabling DNS",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Failover routing with health checks to switch to a standby site",
+            "text": "Expired certificates can cause security warnings and service disruptions",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "It increases storage space",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Using only one static IP",
+            "text": "It improves CPU performance",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Deleting all DNS records during outages",
+            "text": "It creates backups",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What is the TTL (Time To Live) in DNS records?",
+        "question": "What does ACM automate for AWS-managed certificates?",
         "options": [
           {
             "id": "a",
-            "text": "The EC2 instance lifetime",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "How long resolvers cache a DNS record before querying again",
+            "text": "Certificate issuance and renewal",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "IAM policy creation",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "The Lambda timeout setting",
+            "text": "Route table updates",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "The S3 object expiration time",
+            "text": "EC2 instance patching",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company wants to secure its website with HTTPS while minimizing operational overhead. Which AWS service should it use?",
+        "options": [
+          {
+            "id": "a",
+            "text": "AWS Certificate Manager (ACM)",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Amazon EBS",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Route Tables",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Security Groups",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes AWS Certificate Manager?",
+        "options": [
+          {
+            "id": "a",
+            "text": "ACM simplifies SSL/TLS certificate provisioning, deployment, and automatic renewal for AWS applications and services",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "ACM is a database service",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "ACM replaces DNS services",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "ACM is used only for backups",
             "is_correct": false
           }
         ]
@@ -12463,25 +17441,1248 @@ BEGIN
   },
   {
     "course_code": "AWS",
-    "module_number": 5,
-    "topic_sort": 3,
-    "topic_title": "Backup strategies",
-    "quiz_title": "Backup strategies — Topic Quiz",
+    "module_number": 9,
+    "topic_sort": 1,
+    "topic_title": "AWS Lambda & execution models",
+    "quiz_title": "AWS Lambda & execution models — Topic Quiz",
     "pass_score": 70,
     "max_attempts": 3,
     "time_limit_min": 20,
     "questions": [
       {
-        "question": "Which AWS service provides automated daily backups and point-in-time recovery for RDS databases?",
+        "question": "What is AWS Lambda?",
         "options": [
           {
             "id": "a",
-            "text": "Amazon S3 Lifecycle only",
+            "text": "A managed database service",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "RDS automated backups",
+            "text": "A serverless compute service that runs code without managing servers",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A storage service",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A networking service",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the primary benefit of AWS Lambda?",
+        "options": [
+          {
+            "id": "a",
+            "text": "No server management required",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Unlimited database storage",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Automatic DNS management",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Dedicated physical servers",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What does \"serverless\" mean in AWS Lambda?",
+        "options": [
+          {
+            "id": "a",
+            "text": "No servers exist anywhere",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Developers do not need to manage the underlying servers",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Applications cannot use compute resources",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Lambda runs only on local machines",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What triggers an AWS Lambda function?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Events from AWS services, applications, or external systems",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "IAM user creation only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Route table updates only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Availability Zone changes only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS service commonly triggers Lambda when a file is uploaded?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon S3",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Amazon RDS",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Amazon EBS",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS Organizations",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an execution model in AWS Lambda?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The way Lambda functions are invoked and executed in response to events",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A storage configuration",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A DNS routing strategy",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A backup policy",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which execution model waits for the function to complete before returning a response?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Synchronous Invocation",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Asynchronous Invocation",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Scheduled Invocation Only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Batch Invocation Only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which execution model allows the caller to continue immediately while Lambda processes the request in the background?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Synchronous Invocation",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Asynchronous Invocation",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Manual Invocation",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Static Invocation",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A web application sends a request to Lambda and requires an immediate response. Which execution model is most appropriate?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Asynchronous Invocation",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Synchronous Invocation",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Batch Processing Only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Manual Trigger",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes AWS Lambda and its execution models?",
+        "options": [
+          {
+            "id": "a",
+            "text": "AWS Lambda is a serverless compute service that executes code in response to events using synchronous or asynchronous invocation models",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Lambda is a storage service",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Lambda replaces Amazon S3",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Lambda is used only for backups",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 9,
+    "topic_sort": 2,
+    "topic_title": "API Gateway REST APIs",
+    "quiz_title": "API Gateway REST APIs — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is Amazon API Gateway?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A database service",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A fully managed service for creating, publishing, securing, and monitoring APIs",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A storage service",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A virtual machine platform",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the primary purpose of API Gateway?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To provide a secure entry point for applications and backend services",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To store files",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To manage EC2 instances",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To create VPCs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What does REST stand for in REST API?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Remote Execution Service Technology",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Representational State Transfer",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Regional Security Transfer",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Resource Execution Standard Technology",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which HTTP method is commonly used to retrieve data in a REST API?",
+        "options": [
+          {
+            "id": "a",
+            "text": "POST",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "GET",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "DELETE",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "PUT",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS service is most commonly integrated with API Gateway in serverless architectures?",
+        "options": [
+          {
+            "id": "a",
+            "text": "AWS Lambda",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Amazon EBS",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Route Tables",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "IAM Groups",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an API Endpoint?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A URL through which clients access an API",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A database backup",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A subnet configuration",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A security group rule",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why is API Gateway useful for security?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It supports authentication, authorization, throttling, and encryption",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It replaces IAM entirely",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It removes the need for HTTPS",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It automatically blocks all traffic",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is throttling in API Gateway?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Limiting the number of API requests to protect backend systems",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Increasing database storage",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Creating backups automatically",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Managing DNS records",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A mobile application needs to call a serverless backend built with Lambda. Which AWS service should expose the API endpoint?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon API Gateway",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Amazon S3",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Amazon EBS",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS Organizations",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes Amazon API Gateway REST APIs?",
+        "options": [
+          {
+            "id": "a",
+            "text": "API Gateway enables organizations to create, secure, manage, and scale REST APIs while integrating with AWS services such as Lambda",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "API Gateway is a storage service",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "API Gateway replaces Route 53",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "API Gateway is used only for monitoring",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 9,
+    "topic_sort": 3,
+    "topic_title": "SNS & SQS messaging",
+    "quiz_title": "SNS & SQS messaging — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is Amazon SNS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A database service",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A fully managed publish/subscribe messaging service",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A storage service",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A virtual machine platform",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is Amazon SQS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A managed message queue service",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A DNS service",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A relational database",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A monitoring service",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What communication model does SNS primarily use?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Publish/Subscribe (Pub/Sub)",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Client/Server Only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Peer-to-Peer Only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Database Replication",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What communication model does SQS primarily use?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Publish/Subscribe",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Message Queue",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "File Transfer",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "DNS Resolution",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a key benefit of Amazon SNS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "One message can be delivered to multiple subscribers simultaneously",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It increases EC2 memory",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It replaces Route 53",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It stores large files",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a key benefit of Amazon SQS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Decoupling application components for improved reliability and scalability",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Increasing database size",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Managing IAM permissions",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Replacing API Gateway",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What happens to a message in SQS after it is sent?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It remains in the queue until a consumer processes it",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It is automatically deleted immediately",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It is stored in Route 53",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It becomes a Lambda function",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company wants to send one notification to multiple systems, including email, Lambda, and SQS queues. Which AWS service is most appropriate?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon SNS",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Amazon RDS",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Amazon EBS",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS Organizations",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS service is commonly used to buffer workloads and prevent application overload?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon SQS",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Amazon Route 53",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Amazon CloudFront",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Amazon ACM",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes SNS and SQS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "SNS provides publish/subscribe messaging for notifications, while SQS provides message queues for asynchronous communication between application components",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "SNS and SQS perform exactly the same function",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "SQS replaces Lambda",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "SNS is used only for databases",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 9,
+    "topic_sort": 4,
+    "topic_title": "EventBridge event routing",
+    "quiz_title": "EventBridge event routing — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is Amazon EventBridge?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A database service",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A serverless event bus service that routes events between applications and AWS services",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A storage service",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A load balancer",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an event in EventBridge?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A notification that something has happened in a system or application",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A storage volume",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A security group",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A subnet",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the primary purpose of EventBridge?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To route events from sources to targets based on defined rules",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To store application files",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To manage IAM users",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To create EC2 instances",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an Event Source in EventBridge?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The service or application that generates events",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A database backup",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A route table",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A VPC subnet",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a Rule in EventBridge?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A condition that determines which events should be routed to which targets",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A security policy",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A storage configuration",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A DNS record",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a Target in EventBridge?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The destination service that receives an event after a rule matches it",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A database server only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A subnet",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A load balancer",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS service is commonly triggered by EventBridge for serverless automation?",
+        "options": [
+          {
+            "id": "a",
+            "text": "AWS Lambda",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Amazon EBS",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Route Tables",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Security Groups",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company wants to automatically trigger a Lambda function whenever a file is uploaded to Amazon S3. Which AWS service can route this event?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon EventBridge",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Amazon EBS",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "AWS Organizations",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Route 53",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a major benefit of EventBridge?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Decoupling applications through event-driven communication",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Increasing storage capacity",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Replacing IAM policies",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Creating Availability Zones",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes Amazon EventBridge?",
+        "options": [
+          {
+            "id": "a",
+            "text": "EventBridge is a serverless event bus that routes events from sources to targets using rules, enabling scalable event-driven architectures",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "EventBridge is a database service",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "EventBridge replaces API Gateway",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "EventBridge is used only for monitoring",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 10,
+    "topic_sort": 1,
+    "topic_title": "CloudWatch metrics, logs & alarms",
+    "quiz_title": "CloudWatch metrics, logs & alarms — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is Amazon CloudWatch?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A database service",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A monitoring and observability service for AWS resources and applications",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A storage service",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A load balancer",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a CloudWatch Metric?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A measurable data point that represents the performance or status of a resource",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A storage volume",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "An IAM role",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A route table",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which CloudWatch metric is commonly monitored for Amazon EC2 instances?",
+        "options": [
+          {
+            "id": "a",
+            "text": "CPU Utilization",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Bucket Versioning",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Route Table Count",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "IAM User Count",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What are CloudWatch Logs?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A service that collects, stores, and analyzes log data from AWS resources and applications",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A backup service",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A networking feature",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A database engine",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why are logs important in cloud environments?",
+        "options": [
+          {
+            "id": "a",
+            "text": "They provide visibility into application behavior and system events",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "They increase storage performance",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "They replace security groups",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "They create EC2 instances",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a CloudWatch Alarm?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A feature that monitors metrics and performs actions when thresholds are reached",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A storage configuration",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A VPC component",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A DNS record",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What action can a CloudWatch Alarm perform?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Send notifications through Amazon SNS",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Trigger Auto Scaling actions",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Alert administrators",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "All of the Above",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "question": "A company wants to receive an alert when EC2 CPU utilization exceeds 80%. Which CloudWatch feature should be used?",
+        "options": [
+          {
+            "id": "a",
+            "text": "CloudWatch Logs",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "CloudWatch Alarm",
             "is_correct": true
           },
           {
@@ -12491,1018 +18692,2153 @@ BEGIN
           },
           {
             "id": "d",
+            "text": "EBS Snapshot",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How can CloudWatch contribute to cost optimization?",
+        "options": [
+          {
+            "id": "a",
+            "text": "By identifying underutilized resources and monitoring usage trends",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "By replacing EC2 instances",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "By increasing storage costs automatically",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "By disabling monitoring",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes CloudWatch Metrics, Logs, and Alarms?",
+        "options": [
+          {
+            "id": "a",
+            "text": "CloudWatch Metrics track performance data, Logs capture system activity, and Alarms automate notifications and responses based on defined thresholds",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "All three components perform the same function",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "CloudWatch is only used for security monitoring",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "CloudWatch replaces Auto Scaling",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 10,
+    "topic_sort": 2,
+    "topic_title": "CloudTrail auditing",
+    "quiz_title": "CloudTrail auditing — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is AWS CloudTrail?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A monitoring dashboard service",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A service that records and tracks AWS account activity and API calls",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A database service",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A load balancer",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What type of information does CloudTrail record?",
+        "options": [
+          {
+            "id": "a",
+            "text": "API calls and account activity across AWS services",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Only CPU utilization metrics",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Only storage usage statistics",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Only network traffic",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the primary purpose of CloudTrail?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Auditing, governance, security monitoring, and compliance",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Database management",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Load balancing",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Content delivery",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which question can CloudTrail help answer?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Who deleted an S3 bucket?",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Who modified an IAM policy?",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "When was an EC2 instance terminated?",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "All of the Above",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "question": "What is an Event in CloudTrail?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A record of an action performed within an AWS account",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A database backup",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A VPC route",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A security group",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which information is commonly included in a CloudTrail event?",
+        "options": [
+          {
+            "id": "a",
+            "text": "User identity, timestamp, source IP, and action performed",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Monitor resolution",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Storage class only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Route table count",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How does CloudTrail support security investigations?",
+        "options": [
+          {
+            "id": "a",
+            "text": "By providing a historical record of AWS account activity",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "By increasing EC2 performance",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "By replacing CloudWatch",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "By creating backups",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company wants to know who changed an IAM role yesterday. Which AWS service should be used?",
+        "options": [
+          {
+            "id": "a",
+            "text": "CloudWatch",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "CloudTrail",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Route 53",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "EBS",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the difference between CloudTrail and CloudWatch?",
+        "options": [
+          {
+            "id": "a",
+            "text": "CloudTrail tracks account activity and API calls, while CloudWatch focuses on monitoring metrics, logs, and operational performance",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "They are identical services",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "CloudTrail replaces CloudWatch entirely",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "CloudWatch records only API calls",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes AWS CloudTrail?",
+        "options": [
+          {
+            "id": "a",
+            "text": "CloudTrail records AWS account activity and API calls, providing auditing, compliance, governance, and security visibility across AWS environments",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "CloudTrail is a storage service",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "CloudTrail is used only for monitoring CPU utilization",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "CloudTrail replaces IAM",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 10,
+    "topic_sort": 3,
+    "topic_title": "AWS Config compliance",
+    "quiz_title": "AWS Config compliance — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is AWS Config?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A database service",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A service that records, tracks, and evaluates AWS resource configurations over time",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A load balancer",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A content delivery service",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the primary purpose of AWS Config?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Resource configuration tracking and compliance monitoring",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Database management",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Network routing",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Content caching",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What type of information does AWS Config record?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Resource configurations and configuration history",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "CPU temperature only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Internet bandwidth only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Database query results only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a Configuration Item in AWS Config?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A snapshot of an AWS resource's configuration at a specific point in time",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A database record",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A VPC route",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "An IAM user password",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an AWS Config Rule?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A compliance rule used to evaluate resource configurations against desired settings",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A routing policy",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A security group rule",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A database schema",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company requires all S3 buckets to have encryption enabled. Which AWS Config feature can verify this requirement?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Config Rule",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Route Table",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "NAT Gateway",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "EBS Snapshot",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What does a \"Non-Compliant\" result indicate in AWS Config?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A resource does not meet the requirements defined by a Config Rule",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A resource is deleted",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A resource is overloaded",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A resource is encrypted",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How does AWS Config support security and governance?",
+        "options": [
+          {
+            "id": "a",
+            "text": "By continuously evaluating resources against compliance standards and organizational policies",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "By increasing storage capacity",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "By replacing IAM policies",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "By creating backups",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the relationship between AWS Config and compliance auditing?",
+        "options": [
+          {
+            "id": "a",
+            "text": "AWS Config provides historical configuration data and compliance status for audit purposes",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "AWS Config replaces CloudTrail entirely",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "AWS Config stores application code",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS Config manages EC2 networking",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes AWS Config?",
+        "options": [
+          {
+            "id": "a",
+            "text": "AWS Config tracks resource configurations, records configuration history, and evaluates compliance using configurable rules",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "AWS Config is a database service",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "AWS Config is used only for monitoring CPU usage",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS Config replaces VPC networking",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 11,
+    "topic_sort": 1,
+    "topic_title": "CloudFormation templates & stacks",
+    "quiz_title": "CloudFormation templates & stacks — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is AWS CloudFormation?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A database service",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "An Infrastructure as Code (IaC) service used to provision and manage AWS resources using templates",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A monitoring service",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A content delivery service",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is Infrastructure as Code (IaC)?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Managing infrastructure through manual console operations only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Defining and provisioning infrastructure using code and configuration files",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Creating databases automatically",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Monitoring application logs",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a CloudFormation Template?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A file that describes AWS resources and their configurations",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A backup file",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A database schema",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A Route 53 record",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which formats are commonly used for CloudFormation Templates?",
+        "options": [
+          {
+            "id": "a",
+            "text": "YAML and JSON",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "XML and HTML",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "CSV and TXT",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "SQL and YAML",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a CloudFormation Stack?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A collection of AWS resources created and managed as a single unit from a template",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A storage bucket",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A VPC subnet",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A security group",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What happens when a CloudFormation Stack is updated?",
+        "options": [
+          {
+            "id": "a",
+            "text": "CloudFormation compares the current and desired state and applies necessary changes",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "All resources are deleted automatically",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A new AWS account is created",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Only IAM resources are updated",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Why do organizations use CloudFormation?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To automate infrastructure deployment and maintain consistency across environments",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To replace databases",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To increase internet speed",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To manage user passwords",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company wants identical Dev, Test, and Production environments. Which AWS service can help achieve this?",
+        "options": [
+          {
+            "id": "a",
+            "text": "AWS CloudFormation",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Route 53",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Amazon EBS",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Amazon SNS",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a major benefit of Infrastructure as Code?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Version control, automation, and repeatable deployments",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Increased storage costs",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Elimination of security controls",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Manual infrastructure management",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes CloudFormation Templates and Stacks?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Templates define AWS infrastructure as code, while Stacks are the deployed instances of those templates that create and manage AWS resources",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Templates and Stacks are identical concepts",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Stacks are used only for monitoring",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "CloudFormation replaces AWS networking",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 12,
+    "topic_sort": 1,
+    "topic_title": "Multi-AZ & multi-region patterns",
+    "quiz_title": "Multi-AZ & multi-region patterns — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What does High Availability (HA) mean in AWS?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Increasing storage capacity only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Designing systems to remain operational even when components fail",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Creating more IAM users",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Reducing network traffic",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is an Availability Zone (AZ)?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A collection of AWS accounts",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "One or more isolated data centers within an AWS Region",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A DNS service",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A virtual machine",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a Multi-AZ architecture?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Deploying resources across multiple Availability Zones within the same Region",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Deploying resources in multiple AWS accounts",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Deploying resources in multiple VPCs only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Deploying resources in multiple continents",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the primary benefit of Multi-AZ deployments?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Improved fault tolerance and high availability",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Increased storage size",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Reduced IAM permissions",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Faster DNS resolution",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a Multi-Region architecture?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Deploying resources across multiple AWS Regions",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Deploying resources across multiple subnets only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Deploying resources across multiple IAM groups",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Deploying resources in a single AZ",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which disaster scenario is Multi-Region architecture designed to address?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Availability Zone failure only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Entire Region failure or large-scale disaster",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Password expiration",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "EC2 reboot events",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A company wants its application to survive the failure of one Availability Zone. Which architecture should it use?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Single-AZ",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Multi-AZ",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Single EC2 Instance",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Local Storage",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "A financial application requires business continuity even if an entire AWS Region becomes unavailable. Which architecture is most appropriate?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Single-AZ",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Multi-AZ Only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Multi-Region Deployment",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "Local Backup Only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS service can help route users to healthy endpoints across Regions?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon Route 53",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Amazon EBS",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Security Groups",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "AWS Config",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes Multi-AZ and Multi-Region patterns?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Multi-AZ provides high availability within a Region, while Multi-Region provides disaster recovery and resilience across Regions",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Both architectures are identical",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Multi-Region replaces Multi-AZ entirely",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Multi-AZ is only used for databases",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 12,
+    "topic_sort": 2,
+    "topic_title": "Backup, restore & DR planning (RTO/RPO)",
+    "quiz_title": "Backup, restore & DR planning (RTO/RPO) — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary goal of Disaster Recovery (DR)?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To increase application performance",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "To restore systems and data after a disruption or disaster",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "To reduce storage usage",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To manage IAM users",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is a backup?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A copy of data stored separately for recovery purposes",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "A load balancer configuration",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "A security group rule",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A DNS record",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the purpose of a restore operation?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To recover data or systems from a backup",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To create a new VPC",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To increase CPU utilization",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To update IAM permissions",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What does RTO stand for?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Recovery Time Objective",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Recovery Transfer Operation",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Resource Tracking Objective",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Replication Time Output",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What does RPO stand for?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Recovery Process Objective",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Recovery Point Objective",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Resource Performance Output",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Replication Process Output",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "If a company has an RTO of 2 hours, what does it mean?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Systems must be restored within 2 hours after a disruption",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Data must be backed up every 2 hours",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Recovery requires exactly 2 hours",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Systems can remain offline indefinitely",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "If a company has an RPO of 15 minutes, what does it mean?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Up to 15 minutes of data loss is acceptable",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Recovery must complete within 15 minutes",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Backups occur once every 15 days",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Data cannot be lost",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS service is commonly used for storing backups?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon S3",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Route 53",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Security Groups",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "IAM",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which disaster recovery strategy provides the fastest recovery but typically costs the most?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Backup & Restore",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Pilot Light",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Warm Standby",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Multi-Site Active/Active",
+            "is_correct": true
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes RTO and RPO?",
+        "options": [
+          {
+            "id": "a",
+            "text": "RTO defines acceptable downtime, while RPO defines acceptable data loss",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "RTO and RPO mean the same thing",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "RTO measures storage size and RPO measures bandwidth",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "RTO applies only to databases",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 12,
+    "topic_sort": 3,
+    "topic_title": "AWS Well-Architected Framework",
+    "quiz_title": "AWS Well-Architected Framework — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the AWS Well-Architected Framework?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A database service",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "A set of best practices and design principles for building secure, reliable, efficient, and cost-effective cloud architectures",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "A monitoring tool",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "A storage service",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "What is the primary goal of the AWS Well-Architected Framework?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To help teams build and operate high-quality cloud architectures",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "To increase EC2 instance size automatically",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "To manage IAM users",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "To replace CloudFormation",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "How many pillars are included in the AWS Well-Architected Framework?",
+        "options": [
+          {
+            "id": "a",
+            "text": "4",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "5",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "6",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "8",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which pillar focuses on protecting systems, data, and assets?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Reliability",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Security",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Performance Efficiency",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Sustainability",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which pillar focuses on recovering from failures and maintaining service availability?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Reliability",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Cost Optimization",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Sustainability",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Operational Excellence",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which pillar focuses on monitoring systems, automating changes, and improving operational processes?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Performance Efficiency",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Security",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Operational Excellence",
+            "is_correct": true
+          },
+          {
+            "id": "d",
+            "text": "Cost Optimization",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which pillar focuses on using resources efficiently and selecting the right technologies?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Performance Efficiency",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Reliability",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Sustainability",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Security",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which pillar focuses on avoiding unnecessary costs and maximizing business value?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Operational Excellence",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Cost Optimization",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Reliability",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Security",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which pillar was added to help organizations reduce environmental impact?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Governance",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Sustainability",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Scalability",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Automation",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which statement best summarizes the AWS Well-Architected Framework?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It provides six architectural pillars that help organizations design secure, reliable, efficient, sustainable, and cost-optimized cloud solutions",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "It is used only for networking",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "It replaces AWS services",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "It applies only to large enterprises",
+            "is_correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "course_code": "AWS",
+    "module_number": 12,
+    "topic_sort": 4,
+    "topic_title": "SAA-C03 exam domains & scenario questions",
+    "quiz_title": "SAA-C03 exam domains & scenario questions — Topic Quiz",
+    "pass_score": 70,
+    "max_attempts": 3,
+    "time_limit_min": 20,
+    "questions": [
+      {
+        "question": "What is the primary focus of the AWS Certified Solutions Architect – Associate (SAA-C03) exam?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Software development only",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Designing secure, resilient, high-performing, and cost-optimized AWS architectures",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Managing Linux servers only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Writing application code",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Which AWS Well-Architected pillar is most closely associated with designing fault-tolerant systems?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Cost Optimization",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Reliability",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Sustainability",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Operational Excellence",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Scenario: A company wants its application to remain available if an Availability Zone fails. Which solution is most appropriate?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Deploy all resources in a single AZ",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "Use Multi-AZ architecture with Load Balancing",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Store data locally only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Disable Auto Scaling",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Scenario: An application experiences unpredictable traffic spikes. Which AWS service combination is best?",
+        "options": [
+          {
+            "id": "a",
+            "text": "EC2 + Auto Scaling + Application Load Balancer",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "EC2 only",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "S3 only",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Route 53 only",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Scenario: A company wants to store large amounts of static website content at low cost. Which AWS service is most suitable?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon S3",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Amazon RDS",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "AWS Lambda",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Amazon EC2",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Scenario: A global application needs to deliver content with low latency to users worldwide. Which AWS service should be used?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon CloudFront",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Amazon EBS",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "AWS Config",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Amazon SNS",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Scenario: A company wants to reduce database read load while improving application response times. Which AWS service is most appropriate?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon ElastiCache",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Amazon Route 53",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "AWS CloudTrail",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "IAM",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Scenario: A company needs a serverless architecture that runs code in response to events. Which AWS service should be selected?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Amazon EC2",
+            "is_correct": false
+          },
+          {
+            "id": "b",
+            "text": "AWS Lambda",
+            "is_correct": true
+          },
+          {
+            "id": "c",
+            "text": "Amazon EBS",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Amazon RDS",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Scenario: A security team wants to know who modified an IAM policy yesterday. Which AWS service provides this information?",
+        "options": [
+          {
+            "id": "a",
+            "text": "AWS CloudTrail",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Amazon CloudFront",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "AWS Config",
+            "is_correct": false
+          },
+          {
+            "id": "d",
+            "text": "Amazon SQS",
+            "is_correct": false
+          }
+        ]
+      },
+      {
+        "question": "Scenario: A company wants to automatically evaluate whether S3 buckets comply with encryption requirements. Which AWS service should be used?",
+        "options": [
+          {
+            "id": "a",
+            "text": "AWS Config",
+            "is_correct": true
+          },
+          {
+            "id": "b",
+            "text": "Route 53",
+            "is_correct": false
+          },
+          {
+            "id": "c",
+            "text": "Amazon EBS",
+            "is_correct": false
+          },
+          {
+            "id": "d",
             "text": "AWS Lambda",
             "is_correct": false
           }
         ]
-      },
-      {
-        "question": "What is an EBS snapshot?",
-        "options": [
-          {
-            "id": "a",
-            "text": "A DNS record",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "A point-in-time backup of an EBS volume stored incrementally in S3",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "An IAM policy",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "A Lambda function version",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which S3 feature helps protect against accidental object deletion?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Disabling versioning",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "S3 Versioning combined with MFA Delete and lifecycle rules",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Public bucket access",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Removing bucket encryption",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is the AWS Backup service used for?",
-        "options": [
-          {
-            "id": "a",
-            "text": "DNS management",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Centralized backup management across AWS services (EBS, RDS, DynamoDB, EFS, etc.)",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "EC2 instance type selection",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "API rate limiting",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is a common 3-2-1 backup strategy adapted for AWS?",
-        "options": [
-          {
-            "id": "a",
-            "text": "3 copies, 2 media types, 1 offsite — implemented with snapshots, cross-region replication, and S3/Glacier",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "One copy in one AZ only",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "No backups needed with Multi-AZ",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Backups only on EC2 local storage",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "How can you protect against regional disasters for critical data?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Store everything in one AZ",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Cross-region replication (S3 CRR, RDS cross-region snapshots, DynamoDB Global Tables)",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Disable all backups to save cost",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Use only ephemeral instance storage",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is Amazon S3 Glacier best suited for in a backup strategy?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Primary transactional database",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Long-term archival and compliance retention at lower cost",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Real-time application caching",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "EC2 boot volumes",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "How often should backup restore procedures be tested?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Never — backups always work",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Regularly, as part of disaster recovery drills",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Only after a disaster occurs",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Once during initial setup only",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which RDS feature creates a snapshot you can copy to another region?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Auto Scaling",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Manual or automated DB snapshots with cross-region copy",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "CloudFront distribution",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "IAM Access Analyzer",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is Recovery Time Objective (RTO) in disaster recovery planning?",
-        "options": [
-          {
-            "id": "a",
-            "text": "The amount of data loss measured in bytes",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "The maximum acceptable time to restore service after a disruption",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "The number of EC2 instances required",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "The S3 storage class selection",
-            "is_correct": false
-          }
-        ]
       }
     ]
   },
   {
     "course_code": "AWS",
-    "module_number": 6,
-    "topic_sort": 1,
-    "topic_title": "Exam domains",
-    "quiz_title": "Exam domains — Topic Quiz",
+    "module_number": 12,
+    "topic_sort": 5,
+    "topic_title": "Architecture trade-offs: security, cost, reliability",
+    "quiz_title": "Architecture trade-offs: security, cost, reliability — Topic Quiz",
     "pass_score": 70,
     "max_attempts": 3,
     "time_limit_min": 20,
     "questions": [
       {
-        "question": "How many domains are covered in the AWS Certified Solutions Architect – Associate (SAA-C03) exam?",
+        "question": "What is an architecture trade-off in cloud design?",
         "options": [
           {
             "id": "a",
-            "text": "Two domains",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Four domains",
+            "text": "Choosing between different design options based on business requirements and constraints",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "Increasing storage capacity only",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Six domains",
+            "text": "Creating IAM users",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Ten domains",
+            "text": "Deploying resources in a single Availability Zone",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which SAA-C03 domain has the highest weight on the exam?",
+        "question": "Why is it important to consider trade-offs when designing AWS architectures?",
         "options": [
           {
             "id": "a",
-            "text": "Design Secure Architectures (~30%)",
+            "text": "Every design decision affects cost, security, performance, or reliability",
             "is_correct": true
           },
           {
             "id": "b",
-            "text": "Design Cost-Optimized Architectures (~0%)",
+            "text": "AWS services have no limitations",
             "is_correct": false
           },
           {
             "id": "c",
-            "text": "Cloud Practitioner basics only",
+            "text": "Security is the only factor that matters",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "AWS billing console navigation",
+            "text": "Cost is always the highest priority",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which domain covers designing solutions for performance, scalability, and elasticity?",
+        "question": "Scenario: A company wants the lowest possible cost for a non-critical internal application. Which option is most appropriate?",
         "options": [
           {
             "id": "a",
-            "text": "Domain 1 only",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Domain 3: Design High-Performing Architectures",
+            "text": "Single-AZ deployment",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "Multi-Region active-active deployment",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Domain 4: Billing only",
+            "text": "Global load balancing across continents",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "No domain covers performance",
+            "text": "Duplicate infrastructure in multiple Regions",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which domain focuses on selecting storage, database, and compute services for cost efficiency?",
+        "question": "Scenario: A financial application requires maximum availability and minimal downtime. Which design is most appropriate?",
         "options": [
           {
             "id": "a",
-            "text": "Design Cost-Optimized Architectures",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Design Secure Architectures only",
+            "text": "Single EC2 instance",
             "is_correct": false
           },
           {
+            "id": "b",
+            "text": "Multi-AZ deployment with Load Balancing and Auto Scaling",
+            "is_correct": true
+          },
+          {
             "id": "c",
-            "text": "Migration only",
+            "text": "Local backups only",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Support plan selection",
+            "text": "One Availability Zone",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "What type of questions are common on the SAA-C03 exam?",
+        "question": "Which design choice generally increases reliability but also increases cost?",
         "options": [
           {
             "id": "a",
-            "text": "Only memorization of service names",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Scenario-based questions requiring the best architectural choice",
+            "text": "Multi-AZ architecture",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "Deleting backups",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Only coding challenges",
+            "text": "Removing monitoring",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Only pricing calculation without context",
+            "text": "Disabling encryption",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which skill is essential for the \"Design Resilient Architectures\" domain?",
+        "question": "Which AWS service helps improve security through centralized identity and access management?",
         "options": [
           {
             "id": "a",
-            "text": "Single-AZ deployment expertise",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Understanding Multi-AZ, failover, and disaster recovery patterns",
+            "text": "IAM",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "CloudFront",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Disabling backups",
+            "text": "ElastiCache",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Using one EC2 instance for everything",
+            "text": "EBS",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "The \"Design Secure Architectures\" domain covers which topics?",
+        "question": "Scenario: A company wants to improve security by enabling encryption for all stored data. What is the trade-off?",
         "options": [
           {
             "id": "a",
-            "text": "IAM, encryption, network security, and compliance controls",
+            "text": "Slightly increased operational complexity while improving data protection",
             "is_correct": true
           },
           {
             "id": "b",
-            "text": "Only S3 bucket naming",
+            "text": "Lower reliability",
             "is_correct": false
           },
           {
             "id": "c",
-            "text": "Only EC2 instance colors",
+            "text": "No security benefit",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Only Route 53 TTL values",
+            "text": "Elimination of backups",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which AWS Well-Architected Framework pillar aligns closely with exam domains?",
+        "question": "Which AWS architecture provides the highest reliability but generally has the highest cost?",
         "options": [
           {
             "id": "a",
-            "text": "Only the Performance Efficiency pillar",
+            "text": "Single EC2 Instance",
             "is_correct": false
           },
           {
             "id": "b",
-            "text": "Operational Excellence, Security, Reliability, Performance Efficiency, Cost Optimization, and Sustainability",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "No pillars exist",
+            "text": "Single-AZ Deployment",
             "is_correct": false
           },
           {
+            "id": "c",
+            "text": "Multi-Region Active-Active Architecture",
+            "is_correct": true
+          },
+          {
             "id": "d",
-            "text": "Only the Billing pillar",
+            "text": "Local Storage Only",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "A question asks you to choose the MOST cost-effective AND secure solution. What approach should you take?",
+        "question": "Scenario: A startup wants a balance between cost and availability. Which architecture is often recommended?",
         "options": [
           {
             "id": "a",
-            "text": "Pick the cheapest option regardless of security",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Eliminate options that violate security or requirements, then compare remaining valid options",
+            "text": "Multi-AZ deployment within a single Region",
             "is_correct": true
           },
           {
+            "id": "b",
+            "text": "Active-Active across multiple continents",
+            "is_correct": false
+          },
+          {
             "id": "c",
-            "text": "Always choose the newest service",
+            "text": "Dedicated infrastructure in every Region",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "Pick the first answer",
+            "text": "Multiple backup data centers worldwide",
             "is_correct": false
           }
         ]
       },
       {
-        "question": "Which resource provides official exam guide details including domain weights?",
+        "question": "Which statement best summarizes architecture trade-offs?",
         "options": [
           {
             "id": "a",
-            "text": "Random blog posts only",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "AWS Certified Solutions Architect – Associate (SAA-C03) exam guide on AWS Training",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Amazon S3 documentation only",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "EC2 user manual only",
-            "is_correct": false
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "course_code": "AWS",
-    "module_number": 6,
-    "topic_sort": 2,
-    "topic_title": "Practice tests",
-    "quiz_title": "Practice tests — Topic Quiz",
-    "pass_score": 70,
-    "max_attempts": 3,
-    "time_limit_min": 20,
-    "questions": [
-      {
-        "question": "What is the best way to prepare for SAA-C03 using practice tests?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Memorize answers without understanding",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Take timed practice exams, review wrong answers, and understand why each correct option is best",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Skip practice tests entirely",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Only read service FAQs once",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "During a practice test, you notice you spend too long on each question. What should you do?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Skip the exam entirely",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Practice time management — flag hard questions and move on, then review",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Memorize all 500+ services",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Disable the timer",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Why is reviewing incorrect practice test answers important?",
-        "options": [
-          {
-            "id": "a",
-            "text": "It helps identify knowledge gaps and reinforces architectural reasoning",
+            "text": "Cloud architects must balance security, cost, and reliability based on business requirements because optimizing one area often impacts another",
             "is_correct": true
           },
           {
             "id": "b",
-            "text": "It guarantees the same questions appear on the exam",
+            "text": "Cost should always be ignored",
             "is_correct": false
           },
           {
             "id": "c",
-            "text": "It replaces hands-on labs",
+            "text": "Reliability is never important",
             "is_correct": false
           },
           {
             "id": "d",
-            "text": "It is not important",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What score on practice exams generally indicates readiness for SAA-C03?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Consistently scoring well above the passing threshold (720/1000) on multiple practice tests",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Scoring 50% once",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Never taking practice tests",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Only reading the exam guide",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "A practice question presents four plausible answers. How should you approach it?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Choose the first option that sounds familiar",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Eliminate clearly wrong options and compare remaining choices against AWS best practices",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Always pick the most expensive option",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Randomly guess",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which combination of study methods is most effective alongside practice tests?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Reading only, no labs",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Hands-on labs, whitepapers, exam guide, and timed practice exams",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Watching unrelated videos only",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Cramming service names the night before",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What should you do if you consistently miss questions about VPC networking in practice tests?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Ignore networking topics",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Focus additional study on VPC, subnets, gateways, and security groups with hands-on labs",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Skip the exam",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Only study S3",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "How similar are official AWS practice questions to the actual exam?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Identical word-for-word",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Similar in style and difficulty but actual exam questions are different",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Completely unrelated",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Only about billing",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is the passing score for the SAA-C03 exam?",
-        "options": [
-          {
-            "id": "a",
-            "text": "500 out of 1000",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "720 out of 1000",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "900 out of 1000",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "100% required",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "After completing a full-length practice test, what is the recommended next step?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Immediately schedule the exam without review",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Analyze weak domains, restudy those topics, and retake practice tests",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Stop studying entirely",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Only focus on topics you already know well",
-            "is_correct": false
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "course_code": "AWS",
-    "module_number": 6,
-    "topic_sort": 3,
-    "topic_title": "Review sessions",
-    "quiz_title": "Review sessions — Topic Quiz",
-    "pass_score": 70,
-    "max_attempts": 3,
-    "time_limit_min": 20,
-    "questions": [
-      {
-        "question": "What is the primary goal of an exam review session before SAA-C03?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Learn unrelated programming languages",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Reinforce weak areas, clarify concepts, and validate readiness",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Skip all difficult topics",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Replace hands-on practice entirely",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which topics should be prioritized in a final review session?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Only services you already mastered",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Domains where practice test scores were lowest",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Only AWS history",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Only pricing for services you will never use",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is the AWS Well-Architected Framework useful for during review?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Only billing disputes",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Understanding best practices across security, reliability, performance, cost, and operations",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Replacing all exam domains",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Configuring EC2 only",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "During a review session, a student confuses Security Groups and Network ACLs. What is the key difference?",
-        "options": [
-          {
-            "id": "a",
-            "text": "They are identical",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Security Groups are stateful firewalls at the instance level; NACLs are stateless at the subnet level",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "NACLs only apply to S3",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Security Groups only apply to RDS",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which mnemonic helps remember the difference between horizontal and vertical scaling?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Horizontal = bigger machine; Vertical = more machines",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Horizontal = add more instances; Vertical = increase instance size",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Both mean the same thing",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Scaling is not on the exam",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What should you review regarding IAM before the exam?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Only root account usage",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Users, roles, policies, least privilege, and cross-account access patterns",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Disable MFA recommendations",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "How to share access keys",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Which storage service review points are critical for SAA-C03?",
-        "options": [
-          {
-            "id": "a",
-            "text": "S3 storage classes, EBS vs EFS, Glacier use cases, and when to use instance store",
-            "is_correct": true
-          },
-          {
-            "id": "b",
-            "text": "Only S3 bucket names",
-            "is_correct": false
-          },
-          {
-            "id": "c",
-            "text": "Only EBS volume colors",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Storage is not tested",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What exam day strategy should be discussed in review sessions?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Spend unlimited time on each question",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Read each question carefully, eliminate wrong answers, manage time, and flag uncertain questions",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Answer randomly to finish quickly",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Skip scenario questions",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "Why is discussing wrong answers in group review sessions valuable?",
-        "options": [
-          {
-            "id": "a",
-            "text": "It encourages memorization without reasoning",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Peers may explain concepts differently, helping solidify understanding",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "It replaces individual study",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Group review is never useful",
-            "is_correct": false
-          }
-        ]
-      },
-      {
-        "question": "What is the recommended action if review sessions reveal significant gaps one week before the exam?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Take the exam anyway without preparation",
-            "is_correct": false
-          },
-          {
-            "id": "b",
-            "text": "Delay the exam, focus intensive study on weak domains, and retake practice tests",
-            "is_correct": true
-          },
-          {
-            "id": "c",
-            "text": "Only review topics you already know",
-            "is_correct": false
-          },
-          {
-            "id": "d",
-            "text": "Ignore the gaps",
+            "text": "Security and cost have no relationship",
             "is_correct": false
           }
         ]

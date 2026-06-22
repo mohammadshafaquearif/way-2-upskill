@@ -17,6 +17,8 @@ export interface Course {
   projects: string;
   /** Short bullets shown on checkout */
   checkoutIncludes: string[];
+  /** Public path to program brochure PDF in /public/docs */
+  brochurePath: string;
 }
 
 export const COURSES: Course[] = [
@@ -41,6 +43,7 @@ export const COURSES: Course[] = [
       'Full LMS access with recordings & assignments',
       'Certificate on successful program completion',
     ],
+    brochurePath: '/docs/zyvotrix-dop-program.pdf',
   },
   {
     id: 'aac',
@@ -63,6 +66,7 @@ export const COURSES: Course[] = [
       'Learning OS with curriculum, sessions & mentor support',
       'Zyvotrix certificate with verifiable credential ID',
     ],
+    brochurePath: '/docs/zyvotrix-aac-program.pdf',
   },
   {
     id: 'aws',
@@ -85,6 +89,7 @@ export const COURSES: Course[] = [
       'Live mentor Q&A and session recordings',
       'Certificate aligned to AWS Solutions Architect track',
     ],
+    brochurePath: '/docs/ZyvotrixAWS_Program.pdf',
   },
   {
     id: 'data-science',
@@ -107,6 +112,7 @@ export const COURSES: Course[] = [
       'Live mentor support built for working professionals',
       'Certificate on completing the full program track',
     ],
+    brochurePath: '/docs/zyvotrix-ds-program.pdf',
   },
 ];
 
@@ -114,6 +120,12 @@ export const COURSE_BY_ID = Object.fromEntries(COURSES.map((c) => [c.id, c])) as
   string,
   Course
 >;
+
+export function getCourseBrochureFilename(courseId: string): string {
+  const path = COURSE_BY_ID[courseId]?.brochurePath;
+  if (!path) return 'program-brochure.pdf';
+  return path.split('/').pop() || 'program-brochure.pdf';
+}
 
 export function getCourseByCheckoutId(checkoutId: string): Course | undefined {
   return COURSES.find(
