@@ -149,13 +149,14 @@ export const RESOURCE_PAGE_SEO: Record<string, ResourceSeoEntry> = {
       'How to become an AI or Agentic AI engineer in 2026. Free Zyvotrix career path from Python developer to production AI systems.',
   },
   'aws-career-path': {
-    title: 'AWS Career Path — Zyvotrix Cloud Career Guide',
+    title: 'AWS Solutions Architect Career Guide — Zyvotrix',
     description:
-      'AWS career path guide from Zyvotrix: cloud engineer, Solutions Architect, and DevOps roles — skills, certifications, and salary outlook.',
+      'Complete AWS Solutions Architect training guide: EC2, S3, VPC, IAM, Lambda, Terraform, projects, careers, and Zyvotrix certification program highlights.',
   },
   'data-science-career-roadmap': {
-    title: 'Data Science Career Roadmap — Zyvotrix',
+    title:
+      'Data Science & Machine Learning Career Guide — Zyvotrix',
     description:
-      'Data Science career roadmap by Zyvotrix: from beginner to data analyst and junior data scientist — skills, projects, and timeline.',
+      'Complete Data Science career guide for beginners and professionals: Python, ML, roadmap, salaries, projects, and Zyvotrix certification program highlights.',
   },
 };

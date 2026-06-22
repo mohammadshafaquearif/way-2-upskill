@@ -11,6 +11,7 @@ import AwsInterviewPromoBanner from '@/components/resources/AwsInterviewPromoBan
 import AiEngineerInterviewPromoBanner from '@/components/resources/AiEngineerInterviewPromoBanner';
 import DataScienceInterviewPromoBanner from '@/components/resources/DataScienceInterviewPromoBanner';
 import DevOpsInterviewPromoBanner from '@/components/resources/DevOpsInterviewPromoBanner';
+import ResourceGuideArticle from '@/components/resources/ResourceGuideArticle';
 import { Button } from '@/components/ui/button';
 import {
   CATEGORY_META,
@@ -105,6 +106,9 @@ const ResourceArticle = () => {
   const isDataScienceInterview = slug === 'data-science-interview-questions';
   const isAiEngineerInterview = slug === 'ai-engineer-interview-questions';
   const isInterviewGuide = article?.category === 'interview';
+  const isGuideLayout = article?.layout === 'guide';
+  const isAwsCareerGuide = slug === 'aws-career-path';
+  const isDataScienceCareerGuide = slug === 'data-science-career-roadmap';
   const isPromoInterview =
     isDevOpsInterview || isAwsInterview || isDataScienceInterview || isAiEngineerInterview;
   const promoInterval = isDevOpsInterview ? 6 : 5;
@@ -226,6 +230,12 @@ const ResourceArticle = () => {
                   ))}
                 </div>
               </article>
+            ) : isGuideLayout ? (
+              <ResourceGuideArticle
+                article={article}
+                categoryLabel={meta.label}
+                categoryAccent={meta.accent}
+              />
             ) : (
               <div className="resource-article-glass space-y-8">
                 {article.sections.map((section, index) => (
@@ -281,9 +291,9 @@ const ResourceArticle = () => {
         primaryHref={
           isDevOpsInterview
             ? '/courses/devops-engineer-program'
-            : isAwsInterview
+            : isAwsInterview || isAwsCareerGuide
               ? '/courses/aws'
-              : isDataScienceInterview
+              : isDataScienceInterview || isDataScienceCareerGuide
                 ? '/courses/data-science'
                 : isAiEngineerInterview
                   ? '/courses/aac'

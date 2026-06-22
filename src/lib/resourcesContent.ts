@@ -1,12 +1,34 @@
 export type ResourceCategory = 'devops' | 'aac' | 'aws' | 'data-science' | 'career' | 'interview';
 
+export interface ResourceSection {
+  heading?: string;
+  body?: string;
+  bullets?: string[];
+  remember?: string;
+  tip?: string;
+  subheadings?: { title: string; body?: string; bullets?: string[] }[];
+  table?: { headers: string[]; rows: string[][] };
+}
+
 export interface ResourceArticle {
   slug: string;
   title: string;
   description: string;
   category: ResourceCategory;
   courseRoute?: string;
-  sections: { heading?: string; body?: string; bullets?: string[]; remember?: string; tip?: string }[];
+  layout?: 'default' | 'guide';
+  heroImage?: string;
+  sections: ResourceSection[];
+}
+
+export function sectionSlug(heading: string, index: number): string {
+  const base = heading
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/[^\w\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-');
+  return base || `section-${index + 1}`;
 }
 
 export interface FeaturedRoadmap {
@@ -113,8 +135,8 @@ export const FREE_DOWNLOADS = [
 export const CAREER_GUIDES = [
   { title: 'How to Transition into DevOps', slug: 'how-to-transition-into-devops' },
   { title: 'How to Become an AI Engineer', slug: 'how-to-become-an-ai-engineer' },
-  { title: 'AWS Career Path', slug: 'aws-career-path' },
-  { title: 'Data Science Career Roadmap', slug: 'data-science-career-roadmap' },
+  { title: 'AWS Solutions Architect Career Guide', slug: 'aws-career-path' },
+  { title: 'Data Science & ML Career Guide', slug: 'data-science-career-roadmap' },
 ];
 
 export const CATEGORY_META: Record<
@@ -137,8 +159,9 @@ function article(
   title: string,
   description: string,
   category: ResourceCategory,
-  sections: { heading?: string; body?: string; bullets?: string[]; remember?: string; tip?: string }[],
+  sections: ResourceSection[],
   courseRoute?: string,
+  options?: { layout?: 'default' | 'guide'; heroImage?: string },
 ): ResourceArticle {
   return {
     slug,
@@ -147,6 +170,7 @@ function article(
     category,
     sections,
     courseRoute: courseRoute ?? CATEGORY_META[category].courseRoute,
+    ...options,
   };
 }
 
@@ -1175,23 +1199,360 @@ export const RESOURCE_ARTICLES: Record<string, ResourceArticle> = {
   ),
   'aws-career-path': article(
     'aws-career-path',
-    'AWS Career Path',
-    'Cloud engineer, Solutions Architect, and DevOps roles on AWS.',
+    'AWS Solutions Architect Certification Program',
+    'Complete AWS cloud architecture training guide for IT professionals — skills, projects, careers, and how structured training builds job-ready cloud expertise.',
     'career',
     [
-      { body: 'Start with Cloud Practitioner concepts, then Solutions Architect Associate (SAA-C03). Progress to specialty certs and solutions architect professional roles with portfolio architectures.' },
+      {
+        heading: 'Introduction',
+        body: 'Cloud computing has become one of the most transformative technologies of the modern digital era. Organizations across industries are rapidly adopting cloud platforms to improve scalability, enhance security, reduce infrastructure costs, and accelerate innovation. As businesses continue migrating their applications and services to the cloud, the demand for skilled cloud professionals continues to grow.\n\nAmong all cloud certifications available today, the AWS Solutions Architect Certification is widely recognized as one of the most valuable credentials for IT professionals, system administrators, cloud engineers, DevOps practitioners, and aspiring cloud architects.\n\nThis certification validates an individual\'s ability to design secure, scalable, highly available, and cost-effective cloud solutions using Amazon Web Services (AWS). Whether you are an IT professional looking to transition into cloud computing or a technology enthusiast seeking future-ready skills, AWS Solutions Architecture provides a strong foundation for long-term career growth.',
+      },
+      {
+        heading: 'What is AWS Solutions Architect Certification?',
+        body: 'AWS Solutions Architect Certification is a globally recognized cloud certification that demonstrates expertise in designing and deploying applications and infrastructure on Amazon Web Services.\n\nThe certification focuses on cloud architecture principles, infrastructure design, networking, security, storage solutions, disaster recovery planning, cost optimization, and operational excellence.\n\nAWS Solutions Architects are responsible for helping organizations build cloud environments that meet business requirements while maintaining high levels of security, performance, and reliability.\n\nAs cloud adoption continues to accelerate worldwide, organizations actively seek professionals who possess practical cloud architecture skills and can support digital transformation initiatives.',
+      },
+      {
+        heading: 'Why AWS Solutions Architect Certification is Important',
+        body: 'Cloud computing is no longer limited to technology companies. Businesses in healthcare, banking, education, e-commerce, media, manufacturing, logistics, and government sectors are increasingly relying on cloud infrastructure to support their operations.\n\nAWS currently powers millions of applications worldwide and remains one of the leading cloud service providers globally. Organizations use AWS to host websites, run enterprise applications, manage databases, implement disaster recovery solutions, deploy machine learning models, and support large-scale digital services.\n\nAs a result, AWS-certified professionals are highly valued because they possess the knowledge required to design efficient cloud architectures that improve business performance while reducing operational complexity.\n\nThe certification not only validates technical expertise but also demonstrates a commitment to continuous learning and professional development, making certified professionals more competitive in the job market.',
+      },
+      {
+        heading: 'Skills You Will Learn in AWS Solutions Architect Training',
+        subheadings: [
+          {
+            title: 'Amazon EC2 and Compute Services',
+            body: 'Learners develop expertise in deploying, managing, and scaling virtual servers using Amazon EC2. This includes understanding instance types, auto scaling, load balancing, performance optimization, and infrastructure management.',
+          },
+          {
+            title: 'Amazon S3 and Cloud Storage',
+            body: 'AWS Solutions Architects learn how to implement secure and scalable storage solutions using Amazon S3. Topics include object storage, lifecycle management, versioning, backup strategies, and data protection.',
+          },
+          {
+            title: 'Amazon VPC and Networking',
+            body: 'Cloud networking forms the backbone of modern cloud architecture. Learners gain hands-on experience with Virtual Private Cloud (VPC), subnets, route tables, NAT gateways, internet gateways, security groups, and network access controls.',
+          },
+          {
+            title: 'AWS Identity and Access Management (IAM)',
+            body: 'Security remains one of the most critical aspects of cloud computing. AWS IAM helps organizations manage users, permissions, policies, and role-based access control while maintaining strong security standards.',
+          },
+          {
+            title: 'AWS Lambda and Serverless Computing',
+            body: 'Modern cloud environments increasingly rely on serverless technologies. Learners explore AWS Lambda and event-driven architectures that enable efficient application deployment without managing traditional servers.',
+          },
+          {
+            title: 'Infrastructure as Code with Terraform',
+            body: 'Infrastructure automation has become an essential skill for cloud professionals. Terraform allows engineers to provision and manage cloud resources using code, improving consistency, scalability, and operational efficiency.',
+          },
+        ],
+      },
+      {
+        heading: 'Why AWS Cloud Skills Are in High Demand',
+        body: 'Cloud computing has become the backbone of modern digital transformation. From startups to multinational enterprises, organizations are rapidly migrating their applications, databases, and infrastructure to cloud platforms to improve scalability, reliability, and operational efficiency.\n\nAmazon Web Services powers millions of workloads worldwide and continues to lead the cloud computing industry through continuous innovation and service expansion. Businesses rely on AWS to host applications, process data, secure digital assets, implement artificial intelligence solutions, and support mission-critical operations.\n\nThe increasing complexity of cloud environments has created a significant demand for professionals who can design, implement, secure, and optimize cloud infrastructure. AWS-certified professionals are often responsible for reducing infrastructure costs, improving system reliability, implementing security best practices, and supporting organizational growth.\n\nThis demand has created outstanding career opportunities for AWS Solutions Architects, Cloud Engineers, DevOps Engineers, Site Reliability Engineers, Platform Engineers, and Cloud Consultants across industries worldwide.',
+      },
+      {
+        heading: 'Real-World Applications of AWS Solutions Architecture',
+        body: 'AWS Solutions Architects play a crucial role in helping organizations design and manage cloud infrastructure that supports business objectives.',
+        bullets: [
+          'In the e-commerce industry, AWS architects build scalable systems capable of handling traffic spikes during promotional campaigns and seasonal sales events.',
+          'Healthcare organizations use AWS cloud solutions to securely manage patient records, improve accessibility, and maintain compliance with industry regulations.',
+          'Financial institutions rely on cloud architectures to support transaction processing, fraud detection systems, risk analysis platforms, and real-time financial reporting.',
+          'Media and entertainment companies use AWS to deliver content globally through streaming platforms, content delivery networks, and high-performance storage solutions.',
+          'Educational institutions leverage AWS services to provide online learning environments, virtual classrooms, and scalable educational platforms for students worldwide.',
+        ],
+      },
+      {
+        heading: 'Why Hands-On Projects Matter in AWS Training',
+        body: 'One of the biggest challenges facing aspiring cloud professionals is translating theoretical knowledge into practical expertise.\n\nWhile certifications provide valuable foundational knowledge, employers increasingly seek candidates who can demonstrate real-world experience and problem-solving abilities.\n\nHands-on projects enable learners to build and deploy cloud infrastructure, configure networking components, implement security controls, automate deployments, and monitor application performance in realistic environments.\n\nThrough practical implementation, learners gain a deeper understanding of how cloud services interact and how production environments are managed.\n\nProject-based learning also helps professionals build portfolios that showcase their capabilities during job applications and technical interviews.',
+      },
+      {
+        heading: 'AWS Solutions Architect vs Traditional Infrastructure Management',
+        table: {
+          headers: ['Feature', 'Traditional Infrastructure', 'AWS Cloud Architecture'],
+          rows: [
+            ['Infrastructure Deployment', 'Manual Setup', 'Automated Provisioning'],
+            ['Scalability', 'Limited', 'Dynamic Scaling'],
+            ['Cost Model', 'Fixed Capital Expenses', 'Pay-as-You-Go'],
+            ['Availability', 'Hardware Dependent', 'Highly Available'],
+            ['Disaster Recovery', 'Complex', 'Built-in Cloud Solutions'],
+            ['Automation', 'Limited', 'Extensive Automation'],
+            ['Security Management', 'Manual Processes', 'Cloud Security Frameworks'],
+          ],
+        },
+      },
+      {
+        heading: 'AWS Solutions Architect Certification Program at Zyvotrix',
+        body: 'At Zyvotrix, we focus on practical, industry-oriented cloud education designed to help learners build real-world expertise rather than simply preparing for examinations.\n\nThe AWS Solutions Architect Certification Program is structured to provide comprehensive knowledge of cloud architecture, networking, security, automation, and infrastructure management through practical implementation and guided learning.\n\nLearners gain exposure to real-world cloud deployment scenarios, cloud architecture design principles, infrastructure automation techniques, and modern operational practices used by leading technology organizations.\n\nThe program includes hands-on experience with AWS services such as EC2, S3, VPC, IAM, Lambda, and Terraform while emphasizing practical implementation and portfolio development.',
+        subheadings: [
+          {
+            title: 'Program Highlights',
+            bullets: [
+              '3 Months Structured Learning Program',
+              '7 Real-World Projects + Capstone Project',
+              'AWS Cloud Architecture Design',
+              'Amazon EC2, S3, VPC, IAM, Lambda',
+              'Infrastructure as Code using Terraform',
+              'Cloud Security Best Practices',
+              'Production-Ready Cloud Deployments',
+              'Industry-Oriented Training Approach',
+              'Portfolio Development Support',
+              'AWS Certification Preparation',
+            ],
+          },
+        ],
+      },
+      {
+        heading: 'Career Opportunities After AWS Solutions Architect Certification',
+        body: 'AWS cloud expertise opens the door to a wide range of high-demand technology careers. Professionals can pursue opportunities such as:',
+        bullets: [
+          'AWS Solutions Architect',
+          'Cloud Engineer',
+          'DevOps Engineer',
+          'Site Reliability Engineer (SRE)',
+          'Platform Engineer',
+          'Infrastructure Engineer',
+          'Cloud Consultant',
+          'Cloud Operations Engineer',
+          'Cloud Security Specialist',
+        ],
+      },
+      {
+        heading: 'Frequently Asked Questions',
+        subheadings: [
+          {
+            title: 'Is AWS Solutions Architect Certification worth it?',
+            body: 'Yes. AWS Solutions Architect Certification remains one of the most respected cloud certifications globally and provides strong career growth opportunities in cloud computing, DevOps, and infrastructure engineering.',
+          },
+          {
+            title: 'Can beginners learn AWS Solutions Architecture?',
+            body: 'Yes. Beginners can start with cloud fundamentals and gradually progress toward advanced architecture concepts through structured learning and practical projects.',
+          },
+          {
+            title: 'Is AWS useful for DevOps careers?',
+            body: 'Absolutely. AWS is a core technology in modern DevOps environments and works closely with automation, CI/CD, containers, Kubernetes, and Infrastructure as Code tools.',
+          },
+          {
+            title: 'What salary can AWS-certified professionals expect?',
+            body: 'Salary varies based on experience, location, and skill set, but AWS-certified professionals are generally among the highest-paid technology specialists due to strong market demand.',
+          },
+        ],
+      },
+      {
+        heading: 'Conclusion',
+        body: 'AWS Solutions Architect Certification is one of the best pathways for professionals looking to build expertise in cloud computing, infrastructure design, security, automation, and modern application deployment. As organizations increasingly adopt cloud technologies, the demand for skilled AWS professionals continues to grow across industries worldwide.\n\nBy developing strong cloud foundations, gaining hands-on experience, building real-world projects, and continuously improving technical skills, professionals can position themselves for long-term success in cloud engineering and architecture roles.\n\nThrough the Zyvotrix AWS Solutions Architect Certification Program, learners gain practical exposure, industry-relevant experience, and real-world cloud implementation skills that help prepare them for modern cloud careers and future technology opportunities.',
+      },
     ],
     '/courses/aws',
+    {
+      layout: 'guide',
+      heroImage: '/images/resources/aws-career-path.png',
+    },
   ),
   'data-science-career-roadmap': article(
     'data-science-career-roadmap',
-    'Data Science Career Roadmap',
-    'From beginner to data analyst and junior data scientist — skills and timeline.',
+    'Data Science & Machine Learning with Python Certification Program',
+    'Complete career guide for beginners and professionals — skills, roadmap, salaries, and how structured training builds job-ready Data Science expertise.',
     'career',
     [
-      { body: 'Month 1–2: Python + SQL. Month 2–3: statistics + visualization. Month 3+: ML and capstone. Target data analyst first, then junior data scientist with a strong GitHub portfolio.' },
+      {
+        heading: 'Introduction',
+        body: 'Data Science and Machine Learning have become two of the most transformative technologies in the modern digital era. Organizations across industries are increasingly relying on data-driven decision-making to improve customer experiences, optimize operations, reduce costs, and drive innovation. As a result, the demand for skilled Data Scientists, Machine Learning Engineers, AI Specialists, and Data Analysts continues to grow worldwide.\n\nWhether you are a student, software developer, IT professional, business analyst, or someone planning a career transition into technology, learning Data Science and Machine Learning can open doors to exciting career opportunities. With the rapid growth of Artificial Intelligence, Big Data, Predictive Analytics, and Business Intelligence, there has never been a better time to build expertise in this field.\n\nThis guide explores Data Science, Machine Learning, career opportunities, required skills, industry demand, salary trends, and how structured training programs can help learners build job-ready skills.',
+      },
+      {
+        heading: 'What is Data Science & Machine Learning?',
+        body: 'Data Science is the process of collecting, cleaning, analyzing, and interpreting data to generate meaningful insights and support business decision-making.\n\nMachine Learning is a branch of Artificial Intelligence that enables systems to learn from data and improve performance without being explicitly programmed for every task.\n\nTogether, Data Science and Machine Learning help organizations uncover patterns, predict future outcomes, automate processes, and create intelligent solutions that improve efficiency and business growth.\n\nToday, these technologies power recommendation engines, fraud detection systems, chatbots, predictive maintenance, healthcare diagnostics, autonomous vehicles, and countless other modern innovations.',
+      },
+      {
+        heading: 'Why Learn Data Science in 2026 and Beyond?',
+        body: 'The demand for Data Science and Machine Learning professionals continues to increase as organizations generate and analyze enormous amounts of data every day.\n\nCompanies no longer rely solely on intuition to make business decisions. Instead, they use data-driven strategies supported by machine learning models and predictive analytics to improve accuracy and competitiveness.\n\nIndustries including healthcare, banking, finance, retail, e-commerce, logistics, manufacturing, education, cybersecurity, telecommunications, and media actively hire Data Science professionals to gain valuable insights from their data.\n\nThe rise of Generative AI, Large Language Models (LLMs), and AI-powered automation has further accelerated the demand for professionals who understand data processing, machine learning algorithms, and AI systems.\n\nAs organizations continue investing heavily in Artificial Intelligence and analytics, Data Science remains one of the most future-proof and high-growth career paths available today.',
+      },
+      {
+        heading: 'Why Python is the Preferred Language for Data Science',
+        body: 'Python has emerged as the most popular programming language for Data Science, Machine Learning, and Artificial Intelligence due to its simplicity, flexibility, and extensive ecosystem.\n\nPython enables professionals to efficiently process data, automate workflows, create visualizations, build machine learning models, and deploy intelligent applications.\n\nIts rich collection of libraries and frameworks makes it ideal for beginners as well as experienced professionals working on enterprise-scale solutions.\n\nPython is widely used by leading technology companies, research institutions, startups, and AI organizations worldwide.',
+      },
+      {
+        heading: 'Skills Required to Become a Data Scientist',
+        body: 'A successful Data Scientist requires a combination of technical knowledge, analytical thinking, and problem-solving abilities.\n\nStrong programming skills enable professionals to manipulate data, automate processes, and build predictive models. Statistical knowledge helps understand patterns, distributions, correlations, and business insights hidden within datasets.\n\nMachine Learning expertise allows professionals to develop intelligent systems capable of making predictions and recommendations. Data visualization skills help communicate findings effectively to stakeholders and decision-makers.\n\nIn addition to technical expertise, curiosity, critical thinking, business understanding, and communication skills play a major role in becoming a successful Data Science professional.',
+      },
+      {
+        heading: 'Core Skills You Will Learn',
+        subheadings: [
+          {
+            title: 'Python Programming',
+            body: 'Develop strong programming fundamentals including variables, functions, loops, data structures, object-oriented programming, file handling, and automation concepts.',
+          },
+          {
+            title: 'Data Analysis & Visualization',
+            body: 'Learn how to collect, clean, process, and analyze data while creating meaningful visualizations that support business intelligence and decision-making.',
+          },
+          {
+            title: 'Data Preprocessing',
+            body: 'Understand how to handle missing values, remove duplicates, transform features, normalize datasets, and prepare data for machine learning models.',
+          },
+          {
+            title: 'Exploratory Data Analysis (EDA)',
+            body: 'Explore datasets to identify trends, patterns, anomalies, correlations, and hidden insights before model development.',
+          },
+          {
+            title: 'Machine Learning',
+            body: 'Build supervised and unsupervised machine learning models for classification, regression, clustering, recommendation systems, and predictive analytics.',
+          },
+          {
+            title: 'Deep Learning',
+            body: 'Learn neural networks, deep learning fundamentals, computer vision concepts, natural language processing, and modern AI applications.',
+          },
+          {
+            title: 'Model Building & Evaluation',
+            body: 'Train, test, validate, and optimize machine learning models using industry-standard evaluation techniques and performance metrics.',
+          },
+          {
+            title: 'Deployment & Real-World Projects',
+            body: 'Learn how to deploy machine learning solutions and apply Data Science concepts to real-world business scenarios.',
+          },
+        ],
+      },
+      {
+        heading: 'Technologies Covered in the Program',
+        body: 'The program provides practical exposure to industry-leading tools and technologies, including:',
+        bullets: [
+          'Python',
+          'NumPy',
+          'Pandas',
+          'Matplotlib',
+          'Scikit-Learn',
+          'Machine Learning Algorithms',
+          'Deep Learning Fundamentals',
+          'Data Visualization',
+          'Statistics',
+          'Predictive Analytics',
+          'AI Fundamentals',
+          'Real-World Data Projects',
+        ],
+      },
+      {
+        heading: 'Data Science Roadmap for Beginners',
+        body: 'For beginners, the journey typically starts with learning Python programming and fundamental statistics. Once foundational skills are established, learners progress toward data analysis, visualization, and data preprocessing techniques.\n\nThe next stage involves understanding machine learning algorithms, model training, and performance evaluation. As confidence grows, learners can explore deep learning, neural networks, natural language processing, and advanced AI concepts.\n\nBuilding practical projects throughout the learning process is essential because employers often prioritize hands-on experience over theoretical knowledge alone. Creating a strong portfolio helps demonstrate technical capabilities during interviews and job applications.\n\nConsistent learning, project development, and real-world implementation form the foundation of a successful Data Science career.',
+      },
+      {
+        heading: 'Real-World Applications of Data Science',
+        body: 'Data Science powers many technologies used by millions of people every day.',
+        bullets: [
+          'E-commerce platforms use recommendation engines to suggest products based on customer behavior and purchasing history.',
+          'Financial institutions leverage machine learning for fraud detection, credit scoring, and risk management.',
+          'Healthcare organizations use predictive analytics and AI models to improve diagnostics and patient outcomes.',
+          'Marketing teams utilize customer segmentation and predictive analysis to optimize campaigns and improve engagement.',
+          'Manufacturing companies implement predictive maintenance systems to reduce downtime and improve operational efficiency.',
+          'Logistics providers use machine learning models to optimize delivery routes, inventory management, and supply chain planning.',
+        ],
+      },
+      {
+        heading: 'Why Hands-On Projects Matter',
+        body: 'Employers increasingly seek professionals who can demonstrate practical implementation rather than theoretical understanding alone.\n\nHands-on projects allow learners to apply concepts in realistic scenarios, develop confidence, improve problem-solving abilities, and gain exposure to industry challenges.\n\nProject-based learning also helps build professional portfolios that showcase technical expertise during job interviews.\n\nWorking on real-world datasets improves understanding of data quality issues, business requirements, model deployment challenges, and practical decision-making processes.\n\nThis experience significantly improves employability and career readiness.',
+      },
+      {
+        heading: 'Data Science vs Traditional Reporting',
+        table: {
+          headers: ['Feature', 'Traditional Reporting', 'Data Science'],
+          rows: [
+            ['Analysis', 'Historical Data', 'Predictive & Prescriptive'],
+            ['Decision Making', 'Manual Insights', 'AI-Powered Intelligence'],
+            ['Automation', 'Limited', 'Extensive'],
+            ['Scalability', 'Moderate', 'High'],
+            ['Business Impact', 'Reporting Focused', 'Strategic Growth Focused'],
+            ['Technology Usage', 'Basic Tools', 'Advanced Analytics & AI'],
+          ],
+        },
+      },
+      {
+        heading: 'Career Opportunities in Data Science',
+        body: 'Data Science offers a diverse range of career opportunities across industries. Professionals can pursue roles such as:',
+        bullets: [
+          'Data Scientist',
+          'Machine Learning Engineer',
+          'AI Engineer',
+          'Data Analyst',
+          'Business Analyst',
+          'Data Engineer',
+          'Analytics Consultant',
+          'Business Intelligence Developer',
+          'Predictive Analytics Specialist',
+          'Research Scientist',
+          'Computer Vision Engineer',
+          'NLP Engineer',
+        ],
+      },
+      {
+        heading: 'Data Science Career Path and Salary Trends',
+        body: 'Data Science professionals are among the highest-paid technology specialists globally.\n\nEntry-level professionals often begin as Data Analysts or Junior Data Scientists. With experience, they progress into roles such as Machine Learning Engineer, Senior Data Scientist, AI Engineer, or Analytics Manager.\n\nExperienced professionals often move into leadership positions including Head of Data Science, AI Architect, Chief Data Officer, and Technology Consultant.\n\nAs Artificial Intelligence adoption accelerates, compensation packages and career opportunities continue expanding across industries worldwide.',
+      },
+      {
+        heading: 'Why Learn Data Science & Machine Learning with Python at Zyvotrix?',
+        body: 'At Zyvotrix, we believe that successful technology careers are built through practical learning, real-world projects, industry-focused training, and continuous innovation.\n\nOur Data Science & Machine Learning with Python Certification Program is designed to help learners build job-ready skills through hands-on implementation rather than theoretical learning alone.',
+        subheadings: [
+          {
+            title: 'Program Focus',
+            bullets: [
+              'Python Programming',
+              'Data Analysis & Visualization',
+              'Data Preprocessing',
+              'Exploratory Data Analysis',
+              'Machine Learning',
+              'Deep Learning',
+              'Model Building & Evaluation',
+              'Real-World Projects',
+              'Portfolio Development',
+              'Career-Focused Learning',
+            ],
+          },
+          {
+            title: 'Program Highlights',
+            bullets: [
+              '3 Months Structured Learning Program',
+              '6+ Portfolio Projects',
+              'Hands-On Learning Approach',
+              'Industry-Oriented Curriculum',
+              'Real-World Case Studies',
+              'Career-Focused Training',
+              'Portfolio Development Support',
+              'Certification Program',
+              'Job-Ready Skill Development',
+            ],
+          },
+        ],
+      },
+      {
+        heading: 'Frequently Asked Questions',
+        subheadings: [
+          {
+            title: 'Is Data Science a good career in 2026?',
+            body: 'Yes. Data Science remains one of the fastest-growing and highest-paying technology careers due to increasing demand for AI, analytics, and data-driven decision-making.',
+          },
+          {
+            title: 'Can beginners learn Data Science?',
+            body: 'Absolutely. Beginners can successfully learn Data Science through structured training, consistent practice, and hands-on projects.',
+          },
+          {
+            title: 'Is Python necessary for Data Science?',
+            body: 'Yes. Python is currently one of the most widely used programming languages for Data Science, Machine Learning, and Artificial Intelligence.',
+          },
+          {
+            title: 'Which is better: Data Science or Artificial Intelligence?',
+            body: 'Both fields offer excellent opportunities. Data Science focuses on extracting insights from data, while Artificial Intelligence focuses on building intelligent systems. The two fields often work together.',
+          },
+          {
+            title: 'How long does it take to become a Data Scientist?',
+            body: 'With dedicated learning and project-based practice, most learners can build strong foundations within 6 to 12 months depending on their background and learning pace.',
+          },
+        ],
+      },
+      {
+        heading: 'Conclusion',
+        body: 'Data Science and Machine Learning are transforming how organizations operate, innovate, and make strategic decisions. As businesses continue adopting Artificial Intelligence, predictive analytics, and intelligent automation, the demand for skilled Data Science professionals will only continue to grow.\n\nBy building strong foundations in Python, Statistics, Data Analysis, Machine Learning, Deep Learning, and real-world project implementation, individuals can position themselves for long-term success in one of the most exciting fields in technology.\n\nThrough practical training, hands-on projects, portfolio development, and industry-focused learning approaches such as those offered by Zyvotrix, aspiring professionals can develop the expertise required to thrive in modern Data Science, Machine Learning, and Artificial Intelligence careers.',
+      },
     ],
     '/courses/data-science',
+    {
+      layout: 'guide',
+      heroImage: '/images/resources/data-science-career-roadmap.png',
+    },
   ),
 };
 

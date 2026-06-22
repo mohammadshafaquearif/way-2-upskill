@@ -53,12 +53,12 @@ import type { FaqItem } from '@/lib/faqs';
 import { IMAGES } from '@/lib/images';
 import { cn } from '@/lib/utils';
 import { STATIC_PAGE_SEO } from '@/lib/seo';
-import { buildCourseSchema } from '@/lib/courseSchema';
+import { buildDetailedCourseSchema } from '@/lib/courseSchema';
 import { usePageMeta } from '@/hooks/usePageMeta';
 
 const course = COURSE_BY_ID['data-science'];
 const visuals = IMAGES.programVisuals.ds;
-const dsCourseSchema = buildCourseSchema(course)!;
+const dsCourseSchema = buildDetailedCourseSchema(course)!;
 
 const curriculum = [
   {

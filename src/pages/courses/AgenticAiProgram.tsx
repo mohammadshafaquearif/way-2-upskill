@@ -48,12 +48,12 @@ import type { FaqItem } from '@/lib/faqs';
 import { IMAGES } from '@/lib/images';
 import { cn } from '@/lib/utils';
 import { STATIC_PAGE_SEO } from '@/lib/seo';
-import { buildCourseSchema } from '@/lib/courseSchema';
+import { buildDetailedCourseSchema } from '@/lib/courseSchema';
 import { usePageMeta } from '@/hooks/usePageMeta';
 
 const course = COURSE_BY_ID.aac;
 const visuals = IMAGES.programVisuals.aac;
-const aacCourseSchema = buildCourseSchema(course)!;
+const aacCourseSchema = buildDetailedCourseSchema(course)!;
 
 const curriculum = [
   {

@@ -113,4 +113,8 @@ export const IMAGES = {
   certification: u('photo-1434030216411-0b793f4b4173', 600),
   learning: u('photo-1516321497487-e288fb19713f', 800),
   notFound: u('photo-1451187580459-43490279c0fa', 1000),
+  resources: {
+    dataScienceCareerRoadmap: '/images/resources/data-science-career-roadmap.png',
+    awsCareerPath: '/images/resources/aws-career-path.png',
+  },
 } as const;
