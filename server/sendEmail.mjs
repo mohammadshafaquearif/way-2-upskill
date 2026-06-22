@@ -1,6 +1,37 @@
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@zyvotrix.com';
-const FROM_EMAIL = process.env.FROM_EMAIL || 'Zyvotrix <support@zyvotrix.com>';
+const FROM_NAME = process.env.FROM_NAME || 'Zyvotrix';
+const DEFAULT_FROM_ADDRESS = 'support@zyvotrix.com';
 const LEADS_CC_EMAIL = process.env.LEADS_CC_EMAIL || 'paul.stephano@zyvotrix.com';
+
+/** Resend rejects malformed `from` (common when FROM_EMAIL is unquoted in .env). */
+function resolveFromEmail() {
+  const dedicatedAddress = (process.env.FROM_EMAIL_ADDRESS || '').trim();
+  if (dedicatedAddress && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(dedicatedAddress)) {
+    return `${FROM_NAME} <${dedicatedAddress}>`;
+  }
+
+  const raw = (process.env.FROM_EMAIL || '').trim();
+  if (!raw) {
+    return `${FROM_NAME} <${DEFAULT_FROM_ADDRESS}>`;
+  }
+
+  const namedMatch = raw.match(/^(.+?)\s*<([^>\s]+@[^>\s]+\.[^>\s]+)>$/);
+  if (namedMatch) {
+    return `${namedMatch[1].trim()} <${namedMatch[2]}>`;
+  }
+
+  if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(raw)) {
+    return `${FROM_NAME} <${raw}>`;
+  }
+
+  console.warn(
+    '[send-email] Invalid or truncated FROM_EMAIL env — using default sender.',
+    JSON.stringify(raw),
+  );
+  return `${FROM_NAME} <${DEFAULT_FROM_ADDRESS}>`;
+}
+
+const FROM_EMAIL = resolveFromEmail();
 export const PAYMENT_ADMIN_EMAIL = process.env.PAYMENT_ADMIN_EMAIL || 'admin@zyvotrix.com';
 
 const DEFAULT_PAYMENT_ADMIN_CC = [

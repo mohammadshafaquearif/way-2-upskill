@@ -12,6 +12,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(guard.status).json(guard.body);
   }
 
-  const result = await handleSendEmailRequest(req.body);
-  return res.status(result.status).json(result.body);
+  try {
+    const result = await handleSendEmailRequest(req.body);
+    return res.status(result.status).json(result.body);
+  } catch (error) {
+    console.error('[api/send-email]', error);
+    return res.status(500).json({ error: 'Failed to send email' });
+  }
 }
