@@ -1,4 +1,5 @@
 import { AWS_SOLUTIONS_ARCHITECT_ROADMAP_2026_SECTIONS } from '@/lib/resources/awsSolutionsArchitectRoadmap2026';
+import { DEVOPS_ROADMAP_2026_SECTIONS } from '@/lib/resources/devopsRoadmap2026';
 import type { ResourceArticle, ResourceCategory, ResourceSection } from '@/lib/resources/types';
 
 export type { ResourceArticle, ResourceCategory, ResourceSection } from '@/lib/resources/types';
@@ -152,18 +153,9 @@ export const RESOURCE_ARTICLES: Record<string, ResourceArticle> = {
     'DevOps Roadmap 2026',
     'A step-by-step DevOps learning path from Linux fundamentals to AI-powered DevOps (AIOps) for working professionals.',
     'devops',
-    [
-      {
-        body: 'The 2026 DevOps roadmap starts with Linux and networking basics, then moves to Git, Docker, and Kubernetes for container orchestration. Infrastructure as Code with Terraform and CI/CD pipelines form the core of modern delivery.',
-      },
-      {
-        heading: 'Recommended learning order',
-        body: 'Linux → Git → Docker → Kubernetes → Terraform → CI/CD → Monitoring → DevSecOps → AIOps. Each phase should include hands-on labs and at least one portfolio project.',
-      },
-      {
-        body: courseCta('/courses/devops-engineer-program', 'AI-Powered DevOps Engineer'),
-      },
-    ],
+    DEVOPS_ROADMAP_2026_SECTIONS,
+    '/courses/devops-engineer-program',
+    { layout: 'guide' },
   ),
   'agentic-ai-engineer-roadmap-2026': article(
     'agentic-ai-engineer-roadmap-2026',

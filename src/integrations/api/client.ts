@@ -4,6 +4,7 @@ import { adminDb } from '@/integrations/supabase/adminDb';
 import {
   buildContactEmailPayload,
   buildEnrollmentEmailPayload,
+  buildEnrollmentAdminNotificationPayload,
   buildLeadAssignmentEmailPayload,
   buildSignupEmailPayload,
   notifyByEmail,
@@ -75,8 +76,9 @@ class ApiClient {
     const { courseName, skipEmail, ...dbData } = enrollmentData;
     const enrollment = await db.createEnrollment(dbData);
 
-    if (!skipEmail && enrollmentData.email) {
-      notifyByEmail(buildEnrollmentEmailPayload({ ...enrollmentData, courseName }));
+    // Admin-only notification (do not email learners on enrollment form submission).
+    if (!skipEmail) {
+      notifyByEmail(buildEnrollmentAdminNotificationPayload({ ...enrollmentData, courseName }));
     }
 
     return enrollment;

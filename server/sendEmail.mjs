@@ -72,6 +72,7 @@ const ADMIN_SUBJECT_LABELS = {
   enrollment: 'Enrollment',
   inquiry: 'Program Inquiry',
   signup: 'New Sign Up',
+  admin_notification: 'Admin Notification',
   payment_confirmation: 'Payment Confirmed',
 };
 
@@ -171,6 +172,11 @@ export async function sendTransactionalEmail(payload) {
   }
 
   let userHtml = payload.html;
+  // Admin-only notifications: send a structured lead table, no secondary admin copy.
+  if (!userHtml && type === 'admin_notification') {
+    userHtml = buildContactAdminHtml(data);
+    payload = { ...payload, notifyAdmin: false };
+  }
   if (!userHtml && type === 'contact') {
     userHtml = buildContactUserHtml({
       firstName: data.firstName || 'there',
@@ -233,6 +239,7 @@ const ALLOWED_EMAIL_TYPES = new Set([
   'enrollment',
   'inquiry',
   'signup',
+  'admin_notification',
   'lead_assignment',
   'payment_confirmation',
 ]);
@@ -242,7 +249,7 @@ function isValidEmail(email) {
 }
 
 export async function handleSendEmailRequest(body) {
-  const { type, to, subject, data } = body || {};
+  const { type, to, subject, data, notifyAdmin, cc } = body || {};
 
   if (!type || !to || !subject) {
     return { status: 400, body: { error: 'type, to, and subject are required' } };
@@ -265,7 +272,7 @@ export async function handleSendEmailRequest(body) {
   }
 
   try {
-    await sendTransactionalEmail({ type, to, subject, data });
+    await sendTransactionalEmail({ type, to, subject, data, notifyAdmin, cc });
     return { status: 200, body: { success: true } };
   } catch (error) {
     console.error('[send-email]', error);

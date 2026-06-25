@@ -3,6 +3,7 @@ export type EmailType =
   | 'enrollment'
   | 'inquiry'
   | 'signup'
+  | 'admin_notification'
   | 'newsletter'
   | 'resource'
   | 'lead_assignment';
@@ -13,6 +14,10 @@ export interface SendEmailPayload {
   subject: string;
   html?: string;
   data?: Record<string, string>;
+  /** Server-side: when false, skips secondary admin CC email */
+  notifyAdmin?: boolean;
+  /** Server-side: optional CC list (validated/filtered server-side) */
+  cc?: string[];
 }
 
 const EMAIL_TIMEOUT_MS = 8000;
@@ -139,6 +144,65 @@ export function buildEnrollmentEmailPayload(enrollment: {
       State: formatOptional(enrollment.state),
       ZIP: formatOptional(enrollment.zip),
       Status: formatOptional(enrollment.status, 'pending'),
+    },
+  };
+}
+
+export function buildEnrollmentAdminNotificationPayload(enrollment: {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phone?: string;
+  courseName?: string;
+  paymentPlan?: string;
+  paymentMethod?: string;
+  totalAmount?: number;
+  country?: string;
+  education?: string;
+  field?: string;
+  employmentStatus?: string;
+  programmingExperience?: string;
+  goals?: string;
+  linkedin?: string;
+  github?: string;
+  address?: string;
+  city?: string;
+  state?: string;
+  zip?: string;
+  status?: string;
+}): SendEmailPayload {
+  const fullName = `${enrollment.firstName ?? ''} ${enrollment.lastName ?? ''}`.trim() || 'Applicant';
+  const program = enrollment.courseName || 'Zyvotrix Program';
+  const leadSubject = `Enrollment — ${program}`;
+
+  return {
+    type: 'admin_notification',
+    to: 'admin@zyvotrix.com',
+    subject: `[Enrollment] ${fullName} — ${program}`,
+    notifyAdmin: false,
+    data: {
+      Name: fullName,
+      Email: formatOptional(enrollment.email),
+      Phone: formatOptional(enrollment.phone),
+      Program: program,
+      Subject: leadSubject,
+      'Payment plan': formatOptional(enrollment.paymentPlan),
+      'Payment method': formatOptional(enrollment.paymentMethod),
+      Amount: enrollment.totalAmount != null ? String(enrollment.totalAmount) : 'Not specified',
+      Country: formatOptional(enrollment.country),
+      Education: formatOptional(enrollment.education),
+      Field: formatOptional(enrollment.field),
+      'Employment status': formatOptional(enrollment.employmentStatus),
+      'Programming experience': formatOptional(enrollment.programmingExperience),
+      Goals: formatOptional(enrollment.goals),
+      LinkedIn: formatOptional(enrollment.linkedin),
+      GitHub: formatOptional(enrollment.github),
+      Address: formatOptional(enrollment.address),
+      City: formatOptional(enrollment.city),
+      State: formatOptional(enrollment.state),
+      ZIP: formatOptional(enrollment.zip),
+      Status: formatOptional(enrollment.status, 'pending'),
+      // Never include passwords/secrets in emails.
     },
   };
 }
