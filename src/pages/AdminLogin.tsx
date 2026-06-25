@@ -14,8 +14,11 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { buildAdminSeo } from '@/lib/seo';
+import { usePageMeta } from '@/hooks/usePageMeta';
 
 const AdminLogin = () => {
+  usePageMeta(buildAdminSeo('/admin/login'));
   const { login } = useAuth();
   const { toast } = useToast();
   const [email, setEmail] = useState('');

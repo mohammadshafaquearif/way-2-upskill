@@ -26,6 +26,8 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Textarea } from '@/components/ui/textarea';
 import { toast } from '@/hooks/use-toast';
+import { buildLearningSimulatorSeo } from '@/lib/seo';
+import { usePageMeta } from '@/hooks/usePageMeta';
 import {
   ArrowLeft,
   BookOpen,
@@ -38,6 +40,7 @@ import {
 
 const LearningSimulator: React.FC = () => {
   const { courseId = '' } = useParams<{ courseId: string }>();
+  usePageMeta(buildLearningSimulatorSeo(courseId));
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const { user, isAuthenticated } = useAuth();

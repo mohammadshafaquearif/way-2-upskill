@@ -184,3 +184,78 @@ export function buildResourceNotFoundSeo(slug: string): PageSeo {
     robots: 'noindex, follow',
   };
 }
+
+export function buildResetPasswordSeo(): PageSeo {
+  return {
+    title: 'Reset Password — Zyvotrix',
+    description: 'Reset your Zyvotrix account password and regain access to your learner dashboard.',
+    canonical: '/reset-password',
+    robots: 'noindex, nofollow',
+  };
+}
+
+export function buildLearningSimulatorSeo(courseId: string): PageSeo {
+  const course = getCourseByCheckoutId(courseId);
+  return {
+    title: course ? `Learning Simulator — ${course.shortTitle} | Zyvotrix` : 'Learning Simulator — Zyvotrix',
+    description:
+      course
+        ? `Interactive learning simulator for ${course.title}: lessons, labs, and checkpoints to practice core skills.`
+        : 'Interactive learning simulator: lessons, labs, and checkpoints to practice core skills.',
+    canonical: `/learn/${courseId}`,
+    robots: 'noindex, nofollow',
+  };
+}
+
+export function buildDashboardSeo(pathname: string): PageSeo {
+  const base = 'Learner Dashboard';
+  const map: { prefix: string; title: string; description: string }[] = [
+    { prefix: '/dashboard', title: 'Dashboard', description: 'Your progress, sessions, and upcoming tasks' },
+    { prefix: '/dashboard/curriculum', title: 'Curriculum', description: 'Modules, lessons, and your learning path' },
+    { prefix: '/dashboard/sessions', title: 'Live Sessions', description: 'Upcoming and past mentor-led sessions' },
+    { prefix: '/dashboard/assignments', title: 'Assignments', description: 'Phase projects, due dates, and submissions' },
+    { prefix: '/dashboard/projects', title: 'Projects', description: 'Portfolio projects and mentor feedback' },
+    { prefix: '/dashboard/resources', title: 'Resources', description: 'Program downloads, links, and references' },
+    { prefix: '/dashboard/certificate', title: 'Certificate', description: 'Completion status and certificate access' },
+    { prefix: '/dashboard/profile', title: 'Profile', description: 'Account details and preferences' },
+  ];
+  const match =
+    map.find((x) => (x.prefix === '/dashboard' ? pathname === x.prefix : pathname.startsWith(x.prefix))) ??
+    map[0];
+  return {
+    title: `${match.title} — ${base} | Zyvotrix`,
+    description: `${match.description}.`,
+    canonical: match.prefix === '/dashboard' ? '/dashboard' : match.prefix,
+    robots: 'noindex, nofollow',
+  };
+}
+
+export function buildAdminSeo(pathname: string): PageSeo {
+  const base = 'Admin';
+  const sectionFromPath = () => {
+    const parts = pathname.split('/').filter(Boolean);
+    const section = parts[1] || 'overview';
+    return section;
+  };
+  const section = sectionFromPath();
+  const titleMap: Record<string, { title: string; description: string }> = {
+    admin: { title: 'Admin', description: 'Secure admin area for managing programs, learners, and operations.' },
+    overview: { title: 'Overview', description: 'Key metrics and recent activity.' },
+    learners: { title: 'Learners', description: 'Learner accounts, enrollments, and status management.' },
+    programs: { title: 'Programs', description: 'Program catalog, pricing, and configuration.' },
+    sessions: { title: 'Sessions', description: 'Live sessions schedule and meeting links.' },
+    assignments: { title: 'Assignments', description: 'Assignments, projects, and submissions review.' },
+    certificates: { title: 'Certificates', description: 'Issue and verify learner certificates.' },
+    contacts: { title: 'Contacts', description: 'Leads, inquiries, and follow-ups.' },
+    sales: { title: 'Sales', description: 'Revenue, orders, and sales reporting.' },
+    access: { title: 'Access', description: 'Admin roles and permissions.' },
+    login: { title: 'Admin Login', description: 'Sign in to the Zyvotrix admin dashboard.' },
+  };
+  const meta = titleMap[section] ?? titleMap.overview;
+  return {
+    title: `${meta.title} — ${base} | Zyvotrix`,
+    description: meta.description,
+    canonical: pathname.startsWith('/admin') ? pathname : '/admin',
+    robots: 'noindex, nofollow',
+  };
+}

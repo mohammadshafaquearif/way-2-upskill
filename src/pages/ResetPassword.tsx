@@ -13,6 +13,8 @@ import { apiClient } from '@/integrations/api/client';
 import { toast } from '@/hooks/use-toast';
 import { authErrorMessage, clearAuthHash, parseAuthHash } from '@/lib/authHash';
 import { AlertCircle, KeyRound, Loader2, Mail } from 'lucide-react';
+import { buildResetPasswordSeo } from '@/lib/seo';
+import { usePageMeta } from '@/hooks/usePageMeta';
 
 type LocationState = {
   authError?: string;
@@ -20,6 +22,7 @@ type LocationState = {
 };
 
 const ResetPassword = () => {
+  usePageMeta(buildResetPasswordSeo());
   const navigate = useNavigate();
   const location = useLocation();
   const locationState = (location.state as LocationState | null) ?? null;

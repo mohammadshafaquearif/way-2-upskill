@@ -8,6 +8,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { BookOpen, ShieldX } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { buildDashboardSeo } from '@/lib/seo';
+import { usePageMeta } from '@/hooks/usePageMeta';
 
 const PAGE_META: { path: string; title: string; description: string; exact?: boolean }[] = [
   { path: '/dashboard', title: 'Dashboard', description: 'Your progress, sessions, and upcoming tasks', exact: true },
@@ -34,6 +36,8 @@ const LMSLayout = () => {
   }, [location.pathname]);
 
   const isQuizExam = /\/dashboard\/curriculum\/\d+\/quiz/.test(location.pathname);
+
+  usePageMeta(buildDashboardSeo(location.pathname));
 
   if (!user) {
     return (

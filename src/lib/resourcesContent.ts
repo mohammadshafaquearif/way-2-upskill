@@ -1,35 +1,8 @@
-export type ResourceCategory = 'devops' | 'aac' | 'aws' | 'data-science' | 'career' | 'interview';
+import { AWS_SOLUTIONS_ARCHITECT_ROADMAP_2026_SECTIONS } from '@/lib/resources/awsSolutionsArchitectRoadmap2026';
+import type { ResourceArticle, ResourceCategory, ResourceSection } from '@/lib/resources/types';
 
-export interface ResourceSection {
-  heading?: string;
-  body?: string;
-  bullets?: string[];
-  remember?: string;
-  tip?: string;
-  subheadings?: { title: string; body?: string; bullets?: string[] }[];
-  table?: { headers: string[]; rows: string[][] };
-}
-
-export interface ResourceArticle {
-  slug: string;
-  title: string;
-  description: string;
-  category: ResourceCategory;
-  courseRoute?: string;
-  layout?: 'default' | 'guide';
-  heroImage?: string;
-  sections: ResourceSection[];
-}
-
-export function sectionSlug(heading: string, index: number): string {
-  const base = heading
-    .toLowerCase()
-    .replace(/&/g, 'and')
-    .replace(/[^\w\s-]/g, '')
-    .trim()
-    .replace(/\s+/g, '-');
-  return base || `section-${index + 1}`;
-}
+export type { ResourceArticle, ResourceCategory, ResourceSection } from '@/lib/resources/types';
+export { sectionSlug } from '@/lib/resources/sectionSlug';
 
 export interface FeaturedRoadmap {
   slug: string;
@@ -213,20 +186,14 @@ export const RESOURCE_ARTICLES: Record<string, ResourceArticle> = {
   'aws-solutions-architect-roadmap-2026': article(
     'aws-solutions-architect-roadmap-2026',
     'AWS Solutions Architect Roadmap 2026',
-    'Complete AWS Solutions Architect learning path aligned to SAA-C03 certification and cloud architecture roles.',
+    'Complete AWS Solutions Architect learning path for 2026 — twelve phases from cloud fundamentals to SAA-C03 certification, projects, salaries, and career opportunities.',
     'aws',
-    [
-      {
-        body: 'Begin with cloud fundamentals and IAM, then master EC2, S3, VPC networking, RDS, Lambda, and Route 53. Architecture design — not console clicking — is what separates architects from administrators.',
-      },
-      {
-        heading: 'SAA-C03 alignment',
-        body: 'Focus on scenario-based design: high availability, security, cost optimization, and disaster recovery. Build 5–7 portfolio projects before attempting the AWS Certified Solutions Architect Associate exam.',
-      },
-      {
-        body: courseCta('/courses/aws', 'AWS Solutions Architect'),
-      },
-    ],
+    AWS_SOLUTIONS_ARCHITECT_ROADMAP_2026_SECTIONS,
+    '/courses/aws',
+    {
+      layout: 'guide',
+      heroImage: '/images/resources/aws-career-path.png',
+    },
   ),
   'data-science-roadmap-2026': article(
     'data-science-roadmap-2026',

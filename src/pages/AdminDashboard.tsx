@@ -20,6 +20,8 @@ import AdminSalesReport from '@/components/admin/AdminSalesReport';
 import AdminAccess from '@/components/admin/AdminAccess';
 import { useAdminAccess } from '@/contexts/AdminAccessContext';
 import { ADMIN_DATA_LOAD_FAILED, logAdminError, toSafeAdminMessage } from '@/lib/adminErrors';
+import { buildAdminSeo } from '@/lib/seo';
+import { usePageMeta } from '@/hooks/usePageMeta';
 import type {
   AdminAccessRecord,
   AdminAssignment,
@@ -49,6 +51,7 @@ const AdminDashboard = () => {
   const { user } = useAuth();
   const section = adminSectionFromPath(location.pathname);
   const { access, canAccess, canDo } = useAdminAccess();
+  usePageMeta(buildAdminSeo(location.pathname));
   const [mobileOpen, setMobileOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

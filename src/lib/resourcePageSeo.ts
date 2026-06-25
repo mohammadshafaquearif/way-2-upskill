@@ -16,7 +16,7 @@ export const RESOURCE_PAGE_SEO: Record<string, ResourceSeoEntry> = {
   'aws-solutions-architect-roadmap-2026': {
     title: 'AWS Solutions Architect Roadmap 2026 — Zyvotrix',
     description:
-      'Free AWS Solutions Architect roadmap from Zyvotrix aligned to SAA-C03. EC2, S3, VPC, IAM, Lambda, and cloud architecture for certification success.',
+      'Free AWS Solutions Architect roadmap 2026 from Zyvotrix: 12-phase learning path, SAA-C03 prep, projects, tools, salaries, and FAQs for cloud architecture careers.',
   },
   'data-science-roadmap-2026': {
     title: 'Data Science & ML Roadmap 2026 — Zyvotrix',

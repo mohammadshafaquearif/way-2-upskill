@@ -154,7 +154,9 @@ const ResourceArticle = () => {
             Back to Resources
           </Link>
 
-          <div className="resource-article-content">
+          <div
+            className={`resource-article-content${isGuideLayout ? ' resource-article-content--guide' : ''}`}
+          >
             {faqSchema && (
               <script
                 type="application/ld+json"
