@@ -3173,6 +3173,47 @@
     position: relative;
   }
 
+  /* Tighten hero + first section spacing on resource articles */
+  .resources-page .page-hero-creative > .container {
+    padding-bottom: 2.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .resources-page .page-hero-creative > .container {
+      padding-bottom: 2.75rem;
+    }
+  }
+
+  .resources-page .resource-article-section.section-padding {
+    padding-top: 1.75rem;
+  }
+
+  @media (min-width: 640px) {
+    .resources-page .resource-article-section.section-padding {
+      padding-top: 2.25rem;
+    }
+  }
+
+  /* Keep resource hero title/subtitle compact (1–2 lines) */
+  .resources-page .page-hero-title {
+    max-width: 56rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+
+  .resources-page .page-hero-subtitle {
+    max-width: 56rem;
+    margin-left: auto;
+    margin-right: auto;
+    /* Show full subtitle; no ellipsis */
+    display: block;
+    overflow: visible;
+  }
+
   .resources-section-badge {
     @apply mb-3 inline-flex items-center gap-2 rounded-full border border-primary/15 bg-primary/5 px-3.5 py-1.5 text-xs font-bold uppercase tracking-widest text-primary;
   }
@@ -4222,7 +4263,7 @@
     display: block;
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 768px) {
     .resource-guide-layout {
       display: grid;
       grid-template-columns: 14rem minmax(0, 1fr);
@@ -4259,7 +4300,7 @@
     display: none;
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 768px) {
     .resource-guide-toc-sidebar {
       display: block;
       position: sticky;
@@ -4469,6 +4510,13 @@
     background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
   }
 
+  /* Mobile-only TOC hero (desktop uses sticky sidebar) */
+  @media (min-width: 1024px) {
+    .resource-guide-toc-hero--mobile {
+      display: none;
+    }
+  }
+
   .resource-guide--aws .resource-guide-shell {
     padding: 1.25rem;
     border-radius: 1.25rem;
@@ -4491,6 +4539,26 @@
     .resource-guide--aws .resource-guide-layout {
       grid-template-columns: 16.5rem minmax(0, 1fr);
       gap: 2.75rem;
+    }
+  }
+
+  /* Split-pane scroll: keep TOC visible, scroll content only (desktop/tablet) */
+  @media (min-width: 768px) {
+    .resource-guide--aws .resource-guide-layout {
+      /* full viewport minus fixed navbar + some breathing room */
+      height: calc(100vh - var(--site-header-h) - 4.25rem);
+      overflow: hidden;
+    }
+
+    .resource-guide--aws .resource-guide-toc-sidebar {
+      max-height: calc(100vh - var(--site-header-h) - 4.25rem);
+    }
+
+    .resource-guide--aws .resource-guide-prose {
+      height: 100%;
+      overflow-y: auto;
+      padding-right: 0.25rem;
+      overscroll-behavior: contain;
     }
   }
 

@@ -100,6 +100,7 @@ const ResourceArticle = () => {
   usePageMeta(articleSeo);
 
   const meta = article ? CATEGORY_META[article.category] : null;
+  const hideHeroSubtitle = slug === 'aws-solutions-architect-roadmap-2026';
   const roadmap = FEATURED_ROADMAPS.find((r) => r.slug === slug);
   const isDevOpsInterview = slug === 'devops-interview-questions';
   const isAwsInterview = slug === 'aws-interview-questions';
@@ -145,7 +146,7 @@ const ResourceArticle = () => {
     <PageShell className="resources-page">
       <Navbar />
 
-      <PageHero badge={meta.label} title={article.title} subtitle={article.description} centered />
+      <PageHero title={article.title} subtitle={hideHeroSubtitle ? undefined : article.description} centered />
 
       <section className="resource-article-section section-padding">
         <div className="resources-page-container">

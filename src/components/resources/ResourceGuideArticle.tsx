@@ -160,7 +160,11 @@ const ResourceGuideTocHero = ({
   items: TocItem[];
   onNavigate: (id: string) => void;
 }) => (
-  <nav id="table-of-contents" className="resource-guide-toc-hero" aria-label="Table of contents">
+  <nav
+    id="table-of-contents"
+    className="resource-guide-toc-hero resource-guide-toc-hero--mobile"
+    aria-label="Table of contents"
+  >
     <h2 className="resource-guide-toc-hero-title">Table of Contents</h2>
     <ol className="resource-guide-toc-hero-list">
       {items.map((item, index) => (
@@ -271,6 +275,7 @@ const ResourceGuideArticle = ({ article, categoryLabel, categoryAccent }: Resour
   const [activeId, setActiveId] = useState('');
 
   const isAwsDoc = categoryAccent === 'aws';
+  const hideLead = article.slug === 'aws-solutions-architect-roadmap-2026';
 
   const sections = useMemo<GuideSection[]>(
     () =>
@@ -298,7 +303,7 @@ const ResourceGuideArticle = ({ article, categoryLabel, categoryAccent }: Resour
           label: section.heading!,
           icon: tocIconFor(section.heading!),
           children:
-            section.subsections.length > 0
+            section.heading === 'AWS Solutions Architect Roadmap 2026' && section.subsections.length > 0
               ? section.subsections.map((sub) => ({
                   id: sub.id,
                   label: sub.title,
@@ -380,7 +385,7 @@ const ResourceGuideArticle = ({ article, categoryLabel, categoryAccent }: Resour
             {readMinutes} min read
           </span>
         </div>
-        <p className="resource-blog-lead">{article.description}</p>
+        {!hideLead && <p className="resource-blog-lead">{article.description}</p>}
       </header>
 
       {article.heroImage && (
@@ -401,7 +406,7 @@ const ResourceGuideArticle = ({ article, categoryLabel, categoryAccent }: Resour
       )}
 
       <div className="resource-guide-shell">
-        {tocItems.length > 0 && (
+        {tocItems.length > 0 && !isAwsDoc && (
           <ResourceGuideToc
             items={tocItems}
             activeId={activeId}
