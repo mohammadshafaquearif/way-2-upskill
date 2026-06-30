@@ -444,8 +444,6 @@ const Checkout: React.FC = () => {
                     <div className="flex items-center space-x-2 p-3 border rounded-lg">
                       <RadioGroupItem value="installment" id="installment" />
                       <Label htmlFor="installment" className="flex-1 cursor-pointer">
-                        <div className="font-medium">Discuss flexible options</div>
-                        <div className="text-sm text-muted-foreground">Our team will reach out with details</div>
                       </Label>
                     </div>
                   </RadioGroup>
