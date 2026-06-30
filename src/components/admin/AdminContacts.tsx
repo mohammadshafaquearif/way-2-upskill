@@ -48,6 +48,20 @@ const AdminContacts = ({
 
   const agentCounts = useMemo(() => countLeadsByAgent(contacts), [contacts]);
 
+  const maskEmail = (value: string) => {
+    const email = String(value || '').trim();
+    const at = email.indexOf('@');
+    if (at <= 0) return email;
+    const local = email.slice(0, at);
+    const domain = email.slice(at + 1);
+    const [domainName, ...rest] = domain.split('.');
+    const tld = rest.length ? `.${rest.join('.')}` : '';
+    const localMasked = local.length <= 2 ? `${local[0] ?? ''}***` : `${local.slice(0, 2)}***`;
+    const domainMasked =
+      domainName.length <= 2 ? `${domainName[0] ?? ''}***` : `${domainName.slice(0, 2)}***`;
+    return `${localMasked}@${domainMasked}${tld}`;
+  };
+
   const parseCsv = (text: string) => {
     const rows: string[][] = [];
     let cur = '';
@@ -172,7 +186,9 @@ const AdminContacts = ({
         const split = splitName(name);
         const email = (r[emailIdx] ?? '').trim();
         const phone = phoneIdx >= 0 ? (r[phoneIdx] ?? '').trim() : '';
-        const assigned_to = assignedToIdx >= 0 ? (r[assignedToIdx] ?? '').trim() : '';
+        const assigned_to = isSuperAdmin
+          ? (assignedToIdx >= 0 ? (r[assignedToIdx] ?? '').trim() : '')
+          : currentUserEmail;
         const created_at = dateIdx >= 0 ? toIsoDate(r[dateIdx] ?? '') : undefined;
 
         const first = split.first_name || (email ? email.split('@')[0] : '');
@@ -347,46 +363,45 @@ const AdminContacts = ({
               <SelectItem value="unassigned">Unassigned</SelectItem>
               {agents.map((agent) => (
                 <SelectItem key={agent.email} value={agent.email}>
-                  {agent.email} ({agentCounts[agent.email] ?? 0})
+                  {maskEmail(agent.email)} ({agentCounts[agent.email] ?? 0})
                 </SelectItem>
               ))}
             </SelectContent>
           </Select>
         )}
 
-        {isSuperAdmin && (
-          <div className="flex gap-2">
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept=".csv,text/csv"
-              className="hidden"
-              onChange={(e) => {
-                const file = e.target.files?.[0];
-                if (!file) return;
-                importLeadsCsv(file);
-              }}
-            />
-            <Button
-              variant="outline"
-              className="w-full sm:w-auto"
-              onClick={() => fileInputRef.current?.click()}
-              disabled={importing}
-            >
-              <Upload className="mr-2 h-4 w-4" />
-              {importing ? 'Importing…' : 'Import CSV'}
-            </Button>
-            <Button
-              variant="outline"
-              className="w-full sm:w-auto"
-              onClick={exportLeadsCsv}
-              disabled={filtered.length === 0}
-            >
-              <Download className="mr-2 h-4 w-4" />
-              Export CSV
-            </Button>
-          </div>
-        )}
+        <div className="flex gap-2">
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept=".csv,text/csv"
+            className="hidden"
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              if (!file) return;
+              importLeadsCsv(file);
+            }}
+          />
+          <Button
+            variant="outline"
+            className="w-full sm:w-auto"
+            onClick={() => fileInputRef.current?.click()}
+            disabled={importing}
+          >
+            <Upload className="mr-2 h-4 w-4" />
+            {importing ? 'Importing…' : 'Import CSV'}
+          </Button>
+
+          <Button
+            variant="outline"
+            className="w-full sm:w-auto"
+            onClick={exportLeadsCsv}
+            disabled={filtered.length === 0}
+          >
+            <Download className="mr-2 h-4 w-4" />
+            Export CSV
+          </Button>
+        </div>
       </div>
 
       <div className="space-y-4">
