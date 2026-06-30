@@ -177,33 +177,6 @@ const Checkout: React.FC = () => {
       return;
     }
 
-    if (paymentMethod === 'installment') {
-      try {
-        setLoading(true);
-        await apiClient.createContact({
-          firstName: user?.firstName || checkoutEmail.split('@')[0] || 'Learner',
-          lastName: user?.lastName || '',
-          email: checkoutEmail,
-          phone: user?.phone,
-          subject: `Flexible enrollment — ${course.title}`,
-          message: `Interested in flexible payment options for ${course.title}.`,
-        });
-        toast({
-          title: 'Request received',
-          description: 'Our team will contact you at your email with flexible enrollment options.',
-        });
-      } catch {
-        toast({
-          title: 'Could not submit request',
-          description: 'Please try again or email admin@zyvotrix.com',
-          variant: 'destructive',
-        });
-      } finally {
-        setLoading(false);
-      }
-      return;
-    }
-
     if (!dbCourseId) {
       toast({
         title: 'Course unavailable',
@@ -441,11 +414,6 @@ const Checkout: React.FC = () => {
                         </div>
                       </Label>
                     </div>
-                    <div className="flex items-center space-x-2 p-3 border rounded-lg">
-                      <RadioGroupItem value="installment" id="installment" />
-                      <Label htmlFor="installment" className="flex-1 cursor-pointer">
-                      </Label>
-                    </div>
                   </RadioGroup>
                 </div>
 
@@ -474,9 +442,7 @@ const Checkout: React.FC = () => {
                 <Button onClick={handlePayment} disabled={loading || priceLoading} className="w-full btn-brand py-4 text-lg">
                   {loading
                     ? 'Processing…'
-                    : paymentMethod === 'installment'
-                      ? 'Submit Request'
-                      : payButtonLabel}
+                    : payButtonLabel}
                 </Button>
 
                 <p className="text-xs text-muted-foreground text-center">
