@@ -210,6 +210,10 @@ class ApiClient {
     }
   }
 
+  bulkUpsertAdminContacts = (
+    rows: Parameters<typeof adminDb.bulkUpsertContacts>[0],
+  ) => adminDb.bulkUpsertContacts(rows);
+
   getMyAdminAccess = () => adminDb.getMyAdminAccess();
   listAdminAccess = () => adminDb.listAdminAccess();
   upsertAdminAccess = (record: Parameters<typeof adminDb.upsertAdminAccess>[0]) =>

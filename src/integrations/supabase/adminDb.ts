@@ -675,6 +675,53 @@ export const adminDb = {
     return data;
   },
 
+  async bulkUpsertContacts(
+    rows: Array<{
+      first_name: string;
+      last_name: string;
+      email: string;
+      phone?: string | null;
+      assigned_to?: string | null;
+      created_at?: string;
+    }>,
+  ) {
+    const payload = rows
+      .map((r) => ({
+        first_name: r.first_name?.trim() || '',
+        last_name: r.last_name?.trim() || '',
+        email: r.email?.trim().toLowerCase() || '',
+        phone: r.phone?.trim() || null,
+        subject: null,
+        message: 'Imported via CSV',
+        status: 'new',
+        assigned_to: r.assigned_to?.trim().toLowerCase() || null,
+        assigned_at: r.assigned_to ? new Date().toISOString() : null,
+        created_at: r.created_at || undefined,
+      }))
+      .filter((r) => r.email && r.first_name);
+
+    if (!payload.length) return { inserted: 0 };
+
+    // Prefer upsert on email if unique constraint exists. Fallback to insert otherwise.
+    const upsertRes = await supabase
+      .from('contacts')
+      .upsert(payload, { onConflict: 'email' })
+      .select('id');
+
+    if (!upsertRes.error) {
+      return { inserted: upsertRes.data?.length ?? payload.length };
+    }
+
+    const insertRes = await supabase.from('contacts').insert(payload).select('id');
+    if (insertRes.error) {
+      logAdminError('bulk upsert contacts', upsertRes.error);
+      logAdminError('bulk insert contacts fallback', insertRes.error);
+      throw new Error(ADMIN_SAVE_FAILED);
+    }
+
+    return { inserted: insertRes.data?.length ?? payload.length };
+  },
+
   async getMyAdminAccess() {
     const { data, error } = await supabase.rpc('get_my_admin_permissions');
     if (!error && data) return data;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import type { CountryCode } from 'libphonenumber-js';
 import { useAuth } from '@/contexts/AuthContext';
@@ -40,9 +40,26 @@ const Checkout: React.FC = () => {
   const [paymentType, setPaymentType] = useState('razorpay');
   const [guestEmail, setGuestEmail] = useState('');
   const [guestPhone, setGuestPhone] = useState('');
+  const [guestName, setGuestName] = useState('');
   const [dbCourseId, setDbCourseId] = useState<string | null>(null);
   const [dbDescription, setDbDescription] = useState<string | null>(null);
   const [pricingCountry, setPricingCountry] = useState<CountryCode>('IN');
+  const didAutoPayRef = useRef(false);
+
+  const shareParams = useMemo(() => {
+    try {
+      const url = new URL(window.location.href);
+      const p = url.searchParams;
+      return {
+        email: p.get('email')?.trim() || '',
+        phone: p.get('phone')?.trim() || '',
+        name: p.get('name')?.trim() || '',
+        autoPay: p.get('autoPay') === '1' || p.get('autoPay') === 'true',
+      };
+    } catch {
+      return { email: '', phone: '', name: '', autoPay: false };
+    }
+  }, []);
 
   const checkoutEmail = isAuthenticated && user ? user.email : guestEmail.trim();
 
@@ -119,12 +136,15 @@ const Checkout: React.FC = () => {
   const amountMinor = resolvedPrice.amountMinor;
   const chargeCurrency = resolvedPrice.currency;
 
-  if (!course) return null;
-
-  const courseDescription = dbDescription ?? course.description;
-  const checkoutPhone = isAuthenticated && user?.phone ? user.phone : guestPhone.trim();
-
   const payButtonLabel = priceLoading ? 'Loading price…' : `Pay ${chargeLabel}`;
+
+  useEffect(() => {
+    if (isAuthenticated) return;
+    if (!shareParams.email && !shareParams.phone && !shareParams.name) return;
+    if (shareParams.email) setGuestEmail(shareParams.email);
+    if (shareParams.phone) setGuestPhone(shareParams.phone);
+    if (shareParams.name) setGuestName(shareParams.name);
+  }, [isAuthenticated, shareParams.email, shareParams.phone, shareParams.name]);
 
   const runPostPaymentWorkflow = async (
     payment: {
@@ -168,6 +188,7 @@ const Checkout: React.FC = () => {
   };
 
   const handlePayment = async () => {
+    if (!course) return;
     if (!isValidEmail(checkoutEmail)) {
       toast({
         title: 'Email required',
@@ -197,7 +218,9 @@ const Checkout: React.FC = () => {
         country: pricingCountry,
         receipt: `enroll_${course.id}_${receiptSuffix}`,
         courseTitle: course.title,
-        userName: user ? `${user.firstName} ${user.lastName}`.trim() : checkoutEmail.split('@')[0],
+        userName: user
+          ? `${user.firstName} ${user.lastName}`.trim()
+          : guestName.trim() || checkoutEmail.split('@')[0],
         userEmail: checkoutEmail,
         userPhone: checkoutPhone || undefined,
         onSuccess: async (payment) => {
@@ -239,6 +262,32 @@ const Checkout: React.FC = () => {
       });
     }
   };
+
+  useEffect(() => {
+    if (didAutoPayRef.current) return;
+    if (!shareParams.autoPay) return;
+    if (loading || priceLoading) return;
+    if (!dbCourseId) return;
+    if (paymentMethod !== 'full') return;
+    if (!isValidEmail(checkoutEmail)) return;
+
+    didAutoPayRef.current = true;
+    void handlePayment();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    shareParams.autoPay,
+    loading,
+    priceLoading,
+    dbCourseId,
+    paymentMethod,
+    checkoutEmail,
+    pricingCountry,
+  ]);
+
+  if (!course) return null;
+
+  const courseDescription = dbDescription ?? course.description;
+  const checkoutPhone = isAuthenticated && user?.phone ? user.phone : guestPhone.trim();
 
   return (
     <PageShell>

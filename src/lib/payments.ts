@@ -22,9 +22,15 @@ export interface VerifyPaymentResponse {
 }
 
 async function parseJsonResponse<T>(response: Response): Promise<T> {
-  const data = await response.json();
+  const raw = await response.text();
+  const data = raw ? (JSON.parse(raw) as any) : {};
   if (!response.ok) {
-    throw new Error(data.error || data.details || 'Payment request failed');
+    const statusLabel = response.status ? ` (HTTP ${response.status})` : '';
+    throw new Error(
+      data?.error ||
+        data?.details ||
+        `Payment request failed${statusLabel}${raw ? `: ${raw.slice(0, 160)}` : ''}`,
+    );
   }
   return data as T;
 }

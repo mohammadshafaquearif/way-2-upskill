@@ -2,6 +2,8 @@ import React, { useMemo, useState } from 'react';
 import { Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
 import {
   Select,
   SelectContent,
@@ -18,6 +20,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import type { AdminSaleRecord } from '@/lib/adminTypes';
+import { COURSES } from '@/lib/courses';
 import {
   filterSales,
   formatSaleAmounts,
@@ -52,6 +55,11 @@ const AdminSalesReport = ({ sales }: AdminSalesReportProps) => {
   const [filter, setFilter] = useState<SaleFilter>('all');
   const [search, setSearch] = useState('');
   const [program, setProgram] = useState('all');
+  const [linkCourse, setLinkCourse] = useState(COURSES[0]?.id ?? 'dop');
+  const [linkName, setLinkName] = useState('');
+  const [linkEmail, setLinkEmail] = useState('');
+  const [linkPhone, setLinkPhone] = useState('');
+  const [generatedLink, setGeneratedLink] = useState<string>('');
 
   const programOptions = useMemo(() => {
     const codes = new Set<string>();
@@ -68,8 +76,86 @@ const AdminSalesReport = ({ sales }: AdminSalesReportProps) => {
     [sales, filter, search, program],
   );
 
+  const buildPaymentLink = () => {
+    const course = COURSES.find((c) => c.id === linkCourse) ?? COURSES[0];
+    if (!course) return '';
+    const origin = window.location.origin;
+    const url = new URL(course.checkoutPath, origin);
+    if (linkEmail.trim()) url.searchParams.set('email', linkEmail.trim());
+    if (linkPhone.trim()) url.searchParams.set('phone', linkPhone.trim());
+    if (linkName.trim()) url.searchParams.set('name', linkName.trim());
+    url.searchParams.set('autoPay', '1');
+    return url.toString();
+  };
+
   return (
     <div className="space-y-4">
+      <div className="rounded-lg border bg-card p-4">
+        <div className="flex flex-col gap-4">
+          <div>
+            <p className="text-sm font-semibold">Generate payment link (share with learner)</p>
+            <p className="text-xs text-muted-foreground">
+              Opens checkout with details prefilled and triggers Razorpay automatically.
+            </p>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="space-y-1.5">
+              <Label className="text-xs">Program</Label>
+              <Select value={linkCourse} onValueChange={setLinkCourse}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select program" />
+                </SelectTrigger>
+                <SelectContent>
+                  {COURSES.map((c) => (
+                    <SelectItem key={c.id} value={c.id}>
+                      {c.shortTitle}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-1.5">
+              <Label className="text-xs">Learner name</Label>
+              <Input value={linkName} onChange={(e) => setLinkName(e.target.value)} placeholder="Full name" />
+            </div>
+
+            <div className="space-y-1.5">
+              <Label className="text-xs">Email</Label>
+              <Input value={linkEmail} onChange={(e) => setLinkEmail(e.target.value)} placeholder="name@email.com" />
+            </div>
+
+            <div className="space-y-1.5">
+              <Label className="text-xs">Phone</Label>
+              <Input value={linkPhone} onChange={(e) => setLinkPhone(e.target.value)} placeholder="+91 9876543210" />
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+            <Button
+              type="button"
+              onClick={() => {
+                const link = buildPaymentLink();
+                setGeneratedLink(link);
+                if (link) void navigator.clipboard?.writeText(link);
+              }}
+            >
+              Generate & Copy Link
+            </Button>
+
+            <div className="min-w-0 flex-1">
+              <Input
+                value={generatedLink}
+                readOnly
+                placeholder="Generated link will appear here…"
+                onFocus={(e) => e.currentTarget.select()}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="grid grid-cols-2 divide-y divide-border rounded-lg border bg-card sm:grid-cols-4 sm:divide-x sm:divide-y-0">
         <SummaryCell label="Total entries" value={String(summary.total)} />
         <SummaryCell
