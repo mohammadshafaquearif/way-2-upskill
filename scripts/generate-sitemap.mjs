@@ -10,6 +10,7 @@ const today = new Date().toISOString().split('T')[0];
 const STATIC_ROUTES = [
   { path: '/', priority: '1.0', changefreq: 'weekly' },
   { path: '/courses', priority: '0.9', changefreq: 'weekly' },
+  { path: '/1-1-mentorship', priority: '0.9', changefreq: 'weekly' },
   { path: '/courses/devops-engineer-program', priority: '0.8', changefreq: 'monthly' },
   { path: '/courses/aac', priority: '0.8', changefreq: 'monthly' },
   { path: '/courses/aws', priority: '0.8', changefreq: 'monthly' },

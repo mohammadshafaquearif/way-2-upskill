@@ -16,6 +16,7 @@ const queryClient = new QueryClient();
 
 const Index = lazy(() => import("./pages/Index"));
 const Courses = lazy(() => import("./pages/Courses"));
+const OneOnOneMentorship = lazy(() => import("./pages/OneOnOneMentorship"));
 const AgenticAiProgram = lazy(() => import("./pages/courses/AgenticAiProgram"));
 const DevOpsEngineerProgram = lazy(() => import("./pages/courses/DevOpsEngineerProgram"));
 const AwsSolutionsArchitectProgram = lazy(() => import("./pages/courses/AwsSolutionsArchitectProgram"));
@@ -72,6 +73,7 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/syllabus" element={<Navigate to="/courses" replace />} />
               <Route path="/courses" element={<Courses />} />
+              <Route path="/1-1-mentorship" element={<OneOnOneMentorship />} />
               <Route path="/courses/devops-engineer-program" element={<DevOpsEngineerProgram />} />
               <Route path="/courses/dop" element={<Navigate to="/courses/devops-engineer-program" replace />} />
               <Route path="/courses/aac" element={<AgenticAiProgram />} />

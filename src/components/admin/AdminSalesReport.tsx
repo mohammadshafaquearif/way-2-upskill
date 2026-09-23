@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Search } from 'lucide-react';
+import { Copy, Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -30,6 +30,9 @@ import {
 } from '@/lib/salesReport';
 import { capitalizeStatus, enrollmentStatusClass, formatAdminDate, saleSourceClass } from '@/lib/adminUi';
 import { formatInrAmount } from '@/lib/coursePricing';
+import { createCheckoutLink } from '@/lib/checkoutLink';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 interface AdminSalesReportProps {
   sales: AdminSaleRecord[];
@@ -52,6 +55,7 @@ const SummaryCell = ({ label, value, sub }: { label: string; value: string; sub?
 );
 
 const AdminSalesReport = ({ sales }: AdminSalesReportProps) => {
+  const { toast } = useToast();
   const [filter, setFilter] = useState<SaleFilter>('all');
   const [search, setSearch] = useState('');
   const [program, setProgram] = useState('all');
@@ -59,7 +63,8 @@ const AdminSalesReport = ({ sales }: AdminSalesReportProps) => {
   const [linkName, setLinkName] = useState('');
   const [linkEmail, setLinkEmail] = useState('');
   const [linkPhone, setLinkPhone] = useState('');
-  const [generatedLink, setGeneratedLink] = useState<string>('');
+  const [generatedLink, setGeneratedLink] = useState('');
+  const [generatingLink, setGeneratingLink] = useState(false);
 
   const programOptions = useMemo(() => {
     const codes = new Set<string>();
@@ -76,16 +81,62 @@ const AdminSalesReport = ({ sales }: AdminSalesReportProps) => {
     [sales, filter, search, program],
   );
 
-  const buildPaymentLink = () => {
-    const course = COURSES.find((c) => c.id === linkCourse) ?? COURSES[0];
-    if (!course) return '';
-    const origin = window.location.origin;
-    const url = new URL(course.checkoutPath, origin);
-    if (linkEmail.trim()) url.searchParams.set('email', linkEmail.trim());
-    if (linkPhone.trim()) url.searchParams.set('phone', linkPhone.trim());
-    if (linkName.trim()) url.searchParams.set('name', linkName.trim());
-    url.searchParams.set('autoPay', '1');
-    return url.toString();
+  const generatePaymentLink = async () => {
+    if (!linkEmail.trim()) {
+      toast({
+        title: 'Email required',
+        description: 'Enter the learner email to generate a payment link.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setGeneratingLink(true);
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session?.access_token) {
+        throw new Error('Please sign in again to generate payment links.');
+      }
+
+      const result = await createCheckoutLink(
+        {
+          courseSlug: linkCourse,
+          email: linkEmail.trim(),
+          phone: linkPhone.trim() || undefined,
+          learnerName: linkName.trim() || undefined,
+          baseUrl: window.location.origin,
+        },
+        session.access_token,
+      );
+
+      setGeneratedLink(result.url);
+      toast({
+        title: 'Payment link generated',
+        description: 'Share the masked link with the learner. Valid for 7 days.',
+      });
+    } catch (error) {
+      toast({
+        title: 'Could not generate link',
+        description: error instanceof Error ? error.message : 'Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setGeneratingLink(false);
+    }
+  };
+
+  const copyPaymentLink = async () => {
+    if (!generatedLink) return;
+    try {
+      await navigator.clipboard.writeText(generatedLink);
+      toast({ title: 'Link copied', description: 'Payment link copied to clipboard.' });
+    } catch {
+      toast({
+        title: 'Copy failed',
+        description: 'Select the link and copy it manually.',
+        variant: 'destructive',
+      });
+    }
   };
 
   return (
@@ -95,7 +146,7 @@ const AdminSalesReport = ({ sales }: AdminSalesReportProps) => {
           <div>
             <p className="text-sm font-semibold">Generate payment link (share with learner)</p>
             <p className="text-xs text-muted-foreground">
-              Opens checkout with details prefilled and triggers Razorpay automatically.
+              Creates a masked link — learner details stay off the URL. Razorpay opens automatically.
             </p>
           </div>
 
@@ -133,15 +184,8 @@ const AdminSalesReport = ({ sales }: AdminSalesReportProps) => {
           </div>
 
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-            <Button
-              type="button"
-              onClick={() => {
-                const link = buildPaymentLink();
-                setGeneratedLink(link);
-                if (link) void navigator.clipboard?.writeText(link);
-              }}
-            >
-              Generate & Copy Link
+            <Button type="button" onClick={generatePaymentLink} disabled={generatingLink}>
+              {generatingLink ? 'Generating…' : 'Generate Link'}
             </Button>
 
             <div className="min-w-0 flex-1">
@@ -152,6 +196,17 @@ const AdminSalesReport = ({ sales }: AdminSalesReportProps) => {
                 onFocus={(e) => e.currentTarget.select()}
               />
             </div>
+
+            <Button
+              type="button"
+              variant="outline"
+              onClick={copyPaymentLink}
+              disabled={!generatedLink}
+              className="shrink-0"
+            >
+              <Copy className="mr-2 h-4 w-4" />
+              Copy
+            </Button>
           </div>
         </div>
       </div>

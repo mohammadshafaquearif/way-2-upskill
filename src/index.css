@@ -3150,6 +3150,37 @@
     background: hsl(var(--muted) / 0.25);
   }
 
+  .mentorship-page .top-program-card-actions {
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 1280px) {
+    .mentorship-page .top-program-card-actions {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .mentorship-path-list {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 768px) {
+    .mentorship-path-list {
+      display: none;
+    }
+  }
+
+  .mentorship-path-table {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .mentorship-path-table {
+      display: block;
+    }
+  }
+
   .courses-outcomes-list {
     list-style: none;
     padding: 0;

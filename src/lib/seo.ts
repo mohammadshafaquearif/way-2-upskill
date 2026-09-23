@@ -42,6 +42,12 @@ export const STATIC_PAGE_SEO: Record<string, PageSeo> = {
       'Explore Zyvotrix certification programs in Bengaluru and online: DevOps Engineer (DOP), Agentic AI (AAC), AWS Solutions Architect (SAA-C03), and Data Science & ML with live mentorship.',
     canonical: '/courses',
   },
+  '/1-1-mentorship': {
+    title: 'Zyvotrix 1-1 Mentorship — Private 1-on-1 Training',
+    description:
+      'Private 1-on-1 mentorship in DevOps, Agentic AI, AWS Solutions Architect, and Data Science. Same curriculum and projects as Zyvotrix group classes.',
+    canonical: '/1-1-mentorship',
+  },
   '/courses/devops-engineer-program': {
     title: 'Zyvotrix DevOps Engineer Program — AI-Powered DevOps Certification',
     description:

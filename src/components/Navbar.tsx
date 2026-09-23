@@ -133,6 +133,12 @@ const Navbar = () => {
               </DropdownMenuContent>
             </DropdownMenu>
 
+            <Link
+              to="/1-1-mentorship"
+              className={`whitespace-nowrap ${navLinkClass(location.pathname === '/1-1-mentorship')}`}
+            >
+              1-1 Mentorship
+            </Link>
             <Link to="/resources" className={navLinkClass(location.pathname === '/resources')}>
               Resources
             </Link>
@@ -242,6 +248,12 @@ const Navbar = () => {
                 </div>
               </div>
 
+              <Link
+                to="/1-1-mentorship"
+                className={`px-4 py-3 ${navLinkClass(location.pathname === '/1-1-mentorship')}`}
+              >
+                1-1 Mentorship
+              </Link>
               <Link
                 to="/resources"
                 className={`px-4 py-3 ${navLinkClass(location.pathname === '/resources')}`}

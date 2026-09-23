@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import type { CountryCode } from 'libphonenumber-js';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -27,6 +28,7 @@ import { IMAGES } from '@/lib/images';
 import { STATIC_PAGE_SEO } from '@/lib/seo';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { DEFAULT_COUNTRY, toE164, validatePhone } from '@/lib/phone';
+import { COURSE_BY_ID } from '@/lib/courses';
 import GoogleMapEmbed from '@/components/local/GoogleMapEmbed';
 import BusinessNap from '@/components/local/BusinessNap';
 import {
@@ -52,16 +54,36 @@ const contactMethods = [
   { icon: Calendar, title: 'Office Hours', value: ZYVOTRIX_NAP.officeHours, action: null, color: 'bg-primary/10 text-primary' },
 ];
 
+function mentorshipPreset(id: string | null) {
+  if (!id) return null;
+  const course = COURSE_BY_ID[id];
+  if (course) {
+    return {
+      subject: `1-on-1 Mentorship — ${course.shortTitle}`,
+      message: `I'd like private 1-on-1 mentorship for the ${course.title}.`,
+    };
+  }
+  if (id === '1-on-1') {
+    return {
+      subject: '1-on-1 Mentorship',
+      message: "I'd like to know more about private 1-on-1 mentorship.",
+    };
+  }
+  return null;
+}
+
 const Contact = () => {
   const { toast } = useToast();
+  const [searchParams] = useSearchParams();
+  const preset = mentorshipPreset(searchParams.get('mentorship'));
 
   usePageMeta(STATIC_PAGE_SEO['/contact']);
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
     email: '',
-    subject: '',
-    message: ''
+    subject: preset?.subject ?? '',
+    message: preset?.message ?? '',
   });
   const [phoneCountry, setPhoneCountry] = useState<CountryCode>(DEFAULT_COUNTRY);
   const [nationalNumber, setNationalNumber] = useState('');
@@ -226,7 +248,7 @@ const Contact = () => {
             </div>
             
             <div>
-              <Card className="form-panel border border-border/80 shadow-xl">
+              <Card id="contact-form" className="form-panel border border-border/80 shadow-xl">
                 <CardContent className="p-0">
                   <h3 className="text-2xl sm:text-3xl font-bold mb-6">Send Us a Message</h3>
                   <form onSubmit={handleSubmit} className="space-y-4">

@@ -10,6 +10,10 @@ import { handleDownloadInvoiceRequest } from './server/invoiceHandler.mjs';
 import { handleVerifyEnrollmentAccessRequest } from './server/verifyEnrollmentAccess.mjs';
 import { getRazorpayMode } from './server/razorpayConfig.mjs';
 import { guardApiRequest } from './server/security.mjs';
+import {
+  handleCreateCheckoutLinkRequest,
+  handleResolveCheckoutLinkRequest,
+} from './server/checkoutPaymentLink.mjs';
 
 // Load environment variables
 dotenv.config();
@@ -238,6 +242,22 @@ app.post('/api/verify-payment', async (req, res) => {
 app.post('/api/complete-enrollment', async (req, res) => {
   if (!applyApiGuard(req, res, 'complete-enrollment', 10)) return;
   const result = await handleCompleteEnrollmentRequest(req.body);
+  res.status(result.status).json(result.body);
+});
+
+// Masked checkout payment links (admin create, public resolve)
+app.post('/api/checkout-link', async (req, res) => {
+  if (!applyApiGuard(req, res, 'create-checkout-link', 20)) return;
+  const authHeader = req.headers.authorization;
+  const accessToken = authHeader?.startsWith('Bearer ') ? authHeader.slice(7) : '';
+  const result = await handleCreateCheckoutLinkRequest({ body: req.body, accessToken });
+  res.status(result.status).json(result.body);
+});
+
+app.get('/api/checkout-link', async (req, res) => {
+  if (!applyApiGuard(req, res, 'resolve-checkout-link', 30)) return;
+  const token = typeof req.query.t === 'string' ? req.query.t : '';
+  const result = await handleResolveCheckoutLinkRequest({ token });
   res.status(result.status).json(result.body);
 });
 

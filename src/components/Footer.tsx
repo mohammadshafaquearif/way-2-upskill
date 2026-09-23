@@ -25,6 +25,7 @@ const resourceLinks = [
 const supportLinks = [
   { label: 'FAQs', to: '/faq' },
   { label: 'Programs', to: '/courses' },
+  { label: '1-1 Mentorship', to: '/1-1-mentorship' },
   { label: 'Privacy Policy', to: '/privacy' },
   { label: 'Terms of Service', to: '/terms' },
 ];

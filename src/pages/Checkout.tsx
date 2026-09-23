@@ -21,6 +21,7 @@ import { useCoursePrice } from '@/hooks/useCoursePrice';
 import { buildCheckoutSeo } from '@/lib/seo';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { openRazorpayCheckout } from '@/lib/razorpayCheckout';
+import { resolveCheckoutLink } from '@/lib/checkoutLink';
 import {
   completeEnrollment,
   saveEnrollmentSuccess,
@@ -45,19 +46,15 @@ const Checkout: React.FC = () => {
   const [dbDescription, setDbDescription] = useState<string | null>(null);
   const [pricingCountry, setPricingCountry] = useState<CountryCode>('IN');
   const didAutoPayRef = useRef(false);
+  const [tokenLoading, setTokenLoading] = useState(false);
+  const [tokenResolved, setTokenResolved] = useState(false);
+  const [autoPayFromLink, setAutoPayFromLink] = useState(false);
 
-  const shareParams = useMemo(() => {
+  const shareToken = useMemo(() => {
     try {
-      const url = new URL(window.location.href);
-      const p = url.searchParams;
-      return {
-        email: p.get('email')?.trim() || '',
-        phone: p.get('phone')?.trim() || '',
-        name: p.get('name')?.trim() || '',
-        autoPay: p.get('autoPay') === '1' || p.get('autoPay') === 'true',
-      };
+      return new URL(window.location.href).searchParams.get('t')?.trim() || '';
     } catch {
-      return { email: '', phone: '', name: '', autoPay: false };
+      return '';
     }
   }, []);
 
@@ -139,12 +136,37 @@ const Checkout: React.FC = () => {
   const payButtonLabel = priceLoading ? 'Loading price…' : `Pay ${chargeLabel}`;
 
   useEffect(() => {
-    if (isAuthenticated) return;
-    if (!shareParams.email && !shareParams.phone && !shareParams.name) return;
-    if (shareParams.email) setGuestEmail(shareParams.email);
-    if (shareParams.phone) setGuestPhone(shareParams.phone);
-    if (shareParams.name) setGuestName(shareParams.name);
-  }, [isAuthenticated, shareParams.email, shareParams.phone, shareParams.name]);
+    if (isAuthenticated || !shareToken || tokenResolved) return;
+
+    let cancelled = false;
+    setTokenLoading(true);
+
+    resolveCheckoutLink(shareToken)
+      .then((data) => {
+        if (cancelled) return;
+        if (data.email) setGuestEmail(data.email);
+        if (data.phone) setGuestPhone(data.phone);
+        if (data.name) setGuestName(data.name);
+        setAutoPayFromLink(Boolean(data.autoPay));
+        setTokenResolved(true);
+      })
+      .catch((error) => {
+        if (cancelled) return;
+        toast({
+          title: 'Invalid payment link',
+          description: error instanceof Error ? error.message : 'This link may have expired.',
+          variant: 'destructive',
+        });
+        setTokenResolved(true);
+      })
+      .finally(() => {
+        if (!cancelled) setTokenLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isAuthenticated, shareToken, tokenResolved, toast]);
 
   const runPostPaymentWorkflow = async (
     payment: {
@@ -265,7 +287,8 @@ const Checkout: React.FC = () => {
 
   useEffect(() => {
     if (didAutoPayRef.current) return;
-    if (!shareParams.autoPay) return;
+    if (!autoPayFromLink) return;
+    if (tokenLoading || !tokenResolved) return;
     if (loading || priceLoading) return;
     if (!dbCourseId) return;
     if (paymentMethod !== 'full') return;
@@ -275,7 +298,9 @@ const Checkout: React.FC = () => {
     void handlePayment();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    shareParams.autoPay,
+    autoPayFromLink,
+    tokenLoading,
+    tokenResolved,
     loading,
     priceLoading,
     dbCourseId,
