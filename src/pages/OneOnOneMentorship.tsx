@@ -64,6 +64,7 @@ const courseCardDetails: Record<string, { projects: string; focus: string; photo
 const graduateOutcomes = [
   'Professional Certificate',
   'Portfolio Projects',
+  'ATS-Friendly Resume',
   'GitHub Repositories',
   'Career Guidance',
   'Industry-Ready Skills',
@@ -263,7 +264,7 @@ const OneOnOneMentorship = () => {
                 Proof, built with undivided attention
               </h2>
               <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
-                Certificate, projects, GitHub — the same outcomes. Built while a trainer was watching only your work.
+                A certificate, projects you can open in an interview, and an ATS-friendly resume. Built while a trainer was watching only your work.
               </p>
             </header>
 
