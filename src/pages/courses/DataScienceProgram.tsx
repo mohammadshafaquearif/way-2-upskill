@@ -52,6 +52,7 @@ import { COURSE_BY_ID } from '@/lib/courses';
 import type { FaqItem } from '@/lib/faqs';
 import { IMAGES } from '@/lib/images';
 import { cn } from '@/lib/utils';
+import CourseJsonLd from '@/components/courses/CourseJsonLd';
 import { STATIC_PAGE_SEO } from '@/lib/seo';
 import { buildDetailedCourseSchema } from '@/lib/courseSchema';
 import { usePageMeta } from '@/hooks/usePageMeta';
@@ -847,10 +848,7 @@ const DataScienceProgram = () => {
 
   return (
     <PageShell className="devops-program-page ds-program-page program-page-polish">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(dsCourseSchema) }}
-      />
+      <CourseJsonLd schema={dsCourseSchema} />
       <Navbar />
 
       <section className="program-landing-hero relative overflow-hidden">

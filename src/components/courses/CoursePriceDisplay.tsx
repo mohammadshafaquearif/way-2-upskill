@@ -1,5 +1,6 @@
 import React from 'react';
 import { useCoursePrice } from '@/hooks/useCoursePrice';
+import { useMentorshipEntry } from '@/hooks/useMentorshipEntry';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
 
@@ -9,7 +10,10 @@ interface CoursePriceDisplayProps {
 }
 
 const CoursePriceDisplay = ({ courseCode, className }: CoursePriceDisplayProps) => {
+  const fromMentorship = useMentorshipEntry();
   const { displayPrice, chargeLabel, price, isLoading } = useCoursePrice({ courseCode });
+
+  if (fromMentorship) return null;
 
   if (isLoading) {
     return <Skeleton className={cn('h-8 w-28', className)} />;

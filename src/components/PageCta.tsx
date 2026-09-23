@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import EnrollButton from '@/components/EnrollButton';
 import { isEnrollHref } from '@/lib/enroll';
+import { useMentorshipEntry } from '@/hooks/useMentorshipEntry';
 
 interface PageCtaProps {
   title: string;
@@ -28,8 +29,13 @@ const PageCta = ({
   className,
   programName,
 }: PageCtaProps) => {
+  const fromMentorship = useMentorshipEntry();
+  const resolvedSecondaryHref =
+    fromMentorship && secondaryHref === '/courses' ? '/1-1-mentorship' : secondaryHref;
+  const resolvedSecondaryLabel =
+    fromMentorship && secondaryHref === '/courses' ? '1-1 Mentorship' : secondaryLabel;
   const primaryIsEnroll = isEnrollHref(primaryHref);
-  const secondaryIsEnroll = isEnrollHref(secondaryHref);
+  const secondaryIsEnroll = isEnrollHref(resolvedSecondaryHref);
 
   return (
     <section className={`dark-surface cta-premium relative overflow-hidden py-16 md:py-24 text-white${className ? ` ${className}` : ''}`}>
@@ -82,7 +88,7 @@ const PageCta = ({
               variant="outline"
               className="h-12 border-white/30 bg-transparent text-white hover:bg-white/10"
             >
-              <Link to={secondaryHref}>{secondaryLabel}</Link>
+              <Link to={resolvedSecondaryHref}>{resolvedSecondaryLabel}</Link>
             </Button>
           )}
         </div>

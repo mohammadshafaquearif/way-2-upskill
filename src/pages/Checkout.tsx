@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { Navigate, useParams, useNavigate } from 'react-router-dom';
 import type { CountryCode } from 'libphonenumber-js';
 import { useAuth } from '@/contexts/AuthContext';
 import Navbar from '@/components/Navbar';
@@ -18,6 +18,7 @@ import { Badge } from '@/components/ui/badge';
 import { getCourseByCheckoutId } from '@/lib/courses';
 import { GST_RATE } from '@/lib/coursePricing';
 import { useCoursePrice } from '@/hooks/useCoursePrice';
+import { useMentorshipEntry } from '@/hooks/useMentorshipEntry';
 import { buildCheckoutSeo } from '@/lib/seo';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { openRazorpayCheckout } from '@/lib/razorpayCheckout';
@@ -34,6 +35,7 @@ function isValidEmail(email: string): boolean {
 
 const Checkout: React.FC = () => {
   const { courseId } = useParams<{ courseId: string }>();
+  const fromMentorship = useMentorshipEntry();
   const navigate = useNavigate();
   const { user, isAuthenticated } = useAuth();
   const [loading, setLoading] = useState(false);
@@ -308,6 +310,11 @@ const Checkout: React.FC = () => {
     checkoutEmail,
     pricingCountry,
   ]);
+
+  if (fromMentorship) {
+    const program = course ? `&program=${encodeURIComponent(course.title)}` : '';
+    return <Navigate to={`/contact?mentorship=1-on-1${program}#contact-form`} replace />;
+  }
 
   if (!course) return null;
 

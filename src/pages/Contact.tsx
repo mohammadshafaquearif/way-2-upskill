@@ -54,19 +54,21 @@ const contactMethods = [
   { icon: Calendar, title: 'Office Hours', value: ZYVOTRIX_NAP.officeHours, action: null, color: 'bg-primary/10 text-primary' },
 ];
 
-function mentorshipPreset(id: string | null) {
+function mentorshipPreset(id: string | null, programName: string | null) {
   if (!id) return null;
   const course = COURSE_BY_ID[id];
   if (course) {
     return {
-      subject: `1-on-1 Mentorship — ${course.shortTitle}`,
-      message: `I'd like private 1-on-1 mentorship for the ${course.title}.`,
+      subject: `Exclusive 1-on-1 — ${course.shortTitle}`,
+      message: `I'd like an exclusive class for the ${course.title}: one trainer and me, with no one else in the room.`,
     };
   }
   if (id === '1-on-1') {
     return {
-      subject: '1-on-1 Mentorship',
-      message: "I'd like to know more about private 1-on-1 mentorship.",
+      subject: programName ? `Exclusive 1-on-1 — ${programName}` : 'Exclusive 1-on-1 class',
+      message: programName
+        ? `I'd like an exclusive class for ${programName}: one trainer and me, with no one else in the room.`
+        : "I'd like an exclusive class: one trainer and me, with no one else in the room.",
     };
   }
   return null;
@@ -75,7 +77,7 @@ function mentorshipPreset(id: string | null) {
 const Contact = () => {
   const { toast } = useToast();
   const [searchParams] = useSearchParams();
-  const preset = mentorshipPreset(searchParams.get('mentorship'));
+  const preset = mentorshipPreset(searchParams.get('mentorship'), searchParams.get('program'));
 
   usePageMeta(STATIC_PAGE_SEO['/contact']);
   const [formData, setFormData] = useState<FormData>({

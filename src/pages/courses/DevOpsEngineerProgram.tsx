@@ -52,6 +52,7 @@ import type { FaqItem } from '@/lib/faqs';
 import { DEVOPS_TOOLS } from '@/lib/devopsTools';
 import { IMAGES } from '@/lib/images';
 import { cn } from '@/lib/utils';
+import CourseJsonLd from '@/components/courses/CourseJsonLd';
 import { STATIC_PAGE_SEO } from '@/lib/seo';
 import { buildDetailedCourseSchema } from '@/lib/courseSchema';
 import { usePageMeta } from '@/hooks/usePageMeta';
@@ -763,10 +764,7 @@ const DevOpsEngineerProgram = () => {
 
   return (
     <PageShell className="devops-program-page dop-program-page program-page-polish">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(dopCourseSchema) }}
-      />
+      <CourseJsonLd schema={dopCourseSchema} />
       <Navbar />
 
       <section className="program-landing-hero relative overflow-hidden">

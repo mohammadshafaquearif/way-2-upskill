@@ -43,9 +43,9 @@ export const STATIC_PAGE_SEO: Record<string, PageSeo> = {
     canonical: '/courses',
   },
   '/1-1-mentorship': {
-    title: 'Zyvotrix 1-1 Mentorship — Private 1-on-1 Training',
+    title: 'Zyvotrix Exclusive 1-1 Mentorship — One Trainer, One Student',
     description:
-      'Private 1-on-1 mentorship in DevOps, Agentic AI, AWS Solutions Architect, and Data Science. Same curriculum and projects as Zyvotrix group classes.',
+      'An exclusive Zyvotrix class: one trainer and one student. Personal tutoring in DevOps, Agentic AI, AWS, and Data Science, with the trainer’s full attention on you.',
     canonical: '/1-1-mentorship',
   },
   '/courses/devops-engineer-program': {

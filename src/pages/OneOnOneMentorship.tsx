@@ -9,19 +9,20 @@ import ProgramCardBrand from '@/components/home/ProgramCardBrand';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Check, Clock, FolderKanban } from 'lucide-react';
 import { COURSES } from '@/lib/courses';
+import { mentorshipProgramPath } from '@/lib/mentorshipEntry';
 import { STATIC_PAGE_SEO } from '@/lib/seo';
 import { usePageMeta } from '@/hooks/usePageMeta';
 
-const photo = (id: string, width: number, height: number) =>
-  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&h=${height}&q=80&crop=faces`;
+const photo = (id: string, width: number, height: number, crop = 'faces') =>
+  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&h=${height}&q=80&crop=${crop}`;
 
 const trustMetrics = [
-  'One mentor for the full program',
-  'Same syllabus as the group class',
-  'Labs and project reviews',
-  'Work you can put on GitHub',
-  'Career guidance',
-  'Recordings if you miss a session',
+  'Exclusive to you — one student',
+  'One trainer, undivided',
+  'No one else waiting to speak',
+  'Your pace, not the batch’s',
+  'Same syllabus as the group program',
+  'A recording that is only yours',
 ];
 
 const requestPath = (courseId: string) => `/contact?mentorship=${courseId}#contact-form`;
@@ -37,26 +38,26 @@ const courseCardDetails: Record<string, { projects: string; focus: string; photo
   dop: {
     projects: '12+ Projects',
     focus: 'AI + DevOps',
-    photo: photo('photo-1522071820081-009f0129c71c', 1200, 675),
-    photoAlt: 'People writing code together around a table',
+    photo: photo('photo-1516321318423-f06f85e504b3', 1200, 675, 'entropy'),
+    photoAlt: 'Two people working through one laptop',
   },
   aac: {
     projects: '10+ Portfolio Projects',
     focus: 'Multi-Agent Systems',
-    photo: photo('photo-1522202176988-66273c2fd55f', 1200, 675),
-    photoAlt: 'Three people talking through work on laptops',
+    photo: photo('photo-1573497620053-ea5300f94f21', 1200, 675),
+    photoAlt: 'A trainer and a student talking across a table',
   },
   aws: {
     projects: '7 Projects + Capstone',
     focus: 'SAA-C03 Focused',
-    photo: photo('photo-1516321497487-e288fb19713f', 1200, 675),
-    photoAlt: 'Hands pointing at a laptop during a working session',
+    photo: photo('photo-1600880292203-757bb62b4baf', 1200, 675),
+    photoAlt: 'Two people at a desk with a laptop',
   },
   'data-science': {
     projects: '6 Projects + Capstone',
     focus: 'ML + Analytics',
-    photo: photo('photo-1516321318423-f06f85e504b3', 1200, 675),
-    photoAlt: 'Someone pointing at a laptop screen',
+    photo: photo('photo-1551836022-d5d88e9218df', 1200, 675),
+    photoAlt: 'One trainer and one student with a laptop between them',
   },
 };
 
@@ -76,24 +77,24 @@ const OneOnOneMentorship = () => {
       <Navbar />
 
       <PageHero
-        badge="1-on-1 Mentorship"
+        badge="Exclusive 1-on-1"
         title={
           <>
             1{'\u2011'}on{'\u2011'}1 Mentorship for{' '}
             <span className="gradient-text">DevOps, Agentic AI, AWS &amp; Data Science</span>
           </>
         }
-        subtitle="Same programs as the group classes. You work with one mentor on the syllabus, labs, and projects. Sessions are set around your week."
-        image={photo('photo-1531482615713-2afd69097998', 1400, 960)}
-        imageAlt="Two people reviewing code together at a desk"
-        imageCaption="Sessions are with one mentor."
+        subtitle="An exclusive class. One trainer, one student, and the door stays shut for everyone else. You study the same DevOps, Agentic AI, AWS, or Data Science syllabus — with the trainer’s full attention on your questions, your pace, and your work."
+        image={photo('photo-1551836022-d5d88e9218df', 1400, 960)}
+        imageAlt="One trainer and one student working at a laptop"
+        imageCaption="Exclusive. Just the two of you."
       />
 
       <section className="relative -mt-6 z-10">
         <div className="courses-page-container">
           <div className="courses-trust-panel rounded-2xl border border-border/60 bg-card px-4 py-5 shadow-lg sm:px-8 sm:py-7">
             <p className="mb-4 text-center text-xs font-bold uppercase tracking-widest text-primary">
-              What is included
+              Why the room feels different
             </p>
             <div className="courses-trust-grid">
               {trustMetrics.map((label) => (
@@ -114,13 +115,13 @@ const OneOnOneMentorship = () => {
         <div className="courses-page-container">
           <header className="courses-section-header mx-auto mb-8 max-w-2xl text-center">
             <span className="mb-3 inline-block text-xs font-bold uppercase tracking-widest text-primary">
-              Find your path
+              Choose your track
             </span>
             <h2 className="courses-section-title mb-3 text-2xl font-bold text-foreground sm:text-3xl">
-              Which program fits?
+              Which program do you want as an exclusive class?
             </h2>
             <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
-              Pick the track you want to work on. The syllabus is the group-class syllabus. The format is 1-on-1.
+              Pick the goal. One trainer walks that syllabus with you alone. Every question in the room is yours.
             </p>
           </header>
 
@@ -129,7 +130,7 @@ const OneOnOneMentorship = () => {
               <li key={course.id} className="rounded-2xl border border-border bg-card p-4 shadow-sm">
                 <p className="text-sm text-foreground">{programGoals[course.id]}</p>
                 <Link
-                  to={course.route}
+                  to={mentorshipProgramPath(course.route)}
                   className="mt-1 inline-flex items-center gap-2 font-bold text-primary"
                 >
                   {course.shortTitle}
@@ -137,7 +138,7 @@ const OneOnOneMentorship = () => {
                 </Link>
                 <Button asChild size="sm" className="btn-brand mt-3 h-9 w-full text-xs font-semibold">
                   <Link to={requestPath(course.id)}>
-                    Request 1-on-1
+                    Request your seat
                     <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
                   </Link>
                 </Button>
@@ -160,7 +161,7 @@ const OneOnOneMentorship = () => {
                     <td className="px-5 py-4 text-foreground">{programGoals[course.id]}</td>
                     <td className="px-5 py-4">
                       <Link
-                        to={course.route}
+                        to={mentorshipProgramPath(course.route)}
                         className="inline-flex items-center gap-2 font-bold text-primary transition-colors hover:text-primary/80"
                       >
                         {course.code}
@@ -170,7 +171,7 @@ const OneOnOneMentorship = () => {
                     <td className="px-5 py-4">
                       <Button asChild size="sm" className="btn-brand h-8 px-4 text-xs font-semibold shadow-sm">
                         <Link to={requestPath(course.id)}>
-                          Request 1-on-1
+                          Request your seat
                           <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
                         </Link>
                       </Button>
@@ -187,13 +188,13 @@ const OneOnOneMentorship = () => {
         <div className="courses-page-container">
           <header className="courses-section-header mx-auto mb-10 max-w-2xl text-center">
             <span className="mb-3 inline-block text-xs font-bold uppercase tracking-widest text-primary">
-              Programs
+              The programs
             </span>
             <h2 className="courses-section-title mb-3 text-2xl font-bold text-foreground sm:text-3xl">
-              Four programs, one mentor
+              The group syllabus. An exclusive room.
             </h2>
             <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
-              Duration and projects match the group class. You are not in a batch.
+              Same months, same projects. The trainer is not splitting attention across a batch. The class is exclusive to you.
             </p>
           </header>
 
@@ -235,12 +236,12 @@ const OneOnOneMentorship = () => {
                     <div className="top-program-card-actions">
                       <Button asChild className="btn-brand top-program-card-btn-enroll">
                         <Link to={requestPath(course.id)}>
-                          Request 1-on-1
+                          Request your seat
                           <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                       </Button>
                       <Button asChild variant="outline" className="top-program-card-btn-view">
-                        <Link to={course.route}>View Program</Link>
+                        <Link to={mentorshipProgramPath(course.route)}>View Program</Link>
                       </Button>
                     </div>
                   </div>
@@ -256,13 +257,13 @@ const OneOnOneMentorship = () => {
           <div className="courses-outcomes-panel mx-auto max-w-3xl rounded-2xl border border-border bg-card p-5 sm:p-10">
             <header className="mb-6 text-center">
               <span className="mb-3 inline-block text-xs font-bold uppercase tracking-widest text-primary">
-                When you finish
+                What stays with you
               </span>
               <h2 className="courses-section-title mb-3 text-2xl font-bold text-foreground sm:text-3xl">
-                What you leave with
+                Proof, built with undivided attention
               </h2>
               <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
-                A certificate, and projects you can open in an interview.
+                Certificate, projects, GitHub — the same outcomes. Built while a trainer was watching only your work.
               </p>
             </header>
 
@@ -283,10 +284,10 @@ const OneOnOneMentorship = () => {
 
       <PageCta
         className="courses-page-cta"
-        badge="Ask us"
-        title="Want a mentor for one of these?"
-        description="Tell us the program and what you do today. We will reply with how the 1-on-1 sessions are set up."
-        primaryLabel="Talk to us"
+        badge="Exclusive access"
+        title="The class is yours. No one else’s."
+        description="Tell us the program and where you stand today. We will match you with one trainer. The session stays exclusive: you, and them."
+        primaryLabel="Request your seat"
         primaryHref="/contact?mentorship=1-on-1#contact-form"
         secondaryLabel="Free Resources"
         secondaryHref="/resources"

@@ -5,7 +5,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Suspense, lazy } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { EnrollModalProvider } from "@/contexts/EnrollModalContext";
 import PageLayout from "@/components/PageLayout";
@@ -13,6 +13,11 @@ import ScrollToHash from "./components/ScrollToHash";
 import AuthHashHandler from "./components/AuthHashHandler";
 
 const queryClient = new QueryClient();
+
+function RedirectPreserveSearch({ to }: { to: string }) {
+  const { search, hash } = useLocation();
+  return <Navigate to={`${to}${search}${hash}`} replace />;
+}
 
 const Index = lazy(() => import("./pages/Index"));
 const Courses = lazy(() => import("./pages/Courses"));
@@ -119,7 +124,7 @@ const App = () => (
               <Route path="/enrollment/success" element={<EnrollmentSuccess />} />
               <Route path="/admin/*" element={<AdminRoute />} />
               <Route path="/verify-certificate" element={<VerifyCertificate />} />
-              <Route path="/checkout/dop" element={<Navigate to="/checkout/devops-engineer-program" replace />} />
+              <Route path="/checkout/dop" element={<RedirectPreserveSearch to="/checkout/devops-engineer-program" />} />
               <Route path="/checkout/:courseId" element={<Checkout />} />
               <Route path="*" element={<NotFound />} />
             </Route>
