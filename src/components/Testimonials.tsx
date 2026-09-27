@@ -1,6 +1,7 @@
 import React from 'react';
 import { Quote } from 'lucide-react';
 import { COURSES } from '@/lib/courses';
+import CourseLogo from '@/components/courses/CourseLogo';
 
 const Testimonials = () => (
   <section className="section-padding relative overflow-hidden bg-white" aria-labelledby="experience-heading">
@@ -28,7 +29,10 @@ const Testimonials = () => (
             <p className="mb-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
               {course.description}
             </p>
-            <p className="text-sm font-bold text-foreground">{course.title}</p>
+            <p className="flex items-center gap-2 text-sm font-bold text-foreground">
+              <CourseLogo courseId={course.id} size="xs" />
+              <span>{course.title}</span>
+            </p>
             <p className="mt-1 text-xs text-muted-foreground">Duration: {course.duration}</p>
           </article>
         ))}

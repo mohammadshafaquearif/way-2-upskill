@@ -13,6 +13,7 @@ import { COURSES } from '@/lib/courses';
 import { STATIC_PAGE_SEO } from '@/lib/seo';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import CoursePriceDisplay from '@/components/courses/CoursePriceDisplay';
+import CourseLogo from '@/components/courses/CourseLogo';
 
 const trustMetrics = [
   'Live Mentor-Led Training',
@@ -184,7 +185,10 @@ const Courses = () => {
                   </div>
 
                   <div className="top-program-card-body">
-                    <h3 className="top-program-card-title">{course.title}</h3>
+                    <h3 className="top-program-card-title flex items-center gap-2">
+                      <CourseLogo courseId={course.id} size="sm" />
+                      <span>{course.title}</span>
+                    </h3>
                     <p className="top-program-card-meta text-muted-foreground">{course.description}</p>
 
                     <div className="top-program-card-stats">
@@ -251,7 +255,10 @@ const Courses = () => {
                   <span className="courses-enroll-card-code">{course.code}</span>
                   <ArrowRight className="courses-enroll-card-arrow h-4 w-4 text-primary transition-transform group-hover:translate-x-1" />
                 </div>
-                <h3 className="courses-enroll-card-title">{course.shortTitle}</h3>
+                <h3 className="courses-enroll-card-title flex items-center gap-2">
+                  <CourseLogo courseId={course.id} size="sm" />
+                  <span>{course.shortTitle}</span>
+                </h3>
                 <p className="courses-enroll-card-duration">
                   <Clock className="h-3.5 w-3.5" />
                   {course.duration}

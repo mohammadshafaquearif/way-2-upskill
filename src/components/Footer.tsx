@@ -3,14 +3,16 @@ import { Link } from 'react-router-dom';
 import { Mail, MapPin, Phone, ArrowUpRight } from 'lucide-react';
 import SocialLinks from '@/components/SocialLinks';
 import { COURSES } from '@/lib/courses';
+import CourseLogo from '@/components/courses/CourseLogo';
 import { ZYVOTRIX_ADDRESS_LINE, ZYVOTRIX_NAP } from '@/lib/localBusiness';
 import { ZYVOTRIX_GOOGLE_MAPS_URL } from '@/lib/seo';
 
 const programLinks = [
-  { label: 'All Programs', to: '/courses' },
+  { label: 'All Programs', to: '/courses', courseId: '' },
   ...COURSES.map((course) => ({
     label: course.shortTitle,
     to: course.route,
+    courseId: course.id,
   })),
 ];
 
@@ -91,8 +93,9 @@ const Footer = () => {
                 <li key={link.to}>
                   <Link
                     to={link.to}
-                    className="link-glow inline-flex items-center gap-1 text-sm text-slate-400 hover:text-white"
+                    className="link-glow inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white"
                   >
+                    {link.courseId ? <CourseLogo courseId={link.courseId} size="xs" /> : null}
                     {link.label}
                     <ArrowUpRight className="h-3 w-3 opacity-0 transition-opacity group-hover:opacity-100" />
                   </Link>

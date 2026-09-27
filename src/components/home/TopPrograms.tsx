@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import ProgramCardBrand from '@/components/home/ProgramCardBrand';
 import { Button } from '@/components/ui/button';
 import { PROGRAMS } from '@/lib/programs';
+import CourseLogo from '@/components/courses/CourseLogo';
 
 const TopPrograms = () => (
   <section className="top-programs-section" id="programs" aria-labelledby="top-programs-heading">
@@ -32,7 +33,10 @@ const TopPrograms = () => (
             </div>
 
             <div className="top-program-card-body">
-              <h3 className="top-program-card-title">{program.title}</h3>
+              <h3 className="top-program-card-title flex items-center gap-2">
+                <CourseLogo courseId={program.id} size="sm" />
+                <span>{program.title}</span>
+              </h3>
               <p className="top-program-card-meta">
                 <span>Duration: {program.duration}</span>
               </p>

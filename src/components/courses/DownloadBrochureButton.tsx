@@ -16,6 +16,7 @@ import { useToast } from '@/hooks/use-toast';
 import { apiClient } from '@/integrations/api/client';
 import { trackEvent } from '@/lib/analytics';
 import { COURSE_BY_ID, getCourseBrochureFilename } from '@/lib/courses';
+import CourseLogo from '@/components/courses/CourseLogo';
 import { DEFAULT_COUNTRY, toE164, validatePhone } from '@/lib/phone';
 
 type DownloadBrochureButtonProps = React.ComponentProps<typeof Button> & {
@@ -172,7 +173,10 @@ const DownloadBrochureButton = ({
       <Dialog open={open} onOpenChange={handleOpenChange}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>Download Program Brochure</DialogTitle>
+            <DialogTitle className="flex items-center gap-2">
+              {course ? <CourseLogo courseId={course.id} size="sm" /> : null}
+              <span>{course ? course.shortTitle : 'Download Program Brochure'}</span>
+            </DialogTitle>
             <DialogDescription>
               {course
                 ? `Enter your details to download the ${course.shortTitle} brochure.`

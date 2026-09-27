@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-route
 import { AuthProvider } from "@/contexts/AuthContext";
 import { EnrollModalProvider } from "@/contexts/EnrollModalContext";
 import PageLayout from "@/components/PageLayout";
+import RequireAuth from "@/components/RequireAuth";
 import ScrollToHash from "./components/ScrollToHash";
 import AuthHashHandler from "./components/AuthHashHandler";
 
@@ -50,6 +51,9 @@ const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 const EnrollmentSuccess = lazy(() => import("./pages/EnrollmentSuccess"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Resources = lazy(() => import("./pages/Resources"));
+const LinuxAdministrationQuiz = lazy(() => import("./pages/resources/LinuxAdministrationQuiz"));
+const WindowsAdministrationQuiz = lazy(() => import("./pages/resources/WindowsAdministrationQuiz"));
+const DevOpsPartOneQuiz = lazy(() => import("./pages/resources/DevOpsPartOneQuiz"));
 const ResourceArticle = lazy(() => import("./pages/resources/ResourceArticle"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const Privacy = lazy(() => import("./pages/Privacy"));
@@ -89,8 +93,15 @@ const App = () => (
               <Route path="/courses/cloud-computing" element={<Navigate to="/courses/aws" replace />} />
               <Route path="/courses/web-development" element={<Navigate to="/courses/data-science" replace />} />
               <Route path="/courses/cybersecurity" element={<Navigate to="/courses" replace />} />
-              <Route path="/resources" element={<Resources />} />
-              <Route path="/resources/:slug" element={<ResourceArticle />} />
+              <Route element={<RequireAuth />}>
+                <Route path="/resources" element={<Resources />} />
+                <Route path="/resources/quiz/linux" element={<LinuxAdministrationQuiz />} />
+                <Route path="/resources/quiz/windows" element={<WindowsAdministrationQuiz />} />
+                <Route path="/resources/quiz/devops" element={<DevOpsPartOneQuiz />} />
+                <Route path="/resources/:slug" element={<ResourceArticle />} />
+              </Route>
+              <Route path="/quiz/linux" element={<Navigate to="/resources/quiz/linux" replace />} />
+              <Route path="/quiz/linux/index.html" element={<Navigate to="/resources/quiz/linux" replace />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/faq" element={<FAQ />} />

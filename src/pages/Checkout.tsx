@@ -16,6 +16,7 @@ import { apiClient } from '@/integrations/api/client';
 import PageShell from '@/components/layout/PageShell';
 import { Badge } from '@/components/ui/badge';
 import { getCourseByCheckoutId } from '@/lib/courses';
+import CourseLogo from '@/components/courses/CourseLogo';
 import { GST_RATE } from '@/lib/coursePricing';
 import { useCoursePrice } from '@/hooks/useCoursePrice';
 import { useMentorshipEntry } from '@/hooks/useMentorshipEntry';
@@ -328,7 +329,10 @@ const Checkout: React.FC = () => {
       <section className="border-b bg-gradient-to-br from-primary/5 via-background to-secondary/5 pt-24 pb-8 sm:pt-28">
         <div className="container mx-auto max-w-6xl px-4 sm:px-6">
           <p className="text-xs font-bold uppercase tracking-widest text-primary">Secure Checkout</p>
-          <h1 className="mt-2 text-2xl font-bold text-foreground sm:text-3xl">{course.shortTitle}</h1>
+          <h1 className="mt-2 flex items-center gap-3 text-2xl font-bold text-foreground sm:text-3xl">
+            <CourseLogo courseId={course.id} size="md" />
+            <span>{course.shortTitle}</span>
+          </h1>
           <p className="mt-2 max-w-2xl text-sm text-muted-foreground sm:text-base">{courseDescription}</p>
         </div>
       </section>
@@ -358,7 +362,10 @@ const Checkout: React.FC = () => {
                     <Badge variant="secondary">{course.code}</Badge>
                     <Badge variant="outline">{course.level}</Badge>
                   </div>
-                  <h3 className="text-lg font-semibold leading-snug">{course.title}</h3>
+                  <h3 className="flex items-center gap-2 text-lg font-semibold leading-snug">
+                    <CourseLogo courseId={course.id} size="sm" />
+                    <span>{course.title}</span>
+                  </h3>
                   <div className="flex flex-wrap gap-x-5 gap-y-1 text-sm text-muted-foreground">
                     <span className="inline-flex items-center gap-1.5">
                       <Clock className="h-4 w-4 shrink-0 text-primary" />

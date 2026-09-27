@@ -8,11 +8,9 @@ import {
   LogOut,
   BookOpen,
   ChevronDown,
-  Cloud,
-  Wrench,
-  Sparkles,
 } from 'lucide-react';
 import { COURSES } from '@/lib/courses';
+import CourseLogo from '@/components/courses/CourseLogo';
 import LoginSignupModal from './LoginSignupModal';
 import { useAuth } from '@/contexts/AuthContext';
 import {
@@ -26,7 +24,6 @@ const courses = COURSES.map((course) => ({
   id: course.id,
   title: course.shortTitle,
   route: course.route,
-  icon: course.icon,
 }));
 
 const Navbar = () => {
@@ -56,7 +53,11 @@ const Navbar = () => {
       {/* Promo bar */}
       <div className="hidden bg-primary text-primary-foreground sm:block">
         <div className="container flex items-center justify-center gap-2 px-4 py-2 text-center text-xs font-medium sm:text-sm">
-          <Sparkles className="h-3.5 w-3.5 shrink-0" />
+          <span className="inline-flex items-center gap-1">
+            {COURSES.map((course) => (
+              <CourseLogo key={course.id} courseId={course.id} size="xs" />
+            ))}
+          </span>
           <span>
             DOP, AAC, AWS &amp; Data Science programs — enrollments open now
           </span>
@@ -106,22 +107,17 @@ const Navbar = () => {
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="w-72 rounded-xl p-2">
-                {courses.map((course) => {
-                  const IconComponent = course.icon;
-                  return (
-                    <DropdownMenuItem key={course.id} asChild>
-                      <Link
-                        to={course.route}
-                        className="flex items-center gap-3 rounded-lg p-3"
-                      >
-                        <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
-                          <IconComponent className="h-4 w-4 text-primary" />
-                        </span>
-                        <span className="text-sm font-medium">{course.title}</span>
-                      </Link>
-                    </DropdownMenuItem>
-                  );
-                })}
+                {courses.map((course) => (
+                  <DropdownMenuItem key={course.id} asChild>
+                    <Link
+                      to={course.route}
+                      className="flex items-center gap-3 rounded-lg p-3"
+                    >
+                      <CourseLogo courseId={course.id} size="sm" />
+                      <span className="text-sm font-medium">{course.title}</span>
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
                 <DropdownMenuItem asChild>
                   <Link
                     to="/courses"
@@ -191,10 +187,10 @@ const Navbar = () => {
                 </DropdownMenu>
               ) : (
                 <Button
-                  variant="ghost"
+                  variant="outline"
                   size="sm"
                   onClick={() => setIsLoginModalOpen(true)}
-                  className="font-medium text-foreground/80 hover:text-primary"
+                  className="rounded-lg border-primary px-3 font-semibold text-primary hover:bg-primary hover:text-primary-foreground lg:px-5"
                 >
                   Log In
                 </Button>
@@ -224,20 +220,17 @@ const Navbar = () => {
                   Programs
                 </p>
                 <div className="ml-2 space-y-1">
-                  {courses.map((course) => {
-                    const IconComponent = course.icon;
-                    return (
-                      <Link
-                        key={course.id}
-                        to={course.route}
-                        className={`flex items-center gap-3 py-2.5 ${navLinkClass(location.pathname === course.route)}`}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        <IconComponent className="h-4 w-4" />
-                        <span className="text-sm">{course.title}</span>
-                      </Link>
-                    );
-                  })}
+                  {courses.map((course) => (
+                    <Link
+                      key={course.id}
+                      to={course.route}
+                      className={`flex items-center gap-3 py-2.5 ${navLinkClass(location.pathname === course.route)}`}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <CourseLogo courseId={course.id} size="sm" />
+                      <span className="text-sm">{course.title}</span>
+                    </Link>
+                  ))}
                   <Link
                     to="/courses"
                     className="flex py-2.5 text-sm font-semibold text-primary"
@@ -299,7 +292,7 @@ const Navbar = () => {
                 ) : (
                   <Button
                     variant="outline"
-                    className="w-full"
+                    className="w-full rounded-lg border-primary font-semibold text-primary hover:bg-primary hover:text-primary-foreground"
                     onClick={() => {
                       setIsLoginModalOpen(true);
                       setIsMobileMenuOpen(false);

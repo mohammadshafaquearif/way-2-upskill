@@ -139,7 +139,7 @@ const ProgramInquirySidebar = ({ programName, programCode }: ProgramInquirySideb
             rel="noopener noreferrer"
             className="text-xl font-bold text-foreground transition-colors hover:text-primary sm:text-2xl"
           >
-            +91 8887720741
+            +91 9611513741
           </a>
           <a
             href={SOCIAL_LINKS.whatsapp}

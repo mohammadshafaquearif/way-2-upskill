@@ -10,6 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { STATIC_PAGE_SEO } from '@/lib/seo';
 import { usePageMeta } from '@/hooks/usePageMeta';
+import CourseLogo from '@/components/courses/CourseLogo';
 import { 
   User, 
   CreditCard, 
@@ -164,11 +165,14 @@ const Profile = () => {
                   <CardContent>
                     <div className="grid md:grid-cols-2 gap-4">
                       {[
-                        { title: 'Agentic AI Certification Training (AAC)', route: '/courses/aac', desc: 'Build intelligent agents and LLM-powered workflows.' },
-                        { title: 'AWS Solutions Architect Program (AWS)', route: '/courses/aws', desc: 'Design scalable cloud architectures on AWS.' },
+                        { id: 'aac', title: 'Agentic AI Certification Training (AAC)', route: '/courses/aac', desc: 'Build intelligent agents and LLM-powered workflows.' },
+                        { id: 'aws', title: 'AWS Solutions Architect Program (AWS)', route: '/courses/aws', desc: 'Design scalable cloud architectures on AWS.' },
                       ].map((program) => (
                         <div key={program.route} className="p-4 border rounded-lg hover:shadow-md transition-shadow">
-                          <h4 className="font-semibold mb-2">{program.title}</h4>
+                          <h4 className="mb-2 flex items-center gap-2 font-semibold">
+                            <CourseLogo courseId={program.id} size="sm" />
+                            <span>{program.title}</span>
+                          </h4>
                           <p className="text-sm text-muted-foreground mb-3">{program.desc}</p>
                           <Button size="sm" asChild className="w-full mt-2">
                             <Link to={program.route}>View Program</Link>

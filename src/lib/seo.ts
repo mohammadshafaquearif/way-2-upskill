@@ -11,7 +11,7 @@ export const ZYVOTRIX_ORGANIZATION = {
   '@type': 'Organization' as const,
   name: SITE_NAME,
   url: BASE_URL,
-  telephone: '+918887720741',
+  telephone: '+919611513741',
   sameAs: [
     BASE_URL,
     'https://twitter.com/zyvotrix_',

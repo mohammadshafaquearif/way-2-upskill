@@ -6,6 +6,7 @@ import PageShell from '@/components/layout/PageShell';
 import { useAuth } from '@/contexts/AuthContext';
 import { apiClient } from '@/integrations/api/client';
 import { getCourseByCheckoutId } from '@/lib/courses';
+import CourseLogo from '@/components/courses/CourseLogo';
 import { enrollmentGrantsAccess } from '@/lib/enrollmentAccess';
 import {
   loadEnrollmentSuccess,
@@ -222,7 +223,10 @@ const LearningSimulator: React.FC = () => {
                 <Sparkles className="w-5 h-5 text-primary" />
                 <Badge variant="secondary">Learning Simulator</Badge>
               </div>
-              <h1 className="text-3xl sm:text-4xl font-bold">{course.title}</h1>
+              <h1 className="flex items-center gap-3 text-3xl font-bold sm:text-4xl">
+                <CourseLogo courseId={course.id} size="md" />
+                <span>{course.title}</span>
+              </h1>
               <p className="text-muted-foreground mt-2 max-w-2xl">
                 Welcome, {displayName}! Hands-on labs, guided modules, and progress tracking — unlocked after payment.
               </p>

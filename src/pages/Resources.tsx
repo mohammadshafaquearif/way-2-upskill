@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
+  ArrowLeft,
   ArrowRight,
   BarChart3,
   BookOpen,
@@ -17,6 +18,7 @@ import {
   Route,
   Sparkles,
   Target,
+  Terminal,
   TrendingUp,
   Users,
 } from 'lucide-react';
@@ -60,8 +62,43 @@ const sectionNav = [
   { id: 'popular-resources', label: 'Guides', icon: FileText },
   { id: 'project-ideas', label: 'Projects', icon: Lightbulb },
   { id: 'interview-prep', label: 'Interview', icon: Briefcase },
+  { id: 'quiz', label: 'Quiz', icon: Terminal },
   { id: 'career-resources', label: 'Career', icon: BookOpen },
 ] as const;
+
+const quizSections = [
+  {
+    id: 'quiz-linux-administration',
+    title: 'Linux Administration',
+    summary: '80 questions · 100 minutes · 1 mark each. Submit anytime, then review and revise.',
+    logo: '/images/quiz/linux.png',
+    logoAlt: 'Linux',
+    href: '/resources/quiz/linux',
+  },
+  {
+    id: 'quiz-windows-administration',
+    title: 'Windows Administration',
+    summary: '90 questions · 120 minutes · 1 mark each. Submit anytime, then review and revise.',
+    logo: '/images/quiz/windows.png',
+    logoAlt: 'Windows',
+    href: '/resources/quiz/windows',
+  },
+  {
+    id: 'quiz-basic-devops-part-1',
+    title: 'Basic DevOps — Part 1',
+    summary: '100 questions · 100 minutes · 1 mark each. Submit anytime, then review and revise.',
+    logo: '/images/quiz/devops.png',
+    logoAlt: 'DevOps',
+    href: '/resources/quiz/devops',
+  },
+  {
+    id: 'quiz-basic-devops-part-2',
+    title: 'Basic DevOps — Part 2',
+    summary: 'More DevOps tools are on the way. This quiz will open here when it is ready.',
+    logo: '/images/quiz/devops.png',
+    logoAlt: 'DevOps',
+  },
+];
 
 const categoryIcons = {
   devops: GitBranch,
@@ -78,8 +115,69 @@ const projectTierMeta = {
 
 const categoryOrder = ['devops', 'aac', 'aws', 'data-science'] as const;
 
+const QUIZ_SLIDE_MS = 2000;
+
 const Resources = () => {
   usePageMeta(STATIC_PAGE_SEO['/resources']);
+  const quizViewportRef = useRef<HTMLDivElement>(null);
+  const [quizIndex, setQuizIndex] = useState(0);
+  const [quizSlideWidth, setQuizSlideWidth] = useState(0);
+  const [quizAnimate, setQuizAnimate] = useState(true);
+  const [quizPaused, setQuizPaused] = useState(false);
+  const quizCount = quizSections.length;
+
+  useEffect(() => {
+    const viewport = quizViewportRef.current;
+    if (!viewport) return;
+    const measure = () => {
+      const slide = viewport.querySelector('.resources-quiz-slide');
+      if (slide) setQuizSlideWidth(slide.getBoundingClientRect().width);
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(viewport);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (quizPaused) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const timer = window.setInterval(() => {
+      setQuizAnimate(true);
+      setQuizIndex((current) => current + 1);
+    }, QUIZ_SLIDE_MS);
+    return () => window.clearInterval(timer);
+  }, [quizPaused]);
+
+  useEffect(() => {
+    if (quizIndex !== quizCount) return;
+    const timer = window.setTimeout(() => {
+      setQuizAnimate(false);
+      setQuizIndex(0);
+    }, 300);
+    return () => window.clearTimeout(timer);
+  }, [quizIndex, quizCount]);
+
+  const showNextQuiz = () => {
+    setQuizAnimate(true);
+    setQuizIndex((current) => (current >= quizCount ? 1 : current + 1));
+  };
+
+  const showPreviousQuiz = () => {
+    if (quizIndex === 0) {
+      setQuizAnimate(false);
+      setQuizIndex(quizCount);
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          setQuizAnimate(true);
+          setQuizIndex(quizCount - 1);
+        });
+      });
+      return;
+    }
+    setQuizAnimate(true);
+    setQuizIndex((current) => current - 1);
+  };
 
   return (
     <PageShell className="resources-page">
@@ -370,6 +468,89 @@ const Resources = () => {
                 </span>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding section-alt resources-section" id="quiz">
+        <div className="resources-page-container">
+          <header className="resources-section-header mx-auto mb-8 max-w-2xl text-center">
+            <span className="resources-section-badge">
+              <Terminal className="h-3.5 w-3.5" />
+              Quiz
+            </span>
+            <h2 className="resources-section-title mb-3 text-2xl font-bold text-foreground sm:text-3xl">
+              Practice Quizzes
+            </h2>
+            <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
+              Linux, Windows, and DevOps. Slide across as more quizzes are added.
+            </p>
+          </header>
+
+          <div
+            onMouseEnter={() => setQuizPaused(true)}
+            onMouseLeave={() => setQuizPaused(false)}
+            onFocusCapture={() => setQuizPaused(true)}
+            onBlurCapture={() => setQuizPaused(false)}
+          >
+          <div className="resources-quiz-marquee" ref={quizViewportRef} aria-label="Practice quizzes">
+            <div
+              className="resources-quiz-track"
+              style={{
+                transform: `translateX(-${quizIndex * quizSlideWidth}px)`,
+                transition: quizAnimate ? 'transform 0.28s ease' : 'none',
+              }}
+            >
+              {[0, 1].flatMap((copy) =>
+                quizSections.map(({ id, title, summary, logo, logoAlt, href }) => {
+                  const body = (
+                    <>
+                      <img src={logo} alt={copy === 0 ? logoAlt : ''} className="resources-quiz-logo" />
+                      <h3 className="resources-interview-card-title">{title}</h3>
+                      <p className="text-sm leading-relaxed text-muted-foreground">{summary}</p>
+                      {href ? (
+                        <span className="resources-card-cta">
+                          Start quiz
+                          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                        </span>
+                      ) : (
+                        <span className="text-sm font-semibold text-muted-foreground">Coming soon</span>
+                      )}
+                    </>
+                  );
+
+                  const card = href ? (
+                    <Link
+                      id={copy === 0 ? id : undefined}
+                      to={href}
+                      tabIndex={copy === 0 ? undefined : -1}
+                      className="resources-quiz-card resources-quiz-card-link group h-full w-full"
+                    >
+                      {body}
+                    </Link>
+                  ) : (
+                    <article id={copy === 0 ? id : undefined} className="resources-quiz-card h-full w-full">
+                      {body}
+                    </article>
+                  );
+
+                  return (
+                    <div key={`${id}-${copy}`} className="resources-quiz-slide" aria-hidden={copy === 1}>
+                      {card}
+                    </div>
+                  );
+                }),
+              )}
+            </div>
+          </div>
+          <div className="resources-quiz-nav">
+            <button type="button" className="resources-quiz-nav-btn resources-quiz-nav-btn--prev" onClick={showPreviousQuiz} aria-label="Previous quizzes">
+              <ArrowLeft className="h-5 w-5" />
+            </button>
+            <button type="button" className="resources-quiz-nav-btn resources-quiz-nav-btn--next" onClick={showNextQuiz} aria-label="Next quizzes">
+              <ArrowRight className="h-5 w-5" />
+            </button>
+          </div>
           </div>
         </div>
       </section>

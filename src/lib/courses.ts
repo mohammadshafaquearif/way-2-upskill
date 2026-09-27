@@ -12,6 +12,7 @@ export interface Course {
   route: string;
   checkoutPath: string;
   image: string;
+  logo: string;
   icon: LucideIcon;
   level: string;
   projects: string;
@@ -33,6 +34,7 @@ export const COURSES: Course[] = [
     route: '/courses/devops-engineer-program',
     checkoutPath: '/checkout/devops-engineer-program',
     image: IMAGES.programs.dop,
+    logo: '/images/courses/devops.png',
     icon: Wrench,
     level: 'Intermediate',
     projects: '12+',
@@ -56,6 +58,7 @@ export const COURSES: Course[] = [
     route: '/courses/aac',
     checkoutPath: '/checkout/aac',
     image: IMAGES.programs.aac,
+    logo: '/images/courses/agentic-ai.png',
     icon: Bot,
     level: 'Intermediate',
     projects: '10+',
@@ -79,6 +82,7 @@ export const COURSES: Course[] = [
     route: '/courses/aws',
     checkoutPath: '/checkout/aws',
     image: IMAGES.programs.aws,
+    logo: '/images/courses/aws.webp',
     icon: Cloud,
     level: 'Beginner to Intermediate',
     projects: '7+',
@@ -102,6 +106,7 @@ export const COURSES: Course[] = [
     route: '/courses/data-science',
     checkoutPath: '/checkout/data-science',
     image: IMAGES.programs.dataScience,
+    logo: '/images/courses/data-science.png',
     icon: BarChart3,
     level: 'Beginner to Intermediate',
     projects: '6+',

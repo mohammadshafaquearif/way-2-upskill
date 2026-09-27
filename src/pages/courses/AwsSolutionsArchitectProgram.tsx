@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import EnrollButton from '@/components/EnrollButton';
+import CourseLogo from '@/components/courses/CourseLogo';
 import DownloadBrochureButton from '@/components/courses/DownloadBrochureButton';
 import {
   ArrowRight,
@@ -19,7 +20,6 @@ import {
   Search,
   Server,
   Shield,
-  Sparkles,
   Users,
   Zap,
 } from 'lucide-react';
@@ -895,7 +895,7 @@ const AwsSolutionsArchitectProgram = () => {
           <div className="program-page-content program-hero-grid grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
             <div className="hero-fade-up program-hero-copy">
               <span className="program-hero-badge mb-4 inline-flex items-center gap-2 rounded-full border border-primary/25 bg-white/80 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary backdrop-blur-sm">
-                <Sparkles className="h-3.5 w-3.5" />
+                <CourseLogo courseId={course.id} size="xs" />
                 AWS SAA-C03 · Certification Training
               </span>
               <h1 className="program-hero-title mb-4 text-3xl font-bold leading-[1.08] tracking-tight text-brand-950 sm:text-4xl lg:text-[2.85rem]">

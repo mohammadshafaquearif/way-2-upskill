@@ -9,6 +9,7 @@ import ProgramCardBrand from '@/components/home/ProgramCardBrand';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Check, Clock, FolderKanban } from 'lucide-react';
 import { COURSES } from '@/lib/courses';
+import CourseLogo from '@/components/courses/CourseLogo';
 import { mentorshipProgramPath } from '@/lib/mentorshipEntry';
 import { STATIC_PAGE_SEO } from '@/lib/seo';
 import { usePageMeta } from '@/hooks/usePageMeta';
@@ -134,6 +135,7 @@ const OneOnOneMentorship = () => {
                   to={mentorshipProgramPath(course.route)}
                   className="mt-1 inline-flex items-center gap-2 font-bold text-primary"
                 >
+                  <CourseLogo courseId={course.id} size="xs" />
                   {course.shortTitle}
                   <span className="text-xs font-normal text-muted-foreground">Details</span>
                 </Link>
@@ -165,6 +167,7 @@ const OneOnOneMentorship = () => {
                         to={mentorshipProgramPath(course.route)}
                         className="inline-flex items-center gap-2 font-bold text-primary transition-colors hover:text-primary/80"
                       >
+                        <CourseLogo courseId={course.id} size="xs" />
                         {course.code}
                         <span className="text-xs font-normal text-muted-foreground">View details</span>
                       </Link>
@@ -217,7 +220,10 @@ const OneOnOneMentorship = () => {
                   </div>
 
                   <div className="top-program-card-body">
-                    <h3 className="top-program-card-title">{course.title}</h3>
+                    <h3 className="top-program-card-title flex items-center gap-2">
+                      <CourseLogo courseId={course.id} size="sm" />
+                      <span>{course.title}</span>
+                    </h3>
                     <p className="top-program-card-meta text-muted-foreground">{course.description}</p>
 
                     <div className="top-program-card-stats">
