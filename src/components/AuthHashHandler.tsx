@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useToast } from '@/hooks/use-toast';
 import { authErrorMessage, clearAuthHash, parseAuthHash } from '@/lib/authHash';
 
 /**
@@ -9,7 +10,30 @@ import { authErrorMessage, clearAuthHash, parseAuthHash } from '@/lib/authHash';
 const AuthHashHandler = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { toast } = useToast();
   const handledRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const description = params.get('error_description');
+    if (!description) return;
+
+    const key = `q:${description}`;
+    if (handledRef.current === key) return;
+    handledRef.current = key;
+
+    toast({
+      title: 'Google sign-in failed',
+      description: description.replace(/\+/g, ' '),
+      variant: 'destructive',
+    });
+
+    params.delete('error');
+    params.delete('error_code');
+    params.delete('error_description');
+    const search = params.toString();
+    navigate({ pathname: location.pathname, search: search ? `?${search}` : '' }, { replace: true });
+  }, [location.pathname, location.search, navigate, toast]);
 
   useEffect(() => {
     const hash = window.location.hash;

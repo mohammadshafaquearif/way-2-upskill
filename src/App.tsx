@@ -12,6 +12,7 @@ import PageLayout from "@/components/PageLayout";
 import RequireAuth from "@/components/RequireAuth";
 import ScrollToHash from "./components/ScrollToHash";
 import AuthHashHandler from "./components/AuthHashHandler";
+import GoogleAccountDetails from "./components/GoogleAccountDetails";
 
 const queryClient = new QueryClient();
 
@@ -76,6 +77,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
         <AuthHashHandler />
+        <GoogleAccountDetails />
         <ScrollToHash />
         <Suspense fallback={<RouteFallback />}>
           <Routes>

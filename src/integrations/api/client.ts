@@ -127,6 +127,23 @@ class ApiClient {
     return db.signIn(email, password);
   }
 
+  async signInWithGoogle() {
+    return db.signInWithGoogle();
+  }
+
+  async completeGoogleProfile(params: {
+    userId: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    interestedSubject: string;
+  }) {
+    const appUser = await db.updateOwnProfile(params.userId, params);
+    notifyByEmail(buildSignupEmailPayload(params));
+    return appUser;
+  }
+
   async signUp(params: {
     firstName: string;
     lastName: string;

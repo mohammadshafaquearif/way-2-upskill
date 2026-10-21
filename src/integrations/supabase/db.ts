@@ -64,25 +64,58 @@ async function waitForProfile(userId: string, attempts = 6): Promise<UserProfile
   throw new Error('Profile not found');
 }
 
+function namesFromAuthMeta(meta: Record<string, unknown>) {
+  const explicitFirst = String(meta.first_name || meta.firstName || '').trim();
+  const explicitLast = String(meta.last_name || meta.lastName || '').trim();
+  if (explicitFirst) return { firstName: explicitFirst, lastName: explicitLast };
+
+  const given = String(meta.given_name || '').trim();
+  const family = String(meta.family_name || '').trim();
+  if (given) return { firstName: given, lastName: family };
+
+  const full = String(meta.full_name || meta.name || '').trim();
+  if (!full) return { firstName: '', lastName: '' };
+  const [firstName, ...rest] = full.split(/\s+/);
+  return { firstName, lastName: rest.join(' ') };
+}
+
 function appUserFromAuthMetadata(authUser: AuthUser) {
-  const meta = authUser.user_metadata ?? {};
-  const firstName = meta.first_name ?? meta.firstName ?? '';
-  const lastName = meta.last_name ?? meta.lastName ?? '';
+  const meta = (authUser.user_metadata ?? {}) as Record<string, unknown>;
+  const { firstName, lastName } = namesFromAuthMeta(meta);
   if (!firstName && !authUser.email) return null;
 
   return {
     id: authUser.id,
-    firstName: String(firstName),
-    lastName: String(lastName),
+    firstName,
+    lastName,
     email: authUser.email ?? '',
     phone: String(meta.phone ?? ''),
-    interestedSubject: meta.interested_subject ?? meta.interestedSubject ?? undefined,
+    interestedSubject:
+      (meta.interested_subject as string | undefined) ??
+      (meta.interestedSubject as string | undefined),
   };
 }
 
 async function getAppUserFromAuthUser(authUser: AuthUser) {
   try {
-    const profile = await getProfile(authUser.id);
+    let profile = await getProfile(authUser.id);
+    const names = namesFromAuthMeta((authUser.user_metadata ?? {}) as Record<string, unknown>);
+    if (!profile.first_name && names.firstName) {
+      const { data } = await supabase
+        .from('users')
+        .update({
+          first_name: names.firstName,
+          last_name: names.lastName || profile.last_name,
+        })
+        .eq('id', authUser.id)
+        .select()
+        .single();
+      profile = (data as UserProfile | null) ?? {
+        ...profile,
+        first_name: names.firstName,
+        last_name: names.lastName || profile.last_name,
+      };
+    }
     return mapProfileToAppUser(profile);
   } catch {
     return appUserFromAuthMetadata(authUser);
@@ -163,6 +196,38 @@ export const db = {
     }
 
     return { profile, appUser: mapProfileToAppUser(profile) };
+  },
+
+  async signInWithGoogle() {
+    const redirectTo = `${window.location.origin}${window.location.pathname}${window.location.search}`;
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo,
+        scopes: 'openid email profile',
+      },
+    });
+    if (error) throw new Error(error.message);
+  },
+
+  async updateOwnProfile(
+    userId: string,
+    params: { firstName: string; lastName: string; phone: string; interestedSubject: string },
+  ) {
+    const { data, error } = await supabase
+      .from('users')
+      .update({
+        first_name: params.firstName,
+        last_name: params.lastName,
+        phone: params.phone,
+        interested_subject: params.interestedSubject,
+      })
+      .eq('id', userId)
+      .select()
+      .single();
+    if (error) throw new Error(error.message);
+    if (!data) throw new Error('Profile update failed');
+    return mapProfileToAppUser(data as UserProfile);
   },
 
   async signIn(email: string, password: string) {
