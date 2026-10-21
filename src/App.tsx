@@ -54,6 +54,7 @@ const Resources = lazy(() => import("./pages/Resources"));
 const LinuxAdministrationQuiz = lazy(() => import("./pages/resources/LinuxAdministrationQuiz"));
 const WindowsAdministrationQuiz = lazy(() => import("./pages/resources/WindowsAdministrationQuiz"));
 const DevOpsPartOneQuiz = lazy(() => import("./pages/resources/DevOpsPartOneQuiz"));
+const GitGithubQuiz = lazy(() => import("./pages/resources/GitGithubQuiz"));
 const ResourceArticle = lazy(() => import("./pages/resources/ResourceArticle"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const Privacy = lazy(() => import("./pages/Privacy"));
@@ -98,6 +99,7 @@ const App = () => (
                 <Route path="/resources/quiz/linux" element={<LinuxAdministrationQuiz />} />
                 <Route path="/resources/quiz/windows" element={<WindowsAdministrationQuiz />} />
                 <Route path="/resources/quiz/devops" element={<DevOpsPartOneQuiz />} />
+                <Route path="/resources/quiz/git" element={<GitGithubQuiz />} />
                 <Route path="/resources/:slug" element={<ResourceArticle />} />
               </Route>
               <Route path="/quiz/linux" element={<Navigate to="/resources/quiz/linux" replace />} />

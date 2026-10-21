@@ -92,6 +92,14 @@ const quizSections = [
     href: '/resources/quiz/devops',
   },
   {
+    id: 'quiz-git-github',
+    title: 'Git & GitHub',
+    summary: '60 questions · 60 minutes · 1 mark each. One quiz for both tools. Submit anytime, then review and revise.',
+    logo: '/images/quiz/git.png',
+    logoAlt: 'Git and GitHub',
+    href: '/resources/quiz/git',
+  },
+  {
     id: 'quiz-basic-devops-part-2',
     title: 'Basic DevOps — Part 2',
     summary: 'More DevOps tools are on the way. This quiz will open here when it is ready.',
@@ -483,7 +491,7 @@ const Resources = () => {
               Practice Quizzes
             </h2>
             <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
-              Linux, Windows, and DevOps. Slide across as more quizzes are added.
+              Linux, Windows, DevOps, and Git & GitHub. Slide across as more quizzes are added.
             </p>
           </header>
 
